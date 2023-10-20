@@ -122,6 +122,12 @@
 		<File
 			RelativePath=".\resource.h">
 		</File>
+		<File
+			RelativePath=".\resource1.h">
+		</File>
+		<File
+			RelativePath=".\saco.rc">
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
