@@ -111,6 +111,9 @@
 		<File
 			RelativePath=".\main.cpp">
 		</File>
+		<File
+			RelativePath=".\main.h">
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
