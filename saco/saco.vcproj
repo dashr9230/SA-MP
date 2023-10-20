@@ -111,10 +111,16 @@
 	</References>
 	<Files>
 		<File
+			RelativePath=".\exceptbox.rc">
+		</File>
+		<File
 			RelativePath=".\main.cpp">
 		</File>
 		<File
 			RelativePath=".\main.h">
+		</File>
+		<File
+			RelativePath=".\resource.h">
 		</File>
 	</Files>
 	<Globals>
