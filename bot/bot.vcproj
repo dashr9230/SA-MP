@@ -109,7 +109,13 @@
 	</References>
 	<Files>
 		<File
+			RelativePath=".\bot.rc">
+		</File>
+		<File
 			RelativePath=".\main.cpp">
+		</File>
+		<File
+			RelativePath=".\resource.h">
 		</File>
 	</Files>
 	<Globals>
