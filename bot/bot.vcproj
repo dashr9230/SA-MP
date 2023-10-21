@@ -115,6 +115,9 @@
 			RelativePath=".\main.cpp">
 		</File>
 		<File
+			RelativePath=".\main.h">
+		</File>
+		<File
 			RelativePath=".\resource.h">
 		</File>
 	</Files>
