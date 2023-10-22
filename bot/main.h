@@ -2,9 +2,14 @@
 
 #ifdef WIN32
 	#define WIN32_LEAN_AND_MEAN
+	#define SLEEP(x) { Sleep(x); }
 
 	#include <windows.h>
+	#include <mmsystem.h>
 #else
+	#define SLEEP(x) { usleep(x * 1000); }
+
+	#include <unistd.h>
 #endif
 
 #define MAX_SETTINGS_STRING 256
@@ -20,3 +25,6 @@ typedef struct _GAME_SETTINGS {
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "net/netgame.h"
+
+void logprintf(char* format, ...);

@@ -2,6 +2,7 @@
 #include "main.h"
 
 GAME_SETTINGS	tSettings;
+CNetGame		*pNetGame=0;
 
 void InitSettingsFromCommandLine(char * szCmdLine);
 
@@ -16,8 +17,11 @@ void InitSettingsFromCommandLine(char * szCmdLine);
 		-n -> NPC's name
 		-m -> script name
 */
+// Absolutely no indication it is named npc or bot...
 int main (int argc, char** argv)
 {
+	logprintf("----- NPC Starting -----");
+
 	char szCmdLine[1024];
 	memset(szCmdLine,0,1024);
 
@@ -31,10 +35,50 @@ int main (int argc, char** argv)
 	}
 	InitSettingsFromCommandLine(szCmdLine);
 
+	pNetGame = new CNetGame();
+	pNetGame->Init(tSettings.szConnectHost,atoi(tSettings.szConnectPort),
+		tSettings.szNickName,tSettings.szConnectPass,tSettings.szModeName);
+
+#ifdef WIN32
+	timeBeginPeriod(5);
+#endif
+
 	// TODO: main
-	// Absolutely no indication it is named npc or bot...
+	
+	while(1) {
+		pNetGame->Process();
+		SLEEP(5);
+
+		/*
+		v5 = sub_80AC1DC(pNetGame);
+		if(sub_80AC1E6(pNetGame) == 2 ||
+			!(unsigned __int8)(*(int (__cdecl **)(int))(*(_DWORD *)v5 + 76))(v5))
+			break;
+		*/
+	}
+
+	delete pNetGame;
+
+	logprintf("----- NPC: End -----");
 
 	return 0;
+}
+
+//----------------------------------------------------
+
+void logprintf(char* format, ...)
+{
+	va_list ap;
+	va_start(ap, format);
+
+	char buffer[2048];
+	vsprintf(buffer, format, ap);
+
+#ifdef WIN32
+	OutputDebugString(buffer);
+#endif
+
+	va_end(ap);
 }
 
 //----------------------------------------------------
