@@ -34,9 +34,12 @@ void CLaunch3Dlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CLaunch3Dlg, CDialog)
 	//{{AFX_MSG_MAP(CLaunch3Dlg)
-	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_EN_CHANGE(IDC_NICK, OnChangeNick)
+	ON_BN_CLICKED(IDC_LAUNCH, OnLaunch)
+	ON_BN_CLICKED(IDC_BUTTON2, OnButton2)
+	ON_BN_CLICKED(IDC_BUTTON1, OnButton1)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -55,11 +58,6 @@ BOOL CLaunch3Dlg::OnInitDialog()
 	// TODO: Add extra initialization here
 	
 	return TRUE;  // return TRUE  unless you set the focus to a control
-}
-
-void CLaunch3Dlg::OnSysCommand(UINT nID, LPARAM lParam)
-{
-	CDialog::OnSysCommand(nID, lParam);
 }
 
 // If you add a minimize button to your dialog, you will need the code below
@@ -97,3 +95,27 @@ HCURSOR CLaunch3Dlg::OnQueryDragIcon()
 {
 	return (HCURSOR) m_hIcon;
 }
+
+void CLaunch3Dlg::OnChangeNick() 
+{
+	// TODO: If this is a RICHEDIT control, the control will not
+	// send this notification unless you override the CDialog::OnInitDialog()
+	// function and call CRichEditCtrl().SetEventMask()
+	// with the ENM_CHANGE flag ORed into the mask.
+	
+	// TODO: Add your control notification handler code here
+	
+}
+
+void CLaunch3Dlg::OnLaunch() 
+{
+}
+
+void CLaunch3Dlg::OnButton2() 
+{
+}
+
+void CLaunch3Dlg::OnButton1() 
+{
+}
+

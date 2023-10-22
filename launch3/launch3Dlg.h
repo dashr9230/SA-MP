@@ -36,9 +36,12 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(CLaunch3Dlg)
 	virtual BOOL OnInitDialog();
-	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
+	afx_msg void OnChangeNick();
+	afx_msg void OnLaunch();
+	afx_msg void OnButton2();
+	afx_msg void OnButton1();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
