@@ -4,6 +4,8 @@
 GAME_SETTINGS	tSettings;
 HANDLE			hInstance=0;
 
+CGame *pGame=0;
+
 BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 {
 	if(DLL_PROCESS_ATTACH==fdwReason)
@@ -45,18 +47,12 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 			AddFontResourceA("gtaweap3.ttf");
 			AddFontResourceA("sampaux3.ttf");
 
-			/*sub_10062CA0();
-			sub_10062970();
-			v9 = operator new(0x142u);
-			v13 = v9;
-			v16 = 1;
-			if ( v9 )
-			v10 = sub_1009FF80(v9);
-			else
-			v10 = 0;
-			dword_1026EBAC = v10;
-			_beginthread((int)sub_100C3A80, 0, 0);
-			*/
+			//sub_10062CA0();
+			//sub_10062970();
+
+			pGame = new CGame();
+
+			//_beginthread((int)sub_100C3A80, 0, 0);
 		}
 	}
 	else if(DLL_PROCESS_DETACH==fdwReason)

@@ -110,6 +110,28 @@
 	<References>
 	</References>
 	<Files>
+		<Filter
+			Name="game"
+			Filter="">
+			<File
+				RelativePath=".\game\audio.cpp">
+			</File>
+			<File
+				RelativePath=".\game\audio.h">
+			</File>
+			<File
+				RelativePath=".\game\camera.cpp">
+			</File>
+			<File
+				RelativePath=".\game\camera.h">
+			</File>
+			<File
+				RelativePath=".\game\game.cpp">
+			</File>
+			<File
+				RelativePath=".\game\game.h">
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\exceptbox.rc">
 		</File>

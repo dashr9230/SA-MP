@@ -16,6 +16,8 @@ typedef struct _GAME_SETTINGS {
 	CHAR szDebugScript[MAX_SETTINGS_STRING+1];
 } GAME_SETTINGS;
 
+#include "game/game.h"
+
 void SetStringFromCommandLine(char *szCmdLine, char *szString);
 void SetStringFromQuotedCommandLine(char *szCmdLine, char *szString);
 void InitSettings();
