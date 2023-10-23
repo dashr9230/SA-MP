@@ -40,10 +40,12 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 			v8 = *v7;
 			v16 = -1;
 			if ( !(unsigned __int8)(*(int (__thiscall **)(int *, int *))(v8 + 4))(v7, &dword_100EDB18) )
-			__debugbreak();
+			__debugbreak();*/
+
 			AddFontResourceA("gtaweap3.ttf");
 			AddFontResourceA("sampaux3.ttf");
-			sub_10062CA0();
+
+			/*sub_10062CA0();
 			sub_10062970();
 			v9 = operator new(0x142u);
 			v13 = v9;
