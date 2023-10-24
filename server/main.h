@@ -28,6 +28,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// Std
+#include <map>
+#include <string>
+
+#include "console.h"
+
 void logprintf(char* format, ...);
+
+#ifdef LINUX
+char* strlwr(char* str);
+#endif
 
 #endif // SAMPSRV_MAIN_H

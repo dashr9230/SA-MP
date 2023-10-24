@@ -109,6 +109,12 @@
 	</References>
 	<Files>
 		<File
+			RelativePath=".\console.cpp">
+		</File>
+		<File
+			RelativePath=".\console.h">
+		</File>
+		<File
 			RelativePath=".\main.cpp">
 		</File>
 		<File

@@ -1,6 +1,8 @@
 
 #include "main.h"
 
+CConsole *pConsole = NULL;
+
 FILE *pLogFile;
 
 //----------------------------------------------------
@@ -26,6 +28,24 @@ void LoadLogFile()
 	}
 }
 
+#ifdef LINUX
+
+// strlwr is not included with the GNU C lib it seems.
+char* strlwr(char* str)
+{
+	size_t maxlen=strlen(str);
+	for (size_t i=0; i<maxlen; i++)
+	{
+		if ((str[i] >= 'A') && (str[i] <= 'Z'))
+		{
+			str[i] -= 32;
+		}
+	}
+	return str;
+}
+
+#endif	// #ifdef LINUX
+
 //----------------------------------------------------
 
 int main (int argc, char** argv)
@@ -41,6 +61,9 @@ int main (int argc, char** argv)
 	logprintf("v" SAMP_VERSION ", (C)2005-2015 SA-MP Team\n");
 
 	srand(time(NULL));
+
+	// Create the Console
+	pConsole = new CConsole();
 
 	// TODO: main
 
