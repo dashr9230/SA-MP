@@ -115,6 +115,9 @@
 			RelativePath=".\console.h">
 		</File>
 		<File
+			RelativePath=".\exceptions.cpp">
+		</File>
+		<File
 			RelativePath=".\main.cpp">
 		</File>
 		<File

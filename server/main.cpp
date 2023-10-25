@@ -5,6 +5,11 @@ CConsole *pConsole = NULL;
 
 FILE *pLogFile;
 
+
+#ifdef WIN32
+extern LONG WINAPI exc_handler(_EXCEPTION_POINTERS* exc_inf);
+#endif
+
 //----------------------------------------------------
 
 void LoadLogFile()
@@ -64,6 +69,11 @@ int main (int argc, char** argv)
 
 	// Create the Console
 	pConsole = new CConsole();
+
+#ifdef WIN32
+	// Setup the exception handler on windows
+	SetUnhandledExceptionFilter(exc_handler);
+#endif
 
 	// TODO: main
 
