@@ -3,6 +3,9 @@
 #include <windows.h>
 #endif
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "httpclient.h"
 
 #ifdef WIN32
@@ -13,7 +16,13 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmd
 
 	CHttpClient* pHttpClient = new CHttpClient(NULL);
 
-	// TODO: WinMain
+	//OutputDebugString(lpszCmdLine);
+
+	char szURL[1025];
+	memset(szURL,0,sizeof(szURL));
+	sprintf(szURL, "server.sa-mp.com/0.3.7/announce/%s",lpszCmdLine);
+
+	pHttpClient->ProcessURL(HTTP_GET, szURL, NULL, "Bonus");
 
 	delete pHttpClient;
 
@@ -26,17 +35,20 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmd
 
 int main(int argc, char *argv[])
 {
-	char *src = NULL;
+	char *szBindAddress = NULL;
 
 	if((argc <= 1 || argc > 3) || strlen(argv[1]) > 5) return 0;
 
 	if(argc == 3) {
-		src = argv[2];
+		szBindAddress = argv[2];
 	}
 
-	CHttpClient* pHttpClient = new CHttpClient(src);
+	CHttpClient* pHttpClient = new CHttpClient(szBindAddress);
 
-	// TODO: main
+	char szURL[255];
+	sprintf(szURL, "server.sa-mp.com/0.3.7/announce/%s",argv[1]);
+
+	pHttpClient->ProcessURL(HTTP_GET, szURL, NULL, "Bonus");
 
 	delete pHttpClient;
 
