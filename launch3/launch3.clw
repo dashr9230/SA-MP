@@ -10,11 +10,10 @@ NewFileInclude2=#include "launch3.h"
 ClassCount=4
 Class1=CLaunch3App
 Class2=CLaunch3Dlg
-Class3=CAboutDlg
 
-ResourceCount=2
-Resource1=IDR_MAINFRAME
-Resource2=IDD_LAUNCH3_DIALOG
+ResourceCount=3
+Resource2=IDR_MAINFRAME
+Resource3=IDD_LAUNCH3_DIALOG
 
 [CLS:CLaunch3App]
 Type=0
@@ -28,11 +27,7 @@ HeaderFile=launch3Dlg.h
 ImplementationFile=launch3Dlg.cpp
 Filter=D
 
-[CLS:CAboutDlg]
-Type=0
-HeaderFile=launch3Dlg.h
-ImplementationFile=launch3Dlg.cpp
-Filter=D
+
 
 [DLG:IDD_LAUNCH3_DIALOG]
 Type=1
