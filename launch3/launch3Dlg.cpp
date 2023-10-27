@@ -15,10 +15,10 @@ static char THIS_FILE[] = __FILE__;
 
 /////////////////////////////////////////////////////////////////////////////
 
-PROCESS_INFORMATION ProcessInformation;
 STARTUPINFO StartupInfo;
+PROCESS_INFORMATION ProcessInformation;
 
-void LaunchMod(LPCSTR lpPath, LPSTR lpParams)
+void LaunchMod(LPCSTR lpPath, LPSTR lpParams, int unk=0)
 {
 	char szGtaExe[256];
 	char szSampDll[256];
