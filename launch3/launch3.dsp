@@ -112,6 +112,10 @@ SOURCE=.\StdAfx.cpp
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
+SOURCE=.\detours.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\launch3.h
 # End Source File
 # Begin Source File
