@@ -45,6 +45,7 @@ public:
 	bool GetBoolVariable(char* pVarName);
 	void SetBoolVariable(char* pVarName, bool bBool);
 
+	void Execute(char* pExecLine);
 };
 
 #endif

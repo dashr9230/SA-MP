@@ -186,3 +186,7 @@ void CConsole::SetBoolVariable(char* pVarName, bool bBool)
 	}
 }
 
+void CConsole::Execute(char* pExecLine)
+{
+	// TODO: CConsole::Execute W: 0048B610 L: 0809FBD0
+}
