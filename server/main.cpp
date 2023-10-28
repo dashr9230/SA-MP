@@ -1,7 +1,9 @@
 
 #include "main.h"
 
-CConsole *pConsole = NULL;
+CNetGame		*pNetGame	= NULL;
+CConsole		*pConsole	= NULL;
+CPlugins		*pPlugins	= NULL;
 
 FILE *pLogFile;
 
@@ -123,6 +125,8 @@ char* strlwr(char* str)
 
 int main (int argc, char** argv)
 {
+	// TODO: main
+
 #ifdef LINUX
 	bool bOutputEnable = false;
 #endif
@@ -247,7 +251,14 @@ int main (int argc, char** argv)
 	SetUnhandledExceptionFilter(exc_handler);
 #endif
 
-	// TODO: main
+	// Load up the plugins
+	pPlugins = new CPlugins();
+	pPlugins->LoadPlugins("plugins");
+
+	// Create the NetGame.
+	pNetGame = new CNetGame();
+	pNetGame->Init(true);
+
 
 	delete pConsole;
 

@@ -36,6 +36,8 @@
 #include <string>
 
 #include "console.h"
+#include "netgame.h"
+#include "plugins.h"
 
 void logprintf(char* format, ...);
 

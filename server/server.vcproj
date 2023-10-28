@@ -124,6 +124,18 @@
 			RelativePath=".\main.h">
 		</File>
 		<File
+			RelativePath=".\netgame.cpp">
+		</File>
+		<File
+			RelativePath=".\netgame.h">
+		</File>
+		<File
+			RelativePath=".\plugins.cpp">
+		</File>
+		<File
+			RelativePath=".\plugins.h">
+		</File>
+		<File
 			RelativePath=".\resource.h">
 		</File>
 		<File
