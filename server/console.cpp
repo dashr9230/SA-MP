@@ -1,6 +1,16 @@
 
 #include "main.h"
 
+CConsole::CConsole()
+{
+
+}
+
+CConsole::~CConsole()
+{
+	ConsoleVariables.clear();
+}
+
 ConsoleVariable_s* CConsole::FindVariable(char* pVarName)
 {
 	char VarName[256];

@@ -21,6 +21,9 @@ class CConsole
 public:
 	StringConvarMap ConsoleVariables;
 
+	CConsole();
+	~CConsole();
+
 	ConsoleVariable_s* FindVariable(char* pVarName);
 
 	void AddVariable(char* pVarName, CON_VARTYPE VarType, DWORD VarFlags, void* VarPtr,
