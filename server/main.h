@@ -2,6 +2,9 @@
 #ifndef SAMPSRV_MAIN_H
 #define SAMPSRV_MAIN_H
 
+#define DEFAULT_MAX_PLAYERS		50
+#define DEFAULT_LISTEN_PORT		8192
+
 // ------------
 // VERSION INFO
 // ------------
@@ -33,6 +36,8 @@
 #include <string>
 
 #include "console.h"
+#include "netgame.h"
+#include "plugins.h"
 
 void logprintf(char* format, ...);
 

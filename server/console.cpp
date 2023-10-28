@@ -1,6 +1,16 @@
 
 #include "main.h"
 
+CConsole::CConsole()
+{
+
+}
+
+CConsole::~CConsole()
+{
+	ConsoleVariables.clear();
+}
+
 ConsoleVariable_s* CConsole::FindVariable(char* pVarName)
 {
 	char VarName[256];
@@ -176,3 +186,7 @@ void CConsole::SetBoolVariable(char* pVarName, bool bBool)
 	}
 }
 
+void CConsole::Execute(char* pExecLine)
+{
+	// TODO: CConsole::Execute W: 0048B610 L: 0809FBD0
+}

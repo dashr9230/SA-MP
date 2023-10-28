@@ -21,6 +21,9 @@ class CConsole
 public:
 	StringConvarMap ConsoleVariables;
 
+	CConsole();
+	~CConsole();
+
 	ConsoleVariable_s* FindVariable(char* pVarName);
 
 	void AddVariable(char* pVarName, CON_VARTYPE VarType, DWORD VarFlags, void* VarPtr,
@@ -42,6 +45,7 @@ public:
 	bool GetBoolVariable(char* pVarName);
 	void SetBoolVariable(char* pVarName, bool bBool);
 
+	void Execute(char* pExecLine);
 };
 
 #endif
