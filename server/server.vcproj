@@ -109,6 +109,12 @@
 	</References>
 	<Files>
 		<File
+			RelativePath=".\actorpool.cpp">
+		</File>
+		<File
+			RelativePath=".\actorpool.h">
+		</File>
+		<File
 			RelativePath=".\console.cpp">
 		</File>
 		<File
@@ -118,16 +124,64 @@
 			RelativePath=".\exceptions.cpp">
 		</File>
 		<File
+			RelativePath=".\filterscripts.cpp">
+		</File>
+		<File
+			RelativePath=".\filterscripts.h">
+		</File>
+		<File
+			RelativePath=".\gamemodes.cpp">
+		</File>
+		<File
+			RelativePath=".\gamemodes.h">
+		</File>
+		<File
+			RelativePath=".\gangzonepool.cpp">
+		</File>
+		<File
+			RelativePath=".\gangzonepool.h">
+		</File>
+		<File
+			RelativePath=".\labelpool.cpp">
+		</File>
+		<File
+			RelativePath=".\labelpool.h">
+		</File>
+		<File
 			RelativePath=".\main.cpp">
 		</File>
 		<File
 			RelativePath=".\main.h">
 		</File>
 		<File
+			RelativePath=".\menupool.cpp">
+		</File>
+		<File
+			RelativePath=".\menupool.h">
+		</File>
+		<File
 			RelativePath=".\netgame.cpp">
 		</File>
 		<File
 			RelativePath=".\netgame.h">
+		</File>
+		<File
+			RelativePath=".\objectpool.cpp">
+		</File>
+		<File
+			RelativePath=".\objectpool.h">
+		</File>
+		<File
+			RelativePath=".\pickuppool.cpp">
+		</File>
+		<File
+			RelativePath=".\pickuppool.h">
+		</File>
+		<File
+			RelativePath=".\playerpool.cpp">
+		</File>
+		<File
+			RelativePath=".\playerpool.h">
 		</File>
 		<File
 			RelativePath=".\plugins.cpp">
@@ -139,7 +193,31 @@
 			RelativePath=".\resource.h">
 		</File>
 		<File
+			RelativePath=".\scrhttps.cpp">
+		</File>
+		<File
+			RelativePath=".\scrhttps.h">
+		</File>
+		<File
+			RelativePath=".\scrtimers.cpp">
+		</File>
+		<File
+			RelativePath=".\scrtimers.h">
+		</File>
+		<File
 			RelativePath=".\server.rc">
+		</File>
+		<File
+			RelativePath=".\textdrawpool.cpp">
+		</File>
+		<File
+			RelativePath=".\textdrawpool.h">
+		</File>
+		<File
+			RelativePath=".\vehiclepool.cpp">
+		</File>
+		<File
+			RelativePath=".\vehiclepool.h">
 		</File>
 	</Files>
 	<Globals>
