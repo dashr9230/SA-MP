@@ -2,55 +2,59 @@
 #ifndef SAMPSRV_NETGAME_H
 #define SAMPSRV_NETGAME_H
 
+class RakServerInterface {}; // TODO: RakServerInterface placeholder, remove this later
+
 class CNetGame // size: W: 14808 L: 14816
 {
 private:
-  int field_0;
-  int field_4;
-  int field_8;
-  int field_C;
-  int field_10;
-  int field_14;
-  int field_18;
-  int field_1C;
-  int field_20;
-  int field_24;
-  int field_28;
-  int field_2C;
-  int field_30;
-  int field_34;
-  int field_38;
-  int field_3C;
-  int field_40;
-  int field_44;
-  int field_48;
-  int field_4C;
-  int field_50;
-  char gap54[5];
-  char field_59;
-  char field_5A;
-  char field_5B;
+	CGameMode					*m_pGameMode;
+	CFilterScripts				*m_pFilterScripts;
+	CPlayerPool					*m_pPlayerPool;
+	CVehiclePool				*m_pVehiclePool;
+	CPickupPool					*m_pPickupPool;
+	CObjectPool					*m_pObjectPool;
+	CMenuPool					*m_pMenuPool;
+	CTextDrawPool				*m_pTextPool;
+	CLabelPool					*m_pLabelPool;
+	CGangZonePool				*m_pGangZonePool;
+	CActorPool					*m_pActorPool;
+	int							m_iCurrentGameModeIndex;
+	int							m_iCurrentGameModeRepeat;
+	BOOL						m_bFirstGameModeLoaded;
+	CScriptHttps* m_pScriptHttps;
+	CScriptTimers* m_pScriptTimers;
+	RakServerInterface			*m_pRak;
+	int m_iLastServerTickUpdate;
+	int m_iServerTickCount;
+	int m_iServerTickRate;
+	BOOL m_bLanMode;
+	int m_iShowPlayerMarkers;
+	bool m_bShowNameTags;
+	BYTE m_byteWorldTime;
+	bool m_bAllowWeapons; // Allow weapons in interiors
+	bool m_bStuntBonus; // Insane stunt bonusses enabled?
   char field_5C;
-  char field_5D;
-  int field_5E;
-  float field_62;
-  int field_66;
+	BYTE m_byteWeather;
+	int	 m_iGameState;
+	float m_fGravity;
+	int  m_iDeathDropMoney;
   char field_6A;
   char field_6B;
-  char field_6C;
-  float field_6E;
-  float field_72;
-  char field_76;
-  char field_77;
-  char gap78[1];
-  char field_79;
-  float field_7A;
-  int field_7E;
+	bool m_bLimitGlobalChatRadius; // limit global player chat to other players within a certain radius
+	bool m_bUseCJWalk;
+	float m_fGlobalChatRadius; // limit global chat radius
+	float m_fNameTagDrawDistance; // The distance which players will start rendering nametags
+	bool m_bDisableEnterExits; // Interior enter/exits disabled?
+	bool m_bNameTagLOS;
+	bool m_bManualVehicleEngineAndLights;
+	bool m_bLimitPlayerMarkerRadius;
+	float m_fPlayerMarkerRadius;
+	BOOL m_bVehicleFriendlyFire;
 #ifndef WIN32
-  double field_82;
+	double m_dElapsedTime;
 #endif
-  int field_8A;
-  char gap8A[14674];
+	int m_iSpawnsAvailable;
+	PLAYER_SPAWN_INFO	m_AvailableSpawns[319];
 
 public:
 	CNetGame();

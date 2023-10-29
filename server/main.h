@@ -36,6 +36,19 @@
 #include <string>
 
 #include "console.h"
+#include "scrhttps.h"
+#include "scrtimers.h"
+#include "gamemodes.h"
+#include "filterscripts.h"
+#include "playerpool.h"
+#include "vehiclepool.h"
+#include "pickuppool.h"
+#include "objectpool.h"
+#include "menupool.h"
+#include "textdrawpool.h"
+#include "labelpool.h"
+#include "gangzonepool.h"
+#include "actorpool.h"
 #include "netgame.h"
 #include "plugins.h"
 
