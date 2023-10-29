@@ -12,4 +12,12 @@ public:
 		field_0 = 0;
 		field_4 = 0;
 	}
+
+	void GetRadioStation();
+	void StartRadio();
+	void GetRadioVolume();
+	void StopOutdoorAmbienceTrack();
+	void SetOutdoorAmbienceTrack();
+	void Play();
+	void IsOutdoorAmbienceTrackDisabled();
 };
