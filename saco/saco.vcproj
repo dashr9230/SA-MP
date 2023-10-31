@@ -114,6 +114,9 @@
 			Name="game"
 			Filter="">
 			<File
+				RelativePath=".\game\address.h">
+			</File>
+			<File
 				RelativePath=".\game\audio.cpp">
 			</File>
 			<File
@@ -126,10 +129,19 @@
 				RelativePath=".\game\camera.h">
 			</File>
 			<File
+				RelativePath=".\game\common.h">
+			</File>
+			<File
 				RelativePath=".\game\game.cpp">
 			</File>
 			<File
 				RelativePath=".\game\game.h">
+			</File>
+			<File
+				RelativePath=".\game\keystuff.cpp">
+			</File>
+			<File
+				RelativePath=".\game\keystuff.h">
 			</File>
 		</Filter>
 		<File
