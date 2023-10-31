@@ -119,6 +119,19 @@
 			<File
 				RelativePath=".\net\netgame.h">
 			</File>
+			<File
+				RelativePath=".\net\playerpool.cpp">
+			</File>
+			<File
+				RelativePath=".\net\playerpool.h">
+			</File>
+			<File
+				RelativePath=".\net\vehiclepool.cpp">
+			</File>
+			<File
+				RelativePath=".\net\vehiclepool.h">
+			</File>
+		</Filter>
 		</Filter>
 		<File
 			RelativePath=".\bot.rc">
@@ -130,7 +143,19 @@
 			RelativePath=".\main.h">
 		</File>
 		<File
+			RelativePath=".\npcmode.cpp">
+		</File>
+		<File
+			RelativePath=".\npcmode.h">
+		</File>
+		<File
 			RelativePath=".\resource.h">
+		</File>
+		<File
+			RelativePath=".\scrtimers.cpp">
+		</File>
+		<File
+			RelativePath=".\scrtimers.h">
 		</File>
 	</Files>
 	<Globals>
