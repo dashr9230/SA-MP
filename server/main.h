@@ -5,6 +5,8 @@
 #define DEFAULT_MAX_PLAYERS		50
 #define DEFAULT_LISTEN_PORT		8192
 
+#define ARRAY_SIZE(a)	( sizeof((a)) / sizeof(*(a)) )
+
 // ------------
 // VERSION INFO
 // ------------
@@ -21,6 +23,9 @@
 	#include <windows.h>
 	#include <time.h>
 #else
+	#ifndef stricmp
+		#define stricmp strcasecmp
+	#endif
 #endif
 
 // --------
