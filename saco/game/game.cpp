@@ -1,5 +1,9 @@
 
 #include "../main.h"
+#include "keystuff.h"
+#include "aimstuff.h"
+
+char *szGameTextMessage;
 
 int unnamed_10150340[210];
 
@@ -22,3 +26,16 @@ CGame::CGame()
 	field_59 = 1;
 	field_5D = 90;
 }
+
+void CGame::InitGame()
+{
+	// Create a buffer for game text.
+	szGameTextMessage = (char*)calloc(1,513);
+
+	// Init the keystate stuff.
+	GameKeyStatesInit();
+
+	// Init the aim stuff.
+	GameAimSyncInit();
+}
+

@@ -1,6 +1,7 @@
 
 #pragma once
 
+#include "address.h"
 #include "audio.h"
 #include "camera.h"
 
@@ -29,6 +30,8 @@ private:
 	char field_6E[212];
 
 public:
+
+	void	InitGame();
 
 	CGame();
 };
