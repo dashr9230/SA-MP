@@ -154,6 +154,9 @@
 			RelativePath=".\main.h">
 		</File>
 		<File
+			RelativePath=".\mod.h">
+		</File>
+		<File
 			RelativePath=".\resource.h">
 		</File>
 		<File
