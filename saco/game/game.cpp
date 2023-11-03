@@ -1,5 +1,6 @@
 
 #include "../main.h"
+#include "util.h"
 #include "keystuff.h"
 #include "aimstuff.h"
 
@@ -37,5 +38,8 @@ void CGame::InitGame()
 
 	// Init the aim stuff.
 	GameAimSyncInit();
+
+	// Init radar colors
+	GameResetRadarColors();
 }
 
