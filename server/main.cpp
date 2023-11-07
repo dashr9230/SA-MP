@@ -285,7 +285,28 @@ void logprintf(char* format, ...)
 	puts(output);
 	fflush(stdout);
 #else
+	if (pConsole && pConsole->GetBoolVariable("output"))
+	{
+		puts(buffer);
+	}
 #endif
+	if (pLogFile) {
+		if (pConsole) {
+			if (pConsole->GetBoolVariable("timestamp"))
+			{
+				const struct tm *tm;
+				time_t now;
+				now = time(NULL);
+				tm = localtime(&now);
+				char s[256];
+				strftime(s, 256, pConsole->GetStringVariable("logtimeformat"), tm);
+				fprintf(pLogFile, "%s %s\n", s, buffer);
+			}
+			else fprintf(pLogFile, "%s\n", buffer);
+		}
+		else fprintf(pLogFile, "%s\n", buffer);
+		fflush(pLogFile);
+	}
 
 	// TODO: logprintf
 }
