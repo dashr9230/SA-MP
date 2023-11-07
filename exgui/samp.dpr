@@ -10,7 +10,8 @@ uses
   RconConfig in 'RconConfig.pas' {Form6},
   ServerProperties in 'ServerProperties.pas' {Form7},
   Settings in 'Settings.pas' {Form8},
-  wnd_webrunform in 'wnd_webrunform.pas' {Form9};
+  wnd_webrunform in 'wnd_webrunform.pas' {Form9},
+  Rcon in 'Rcon.pas' {Form10};
 
 {$R *.res}
 
