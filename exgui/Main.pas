@@ -4,10 +4,11 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs;
+  Dialogs, ExtCtrls, XPMan, ImgList, Menus, ComCtrls, StdCtrls, TeEngine,
+  Series, TeeProcs, Chart, Tabs, ToolWin;
 
 type
-  TForm1 = class(TForm)
+  TfmMain = class(TForm)
   private
     { Private declarations }
   public
@@ -15,7 +16,7 @@ type
   end;
 
 var
-  Form1: TForm1;
+  fmMain: TfmMain;
 
 implementation
 

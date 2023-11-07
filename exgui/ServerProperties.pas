@@ -4,10 +4,10 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs;
+  Dialogs, Menus, StdCtrls;
 
 type
-  TForm7 = class(TForm)
+  TfmServerProperties = class(TForm)
   private
     { Private declarations }
   public
@@ -15,7 +15,7 @@ type
   end;
 
 var
-  Form7: TForm7;
+  fmServerProperties: TfmServerProperties;
 
 implementation
 

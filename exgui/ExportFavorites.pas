@@ -4,10 +4,10 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs;
+  Dialogs, StdCtrls;
 
 type
-  TForm3 = class(TForm)
+  TfmExportFavorites = class(TForm)
   private
     { Private declarations }
   public
@@ -15,7 +15,7 @@ type
   end;
 
 var
-  Form3: TForm3;
+  fmExportFavorites: TfmExportFavorites;
 
 implementation
 

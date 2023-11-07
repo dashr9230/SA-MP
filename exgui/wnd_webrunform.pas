@@ -4,10 +4,10 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs;
+  Dialogs, StdCtrls, Buttons;
 
 type
-  TForm9 = class(TForm)
+  Twnd_webrunform = class(TForm)
   private
     { Private declarations }
   public
@@ -15,7 +15,7 @@ type
   end;
 
 var
-  Form9: TForm9;
+  wnd_webrunform: Twnd_webrunform;
 
 implementation
 
