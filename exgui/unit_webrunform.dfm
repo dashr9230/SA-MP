@@ -19,8 +19,8 @@ object wnd_webrunform: Twnd_webrunform
   object Label1: TLabel
     Left = 11
     Top = 11
-    Width = 358
-    Height = 30
+    Width = 213
+    Height = 14
     Caption = 'Play on this server now or add to favorites?'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText

@@ -10,8 +10,8 @@ uses
   RconConfig in 'RconConfig.pas' {fmRconConfig},
   ServerProperties in 'ServerProperties.pas' {fmServerProperties},
   Settings in 'Settings.pas' {fmSettings},
-  wnd_webrunform in 'wnd_webrunform.pas' {wnd_webrunform},
-  Rcon in 'Rcon.pas' {fmRcon};
+  Rcon in 'Rcon.pas' {fmRcon},
+  unit_webrunform in 'unit_webrunform.pas' {wnd_webrunform};
 
 {$R *.res}
 
