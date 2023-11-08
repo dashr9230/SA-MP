@@ -121,6 +121,12 @@
 				RelativePath=".\game\address.h">
 			</File>
 			<File
+				RelativePath=".\game\aimstuff.cpp">
+			</File>
+			<File
+				RelativePath=".\game\aimstuff.h">
+			</File>
+			<File
 				RelativePath=".\game\audio.cpp">
 			</File>
 			<File
@@ -142,20 +148,59 @@
 				RelativePath=".\game\game.h">
 			</File>
 			<File
+				RelativePath=".\game\hooks.cpp">
+			</File>
+			<File
 				RelativePath=".\game\keystuff.cpp">
 			</File>
 			<File
 				RelativePath=".\game\keystuff.h">
 			</File>
+			<File
+				RelativePath=".\game\util.cpp">
+			</File>
+			<File
+				RelativePath=".\game\util.h">
+			</File>
 		</Filter>
 		<File
+			RelativePath=".\audiostream.cpp">
+		</File>
+		<File
+			RelativePath=".\audiostream.h">
+		</File>
+		<File
+			RelativePath=".\config.cpp">
+		</File>
+		<File
+			RelativePath=".\config.h">
+		</File>
+		<File
 			RelativePath=".\exceptbox.rc">
+		</File>
+		<File
+			RelativePath=".\filesystem.cpp">
+		</File>
+		<File
+			RelativePath=".\filesystem.h">
+		</File>
+		<File
+			RelativePath=".\httpclient.cpp">
+		</File>
+		<File
+			RelativePath=".\httpclient.h">
 		</File>
 		<File
 			RelativePath=".\main.cpp">
 		</File>
 		<File
 			RelativePath=".\main.h">
+		</File>
+		<File
+			RelativePath=".\md5.cpp">
+		</File>
+		<File
+			RelativePath=".\md5.h">
 		</File>
 		<File
 			RelativePath=".\mod.h">
@@ -167,7 +212,19 @@
 			RelativePath=".\resource1.h">
 		</File>
 		<File
+			RelativePath=".\runutil.cpp">
+		</File>
+		<File
+			RelativePath=".\runutil.h">
+		</File>
+		<File
 			RelativePath=".\saco.rc">
+		</File>
+		<File
+			RelativePath=".\sha1.cpp">
+		</File>
+		<File
+			RelativePath=".\sha1.h">
 		</File>
 	</Files>
 	<Globals>
