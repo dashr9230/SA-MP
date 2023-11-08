@@ -1,0 +1,1 @@
+#define SAMP_VERSION "0.3.7-R5"

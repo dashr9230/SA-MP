@@ -1,7 +1,9 @@
 
 #pragma once
 
+#include <stdio.h>
 #include <windows.h>
+#include <process.h>
 
 #define MAX_SETTINGS_STRING		256
 

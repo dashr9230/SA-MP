@@ -31,6 +31,8 @@ private:
 
 public:
 
+	HWND	GetMainWindowHwnd() { return *(HWND *)ADDR_HWND; };
+
 	void	InitGame();
 
 	CGame();

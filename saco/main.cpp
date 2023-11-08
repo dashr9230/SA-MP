@@ -6,6 +6,10 @@ HANDLE			hInstance=0;
 
 CGame *pGame=0;
 
+// forwards
+
+LONG WINAPI exc_handler(_EXCEPTION_POINTERS* exc_inf);
+
 BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 {
 	if(DLL_PROCESS_ATTACH==fdwReason)
@@ -15,9 +19,10 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 
 		if(tSettings.bDebug || tSettings.bPlayOnline)
 		{
+			SetUnhandledExceptionFilter(exc_handler);
+
 			// TODO: DllMain
 			/*
-			SetUnhandledExceptionFilter(TopLevelExceptionFilter);
 			dword_1026EB3C = (int)sub_100C4FF0;
 			GetModuleFileNameA((HMODULE)hInstance, &Filename, 0x104u);
 			v3 = strlen(&Filename);

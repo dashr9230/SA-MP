@@ -157,6 +157,12 @@
 				RelativePath=".\game\keystuff.h">
 			</File>
 			<File
+				RelativePath=".\game\scripting.cpp">
+			</File>
+			<File
+				RelativePath=".\game\scripting.h">
+			</File>
+			<File
 				RelativePath=".\game\util.cpp">
 			</File>
 			<File
@@ -170,6 +176,9 @@
 			RelativePath=".\audiostream.h">
 		</File>
 		<File
+			RelativePath=".\buildinfo.h">
+		</File>
+		<File
 			RelativePath=".\config.cpp">
 		</File>
 		<File
@@ -177,6 +186,9 @@
 		</File>
 		<File
 			RelativePath=".\exceptbox.rc">
+		</File>
+		<File
+			RelativePath=".\exceptions.cpp">
 		</File>
 		<File
 			RelativePath=".\filesystem.cpp">
