@@ -14,6 +14,7 @@ LONG WINAPI exc_handler(_EXCEPTION_POINTERS* exc_inf);
 
 BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 {
+	// TODO: DllMain
 	if(DLL_PROCESS_ATTACH==fdwReason)
 	{
 		hInstance = hinstDLL;
