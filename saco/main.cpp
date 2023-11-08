@@ -6,6 +6,8 @@ HANDLE			hInstance=0;
 
 CGame *pGame=0;
 
+CFileSystem *pFileSystem=NULL;
+
 // forwards
 
 LONG WINAPI exc_handler(_EXCEPTION_POINTERS* exc_inf);
@@ -20,34 +22,17 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 		if(tSettings.bDebug || tSettings.bPlayOnline)
 		{
 			SetUnhandledExceptionFilter(exc_handler);
+			//dword_1026EB3C = (int)sub_100C4FF0;
 
-			// TODO: DllMain
-			/*
-			dword_1026EB3C = (int)sub_100C4FF0;
-			GetModuleFileNameA((HMODULE)hInstance, &Filename, 0x104u);
-			v3 = strlen(&Filename);
-			if ( *(&Filename + v3) != 92 )
-			{
-			do
-			v4 = *((_BYTE *)&v12 + v3-- + 3);
-			while ( v4 != 92 );
-			}
-			v5 = &v15[v3];
-			*(_DWORD *)v5 = 1886216563;
-			*((_DWORD *)v5 + 1) = 1633776430;
-			v5[8] = 0;
-			v6 = operator new(0x935u);
-			v12 = v6;
-			v16 = 0;
-			if ( v6 )
-			v7 = (int *)sub_10065350(v6);
-			else
-			v7 = 0;
-			dword_1026EB44 = (int)v7;
-			v8 = *v7;
-			v16 = -1;
-			if ( !(unsigned __int8)(*(int (__thiscall **)(int *, int *))(v8 + 4))(v7, &dword_100EDB18) )
-			__debugbreak();*/
+			CHAR szArchiveFile[MAX_PATH];
+			GetModuleFileNameA((HMODULE)hInstance, szArchiveFile, MAX_PATH);
+			DWORD dwFileNameLen = strlen(szArchiveFile);
+			while(szArchiveFile[dwFileNameLen] != '\\')
+				dwFileNameLen--;
+			strcpy(szArchiveFile+dwFileNameLen+1, ARCHIVE_FILE);
+
+			pFileSystem = new CArchiveFS();
+			if(!pFileSystem->Load(ARCHIVE_FILE)) _asm int 3
 
 			AddFontResourceA("gtaweap3.ttf");
 			AddFontResourceA("sampaux3.ttf");

@@ -169,6 +169,61 @@
 				RelativePath=".\game\util.h">
 			</File>
 		</Filter>
+		<Filter
+			Name="archive"
+			Filter="">
+			<File
+				RelativePath=".\archive\ArchiveCommon.h">
+			</File>
+			<File
+				RelativePath=".\archive\ArchiveFS.cpp">
+			</File>
+			<File
+				RelativePath=".\archive\ArchiveFS.h">
+			</File>
+			<File
+				RelativePath=".\archive\CryptoContext.cpp">
+			</File>
+			<File
+				RelativePath=".\archive\CryptoContext.h">
+			</File>
+			<File
+				RelativePath=".\archive\CryptoFns.cpp">
+			</File>
+			<File
+				RelativePath=".\archive\CryptoFns.h">
+			</File>
+			<File
+				RelativePath=".\archive\Hasher.cpp">
+			</File>
+			<File
+				RelativePath=".\archive\Hasher.h">
+			</File>
+			<File
+				RelativePath=".\archive\KeyPair.cpp">
+			</File>
+			<File
+				RelativePath=".\archive\KeyPair.h">
+			</File>
+			<File
+				RelativePath=".\archive\Obfuscator.h">
+			</File>
+			<File
+				RelativePath=".\archive\Signer.cpp">
+			</File>
+			<File
+				RelativePath=".\archive\Signer.h">
+			</File>
+			<File
+				RelativePath=".\archive\Stream.h">
+			</File>
+			<File
+				RelativePath=".\archive\TinyEncrypt.cpp">
+			</File>
+			<File
+				RelativePath=".\archive\TinyEncrypt.h">
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\audiostream.cpp">
 		</File>

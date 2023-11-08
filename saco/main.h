@@ -20,6 +20,8 @@ typedef struct _GAME_SETTINGS {
 
 #include "game/game.h"
 
+#include "archive/ArchiveFS.h"
+
 void SetStringFromCommandLine(char *szCmdLine, char *szString);
 void SetStringFromQuotedCommandLine(char *szCmdLine, char *szString);
 void InitSettings();
