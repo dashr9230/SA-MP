@@ -1,0 +1,225 @@
+objs
+4550, LibrTow1_LAn, skyscr1_lan2, 220, 128
+4551, LAriverSec2_LAn, sunset1_lan2, 150, 0
+4552, amubloksun1_LAn, ammu_lan2, 150, 0
+4553, road12_LAn2, roadlan2, 135, 1
+4554, LibBase1_LAn, skyscr1_lan2, 150, 64
+4555, figfree4_LAn, sunset1_lan2, 150, 0
+4556, sky4plaz1_LAn, laland1_lan2, 150, 0
+4557, road10_LAn2, roadlan2, 120, 1
+4558, LacmEntr1_LAn, lanlacmab_lan2, 110, 0
+4559, LacmaBase1_LAn, lanlacma_lan2, 130, 0
+4560, LacmCanop1_LAn, lanlacma_lan2, 70, 0
+4561, LODrTow1_LAn, lodhuge_lan2, 1500, 0
+4562, LAplaza2_LAn, plaza1_lan2, 150, 0
+4563, LAskyscrap1_LAn, skyscr1_lan2, 180, 128
+4564, LAskyscrap2_LAn, skyscr1_lan2, 150, 128
+4565, bunksteps1_LAn, plaza1_lan2, 120, 0
+4566, LODkyscrap1_LAn, lodhuge_lan2, 1500, 0
+4567, road07_LAn2, roadlan2, 150, 1
+4568, ground01_LAn2, skyscrap2_lan2, 150, 0
+4569, stolenbuilds05, civic1_lan2, 140, 0
+4570, stolenbuilds08, stolenbuild03, 150, 128
+4571, stolenbuilds09, skyscrap2_lan2, 150, 128
+4572, stolenbuilds11, stolenbuild02, 140, 128
+4573, stolenbuilds12, stolenbuild01, 130, 0
+4574, stolenbuilds13, stolenbuild01, 150, 0
+4575, fireescapes1_lan2, lan2_alphas, 100, 4
+4576, lan2newbuild1, stolenbuild01, 130, 128
+4577, LODlenbuilds09, lodhuge_lan2, 1500, 0
+4578, LODlenbuilds08, lodhuge_lan2, 1500, 0
+4579, LODkyscrap2_LAn, lodhuge_lan2, 1500, 0
+4580, LODkyscrap4_LAn, lodhuge_lan2, 1500, 0
+4581, LOD4plaz2_LAn, lod_lan2, 1500, 0
+4582, LODlan2newbuild1, lod_lan2, 1500, 0
+4583, LODlenbuilds12, lod_lan2, 1500, 0
+4584, halgroundlan2, civic1_lan2, 150, 0
+4585, towerlan2, stolenbuild02, 180, 128
+4586, skyscrapn201, skyscrap3_lan2, 150, 128
+4587, LSOffice1, LSOffice1, 200, 0
+4588, roofshitlan2, sunset1_lan2, 50, 0
+4589, road15_LAn2, roadlan2, 150, 1
+4590, grasspatchlan2, lanlacmab_lan2, 150, 0
+4591, lan2shit03, stolenbuild01, 150, 0
+4592, lan2shit04, stolenbuild01, 140, 0
+4593, lan2buildblk01, buildblk55, 150, 0
+4594, lan2buildblk02, lanlacmab_lan2, 120, 0
+4595, cpark05_LAN2, crparkgm_lan2, 150, 1
+4596, cspGM_LAN2, crparkgm_lan2, 130, 69
+4597, crprkblok4_LAN2, crparkgm_lan2, 150, 1
+4598, crprkblok2_LAN2, crparkgm_lan2, 150, 1
+4599, csp2GM_LAN2, crparkgm_lan2, 130, 69
+4600, LAdtbuild10_LAn, theatrelan2, 150, 0
+4601, LAn2_gm1, lan2_gm1, 150, 128
+4602, LAskyscrap4_LAn, skyscr1_lan2, 150, 128
+4603, sky4plaz2_LAn, laland1_lan2, 140, 0
+4604, build4plaz_LAn2, buildblk555, 150, 0
+4605, LSOffice1Glass, LSOffice1, 150, 4
+4606, LODlan2buildblk2, lod_lan2, 1500, 0
+4607, LODgraspchlan2, lod_lan2, 1500, 0
+4608, LODLacmaBs1_LAn, lod_lan2, 1500, 0
+4609, LODcmCanp_LAn, lod_lan2, 800, 0
+4610, LODcmEntr1_LAn, lod_lan2, 1500, 0
+4611, LODroad15_LAn2, lod_lan2, 1500, 0
+4612, LODlan2shit03, lod_lan2, 1500, 0
+4613, LODroad09_LAn2, lod_lan2, 1500, 0
+4614, LODroad10_LAn2, lod_lan2, 1500, 0
+4615, LODsky4plaz_LAn, lod_lan2, 1500, 0
+4616, LODlan2buildblk01, lod_lan2, 1500, 0
+4617, LOD_build4plaz_LAn2, lod_lan2, 1500, 0
+4618, LODdtbuild2_LAn, lod_lan2, 1500, 0
+4619, LODroad14_LAn2, lod_lan2, 1500, 0
+4620, LODLibBase1_LAn, lod_lan2, 1500, 0
+4621, LODroad05_LAn2, lod_lan2, 1500, 0
+4622, LODskyscrapn202, lodhuge_lan2, 1500, 0
+4623, LODbunksteps1_LAn, lod_lan2, 1500, 0
+4624, LODhalgroundlan2, lod_lan2, 1500, 0
+4625, LODLAdtbuild10_LAn, lod_lan2, 1500, 0
+4626, LODtowerlan, lodhuge_lan2, 1500, 0
+4627, LODstolenbuilds05, lod_lan2, 1500, 0
+4628, LODstolenbuilds11, lod_lan2, 1500, 0
+4629, LODskyscrapn201, lodhuge_lan2, 1500, 0
+4630, LODroad11_LAn2, lod_lan2, 1500, 0
+4631, LODfigfree4_LAn, lod_lan2, 1500, 0
+4632, LODamublkson1_LAn, lod_lan2, 1500, 0
+4633, LODLAn2_gm1, lodhuge_lan2, 1500, 0
+4634, LODLAriverSec2_LAn, lod_lan2, 1500, 0
+4635, LODcpark05_LAN2, lod_lan2, 1500, 0
+4636, cparkgmaumk_LAN, crparkgm_lan2, 100, 68
+4637, cpark_muck_lan2, crparkgm_lan2, 130, 68
+4638, paypark_lan01, crparkgm_lan2, 80, 0
+4639, paypark_lan02, crparkgm_lan2, 80, 0
+4640, paypark_lan03, crparkgm_lan2, 80, 0
+4641, paypark_lan04, crparkgm_lan2, 80, 0
+4642, paypark_lan, crparkgm_lan2, 100, 0
+4643, LAplaza2b_LAn2, plaza1_lan2, 150, 0
+4644, road06_LAn2, roadlan2, 140, 1
+4645, road14_LAn2, roadlan2, 140, 1
+4646, road13_LAn2, roadlan2, 135, 1
+4647, road11_LAn2, roadlan2, 150, 1
+4648, road05_LAn2, roadlan2, 120, 1
+4649, road01_LAn2, roadlan2, 140, 1
+4650, road02_LAn2, roadlan2, 140, 1
+4651, road03_LAn2, roadlan2, 150, 1
+4652, road04_LAn2, roadlan2, 150, 1
+4653, Freeway7_LAn2, lan2freeway, 165, 1
+4654, road09_LAn2, roadlan2, 120, 1
+4655, LODFreeway7_LAn, lod_lan2, 1500, 0
+4656, Freeway1_LAn2, lan2freeway, 150, 1
+4657, LODFreeway1_LAn2, lod_lan2, 1500, 0
+4658, Freeway2_LAn2, lan2freeway, 150, 1
+4659, LODFreeway2_LAn2, lod_lan2, 1500, 0
+4660, Freeway3_LAn2, lan2freeway, 150, 1
+4661, LODFreeway3_LAn2, lod_lan2, 1500, 0
+4662, Freeway4_LAn2, lan2freeway, 150, 1
+4663, LODFreeway4_LAn2, lod_lan2, 1500, 0
+4664, Freeway5_LAn2, lan2freeway, 165, 1
+4665, LODFreeway5_LAn2, lod_lan2, 1500, 0
+4666, Freeway6_LAn2, lan2freeway, 175, 1
+4667, LODFreeway6_LAn2, lod_lan2, 1500, 0
+4668, LODroad01_LAn2, lod_lan2, 1500, 0
+4669, LODroad02_LAn2, lod_lan2, 1500, 0
+4670, LODroad03_LAn2, lod_lan2, 1500, 0
+4671, LODroad04_LAn2, lod_lan2, 1500, 0
+4672, LODground01_LAn2, lod_lan2, 1500, 0
+4673, LODroad06_LAn2, lod_lan2, 1500, 0
+4674, LODroad07_LAn2, lod_lan2, 1500, 0
+4675, LODroad08_LAn2, lod_lan2, 1500, 0
+4676, LODroad12_LAn2, lod_lan2, 1500, 0
+4677, LODroad13_LAn2, lod_lan2, 1500, 0
+4678, LODFreeway8_LAn2, lod_lan2, 1500, 0
+4679, Freeway8_LAn2, lan2freeway, 150, 1
+4680, LODLAdtbuild6_LAn2, lodhuge_lan2, 1500, 0
+4681, LAdtbuild6_LAn2, stolenbuild03, 150, 128
+4682, LAdtbuild3_LAn2, dtbuil1_lan2, 120, 0
+4683, LAdtbuild2_LAn2, dtbuil1_lan2, 150, 0
+4684, LAalley1_LAn2, plaza1_lan2, 140, 0
+4685, LAalley2_LAn2, plaza1_lan2, 140, 0
+4686, LODLAdtbuild3_LAn2, lod_lan2, 1500, 0
+4687, LODLAdtbuild1_LAn22, lod_lan2, 1500, 0
+4688, LODLAalley1_LAn2, lod_lan2, 1500, 0
+4689, LODLAalley2_LAn2, lod_lan2, 1500, 0
+4690, skyscrapn202, skyscrap2_lan2, 150, 128
+4691, csp3GM_LAN2, crparkgm_lan2, 110, 69
+4692, Freeway9_LAn2, lan2freeway, 150, 1
+4693, LODFreeway10_LAn2, lod_lan2, 1500, 0
+4694, Freeway10_LAn2, lan2freeway, 130, 1
+4695, Freeway11_LAn2, lan2freeway, 130, 1
+4696, LODFreeway9_LAn2, lod_lan2, 1500, 0
+4697, crprkblok1_LAN2, crparkgm_lan2, 150, 1
+4698, LODLAplaza2_LAn, lod_lan2, 1500, 0
+4699, LODLAplaza2b_LAn, lod_lan2, 1500, 0
+4700, cpark01_LAN2, crparkgm_lan2, 150, 1
+4701, cpark02_LAN2, crparkgm_lan2, 150, 1
+4702, cpark03_LAN2, crparkgm_lan2, 150, 1
+4703, cpark04_LAN2, crparkgm_lan2, 150, 1
+4704, LODcpark03_LAN2, lod_lan2, 1500, 0
+4705, LODcpark02_LAN2, lod_lan2, 1500, 0
+4706, LODcpark01_LAN2, lod_lan2, 1500, 0
+4707, LODcpark04_LAN2, lod_lan2, 1500, 0
+4708, LAdtbuild1_LAn2, dtbuil1_lan2, 120, 0
+4709, LODlan2shit05, lod_lan2, 1500, 0
+4710, road08_LAn2, roadlan2, 150, 1
+4711, amublokalpha_LAn2, sunset1alp_lan2, 80, 4
+4712, LibPlaza1_LAn, skyscr1_lan2, 150, 64
+4713, LODLibPlaza1_LAn, lod_lan2, 1500, 0
+4714, Lacmaalphas1_LAn, lanlacma_tr_lan2, 120, 4
+4718, gm_build4_LAn2, buildblk555, 150, 128
+4719, LODgm_build4_LAn2, lod_lan2, 1500, 0
+4720, LTSLAsky1b_LAn, nightlights1_lan2, 450, 0
+4721, LTSLAsky2b_LAn2, nightlights1_lan2, 500, 0
+4722, LTSLAsky3b_LAn2, nightlights1_lan2, 450, 0
+4724, librarywall_lan2, skyscr1_lan2, 100, 64
+4726, libtwrhelipd_LAn2, libhelipad_lan2, 80, 0
+4727, libtwrhelipda_LAn2, libhelipad_lan2, 80, 4
+4728, LODtwrhelipd_LAn, lod_lan2, 1500, 0
+4729, billbrdlan2_01, billbrd01_lan2, 80, 0
+4730, billbrdlan2_03, billbrd01_lan2, 80, 0
+4731, billbrdlan2_05, billbrd01_lan2, 80, 0
+4732, billbrdlan2_06, billbrd01_lan2, 80, 0
+4733, billbrdlan2_07, billbrd01_lan2, 90, 0
+4734, billbrdlan2_08, billbrd01_lan2, 110, 0
+4735, billbrdlan2_09, billbrd01_lan2, 100, 4
+4736, billbrdlan2_10, billbrd01_lan2, 130, 0
+4737, fireescapes3_lan2, lan2_alphas, 140, 4
+4738, fireescapes2_lan2, sunset1alp_lan2, 140, 4
+4753, LODbillbrdlan2_08, lod_lan2, 800, 0
+4754, LODbillbrdlan2_01, lod_lan2, 800, 0
+4755, LODbillbrdlan2_07, lod_lan2, 800, 0
+4756, LODbillbrdlan2_06, lod_lan2, 800, 0
+4757, LODbillbrdlan2_10, lod_lan2, 800, 0
+4758, LODbillbrdlan2_03, lod_lan2, 800, 0
+4759, LODbillbrdlan2_05, lod_lan2, 800, 0
+4760, LODFreeway11_LAn2, lod_lan2, 1500, 0
+4761, LODskyscrapn203, lod_lan2, 1500, 0
+4762, LODskyscr203_gls, lod_lan2, 1500, 4
+end
+tobj
+4715, LTSLAsky1_LAn2, nightlights1_lan2, 600, 140, 20, 6
+4716, LTSLAsky2_LAn2, nightlights1_lan2, 600, 140, 20, 6
+4717, LTSLAsky3_LAn2, nightlights1_lan2, 600, 140, 20, 6
+4723, LTSLAsky4_LAn2, nightlights1_lan2, 600, 140, 20, 6
+4725, LTSLAsky6_LAn2, nightlights1_lan2, 600, 140, 20, 6
+4739, LTSLAbuild1_LAn2, nightlights1_lan2, 300, 140, 20, 6
+4740, LTSLAbuild2_LAn2, nightlights1_lan2, 600, 140, 20, 6
+4741, LTSLAbuild3_LAn2, nightlights1_lan2, 400, 140, 20, 6
+4742, LTSLAbuild4_LAn2, nightlights1_lan2, 450, 140, 20, 6
+4743, LTSLAsky5_LAn2, nightlights1_lan2, 450, 140, 20, 6
+4744, LTSLAbuild5_LAn2, nightlights1_lan2, 400, 140, 20, 6
+4745, LTSLAbuild6_LAn2, nightlights1_lan2, 300, 140, 20, 6
+4746, LTSLAsky7_LAn2, nightlights1_lan2, 400, 140, 20, 6
+4747, LTSLAsky8_LAn2, nightlights1_lan2, 350, 140, 20, 6
+4748, LTSLAbuild7_LAn2, nightlights1_lan2, 350, 140, 20, 6
+4749, LTSLAbuild8_LAn2, nightlights1_lan2, 300, 140, 20, 6
+4750, LTSLAbuild9_LAn2, nightlights1_lan2, 300, 140, 20, 6
+4751, LTSLAbuild10_LAn2, nightlights1_lan2, 300, 140, 20, 6
+4752, LTSLAbuild11_LAn2, nightlights1_lan2, 300, 140, 20, 6
+end
+path
+end
+2dfx
+end
+anim
+end
+txdp
+end

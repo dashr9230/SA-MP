@@ -1,0 +1,138 @@
+#
+# ModelIDs 
+# peds:		0-129 (special characters 99-109)
+# vehicles:	400-799
+# car components 800-805
+# ped components 806-807
+# wheels: 	810-820
+# gifts and misc weapons:	821-829
+# weapons:	830-869
+# cutscene heads/objs: 870-874
+#
+
+
+objs
+#misc
+320, airtrain_vlo, generic, 1, 2000, 0
+end
+
+weap
+# gift type weapons
+321, gun_dildo1, gun_dildo1, null, 1, 50, 0
+322, gun_dildo2, gun_dildo2, null, 1, 50, 0
+323, gun_vibe1, gun_vibe1, null, 1, 50, 0
+324, gun_vibe2, gun_vibe2, null, 1, 50, 0
+325, flowera, flowera, null, 1, 30, 0
+326, gun_cane, gun_cane, null, 1, 50, 0
+327, gun_boxwee, gun_boxwee, colt45, 1, 50, 0
+328, gun_boxbig, gun_boxbig, null, 1, 50, 0
+
+# melee weapons
+330, cellphone, cellphone, null, 1, 50, 0
+331, brassknuckle, brassknuckle, null, 1, 50, 0
+333, golfclub, golfclub, null, 1, 50, 0
+334, nitestick, nitestick, null, 1, 50, 0
+335, knifecur, knifecur, null, 1, 50, 0
+336, bat, bat, null, 1, 50, 0
+337, shovel, shovel, null, 1, 50, 0
+338, poolcue, poolcue, null, 1, 50, 0
+339, katana, katana, null, 1, 50, 0
+#340, skateboard, skateboard, null, 1, 50, 0
+341, chnsaw, chnsaw, chainsaw, 1, 50, 0
+
+# projectiles
+342, grenade, grenade, grenade, 1, 100, 0
+343, teargas, teargas, grenade, 1, 50, 0
+344, molotov, molotov, grenade, 1, 100, 0
+345, missile, missile, null, 1, 100, 0
+
+# handguns
+346, colt45, colt45, colt45, 1, 30, 0
+347, silenced, silenced, silenced, 1, 30, 0
+348, desert_eagle, desert_eagle, python, 1, 30, 0
+
+# shotguns
+349, chromegun, chromegun, shotgun, 1, 50, 0
+350, sawnoff, sawnoff, colt45, 1, 30, 0
+351, shotgspa, shotgspa, buddy, 1, 50, 0
+
+# sub-machineguns
+352, micro_uzi, micro_uzi, colt45, 1, 30, 0
+353, mp5lng, mp5lng, uzi, 1, 50, 0
+#354, tec9, tec9, colt45, 1, 30, 0
+
+# projectiles contd,
+354, flare, flare, null, 1, 100, 0
+
+# machineguns
+355, ak47, ak47, rifle, 1, 50, 0
+356, m4, m4, rifle, 1, 30, 0
+
+# rifles
+357, cuntgun, cuntgun, rifle, 1, 50, 0
+358, sniper, sniper, rifle, 1, 50, 0
+
+# specials
+359, rocketla, rocketla, rocket, 1, 50, 0
+360, heatseek, heatseek, rocket, 1, 50, 0
+361, flame, flame, flame, 1, 50, 0
+362, minigun, minigun, flame, 1, 50, 0
+363, satchel, satchel, grenade, 1, 50, 0
+364, bomb, bomb, null, 1, 50, 0
+365, spraycan, spraycan, spraycan, 1, 50, 0
+366, fire_ex, fire_ex, flame, 1, 50, 0
+367, camera, camera, rifle, 1, 50, 0
+
+368, nvgoggles, nvgoggles, goggles, 1, 50, 0
+369, irgoggles, irgoggles, goggles, 1, 50, 0
+
+370, jetpack, jetpack, null, 1, 100, 0
+371, gun_para, gun_para, null, 1, 100, 0
+
+372, tec9, tec9, colt45, 1, 30, 0
+373, armour, armour, null, 1, 30, 0
+
+# OLD REMOVED WEAPON MODELS
+#332, screwdriver, screwdriver, null, 1, 50, 0
+#337, hammer, hammer, null, 1, 50, 0
+#338, cleaver, cleaver, null, 1, 50, 0
+#339, machete, machete, null, 1, 50, 0
+#351, buddyshot, buddyshot, buddy, 1, 50, 0
+#353, tec9, tec9, colt45, 1, 30, 0
+#355, ingramsl, ingramsl, colt45, 1, 50, 0
+#358, laser, laser, rifle, 1, 50, 0
+#361, M60, M60, m60, 1, 50, 0
+#365, fingers, fingers, null, 1, 50, 0
+#366, minigun2, minigun, null, 1, 50, 0
+
+end
+
+# leave ID 374 - 383 to use in temp car components
+# 374, car_door
+# 375, car_bumper
+# 376, car_panel
+# 377, car_bonnet
+# 378, car_boot
+# 379, car_wheel
+# 380, bodypart_A
+# 381, bodypart_B
+
+hier
+1, csplay, player, null, 2000.0
+# clothes objects
+384, clothes01, generic, null, 2000.0
+385, clothes01, generic, null, 2000.0
+386, clothes01, generic, null, 2000.0
+387, clothes01, generic, null, 2000.0
+388, clothes01, generic, null, 2000.0
+389, clothes01, generic, null, 2000.0
+390, clothes01, generic, null, 2000.0
+391, clothes01, generic, null, 2000.0
+392, clothes01, generic, null, 2000.0
+393, clothes01, generic, null, 2000.0
+# hands
+394, SHANDL, generic, null, 15.0
+395, SHANDR, generic, null, 15.0
+396, FHANDL, generic, null, 15.0
+397, FHANDR, generic, null, 15.0
+end

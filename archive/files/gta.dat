@@ -1,0 +1,146 @@
+#
+# Load IDEs first, then the models and after that the IPLs
+#
+
+IMG SAMP\SAMPCOL.IMG
+IMG DATA\SCRIPT\SCRIPT.IMG
+IMG MODELS\CUTSCENE.IMG
+
+SPLASH loadsc2
+
+#
+# Object types
+#
+IDE DATA\MAPS\generic\vegepart.IDE
+IDE DATA\MAPS\generic\barriers.IDE
+IDE DATA\MAPS\generic\dynamic.IDE
+IDE DATA\MAPS\generic\dynamic2.IDE
+IDE DATA\MAPS\generic\multiobj.IDE
+IDE DATA\MAPS\generic\procobj.IDE
+IDE DATA\MAPS\LA\LAn.IDE
+IDE DATA\MAPS\LA\LAn2.IDE
+IDE DATA\MAPS\LA\LAs.IDE
+IDE DATA\MAPS\LA\LAs2.IDE
+IDE DATA\MAPS\LA\LAe.IDE
+IDE DATA\MAPS\LA\LAe2.IDE
+IDE DATA\MAPS\LA\LAw2.IDE
+IDE DATA\MAPS\LA\LAw.IDE
+IDE DATA\MAPS\LA\LAwn.IDE
+IDE DATA\MAPS\LA\LAhills.IDE
+IDE DATA\MAPS\LA\LAxref.IDE
+IDE DATA\MAPS\SF\SFn.IDE
+IDE DATA\MAPS\SF\SFs.IDE
+IDE DATA\MAPS\SF\SFse.IDE
+IDE DATA\MAPS\SF\SFe.IDE
+IDE DATA\MAPS\SF\SFw.IDE
+IDE DATA\MAPS\SF\SFxref.IDE
+IDE DATA\MAPS\vegas\vegasN.IDE
+IDE DATA\MAPS\vegas\vegasS.IDE
+IDE DATA\MAPS\vegas\vegasE.IDE
+IDE DATA\MAPS\vegas\vegasW.IDE
+IDE DATA\MAPS\vegas\vegaxref.IDE
+IDE DATA\MAPS\country\countryN.IDE
+IDE DATA\MAPS\country\countN2.IDE
+IDE DATA\MAPS\country\countryS.IDE
+IDE DATA\MAPS\country\countryE.IDE
+IDE DATA\MAPS\country\countryW.IDE
+IDE DATA\MAPS\country\counxref.IDE
+IDE DATA\MAPS\interior\int_LA.IDE
+IDE DATA\MAPS\interior\int_SF.IDE
+IDE DATA\MAPS\interior\int_veg.IDE
+IDE DATA\MAPS\interior\int_cont.IDE
+IDE DATA\MAPS\leveldes\levelmap.IDE
+IDE DATA\MAPS\leveldes\levelxre.IDE
+IDE DATA\MAPS\interior\gen_int1.IDE
+IDE DATA\MAPS\interior\gen_int2.IDE
+IDE DATA\MAPS\interior\gen_intb.IDE
+IDE DATA\MAPS\interior\gen_int3.IDE
+IDE DATA\MAPS\interior\gen_int4.IDE
+IDE DATA\MAPS\interior\gen_int5.IDE
+IDE DATA\MAPS\interior\savehous.IDE
+IDE DATA\MAPS\interior\stadint.IDE
+IDE DATA\MAPS\leveldes\seabed.IDE
+
+# interiors
+IDE DATA\MAPS\interior\props.IDE
+IDE DATA\MAPS\interior\props2.IDE
+IDE DATA\MAPS\interior\propext.IDE
+
+# vehicle upgrade models
+IDE DATA\MAPS\veh_mods\veh_mods.IDE
+
+# txd parents
+IDE DATA\TXDCUT.IDE
+
+# sa-mp additions
+IDE SAMP\samp.IDE
+IDE SAMP\custom.IDE
+
+# have to load map.zon before any of the IPLs
+IPL DATA\MAP.ZON
+# IPL DATA\NAVIG.ZON
+IPL DATA\INFO.ZON
+
+#
+# Scene information
+#
+
+SPLASH loadsc2
+
+IPL DATA\MAPS\LA\LAn.IPL
+IPL DATA\MAPS\LA\LAn2.IPL
+IPL DATA\MAPS\LA\LAs.IPL
+IPL DATA\MAPS\LA\LAs2.IPL
+IPL DATA\MAPS\LA\LAe.IPL
+IPL DATA\MAPS\LA\LAe2.IPL
+IPL DATA\MAPS\LA\LAw.IPL
+IPL DATA\MAPS\LA\LAwn.IPL
+IPL DATA\MAPS\LA\LAw2.IPL
+IPL DATA\MAPS\LA\LAhills.IPL
+IPL DATA\MAPS\SF\SFn.IPL
+IPL DATA\MAPS\SF\SFs.IPL
+IPL DATA\MAPS\SF\SFse.IPL
+IPL DATA\MAPS\SF\SFe.IPL
+IPL DATA\MAPS\SF\SFw.IPL
+IPL DATA\MAPS\vegas\vegasN.IPL
+IPL DATA\MAPS\vegas\vegasS.IPL
+IPL DATA\MAPS\vegas\vegasE.IPL
+IPL DATA\MAPS\vegas\vegasW.IPL
+IPL DATA\MAPS\country\countryN.IPL
+IPL DATA\MAPS\country\countN2.IPL
+IPL DATA\MAPS\country\countrys.IPL
+IPL DATA\MAPS\country\countryE.IPL
+IPL DATA\MAPS\country\countryW.IPL
+
+# interiors
+IPL DATA\MAPS\interior\int_LA.IPL
+IPL DATA\MAPS\interior\int_SF.IPL
+IPL DATA\MAPS\interior\int_veg.IPL
+IPL DATA\MAPS\interior\int_cont.IPL
+IPL DATA\MAPS\interior\gen_int1.IPL
+IPL DATA\MAPS\interior\gen_int2.IPL
+IPL DATA\MAPS\interior\gen_intb.IPL
+IPL DATA\MAPS\interior\gen_int3.IPL
+IPL DATA\MAPS\interior\gen_int4.IPL
+IPL DATA\MAPS\interior\gen_int5.IPL
+IPL DATA\MAPS\interior\stadint.IPL
+IPL DATA\MAPS\interior\savehous.IPL
+
+# level design
+IPL DATA\MAPS\leveldes\levelmap.IPL
+IPL DATA\MAPS\leveldes\seabed.IPL
+IPL DATA\MAPS\paths.ipl
+IPL DATA\MAPS\paths2.ipl
+IPL DATA\MAPS\paths3.ipl
+IPL DATA\MAPS\paths4.ipl
+IPL DATA\MAPS\paths5.ipl
+IPL DATA\MAPS\cull.ipl
+IPL DATA\MAPS\tunnels.ipl
+IPL DATA\MAPS\occluSF.ipl
+IPL DATA\MAPS\occluveg.ipl
+IPL DATA\MAPS\occluLA.ipl
+IPL DATA\MAPS\occluint.ipl
+IPL DATA\MAPS\audiozon.ipl
+
+# sa-mp additions
+IPL SAMP\samp.ipl

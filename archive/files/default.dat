@@ -1,0 +1,33 @@
+#
+# Load IDEs first, then the models and after that the IPLs
+#
+
+# everything is loaded on a per directory basis and in alphabetical order 
+# to improve the speed of loading
+IMG SAMP\CUSTOM.IMG
+IMG SAMP\SAMP.IMG
+IMG MODELS\GTA3.IMG
+IMG MODELS\GTA_INT.IMG
+
+#
+# Object types
+#
+IDE DATA\DEFAULT.IDE
+IDE DATA\VEHICLES.IDE
+IDE DATA\PEDS.IDE
+
+#
+# Standard objects
+#
+# texture dictionaries
+#TEXDICTION MODELS\GENERIC\WHEELS.TXD
+#TEXDICTION MODELS\GENERIC.TXD
+
+# model data
+#MODELFILE MODELS\GENERIC\AIR_VLO.DFF
+#MODELFILE MODELS\GENERIC\WHEELS.DFF
+#
+
+#collision data
+#COLFILE 0 MODELS\COLL\VEHICLES.COL
+COLFILE 0 MODELS\COLL\WEAPONS.COL

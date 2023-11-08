@@ -1,0 +1,113 @@
+#######################################
+# ar_stats.dat                        #
+# stores the stats reaction variables #
+#######################################
+
+# note - numbers on left hand must align up!
+# any new stats needed see DerekP, otherwise
+# feel free to adjust values!
+
+
+#######################################################################
+
+# IMPORTANT:  If you add/remove anything from this LIST make sure
+#			   you update enum in STATS.H accordingly!
+
+#######################################################################
+
+
+#
+# amount stats get incremented
+#
+
+0	STAT_INC_CYCLE_STAMINA			0
+1	STAT_INC_SWIM_STAMINA			0
+2	STAT_INC_SPRINT_STAMINA			0
+3	STAT_INC_RUNNING				0
+4	STAT_INC_DRIVING_SKILL			0
+5	STAT_INC_FLYING_SKILL			0
+6	STAT_INC_CYCLE_SKILL			0
+7	STAT_INC_MOTORBIKE_SKILL		0
+8	STAT_INC_BOAT_SKILL				0
+9	STAT_INC_BODY_MUSCLE			0
+10	STAT_INC_BREATH_UNDERWATER		0
+11	STAT_INC_MAX_HEALTH				0
+
+# for weapon skill this is how much the stat (float) gets
+# incremented Per Shot Fired because we don't want to miss any
+# 
+12	STAT_INC_PISTOL_SKILL			0.0
+13	STAT_INC_PISTOL_SILENCED_SKILL 0.0
+14	STAT_INC_DESERT_EAGLE_SKILL		0.0
+# NOTE for shotguns it is incremented per pellet (hence the low multiplier)
+15	STAT_INC_SHOTGUN_SKILL			0.0
+16	STAT_INC_SAWNOFF_SHOTGUN_SKILL	0.0
+17	STAT_INC_SPAS12_SHOTGUN_SKILL	0.0
+18	STAT_INC_MICRO_UZI_SKILL		0.0
+19	STAT_INC_MP5_SKILL				0.0
+20	STAT_INC_AK47_SKILL				0.0
+21	STAT_INC_M4_SKILL				0.0
+22	STAT_INC_SNIPERRIFLE_SKILL		0.0
+
+#
+# amount stats get decremented
+#
+23	STAT_DEC_FAT					0
+24	STAT_DEC_BODY_MUSCLE			0
+25	STAT_DEC_MAX_HEALTH				0
+
+#
+# exercise rate of activities
+# 10 = standard rate (1sec count for 1sec time)
+26	STAT_EXERCISE_RATE_CYCLE		0
+27	STAT_EXERCISE_RATE_CYCLE_SPRINT	0
+28	STAT_EXERCISE_RATE_SWIM			0
+29	STAT_EXERCISE_RATE_SWIM_SPRINT	0
+30	STAT_EXERCISE_RATE_SPRINT		0
+31	STAT_EXERCISE_RATE_RUN			0
+32	STAT_EXERCISE_RATE_FIGHT		0
+
+
+#
+# the stats below are time limits (in SECONDS) for
+# when other stats get adjusted
+#
+
+33	STAT_TIMELIMIT_CYCLE_STAMINA		0
+34	STAT_TIMELIMIT_SWIM_STAMINA			0
+35	STAT_TIMELIMIT_SPRINT_STAMINA		0
+36	STAT_TIMELIMIT_RUNNING				0
+37	STAT_TIMELIMIT_DRIVING_SKILL		0
+38	STAT_TIMELIMIT_FLYING_SKILL			0
+39	STAT_TIMELIMIT_CYCLE_SKILL			0
+40	STAT_TIMELIMIT_MOTORBIKE_SKILL		0
+41	STAT_TIMELIMIT_BOAT_SKILL			0
+42	STAT_TIMELIMIT_FAT_ADJUST			0
+43	STAT_TIMELIMIT_FAT_ADJUST_STRENUOUS	0
+44	STAT_TIMELIMIT_BREATH_UNDERWATER	 0
+45	STAT_TIMELIMIT_MAX_HEALTH			0
+
+
+#
+# for weapon skill this denotes how many accurate shots must be fired
+# with the same weapon, before your stat gauge increases and you get a stat-up message
+# the stat itself increases with every shot because you sometimes have limited ammo or change
+# weapons frequently and we don't want to rob the player of their stats
+#
+46	STAT_TIMELIMIT_PISTOL_SKILL				0
+47	STAT_TIMELIMIT_PISTOL_SILENCED_SKILL	0
+48	STAT_TIMELIMIT_DESERT_EAGLE_SKILL		0
+# NOTE for shotguns it is incremented per pellet (hence the high number of hits)
+49	STAT_TIMELIMIT_SHOTGUN_SKILL			0
+50	STAT_TIMELIMIT_SAWNOFF_SHOTGUN_SKILL	0
+51	STAT_TIMELIMIT_SPAS12_SHOTGUN_SKILL		0
+52	STAT_TIMELIMIT_MICRO_UZI_SKILL			0
+53	STAT_TIMELIMIT_MP5_SKILL				0
+54	STAT_TIMELIMIT_AK47_SKILL				0
+55	STAT_TIMELIMIT_M4_SKILL					0
+56	STAT_TIMELIMIT_SNIPERRIFLE_SKILL		0
+# when you die we want to decrease player's max health
+57	STAT_TIMELIMIT_DEATH_HEALTH				0
+58	STAT_TIMELIMIT_ADD_TO_HEALTH			0
+
+# -eof-

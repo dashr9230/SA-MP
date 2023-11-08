@@ -1,0 +1,171 @@
+#
+# ALL WEAPONS
+#-----------------------------------------------
+#	A:		string weaponType
+#	B:		string eFireType
+#	C,D:	float targetRange, weaponRange
+#	E,F:	int modelId1, modelId2
+#	G,H:	int reloadSampleTime1, reloadSampleTime2
+#	I:		int weaponslot
+#
+#GUN DATA	(use $ identifier)
+#-----------------------------------------------
+#	J:		AssocGroupId
+#	K:		int ammoClip
+#	L:		int damage
+#	M,N,O:	float fireOffset x, y, z
+#	P:		int skillLevel 	0:POOR	1:STD	2:PRO
+#	Q:		req stat level to get this weapon skill level
+#	R, S:	float accuracy (0.5 - 2.0f), move speed (0.5 - 1.5)
+#	T,U,V:	int animLoop start, end, fire
+#	W,X,Y:	int animLoop2 start, end, fire
+#	Z:		int breakoutTime
+#
+#	a:		hex flags
+#
+#	b,c:	float speed, radius
+#	d,e:	float lifespan, spread
+#
+#
+# 1stDigit:	CANAIM:1	AIMWITHARM:2	1STPERSON:4		ONLYFREEAIM:8
+# 2ndDigit:	MOVEAIM:1	MOVEFIRE:2
+# 3rdDigit:	THROW:1		HEAVY:2			CONTINUOUSFIRE:4	TWIN_PISTOL:8
+# 4thDigit:	RELOAD:1	CROUCHFIRE:2	RELOAD2START:4		LONG_RELOAD:8
+# 5thDigit:	SLOWSDWN:1	RANDSPEED:2		EXPANDS:4
+#
+# MELEE DATA (use £ identifier)
+#-----------------------------------------------
+#	J:		string baseCombo
+#	K:		int numCombos
+#	L:		hex flags
+#
+# Melee Weapons
+#-----------------------ranges------modelIds----slot----baseCombo---numCombos---flags---steathanimgrp----
+#	A			B		C	  D		E	F		I		J			K			L		M
+£ UNARMED		MELEE	10.0  1.6	-1	-1		0		UNARMED		4			1		null
+£ BRASSKNUCKLE	MELEE	10.0  1.6	331	-1		0		UNARMED		4			1		null
+£ GOLFCLUB		MELEE	10.0  1.6	333	-1		1		BBALLBAT	1			1		null
+£ NIGHTSTICK	MELEE	10.0  1.6	334	-1		1		BBALLBAT	1			1		null
+£ KNIFE			MELEE	10.0  1.6	335	-1		1		KNIFE		1			1		stealth_kn
+£ BASEBALLBAT	MELEE	10.0  1.6	336	-1		1		BBALLBAT	1			1		null
+£ SHOVEL		MELEE	10.0  1.6	337	-1		1		BBALLBAT	1			1		null
+£ POOLCUE		MELEE	10.0  1.6	338	-1		1		BBALLBAT	1			1		null
+£ KATANA		MELEE	10.0  1.6	339	-1		1		SWORD		1			1		null
+#£ SKATEBOARD	MELEE	10.0  1.6	340	-1		1		SKATEBOARD	1			1		null
+£ CHAINSAW		MELEE	10.0  1.6	341	-1		1		CHAINSAW	1			201		null
+# gifts ----------------
+£ DILDO1		MELEE	10.0  1.6	321	-1		10		DILDO		1			1		null
+£ DILDO2		MELEE	10.0  1.6	322	-1		10		KNIFE		1			1		null
+£ VIBE1			MELEE	10.0  1.6	323	-1		10		DILDO		1			1		null
+£ VIBE2			MELEE	10.0  1.6	324	-1		10		KNIFE		1			1		null
+£ FLOWERS		MELEE	10.0  1.6	325	-1		10		FLOWERS		1			1		null
+£ CANE			MELEE	10.0  1.6	326	-1		10		SWORD		1			1		null
+#- special -------------
+£ PARACHUTE		MELEE	10.0  1.6	371	-1		11		UNARMED		1			1		null
+#
+# Gun Weapons
+#-------------------------------ranges------modelIds----slot-animgrp----ammo-dam----offset--------------skill---------------loop1--------loop2----break-flags-------old_shot_data-------
+#	A				B			C	 D		E	F		I	J			K	 L		M     N     O		P  Q	R	S	 	T  U  V  	 W  X  Y  Z		a			b    c    d      e
+################
+$ GRENADE			PROJECTILE	30.0 40.0	342	-1		8	grenade		1	 75		0.0   0.0   0.0		1  0	1.0	 1.0	 0 99  6	 0 99  8  99	100			0.25 -1.0 800.0	 1.0
+$ TEARGAS			PROJECTILE	30.0 40.0	343	-1		8	grenade		1	 75		0.0   0.0   0.0		1  0	1.0	 1.0 	 0 99  6  	 0 99 10  99	100			0.25 -1.0 800.0	 1.0
+$ MOLOTOV			PROJECTILE	30.0 40.0	344	-1		8	grenade		1	 75		0.0   0.0   0.0		1  0	1.0	 1.0 	 0 99  6	 0 99  8  99	100			0.25 -1.0 2000.0 5.0
+$ ROCKET			PROJECTILE	30.0 40.0	345	-1		8	null		1	 75		0.0   0.0   0.0		1  0	1.0	 1.0	 0 99  6	 0 99 10  99	100			0.25 -1.0 800.0	 1.0
+$ ROCKET_HS			PROJECTILE	30.0 40.0	345	-1		8	null		1	 75		0.0   0.0   0.0		1  0	1.0	 1.0 	 0 99  6	 0 99 10  99	100			0.25 -1.0 800.0	 1.0
+$ FREEFALL_BOMB		PROJECTILE	30.0 40.0	345	-1		8	null		1	 75		0.0   0.0   0.0		1  0	1.0	 1.0 	 0 99  6	 0 99 10  99	100			0.25 -1.0 800.0	 1.0
+################
+$ PISTOL			INSTANT_HIT	25.0 30.0	346	-1		2	colt45		17	 25		0.25  0.05  0.09    0  0	0.75 1.0 	 6 17  6     6 16  6  99	3033
+$ PISTOL			INSTANT_HIT	30.0 35.0	346	-1		2	colt45		17	 25		0.25  0.05  0.09	1  40	1.0  1.0 	 6 15  6     6 15  6  99	3033
+$ PISTOL			INSTANT_HIT	35.0 35.0	346	-1		2	colt45pro	34	 25		0.25  0.05  0.09	2  999	1.25 1.0 	 6 18  6     6 17  6  99	3833
+$ PISTOL			INSTANT_HIT	30.0 35.0	346	-1		2	colt_cop	17	 25		0.25  0.05  0.09	3  5000	1.0  1.0 	 6 15  6     6 15  6  99	7031
+
+$ PISTOL_SILENCED	INSTANT_HIT	25.0 30.0	347	-1		2	silenced	17	 40		0.40  0.05  0.15    0  0	1.0  1.0 	 6 20  6	 6 20  6  40	7001
+$ PISTOL_SILENCED	INSTANT_HIT	30.0 35.0	347	-1		2	silenced	17	 40		0.40  0.05  0.15	1  500	1.25 1.2 	 6 18  6	 6 18  6  40	7011
+$ PISTOL_SILENCED	INSTANT_HIT	35.0 35.0	347	-1		2	silenced	17	 40		0.40  0.05  0.15	2  999	1.5  1.5 	 6 17  6	 6 17  6  40	7031
+
+$ DESERT_EAGLE		INSTANT_HIT	25.0 30.0	348	-1		2	pythonbad	7	 70		0.41  0.03  0.12    0  0	0.75 1.0 	 7 36  8     6 30  7  40	7001
+$ DESERT_EAGLE		INSTANT_HIT	30.0 35.0	348	-1		2	python		7	 140	0.41  0.03  0.12    1  200	1.0	 1.2 	 6 30  7     6 28  7  40	7011
+$ DESERT_EAGLE		INSTANT_HIT	35.0 35.0	348	-1		2	python		7	 140	0.41  0.03  0.12    2  999	1.25 1.5 	 6 28  7	 6 28  7  40	7031
+################
+$ SHOTGUN			INSTANT_HIT	30.0 40.0	349	-1		3	shotgunbad	1	 10		0.82 -0.02  0.23    0  0	1.0  1.0 	 6 40  7	 6 40  7  28	2001
+$ SHOTGUN			INSTANT_HIT	35.0 40.0	349	-1		3	shotgun		1	 10		0.82 -0.02  0.25    1  200	1.2	 1.1 	 6 38  7	 6 40  7  20	2011
+$ SHOTGUN			INSTANT_HIT	40.0 40.0	349	-1		3	shotgun		1	 10		0.82 -0.02  0.25    2  999	1.4  1.3 	 6 38  7	 6 40  7  25	2031
+
+$ SAWNOFF			INSTANT_HIT	25.0 30.0	350	-1		3	sawnoff		2	 10		0.56  0.0   0.15    0  0	0.7  1.0 	 6 15  6	 6 15  6  30	3033
+$ SAWNOFF			INSTANT_HIT	30.0 35.0	350	-1		3	sawnoff		2	 10		0.56  0.0   0.15    1  200	0.8	 1.1 	 6 15  6	 6 15  6  30	3033
+$ SAWNOFF			INSTANT_HIT	35.0 35.0	350	-1		3	sawnoffpro	4	 10		0.56  0.0   0.15    2  999	0.9  1.3 	 6 15  6	 6 15  6  30	3833
+
+$ SPAS12			INSTANT_HIT	35.0 40.0	351	-1		3	buddy		7	 15		0.75 -0.06  0.22    0  0	1.4  1.0 	 6 18  7	 6 18  7  35	7001
+$ SPAS12			INSTANT_HIT	40.0 40.0	351	-1		3	buddy		7	 15		0.75 -0.06  0.22    1  200	1.8	 1.0 	 6 16  7	 6 16  7  35	7011
+$ SPAS12			INSTANT_HIT	40.0 40.0	351	-1		3	buddy		7	 15		0.75 -0.06  0.22    2  999	2.0  1.2 	 6 16  7	 6 16  7  35	7031
+################
+$ MICRO_UZI			INSTANT_HIT	25.0 30.0	352	-1		4	colt45		50	 20		0.25  0.0   0.11    0  0	0.75 1.0 	 6 10  6	 6 10  6  99	3013
+$ MICRO_UZI			INSTANT_HIT	30.0 35.0	352	-1		4	colt45		50	 20		0.25  0.0   0.11    1  50	1.05 1.0 	 6 10  6	 6 10  6  99	3033
+$ MICRO_UZI			INSTANT_HIT	35.0 35.0	352	-1		4	colt45pro	100	 20		0.25  0.0   0.11    2  999	1.1  1.0 	 6 10  6	 6 10  6  99	3833
+
+$ TEC9				INSTANT_HIT	25.0 30.0	372	-1		4	colt45		50	 20		0.45 -0.05  0.11    0  0	0.75 1.0 	11 15 12	 6 11  7  99	3013
+$ TEC9				INSTANT_HIT	30.0 35.0	372	-1		4	colt45		50	 20		0.45 -0.05  0.11    1  50	1.05 1.0 	11 15 12	 6 11  7  99	3033
+$ TEC9				INSTANT_HIT	35.0 35.0	372	-1		4	colt45pro	100	 20		0.45 -0.05  0.11    2  999	1.1  1.0 	11 15 12	 6 11  7  99	3833
+
+$ MP5				INSTANT_HIT	35.0 40.0	353	-1		4	uzibad		30	 25		0.51 -0.01  0.20    0  0	0.75 1.1 	 6  9  7	 6  9  6  30	7001
+$ MP5				INSTANT_HIT	40.0 45.0	353	-1		4	uzi			30	 25		0.51 -0.01  0.20    1  250	1.0	 1.3 	 6  9  7	 6  9  6  30	7011
+$ MP5				INSTANT_HIT	45.0 45.0	353	-1		4	uzi			30	 25		0.51 -0.01  0.20    2  999	1.2  1.5 	 6  9  7	 6  9  6  30	7031
+################
+$ AK47				INSTANT_HIT	40.0 70.0	355	-1		5	riflebad	30	 30		0.78 -0.06  0.13    0  0	0.40 0.9 	 6 10  7	 6 10  7  99	7001
+$ AK47				INSTANT_HIT	45.0 70.0	355	-1		5	rifle		30	 30		0.78 -0.06  0.13    1  200	0.50 1.0 	 6 10  7	 6 10  7  99	7011
+$ AK47				INSTANT_HIT	50.0 70.0	355	-1		5	rifle		30	 30		0.78 -0.06  0.13    2  999	0.60 1.1 	 6 10  7	 6 10  7  99	7031
+
+$ M4				INSTANT_HIT	40.0 90.0	356	-1		5	riflebad	50	 30		0.74 -0.04  0.13    0  0	0.45 0.9 	 6 10  7	 6 10  7  99	7001
+$ M4				INSTANT_HIT	45.0 90.0	356	-1		5	rifle		50	 30		0.74 -0.04  0.13    1  200	0.65 1.0 	 6 10  7	 6 10  7  99	7011
+$ M4				INSTANT_HIT	50.0 90.0	356	-1		5	rifle		50	 30		0.74 -0.04  0.13    2  999	0.80 1.1 	 6 10  7	 6 10  7  99	7031
+################
+#$ COUNTRYRIFLE		INSTANT_HIT	50.0 100.0	357	-1		6	sniper		1	 75		0.7  -0.05  0.2		0  0	0.75 1.0 	 6 17  7	 6 17  7  99	A018
+$ COUNTRYRIFLE		INSTANT_HIT	55.0 100.0	357	-1		6	sniper		1	 75		0.7  -0.05  0.2		1  300	1.0	 1.2 	 6 17  7	 6 17  7  99	A008
+#$ COUNTRYRIFLE		INSTANT_HIT	60.0 100.0	357	-1		6	sniper		1	 75		0.7  -0.05  0.2		2  999	1.25 1.3 	 6 17  7	 6 17  7  99	A038
+
+#$ SNIPERRIFLE		INSTANT_HIT	40.0 100.0	358	-1		6	sniper		1	 125	0.7  -0.05  0.2 	0  0	0.75 1.0 	 6 17  7	6  17  7  99	A014
+$ SNIPERRIFLE		INSTANT_HIT	50.0 100.0	358	-1		6	sniper		1	 125	0.7  -0.05  0.2 	1  300	1.0	 1.0 	 6 17  7	6  17  7  99	A014
+#$ SNIPERRIFLE		INSTANT_HIT	60.0 100.0	358	-1		6	sniper		1	 125	0.7  -0.05  0.2 	2  999	1.25 1.0 	 6 17  7	6  17  7  99	A014
+################
+$ RLAUNCHER			PROJECTILE	50.0 55.0	359	-1		7	rocket		1	 75		0.42  0.0   0.05    1  0	1.0	 1.0 	11 19 12	14 99 15  99	48214
+$ RLAUNCHER_HS		PROJECTILE	50.0 55.0	360	-1		7	rocket		1	 75		0.42  0.0   0.05    1  0	1.0	 1.0 	11 19 12	14 99 15  99	48214
+$ FTHROWER			AREA_EFFECT	4.0  5.1	361	-1		7	flame		500	 25		0.98  0.0   0.40    1  0	1.0	 1.0 	11 12 11	11 12 11  35	30238		0.5  0.0075 1000.0	 2.0
+$ MINIGUN			INSTANT_HIT	65.0 75.0	362	-1		7	flame		500	 140	1.15  0.0   0.40    1  0	1.0	 1.0 	11 12 11	11 12 11  35	238
+#############
+$ SATCHEL_CHARGE	PROJECTILE	30.0 40.0	363	364		8	grenade		1	 75		0.0   0.0   0.0		1  0	1.0	 1.0 	 0 99  6	 0 99  9  99	100			0.25 -1.0 800.0	 1.0
+$ DETONATOR			USE			25.0 25.0	364	-1		12	null		1	 0		0.0   0.0   0.13    1  0	1.0	 1.0 	 0 10  3  	 0 10  3  99	0
+################
+$ SPRAYCAN			AREA_EFFECT	4.0  6.1	365	-1		9	spraycan	500	 1		0.20  0.0   -0.1    1  0	1.0	 1.0 	12 58 13	11 58 13  99	0431		0.05  0.5    1000.0	 0.01
+$ EXTINGUISHER		AREA_EFFECT	10.0 10.1	366	-1		9	flame		500	 1		0.45  0.10  0.15    1  0	1.0	 1.0 	11 12 11	11 12 11  35	0038		0.1   0.5    1000.0	 0.01
+$ CAMERA			CAMERA		70.0 100.0	367	-1		9	rifle		36	 0		0.0   -0.0  -0.0    1  0	1.0	 1.0 	10 99 11	14 99 15   0	4
+################
+$ NIGHTVISION		USE			70.0 100.0	368	-1		11	goggles		0	 0		0.0   -0.0  -0.0    1  0	1.0	 1.0 	10 99 11	14 99 15   0	0
+$ INFRARED			USE			70.0 100.0	369	-1		11	goggles		0	 0		0.0   -0.0  -0.0    1  0	1.0	 1.0 	10 99 11	14 99 15   0	0
+#$ JETPACK			USE			25.0 25.0	370	-1		9	null		1	 0		0.0   0.0   0.13    1  0	1.0	 1.0 	 0 10  3  	 0 10  3  99	0
+#
+# Gun Aiming Offsets
+#-------------------AimX----AimZ--------DuckX---DuckZ---RLoad-A/B---CrouchRLoad-A/B--
+#	A				B		C			D		E		F	G		H	I
+% python			0.1		0.5			0.0		0.0		254	633		254	633
+% pythonbad			0.1		0.55		0.05	0.0		254	633		254	633
+% colt45			0.2		0.6			0.1		0.1		254	633		254	633
+% colt_cop			0.2		0.6			0.1		0.0		254	633		254	633
+% colt45pro			0.2		0.6			0.1		0.0		254	633		254	633
+% sawnoff			0.2		0.6			0.1		0.1		189	815		254	633
+% sawnoffpro		0.2		0.6			0.1		0.0		189	815		254	633
+% silenced			0.1 	0.55		0.1		0.0		254	633		254	633
+% shotgun			0.18	0.44		0.0		0.0		0	726		0	726
+% shotgunbad		0.15	0.15		0.0		0.0		0	726		0	726
+% buddy				0.22	0.1			0.0		0.0		383 689		271	619
+% buddybad			0.05	0.15		0.1		0.0		383 689		271	619
+% uzi				0.19	0.45		0.1		0.0		382 933		382	933
+% uzibad			0.18	0.25		0.1		0.0		382 933		382	933
+% rifle				0.20	0.48		0.10	0.0		380	897		380	897
+% riflebad			0.16	0.2			0.1		0.0		380	897		380	897
+% sniper			0.20	0.48		0.10	0.0		429	633		429	633
+% grenade			0.0		0.0			0.0		0.0		0	0		0	0	
+% flame				0.2		0.0			0.0		0.0		0	0		0	0
+% rocket			0.1		0.7			0.0		0.0		254	633		254	633
+% spraycan			0.0		0.44		0.0		0.0		0	0		0	0
+
+ENDWEAPONDATA
