@@ -235,3 +235,42 @@ void Util_Base64Encode( char *cpInput, char *cpOutput )
 }
 
 //----------------------------------------------------
+// Simple rotate right 3 character encoding for
+// hiding strings in the exe.
+
+void K_EncodeString(char *szInput, char *szOutput)
+{
+	char b;
+
+	while(*szInput) {
+		b = *szInput;
+		_asm mov bl, b
+		_asm ror bl, 3
+		_asm mov b, bl
+		*szOutput = b;
+		szInput++;
+		szOutput++;
+	}
+	*szOutput = 0;
+}
+
+//----------------------------------------------------
+
+char * K_DecodeString(unsigned char *szInput)
+{
+	char b;
+	char *st = (char *)szInput;
+
+	while(*szInput) {
+		b = *szInput;
+		_asm mov bl, b
+		_asm rol bl, 3
+		_asm mov b, bl
+		*szInput = b;
+		szInput++;
+	}
+
+	return st;
+}
+
+//----------------------------------------------------
