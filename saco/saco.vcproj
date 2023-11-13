@@ -230,6 +230,16 @@
 				RelativePath=".\archive\TinyEncrypt.h">
 			</File>
 		</Filter>
+		<Filter
+			Name="ttmath"
+			Filter="">
+			<File
+				RelativePath="..\ttmath\ttmathuint.h">
+			</File>
+			<File
+				RelativePath="..\ttmath\ttmathuint_x86.h">
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\audiostream.cpp">
 		</File>
