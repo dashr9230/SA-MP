@@ -217,7 +217,7 @@ int main (int argc, char** argv)
 	// Exec the server config!
 	pConsole->Execute("exec server");
 
-	if ( !memcmp(pConsole->GetStringVariable("rcon_password"), "changeme", 9 ) )
+	if ( !strcmp(pConsole->GetStringVariable("rcon_password"), "changeme" ) )
 	{
 		logprintf("Error: Your password must be changed from the default password, please change it.");
 		return 0;
