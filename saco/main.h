@@ -20,6 +20,13 @@ typedef struct _GAME_SETTINGS {
 
 #include "game/game.h"
 
+#include "net/netgame.h"
+
+#include "config.h"
+#include "fontrender.h"
+#include "chatwindow.h"
+#include "cmdwindow.h"
+#include "audiostream.h"
 #include "archive/ArchiveFS.h"
 
 void SetStringFromCommandLine(char *szCmdLine, char *szString);

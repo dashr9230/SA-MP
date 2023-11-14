@@ -234,6 +234,16 @@
 			</File>
 		</Filter>
 		<Filter
+			Name="net"
+			Filter="">
+			<File
+				RelativePath=".\net\netgame.cpp">
+			</File>
+			<File
+				RelativePath=".\net\netgame.h">
+			</File>
+		</Filter>
+		<Filter
 			Name="ttmath"
 			Filter="">
 			<File
@@ -253,6 +263,18 @@
 			RelativePath=".\buildinfo.h">
 		</File>
 		<File
+			RelativePath=".\chatwindow.cpp">
+		</File>
+		<File
+			RelativePath=".\chatwindow.h">
+		</File>
+		<File
+			RelativePath=".\cmdwindow.cpp">
+		</File>
+		<File
+			RelativePath=".\cmdwindow.h">
+		</File>
+		<File
 			RelativePath=".\config.cpp">
 		</File>
 		<File
@@ -269,6 +291,12 @@
 		</File>
 		<File
 			RelativePath=".\filesystem.h">
+		</File>
+		<File
+			RelativePath=".\fontrender.cpp">
+		</File>
+		<File
+			RelativePath=".\fontrender.h">
 		</File>
 		<File
 			RelativePath=".\httpclient.cpp">

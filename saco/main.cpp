@@ -1,7 +1,20 @@
 
 #include "main.h"
 
-GAME_SETTINGS	tSettings;
+GAME_SETTINGS			tSettings;
+CConfig					*pConfig=0;
+CChatWindow				*pChatWindow=0;
+CCmdWindow				*pCmdWindow=0;
+//DWORD					dword_1026EB88=0;
+CAudioStream			*pAudioStream=0;
+//DWORD					dword_1026EB90=0;
+CNetGame				*pNetGame=0;
+//DWORD					dword_1026EB98=0;
+CFontRender				*pDefaultFont=0;
+//DWORD					dword_1026EBA0=0;
+//DWORD					dword_1026EBA4=0;
+//DWORD					dword_1026EBA8=0;
+
 HANDLE			hInstance=0;
 
 CGame *pGame=0;
