@@ -5,7 +5,9 @@ CNetGame		*pNetGame	= NULL;
 CConsole		*pConsole	= NULL;
 CPlugins		*pPlugins	= NULL;
 
-FILE *pLogFile;
+FILE		*pLogFile;
+bool		bQuitApp = false;
+BOOL		bGameModeFinished=FALSE;
 
 bool bLogQueries;
 int iMaxNpc = 0;
@@ -260,6 +262,35 @@ int main (int argc, char** argv)
 	pNetGame = new CNetGame();
 	pNetGame->Init(true);
 
+	// Start the rcon server
+	PCHAR szBindAddress = pConsole->GetStringVariable("rcon_bind");
+	if (!szBindAddress || szBindAddress[0] == 0)
+		szBindAddress = pConsole->GetStringVariable("bind");
+	if (!szBindAddress || szBindAddress[0] == 0)
+		szBindAddress = NULL;
+
+	// While the app is running...
+	while (!bQuitApp)
+	{
+		pNetGame->Process();
+
+		if(TRUE == bGameModeFinished) {
+			pNetGame->ShutdownForGameModeRestart();
+			bGameModeFinished = FALSE;
+		}
+
+		if(sub_44E9D0() - unnamed_4 > iConnSeedTime)
+		{
+			unnamed_3 = rand();
+			unnamed_4 = sub_44E9D0();
+		}
+
+		SLEEP(iSleep);
+	}
+
+	delete pNetGame;
+
+	delete pPlugins;
 
 	delete pConsole;
 

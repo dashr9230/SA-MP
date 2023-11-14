@@ -19,10 +19,13 @@
 
 #ifdef WIN32
 	#define WIN32_LEAN_AND_MEAN
+	#define SLEEP(x) { Sleep(x); }
 
 	#include <windows.h>
 	#include <time.h>
 #else
+	#define SLEEP(x) { usleep(x * 1000); }
+
 	#ifndef stricmp
 		#define stricmp strcasecmp
 	#endif
