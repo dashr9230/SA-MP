@@ -43,6 +43,9 @@
 #include <map>
 #include <string>
 
+// Raknet
+#include "../raknet/GetTime.h"
+
 #include "console.h"
 #include "scrhttps.h"
 #include "scrtimers.h"

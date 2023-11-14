@@ -40,12 +40,6 @@ int iCookieLogging = 1;
 extern LONG WINAPI exc_handler(_EXCEPTION_POINTERS* exc_inf);
 #endif
 
-int sub_44E9D0()
-{
-	// TODO: sub_44E9D0 W: 0044E9D0 L: 0805FBE0
-	return 0;
-}
-
 //----------------------------------------------------
 
 void ServerPasswordChanged()
@@ -155,7 +149,7 @@ int main (int argc, char** argv)
 	srand(time(NULL));
 	_uiRndSrvChallenge = (unsigned int)rand();
 	unnamed_3 = rand();
-	unnamed_4 = sub_44E9D0();
+	unnamed_4 = RakNet::GetTime();
 
 	// Create the Console
 	pConsole = new CConsole();
@@ -279,10 +273,10 @@ int main (int argc, char** argv)
 			bGameModeFinished = FALSE;
 		}
 
-		if(sub_44E9D0() - unnamed_4 > iConnSeedTime)
+		if(RakNet::GetTime() - unnamed_4 > iConnSeedTime)
 		{
 			unnamed_3 = rand();
-			unnamed_4 = sub_44E9D0();
+			unnamed_4 = RakNet::GetTime();
 		}
 
 		SLEEP(iSleep);
