@@ -13,9 +13,9 @@ int iMinConnectionTime;
 int iDbLogging;
 int iDbLogQueries;
 
-int unnamed_2; // W: 004F5FE8 L: 081AA8A8
 int unnamed_3; // W: 004F5FEC L: 081AA8A4
 int unnamed_4; // W: 004F5FF0 L: 081AA8A0
+unsigned int _uiRndSrvChallenge;
 
 int iOnFootRate = 30;
 int iInCarRate = 30;
@@ -149,8 +149,9 @@ int main (int argc, char** argv)
 	logprintf("----------------------");
 	logprintf("v" SAMP_VERSION ", (C)2005-2015 SA-MP Team\n");
 
+	// Create a challenge number for the clients to be able to connect
 	srand(time(NULL));
-	unnamed_2 = rand();
+	_uiRndSrvChallenge = (unsigned int)rand();
 	unnamed_3 = rand();
 	unnamed_4 = sub_44E9D0();
 
