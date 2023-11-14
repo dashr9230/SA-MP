@@ -139,6 +139,9 @@
 				RelativePath=".\game\camera.h">
 			</File>
 			<File
+				RelativePath=".\game\cheats.cpp">
+			</File>
+			<File
 				RelativePath=".\game\common.h">
 			</File>
 			<File
