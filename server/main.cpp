@@ -238,10 +238,10 @@ int main (int argc, char** argv)
 	pConsole->ModifyVariableFlags("logtimeformat", 2);
 	pConsole->ModifyVariableFlags("lagcompmode", 2);
 
-	if(pConsole->GetIntVariable("lagcompmode") <= 0)
-		pConsole->AddStringVariable("lagcomp", 6, "Off");
-	else
+	if(pConsole->GetIntVariable("lagcompmode") > 0)
 		pConsole->AddStringVariable("lagcomp", 6, "On");
+	else
+		pConsole->AddStringVariable("lagcomp", 6, "Off");
 
 	// Add the version as a rule
 	pConsole->AddStringVariable("version", 6, SAMP_VERSION);
