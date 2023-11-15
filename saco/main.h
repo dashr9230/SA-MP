@@ -7,6 +7,10 @@
 
 #define MAX_SETTINGS_STRING		256
 
+#define GTASA_VERSION_UNKNOWN	0
+#define GTASA_VERSION_USA10		1
+#define GTASA_VERSION_EU10		2
+
 typedef struct _GAME_SETTINGS {
 	BOOL bDebug;
 	BOOL bPlayOnline;

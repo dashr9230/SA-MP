@@ -8,6 +8,8 @@ char *szGameTextMessage;
 
 int unnamed_10150340[210];
 
+BOOL ApplyPreGamePatches();
+
 CGame::CGame()
 {
 	// TODO: CGame::CGame()
@@ -28,6 +30,8 @@ CGame::CGame()
 	field_5D = 90;
 }
 
+//-----------------------------------------------------------
+
 void CGame::InitGame()
 {
 	// Create a buffer for game text.
@@ -41,5 +45,13 @@ void CGame::InitGame()
 
 	// Init radar colors
 	GameResetRadarColors();
+
+	if(!ApplyPreGamePatches()) {
+		MessageBox(0,
+			"I can't determine your GTA version.\r\nSA-MP only supports GTA:SA v1.0 USA/EU",
+			"Version Error",MB_OK | MB_ICONEXCLAMATION);
+		ExitProcess(1);
+	}
 }
 
+//-----------------------------------------------------------

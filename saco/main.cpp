@@ -1,6 +1,8 @@
 
 #include "main.h"
 
+int				iGtaVersion=0;
+
 GAME_SETTINGS			tSettings;
 CConfig					*pConfig=0;
 CChatWindow				*pChatWindow=0;

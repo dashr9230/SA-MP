@@ -166,6 +166,9 @@
 				RelativePath=".\game\keystuff.h">
 			</File>
 			<File
+				RelativePath=".\game\patches.cpp">
+			</File>
+			<File
 				RelativePath=".\game\scripting.cpp">
 			</File>
 			<File
