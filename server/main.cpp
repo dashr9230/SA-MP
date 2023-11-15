@@ -179,11 +179,11 @@ int main (int argc, char** argv)
 	pConsole->AddStringVariable("password", 0, NULL, ServerPasswordChanged);
 	pConsole->AddStringVariable("hostname", 0, "SA-MP Server");
 	pConsole->AddStringVariable("language", 0, NULL);
-	pConsole->AddStringVariable("mapname", 4, "San Andreas");
-	pConsole->AddStringVariable("weburl", 4, "www.sa-mp.com");
+	pConsole->AddStringVariable("mapname", CON_VARFLAG_RULE, "San Andreas");
+	pConsole->AddStringVariable("weburl", CON_VARFLAG_RULE, "www.sa-mp.com");
 	pConsole->AddStringVariable("rcon_password", 0, "changeme");
 	pConsole->AddStringVariable("gravity", 0, "0.008");
-	pConsole->AddStringVariable("weather", 4, "10");
+	pConsole->AddStringVariable("weather", CON_VARFLAG_RULE, "10");
 	pConsole->AddStringVariable("gamemodetext", 0, "Unknown");
 	pConsole->AddStringVariable("filterscripts", 0, "");
 	pConsole->AddStringVariable("plugins", 0, "");
@@ -221,27 +221,27 @@ int main (int argc, char** argv)
 	}
 
 	// Change some var flags to read-only (can only be accessed from server.cfg).
-	pConsole->ModifyVariableFlags("maxplayers", 2);
-	pConsole->ModifyVariableFlags("bind", 2);
-	pConsole->ModifyVariableFlags("port", 2);
-	pConsole->ModifyVariableFlags("rcon_bind", 2);
-	pConsole->ModifyVariableFlags("rcon_port", 2);
-	pConsole->ModifyVariableFlags("filterscripts", 2);
-	pConsole->ModifyVariableFlags("plugins", 2);
-	pConsole->ModifyVariableFlags("nosign", 2);
-	pConsole->ModifyVariableFlags("onfoot_rate", 2);
-	pConsole->ModifyVariableFlags("incar_rate", 2);
-	pConsole->ModifyVariableFlags("weapon_rate", 2);
-	pConsole->ModifyVariableFlags("logtimeformat", 2);
-	pConsole->ModifyVariableFlags("lagcompmode", 2);
+	pConsole->ModifyVariableFlags("maxplayers", CON_VARFLAG_READONLY);
+	pConsole->ModifyVariableFlags("bind", CON_VARFLAG_READONLY);
+	pConsole->ModifyVariableFlags("port", CON_VARFLAG_READONLY);
+	pConsole->ModifyVariableFlags("rcon_bind", CON_VARFLAG_READONLY);
+	pConsole->ModifyVariableFlags("rcon_port", CON_VARFLAG_READONLY);
+	pConsole->ModifyVariableFlags("filterscripts", CON_VARFLAG_READONLY);
+	pConsole->ModifyVariableFlags("plugins", CON_VARFLAG_READONLY);
+	pConsole->ModifyVariableFlags("nosign", CON_VARFLAG_READONLY);
+	pConsole->ModifyVariableFlags("onfoot_rate", CON_VARFLAG_READONLY);
+	pConsole->ModifyVariableFlags("incar_rate", CON_VARFLAG_READONLY);
+	pConsole->ModifyVariableFlags("weapon_rate", CON_VARFLAG_READONLY);
+	pConsole->ModifyVariableFlags("logtimeformat", CON_VARFLAG_READONLY);
+	pConsole->ModifyVariableFlags("lagcompmode", CON_VARFLAG_READONLY);
 
 	if(pConsole->GetIntVariable("lagcompmode") > 0)
-		pConsole->AddStringVariable("lagcomp", 6, "On");
+		pConsole->AddStringVariable("lagcomp", CON_VARFLAG_RULE | CON_VARFLAG_READONLY, "On");
 	else
-		pConsole->AddStringVariable("lagcomp", 6, "Off");
+		pConsole->AddStringVariable("lagcomp", CON_VARFLAG_RULE | CON_VARFLAG_READONLY, "Off");
 
 	// Add the version as a rule
-	pConsole->AddStringVariable("version", 6, SAMP_VERSION);
+	pConsole->AddStringVariable("version", CON_VARFLAG_RULE | CON_VARFLAG_READONLY, SAMP_VERSION);
 
 #ifdef WIN32
 	// Setup the exception handler on windows
