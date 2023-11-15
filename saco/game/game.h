@@ -36,6 +36,28 @@ public:
 	void	InitGame();
 
 	CGame();
+
+	void sub_100A0010();
+	void sub_100A0060();
+	void sub_100A0090();
+	void sub_100A00C0();
+	void sub_100A00F0();
+	void sub_100A0110();
+	void sub_100A0210();
+	void sub_100A0250();
+	void sub_100A02E0();
+	void sub_100A0310();
+	void sub_100A0330();
+	void sub_100A03D0();
+	void sub_100A03E0();
+	void sub_100A0400();
+
+
+
+	void sub_100A05D0();
+	void sub_100A06F0();
+
+	void sub_100A1C10();
 };
 
 //-----------------------------------------------------------
