@@ -40,6 +40,25 @@ int iCookieLogging = 1;
 extern LONG WINAPI exc_handler(_EXCEPTION_POINTERS* exc_inf);
 #endif
 
+#ifdef WIN32
+
+BOOL WINAPI CtrlHandler(DWORD type)
+{
+	switch (type)
+	{
+		case CTRL_C_EVENT:
+		case CTRL_BREAK_EVENT:
+		case CTRL_CLOSE_EVENT:
+		case CTRL_LOGOFF_EVENT:
+		case CTRL_SHUTDOWN_EVENT:
+			bQuitApp = true;
+			return TRUE;
+	}
+	return FALSE;
+}
+
+#endif
+
 //----------------------------------------------------
 
 void ServerPasswordChanged()
@@ -244,6 +263,7 @@ int main (int argc, char** argv)
 	pConsole->AddStringVariable("version", CON_VARFLAG_RULE | CON_VARFLAG_READONLY, SAMP_VERSION);
 
 #ifdef WIN32
+	SetConsoleCtrlHandler(CtrlHandler, TRUE);
 	// Setup the exception handler on windows
 	SetUnhandledExceptionFilter(exc_handler);
 #endif
