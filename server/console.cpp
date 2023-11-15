@@ -75,6 +75,38 @@ ConsoleVariable_s* CConsole::FindVariable(char* pVarName)
 	return NULL;
 }
 
+void CConsole::PrintVariableList()
+{
+	char val[1034]; // Max str size of 1024 + the (string) tag.
+	logprintf("Console Variables:");
+	StringConvarMap::iterator itor;
+	for (itor = ConsoleVariables.begin(); itor != ConsoleVariables.end(); itor++)
+	{
+		val[0] = 0;
+		switch (itor->second->VarType)
+		{
+			case CON_VARTYPE_FLOAT:
+				sprintf(val, "%f  (float)", *(float*)itor->second->VarPtr);
+				break;
+			case CON_VARTYPE_INT:
+				sprintf(val, "%d  (int)", *(int*)itor->second->VarPtr);
+				break;
+			case CON_VARTYPE_BOOL:
+				sprintf(val, "%d  (bool)", *(bool*)itor->second->VarPtr);
+				break;
+			case CON_VARTYPE_STRING:
+				sprintf(val, "\"%s\"  (string)", (char*)itor->second->VarPtr);
+				break;
+		}
+		const char* VarName = itor->first.c_str();
+		logprintf("  %s\t%s= %s%s%s%s", VarName, (strlen(VarName)<6)?"\t":"", val,
+			(itor->second->VarFlags & CON_VARFLAG_READONLY)?" (read-only)":"",
+			(itor->second->VarFlags & CON_VARFLAG_DEBUG)?" (debug)":"",
+			(itor->second->VarFlags & CON_VARFLAG_RULE)?" (rule)":"");
+	}
+	logprintf("");
+}
+
 void CConsole::AddVariable(char* pVarName, CON_VARTYPE VarType, DWORD VarFlags, void* VarPtr,
 						   VARCHANGEFUNC VarChangeFunc)
 {

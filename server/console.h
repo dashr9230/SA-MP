@@ -4,6 +4,10 @@
 
 enum CON_VARTYPE {CON_VARTYPE_FLOAT, CON_VARTYPE_INT, CON_VARTYPE_BOOL, CON_VARTYPE_STRING};
 
+#define CON_VARFLAG_DEBUG		1
+#define CON_VARFLAG_READONLY	2
+#define CON_VARFLAG_RULE		4	// Gets sent with a RULES query responce
+
 typedef void (*VARCHANGEFUNC)();
 
 struct ConsoleVariable_s
@@ -25,6 +29,7 @@ public:
 	~CConsole();
 
 	ConsoleVariable_s* FindVariable(char* pVarName);
+	void PrintVariableList();
 
 	void AddVariable(char* pVarName, CON_VARTYPE VarType, DWORD VarFlags, void* VarPtr,
 		VARCHANGEFUNC VarChangeFunc = NULL);
