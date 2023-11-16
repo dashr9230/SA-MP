@@ -46,6 +46,9 @@
 // Raknet
 #include "../raknet/GetTime.h"
 
+// amx
+#include "amx/amx.h"
+
 #include "console.h"
 #include "scrhttps.h"
 #include "scrtimers.h"

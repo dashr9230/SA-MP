@@ -127,6 +127,15 @@
 			<File
 				RelativePath="..\raknet\GetTime.h">
 			</File>
+		<Filter
+			Name="amx"
+			Filter="">
+			<File
+				RelativePath=".\amx\amx.c">
+			</File>
+			<File
+				RelativePath=".\amx\amx.h">
+			</File>
 		</Filter>
 		<File
 			RelativePath=".\actorpool.cpp">
