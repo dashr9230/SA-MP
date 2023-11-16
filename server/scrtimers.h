@@ -10,6 +10,8 @@ private:
 #else
 	char _gap[25];
 #endif
+public:
+	CScriptTimers();
 };
 
 #endif

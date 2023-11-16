@@ -6,6 +6,8 @@ class CScriptHttps // size: 800
 {
 private:
 	char _gap0[800];
+public:
+	CScriptHttps();
 };
 
 #endif
