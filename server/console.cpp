@@ -1,8 +1,24 @@
 
 #include "main.h"
 
-void con_exit() {} // TODO: con_exit W: 0048A4F0 L: 0809EC60
-void con_echo() {} // TODO: con_echo W: 0048A500 L: 0809EC70
+extern bool	bQuitApp;
+
+void con_exit()
+{
+	bQuitApp = true;
+}
+
+void con_echo()
+{
+	char* arg = strtok(NULL, "");
+	if (arg)
+	{
+		logprintf("%s", arg);
+	} else {
+		logprintf("");
+	}
+}
+
 void con_exec() {} // TODO: con_exec W: 0048BA80 L: 080A0340
 void con_kick() {} // TODO: con_kick W: 0048A530 L: 0809ECB0
 void con_ban() {} // TODO: con_ban W: 0048A5D0 L: 0809ED80
