@@ -7,12 +7,14 @@
 #include "Export.h"
 
 class RakServerInterface;
+class RakPeerInterface;
 
 class RAK_DLL_EXPORT RakNetworkFactory
 {
 public:
 
 	static RakServerInterface* GetRakServerInterface( void );
+	static RakPeerInterface* GetRakPeerInterface( void );
 
 };
 

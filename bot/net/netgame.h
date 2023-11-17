@@ -7,9 +7,9 @@ class CNetGame // size: 910 bytes
 {
 private:
 	int field_0; // highly m_pRakClient
-	int field_4;
-	int field_8;
-	int field_C;
+	CPlayerPool* m_pPlayerPool;
+	CVehiclePool* m_pVehiclePool;
+	int m_iGameState;
 	int field_10;
 	int field_14;
 	char _gap18[6];
@@ -36,18 +36,20 @@ private:
 	char _gap1F6[4];
 	int field_1FA;
 	int field_1FE;
-	char field_202[256];
-	char field_302[128];
-	int field_382;
-	int field_386;
-	int field_38A;
+
+	char m_szHostName[256];
+	char m_szHostOrIp[128];
+	int m_iPort;
+
+	CNPCMode* m_pNPCMode;
+	CScriptTimers* m_pScriptTimers;
 
 public:
 
 	CNetGame();
 	~CNetGame();
 
-	void Init(char *a2, int a3, char *a4, char *a5, char *a6);
+	void Init(PCHAR szHostOrIp,int iPort,PCHAR szPlayerName,PCHAR szPass,PCHAR szNpcMode);
 	void Process();
 
 };

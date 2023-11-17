@@ -25,6 +25,11 @@ typedef struct _GAME_SETTINGS {
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "scrtimers.h"
+#include "npcmode.h"
+
+#include "net/playerpool.h"
+#include "net/vehiclepool.h"
 #include "net/netgame.h"
 
 void logprintf(char* format, ...);
