@@ -2,6 +2,12 @@
 #ifndef SAMPSRV_MAIN_H
 #define SAMPSRV_MAIN_H
 
+// -------
+// DEFINES
+// -------
+
+#define MAX_PLAYERS				1000
+
 #define DEFAULT_MAX_PLAYERS		50
 #define DEFAULT_LISTEN_PORT		8192
 
@@ -45,6 +51,8 @@
 #include <string>
 
 // Raknet
+#include "../raknet/RakServer.h"
+#include "../raknet/RakNetworkFactory.h"
 #include "../raknet/GetTime.h"
 
 // amx

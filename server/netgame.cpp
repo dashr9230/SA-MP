@@ -3,71 +3,71 @@
 
 CNetGame::CNetGame()
 {
+	m_bAllowWeapons = FALSE;
+	m_byteWorldTime = 12;
+	m_byteWeather	= 1;
+	m_bStuntBonus   = true;
+	m_fGravity		= 0.008f;
+	m_iDeathDropMoney = 0;
+	field_6A		= false;
+	m_bVehicleFriendlyFire = FALSE;
+
+	// Init member variables
+	m_pPlayerPool = NULL;
+	m_pVehiclePool = NULL;
+	m_pGameMode = NULL;
+	m_pPickupPool = NULL;
+	m_pObjectPool = NULL;
+	m_pMenuPool = NULL;
+	m_pTextPool = NULL;
+	m_bNameTagLOS = true;
+	m_pGangZonePool = NULL;
+	m_pLabelPool = NULL;
+	m_pActorPool = NULL;
+	m_bLanMode = FALSE;
+	field_6B = 1;
+
+	m_bLimitGlobalChatRadius = FALSE;
+	m_fGlobalChatRadius = 10000.0f;
+	m_bLimitPlayerMarkerRadius = FALSE;
+	m_fPlayerMarkerRadius = 10000.0f;
+	m_fNameTagDrawDistance = 70.0f;
+	m_bDisableEnterExits = false;
+	field_5C = 0;
+
+	m_iCurrentGameModeIndex = 0;
+	m_iCurrentGameModeRepeat = 0;
+	m_bFirstGameModeLoaded = FALSE;
+
+	m_pScriptTimers = new CScriptTimers;
+	m_pScriptHttps = new CScriptHttps;
+
+#ifndef WIN32
+	m_dElapsedTime = 0.0;
+#endif
+
+	if(pConsole->GetIntVariable("maxplayers") > MAX_PLAYERS) {
+		pConsole->SetIntVariable("maxplayers", MAX_PLAYERS);
+	}
+
+	CHAR *szBindAddress = pConsole->GetStringVariable("bind");
+	if (szBindAddress && szBindAddress[0] == 0)
+		szBindAddress = NULL;
+
+	DWORD dwPort = pConsole->GetIntVariable("port");
+	DWORD dwMaxPlayers = pConsole->GetIntVariable("maxplayers");
+	BOOL bLanMode = pConsole->GetBoolVariable("lanmode");
+
+	// Setup RakNet
+	m_pRak = RakNetworkFactory::GetRakServerInterface();
+
+
+
+
+
 	// TODO: CNetGame::CNetGame W: 0048EEE0 L: 080AF360
 
-/*_this = this;
-  this->field_8 = 0;
-  this->field_C = 0;
-  this->field_0 = 0;
-  this->field_10 = 0;
-  this->field_14 = 0;
-  this->field_18 = 0;
-  this->field_1C = 0;
-  this->field_77 = 1;
-  this->field_24 = 0;
-  this->field_20 = 0;
-  this->field_28 = 0;
-  this->field_50 = 0;
-  this->field_6B = 1;
-  dword_515CF8 = 0;
-  this->field_5A = 0;
-  this->field_59 = 12;
-  this->field_5D = 1;
-  this->field_5B = 1;
-  LODWORD(this->field_62) = 1006834287;
-  this->field_66 = 0;
-  this->field_6A = 0;
-  this->field_7E = 0;
-  this->field_6C = 0;
-  LODWORD(this->field_6E) = 1176256512;
-  this->field_79 = 0;
-  LODWORD(this->field_7A) = 1176256512;
-  LODWORD(this->field_72) = 1116471296;
-  this->field_76 = 0;
-  this->field_5C = 0;
-  this->field_2C = 0;
-  this->field_30 = 0;
-  this->field_34 = 0;
-  v2 = operator new(0x10u);
-  v26 = 0;
-  if ( v2 )
-    v3 = sub_482BF0(v2);
-  else
-    v3 = 0;
-  _this->field_3C = v3;
-  v4 = operator new(0x320u);
-  v26 = 1;
-  if ( v4 )
-    v5 = sub_4809D0(v4);
-  else
-    v5 = 0;
-  _this->field_38 = v5;
-  v26 = -1;
-  if ( CConsole::GetIntVariable(pConsole, "maxplayers") > 1000 )
-    CConsole::SetIntVariable(pConsole, "maxplayers", 1000);
-  v6 = CConsole::GetStringVariable(pConsole, "bind");
-  v7 = v6;
-  v21 = v6;
-  if ( v6 && !*v6 )
-  {
-    v21 = 0;
-    v7 = 0;
-  }
-  v8 = CConsole::GetIntVariable(pConsole, "port");
-  v19 = CConsole::GetIntVariable(pConsole, "maxplayers");
-  v20 = CConsole::GetBoolVariable(pConsole, "lanmode");
-  v9 = RakNetworkFactory::GetRakServerInterface();
-  _this->field_40 = v9;
+/*
   sub_496D10(v9);
   dword_515CFC = sub_44E9D0();
   _this->field_44 = sub_48DBD0(_this);

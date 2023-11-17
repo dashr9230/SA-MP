@@ -2,8 +2,6 @@
 #ifndef SAMPSRV_NETGAME_H
 #define SAMPSRV_NETGAME_H
 
-class RakServerInterface {}; // TODO: RakServerInterface placeholder, remove this later
-
 class CNetGame // size: W: 14808 L: 14816
 {
 private:
