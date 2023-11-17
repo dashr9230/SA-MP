@@ -67,6 +67,7 @@
 #include "plugins.h"
 
 void logprintf(char* format, ...);
+void flogprintf(char* format, ...);
 
 #ifdef LINUX
 char* strlwr(char* str);

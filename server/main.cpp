@@ -41,6 +41,26 @@ extern LONG WINAPI exc_handler(_EXCEPTION_POINTERS* exc_inf);
 #endif
 
 #ifdef WIN32
+HANDLE hConsoleExecuteEvent;
+DWORD WINAPI ConsoleInputThread(void* pParam)
+{
+	char buf[512];
+	while (true)
+	{
+		DWORD dwRead;
+		ReadConsole(GetStdHandle(STD_INPUT_HANDLE), buf, 255, &dwRead, NULL);
+		if (dwRead > 2)
+		{
+			buf[dwRead-2] = 0;
+			WaitForSingleObject(hConsoleExecuteEvent, INFINITE);
+			flogprintf("Console input: %s", buf);
+			pConsole->Execute(buf);
+			SetEvent(hConsoleExecuteEvent);
+		}
+	}
+}
+
+//----------------------------------------------------
 
 BOOL WINAPI CtrlHandler(DWORD type)
 {
@@ -264,6 +284,10 @@ int main (int argc, char** argv)
 
 #ifdef WIN32
 	SetConsoleCtrlHandler(CtrlHandler, TRUE);
+	hConsoleExecuteEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
+	DWORD dwThreadId;
+	HANDLE hThread = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)ConsoleInputThread, NULL, 0, &dwThreadId);
+
 	// Setup the exception handler on windows
 	SetUnhandledExceptionFilter(exc_handler);
 #endif
@@ -293,6 +317,11 @@ int main (int argc, char** argv)
 			bGameModeFinished = FALSE;
 		}
 
+		#ifdef WIN32
+			SetEvent(hConsoleExecuteEvent);
+			WaitForSingleObject(hConsoleExecuteEvent, INFINITE);
+		#endif
+
 		if(RakNet::GetTime() - unnamed_4 > iConnSeedTime)
 		{
 			unnamed_3 = rand();
@@ -305,6 +334,12 @@ int main (int argc, char** argv)
 	delete pNetGame;
 
 	delete pPlugins;
+
+	// If WIN32: Kill the input thread.
+	#ifdef WIN32
+		TerminateThread(hThread, 0);
+		CloseHandle(hConsoleExecuteEvent);
+	#endif
 
 	delete pConsole;
 
@@ -355,6 +390,21 @@ void logprintf(char* format, ...)
 	}
 
 	// TODO: logprintf
+}
+
+//----------------------------------------------------
+
+// Print to log file only.
+void flogprintf(char* format, ...)
+{
+	if (!pLogFile) return;
+	va_list ap;
+	va_start(ap, format);
+	char buffer[512];
+	vsprintf(buffer, format, ap);
+	fprintf(pLogFile, "%s\n", buffer);
+	fflush(pLogFile);
+	va_end(ap);
 }
 
 //----------------------------------------------------
