@@ -67,6 +67,16 @@
 #include "netgame.h"
 #include "plugins.h"
 
+// ---------
+// EXTERNALS
+// ---------
+
+extern CConsole* pConsole;
+
+// -------------------
+// FUNCTION PROTOTYPES
+// -------------------
+
 void logprintf(char* format, ...);
 void flogprintf(char* format, ...);
 

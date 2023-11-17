@@ -19,7 +19,69 @@ void con_echo()
 	}
 }
 
-void con_exec() {} // TODO: con_exec W: 0048BA80 L: 080A0340
+void con_exec()
+{
+	char* arg = strtok(NULL, " ");
+	if (arg)
+	{
+		char tmp[1025];
+		char tmpvarname[1025];
+		sprintf(tmp, "%s.cfg", arg);
+		FILE* f = fopen(tmp, "r");
+		if (!f)
+		{
+			logprintf("Unable to exec file '%s'.", tmp);
+		} else {
+			memset(tmp, 0, sizeof(tmp));
+			while (fgets(tmp, 1024, f))
+			{
+				int len = strlen(tmp);
+				if (len > 1024) continue;
+				if (len > 0 && tmp[len-1] == '\n')
+					tmp[strlen(tmp)-1] = 0;
+				len = strlen(tmp);
+				if (len > 0 && tmp[len-1] == '\r')
+					tmp[strlen(tmp)-1] = 0;
+				if (tmp[0] == 0)
+					continue;
+				// If the line has a comment, finish it there.
+				for (size_t i=0; i<strlen(tmp)-1; i++)
+				{
+					if (((tmp[i] == '/') && (tmp[i+1] == '/')) || tmp[i] == '#')
+					{
+						tmp[i] = 0;
+						break;
+					}
+				}
+				if (strlen(tmp) > 2)
+				{
+					if ((tmp[0] != '/') && (tmp[1] != '/')) {
+						memset(tmpvarname, 0, sizeof(tmpvarname));
+						for(int i = 0; tmp[i] != '\0'; i++)
+						{
+							if (tmp[i] == ' ')
+							{
+								tmpvarname[i] = '\0';
+								break;
+							}
+							tmpvarname[i] = tmp[i];
+						}
+						if (pConsole->FindVariable(tmpvarname))
+						{
+							pConsole->Execute(tmp);
+						}
+					}
+				}
+				memset(tmp, 0, sizeof(tmp));
+			}
+			fclose(f);
+		}
+	} else {
+		logprintf("Usage:");
+		logprintf("  exec <filename>");
+	}
+}
+
 void con_kick() {} // TODO: con_kick W: 0048A530 L: 0809ECB0
 void con_ban() {} // TODO: con_ban W: 0048A5D0 L: 0809ED80
 void con_banip() {} // TODO: con_banip W: 0048A740 L: 0809EF40
