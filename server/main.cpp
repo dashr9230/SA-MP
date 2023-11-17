@@ -290,6 +290,7 @@ int main (int argc, char** argv)
 
 	// Setup the exception handler on windows
 	SetUnhandledExceptionFilter(exc_handler);
+	timeBeginPeriod(1); // increases the accuracy of Sleep()
 #endif
 
 	// Load up the plugins

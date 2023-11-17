@@ -22,6 +22,7 @@
 	#define SLEEP(x) { Sleep(x); }
 
 	#include <windows.h>
+	#include <mmsystem.h>
 	#include <time.h>
 #else
 	#define SLEEP(x) { usleep(x * 1000); }
