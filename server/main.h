@@ -58,6 +58,9 @@
 // amx
 #include "amx/amx.h"
 
+// SA-MP
+
+typedef unsigned short PLAYERID;
 #include "console.h"
 #include "scrhttps.h"
 #include "scrtimers.h"
