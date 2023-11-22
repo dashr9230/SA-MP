@@ -27,6 +27,10 @@ CFileSystem *pFileSystem=NULL;
 
 LONG WINAPI exc_handler(_EXCEPTION_POINTERS* exc_inf);
 
+//----------------------------------------------------
+
+#define ARCHIVE_FILE	"samp.saa"
+
 BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 {
 	// TODO: DllMain
