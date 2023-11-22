@@ -5,7 +5,14 @@
 class CVehiclePool // size: WL 24216
 {
 private:
-	char _gap0[24216];
+	char field_0[212];
+	int field_D4[2000];
+	int field_2014[2000];
+	int field_5E94;
+
+public:
+	CVehiclePool();
+
 };
 
 #endif

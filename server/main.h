@@ -7,6 +7,7 @@
 // -------
 
 #define MAX_PLAYERS				1000
+#define MAX_VEHICLES			2000
 
 #define DEFAULT_MAX_PLAYERS		50
 #define DEFAULT_LISTEN_PORT		8192
@@ -61,6 +62,8 @@
 // SA-MP
 
 typedef unsigned short PLAYERID;
+typedef unsigned short VEHICLEID;
+
 #include "console.h"
 #include "scrhttps.h"
 #include "scrtimers.h"
