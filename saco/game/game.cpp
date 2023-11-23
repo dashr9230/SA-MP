@@ -30,6 +30,26 @@ CGame::CGame()
 	field_5D = 90;
 }
 
+void CGame::sub_100A0010()
+{
+	int time = (int)RakNet::GetTime();
+	if(unnamed_1015068C)
+	{
+		if((time - unnamed_1015068C) > 30)
+		{
+			unnamed_10150688++;
+			if(unnamed_10150688 == 5)
+				unnamed_10150688 = 0;
+			unnamed_1015068C = time;
+		}
+		*(BYTE*)0xB7356E = unnamed_10150688;
+	}
+	else
+	{
+		unnamed_1015068C = time;
+	}
+}
+
 //-----------------------------------------------------------
 
 void CGame::InitGame()
@@ -55,11 +75,6 @@ void CGame::InitGame()
 }
 
 //-----------------------------------------------------------
-
-void CGame::sub_100A0010()
-{
-	// TODO: CGame::sub_100A0010() .text:100A0010
-}
 
 void CGame::sub_100A0060()
 {
