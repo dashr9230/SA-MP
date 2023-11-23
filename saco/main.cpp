@@ -19,7 +19,8 @@ CFontRender				*pDefaultFont=0;
 
 HANDLE			hInstance=0;
 
-CGame *pGame=0;
+CGame					*pGame=0;
+DWORD					dwGraphicsLoop=0;
 
 CFileSystem *pFileSystem=NULL;
 
