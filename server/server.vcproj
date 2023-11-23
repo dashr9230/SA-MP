@@ -239,6 +239,12 @@
 			RelativePath=".\playerpool.h">
 		</File>
 		<File
+			RelativePath=".\plugincommon.h">
+		</File>
+		<File
+			RelativePath=".\plugininternal.h">
+		</File>
+		<File
 			RelativePath=".\plugins.cpp">
 		</File>
 		<File
