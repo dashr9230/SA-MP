@@ -1,4 +1,8 @@
 
+#pragma once
+
+#define GAMESTATE_WAIT_CONNECT	1
+
 struct struc_41
 {
 	char field_0;
@@ -26,15 +30,15 @@ class CNetGame // size: 994
 private:
 	int field_0;
 	char _gap4[44];
-	char field_30[257];
-	char field_131[257];
+	char m_szHostOrIp[257];
+	char m_szHostName[257];
 	char field_232;
 	char field_233;
 	char field_234;
-	int field_235;
+	int m_iPort;
 	int field_239;
 	char field_23D[400];
-	int field_3CD;
+	int m_iGameState;
 	int field_3D1;
 	struc_41 *field_3D5;
 	char field_3D9;
