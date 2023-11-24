@@ -26,6 +26,7 @@ CFileSystem *pFileSystem=NULL;
 
 // forwards
 
+void TheGraphicsLoop();
 LONG WINAPI exc_handler(_EXCEPTION_POINTERS* exc_inf);
 
 //----------------------------------------------------
@@ -43,7 +44,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 		if(tSettings.bDebug || tSettings.bPlayOnline)
 		{
 			SetUnhandledExceptionFilter(exc_handler);
-			//dword_1026EB3C = (int)sub_100C4FF0;
+			dwGraphicsLoop = (DWORD)TheGraphicsLoop;
 
 			CHAR szArchiveFile[MAX_PATH];
 			GetModuleFileNameA((HMODULE)hInstance, szArchiveFile, MAX_PATH);
@@ -74,6 +75,12 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 	}
 
 	return TRUE;
+}
+
+//----------------------------------------------------
+
+void TheGraphicsLoop()
+{
 }
 
 //----------------------------------------------------
