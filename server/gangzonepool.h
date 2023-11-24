@@ -5,7 +5,11 @@
 class CGangZonePool // size: WL 20480
 {
 private:
-	char _gap0[20480];
+	char gap0[16384];
+	int field_4000[1024];
+public:
+	CGangZonePool();
+	~CGangZonePool() {};
 };
 
 #endif
