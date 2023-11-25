@@ -5,9 +5,10 @@
 class CScriptHttps // size: 800
 {
 private:
-	char _gap0[800];
+	int field_0[200];
 public:
 	CScriptHttps();
+	~CScriptHttps() {};
 };
 
 #endif

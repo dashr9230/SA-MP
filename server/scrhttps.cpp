@@ -5,7 +5,10 @@
 
 CScriptHttps::CScriptHttps()
 {
-	// TODO: CScriptHttps::CScriptHttps() W: .text:004809D0 L: .text:080EA240
+	for (int i=0; i<200; i++)
+	{
+		field_0[i] = 0;
+	}
 }
 
 //----------------------------------------------------------------------------------
