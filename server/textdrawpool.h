@@ -5,7 +5,15 @@
 class CTextDrawPool // size: WL 2072576
 {
 private:
-	char _gap0[2072576];
+
+	int field_0[2048];
+	int field_2000[2048];
+	int field_4000[2048];
+	char gap6000[2048000];
+
+public:
+	CTextDrawPool();
+	~CTextDrawPool();
 };
 
 #endif
