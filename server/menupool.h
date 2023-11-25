@@ -5,7 +5,13 @@
 class CMenuPool // size: WL 2024
 {
 private:
-	char _gap0[2024];
+	int* field_0[128];
+	int field_200[128];
+	char field_400[1000];
+
+public:
+	CMenuPool();
+	~CMenuPool();
 };
 
 #endif
