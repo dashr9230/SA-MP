@@ -88,7 +88,12 @@ void con_banip() {} // TODO: con_banip W: 0048A740 L: 0809EF40
 void con_unbanip() {} // TODO: con_unbanip W: 0048A790 L: 0809EFB0
 void con_gmx() {} // TODO: con_gmx W: 0048A7D0 L: 0809F000
 void con_changemode() {} // TODO: con_changemode W: 0048A800 L: 0809F050
-void con_varlist() {} // TODO: con_varlist W: 0048B2F0 L: 0809F970
+
+void con_varlist()
+{
+	pConsole->PrintVariableList();
+}
+
 void con_say() {} // TODO: con_say W: 0048A830 L: 0809F0A0
 void con_reloadbans() {} // TODO: con_reloadbans W: 0048A880 L: 0809F110
 void con_reloadlog() {} // TODO: con_reloadlog W: 0048A890 L: 0809F130
