@@ -89,6 +89,8 @@ void con_unbanip() {} // TODO: con_unbanip W: 0048A790 L: 0809EFB0
 void con_gmx() {} // TODO: con_gmx W: 0048A7D0 L: 0809F000
 void con_changemode() {} // TODO: con_changemode W: 0048A800 L: 0809F050
 
+void con_cmdlist();
+
 void con_varlist()
 {
 	pConsole->PrintVariableList();
@@ -107,7 +109,8 @@ void con_weather() {} // TODO: con_weather W: 0048A980 L: 0809F260
 void con_loadfs() {} // TODO: con_loadfs W: 0048A9B0 L: 0809F2A0
 void con_reloadfs() {} // TODO: con_reloadfs W: 0048AA20 L: 0809F330
 void con_unloadfs() {} // TODO: con_unloadfs W: 0048AAC0 L: 0809F410
-void con_cmdlist() {} // TODO: con_cmdlist W: 0048AB30 L: 0809F4A0
+
+#define CON_CMDFLAG_DEBUG		1
 
 struct ConsoleCommand_s
 {
@@ -136,6 +139,16 @@ struct ConsoleCommand_s
 	{"unloadfs",	0,	con_unloadfs},
 	{"reloadfs",	0,	con_reloadfs},
 };
+
+void con_cmdlist()
+{
+	logprintf("Console Commands:");
+	for (int i=0; i<ARRAY_SIZE(ConsoleCommands); i++)
+	{
+		logprintf("  %s%s", ConsoleCommands[i].CmdName, (ConsoleCommands[i].CmdFlags & CON_CMDFLAG_DEBUG)?" (DEBUG)":"");
+	}
+	logprintf("");
+}
 
 CConsole::CConsole()
 {
