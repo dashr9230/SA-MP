@@ -1,6 +1,8 @@
 
 #include <windows.h>
 #include <stdio.h>
+#include "../main.h"
+#include <sys/stat.h>
 
 #define NUM_RADAR_COLORS 1000
 
@@ -1031,4 +1033,26 @@ DWORD __stdcall TranslateColorCodeToRGBA(int iCode)
 void GameResetRadarColors()
 {
 	memcpy(&dwUseHudColors[0],&dwHudColors[0],sizeof(DWORD)*NUM_RADAR_COLORS);
+
+
+
+
+
+
+
+
+//----------------------------------------------------
+
+BOOL IsFileOrDirectoryExists(char * szPath)
+{
+	struct _stat buf;
+
+	return _stat(szPath, &buf) == 0;
 }
+
+//----------------------------------------------------
+
+
+
+
+
