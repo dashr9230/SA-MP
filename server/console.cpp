@@ -96,7 +96,11 @@ void con_varlist()
 
 void con_say() {} // TODO: con_say W: 0048A830 L: 0809F0A0
 void con_reloadbans() {} // TODO: con_reloadbans W: 0048A880 L: 0809F110
-void con_reloadlog() {} // TODO: con_reloadlog W: 0048A890 L: 0809F130
+
+void con_reloadlog() {
+	LoadLogFile();
+}
+
 void con_players() {} // TODO: con_players W: 0048A8A0 L: 0809F140
 void con_gravity() {} // TODO: con_gravity W: 0048A950 L: 0809F220
 void con_weather() {} // TODO: con_weather W: 0048A980 L: 0809F260

@@ -98,6 +98,7 @@ extern CConsole* pConsole;
 
 void logprintf(char* format, ...);
 void flogprintf(char* format, ...);
+void LoadLogFile();
 
 #ifdef LINUX
 char* strlwr(char* str);
