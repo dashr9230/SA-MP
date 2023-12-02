@@ -490,4 +490,7 @@ void CNetGame::LoadBanList()
 	// TODO: CNetGame::LoadBanList W: 48EAE0 L: 80AF1A0
 }
 
-
+DWORD CNetGame::GetTime()
+{
+	return (DWORD)RakNet::GetTime();
+}

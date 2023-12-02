@@ -63,6 +63,8 @@ public:
 	void Process();
 
 	void LoadBanList();
+
+	DWORD GetTime();
 };
 
 #endif
