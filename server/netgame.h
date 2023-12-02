@@ -61,6 +61,8 @@ public:
 	void Init(BOOL bFirst);
 	void ShutdownForGameModeRestart();
 	void Process();
+
+	void LoadBanList();
 };
 
 #endif

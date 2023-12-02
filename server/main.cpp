@@ -189,6 +189,34 @@ void LoadLogFile()
 
 #ifdef LINUX
 
+void SignalHandler(int sig)
+{
+	switch (sig)
+	{
+		case SIGUSR1:
+		{
+			LoadLogFile();
+			break;
+		}
+		case SIGUSR2:
+		{
+			if (pNetGame)
+			{
+				pNetGame->LoadBanList();
+			}
+			break;
+		}
+		case SIGINT:
+		case SIGTERM:
+		{
+			bQuitApp = true;
+			break;
+		}
+	}
+}
+
+//----------------------------------------------------
+
 // strlwr is not included with the GNU C lib it seems.
 char* strlwr(char* str)
 {
@@ -212,6 +240,15 @@ int main (int argc, char** argv)
 	// TODO: main
 
 #ifdef LINUX
+	struct sigaction sv;
+	sigemptyset(&sv.sa_mask);
+	sv.sa_flags = 0;
+	sv.sa_handler = SignalHandler;
+	sigaction(SIGTERM, &sv, NULL);
+	sigaction(SIGQUIT, &sv, NULL);
+	sigaction(SIGINT, &sv, NULL);
+	sigaction(SIGUSR1, &sv, NULL);
+	sigaction(SIGUSR2, &sv, NULL);
 	bool bOutputEnable = false;
 #endif
 

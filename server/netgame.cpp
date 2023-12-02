@@ -484,4 +484,10 @@ void CNetGame::Process()
     this->field_82 = this->field_82 + v4;
   }
 */
+
+void CNetGame::LoadBanList()
+{
+	// TODO: CNetGame::LoadBanList W: 48EAE0 L: 80AF1A0
 }
+
+
