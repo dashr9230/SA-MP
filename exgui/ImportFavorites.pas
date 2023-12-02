@@ -8,6 +8,9 @@ uses
 
 type
   TfmImportFavorites = class(TForm)
+    rbAddToCurrent: TRadioButton;
+    rbReplaceCurrent: TRadioButton;
+    bnOk: TButton;
   private
     { Private declarations }
   public

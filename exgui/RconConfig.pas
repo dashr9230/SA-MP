@@ -8,6 +8,12 @@ uses
 
 type
   TfmRconConfig = class(TForm)
+    edHost: TEdit;
+    lbHost: TLabel;
+    lbPassword: TLabel;
+    edPassword: TEdit;
+    bnConnect: TButton;
+    bnCancel: TButton;
     procedure edHostKeyPress(Sender: TObject; var Key: Char);
     procedure bnCancelClick(Sender: TObject);
     procedure bnConnectClick(Sender: TObject);

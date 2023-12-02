@@ -8,6 +8,8 @@ uses
 
 type
   TfmMasterUpdate = class(TForm)
+    lblPleaseWait: TLabel;
+    lblUpdating: TLabel;
   private
     { Private declarations }
   public

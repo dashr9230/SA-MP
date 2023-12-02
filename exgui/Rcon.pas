@@ -8,6 +8,8 @@ uses
 
 type
   TfmRcon = class(TForm)
+    edInput: TEdit;
+    moOutput: TMemo;
     procedure edInputKeyPress(Sender: TObject; var Key: Char);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);

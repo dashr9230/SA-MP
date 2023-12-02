@@ -8,6 +8,14 @@ uses
 
 type
   TfmSettings = class(TForm)
+    bnSave: TButton;
+    bnCancel: TButton;
+    gbPasswords: TGroupBox;
+    cbSaveServerPasswords: TCheckBox;
+    cbSaveRconPasswords: TCheckBox;
+    edInstallLoc: TEdit;
+    Label1: TLabel;
+    sbBrowse: TSpeedButton;
     procedure bnSaveClick(Sender: TObject);
     procedure bnCancelClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);

@@ -8,6 +8,8 @@ uses
 
 type
   TfmExportFavorites = class(TForm)
+    cbIncludeSavedPasswords: TCheckBox;
+    bnOk: TButton;
   private
     { Private declarations }
   public

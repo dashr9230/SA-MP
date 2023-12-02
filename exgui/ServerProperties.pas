@@ -8,6 +8,26 @@ uses
 
 type
   TfmServerProperties = class(TForm)
+    lbAddressLab: TLabel;
+    lbPlayersLab: TLabel;
+    lbPingLab: TLabel;
+    lbModeLab: TLabel;
+    lbMapLab: TLabel;
+    lbMap: TLabel;
+    lbMode: TLabel;
+    lbPing: TLabel;
+    lbPlayers: TLabel;
+    edAddress: TEdit;
+    lbHostName: TLabel;
+    lbServerPassword: TLabel;
+    lbRconPassword: TLabel;
+    edServerPassword: TEdit;
+    edRconPassword: TEdit;
+    bnSave: TButton;
+    bnCancel: TButton;
+    bnConnect: TButton;
+    pmCopy: TPopupMenu;
+    piCopy: TMenuItem;
     procedure bnSaveClick(Sender: TObject);
     procedure bnCancelClick(Sender: TObject);
     procedure bnConnectClick(Sender: TObject);
