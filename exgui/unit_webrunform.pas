@@ -8,6 +8,9 @@ uses
 
 type
   Twnd_webrunform = class(TForm)
+    procedure BitBtn2Click(Sender: TObject);
+    procedure BitBtn3Click(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -20,5 +23,20 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure Twnd_webrunform.BitBtn2Click(Sender: TObject);
+begin
+  // TODO: Twnd_webrunform.BitBtn2Click
+end;
+
+procedure Twnd_webrunform.BitBtn3Click(Sender: TObject);
+begin
+  // TODO: Twnd_webrunform.BitBtn3Click
+end;
+
+procedure Twnd_webrunform.BitBtn1Click(Sender: TObject);
+begin
+  // TODO: Twnd_webrunform.BitBtn1Click
+end;
 
 end.

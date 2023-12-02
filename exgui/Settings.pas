@@ -8,6 +8,10 @@ uses
 
 type
   TfmSettings = class(TForm)
+    procedure bnSaveClick(Sender: TObject);
+    procedure bnCancelClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure sbBrowseClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -20,5 +24,25 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfmSettings.bnSaveClick(Sender: TObject);
+begin
+  // TODO: TfmSettings.bnSaveClick
+end;
+
+procedure TfmSettings.bnCancelClick(Sender: TObject);
+begin
+  // TODO: TfmSettings.bnCancelClick
+end;
+
+procedure TfmSettings.FormCreate(Sender: TObject);
+begin
+  // TODO: TfmSettings.FormCreate
+end;
+
+procedure TfmSettings.sbBrowseClick(Sender: TObject);
+begin
+  // TODO: TfmSettings.sbBrowseClick
+end;
 
 end.

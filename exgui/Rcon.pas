@@ -8,6 +8,9 @@ uses
 
 type
   TfmRcon = class(TForm)
+    procedure edInputKeyPress(Sender: TObject; var Key: Char);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -20,5 +23,20 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfmRcon.edInputKeyPress(Sender: TObject; var Key: Char);
+begin
+  // TODO: TfmRcon.edInputKeyPress
+end;
+
+procedure TfmRcon.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  // TODO: TfmRcon.FormClose
+end;
+
+procedure TfmRcon.FormShow(Sender: TObject);
+begin
+  // TODO: TfmRcon.FormShow
+end;
 
 end.
