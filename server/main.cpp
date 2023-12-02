@@ -81,6 +81,55 @@ BOOL WINAPI CtrlHandler(DWORD type)
 
 //----------------------------------------------------
 
+int GetMessageHoleLimit()
+{
+	return iMessageHoleLimit;
+}
+
+//----------------------------------------------------
+
+int GetMessagesLimit()
+{
+	return iMessagesLimit;
+}
+
+//----------------------------------------------------
+
+int GetAcksLimit()
+{
+	return iAcksLimit;
+}
+
+//----------------------------------------------------
+
+int GetPlayerTimeout()
+{
+	return iPlayerTimeout;
+}
+
+//----------------------------------------------------
+
+int GetMinConnectionTime()
+{
+	return iMinConnectionTime;
+}
+
+//----------------------------------------------------
+
+int GetConnCookies()
+{
+	return iConnCookies;
+}
+
+//----------------------------------------------------
+
+int GetCookieLogging()
+{
+	return iCookieLogging;
+}
+
+//----------------------------------------------------
+
 void ServerPasswordChanged()
 {
 	// TODO: ServerPasswordChanged
