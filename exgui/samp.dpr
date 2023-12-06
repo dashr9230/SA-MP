@@ -17,6 +17,7 @@ uses
 
 begin
   Application.Initialize;
+  Application.Title := 'SA-MP 0.3';
   Application.CreateForm(TfmMain, fmMain);
   Application.CreateForm(TfmAbout, fmAbout);
   Application.CreateForm(TfmExportFavorites, fmExportFavorites);
