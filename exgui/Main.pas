@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ExtCtrls, XPMan, ImgList, Menus, ComCtrls, StdCtrls, TeEngine,
-  Series, TeeProcs, Chart, Tabs, ToolWin;
+  Series, TeeProcs, Chart, Tabs, ToolWin, GIFImage;
 
 type
   TfmMain = class(TForm)
