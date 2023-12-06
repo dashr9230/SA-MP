@@ -8,6 +8,11 @@ uses
 
 type
   Twnd_webrunform = class(TForm)
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    BitBtn3: TBitBtn;
+    Label1: TLabel;
+
     procedure BitBtn2Click(Sender: TObject);
     procedure BitBtn3Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
@@ -26,17 +31,18 @@ implementation
 
 procedure Twnd_webrunform.BitBtn2Click(Sender: TObject);
 begin
-  // TODO: Twnd_webrunform.BitBtn2Click
+  ModalResult:= mrCancel;
 end;
 
 procedure Twnd_webrunform.BitBtn3Click(Sender: TObject);
 begin
-  // TODO: Twnd_webrunform.BitBtn3Click
+  ModalResult:= mrOk;
 end;
 
 procedure Twnd_webrunform.BitBtn1Click(Sender: TObject);
 begin
-  // TODO: Twnd_webrunform.BitBtn1Click
+  ModalResult:= mrYes;
 end;
 
 end.
+ 
