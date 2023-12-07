@@ -16,9 +16,8 @@
 
 #include "RakNetStatistics.h"
 #include <stdio.h> // sprintf
+#include "BitStream.h" // BITS_TO_BYTES
 #include "GetTime.h"
-
-#define BITS_TO_BYTES(x) (((x)+7)>>3)
 
 RakNetTime connectionStartTimeSaved=0;
 uint64_t totalBitsSentSaved=0;
