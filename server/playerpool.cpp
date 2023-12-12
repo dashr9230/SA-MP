@@ -3,11 +3,11 @@
 
 CPlayerPool::CPlayerPool()
 {
-	for(PLAYERID PlayerID = 0; PlayerID < MAX_PLAYERS; PlayerID++) {
-		m_bPlayerSlotState[PlayerID] = FALSE;
-		field_2599C[PlayerID] = 0;
-		field_23A5C[PlayerID] = 0;
-		field_3E8C[PlayerID] = pNetGame->GetTime();
+	for(PLAYERID playerId = 0; playerId < MAX_PLAYERS; playerId++) {
+		m_bPlayerSlotState[playerId] = FALSE;
+		field_2599C[playerId] = 0;
+		field_23A5C[playerId] = 0;
+		field_3E8C[playerId] = pNetGame->GetTime();
 	}
 	field_30964 = 0;
 	field_30968 = 0;
