@@ -11,3 +11,17 @@ CVehiclePool::CVehiclePool()
 	memset(field_0,0,sizeof(field_0));
 	field_5E94 = 0;
 }
+
+CVehiclePool::~CVehiclePool()
+{
+	for(VEHICLEID VehicleID = 0; VehicleID != MAX_VEHICLES; VehicleID++) {
+		Delete(VehicleID);
+	}
+}
+
+BOOL CVehiclePool::Delete(VEHICLEID VehicleID)
+{
+	// TODO: CVehiclePool::Delete W .text:00467700 L .text:0814CC10
+	return FALSE;
+}
+
