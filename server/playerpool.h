@@ -31,6 +31,9 @@ private:
 public:
 
 	CPlayerPool();
+	~CPlayerPool();
+
+	BOOL Delete(PLAYERID playerId, BYTE byteReason);
 
 };
 

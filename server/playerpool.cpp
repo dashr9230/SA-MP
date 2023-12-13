@@ -17,3 +17,16 @@ CPlayerPool::CPlayerPool()
 	field_FA8 = 0;
 	field_3096C = 0;
 }
+
+CPlayerPool::~CPlayerPool()
+{
+	for(PLAYERID playerId = 0; playerId < MAX_PLAYERS; playerId++) {
+		Delete(playerId,0);
+	}
+}
+
+BOOL CPlayerPool::Delete(PLAYERID playerId, BYTE byteReason)
+{
+	// TODO: CPlayerPool::Delete W .text:00466570 L .text:080D0A90
+	return FALSE;
+}
