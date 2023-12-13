@@ -1,5 +1,6 @@
 
 #include "main.h"
+extern CNetGame *pNetGame;
 
 CPlayerPool::CPlayerPool()
 {
