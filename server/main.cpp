@@ -139,7 +139,19 @@ void ServerPasswordChanged()
 
 void ServerMaxPlayersChanged()
 {
-	// TODO: ServerMaxPlayersChanged
+	int maxplayers = pConsole->GetIntVariable("maxplayers");
+	if (maxplayers < 0)
+		pConsole->SetIntVariable("maxplayers", 0);
+	if (maxplayers > MAX_PLAYERS)
+		pConsole->SetIntVariable("maxplayers", MAX_PLAYERS);
+
+	if (pNetGame)
+	{
+		if (pConsole->GetIntVariable("maxplayers") > MAX_PLAYERS) {
+			pConsole->SetIntVariable("maxplayers", MAX_PLAYERS);
+		}
+		pNetGame->GetRakServer()->SetAllowedPlayers((WORD)pConsole->GetIntVariable("maxplayers"));
+	}
 }
 
 //----------------------------------------------------

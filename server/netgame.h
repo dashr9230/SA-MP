@@ -60,6 +60,9 @@ public:
 
 	void Init(BOOL bFirst);
 	void ShutdownForGameModeRestart();
+
+	RakServerInterface * GetRakServer() { return m_pRak; };
+
 	void Process();
 
 	void LoadBanList();
