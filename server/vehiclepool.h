@@ -15,6 +15,8 @@ public:
 	~CVehiclePool();
 
 	BOOL Delete(VEHICLEID VehicleID);
+
+	int GetModelCount();
 };
 
 #endif

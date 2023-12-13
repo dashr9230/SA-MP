@@ -25,3 +25,13 @@ BOOL CVehiclePool::Delete(VEHICLEID VehicleID)
 	return FALSE;
 }
 
+int CVehiclePool::GetModelCount()
+{
+	int iCount=0;
+	for (int i=0; i!=212; i++) {
+		if(field_0[i]) {
+			iCount++;
+		}
+	}
+	return iCount;
+}
