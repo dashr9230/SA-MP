@@ -237,8 +237,6 @@ char* strlwr(char* str)
 
 int main (int argc, char** argv)
 {
-	// TODO: main
-
 #ifdef LINUX
 	struct sigaction sv;
 	sigemptyset(&sv.sa_mask);
