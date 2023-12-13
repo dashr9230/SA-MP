@@ -28,8 +28,18 @@ public:
 	void vftable_28();
 	void vftable_2C();
 	void vftable_30();
-	void vftable_34();
-	void vftable_38();
+
+	/// Set how many players are allowed on the server.
+	/// If more players are currently connected then are allowed then no more players will be allowed to join until the number of players is less than the number of allowed players.
+	/// \pre The server must be active for this to have meaning
+	/// \param[in] AllowedPlayers The number of players to allow
+	void SetAllowedPlayers( unsigned short AllowedPlayers );
+
+	/// Return how many players are allowed to connect. This value was set either from Start or from SetAllowedPlayers.
+	/// \pre The server must be active for this to have meaning
+	/// \return The number of allowed players
+	unsigned short GetAllowedPlayers( void ) const;
+
 	void vftable_3C();
 	void vftable_40();
 	void vftable_44();

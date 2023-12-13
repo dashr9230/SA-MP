@@ -14,13 +14,22 @@ public:
 	void vftable_4();
 	void vftable_8();
 	void vftable_C();
-	void vftable_10();
-	void vftable_14();
 	void vftable_18();
 	void vftable_1C();
 	void vftable_20();
 	void vftable_24();
 	void vftable_28();
+
+	/// Sets how many incoming connections are allowed. If this is less than the number of players currently connected,
+	/// no more players will be allowed to connect.  If this is greater than the maximum number of peers allowed,
+	/// it will be reduced to the maximum number of peers allowed.  Defaults to 0.
+	/// \param[in] numberAllowed Maximum number of incoming connections allowed.
+	void SetMaximumIncomingConnections( unsigned short numberAllowed );
+
+	/// Returns the value passed to SetMaximumIncomingConnections()
+	/// \return the maximum number of incoming connections, which is always <= maxConnections
+	unsigned short GetMaximumIncomingConnections( void ) const;
+
 	void vftable_2C();
 	void vftable_30();
 	void vftable_34();
@@ -79,6 +88,12 @@ public:
 	void vftable_108();
 	void vftable_10C();
 	void vftable_110();
+
+protected:
+
+	///Store the maximum incoming connection allowed 
+	unsigned short maximumIncomingConnections;
+
 };
 
 #endif

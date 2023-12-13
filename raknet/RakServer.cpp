@@ -67,14 +67,14 @@ void RakServer::vftable_30()
 	// TODO: RakServer::vftable_30() (server W: 45A2D0 L: 807BE80)
 }
 
-void RakServer::vftable_34()
+void RakServer::SetAllowedPlayers( unsigned short AllowedPlayers )
 {
-	// TODO: RakServer::vftable_34() (server W: 45A2E0 L: 807BEC0)
+	RakPeer::SetMaximumIncomingConnections( AllowedPlayers );
 }
 
-void RakServer::vftable_38()
+unsigned short RakServer::GetAllowedPlayers( void ) const
 {
-	// TODO: RakServer::vftable_38() (server W: 45A2F0 L: 807BEE0)
+	return RakPeer::GetMaximumIncomingConnections();
 }
 
 void RakServer::vftable_3C()

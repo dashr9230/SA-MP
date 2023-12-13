@@ -22,14 +22,27 @@ void RakPeer::vftable_C()
 	// TODO: RakPeer::vftable_C() (saco W: 10038400) (server W: 44FF00 L: 8076430) (bot W: 403EA0 L: 8072E54)
 }
 
-void RakPeer::vftable_10()
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Description:
+// Sets how many incoming connections are allowed.  If this is less than the number of players currently connected, no
+// more players will be allowed to connect.  If this is greater than the maximum number of peers allowed, it will be reduced
+// to the maximum number of peers allowed.  Defaults to 0.
+//
+// Parameters:
+// numberAllowed - Maximum number of incoming connections allowed.
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+void RakPeer::SetMaximumIncomingConnections( unsigned short numberAllowed )
 {
-	// TODO: RakPeer::vftable_10() (saco W: 10038410) (server W: 44FF10 L: 806D180) (bot W: 403EB0 L: 8072FD2)
+	maximumIncomingConnections = numberAllowed;
 }
 
-void RakPeer::vftable_14()
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Description:
+// Returns the maximum number of incoming connections, which is always <= maxConnections
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+unsigned short RakPeer::GetMaximumIncomingConnections( void ) const
 {
-	// TODO: RakPeer::vftable_14() (saco W: 10038420) (server W: 44FF20 L: 806D1A0) (bot W: 403EC0 L: 8072FEE)
+	return maximumIncomingConnections;
 }
 
 void RakPeer::vftable_18()
