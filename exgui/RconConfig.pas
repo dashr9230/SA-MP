@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls;
+  Dialogs, StdCtrls, ShellAPI;
 
 type
   TfmRconConfig = class(TForm)
@@ -29,26 +29,47 @@ var
 
 implementation
 
+uses
+  Rcon;
+
 {$R *.dfm}
 
 procedure TfmRconConfig.edHostKeyPress(Sender: TObject; var Key: Char);
 begin
-  // TODO: TfmRconConfig.edHostKeyPress
+  if not (Key in ['0'..'9','a'..'z','A'..'Z','.',':'])
+    and (Key <> #8) and (Key <> #46) then
+    Key:= #0;
 end;
 
 procedure TfmRconConfig.bnCancelClick(Sender: TObject);
 begin
-  // TODO: TfmRconConfig.bnCancelClick
+  Close;
 end;
 
 procedure TfmRconConfig.bnConnectClick(Sender: TObject);
+ var
+  //fmRcon: TfmRcon;
+  Server, Addr, Port: String;
 begin
-  // TODO: TfmRconConfig.bnConnectClick
+  //fmRcon:= TfmRcon.Create(Application);
+  //fmRcon.Host:= edHost.Text;
+  //fmRcon.Password:= edPassword.Text;
+  //fmRcon.Show;
+  Server:= edHost.Text;
+  if Pos(':', Server) <> 0 then begin
+    Addr:= Copy(Server, 1, Pos(':', Server)-1);
+    Port:= Copy(Server, Pos(':', Server)+1, 5);
+  end else begin
+    Addr:= Server;
+    Port:= '5193';
+  end;
+  ShellExecute(0, 'open', 'rcon.exe', PChar(Addr + ' ' + Port + ' ' + edPassword.text), PChar(ExtractFilePath(ParamStr(0))), SW_SHOWNORMAL);
+  Close;
 end;
 
 procedure TfmRconConfig.edPasswordChange(Sender: TObject);
 begin
-  // TODO: TfmRconConfig.edPasswordChange
+  bnConnect.Enabled:= (edHost.Text <> '') and (edPassword.Text <> '');
 end;
 
 end.
