@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, Buttons;
+  Dialogs, StdCtrls, Registry, Buttons;
 
 type
   TfmSettings = class(TForm)
@@ -31,26 +31,50 @@ var
 
 implementation
 
+uses Main;
+
 {$R *.dfm}
 
 procedure TfmSettings.bnSaveClick(Sender: TObject);
+var
+  Reg: TRegistry;
 begin
-  // TODO: TfmSettings.bnSaveClick
+  Reg:= TRegistry.Create;
+  Reg.RootKey:= HKEY_CURRENT_USER;
+  Reg.OpenKey('SOFTWARE\SAMP', true);
+  Reg.WriteBool('SaveServPasses', cbSaveServerPasswords.Checked);
+  Reg.WriteBool('SaveRconPasses', cbSaveRconPasswords.Checked);
+  Reg.CloseKey;
+  Reg.Free;
+  Close;
 end;
 
 procedure TfmSettings.bnCancelClick(Sender: TObject);
 begin
-  // TODO: TfmSettings.bnCancelClick
+  Close;
 end;
 
 procedure TfmSettings.FormCreate(Sender: TObject);
+var
+  Reg: TRegistry;
 begin
-  // TODO: TfmSettings.FormCreate
+  Reg:= TRegistry.Create;
+  Reg.RootKey:= HKEY_CURRENT_USER;
+  Reg.OpenKey('SOFTWARE\SAMP', true);
+  if Reg.ValueExists('SaveServPasses') then
+    cbSaveServerPasswords.Checked:= Reg.ReadBool('SaveServPasses');
+  if Reg.ValueExists('SaveRconPasses') then
+    cbSaveRconPasswords.Checked:= Reg.ReadBool('SaveRconPasses');
+  Reg.CloseKey;
+  Reg.Free;
+
+  edInstallLoc.Text:= ExtractFilePath(gta_sa_exe);
 end;
 
 procedure TfmSettings.sbBrowseClick(Sender: TObject);
 begin
-  // TODO: TfmSettings.sbBrowseClick
+  fmMain.GetGTAExe(Handle);
+  edInstallLoc.Text:= ExtractFilePath(gta_sa_exe);
 end;
 
 end.
