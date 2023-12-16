@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Menus, StdCtrls;
+  Dialogs, StdCtrls, Menus;
 
 type
   TfmServerProperties = class(TForm)
@@ -44,31 +44,44 @@ var
 
 implementation
 
+uses Main;
+
 {$R *.dfm}
 
 procedure TfmServerProperties.bnSaveClick(Sender: TObject);
+var
+  Idx: Integer;
 begin
-  // TODO: TfmServerProperties.bnSaveClick
+  Idx:= StrToInt(fmMain.lbServers.Items.Strings[fmMain.lbServers.ItemIndex]);
+  Servers[Idx].ServerPassword:= edServerPassword.Text;
+  Servers[Idx].RconPassword:= edRconPassword.Text;
+  Close;
 end;
 
 procedure TfmServerProperties.bnCancelClick(Sender: TObject);
 begin
-  // TODO: TfmServerProperties.bnCancelClick
+  Close;
 end;
 
 procedure TfmServerProperties.bnConnectClick(Sender: TObject);
+var
+  Idx: Integer;
 begin
-  // TODO: TfmServerProperties.bnConnectClick
+  Idx:= StrToInt(fmMain.lbServers.Items.Strings[fmMain.lbServers.ItemIndex]);
+  Servers[Idx].ServerPassword:= edServerPassword.Text;
+  Servers[Idx].RconPassword:= edRconPassword.Text;
+  fmMain.ConnectClick(fmMain);
+  Close;
 end;
 
 procedure TfmServerProperties.pmCopyPopup(Sender: TObject);
 begin
-  // TODO: TfmServerProperties.pmCopyPopup
+  piCopy.Enabled:= edAddress.Text <> '- - -';
 end;
 
 procedure TfmServerProperties.piCopyClick(Sender: TObject);
 begin
-  // TODO: TfmServerProperties.piCopyClick
+  fmMain.SetClipBoardStr(edAddress.Text);
 end;
 
 end.
