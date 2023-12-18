@@ -140,3 +140,36 @@ void SetStringFromCommandLine(char* szCmdLine, char* szString)
 }
 
 //----------------------------------------------------
+
+#ifdef LINUX
+
+void SignalHandler(int sig)
+{
+	// nothing
+}
+
+//----------------------------------------------------
+#include <time.h>
+
+long GetTickCount()
+{
+	tms tm;
+	return (times(&tm) * 10);
+}
+
+// strlwr is not included with the GNU C lib it seems.
+char* strlwr(char* str)
+{
+	for (size_t i=0; i<strlen(str); i++)
+	{
+		if ((str[i] >= 'A') && (str[i] <= 'Z'))
+		{
+			str[i] -= 32;
+		}
+	}
+	return str;
+}
+
+#endif
+
+//----------------------------------------------------

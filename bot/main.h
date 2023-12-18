@@ -33,3 +33,9 @@ typedef struct _GAME_SETTINGS {
 #include "net/netgame.h"
 
 void logprintf(char* format, ...);
+
+#ifdef LINUX
+void SignalHandler(int sig);
+long GetTickCount();
+char* strlwr(char* str);
+#endif
