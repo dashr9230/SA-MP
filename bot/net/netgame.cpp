@@ -131,7 +131,7 @@ void CNetGame::Init(PCHAR szHostOrIp, int iPort,
 	memset(unnamed_8,0,sizeof(unnamed_8));
 	field_1DE = 0;
 	field_1E2 = 0;
-	field_1F2 = sub_80AC0BE();
+	field_1F2 = GetTickCount();
 	unnamed_9 = 0;
 	field_1FA = -1;
 	field_1FE = -1;
