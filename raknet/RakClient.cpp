@@ -118,19 +118,19 @@ void RakClient::vftable_54()
 	// TODO: RakClient::vftable_54() (saco 10034A70) (server L: 8069340) (bot W: 4032B0 L: 806CD3E)
 }
 
-void RakClient::vftable_58()
+void RakClient::RegisterAsRemoteProcedureCall( unsigned char* uniqueID, void ( *functionPointer ) ( RPCParameters *rpcParms ) )
 {
-	// TODO: RakClient::vftable_58() (saco 10034A80) (server L: 8069350) (bot W: 4032C0 L: 806CD4C)
+	RakPeer::RegisterAsRemoteProcedureCall( uniqueID, functionPointer );
 }
 
-void RakClient::vftable_5C()
+void RakClient::RegisterClassMemberRPC( unsigned char* uniqueID, void *functionPointer )
 {
-	// TODO: RakClient::vftable_5C() (saco 10034A90) (server L: 8069360) (bot W: 4032D0 L: 806CD5A)
+	RakPeer::RegisterClassMemberRPC( uniqueID, functionPointer );
 }
 
-void RakClient::vftable_60()
+void RakClient::UnregisterAsRemoteProcedureCall( unsigned char* uniqueID )
 {
-	// TODO: RakClient::vftable_60() (saco 10034AA0) (server L: 8069370) (bot W: 4032E0 L: 806CD68)
+	RakPeer::UnregisterAsRemoteProcedureCall( uniqueID );
 }
 
 void RakClient::vftable_64()
@@ -282,4 +282,3 @@ void RakClient::vftable_D8()
 {
 	// TODO: RakClient::vftable_D8() (saco 10034A20) (server L: 8069550) (bot W: 403260 L: 806CF0C)
 }
-

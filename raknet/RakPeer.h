@@ -5,6 +5,8 @@
 
 #include "Export.h"
 #include "RakPeerInterface.h"
+#include "RPCNode.h"
+#include "RPCMap.h"
 
 class RAK_DLL_EXPORT RakPeer : public RakPeerInterface
 {
@@ -36,9 +38,26 @@ public:
 	void vftable_38();
 	void vftable_3C();
 	void vftable_40();
-	void vftable_44();
-	void vftable_48();
-	void vftable_4C();
+
+	// --------------------------------------------------------------------------------------------Remote Procedure Call Functions - Functions to initialize and perform RPC--------------------------------------------------------------------------------------------
+	/// \ingroup RAKNET_RPC
+	/// Register a C or static member function as available for calling as a remote procedure call
+	/// \param[in] uniqueID A null-terminated unique string to identify this procedure.  See RegisterClassMemberRPC() for class member functions.
+	/// \param[in] functionPointer(...) The name of the function to be used as a function pointer. This can be called whether active or not, and registered functions stay registered unless unregistered
+	void RegisterAsRemoteProcedureCall( unsigned char* uniqueID, void ( *functionPointer ) ( RPCParameters *rpcParms ) );
+
+	/// \ingroup RAKNET_RPC
+	/// Register a C++ member function as available for calling as a remote procedure call.
+	/// \param[in] uniqueID A null terminated string to identify this procedure. Recommended you use the macro REGISTER_CLASS_MEMBER_RPC to create the string.  Use RegisterAsRemoteProcedureCall() for static functions.
+	/// \param[in] functionPointer The name of the function to be used as a function pointer. This can be called whether active or not, and registered functions stay registered unless unregistered with UnregisterAsRemoteProcedureCall
+	/// \sa The sample ObjectMemberRPC.cpp
+	void RegisterClassMemberRPC( unsigned char* uniqueID, void *functionPointer );
+
+	/// \ingroup RAKNET_RPC
+	/// Unregisters a C function as available for calling as a remote procedure call that was formerly registered with RegisterAsRemoteProcedureCall. Only call offline.
+	/// \param[in] uniqueID A string of only letters to identify this procedure.  Recommended you use the macro CLASS_MEMBER_ID for class member functions.
+	void UnregisterAsRemoteProcedureCall( unsigned char* uniqueID );
+
 	void vftable_50();
 	void vftable_54();
 	void vftable_58();
@@ -93,6 +112,8 @@ protected:
 
 	///Store the maximum incoming connection allowed 
 	unsigned short maximumIncomingConnections;
+
+	RPCMap rpcMap; // Can't use StrPtrHash because runtime insertions will screw up the indices
 
 };
 

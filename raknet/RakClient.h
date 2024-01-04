@@ -35,9 +35,25 @@ public:
 	void vftable_4C();
 	void vftable_50();
 	void vftable_54();
-	void vftable_58();
-	void vftable_5C();
-	void vftable_60();
+
+	/// \ingroup RAKNET_RPC
+	/// Register a C or static member function as available for calling as a remote procedure call
+	/// \param[in] uniqueID: A null-terminated unique string to identify this procedure.  Recommended you use the macro CLASS_MEMBER_ID for class member functions
+	/// \param[in] functionPointer(...): The name of the function to be used as a function pointer. This can be called whether active or not, and registered functions stay registered unless unregistered
+	void RegisterAsRemoteProcedureCall( unsigned char* uniqueID, void ( *functionPointer ) ( RPCParameters *rpcParms ) );
+
+	/// \ingroup RAKNET_RPC
+	/// Register a C++ member function as available for calling as a remote procedure call.
+	/// \param[in] uniqueID: A null terminated string to identify this procedure.Recommended you use the macro REGISTER_CLASS_MEMBER_RPC
+	/// \param[in] functionPointer: The name of the function to be used as a function pointer. This can be called whether active or not, and registered functions stay registered unless unregistered with UnregisterAsRemoteProcedureCall
+	/// \sa ObjectMemberRPC.cpp
+	void RegisterClassMemberRPC( unsigned char* uniqueID, void *functionPointer );
+
+	/// \ingroup RAKNET_RPC
+	/// Unregisters a C function as available for calling as a remote procedure call that was formerly registeredwith RegisterAsRemoteProcedureCallOnly call offline
+	/// \param[in] uniqueID A string of only letters to identify this procedure.  Recommended you use the macro CLASS_MEMBER_ID for class member functions.  Must match the parameterpassed to RegisterAsRemoteProcedureCall
+	void UnregisterAsRemoteProcedureCall( unsigned char* uniqueID );
+
 	void vftable_64();
 	void vftable_68();
 	void vftable_6C();

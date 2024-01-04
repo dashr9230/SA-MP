@@ -100,19 +100,44 @@ void RakPeer::vftable_40()
 	// TODO: RakPeer::vftable_40() (saco W: 100385E0) (server W: 4500E0 L: 806D480) (bot W: 404080 L: 8073CD2)
 }
 
-void RakPeer::vftable_44()
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Description:
+// Register a C function as available for calling as a remote procedure call
+//
+// Parameters:
+// uniqueID: A string of only letters to identify this procedure.  Recommended you use the macro CLASS_MEMBER_ID for class member functions
+// functionName(...): The name of the C function or C++ singleton to be used as a function pointer
+// This can be called whether the client is active or not, and registered functions stay registered unless unregistered with
+// UnregisterAsRemoteProcedureCall
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+void RakPeer::RegisterAsRemoteProcedureCall( unsigned char* uniqueID, void ( *functionPointer ) ( RPCParameters *rpcParms ) )
 {
-	// TODO: RakPeer::vftable_44() (saco W: 100385F0) (server W: 4500F0 L: 806D4C0) (bot W: 404090 L: 8073D0E)
+	if ( uniqueID == 0 || uniqueID[ 0 ] == 0 || functionPointer == 0 )
+		return;
+
+	rpcMap.AddIdentifierWithFunction(*uniqueID, (void*)functionPointer, false);
 }
 
-void RakPeer::vftable_48()
+void RakPeer::RegisterClassMemberRPC( unsigned char* uniqueID, void *functionPointer )
 {
-	// TODO: RakPeer::vftable_48() (saco W: 10038620) (server W: 450120 L: 806D4D0) (bot W: 4040C0 L: 8073D1A)
+	if ( uniqueID == 0 || uniqueID[ 0 ] == 0 || functionPointer == 0 )
+		return;
+
+	rpcMap.AddIdentifierWithFunction(*uniqueID, functionPointer, true);
 }
 
-void RakPeer::vftable_4C()
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Description:
+// Unregisters a C function as available for calling as a remote procedure call that was formerly registered
+// with RegisterAsRemoteProcedureCall
+//
+// Parameters:
+// uniqueID: A null terminated string to identify this procedure.  Must match the parameter
+// passed to RegisterAsRemoteProcedureCall
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+void RakPeer::UnregisterAsRemoteProcedureCall( unsigned char* uniqueID )
 {
-	// TODO: RakPeer::vftable_4C() (saco W: 10038650) (server W: 450150 L: 806D520) (bot W: 4040F0 L: 8073D62)
+	// nothing
 }
 
 void RakPeer::vftable_50()
