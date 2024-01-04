@@ -59,6 +59,7 @@
 // Raknet
 #include "../raknet/RakServer.h"
 #include "../raknet/RakNetworkFactory.h"
+#include "../raknet/SAMPRPC.h"
 #include "../raknet/GetTime.h"
 
 // amx
@@ -75,6 +76,7 @@ typedef unsigned short VEHICLEID;
 #include "scrtimers.h"
 #include "gamemodes.h"
 #include "filterscripts.h"
+#include "netrpc.h"
 #include "playerpool.h"
 #include "vehiclepool.h"
 #include "pickuppool.h"

@@ -130,6 +130,30 @@
 				RelativePath="..\raknet\GetTime.h">
 			</File>
 			<File
+				RelativePath="..\raknet\NetworkTypes.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\NetworkTypes.h">
+			</File>
+			<File
+				RelativePath="..\raknet\PacketEnumerations.h">
+			</File>
+			<File
+				RelativePath="..\raknet\RakClient.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\RakClient.h">
+			</File>
+			<File
+				RelativePath="..\raknet\RakClientInterface.h">
+			</File>
+			<File
+				RelativePath="..\raknet\RakNetStatistics.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\RakNetStatistics.h">
+			</File>
+			<File
 				RelativePath="..\raknet\RakNetworkFactory.cpp">
 			</File>
 			<File
@@ -152,6 +176,27 @@
 			</File>
 			<File
 				RelativePath="..\raknet\RakServerInterface.h">
+			</File>
+			<File
+				RelativePath="..\raknet\RakSleep.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\RakSleep.h">
+			</File>
+			<File
+				RelativePath="..\raknet\RPCMap.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\RPCMap.h">
+			</File>
+			<File
+				RelativePath="..\raknet\RPCNode.h">
+			</File>
+			<File
+				RelativePath="..\raknet\SimpleMutex.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\SimpleMutex.h">
 			</File>
 		<Filter
 			Name="amx"
@@ -219,6 +264,12 @@
 		</File>
 		<File
 			RelativePath=".\netgame.h">
+		</File>
+		<File
+			RelativePath=".\netrpc.cpp">
+		</File>
+		<File
+			RelativePath=".\netrpc.h">
 		</File>
 		<File
 			RelativePath=".\objectpool.cpp">
