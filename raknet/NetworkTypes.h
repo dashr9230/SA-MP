@@ -13,4 +13,9 @@ typedef unsigned int RakNetTime;
 typedef long long RakNetTimeNS;
 #endif
 
+struct RPCParameters
+{
+	char _gap0; // TODO: RPCParameters
+};
+
 #endif
