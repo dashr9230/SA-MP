@@ -1033,6 +1033,7 @@ DWORD __stdcall TranslateColorCodeToRGBA(int iCode)
 void GameResetRadarColors()
 {
 	memcpy(&dwUseHudColors[0],&dwHudColors[0],sizeof(DWORD)*NUM_RADAR_COLORS);
+}
 
 
 
