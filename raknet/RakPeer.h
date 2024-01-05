@@ -32,6 +32,10 @@ public:
 	/// \return the maximum number of incoming connections, which is always <= maxConnections
 	unsigned short GetMaximumIncomingConnections( void ) const;
 
+	/// Returns if the network thread is running
+	/// \return true if the network thread is running, false otherwise
+	bool IsActive( void ) const;
+
 	void vftable_2C();
 	void vftable_30();
 	void vftable_34();
@@ -109,6 +113,9 @@ public:
 	void vftable_110();
 
 protected:
+
+	///Set this to true to terminate the Peer thread execution 
+	volatile bool endThreads;
 
 	///Store the maximum incoming connection allowed 
 	unsigned short maximumIncomingConnections;

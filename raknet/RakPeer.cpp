@@ -65,9 +65,13 @@ void RakPeer::vftable_24()
 	// TODO: RakPeer::vftable_24() (saco W: 10040620) (server W: 457BD0 L: 806FB70) (bot W: 40B390 L: 80730D2)
 }
 
-void RakPeer::vftable_28()
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Description:
+// Returns true if the network threads are running
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+inline bool RakPeer::IsActive( void ) const
 {
-	// TODO: RakPeer::vftable_28() (saco W: 1003E040) (server W: 455330 L: 8071070) (bot W: 408FE0 L: 80731E2)
+	return endThreads == false;
 }
 
 void RakPeer::vftable_2C()

@@ -29,6 +29,10 @@ public:
 	/// \return the maximum number of incoming connections, which is always <= maxConnections
 	virtual unsigned short GetMaximumIncomingConnections( void ) const=0;
 
+	/// Returns if the network thread is running
+	/// \return true if the network thread is running, false otherwise
+	virtual bool IsActive( void ) const=0;
+
 	virtual void vftable_2C()=0;
 	virtual void vftable_30()=0;
 	virtual void vftable_34()=0;
