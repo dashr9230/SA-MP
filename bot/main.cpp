@@ -8,16 +8,6 @@ void InitSettingsFromCommandLine(char * szCmdLine);
 
 //----------------------------------------------------
 
-/*
-	Argument format:
-		"-h %s -p %d -n %s -m %s"
-
-		-h -> either server's bind address or 127.0.0.1
-		-p -> server's port number
-		-n -> NPC's name
-		-m -> script name
-*/
-// Absolutely no indication it is named npc or bot...
 int main (int argc, char** argv)
 {
 	logprintf("----- NPC Starting -----");
