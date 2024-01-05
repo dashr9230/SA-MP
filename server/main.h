@@ -72,6 +72,7 @@ typedef unsigned short PLAYERID;
 typedef unsigned short ACTORID;
 typedef unsigned short VEHICLEID;
 
+#include "system.h"
 #include "console.h"
 #include "scrhttps.h"
 #include "scrtimers.h"

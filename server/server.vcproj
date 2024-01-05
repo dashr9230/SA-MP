@@ -321,6 +321,9 @@
 			RelativePath=".\server.rc">
 		</File>
 		<File
+			RelativePath=".\system.h">
+		</File>
+		<File
 			RelativePath=".\textdrawpool.cpp">
 		</File>
 		<File
