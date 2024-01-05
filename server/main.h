@@ -8,6 +8,7 @@
 
 #define MAX_PLAYERS				1000
 #define MAX_VEHICLES			2000
+#define MAX_OBJECTS				1000
 #define MAX_MENUS				128
 #define MAX_TEXT_DRAWS			2048
 #define MAX_GANG_ZONES			1024
