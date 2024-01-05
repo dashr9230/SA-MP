@@ -1,11 +1,13 @@
 
+#pragma once
+
 class CPlayerPool // size: 41035
 {
 private:
 	int field_0[1000];
-	//char _gapFA0[2];
-	//char field_FA2[25];
-	char _gapFA0[25027];
+	char _gapFA0[2];
+	CHAR			m_szLocalPlayerName[MAX_PLAYER_NAME+1];
+	char gapFBB[25000];
 	int field_7163;
 	int field_7167[1000];
 	int field_8107;
@@ -14,7 +16,7 @@ private:
 
 public:
 
-	void SetLocalPlayerName(PCHAR szName) {}; // TODO: CPlayerPool::SetLocalPlayerName
+	void SetLocalPlayerName(PCHAR szName) { strcpy(m_szLocalPlayerName,szName); };
 
 	CPlayerPool();
 };

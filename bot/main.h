@@ -12,6 +12,7 @@
 	#include <unistd.h>
 #endif
 
+#define MAX_PLAYER_NAME		24
 #define MAX_SETTINGS_STRING 256
 
 typedef struct _GAME_SETTINGS {
