@@ -156,102 +156,33 @@ CNetGame::CNetGame()
   }*/
 }
 
+//----------------------------------------------------
+
 CNetGame::~CNetGame()
 {
 	// TODO: CNetGame::~CNetGame W: 0048F2B0 L: 080AB260
+	logprintf("--- Server Shutting Down.");
 
 /*
-  _this = this;
-  logprintf("--- Server Shutting Down.");
-  v2 = (void *)_this->field_0;
-  if ( _this->field_0 )
-  {
-    sub_46F550(_this->field_0);
-    operator_delete(v2);
-    _this->field_0 = 0;
-  }
-  v3 = (void *)_this->field_4;
-  if ( v3 )
-  {
-    sub_46CF60(_this->field_4);
-    operator_delete(v3);
-    _this->field_4 = 0;
-  }
-  v4 = (void *)_this->field_3C;
-  if ( v4 )
-  {
-    sub_482B00(_this->field_3C);
-    operator_delete(v4);
-    _this->field_3C = 0;
-  }
-  if ( _this->field_38 )
-  {
-    operator_delete((void *)_this->field_38);
-    _this->field_38 = 0;
-  }
-  v5 = (void *)_this->field_20;
-  if ( v5 )
-  {
-    sub_464510(_this->field_20);
-    operator_delete(v5);
-    _this->field_20 = 0;
-  }
-  v6 = (void *)_this->field_C;
-  if ( v6 )
-  {
-    sub_467B30();
-    operator_delete(v6);
-    _this->field_C = 0;
-  }
-  v7 = (void *)_this->field_8;
-  if ( v7 )
-  {
-    sub_466A90(_this->field_8);
-    operator_delete(v7);
-    _this->field_8 = 0;
-  }
-  v8 = (void *)_this->field_14;
-  if ( v8 )
-  {
-    sub_465810(_this->field_14);
-    operator_delete(v8);
-    _this->field_14 = 0;
-  }
-  if ( _this->field_10 )
-  {
-    operator_delete((void *)_this->field_10);
-    _this->field_10 = 0;
-  }
-  v9 = (void *)_this->field_18;
-  if ( v9 )
-  {
-    sub_4652A0(_this->field_18);
-    operator_delete(v9);
-    _this->field_18 = 0;
-  }
-  v10 = (void *)_this->field_1C;
-  if ( v10 )
-  {
-    sub_466AE0(_this->field_1C);
-    operator_delete(v10);
-    _this->field_1C = 0;
-  }
-  if ( _this->field_24 )
-  {
-    operator_delete((void *)_this->field_24);
-    _this->field_24 = 0;
-  }
-  v11 = (void *)_this->field_28;
-  if ( v11 )
-  {
-    sub_464920(_this->field_28);
-    operator_delete(v11);
-    _this->field_28 = 0;
-  }
   (*(void (__stdcall **)(signed int, _DWORD))(*(_DWORD *)_this->field_40 + 24))(100, 0);
-  sub_4916E0(_this->field_40);
-  return sub_44FB30(_this->field_40);
 */
+	SAFE_DELETE(m_pGameMode);
+	SAFE_DELETE(m_pFilterScripts);
+	SAFE_DELETE(m_pScriptTimers);
+	SAFE_DELETE(m_pScriptHttps);
+	SAFE_DELETE(m_pLabelPool);
+	SAFE_DELETE(m_pVehiclePool);
+	SAFE_DELETE(m_pPlayerPool);
+	SAFE_DELETE(m_pObjectPool);
+	SAFE_DELETE(m_pPickupPool);
+	SAFE_DELETE(m_pMenuPool);
+	SAFE_DELETE(m_pTextPool);
+	SAFE_DELETE(m_pGangZonePool);
+	SAFE_DELETE(m_pActorPool);
+
+	UnRegisterRPCs(m_pRak);
+
+	RakNetworkFactory::DestroyRakServerInterface(m_pRak);
 }
 
 void CNetGame::Init(BOOL bFirst)
