@@ -344,6 +344,9 @@
 		<File
 			RelativePath=".\sha1.h">
 		</File>
+		<File
+			RelativePath=".\subclass.cpp">
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
