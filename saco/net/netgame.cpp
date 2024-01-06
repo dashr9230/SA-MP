@@ -17,3 +17,8 @@ CNetGame::CNetGame(PCHAR szHostOrIp, int iPort,
 
 	// TODO: CNetGame::CNetGame(...) .text:1000B930
 }
+
+DWORD CNetGame::GetTime()
+{
+	return (DWORD)RakNet::GetTime();
+}

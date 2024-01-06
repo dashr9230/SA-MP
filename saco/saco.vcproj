@@ -257,6 +257,16 @@
 				RelativePath="..\ttmath\ttmathuint_x86.h">
 			</File>
 		</Filter>
+		<Filter
+			Name="raknet"
+			Filter="">
+			<File
+				RelativePath="..\raknet\GetTime.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\GetTime.h">
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\audiostream.cpp">
 		</File>

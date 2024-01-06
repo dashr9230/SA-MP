@@ -47,4 +47,7 @@ private:
 public:
 
 	CNetGame(char *a2, int a3, char *a4, char *a5);
+
+	DWORD GetTime();
+
 };
