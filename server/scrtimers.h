@@ -12,6 +12,7 @@ private:
 #endif
 public:
 	CScriptTimers();
+	~CScriptTimers();
 };
 
 #endif
