@@ -5,7 +5,16 @@
 class CGameMode // size: WL 110
 {
 private:
-	char _gap0[110];
+	char gap0[104];
+	char field_68;
+	char field_69;
+	char gap6A[4];
+
+public:
+	CGameMode();
+	~CGameMode();
+
+	void Unload();
 };
 
 #endif
