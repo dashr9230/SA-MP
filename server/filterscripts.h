@@ -5,7 +5,17 @@
 class CFilterScripts // size: WL 4148
 {
 private:
-	char _gap0[4148];
+
+	int field_0[16];
+	char gap40[4080];
+	int field_1030;
+
+public:
+	CFilterScripts();
+	~CFilterScripts();
+
+	void UnloadFilterScripts();
+
 };
 
 #endif
