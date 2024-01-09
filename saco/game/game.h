@@ -4,6 +4,7 @@
 #include "address.h"
 #include "audio.h"
 #include "camera.h"
+#include "scripting.h"
 
 //-----------------------------------------------------------
 
