@@ -5,7 +5,7 @@ CLabelPool::CLabelPool()
 {
 	for(WORD wLabel = 0; wLabel < MAX_LABELS; wLabel++)
 	{
-		memset(field_1000[wLabel], 0, sizeof(struc_24));
+		memset(&field_1000[wLabel], 0, sizeof(struc_24));
 		field_0[wLabel] = 0;
 	}
 }
