@@ -132,6 +132,12 @@
 				RelativePath=".\net\playerpool.h">
 			</File>
 			<File
+				RelativePath=".\net\scriptrpc.cpp">
+			</File>
+			<File
+				RelativePath=".\net\scriptrpc.h">
+			</File>
+			<File
 				RelativePath=".\net\vehiclepool.cpp">
 			</File>
 			<File

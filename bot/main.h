@@ -37,6 +37,7 @@ typedef struct _GAME_SETTINGS {
 #include "net/playerpool.h"
 #include "net/vehiclepool.h"
 #include "net/netgame.h"
+#include "net/scriptrpc.h"
 
 void logprintf(char* format, ...);
 
