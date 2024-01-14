@@ -120,6 +120,12 @@
 				RelativePath=".\net\netgame.h">
 			</File>
 			<File
+				RelativePath=".\net\netrpc.cpp">
+			</File>
+			<File
+				RelativePath=".\net\netrpc.h">
+			</File>
+			<File
 				RelativePath=".\net\playerpool.cpp">
 			</File>
 			<File
@@ -130,6 +136,85 @@
 			</File>
 			<File
 				RelativePath=".\net\vehiclepool.h">
+			</File>
+		</Filter>
+		<Filter
+			Name="raknet"
+			Filter="">
+			<File
+				RelativePath="..\raknet\BitStream.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\BitStream.h">
+			</File>
+			<File
+				RelativePath="..\raknet\NetworkTypes.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\NetworkTypes.h">
+			</File>
+			<File
+				RelativePath="..\raknet\RakClient.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\RakClient.h">
+			</File>
+			<File
+				RelativePath="..\raknet\RakClientInterface.h">
+			</File>
+			<File
+				RelativePath="..\raknet\RakNetStatistics.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\RakNetStatistics.h">
+			</File>
+			<File
+				RelativePath="..\raknet\RakNetworkFactory.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\RakNetworkFactory.h">
+			</File>
+			<File
+				RelativePath="..\raknet\RakPeer.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\RakPeer.h">
+			</File>
+			<File
+				RelativePath="..\raknet\RakPeerInterface.h">
+			</File>
+			<File
+				RelativePath="..\raknet\RakServer.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\RakServer.h">
+			</File>
+			<File
+				RelativePath="..\raknet\RakServerInterface.h">
+			</File>
+			<File
+				RelativePath="..\raknet\RakSleep.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\RakSleep.h">
+			</File>
+			<File
+				RelativePath="..\raknet\RPCMap.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\RPCMap.h">
+			</File>
+			<File
+				RelativePath="..\raknet\RPCNode.h">
+			</File>
+			<File
+				RelativePath="..\raknet\SAMPRPC.h">
+			</File>
+			<File
+				RelativePath="..\raknet\SimpleMutex.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\SimpleMutex.h">
 			</File>
 		</Filter>
 		</Filter>
