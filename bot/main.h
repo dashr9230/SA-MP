@@ -14,6 +14,7 @@
 
 #define MAX_PLAYER_NAME		24
 #define MAX_PLAYERS			1000
+#define MAX_VEHICLES		2000
 #define MAX_SETTINGS_STRING 256
 
 typedef struct _GAME_SETTINGS {
@@ -33,6 +34,8 @@ typedef struct _GAME_SETTINGS {
 #include "../raknet/SAMPRPC.h"
 
 typedef unsigned short PLAYERID;
+typedef unsigned short VEHICLEID;
+
 #include "scrtimers.h"
 #include "npcmode.h"
 

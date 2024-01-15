@@ -1,10 +1,14 @@
 
-#include "vehiclepool.h"
+#include "../main.h"
+
+//----------------------------------------------------
 
 CVehiclePool::CVehiclePool()
 {
-	// TODO: CVehiclePool::CVehiclePool W: 0041A890 L: 080B9408
-	for(unsigned short i = 0; i < 2000; i++) {
-		field_84D0[i] = 0;
+	// loop through and initialize all net players to null and slot states to false
+	for(VEHICLEID VehicleID = 0; VehicleID < MAX_VEHICLES; VehicleID++) {
+		field_84D0[VehicleID] = 0;
 	}
 }
+
+//----------------------------------------------------
