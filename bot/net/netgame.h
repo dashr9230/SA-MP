@@ -6,8 +6,10 @@
 class CNetGame // size: 910 bytes
 {
 private:
-	int field_0; // highly m_pRakClient
-	CPlayerPool* m_pPlayerPool;
+	RakClientInterface	*m_pRakClient;
+	CPlayerPool			*m_pPlayerPool;
+
+
 	CVehiclePool* m_pVehiclePool;
 	int m_iGameState;
 	int field_10;

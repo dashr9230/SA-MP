@@ -73,8 +73,8 @@ CNetGame::~CNetGame()
 //----------------------------------------------------
 
 void CNetGame::Init(PCHAR szHostOrIp, int iPort,
-					PCHAR szPlayerName, PCHAR szPass,
-					PCHAR szNpcMode)
+				    PCHAR szPlayerName, PCHAR szPass,
+				    PCHAR szNpcMode)
 {
 	strcpy(m_szHostName, "San Andreas Multiplayer");
 	strncpy(m_szHostOrIp, szHostOrIp, sizeof(m_szHostOrIp));
@@ -87,6 +87,15 @@ void CNetGame::Init(PCHAR szHostOrIp, int iPort,
 	m_pPlayerPool = new CPlayerPool();
 	m_pPlayerPool->SetLocalPlayerName(szPlayerName);
 	m_pVehiclePool = new CVehiclePool();
+
+	m_pRakClient = RakNetworkFactory::GetRakClientInterface();
+
+	RegisterRPCs(m_pRakClient);
+	RegisterScriptRPCs(m_pRakClient);
+	
+	
+	
+	
 
 	// TODO: CNetGame::Init (W: 00416490 L: 080AD126)
 
