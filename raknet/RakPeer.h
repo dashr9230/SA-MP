@@ -16,7 +16,6 @@ public:
 	void vftable_4();
 	void vftable_8();
 	void vftable_C();
-	void vftable_18();
 	void vftable_1C();
 	void vftable_20();
 	void vftable_24();
@@ -31,6 +30,12 @@ public:
 	/// Returns the value passed to SetMaximumIncomingConnections()
 	/// \return the maximum number of incoming connections, which is always <= maxConnections
 	unsigned short GetMaximumIncomingConnections( void ) const;
+
+	/// Sets the password incoming connections must match in the call to Connect (defaults to none). Pass 0 to passwordData to specify no password
+	/// This is a way to set a low level password for all incoming connections.  To selectively reject connections, implement your own scheme using CloseConnection() to remove unwanted connections
+	/// \param[in] passwordData A data block that incoming connections must match.  This can be just a password, or can be a stream of data. Specify 0 for no password data
+	/// \param[in] passwordDataLength The length in bytes of passwordData
+	void SetIncomingPassword( const char* passwordData, int passwordDataLength );
 
 	/// Returns if the network thread is running
 	/// \return true if the network thread is running, false otherwise
@@ -119,6 +124,9 @@ protected:
 
 	///Store the maximum incoming connection allowed 
 	unsigned short maximumIncomingConnections;
+
+	char incomingPassword[256];
+	unsigned char incomingPasswordLength;
 
 	RPCMap rpcMap; // Can't use StrPtrHash because runtime insertions will screw up the indices
 

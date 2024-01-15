@@ -13,7 +13,6 @@ public:
 	virtual void vftable_4()=0;
 	virtual void vftable_8()=0;
 	virtual void vftable_C()=0;
-	virtual void vftable_18()=0;
 	virtual void vftable_1C()=0;
 	virtual void vftable_20()=0;
 	virtual void vftable_24()=0;
@@ -28,6 +27,12 @@ public:
 	/// Returns the value passed to SetMaximumIncomingConnections()
 	/// \return the maximum number of incoming connections, which is always <= maxConnections
 	virtual unsigned short GetMaximumIncomingConnections( void ) const=0;
+
+	/// Sets the password incoming connections must match in the call to Connect (defaults to none). Pass 0 to passwordData to specify no password
+	/// This is a way to set a low level password for all incoming connections.  To selectively reject connections, implement your own scheme using CloseConnection() to remove unwanted connections
+	/// \param[in] passwordData A data block that incoming connections must match.  This can be just a password, or can be a stream of data. Specify 0 for no password data
+	/// \param[in] passwordDataLength The length in bytes of passwordData
+	virtual void SetIncomingPassword( const char* passwordData, int passwordDataLength )=0;
 
 	/// Returns if the network thread is running
 	/// \return true if the network thread is running, false otherwise

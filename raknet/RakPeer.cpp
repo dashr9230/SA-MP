@@ -45,9 +45,32 @@ unsigned short RakPeer::GetMaximumIncomingConnections( void ) const
 	return maximumIncomingConnections;
 }
 
-void RakPeer::vftable_18()
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Description:
+// Sets the password incoming connections must match in the call to Connect (defaults to none)
+// Pass 0 to passwordData to specify no password
+//
+// Parameters:
+// passwordData: A data block that incoming connections must match.  This can be just a password, or can be a stream of data.
+// - Specify 0 for no password data
+// passwordDataLength: The length in bytes of passwordData
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+void RakPeer::SetIncomingPassword( const char* passwordData, int passwordDataLength )
 {
-	// TODO: RakPeer::vftable_18() (saco W: 10038430) (server W: 44FF30 L: 806D1B0) (bot W: 403ED0 L: 8073008)
+	//if (passwordDataLength > MAX_OFFLINE_DATA_LENGTH)
+	//	passwordDataLength=MAX_OFFLINE_DATA_LENGTH;
+
+	if (passwordDataLength > 255)
+		passwordDataLength=255;
+
+	if (passwordData==0)
+		passwordDataLength=0;
+
+	// Not threadsafe but it's not important enough to lock.  Who is going to change the password a lot during runtime?
+	// It won't overflow at least because incomingPasswordLength is an unsigned char
+	if (passwordDataLength>0)
+		memcpy(incomingPassword, passwordData, passwordDataLength);
+	incomingPasswordLength=(unsigned char)passwordDataLength;
 }
 
 void RakPeer::vftable_1C()
