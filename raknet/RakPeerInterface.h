@@ -13,7 +13,6 @@ public:
 	virtual void vftable_4()=0;
 	virtual void vftable_8()=0;
 	virtual void vftable_C()=0;
-	virtual void vftable_1C()=0;
 	virtual void vftable_20()=0;
 	virtual void vftable_24()=0;
 	virtual void vftable_28()=0;
@@ -33,6 +32,11 @@ public:
 	/// \param[in] passwordData A data block that incoming connections must match.  This can be just a password, or can be a stream of data. Specify 0 for no password data
 	/// \param[in] passwordDataLength The length in bytes of passwordData
 	virtual void SetIncomingPassword( const char* passwordData, int passwordDataLength )=0;
+
+	/// Gets the password passed to SetIncomingPassword
+	/// \param[out] passwordData  Should point to a block large enough to hold the password data you passed to SetIncomingPassword()
+	/// \param[in,out] passwordDataLength Maximum size of the array passwordData.  Modified to hold the number of bytes actually written
+	virtual void GetIncomingPassword( char* passwordData, int *passwordDataLength  )=0;
 
 	/// Returns if the network thread is running
 	/// \return true if the network thread is running, false otherwise

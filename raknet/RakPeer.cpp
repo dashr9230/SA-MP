@@ -73,9 +73,20 @@ void RakPeer::SetIncomingPassword( const char* passwordData, int passwordDataLen
 	incomingPasswordLength=(unsigned char)passwordDataLength;
 }
 
-void RakPeer::vftable_1C()
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+void RakPeer::GetIncomingPassword( char* passwordData, int *passwordDataLength  )
 {
-	// TODO: RakPeer::vftable_1C() (saco W: 10038480) (server W: 44FF80 L: 806D1C0) (bot W: 403F20 L: 8073014)
+	if (passwordData==0)
+	{
+		*passwordDataLength=incomingPasswordLength;
+		return;
+	}
+
+	if (*passwordDataLength > incomingPasswordLength)
+		*passwordDataLength=incomingPasswordLength;
+
+	if (*passwordDataLength>0)
+		memcpy(passwordData, incomingPassword, *passwordDataLength);
 }
 
 void RakPeer::vftable_20()
