@@ -13,6 +13,7 @@
 #endif
 
 #define MAX_PLAYER_NAME		24
+#define MAX_PLAYERS			1000
 #define MAX_SETTINGS_STRING 256
 
 typedef struct _GAME_SETTINGS {
@@ -30,6 +31,8 @@ typedef struct _GAME_SETTINGS {
 #include "../raknet/RakNetworkFactory.h"
 #include "../raknet/PacketEnumerations.h"
 #include "../raknet/SAMPRPC.h"
+
+typedef unsigned short PLAYERID;
 #include "scrtimers.h"
 #include "npcmode.h"
 

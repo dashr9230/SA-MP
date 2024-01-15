@@ -1,14 +1,19 @@
 
-#include "playerpool.h"
+#include "../main.h"
+
+//----------------------------------------------------
 
 CPlayerPool::CPlayerPool()
 {
-	// TODO: CPlayerPool::CPlayerPool W: 004196A0 L: 080B1F4E
 	field_7163 = 0;
 	field_8107 = 0;
-	for(unsigned short i = 0; i < 1000; i++) {
-		field_0[i] = 0;
-		field_7167[i] = 0;
-		field_810B[i] = 0;
+
+	// loop through and initialize all net players to null and slot states to false
+	for(PLAYERID playerId = 0; playerId < MAX_PLAYERS; playerId++) {
+		field_0[playerId] = 0;
+		field_7167[playerId] = 0;
+		field_810B[playerId] = 0;
 	}
 }
+
+//----------------------------------------------------
