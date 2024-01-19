@@ -80,7 +80,7 @@ void CNetGame::Init(PCHAR szHostOrIp, int iPort,
 	strncpy(m_szHostOrIp, szHostOrIp, sizeof(m_szHostOrIp));
 	m_iPort = iPort;
 
-	m_pNPCMode = new CNPCMode();
+	m_pGameMode = new CGameMode();
 	m_pScriptTimers = new CScriptTimers();
 
 	// Setup player pool

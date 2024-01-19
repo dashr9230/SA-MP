@@ -37,7 +37,7 @@ typedef unsigned short PLAYERID;
 typedef unsigned short VEHICLEID;
 
 #include "scrtimers.h"
-#include "npcmode.h"
+#include "gamemodes.h"
 
 #include "net/netrpc.h"
 #include "net/playerpool.h"

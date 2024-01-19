@@ -228,16 +228,16 @@
 			RelativePath=".\bot.rc">
 		</File>
 		<File
+			RelativePath=".\gamemodes.cpp">
+		</File>
+		<File
+			RelativePath=".\gamemodes.h">
+		</File>
+		<File
 			RelativePath=".\main.cpp">
 		</File>
 		<File
 			RelativePath=".\main.h">
-		</File>
-		<File
-			RelativePath=".\npcmode.cpp">
-		</File>
-		<File
-			RelativePath=".\npcmode.h">
 		</File>
 		<File
 			RelativePath=".\resource.h">

@@ -43,7 +43,7 @@ private:
 	char m_szHostOrIp[128];
 	int m_iPort;
 
-	CNPCMode* m_pNPCMode;
+	CGameMode* m_pGameMode;
 	CScriptTimers* m_pScriptTimers;
 
 public:
