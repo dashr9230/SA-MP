@@ -54,19 +54,19 @@ public:
 	/// Register a C or static member function as available for calling as a remote procedure call
 	/// \param[in] uniqueID A null-terminated unique string to identify this procedure.  See RegisterClassMemberRPC() for class member functions.
 	/// \param[in] functionPointer(...) The name of the function to be used as a function pointer. This can be called whether active or not, and registered functions stay registered unless unregistered
-	virtual void RegisterAsRemoteProcedureCall( unsigned char* uniqueID, void ( *functionPointer ) ( RPCParameters *rpcParms ) )=0;
+	virtual void RegisterAsRemoteProcedureCall( char* uniqueID, void ( *functionPointer ) ( RPCParameters *rpcParms ) )=0;
 
 	/// \ingroup RAKNET_RPC
 	/// Register a C++ member function as available for calling as a remote procedure call.
 	/// \param[in] uniqueID A null terminated string to identify this procedure. Recommended you use the macro REGISTER_CLASS_MEMBER_RPC to create the string.  Use RegisterAsRemoteProcedureCall() for static functions.
 	/// \param[in] functionPointer The name of the function to be used as a function pointer. This can be called whether active or not, and registered functions stay registered unless unregistered with UnregisterAsRemoteProcedureCall
 	/// \sa The sample ObjectMemberRPC.cpp
-	virtual void RegisterClassMemberRPC( unsigned char* uniqueID, void *functionPointer )=0;
+	virtual void RegisterClassMemberRPC( char* uniqueID, void *functionPointer )=0;
 
 	/// \ingroup RAKNET_RPC
 	/// Unregisters a C function as available for calling as a remote procedure call that was formerly registered with RegisterAsRemoteProcedureCall. Only call offline.
 	/// \param[in] uniqueID A string of only letters to identify this procedure.  Recommended you use the macro CLASS_MEMBER_ID for class member functions.
-	virtual void UnregisterAsRemoteProcedureCall( unsigned char* uniqueID )=0;
+	virtual void UnregisterAsRemoteProcedureCall( char* uniqueID )=0;
 
 	virtual void vftable_50()=0;
 	virtual void vftable_54()=0;

@@ -147,17 +147,17 @@ void RakServer::vftable_70()
 	// TODO: RakServer::vftable_70() (server W: 45A450 L: 807C060)
 }
 
-void RakServer::RegisterAsRemoteProcedureCall( unsigned char* uniqueID, void ( *functionPointer ) ( RPCParameters *rpcParms ) )
+void RakServer::RegisterAsRemoteProcedureCall( char* uniqueID, void ( *functionPointer ) ( RPCParameters *rpcParms ) )
 {
 	RakPeer::RegisterAsRemoteProcedureCall( uniqueID, functionPointer );
 }
 
-void RakServer::RegisterClassMemberRPC( unsigned char* uniqueID, void *functionPointer )
+void RakServer::RegisterClassMemberRPC( char* uniqueID, void *functionPointer )
 {
 	RakPeer::RegisterClassMemberRPC( uniqueID, functionPointer );
 }
 
-void RakServer::UnregisterAsRemoteProcedureCall( unsigned char* uniqueID )
+void RakServer::UnregisterAsRemoteProcedureCall( char* uniqueID )
 {
 	RakPeer::UnregisterAsRemoteProcedureCall( uniqueID );
 }

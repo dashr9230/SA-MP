@@ -148,20 +148,20 @@ void RakPeer::vftable_40()
 // This can be called whether the client is active or not, and registered functions stay registered unless unregistered with
 // UnregisterAsRemoteProcedureCall
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-void RakPeer::RegisterAsRemoteProcedureCall( unsigned char* uniqueID, void ( *functionPointer ) ( RPCParameters *rpcParms ) )
+void RakPeer::RegisterAsRemoteProcedureCall( char* uniqueID, void ( *functionPointer ) ( RPCParameters *rpcParms ) )
 {
 	if ( uniqueID == 0 || uniqueID[ 0 ] == 0 || functionPointer == 0 )
 		return;
 
-	rpcMap.AddIdentifierWithFunction(*uniqueID, (void*)functionPointer, false);
+	rpcMap.AddIdentifierWithFunction((unsigned char)*uniqueID, (void*)functionPointer, false);
 }
 
-void RakPeer::RegisterClassMemberRPC( unsigned char* uniqueID, void *functionPointer )
+void RakPeer::RegisterClassMemberRPC( char* uniqueID, void *functionPointer )
 {
 	if ( uniqueID == 0 || uniqueID[ 0 ] == 0 || functionPointer == 0 )
 		return;
 
-	rpcMap.AddIdentifierWithFunction(*uniqueID, functionPointer, true);
+	rpcMap.AddIdentifierWithFunction((unsigned char)*uniqueID, functionPointer, true);
 }
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -173,7 +173,7 @@ void RakPeer::RegisterClassMemberRPC( unsigned char* uniqueID, void *functionPoi
 // uniqueID: A null terminated string to identify this procedure.  Must match the parameter
 // passed to RegisterAsRemoteProcedureCall
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-void RakPeer::UnregisterAsRemoteProcedureCall( unsigned char* uniqueID )
+void RakPeer::UnregisterAsRemoteProcedureCall( char* uniqueID )
 {
 	// nothing
 }
