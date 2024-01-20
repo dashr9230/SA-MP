@@ -22,7 +22,7 @@ void RakServer::vftable_C()
 	// TODO: RakServer::vftable_C() (server W: 45A120 L: 807B950)
 }
 
-void RakServer::vftable_10()
+void RakServer::SetPassword( const char *_password )
 {
 	// TODO: RakServer::vftable_10() (server W: 45A1B0 L: 807B980)
 }

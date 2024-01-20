@@ -19,7 +19,12 @@ public:
 	void vftable_4();
 	void vftable_8();
 	void vftable_C();
-	void vftable_10();
+
+	/// Set the password clients have to use to connect to this server. The password persists between connections.
+	/// Pass 0 for no password.  You can call this anytime
+	/// \param[in] _password The password string, or 0 for none.
+	void SetPassword( const char *_password );
+
 	void vftable_14();
 	void vftable_18();
 	void vftable_1C();

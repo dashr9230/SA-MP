@@ -16,7 +16,12 @@ public:
 	virtual void vftable_4()=0;
 	virtual void vftable_8()=0;
 	virtual void vftable_C()=0;
-	virtual void vftable_10()=0;
+
+	/// Set the password clients have to use to connect to this server. The password persists between connections.
+	/// Pass 0 for no password.  You can call this anytime
+	/// \param[in] _password The password string, or 0 for none.
+	virtual void SetPassword( const char *_password )=0;
+
 	virtual void vftable_14()=0;
 	virtual void vftable_18()=0;
 	virtual void vftable_1C()=0;
