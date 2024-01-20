@@ -20,6 +20,7 @@
 #define DEFAULT_LISTEN_PORT		8192
 
 #define ARRAY_SIZE(a)	( sizeof((a)) / sizeof(*(a)) )
+#define SAFE_DELETE(p)	{ if (p) { delete (p); (p) = NULL; } }
 
 // ------------
 // VERSION INFO
