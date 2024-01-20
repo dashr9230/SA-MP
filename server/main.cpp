@@ -132,7 +132,19 @@ int GetCookieLogging()
 
 void ServerPasswordChanged()
 {
-	// TODO: ServerPasswordChanged
+	if (pNetGame)
+	{
+		char* szPass = pConsole->GetStringVariable("password");
+		if ((szPass) && (szPass[0] != 0) && (szPass[0] != '0'))
+		{
+			logprintf("Setting server password to: \"%s\"", szPass);
+			pNetGame->GetRakServer()->SetPassword(szPass);
+		} else {
+			logprintf("Server password has been removed.");
+			pConsole->SetStringVariable("password", "");
+			pNetGame->GetRakServer()->SetPassword(NULL);
+		}
+	}
 }
 
 //----------------------------------------------------
