@@ -8,9 +8,9 @@ CMenuPool::CMenuPool()
 		field_200[byteMenuID] = 0;
 		field_0[byteMenuID] = 0;
 	}
-	for (PLAYERID Player = 0; Player < MAX_PLAYERS; Player++)
+	for (PLAYERID playerId = 0; playerId < MAX_PLAYERS; playerId++)
 	{
-		field_400[Player] = 255;
+		field_400[playerId] = 255;
 	}
 }
 
