@@ -26,7 +26,12 @@ public:
 	void SetPassword( const char *_password );
 
 	void vftable_14();
-	void vftable_18();
+
+	/// Stops the server, stops synchronized data, and resets all internal data.  This will drop all players currently connected, howeversince the server is stopped packet reliability is not enforced so the Kick network message may not actuallyarrive. Those players will disconnect due to timeout. If you want to end the server more gracefully, youcan manually Kick each player first. Does nothing if the server is not running to begin with
+	/// \param[in] blockDuration The maximum amount of time to wait for all remaining packets to go out, including the disconnection notification. If you set it to 0 then the disconnection notifications probably won't arrive
+	/// \param[in] orderingChannel If blockDuration > 0, the disconnect packet will be sent on this channel
+	void Disconnect( unsigned int blockDuration, unsigned char orderingChannel=0 );
+
 	void vftable_1C();
 	void vftable_20();
 	void vftable_24();

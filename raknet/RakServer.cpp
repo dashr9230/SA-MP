@@ -32,7 +32,7 @@ void RakServer::vftable_14()
 	// TODO: RakServer::vftable_14() (server W: 45A1F0 L: 807BA40)
 }
 
-void RakServer::vftable_18()
+void RakServer::Disconnect( unsigned int blockDuration, unsigned char orderingChannel )
 {
 	// TODO: RakServer::vftable_18() (server W: 45A210 L: 807BAB0)
 }
