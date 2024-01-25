@@ -182,6 +182,34 @@ CNetGame::~CNetGame()
 	RakNetworkFactory::DestroyRakServerInterface(m_pRak);
 }
 
+//----------------------------------------------------
+// Loads filterscripts after pools initialisation
+
+void CNetGame::LoadAllFilterscripts()
+{
+	logprintf("");
+	logprintf("Filterscripts");
+	logprintf("---------------");
+	int iScriptCount = 0;
+	char* szFilterScript = strtok(pConsole->GetStringVariable("filterscripts"), " ");
+	while (szFilterScript)
+	{
+		logprintf("  Loading filterscript '%s.amx'...", szFilterScript);
+		if (m_pFilterScripts->LoadFilterScript(szFilterScript))
+		{
+			iScriptCount++;
+		} else {
+			logprintf("  Unable to load filterscript '%s.amx'.", szFilterScript);
+		}
+		szFilterScript = strtok(NULL, " ");
+	}
+	logprintf("  Loaded %d filterscripts.\n", iScriptCount);
+}
+
+
+
+
+
 void CNetGame::Init(BOOL bFirst)
 {
 	// TODO: CNetGame::Init W: 0048DE20 L: 080AB7E0

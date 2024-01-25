@@ -63,6 +63,8 @@ public:
 
 	RakServerInterface * GetRakServer() { return m_pRak; };
 
+	void LoadAllFilterscripts();
+
 	void Process();
 
 	void LoadBanList();
