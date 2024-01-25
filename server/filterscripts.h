@@ -14,6 +14,7 @@ public:
 	CFilterScripts();
 	~CFilterScripts();
 
+	bool LoadFilterScript(char* pFileName);
 	void UnloadFilterScripts();
 
 };

@@ -13,6 +13,12 @@ CFilterScripts::~CFilterScripts()
 	UnloadFilterScripts();
 }
 
+bool CFilterScripts::LoadFilterScript(char* pFileName)
+{
+	// TODO: CFilterScripts::LoadFilterScript
+	return false;
+}
+
 void CFilterScripts::UnloadFilterScripts()
 {
 	// TODO: CFilterScripts::UnloadFilterScripts W .text:0046CEB0 L .text:080A15B0
