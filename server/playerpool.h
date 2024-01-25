@@ -35,6 +35,11 @@ public:
 
 	BOOL Delete(PLAYERID playerId, BYTE byteReason);
 
+	void ResetPlayerScoresAndMoney() {
+		memset(&m_iPlayerScore[0],0,sizeof(int) * MAX_PLAYERS);
+		memset(&m_iPlayerMoney[0],0,sizeof(int) * MAX_PLAYERS);
+		memset(&m_iVirtualWorld[0],0,sizeof(int) * MAX_PLAYERS);
+	}
 };
 
 #endif
