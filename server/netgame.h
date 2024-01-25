@@ -2,6 +2,8 @@
 #ifndef SAMPSRV_NETGAME_H
 #define SAMPSRV_NETGAME_H
 
+#define GAMESTATE_RUNNING	 1
+
 class CNetGame // size: W: 14808 L: 14816
 {
 private:

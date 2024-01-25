@@ -1,6 +1,8 @@
 
 #include "main.h"
 
+char szGameModeFile[256];
+
 CNetGame::CNetGame()
 {
 	m_bAllowWeapons = FALSE;
@@ -212,108 +214,90 @@ void CNetGame::LoadAllFilterscripts()
 
 void CNetGame::Init(BOOL bFirst)
 {
-	// TODO: CNetGame::Init W: 0048DE20 L: 080AB7E0
+	m_iSpawnsAvailable = 0;
 
-	/*
-  this->field_8A = 0;
-  v2 = this->field_8;
-  if ( v2 )
-  {
-    memset((void *)(v2 + 4012), 0, 0xFA0u);
-    memset((void *)(v2 + 8012), 0, 0xFA0u);
-    memset((void *)v2, 0, 0xFA0u);
-  }
-  else
-  {
-    v3 = operator new(0x30970u);
-    sub_80D04F0(v3);
-    this->field_8 = v3;
-  }
-  if ( !this->field_C )
-  {
-    v10 = (void *)operator new(0x5E98u);
-    sub_814CAB0(v10);
-    this->field_C = (int)v10;
-  }
-  if ( !this->field_10 )
-  {
-    v8 = operator new(0x1C004u);
-    v9 = 0;
-    do
-    {
-      *(_DWORD *)(v8 + 4 * v9 + 81920) = 0;
-      *(_DWORD *)(v8 + 4 * v9++ + 98304) = 0;
-    }
-    while ( v9 <= 4095 );
-    this->field_10 = v8;
-    *(_DWORD *)(v8 + 114688) = 0;
-  }
-  if ( !this->field_14 )
-  {
-    v7 = operator new(0x7A40E0u);
-    sub_80C8560(v7);
-    this->field_14 = v7;
-  }
-  if ( !this->field_18 )
-  {
-    v6 = operator new(0x7E8u);
-    sub_80AAD20(v6);
-    this->field_18 = v6;
-  }
-  if ( !this->field_1C )
-  {
-    v15 = operator new(0x1FA000u);
-    sub_814A210(v15);
-    this->field_1C = v15;
-  }
-  if ( !this->field_24 )
-  {
-    v14 = operator new(0x5000u);
-    sub_80A7570(v14);
-    this->field_24 = v14;
-  }
-  if ( !this->field_20 )
-  {
-    v13 = operator new(0x9400u);
-    sub_804BED0(v13);
-    this->field_20 = v13;
-  }
-  if ( !this->field_28 )
-  {
-    v12 = operator new(0x2EE4u);
-    sub_8094A80(v12);
-    this->field_28 = v12;
-  }
-  v4 = (void *)this->field_0;
-  if ( !this->field_0 )
-  {
-    v11 = operator new(0x6Eu);
-    sub_80A4DA0(v11);
-    this->field_0 = v11;
-    v4 = (void *)v11;
-  }
-  this->field_59 = 12;
-  this->field_5D = 1;
-  LODWORD(this->field_6E) = 1176256512;
-  LODWORD(this->field_7A) = 1176256512;
-  LODWORD(this->field_72) = 1116471296;
-  this->gap54[4] = 1;
-  *(_DWORD *)&this->gap54[0] = 1;
-  this->field_77 = 1;
-  *(&this->field_6C + 1) = 0;
-  this->field_6C = 0;
-  this->field_79 = 0;
-  this->field_76 = 0;
-  this->gap78[0] = 0;
-  if ( bFirst )
-  {
-    sub_80AB570(this);
-    v4 = (void *)this->field_0;
-  }
-  sub_80A4E90(v4, byte_81CA500);
-  v5 = sub_814D170(this->field_C);
-  logprintf("Number of vehicle models: %d", v5);
-  this->field_5E = 1;*/
+	// Setup player pool
+	if(!m_pPlayerPool) {
+		m_pPlayerPool = new CPlayerPool();
+	} else {
+		m_pPlayerPool->ResetPlayerScoresAndMoney();
+	}
+
+	// Setup vehicle pool
+	if(!m_pVehiclePool) {
+		m_pVehiclePool = new CVehiclePool();
+	}
+
+	// Setup pickup pool
+	if(!m_pPickupPool) {
+		m_pPickupPool = new CPickupPool();
+	}
+
+	// Setup Object pool
+	if (!m_pObjectPool) {
+		m_pObjectPool = new CObjectPool();
+	}
+
+	// Setup Menu pool
+	if (!m_pMenuPool) {
+		m_pMenuPool = new CMenuPool();
+	}
+
+	// Setup Text pool
+	if (!m_pTextPool) {
+		m_pTextPool = new CTextDrawPool();
+	}
+
+	// Setup Gang Zone pool
+	if (!m_pGangZonePool) {
+		m_pGangZonePool = new CGangZonePool();
+	}
+
+	// Setup Label pool
+	if (!m_pLabelPool) {
+		m_pLabelPool = new CLabelPool();
+	}
+
+	// Setup Actor pool
+	if (!m_pActorPool) {
+		m_pActorPool = new CActorPool();
+	}
+
+	// Setup gamemode
+	if(!m_pGameMode) {
+		m_pGameMode = new CGameMode();
+	}
+
+	// Default tags/markers
+	m_bShowNameTags = TRUE;
+	m_iShowPlayerMarkers = 1;
+	m_bNameTagLOS = true;
+	m_bUseCJWalk = FALSE;
+
+	// Set the default world time for clients.
+	m_byteWorldTime = 12; // 12:00
+
+	// Set the default weather
+	m_byteWeather   = 1;
+
+	m_bLimitGlobalChatRadius = FALSE;
+	m_bLimitPlayerMarkerRadius = FALSE;
+	m_fGlobalChatRadius = 10000.0f;
+	m_fPlayerMarkerRadius = 10000.0f;
+	m_fNameTagDrawDistance = 70.0f;
+	m_bDisableEnterExits = false;
+	m_bManualVehicleEngineAndLights = false;
+
+	if (bFirst) LoadAllFilterscripts();
+	// Has to be done here as it need to be AFTER the pools but BEFORE the gamemode
+
+	// Start the gamemode script.
+	m_pGameMode->Load(szGameModeFile);
+
+	logprintf("Number of vehicle models: %d", m_pVehiclePool->GetModelCount());
+
+	// Flag we're in a running state.
+	m_iGameState = GAMESTATE_RUNNING;
 }
 
 void CNetGame::ShutdownForGameModeRestart()
@@ -440,6 +424,7 @@ void CNetGame::Process()
     this->field_82 = this->field_82 + v4;
   }
 */
+}
 
 void CNetGame::LoadBanList()
 {
