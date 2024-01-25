@@ -160,12 +160,8 @@ CNetGame::CNetGame()
 
 CNetGame::~CNetGame()
 {
-	// TODO: CNetGame::~CNetGame W: 0048F2B0 L: 080AB260
 	logprintf("--- Server Shutting Down.");
 
-/*
-  (*(void (__stdcall **)(signed int, _DWORD))(*(_DWORD *)_this->field_40 + 24))(100, 0);
-*/
 	SAFE_DELETE(m_pGameMode);
 	SAFE_DELETE(m_pFilterScripts);
 	SAFE_DELETE(m_pScriptTimers);
@@ -180,6 +176,7 @@ CNetGame::~CNetGame()
 	SAFE_DELETE(m_pGangZonePool);
 	SAFE_DELETE(m_pActorPool);
 
+	m_pRak->Disconnect(100);
 	UnRegisterRPCs(m_pRak);
 
 	RakNetworkFactory::DestroyRakServerInterface(m_pRak);
