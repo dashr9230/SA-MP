@@ -14,6 +14,7 @@ public:
 	CGameMode();
 	~CGameMode();
 
+	bool Load(char* pFileName);
 	void Unload();
 };
 
