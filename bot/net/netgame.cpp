@@ -22,22 +22,14 @@ CNetGame::CNetGame()
 
 CNetGame::~CNetGame()
 {
+	m_pRakClient->Disconnect(0);
+	UnRegisterRPCs(m_pRakClient);
+	UnRegisterScriptRPCs(m_pRakClient);	// Unregister server-side scripting RPCs.
+	RakNetworkFactory::DestroyRakClientInterface(m_pRakClient);
+	SAFE_DELETE(m_pGameMode);
+
 	// TODO: ~CNetGame (W: 00416D50 L: 080ACFDE)
 	/*
-	(*(void (__cdecl **)(int, _DWORD, _DWORD))(*(_DWORD *)this->field_0 + 12))(this->field_0, 0, 0);
-	sub_80B1B18(this->field_0);
-	sub_80B7942(this->field_0);
-	sub_80712C8(this->field_0);
-	if ( this->field_386 )
-	{
-		s = (void *)this->field_386;
-		if ( s )
-		{
-			sub_80A9434(s);
-			operator delete(s);
-		}
-		this->field_386 = 0;
-	}
 	if ( this->field_38A )
 	{
 		v4 = (void *)this->field_38A;

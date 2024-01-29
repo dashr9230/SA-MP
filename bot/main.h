@@ -17,6 +17,10 @@
 #define MAX_VEHICLES		2000
 #define MAX_SETTINGS_STRING 256
 
+#define ARRAY_SIZE(a)	( sizeof((a)) / sizeof(*(a)) )
+#define SAFE_DELETE(p)	{ if (p) { delete (p); (p) = NULL; } }
+#define SAFE_RELEASE(p)	{ if (p) { (p)->Release(); (p) = NULL; } }
+
 typedef struct _GAME_SETTINGS {
 	CHAR szConnectPass[MAX_SETTINGS_STRING+1];
 	CHAR szConnectHost[MAX_SETTINGS_STRING+1];
