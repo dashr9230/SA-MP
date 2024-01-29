@@ -32,7 +32,11 @@ public:
 	virtual void vftable_3C()=0;
 	virtual void vftable_40()=0;
 	virtual void vftable_44()=0;
-	virtual void vftable_48()=0;
+
+	/// Returns true if the client is connected to a responsive server
+	/// \return true if connected to a server 
+	virtual bool IsConnected( void ) const=0;
+
 	virtual void vftable_4C()=0;
 	virtual void vftable_50()=0;
 	virtual void vftable_54()=0;

@@ -98,9 +98,10 @@ void RakClient::vftable_44()
 	// TODO: RakClient::vftable_44() (saco 100344A0) (server L: 8069300) (bot W: 402CE0 L: 806CD06)
 }
 
-void RakClient::vftable_48()
+bool RakClient::IsConnected( void ) const
 {
 	// TODO: RakClient::vftable_48() (saco 100344B0) (server L: 8069310) (bot W: 402CF0 L: 806CD14)
+	return false;
 }
 
 void RakClient::vftable_4C()

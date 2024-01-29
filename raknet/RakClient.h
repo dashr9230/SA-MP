@@ -37,7 +37,11 @@ public:
 	void vftable_3C();
 	void vftable_40();
 	void vftable_44();
-	void vftable_48();
+
+	/// Returns true if the client is connected to a responsive server
+	/// \return true if connected to a server 
+	bool IsConnected( void ) const;
+
 	void vftable_4C();
 	void vftable_50();
 	void vftable_54();
