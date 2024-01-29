@@ -246,6 +246,12 @@
 			<File
 				RelativePath=".\net\netgame.h">
 			</File>
+			<File
+				RelativePath=".\net\scriptrpc.cpp">
+			</File>
+			<File
+				RelativePath=".\net\scriptrpc.h">
+			</File>
 		</Filter>
 		<Filter
 			Name="ttmath"
