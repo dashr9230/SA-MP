@@ -1,6 +1,8 @@
 
 #pragma once
 
+#define GAMESTATE_CONNECTED		2
+
 //----------------------------------------------------
 
 class CNetGame // size: 910 bytes
@@ -50,6 +52,10 @@ public:
 
 	CNetGame();
 	~CNetGame();
+
+	int GetGameState() { return m_iGameState; };
+
+	RakClientInterface * GetRakClient() { return m_pRakClient; };
 
 	void Init(PCHAR szHostOrIp,int iPort,PCHAR szPlayerName,PCHAR szPass,PCHAR szNpcMode);
 	void Process();

@@ -39,12 +39,10 @@ int main (int argc, char** argv)
 		pNetGame->Process();
 		SLEEP(5);
 
-		/*
-		v5 = sub_80AC1DC(pNetGame);
-		if(sub_80AC1E6(pNetGame) == 2 ||
-			!(unsigned __int8)(*(int (__cdecl **)(int))(*(_DWORD *)v5 + 76))(v5))
+		if( pNetGame->GetGameState() == GAMESTATE_CONNECTED &&
+			!pNetGame->GetRakClient()->IsConnected() ) {
 			break;
-		*/
+		}
 	}
 
 	delete pNetGame;
