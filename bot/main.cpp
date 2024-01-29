@@ -33,8 +33,6 @@ int main (int argc, char** argv)
 	timeBeginPeriod(5);
 #endif
 
-	// TODO: main
-	
 	while(1) {
 		pNetGame->Process();
 		SLEEP(5);
