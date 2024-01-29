@@ -10,7 +10,13 @@ public:
 
 	virtual void vftable_0()=0;
 	virtual void vftable_4()=0;
-	virtual void vftable_8()=0;
+
+	/// Stops the client, stops synchronized data, and resets all internal data.
+	/// Does nothing if the client is not connected to begin wit
+	/// \param[in] blockDuration how long you should wait for all remaining packets to go outIf you set it to 0 then the disconnection notification probably won't arrive
+	/// \param[in] orderingChannel If blockDuration > 0, the disconnect packet will be sent on this channel
+	virtual void Disconnect( unsigned int blockDuration, unsigned char orderingChannel=0 )=0;
+
 	virtual void vftable_C()=0;
 	virtual void vftable_10()=0;
 	virtual void vftable_14()=0;

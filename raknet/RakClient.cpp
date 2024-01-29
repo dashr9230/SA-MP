@@ -18,7 +18,7 @@ void RakClient::vftable_4()
 	// TODO: RakClient::vftable_4() (saco 10034130) (server L: 8069200) (bot W: 402970 L: 806CC00)
 }
 
-void RakClient::vftable_8()
+void RakClient::Disconnect( unsigned int blockDuration, unsigned char orderingChannel )
 {
 	// TODO: RakClient::vftable_8() (saco 10034A40) (server L: 8069210) (bot W: 403280 L: 806CC0E)
 }
