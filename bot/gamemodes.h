@@ -2,17 +2,28 @@
 #ifndef SAMPNPC_GAMEMODES_H
 #define SAMPNPC_GAMEMODES_H
 
-class CGameMode // size: 110
+extern char szGameModeFileName[256];
+
+//----------------------------------------------------------------------------------
+
+class CGameMode
 {
 private:
-	char _gap0[104];
-	char field_68;
-	char field_69;
-	float field_6A;
+	AMX m_amx;
+	bool m_bInitialised;
+	bool m_bSleeping;
+	float m_fSleepTime;
 
 public:
 	CGameMode();
+	~CGameMode();
+
+	char* GetFileName() { return &szGameModeFileName[0]; };
+
+	void Unload();
 
 };
+
+//----------------------------------------------------------------------------------
 
 #endif
