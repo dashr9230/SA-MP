@@ -32,6 +32,9 @@ typedef struct _GAME_SETTINGS {
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <map>
+#include <string>
+
 #include "../raknet/RakClientInterface.h"
 #include "../raknet/RakNetworkFactory.h"
 #include "../raknet/PacketEnumerations.h"

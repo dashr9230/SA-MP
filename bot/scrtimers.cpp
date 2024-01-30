@@ -1,7 +1,7 @@
 
-#include "scrtimers.h"
+#include "main.h"
 
 CScriptTimers::CScriptTimers()
 {
-	// TODO: CScriptTimers::CScriptTimers W: 0041D700 L: 080B8036
+	m_dwTimerCount = 0;
 }
