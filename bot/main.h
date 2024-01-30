@@ -40,6 +40,8 @@ typedef struct _GAME_SETTINGS {
 typedef unsigned short PLAYERID;
 typedef unsigned short VEHICLEID;
 
+#include "../server/amx/amx.h"
+
 #include "scrtimers.h"
 #include "gamemodes.h"
 

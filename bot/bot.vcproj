@@ -223,6 +223,15 @@
 				RelativePath="..\raknet\SimpleMutex.h">
 			</File>
 		</Filter>
+		<Filter
+			Name="amx"
+			Filter="">
+			<File
+				RelativePath="..\server\amx\amx.c">
+			</File>
+			<File
+				RelativePath="..\server\amx\amx.h">
+			</File>
 		</Filter>
 		<File
 			RelativePath=".\bot.rc">
@@ -241,6 +250,9 @@
 		</File>
 		<File
 			RelativePath=".\resource.h">
+		</File>
+		<File
+			RelativePath=".\scrcore.cpp">
 		</File>
 		<File
 			RelativePath=".\scrtimers.cpp">
