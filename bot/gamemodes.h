@@ -24,6 +24,21 @@ public:
 
 	void Frame(float fElapsedTime);
 
+	int CallPublic(char* szFuncName);
+
+	int OnNPCConnect(cell myplayerid);
+	int OnNPCDisconnect(char *szReason);
+	int OnNPCSpawn();
+	int OnNPCEnterVehicle(cell vehicleid, cell seatid);
+	int OnNPCExitVehicle();
+	int OnClientMessage(cell color, char *szText);
+	int OnPlayerDeath(cell playerid);
+	int OnPlayerText(cell playerid, unsigned char * szText);
+	int OnPlayerStreamIn(cell playerid);
+	int OnPlayerStreamOut(cell playerid);
+	int OnVehicleStreamIn(cell vehicleid);
+	int OnVehicleStreamOut(cell vehicleid);
+	int OnRecordingPlaybackEnd();
 };
 
 //----------------------------------------------------------------------------------
