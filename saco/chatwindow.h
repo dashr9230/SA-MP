@@ -8,4 +8,6 @@ private:
 
 public:
 	CChatWindow();
+
+	void AddDebugMessage(CHAR *szFormat, ...);
 };
