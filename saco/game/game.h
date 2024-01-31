@@ -32,6 +32,8 @@ private:
 
 public:
 
+	DWORD	GetD3DDevice();
+
 	HWND	GetMainWindowHwnd() { return *(HWND *)ADDR_HWND; };
 
 	void	InitGame();

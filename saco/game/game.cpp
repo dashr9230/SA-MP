@@ -183,3 +183,28 @@ void CGame::sub_100A1C10()
 {
 	// TODO: CGame::sub_100A1C10() .text:100A1C10
 }
+
+
+
+//-----------------------------------------------------------
+
+DWORD CGame::GetD3DDevice()
+{
+	DWORD pdwD3DDev=0;
+
+	if(iGtaVersion == GTASA_VERSION_USA10) {
+		_asm mov edx, ADDR_RENDERWARE_GETD3D_USA10
+		_asm call edx
+		_asm mov pdwD3DDev, eax
+	}
+	else if (iGtaVersion == GTASA_VERSION_EU10) {
+		_asm mov edx, ADDR_RENDERWARE_GETD3D_EU10
+		_asm call edx
+		_asm mov pdwD3DDev, eax
+	}
+
+	return pdwD3DDev;
+}
+
+//-----------------------------------------------------------
+
