@@ -1057,6 +1057,44 @@ bool IsNumeric(char * szString)
 
 //----------------------------------------------------
 
+DWORD CamFrameBuffer=0;
+DWORD FrameBufferTexture=0;
+
+extern CChatWindow * pChatWindow;
+
+void _VehicleEnvMappingFromScreen()
+{
+	/*
+	if(FrameBufferTexture) {
+		_asm push FrameBufferTexture
+		_asm mov edx, 0x7F3820
+		_asm call edx
+		_asm pop edx
+		FrameBufferTexture = 0;
+	}*/
+
+	// get the frame buffer from the main RwCamera
+	_asm mov eax, 0xC402D8
+	_asm mov ebx, [eax]
+	_asm mov CamFrameBuffer, ebx
+
+	_asm push CamFrameBuffer
+	_asm mov edx, 0x7F37C0 // RwTextureCreate
+	_asm call edx
+	_asm pop edx
+	_asm mov FrameBufferTexture, eax
+
+	if(!FrameBufferTexture) {
+		pChatWindow->AddDebugMessage("No texture!");
+	}
+
+	*(DWORD *)0xB4E690 = FrameBufferTexture;
+	*(DWORD *)0xB4E68C = FrameBufferTexture;
+	*(DWORD *)0xB4E47C = FrameBufferTexture;
+	*(DWORD *)0xB4E3EC = FrameBufferTexture;
+	*(float *)0x8A7780 = 2.0f;
+}
+
 BOOL IsFileOrDirectoryExists(char * szPath)
 {
 	struct _stat buf;
