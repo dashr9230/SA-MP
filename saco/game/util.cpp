@@ -1044,6 +1044,19 @@ void GameResetRadarColors()
 
 //----------------------------------------------------
 
+bool IsNumeric(char * szString)
+{
+	while(*szString) {
+		if(*szString < '0' || *szString > '9') {
+			return false;
+		}
+		szString++;
+	}
+	return true;
+}
+
+//----------------------------------------------------
+
 BOOL IsFileOrDirectoryExists(char * szPath)
 {
 	struct _stat buf;
