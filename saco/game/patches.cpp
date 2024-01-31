@@ -128,3 +128,30 @@ BOOL ApplyPreGamePatches()
 }
 
 //----------------------------------------------------------
+
+#pragma pack(1)
+typedef struct _PED_MODEL
+{
+	DWORD func_tbl;
+	BYTE  data[64];
+} PED_MODEL;
+
+PED_MODEL PedModelsMemory[319];
+
+void RelocatePedsListHack()
+{
+	BYTE *aPedsListMemory = (BYTE*)&PedModelsMemory[0];
+
+	// Init the mem
+	int x=0;
+	while(x!=319) {
+		PedModelsMemory[x].func_tbl = 0x85BDC0;
+		memset(PedModelsMemory[x].data,0,64);
+		x++;
+	}
+	// Patch the GetPedsModelInfo to use us
+	// instead of the gta_sa.exe mem.
+	UnFuck(0x4C67AD,4);
+	*(DWORD *)0x4C67AD = (DWORD)aPedsListMemory;
+}
+
