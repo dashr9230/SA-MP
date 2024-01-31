@@ -1,6 +1,8 @@
 
 #include "../main.h"
 
+extern CChatWindow   *pChatWindow;
+
 CNetGame::CNetGame(PCHAR szHostOrIp, int iPort, 
 				   PCHAR szPlayerName, PCHAR szPass)
 {
@@ -13,7 +15,12 @@ CNetGame::CNetGame(PCHAR szHostOrIp, int iPort,
 	strncpy(m_szHostOrIp, szHostOrIp, sizeof(m_szHostOrIp));
 	m_iPort = iPort;
 
+	m_pRakClient = RakNetworkFactory::GetRakClientInterface();
+
+
 	m_iGameState = GAMESTATE_WAIT_CONNECT;
+
+	if(pChatWindow) pChatWindow->AddDebugMessage("{FFFFFF}SA-MP {B9C9BF}0.3.7-R5 {FFFFFF}Started");
 
 	// TODO: CNetGame::CNetGame(...) .text:1000B930
 }

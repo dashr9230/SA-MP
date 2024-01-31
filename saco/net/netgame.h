@@ -28,7 +28,9 @@ struct struc_41
 class CNetGame // size: 994
 {
 private:
-	int field_0;
+
+	RakClientInterface	*m_pRakClient;
+
 	char _gap4[44];
 	char m_szHostOrIp[257];
 	char m_szHostName[257];
