@@ -24,3 +24,7 @@ void CFilterScripts::UnloadFilterScripts()
 	// TODO: CFilterScripts::UnloadFilterScripts W .text:0046CEB0 L .text:080A15B0
 }
 
+void CFilterScripts::RemoveFilterScript(int iIndex)
+{
+	// TODO: CFilterScripts::RemoveFilterScript W .text:0046AAF0 L .text:080A1420
+}

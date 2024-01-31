@@ -15,6 +15,8 @@ public:
 	~CFilterScripts();
 
 	bool LoadFilterScript(char* pFileName);
+
+	void RemoveFilterScript(int iIndex);
 	void UnloadFilterScripts();
 
 };
