@@ -125,6 +125,21 @@
 			Name="raknet"
 			Filter="">
 			<File
+				RelativePath="..\raknet\BitStream.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\BitStream.h">
+			</File>
+			<File
+				RelativePath="..\raknet\DataBlockEncryptor.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\DataBlockEncryptor.h">
+			</File>
+			<File
+				RelativePath="..\raknet\Export.h">
+			</File>
+			<File
 				RelativePath="..\raknet\GetTime.cpp">
 			</File>
 			<File
@@ -138,6 +153,9 @@
 			</File>
 			<File
 				RelativePath="..\raknet\PacketEnumerations.h">
+			</File>
+			<File
+				RelativePath="..\raknet\PacketPriority.h">
 			</File>
 			<File
 				RelativePath="..\raknet\RakClient.cpp">
@@ -194,10 +212,19 @@
 				RelativePath="..\raknet\RPCNode.h">
 			</File>
 			<File
+				RelativePath="..\raknet\SAMPRPC.h">
+			</File>
+			<File
 				RelativePath="..\raknet\SimpleMutex.cpp">
 			</File>
 			<File
 				RelativePath="..\raknet\SimpleMutex.h">
+			</File>
+			<File
+				RelativePath="..\raknet\TEABlockEncryptor.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\TEABlockEncryptor.h">
 			</File>
 		<Filter
 			Name="amx"
