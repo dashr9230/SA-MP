@@ -155,3 +155,117 @@ void RelocatePedsListHack()
 	*(DWORD *)0x4C67AD = (DWORD)aPedsListMemory;
 }
 
+
+//----------------------------------------------------------
+// FOLLOWING IS TO RELOCATE THE SCANLIST MEMORY, A BIG
+// HACK THAT ALLOWS US TO HAVE MORE THAN 2 CPlayerInfo STRUCTURES.
+
+unsigned char ScanListMemory[8*20000];
+
+// Pointers to actual code addresses to patch. The first list
+// has taken into account the instruction bytes, second list
+// does not. The second list is guaranteed to have 3 byte
+// instructions before the new address.
+
+DWORD dwPatchAddrScanReloc1USA[14] = {
+0x5DC7AA,0x41A85D,0x41A864,0x408259,0x711B32,0x699CF8,
+0x4092EC,0x40914E,0x408702,0x564220,0x564172,0x563845,
+0x84E9C2,0x85652D };
+
+DWORD dwPatchAddrScanReloc1EU[14] = {
+0x5DC7AA,0x41A85D,0x41A864,0x408261,0x711B32,0x699CF8,
+0x4092EC,0x40914E,0x408702,0x564220,0x564172,0x563845,
+0x84EA02,0x85656D };
+
+// Lots of hex.. that's why they call us a "determined group of hackers"
+
+DWORD dwPatchAddrScanReloc2USA[56] = {
+0x0040D68C,0x005664D7,0x00566586,0x00408706,0x0056B3B1,0x0056AD91,0x0056A85F,0x005675FA,
+0x0056CD84,0x0056CC79,0x0056CB51,0x0056CA4A,0x0056C664,0x0056C569,0x0056C445,0x0056C341,
+0x0056BD46,0x0056BC53,0x0056BE56,0x0056A940,0x00567735,0x00546738,0x0054BB23,0x006E31AA,
+0x0040DC29,0x00534A09,0x00534D6B,0x00564B59,0x00564DA9,0x0067FF5D,0x00568CB9,0x00568EFB,
+0x00569F57,0x00569537,0x00569127,0x0056B4B5,0x0056B594,0x0056B2C3,0x0056AF74,0x0056AE95,
+0x0056BF4F,0x0056ACA3,0x0056A766,0x0056A685,0x0070B9BA,0x0056479D,0x0070ACB2,0x006063C7,
+0x00699CFE,0x0041A861,0x0040E061,0x0040DF5E,0x0040DDCE,0x0040DB0E,0x0040D98C,0x01566855 };
+
+DWORD dwPatchAddrScanReloc2EU[56] = {
+0x0040D68C,0x005664D7,0x00566586,0x00408706,0x0056B3B1,0x0056AD91,0x0056A85F,0x005675FA,
+0x0056CD84,0x0056CC79,0x0056CB51,0x0056CA4A,0x0056C664,0x0056C569,0x0056C445,0x0056C341,
+0x0056BD46,0x0056BC53,0x0056BE56,0x0056A940,0x00567735,0x00546738,0x0054BB23,0x006E31AA,
+0x0040DC29,0x00534A09,0x00534D6B,0x00564B59,0x00564DA9,0x0067FF5D,0x00568CB9,0x00568EFB,
+0x00569F57,0x00569537,0x00569127,0x0056B4B5,0x0056B594,0x0056B2C3,0x0056AF74,0x0056AE95,
+0x0056BF4F,0x0056ACA3,0x0056A766,0x0056A685,0x0070B9BA,0x0056479D,0x0070ACB2,0x006063C7,
+0x00699CFE,0x0041A861,0x0040E061,0x0040DF5E,0x0040DDCE,0x0040DB0E,0x0040D98C,0x01566845 };
+
+DWORD dwPatchAddrScanReloc3[11] = {
+0x004091C5,0x00409367,0x0040D9C5,0x0040DB47,0x0040DC61,0x0040DE07,0x0040DF97,
+0x0040E09A,0x00534A98,0x00534DFA,0x0071CDB0 };
+
+// For End
+// 0xB992B8 is reffed for checking end of scanlist... rewrite this to point to end of new list
+DWORD dwPatchAddrScanRelocEnd[4] = { 0x005634A6, 0x005638DF, 0x0056420F, 0x00564283 };
+
+//-----------------------------------------------------------
+
+void RelocateScanListHack()
+{
+	DWORD oldProt;
+	memset(&ScanListMemory[0], 0, sizeof(ScanListMemory));
+	unsigned char *aScanListMemory = &ScanListMemory[0];
+
+	// FIRST PREPARED LIST OF ACCESSORS
+	int x=0;
+	while(x!=14) {
+		if(iGtaVersion == GTASA_VERSION_USA10) {
+			VirtualProtect((PVOID)dwPatchAddrScanReloc1USA[x],4,PAGE_EXECUTE_READWRITE,&oldProt);
+			*(PDWORD)dwPatchAddrScanReloc1USA[x] = (DWORD)aScanListMemory;
+		}
+		else if(iGtaVersion == GTASA_VERSION_EU10) {
+			VirtualProtect((PVOID)dwPatchAddrScanReloc1EU[x],4,PAGE_EXECUTE_READWRITE,&oldProt);
+			*(PDWORD)dwPatchAddrScanReloc1EU[x] = (DWORD)aScanListMemory;
+		}
+		x++;
+	}
+
+	// SECOND PREPARED LIST OF ACCESSORS <G>
+	x=0;
+	while(x!=56) {
+		if(iGtaVersion == GTASA_VERSION_USA10) {
+			VirtualProtect((PVOID)dwPatchAddrScanReloc2USA[x],8,PAGE_EXECUTE_READWRITE,&oldProt);
+			*(PDWORD)(dwPatchAddrScanReloc2USA[x] + 3) = (DWORD)aScanListMemory;
+		}
+		else if(iGtaVersion == GTASA_VERSION_EU10) {
+			VirtualProtect((PVOID)dwPatchAddrScanReloc2EU[x],8,PAGE_EXECUTE_READWRITE,&oldProt);
+			*(PDWORD)(dwPatchAddrScanReloc2EU[x] + 3) = (DWORD)aScanListMemory;
+		}
+		x++;
+	}
+
+	// THIRD LIST THAT POINTS TO THE BASE SCANLIST MEMORY + 4
+	x=0;
+	while(x!=11) {
+		VirtualProtect((PVOID)dwPatchAddrScanReloc3[x],8,PAGE_EXECUTE_READWRITE,&oldProt);
+		*(PDWORD)(dwPatchAddrScanReloc3[x] + 3) = (DWORD)(aScanListMemory+4);
+		x++;
+	}
+
+	// FOURTH LIST THAT POINTS TO THE END OF THE SCANLIST
+	x=0;
+	while(x!=4) {
+		VirtualProtect((PVOID)dwPatchAddrScanRelocEnd[x],4,PAGE_EXECUTE_READWRITE,&oldProt);
+		*(PDWORD)(dwPatchAddrScanRelocEnd[x]) = (DWORD)(aScanListMemory+sizeof(ScanListMemory));
+		x++;
+	}
+
+	// Others that didn't fit.
+	VirtualProtect((PVOID)0x564DC7,4,PAGE_EXECUTE_READWRITE,&oldProt);
+	*(PDWORD)0x564DC7 = (DWORD)(aScanListMemory+115200);
+
+	VirtualProtect((PVOID)0x40936A,4,PAGE_EXECUTE_READWRITE,&oldProt);
+	*(PDWORD)0x40936A = (DWORD)(aScanListMemory+4);
+
+	// Reset the exe scanlist mem for playerinfo's
+	memset((BYTE*)0xB7D0B8,0,8*14400);
+}
+
+//----------------------------------------------------------
