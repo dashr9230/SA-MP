@@ -385,6 +385,9 @@
 			RelativePath=".\chatwindow.h">
 		</File>
 		<File
+			RelativePath=".\cmdprocs.cpp">
+		</File>
+		<File
 			RelativePath=".\cmdwindow.cpp">
 		</File>
 		<File
