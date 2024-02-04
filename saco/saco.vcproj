@@ -345,6 +345,12 @@
 				RelativePath="..\raknet\RakSleep.h">
 			</File>
 			<File
+				RelativePath="..\raknet\Rand.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\Rand.h">
+			</File>
+			<File
 				RelativePath="..\raknet\RPCMap.cpp">
 			</File>
 			<File
