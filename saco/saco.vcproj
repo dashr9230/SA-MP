@@ -357,6 +357,12 @@
 				RelativePath="..\raknet\SAMPRPC.h">
 			</File>
 			<File
+				RelativePath="..\raknet\SHA1.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\SHA1.h">
+			</File>
+			<File
 				RelativePath="..\raknet\SimpleMutex.cpp">
 			</File>
 			<File
