@@ -236,6 +236,9 @@
 				RelativePath=".\amx\amx.h">
 			</File>
 			<File
+				RelativePath=".\amx\amxfloat.c">
+			</File>
+			<File
 				RelativePath=".\amx\amxtime.c">
 			</File>
 		</Filter>

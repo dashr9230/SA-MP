@@ -260,6 +260,9 @@
 				RelativePath="..\server\amx\amx.h">
 			</File>
 			<File
+				RelativePath="..\server\amx\amxfloat.c">
+			</File>
+			<File
 				RelativePath="..\server\amx\amxtime.c">
 			</File>
 		</Filter>
