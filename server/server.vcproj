@@ -235,6 +235,9 @@
 			<File
 				RelativePath=".\amx\amx.h">
 			</File>
+			<File
+				RelativePath=".\amx\amxtime.c">
+			</File>
 		</Filter>
 		<File
 			RelativePath=".\actorpool.cpp">

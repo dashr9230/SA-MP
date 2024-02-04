@@ -259,6 +259,9 @@
 			<File
 				RelativePath="..\server\amx\amx.h">
 			</File>
+			<File
+				RelativePath="..\server\amx\amxtime.c">
+			</File>
 		</Filter>
 		<File
 			RelativePath=".\bot.rc">
