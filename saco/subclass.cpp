@@ -8,6 +8,20 @@ LRESULT APIENTRY NewWndProc(HWND,UINT,WPARAM,LPARAM);
 
 //----------------------------------------------------
 
+void InstallNewWindowProcedure()
+{
+	HWND hwndGameWnd = pGame->GetMainWindowHwnd();
+
+	if(hwndGameWnd) {
+		hOldProc = (WNDPROC)GetWindowLong(hwndGameWnd,GWL_WNDPROC);
+		if(hOldProc != NewWndProc) {
+			SetWindowLong(hwndGameWnd,GWL_WNDPROC,(LONG)NewWndProc);
+		}
+	}
+}
+
+//----------------------------------------------------
+
 BOOL SubclassGameWindow()
 {
 	HWND hwndGameWnd = pGame->GetMainWindowHwnd();
@@ -17,12 +31,7 @@ BOOL SubclassGameWindow()
 	DWORD dwStyle = GetClassLong(hwndGameWnd,GCL_STYLE);
 	SetClassLong(hwndGameWnd,GCL_STYLE,dwStyle|CS_DBLCLKS);
 
-	if(hwndGameWnd) {
-		hOldProc = (WNDPROC)GetWindowLong(hwndGameWnd,GWL_WNDPROC);
-		if(hOldProc != NewWndProc) {
-			SetWindowLong(hwndGameWnd,GWL_WNDPROC,(LONG)NewWndProc);
-		}
-	}
+	InstallNewWindowProcedure();
 
 	SetWindowText(hwndGameWnd,"GTA:SA:MP");
 
