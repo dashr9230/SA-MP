@@ -247,6 +247,12 @@
 				RelativePath=".\net\netgame.h">
 			</File>
 			<File
+				RelativePath=".\net\netrpc.cpp">
+			</File>
+			<File
+				RelativePath=".\net\netrpc.h">
+			</File>
+			<File
 				RelativePath=".\net\scriptrpc.cpp">
 			</File>
 			<File
