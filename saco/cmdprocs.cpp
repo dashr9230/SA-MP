@@ -53,7 +53,7 @@ void cmdHudScaleFix(PCHAR szCmd)
 
 void cmdMem(PCHAR szCmd)
 {
-	// TODO: cmdMem
+	pChatWindow->AddDebugMessage("Memory: %u",*(DWORD *)0x8A5A80);
 }
 
 void cmdSetFrameLimit(PCHAR szCmd)
