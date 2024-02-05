@@ -24,7 +24,9 @@ typedef struct _GAME_SETTINGS {
 
 #include "game/game.h"
 
-#include "../raknet/NetworkTypes.h"
+#include "../raknet/RakClientInterface.h"
+#include "../raknet/RakNetworkFactory.h"
+#include "../raknet/SAMPRPC.h"
 #include "../raknet/GetTime.h"
 
 #include "net/netrpc.h"
