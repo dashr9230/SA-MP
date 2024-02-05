@@ -34,6 +34,27 @@ CFileSystem *pFileSystem=NULL;
 
 void TheGraphicsLoop();
 LONG WINAPI exc_handler(_EXCEPTION_POINTERS* exc_inf);
+void sub_1009DD50();
+
+// polls the game until it's able to run.
+void LaunchMonitor(PVOID v)
+{
+	if(pGame)
+		pGame->InitGame();
+
+	while(1) {
+		if(*(PDWORD)ADDR_ENTRY == 7) {
+			sub_1009DD50();
+			pGame->StartGame();
+			break;
+		}
+		else {
+			Sleep(5);
+		}
+	}
+
+	ExitThread(0);
+}
 
 //----------------------------------------------------
 
@@ -70,7 +91,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 
 			pGame = new CGame();
 
-			//_beginthread((int)sub_100C3A80, 0, 0);
+			_beginthread(LaunchMonitor,0,NULL);
 		}
 	}
 	else if(DLL_PROCESS_DETACH==fdwReason)

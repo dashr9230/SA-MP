@@ -76,6 +76,13 @@ void CGame::InitGame()
 
 //-----------------------------------------------------------
 
+void CGame::StartGame()
+{
+	// TODO: CGame::StartGame() .text:100A08E0
+}
+
+//-----------------------------------------------------------
+
 void CGame::sub_100A0060()
 {
 	// No indication for __thiscall, maybe not part of CGame

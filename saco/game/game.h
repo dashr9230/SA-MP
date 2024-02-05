@@ -36,6 +36,7 @@ public:
 
 	HWND	GetMainWindowHwnd() { return *(HWND *)ADDR_HWND; };
 
+	void	StartGame();
 	void	InitGame();
 
 	CGame();
