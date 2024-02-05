@@ -1,6 +1,10 @@
 
 #include "main.h"
 
+extern CChatWindow   *pChatWindow;
+extern CCmdWindow	 *pCmdWindow;
+extern CDeathWindow	 *pDeathWindow;
+
 void cmdDefaultCmdProc(PCHAR szCmd)
 {
 	// TODO: cmdDefaultCmdProc
@@ -8,7 +12,16 @@ void cmdDefaultCmdProc(PCHAR szCmd)
 
 void cmdTestDeathWindow(PCHAR szCmd)
 {
-	// TODO: cmdTestDeathWindow
+	if(pDeathWindow) {
+		pDeathWindow->AddMessage("Pooper","Pooper333",0xFFFFFFFF,0xFFFFFFFF,1);
+		pDeathWindow->AddMessage("Pooper","Pooper",0xFFFFFFFF,0xFFFFFFFF,5);
+		pDeathWindow->AddMessage("Pooper","Pooper",0xFFFFFFFF,0xFFFFFFFF,15);
+		pDeathWindow->AddMessage("Pooper","Pooper",0xFFFFFFFF,0xFFFFFFFF,14);
+		pDeathWindow->AddMessage("Pooper","Pooper",0xFFFFFFFF,0xFFFFFFFF,2);
+		pDeathWindow->AddMessage(0,"PooperPooperPooper0001",0xFFFFFFFF,0xFFFFFFFF,5);
+		pDeathWindow->AddMessage(0,"Pooper",0xFFFFFFFF,0xFFFFFFFF,-1);
+		pDeathWindow->AddMessage("Pooper","PooperPooperPooper0001",0xFFFFFFFF,0xFFFFFFFF,0);
+	}
 }
 
 void cmdCameraTargetDebug(PCHAR szCmd)
