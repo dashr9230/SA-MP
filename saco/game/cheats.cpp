@@ -4,6 +4,8 @@
 
 #include <Tlhelp32.h>
 
+BOOL unknown_1014FDA4;
+
 DWORD dwD3D9DllBaseAddr=0;
 DWORD dwD3D9DllSize=0;
 
@@ -72,6 +74,13 @@ int CheckDuplicateD3D9Dlls()
 
 	CloseHandle( hModuleSnap );
 	return iFoundD3D9Dll;
+}
+
+//----------------------------------------------------------
+
+void sub_1009DD50()
+{
+	unknown_1014FDA4 = TRUE;
 }
 
 //----------------------------------------------------------
