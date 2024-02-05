@@ -33,6 +33,7 @@ typedef struct _GAME_SETTINGS {
 #include "fontrender.h"
 #include "chatwindow.h"
 #include "cmdwindow.h"
+#include "deathwindow.h"
 #include "audiostream.h"
 #include "archive/ArchiveFS.h"
 

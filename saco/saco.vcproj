@@ -412,6 +412,12 @@
 			RelativePath=".\config.h">
 		</File>
 		<File
+			RelativePath=".\deathwindow.cpp">
+		</File>
+		<File
+			RelativePath=".\deathwindow.h">
+		</File>
+		<File
 			RelativePath=".\exceptbox.rc">
 		</File>
 		<File

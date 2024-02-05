@@ -13,7 +13,7 @@ CHAR					szCacheDir[MAX_PATH+1];
 CConfig					*pConfig=0;
 CChatWindow				*pChatWindow=0;
 CCmdWindow				*pCmdWindow=0;
-//DWORD					dword_1026EB88=0;
+CDeathWindow			*pDeathWindow=0;
 CAudioStream			*pAudioStream=0;
 //DWORD					dword_1026EB90=0;
 CNetGame				*pNetGame=0;
