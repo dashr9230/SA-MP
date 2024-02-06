@@ -30,6 +30,7 @@ typedef struct _GAME_SETTINGS {
 #include "../raknet/GetTime.h"
 
 #include "net/netrpc.h"
+#include "net/vehiclepool.h"
 #include "net/netgame.h"
 #include "net/scriptrpc.h"
 

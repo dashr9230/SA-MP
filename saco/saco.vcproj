@@ -258,6 +258,12 @@
 			<File
 				RelativePath=".\net\scriptrpc.h">
 			</File>
+			<File
+				RelativePath=".\net\vehiclepool.cpp">
+			</File>
+			<File
+				RelativePath=".\net\vehiclepool.h">
+			</File>
 		</Filter>
 		<Filter
 			Name="ttmath"
