@@ -25,6 +25,10 @@ struct struc_41
 	char _gap30[10];
 };
 
+typedef struct _NETGAME_POOLS {
+	char _gap0[0x24];
+} NETGAME_POOLS;
+
 class CNetGame // size: 994
 {
 private:
@@ -44,11 +48,14 @@ private:
 	int field_3D1;
 	struc_41 *field_3D5;
 	char field_3D9;
-	char _gap3DA[8];
+	char _gap3DA[4];
+	NETGAME_POOLS* m_pPools;
 
 public:
 
 	CNetGame(char *a2, int a3, char *a4, char *a5);
+
+	void InitPools();
 
 	DWORD GetTime();
 

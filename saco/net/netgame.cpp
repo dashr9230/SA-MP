@@ -17,12 +17,21 @@ CNetGame::CNetGame(PCHAR szHostOrIp, int iPort,
 
 	m_pRakClient = RakNetworkFactory::GetRakClientInterface();
 
+	InitPools();
+
 
 	m_iGameState = GAMESTATE_WAIT_CONNECT;
 
 	if(pChatWindow) pChatWindow->AddDebugMessage("{FFFFFF}SA-MP {B9C9BF}0.3.7-R5 {FFFFFF}Started");
 
 	// TODO: CNetGame::CNetGame(...) .text:1000B930
+}
+
+//----------------------------------------------------
+
+void CNetGame::InitPools()
+{
+	m_pPools = (NETGAME_POOLS *)calloc(1, sizeof(NETGAME_POOLS));
 }
 
 DWORD CNetGame::GetTime()
