@@ -3,12 +3,14 @@
 
 #include <windows.h>
 
+#define MAX_PLAYERS			1004
 #define MAX_VEHICLES		2000
 #define PLAYER_PED_SLOTS	210
 
 //-----------------------------------------------------------
 
 typedef unsigned short VEHICLEID;
+typedef unsigned short PLAYERID;
 
 typedef struct _VECTOR {
 	float X,Y,Z;
