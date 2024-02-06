@@ -2,6 +2,7 @@
 #pragma once
 
 #include "address.h"
+#include "common.h"
 #include "audio.h"
 #include "camera.h"
 #include "scripting.h"
