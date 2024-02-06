@@ -1,12 +1,12 @@
 /*
- *  sha1.cpp
+ *  fhicl-sha1.cpp
  *
  *  Copyright (C) 1998, 2009
  *  Paul E. Jones <paulej@packetizer.com>
  *  All Rights Reserved.
  *
  *****************************************************************************
- *  $Id: sha1.cpp 12 2009-06-22 19:34:25Z paulej $
+ *  $Id: fhicl-sha1.cpp 12 2009-06-22 19:34:25Z paulej $
  *****************************************************************************
  *
  *  Description:
@@ -37,7 +37,7 @@
  *
  */
 
-#include "sha1.h"
+#include "fhicl-sha1.h"
 
 namespace fhicl {
 

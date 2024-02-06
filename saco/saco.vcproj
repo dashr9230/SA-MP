@@ -430,6 +430,12 @@
 			RelativePath=".\exceptions.cpp">
 		</File>
 		<File
+			RelativePath=".\fhicl-sha1.cpp">
+		</File>
+		<File
+			RelativePath=".\fhicl-sha1.h">
+		</File>
+		<File
 			RelativePath=".\filesystem.cpp">
 		</File>
 		<File
@@ -476,12 +482,6 @@
 		</File>
 		<File
 			RelativePath=".\saco.rc">
-		</File>
-		<File
-			RelativePath=".\sha1.cpp">
-		</File>
-		<File
-			RelativePath=".\sha1.h">
 		</File>
 		<File
 			RelativePath=".\subclass.cpp">
