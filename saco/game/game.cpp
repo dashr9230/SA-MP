@@ -8,6 +8,9 @@ char *szGameTextMessage;
 
 int unnamed_10150340[210];
 
+BYTE unnamed_10150688;
+int unnamed_1015068C;
+
 float unnamed_10116718 = 2.0f;
 
 BOOL ApplyPreGamePatches();
