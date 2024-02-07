@@ -8,6 +8,8 @@ char *szGameTextMessage;
 
 int unnamed_10150340[210];
 
+float unnamed_10116718 = 2.0f;
+
 BOOL ApplyPreGamePatches();
 
 CGame::CGame()
@@ -50,6 +52,48 @@ void CGame::sub_100A0010()
 	}
 }
 
+void unnamed_100A0060(float a1)
+{
+  *(float*)0xB7CB5C = a1;
+  *(float*)0xB7CB58 = a1;
+  unnamed_10116718 = a1 * 3.0f;
+}
+
+void CGame::sub_100A0090(int a1, int a2)
+{
+	if(a1 && a2 && a1 < 1000 / a2)
+		Sleep(1000 / a2 - a1 - 1);
+}
+
+BYTE CGame::sub_100A00C0()
+{
+	BYTE result = 2;
+	while(result != 210)
+	{
+		if(!unnamed_10150340[result])
+			return result;
+		result++;
+	}
+	return 0;
+}
+
+BYTE CGame::sub_100A00F0()
+{
+	BYTE result = 0;
+	BYTE v1 = 2;
+	while(v1 != 210)
+	{
+		if(unnamed_10150340[v1] == 1)
+		{
+			result++;
+		}
+		v1++;
+	}
+	return result;
+}
+
+
+
 //-----------------------------------------------------------
 
 void CGame::InitGame()
@@ -83,27 +127,11 @@ void CGame::StartGame()
 
 //-----------------------------------------------------------
 
-void CGame::sub_100A0060()
-{
-	// No indication for __thiscall, maybe not part of CGame
 
-	// TODO: CGame::sub_100A0060() .text:100A0060 (unused)
-}
 
-void CGame::sub_100A0090()
-{
-	// TODO: CGame::sub_100A0090() .text:100A0090
-}
 
-void CGame::sub_100A00C0()
-{
-	// TODO: CGame::sub_100A00C0() .text:100A00C0 (unused)
-}
 
-void CGame::sub_100A00F0()
-{
-	// TODO: CGame::sub_100A00F0() .text:100A00F0
-}
+
 
 void CGame::sub_100A0110()
 {
