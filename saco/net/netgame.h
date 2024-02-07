@@ -28,7 +28,8 @@ struct struc_41
 typedef struct _NETGAME_POOLS {
 	CVehiclePool	*pVehiclePool;
 	CPlayerPool		*pPlayerPool;
-	char _gap0[28];
+	CPickupPool		*pPickupPool;
+	char _gap0[24];
 } NETGAME_POOLS;
 
 class CNetGame // size: 994
