@@ -146,6 +146,12 @@
 				RelativePath=".\game\common.h">
 			</File>
 			<File
+				RelativePath=".\game\entity.cpp">
+			</File>
+			<File
+				RelativePath=".\game\entity.h">
+			</File>
+			<File
 				RelativePath=".\game\font.cpp">
 			</File>
 			<File
