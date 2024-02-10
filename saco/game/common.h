@@ -26,3 +26,18 @@ typedef struct _MATRIX4X4 {
 	VECTOR pos;
 	float  pad_p;
 } MATRIX4X4, *PMATRIX4X4;
+
+//-----------------------------------------------------------
+#pragma pack(1)
+typedef struct _ENTITY_TYPE
+{
+	// ENTITY STUFF
+	DWORD vtable; // 0-4
+
+	char _pad4[16];
+
+	MATRIX4X4 *mat; // 20-24
+
+} ENTITY_TYPE;
+
+//-----------------------------------------------------------

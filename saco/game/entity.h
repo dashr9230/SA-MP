@@ -11,8 +11,10 @@ public:
 	};
 	virtual ~CEntity() {};
 
+	void  GetMatrix(PMATRIX4X4 Matrix);
+	void  SetMatrix(MATRIX4X4 Matrix);
 	char		field_4[60];
-	int			field_40;
+	ENTITY_TYPE *m_pEntity;
 	int 		field_44;
 };
 
