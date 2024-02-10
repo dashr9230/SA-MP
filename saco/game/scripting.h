@@ -24,6 +24,9 @@ const SCRIPT_COMMAND point_camera						= { 0x0160, "fffi" };	// x, y, z, type
 const SCRIPT_COMMAND restore_camera_jumpcut				= { 0x02EB, "" };		// -/-
 const SCRIPT_COMMAND set_camera_position				= { 0x015F, "ffffff" }; // x, y, z, vx, vy, vz
 const SCRIPT_COMMAND restore_camera_to_user_defined = { 0x925, "" };
+const SCRIPT_COMMAND set_camera_position_to = { 0x936, "ffffffii" };
+const SCRIPT_COMMAND point_camera_transverse_to = { 0x920, "ffffffii" };
+const SCRIPT_COMMAND lock_camera_target_point = { 0x92F, "i" };
 const SCRIPT_COMMAND lock_camera_position = { 0x930, "i" };
 
 

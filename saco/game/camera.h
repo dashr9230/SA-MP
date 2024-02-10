@@ -18,6 +18,9 @@ public:
 	void Fade(int iInOut);
 	void GetMatrix(PMATRIX4X4 Matrix);
 	void SetMatrix(MATRIX4X4 Matrix);
+	void Attach(int unk1, int unk2, int unk3);
+	void InterpolatePosition(VECTOR *vecFrom, VECTOR *vecTo, int iTime, BYTE byteCut);
+	void InterpolateLookAt(VECTOR *vecFrom, VECTOR *vecTo, int iTime, BYTE byteCut);
 
 	CCamera() {
 		m_matPos = (MATRIX4X4 *)ADDR_CAMERA;

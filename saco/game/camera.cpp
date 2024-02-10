@@ -2,6 +2,8 @@
 #include "game.h"
 #include "util.h"
 
+bool byte_1014FD8C;
+
 //-----------------------------------------------------------
 
 void CCamera::SetBehindPlayer()
@@ -89,4 +91,44 @@ void CCamera::SetMatrix(MATRIX4X4 Matrix)
 }
 
 //-----------------------------------------------------------
+
+// unused, also probably not part of CCamera
+void sub_1009D560(bool unk)
+{
+	byte_1014FD8C = unk;
+}
+
+//-----------------------------------------------------------
+
+void CCamera::Attach(int unk1, int unk2, int unk3)
+{
+	_asm push 1
+	_asm push unk3
+	_asm push unk2
+	_asm push unk1
+	_asm mov ecx, 0xB6F028
+	_asm mov edx, 0x50C7C0
+	_asm call edx
+}
+
+//-----------------------------------------------------------
+
+void CCamera::InterpolatePosition(VECTOR *vecFrom, VECTOR *vecTo, int iTime, BYTE byteCut)
+{
+	ScriptCommand(&restore_camera_to_user_defined);
+	ScriptCommand(&lock_camera_position,1);
+	ScriptCommand(&set_camera_position_to,vecFrom->X,vecFrom->Y,vecFrom->Z,vecTo->X,vecTo->Y,vecTo->Z,iTime,byteCut);
+}
+
+//-----------------------------------------------------------
+
+void CCamera::InterpolateLookAt(VECTOR *vecFrom, VECTOR *vecTo, int iTime, BYTE byteCut)
+{
+	ScriptCommand(&lock_camera_target_point,1);
+	ScriptCommand(&point_camera_transverse_to,vecFrom->X,vecFrom->Y,vecFrom->Z,vecTo->X,vecTo->Y,vecTo->Z,iTime,byteCut);
+}
+
+//-----------------------------------------------------------
+
+
 
