@@ -5,6 +5,10 @@
 
 #define ADDR_KEYSTATES							0xB73458
 
+#define ADDR_MENU								0xBA67A4
+#define ADDR_MENU2								0xBA67A5
+#define ADDR_MENU3								0xBA67A6
+
 #define ADDR_GAME_STARTED						0xBA6831
 #define ADDR_ENTRY								0xC8D4C0
 

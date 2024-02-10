@@ -15,6 +15,10 @@ float unnamed_10116718 = 2.0f;
 
 BOOL ApplyPreGamePatches();
 
+typedef void (*DrawZone_t)(float *fPos, DWORD *dwColor, BYTE byteMenu);
+
+//-----------------------------------------------------------
+
 CGame::CGame()
 {
 	// TODO: CGame::CGame()
@@ -242,6 +246,81 @@ DWORD CGame::GetD3DDevice()
 	}
 
 	return pdwD3DDev;
+}
+
+//-----------------------------------------------------------
+
+// DOESN'T CURRENTLY WORK
+
+void CGame::RestartEverything()
+{
+	//*(PBYTE)ADDR_MENU = 1;
+	*(PBYTE)ADDR_MENU2 = 1;
+	*(PBYTE)ADDR_MENU3 = 1;
+
+	//(PBYTE)ADDR_GAME_STARTED = 0;
+	//*(PBYTE)ADDR_MENU = 1;
+
+	OutputDebugString("ShutDownForRestart");
+	_asm mov edx, 0x53C550 ; internal_CGame_ShutDownForRestart
+	_asm call edx
+
+	OutputDebugString("Timers stopped");
+	_asm mov edx, 0x561AA0 ; internal_CTimer_Stop
+	_asm call edx
+
+	OutputDebugString("ReInitialise");
+	_asm mov edx, 0x53C680 ; internal_CGame_InitialiseWhenRestarting
+	_asm call edx
+
+	*(PBYTE)ADDR_GAME_STARTED = 1;
+
+}
+
+//-----------------------------------------------------------
+
+DWORD CGame::GetWeaponInfo(int iWeapon, int iUnk)
+{
+	DWORD dwRet;
+
+	_asm push iUnk
+	_asm push iWeapon
+	_asm mov edx, 0x743C60
+	_asm call edx
+	_asm pop ecx
+	_asm pop ecx
+	_asm mov dwRet, eax
+
+	return dwRet;
+}
+
+//----------------------------------------------------
+
+void CGame::SetGravity(float fGravity)
+{
+	UnFuck(0x863984, 4);
+	*(float*)0x863984 = fGravity;
+}
+
+// ---------------------------------------------------
+
+void CGame::SetWantedLevel(BYTE byteLevel)
+{
+	*(BYTE*)0x58DB60 = byteLevel;
+}
+
+//-----------------------------------------------------------
+
+void CGame::SetGameTextCount(WORD wCount)
+{
+	*(WORD*)0xA44B68 = wCount;
+}
+
+//-----------------------------------------------------------
+
+void CGame::DrawGangZone(float fPos[], DWORD dwColor)
+{
+	((DrawZone_t)0x5853D0)(fPos, &dwColor, *(BYTE*)ADDR_MENU);
 }
 
 //-----------------------------------------------------------

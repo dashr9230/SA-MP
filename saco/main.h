@@ -46,3 +46,5 @@ typedef struct _GAME_SETTINGS {
 void SetStringFromCommandLine(char *szCmdLine, char *szString);
 void SetStringFromQuotedCommandLine(char *szCmdLine, char *szString);
 void InitSettings();
+
+void UnFuck(DWORD addr, int size);

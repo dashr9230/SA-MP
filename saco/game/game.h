@@ -33,12 +33,21 @@ private:
 
 public:
 
+
+	void	SetGravity(float fGravity);
+
+	void	SetWantedLevel(BYTE byteLevel);
+	void	SetGameTextCount(WORD wCount);
+	void	DrawGangZone(float* fPos, DWORD dwColor);
 	DWORD	GetD3DDevice();
 
 	HWND	GetMainWindowHwnd() { return *(HWND *)ADDR_HWND; };
 
 	void	StartGame();
 	void	InitGame();
+
+	DWORD GetWeaponInfo(int iWeapon, int iUnk);
+
 
 	CGame();
 
