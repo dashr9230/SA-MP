@@ -30,4 +30,4 @@ TODO
 TODO
 
 ## Contributing
-If you are interested in this decompilation project, feel free to create a pull request and/or join to my [Discord server](https://discord.gg/7Kf5ue7F).
+If you are interested in this decompilation project, feel free to create a pull request and/or join to my [Discord server](https://discord.gg/4JHvTF5zCZ).
