@@ -5,6 +5,7 @@
 
 #define MAX_PLAYERS			1004
 #define MAX_VEHICLES		2000
+#define MAX_OBJECTS			1000
 #define PLAYER_PED_SLOTS	210
 
 //-----------------------------------------------------------

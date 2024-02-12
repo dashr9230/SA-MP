@@ -259,6 +259,12 @@
 				RelativePath=".\net\netrpc.h">
 			</File>
 			<File
+				RelativePath=".\net\objectpool.cpp">
+			</File>
+			<File
+				RelativePath=".\net\objectpool.h">
+			</File>
+			<File
 				RelativePath=".\net\pickuppool.cpp">
 			</File>
 			<File
