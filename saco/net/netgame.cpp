@@ -34,6 +34,7 @@ void CNetGame::InitPools()
 	m_pPools = (NETGAME_POOLS *)calloc(1, sizeof(NETGAME_POOLS));
 
 	m_pPools->pObjectPool	= new CObjectPool();
+	m_pPools->pMenuPool		= new CMenuPool();
 	m_pPools->pLabelPool	= new CLabelPool();
 	m_pPools->pPlayerPool	= new CPlayerPool();
 	m_pPools->pVehiclePool	= new CVehiclePool();

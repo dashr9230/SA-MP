@@ -259,6 +259,12 @@
 				RelativePath=".\net\labelpool.h">
 			</File>
 			<File
+				RelativePath=".\net\menupool.cpp">
+			</File>
+			<File
+				RelativePath=".\net\menupool.h">
+			</File>
+			<File
 				RelativePath=".\net\netgame.cpp">
 			</File>
 			<File
