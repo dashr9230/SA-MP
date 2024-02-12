@@ -37,6 +37,7 @@ void CNetGame::InitPools()
 	m_pPools->pPlayerPool	= new CPlayerPool();
 	m_pPools->pVehiclePool	= new CVehiclePool();
 	m_pPools->pPickupPool	= new CPickupPool();
+	m_pPools->pActorPool	= new CActorPool();
 }
 
 DWORD CNetGame::GetTime()

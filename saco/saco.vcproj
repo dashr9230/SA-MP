@@ -247,6 +247,12 @@
 			Name="net"
 			Filter="">
 			<File
+				RelativePath=".\net\actorpool.cpp">
+			</File>
+			<File
+				RelativePath=".\net\actorpool.h">
+			</File>
+			<File
 				RelativePath=".\net\netgame.cpp">
 			</File>
 			<File
