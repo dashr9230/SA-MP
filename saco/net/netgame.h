@@ -31,7 +31,9 @@ typedef struct _NETGAME_POOLS {
 	CPickupPool		*pPickupPool;
 	CObjectPool		*pObjectPool;
 	CActorPool		*pActorPool;
-	char _gap0[16];
+	char _gap0[4];
+	CLabelPool		*pLabelPool;
+	char _gap1[8];
 } NETGAME_POOLS;
 
 class CNetGame // size: 994
