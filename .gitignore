@@ -10,3 +10,7 @@
 *.~ddp
 *.~dfm
 *.~pas
+
+# Delphi compiled units and diagram portfolio
+*.dcu
+*.ddp
