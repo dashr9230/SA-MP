@@ -110,6 +110,15 @@ BitStream::BitStream( char* _dataC, unsigned int lengthInBytes, bool _copyData )
 		data = ( unsigned char* ) _data;
 }
 
+// Use this if you pass a pointer copy to the constructor (_copyData==false) and want to overallocate to prevent reallocation
+void BitStream::SetNumberOfBitsAllocated( const unsigned int lengthInBits )
+{
+#ifdef _DEBUG
+	assert( lengthInBits >= ( unsigned int ) numberOfBitsAllocated );
+#endif
+	numberOfBitsAllocated = lengthInBits;
+}
+
 BitStream::~BitStream()
 {
 	if ( copyData && numberOfBitsAllocated > BITSTREAM_STACK_ALLOCATION_SIZE << 3)

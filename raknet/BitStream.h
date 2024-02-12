@@ -5,6 +5,7 @@
 
 #include "Export.h"
 #include "NetworkTypes.h"
+#include <assert.h>
 
 /// Arbitrary size, just picking something likely to be larger than most packets
 #define BITSTREAM_STACK_ALLOCATION_SIZE 256
@@ -46,6 +47,10 @@ namespace RakNet
 		/// Destructor 
 		~BitStream();
 
+		/// Use this if you pass a pointer copy to the constructor
+		/// *(_copyData==false) and want to overallocate to prevent
+		/// *reallocation
+		void SetNumberOfBitsAllocated( const unsigned int lengthInBits );
 
 
 	private:
