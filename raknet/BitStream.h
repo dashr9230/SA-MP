@@ -47,6 +47,9 @@ namespace RakNet
 		/// Destructor 
 		~BitStream();
 
+		/// Resets the bitstream for reuse.
+		void Reset( void );
+
 		/// Use this if you pass a pointer copy to the constructor
 		/// *(_copyData==false) and want to overallocate to prevent
 		/// *reallocation

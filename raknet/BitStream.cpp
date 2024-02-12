@@ -125,6 +125,28 @@ BitStream::~BitStream()
 		free( data );  // Use realloc and free so we are more efficient than delete and new for resizing
 }
 
+void BitStream::Reset( void )
+{
+	// Note:  Do NOT reallocate memory because BitStream is used
+	// in places to serialize/deserialize a buffer. Reallocation
+	// is a dangerous operation (may result in leaks).
+
+	if ( numberOfBitsUsed > 0 )
+	{
+		//  memset(data, 0, BITS_TO_BYTES(numberOfBitsUsed));
+	}
+
+	// Don't free memory here for speed efficiency
+	//free(data);  // Use realloc and free so we are more efficient than delete and new for resizing
+	numberOfBitsUsed = 0;
+
+	//numberOfBitsAllocated=8;
+	readOffset = 0;
+
+	//data=(unsigned char*)malloc(1);
+	// if (numberOfBitsAllocated>0)
+	//  memset(data, 0, BITS_TO_BYTES(numberOfBitsAllocated));
+}
 
 
 
