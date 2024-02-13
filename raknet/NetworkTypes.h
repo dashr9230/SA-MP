@@ -17,13 +17,19 @@ typedef long long RakNetTimeNS;
 /// Corresponds to a network address
 struct RAK_DLL_EXPORT PlayerID
 {
-	char _gap0[6];
+	///The peer address from inet_addr.
+	unsigned int binaryAddress;
+	///The port number
+	unsigned short port;
+
+	bool operator==( const PlayerID& right ) const;
 };
 
 /// This represents a user message from another system.
 struct Packet
 {
-	char _gap0;
+	/// The data from the sender
+	unsigned char* data;
 };
 
 struct RPCParameters
