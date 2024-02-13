@@ -13,9 +13,28 @@ typedef unsigned int RakNetTime;
 typedef long long RakNetTimeNS;
 #endif
 
+/// \brief Unique identifier for a system.
+/// Corresponds to a network address
+struct RAK_DLL_EXPORT PlayerID
+{
+	char _gap0[6];
+};
+
+/// This represents a user message from another system.
+struct Packet
+{
+	char _gap0;
+};
+
 struct RPCParameters
 {
 	char _gap0; // TODO: RPCParameters
+};
+
+/// Index of an invalid PlayerID
+const PlayerID UNASSIGNED_PLAYER_ID =
+{
+	0xFFFFFFFF, 0xFFFF
 };
 
 /// \def REGISTER_STATIC_RPC
