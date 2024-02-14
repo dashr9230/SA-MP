@@ -96,9 +96,28 @@ void RakPeer::GetIncomingPassword( char* passwordData, int *passwordDataLength  
 		memcpy(passwordData, incomingPassword, *passwordDataLength);
 }
 
-void RakPeer::vftable_20()
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Description:
+// Call this to connect to the specified host (ip or domain name) and server port.
+// Calling Connect and not calling SetMaximumIncomingConnections acts as a dedicated client.  Calling both acts as a true peer.
+// This is a non-blocking connection.  You know the connection is successful when IsConnected() returns true
+// or receive gets a packet with the type identifier ID_CONNECTION_ACCEPTED.  If the connection is not
+// successful, such as rejected connection or no response then neither of these things will happen.
+// Requires that you first call Initialize
+//
+// Parameters:
+// host: Either a dotted IP address or a domain name
+// remotePort: Which port to connect to on the remote machine.
+// passwordData: A data block that must match the data block on the server.  This can be just a password, or can be a stream of data
+// passwordDataLength: The length in bytes of passwordData
+//
+// Returns:
+// True on successful initiation. False on incorrect parameters, internal error, or too many existing peers
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+bool RakPeer::Connect( const char* host, unsigned short remotePort, char* passwordData, int passwordDataLength )
 {
 	// TODO: RakPeer::vftable_20() (saco W: 10040550) (server W: 457B00 L: 806D230) (bot W: 40B2C0 L: 807306A)
+	return false;
 }
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

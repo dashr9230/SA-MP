@@ -18,7 +18,6 @@ public:
 	void vftable_4();
 	void vftable_8();
 	void vftable_C();
-	void vftable_20();
 
 	/// Sets how many incoming connections are allowed. If this is less than the number of players currently connected,
 	/// no more players will be allowed to connect.  If this is greater than the maximum number of peers allowed,
@@ -40,6 +39,19 @@ public:
 	/// \param[out] passwordData  Should point to a block large enough to hold the password data you passed to SetIncomingPassword()
 	/// \param[in,out] passwordDataLength Maximum size of the array passwordData.  Modified to hold the number of bytes actually written
 	void GetIncomingPassword( char* passwordData, int *passwordDataLength  );
+
+		/// \brief Connect to the specified host (ip or domain name) and server port.
+	/// Calling Connect and not calling SetMaximumIncomingConnections acts as a dedicated client.
+	/// Calling both acts as a true peer. This is a non-blocking connection.
+	/// You know the connection is successful when IsConnected() returns true or Receive() gets a message with the type identifier ID_CONNECTION_ACCEPTED.
+	/// If the connection is not successful, such as a rejected connection or no response then neither of these things will happen.
+	/// \pre Requires that you first call Initialize
+	/// \param[in] host Either a dotted IP address or a domain name
+	/// \param[in] remotePort Which port to connect to on the remote machine.
+	/// \param[in] passwordData A data block that must match the data block on the server passed to SetIncomingPassword.  This can be a string or can be a stream of data.  Use 0 for no password.
+	/// \param[in] passwordDataLength The length in bytes of passwordData
+	/// \return True on successful initiation. False on incorrect parameters, internal error, or too many existing peers.  Returning true does not mean you connected!
+	bool Connect( const char* host, unsigned short remotePort, char* passwordData, int passwordDataLength );
 
 	/// \brief Stops the network threads and closes all connections.
 	/// \param[in] blockDuration How long you should wait for all remaining messages to go out, including ID_DISCONNECTION_NOTIFICATION.  If 0, it doesn't wait at all.
