@@ -2,6 +2,11 @@
 
 #include "RakServer.h"
 
+RakServer::RakServer()
+{
+	// TODO: RakServer ctor saco .text:100436F0 server W .text:0045AC20 L .text:0807B820 bot L .text:08081062
+}
+
 void RakServer::vftable_0()
 {
 	// TODO: RakServer::vftable_0() (server W: 45AC90 L: 807B8C0)

@@ -14,6 +14,8 @@ class RAK_DLL_EXPORT RakServer : public RakServerInterface, public RakPeer
 {
 
 public:
+	///Constructor
+	RakServer();
 
 	void vftable_0();
 
