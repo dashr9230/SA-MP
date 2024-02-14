@@ -101,7 +101,11 @@ void RakPeer::vftable_20()
 	// TODO: RakPeer::vftable_20() (saco W: 10040550) (server W: 457B00 L: 806D230) (bot W: 40B2C0 L: 807306A)
 }
 
-void RakPeer::vftable_24()
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Description:
+// Stops the network threads and close all connections.  Multiple calls are ok.
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+void RakPeer::Disconnect( unsigned int blockDuration, unsigned char orderingChannel )
 {
 	// TODO: RakPeer::vftable_24() (saco W: 10040620) (server W: 457BD0 L: 806FB70) (bot W: 40B390 L: 80730D2)
 }

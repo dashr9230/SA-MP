@@ -19,8 +19,6 @@ public:
 	void vftable_8();
 	void vftable_C();
 	void vftable_20();
-	void vftable_24();
-	void vftable_28();
 
 	/// Sets how many incoming connections are allowed. If this is less than the number of players currently connected,
 	/// no more players will be allowed to connect.  If this is greater than the maximum number of peers allowed,
@@ -42,6 +40,12 @@ public:
 	/// \param[out] passwordData  Should point to a block large enough to hold the password data you passed to SetIncomingPassword()
 	/// \param[in,out] passwordDataLength Maximum size of the array passwordData.  Modified to hold the number of bytes actually written
 	void GetIncomingPassword( char* passwordData, int *passwordDataLength  );
+
+	/// \brief Stops the network threads and closes all connections.
+	/// \param[in] blockDuration How long you should wait for all remaining messages to go out, including ID_DISCONNECTION_NOTIFICATION.  If 0, it doesn't wait at all.
+	/// \param[in] orderingChannel If blockDuration > 0, ID_DISCONNECTION_NOTIFICATION will be sent on this channel
+	/// If you set it to 0 then the disconnection notification won't be sent
+	void Disconnect( unsigned int blockDuration, unsigned char orderingChannel=0 );
 
 	/// Returns if the network thread is running
 	/// \return true if the network thread is running, false otherwise
