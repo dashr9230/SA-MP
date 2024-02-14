@@ -4,6 +4,11 @@
 
 #include <string.h>
 
+RakPeer::RakPeer()
+{
+	// TODO: RakPeer ctor saco .text:1003DE50 server W .text:00455140 L .text:08072970 bot W .text:00408DF0 L .text:08071AB0
+}
+
 void RakPeer::vftable_0()
 {
 	// TODO: RakPeer::vftable_0() (saco W: 10042780) (server W: 459CC0 L: 8072430) (bot W: 40D490 L: 807229E)

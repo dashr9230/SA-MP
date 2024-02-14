@@ -11,6 +11,8 @@
 class RAK_DLL_EXPORT RakPeer : public RakPeerInterface
 {
 public:
+	///Constructor
+	RakPeer();
 
 	void vftable_0();
 	void vftable_4();
