@@ -2,6 +2,8 @@
 
 #include "RakPeer.h"
 
+#include <string.h>
+
 void RakPeer::vftable_0()
 {
 	// TODO: RakPeer::vftable_0() (saco W: 10042780) (server W: 459CC0 L: 8072430) (bot W: 40D490 L: 807229E)

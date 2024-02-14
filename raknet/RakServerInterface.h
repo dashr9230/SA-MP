@@ -3,6 +3,7 @@
 #ifndef __RAK_SERVER_INTERFACE_H
 #define __RAK_SERVER_INTERFACE_H
 
+#include "NetworkTypes.h"
 #include "Export.h"
 
 /// This is a user-interface class to act as a game server.  All it does is implement some functionality on top of RakPeer.

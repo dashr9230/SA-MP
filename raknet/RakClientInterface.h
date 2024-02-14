@@ -3,6 +3,8 @@
 #ifndef __RAK_CLIENT_INTERFACE_H
 #define __RAK_CLIENT_INTERFACE_H
 
+#include "NetworkTypes.h"
+
 class RakClientInterface
 {
 

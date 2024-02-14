@@ -4,6 +4,8 @@
 #include "keystuff.h"
 #include "aimstuff.h"
 
+extern int iGtaVersion;
+
 char *szGameTextMessage;
 
 int unnamed_10150340[210];

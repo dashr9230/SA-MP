@@ -4,6 +4,8 @@
 extern CChatWindow   *pChatWindow;
 extern CCmdWindow	 *pCmdWindow;
 extern CDeathWindow	 *pDeathWindow;
+extern GAME_SETTINGS tSettings;
+
 
 void cmdDefaultCmdProc(PCHAR szCmd)
 {

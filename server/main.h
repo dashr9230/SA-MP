@@ -62,6 +62,7 @@
 // Raknet
 #include "../raknet/RakServer.h"
 #include "../raknet/RakNetworkFactory.h"
+#include "../raknet/PacketEnumerations.h"
 #include "../raknet/SAMPRPC.h"
 #include "../raknet/GetTime.h"
 

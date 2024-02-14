@@ -182,6 +182,9 @@
 				RelativePath=".\game\scripting.h">
 			</File>
 			<File
+				RelativePath=".\game\unnamed_1.cpp">
+			</File>
+			<File
 				RelativePath=".\game\util.cpp">
 			</File>
 			<File
@@ -333,6 +336,12 @@
 				RelativePath="..\raknet\DataBlockEncryptor.h">
 			</File>
 			<File
+				RelativePath="..\raknet\EmailSender.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\EmailSender.h">
+			</File>
+			<File
 				RelativePath="..\raknet\Export.h">
 			</File>
 			<File
@@ -405,6 +414,12 @@
 				RelativePath="..\raknet\Rand.h">
 			</File>
 			<File
+				RelativePath="..\raknet\ReliabilityLayer.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\ReliabilityLayer.h">
+			</File>
+			<File
 				RelativePath="..\raknet\RPCMap.cpp">
 			</File>
 			<File
@@ -427,6 +442,9 @@
 			</File>
 			<File
 				RelativePath="..\raknet\SimpleMutex.h">
+			</File>
+			<File
+				RelativePath="..\raknet\SingleProducerConsumer.h">
 			</File>
 			<File
 				RelativePath="..\raknet\TEABlockEncryptor.cpp">
