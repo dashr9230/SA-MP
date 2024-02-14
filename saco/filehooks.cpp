@@ -13,6 +13,7 @@ def_CreateFileW Real_CreateFileW = NULL;
 def_ReadFile Real_ReadFile = NULL;
 def_CloseHandle Real_CloseHandle = NULL;
 def_GetFileType Real_GetFileType = NULL;
+def_ShowCursor Real_ShowCursor = NULL;
 
 ARCH_FILE_RECORD	OpenArchRecords[MAX_OPEN_ARCH_FILES];
 BOOL				bArchRecordSlotState[MAX_OPEN_ARCH_FILES];
@@ -93,6 +94,24 @@ DWORD WINAPI Arch_GetFileType( HANDLE hFile )
 	// TODO: Arch_GetFileType
 
 	return Real_GetFileType(hFile);
+}
+
+//----------------------------------------------------------
+
+int WINAPI Arch_ShowCursor(BOOL bShow)
+{
+	// TODO: Arch_ShowCursor
+
+	return Real_ShowCursor(bShow);
+}
+
+//----------------------------------------------------------
+
+void InstallShowCursorHook()
+{
+	Real_ShowCursor = (def_ShowCursor)DetourFunction(
+		(PBYTE)DetourFindFunction("user32.dll", "ShowCursor"),
+		(PBYTE)Arch_ShowCursor);
 }
 
 //----------------------------------------------------------

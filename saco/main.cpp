@@ -86,8 +86,8 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 			AddFontResourceA("gtaweap3.ttf");
 			AddFontResourceA("sampaux3.ttf");
 
-			//sub_10062970();
 			InstallFileSystemHooks();
+			InstallShowCursorHook();
 
 			pGame = new CGame();
 

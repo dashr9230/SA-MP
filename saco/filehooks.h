@@ -1,6 +1,7 @@
 
 #pragma once
 
+void InstallShowCursorHook();
 void InstallFileSystemHooks();
 
 #define MAX_OPEN_ARCH_FILES		50
@@ -21,3 +22,4 @@ typedef BOOL (WINAPI *def_ReadFile)(HANDLE,LPVOID,DWORD,LPDWORD,LPOVERLAPPED);
 typedef BOOL (WINAPI *def_CloseHandle)(HANDLE);
 typedef DWORD (WINAPI *def_GetFileType)(HANDLE);
 
+typedef int (WINAPI *def_ShowCursor)(BOOL);
