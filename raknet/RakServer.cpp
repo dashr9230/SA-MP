@@ -7,9 +7,16 @@ void RakServer::vftable_0()
 	// TODO: RakServer::vftable_0() (server W: 45AC90 L: 807B8C0)
 }
 
-void RakServer::vftable_4()
+bool RakServer::Start( unsigned short AllowedPlayers, unsigned int depreciated, int threadSleepTimer, unsigned short port, const char *forceHostAddress )
 {
+	bool init;
+
+
+	init=false;
+	
 	// TODO: RakServer::vftable_4() (server W: 45A130 L: 807B900)
+	
+	return init;
 }
 
 void RakServer::vftable_8()

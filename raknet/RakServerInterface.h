@@ -14,7 +14,16 @@ class RAK_DLL_EXPORT RakServerInterface
 
 public:
 	virtual void vftable_0()=0;
-	virtual void vftable_4()=0;
+
+	/// Call this to initiate the server with the number of players you want to be allowed connected at once
+	/// \param[in] AllowedPlayers Current maximum number of allowed players is 65535
+	/// \param[in] depreciated is for legacy purposes and is unused
+	/// \param[in] threadSleepTimer How many ms to Sleep each internal update cycle (30 to give the game priority, 0 for regular (recommended), -1 to not Sleep() (may be slower))
+	/// \param[in] port is the port you want the server to read and write onMake sure this port is open for UDP
+	/// \param[in] forceHostAddress Can force RakNet to use a particular IP to host on.  Pass 0 to automatically pick an IP
+	/// \return true on successful initiation, false otherwise
+	virtual bool Start( unsigned short AllowedPlayers, unsigned int depreciated, int threadSleepTimer, unsigned short port, const char *forceHostAddress=0 )=0;
+
 	virtual void vftable_8()=0;
 	virtual void vftable_C()=0;
 
