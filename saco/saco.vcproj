@@ -502,6 +502,12 @@
 			RelativePath=".\fhicl-sha1.h">
 		</File>
 		<File
+			RelativePath=".\filehooks.cpp">
+		</File>
+		<File
+			RelativePath=".\filehooks.h">
+		</File>
+		<File
 			RelativePath=".\filesystem.cpp">
 		</File>
 		<File
