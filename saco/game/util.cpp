@@ -4,6 +4,14 @@
 #include "../main.h"
 #include <sys/stat.h>
 
+DWORD dwPlayerPedPtrs[PLAYER_PED_SLOTS];
+
+struct struc_96
+{
+	char _gap0[16];
+};
+struc_96 unnamed_1026C258[PLAYER_PED_SLOTS];
+
 #define NUM_RADAR_COLORS 1000
 
 DWORD dwHudColors[NUM_RADAR_COLORS] = {
@@ -1044,6 +1052,42 @@ void GameResetRadarColors()
 }
 
 
+//-----------------------------------------------------------
+
+void __stdcall InitPlayerPedPtrRecords() 
+{
+	memset(&dwPlayerPedPtrs[0],0,sizeof(DWORD) * PLAYER_PED_SLOTS);
+	memset(unnamed_1026C258, 0, sizeof(struc_96) * PLAYER_PED_SLOTS);
+}
+
+//-----------------------------------------------------------
+
+void __stdcall SetPlayerPedPtrRecord(BYTE bytePlayer, DWORD dwPedPtr) 
+{
+	dwPlayerPedPtrs[bytePlayer] = dwPedPtr;
+
+	memset(&unnamed_1026C258[bytePlayer], 0, sizeof(struc_96));
+}
+
+//-----------------------------------------------------------
+
+DWORD __stdcall GetPlayerPedPtrRecord(BYTE bytePlayer)
+{
+	return dwPlayerPedPtrs[bytePlayer];
+}
+
+//-----------------------------------------------------------
+
+BYTE __stdcall FindPlayerNumFromPedPtr(DWORD dwPedPtr)
+{
+	BYTE x = 0;
+	while(x != PLAYER_PED_SLOTS)
+	{
+		if(dwPlayerPedPtrs[x] == dwPedPtr) return x;
+		x++;
+	}
+	return 0;
+}
 
 
 
