@@ -1011,6 +1011,14 @@ DWORD dwHudColors[NUM_RADAR_COLORS] = {
 
 DWORD dwUseHudColors[NUM_RADAR_COLORS];
 
+//-----------------------------------------------------------
+// Return the PED_TYPE * of the local player actor.
+
+PED_TYPE * __stdcall GamePool_FindPlayerPed()
+{
+	return *(PED_TYPE **)(0xB7CD98);
+}
+
 void __stdcall SetRadarColor(int nIndex,DWORD dwColor)
 {
 	if(nIndex < sizeof(dwUseHudColors)) {

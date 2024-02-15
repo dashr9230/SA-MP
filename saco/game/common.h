@@ -46,3 +46,12 @@ typedef struct _ENTITY_TYPE
 } ENTITY_TYPE;
 
 //-----------------------------------------------------------
+#pragma pack(1)
+typedef struct _PED_TYPE
+{
+	ENTITY_TYPE entity;
+
+} PED_TYPE;
+
+//-----------------------------------------------------------
+
