@@ -23,6 +23,11 @@ const SCRIPT_COMMAND set_camera_behind_player			= { 0x0373, "" };		// -/-
 const SCRIPT_COMMAND point_camera						= { 0x0160, "fffi" };	// x, y, z, type
 const SCRIPT_COMMAND restore_camera_jumpcut				= { 0x02EB, "" };		// -/-
 const SCRIPT_COMMAND set_camera_position				= { 0x015F, "ffffff" }; // x, y, z, vx, vy, vz
+
+const SCRIPT_COMMAND set_actor_can_be_decapitated		= { 0x0446, "ii" };
+
+const SCRIPT_COMMAND set_actor_weapon_droppable 		= { 0x087e, "ii" };
+
 const SCRIPT_COMMAND restore_camera_to_user_defined = { 0x925, "" };
 const SCRIPT_COMMAND set_camera_position_to = { 0x936, "ffffffii" };
 const SCRIPT_COMMAND point_camera_transverse_to = { 0x920, "ffffffii" };

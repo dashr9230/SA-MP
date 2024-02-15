@@ -176,6 +176,12 @@
 				RelativePath=".\game\patches.cpp">
 			</File>
 			<File
+				RelativePath=".\game\playerped.cpp">
+			</File>
+			<File
+				RelativePath=".\game\playerped.h">
+			</File>
+			<File
 				RelativePath=".\game\scripting.cpp">
 			</File>
 			<File

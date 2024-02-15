@@ -15,7 +15,7 @@ public:
 	void  SetMatrix(MATRIX4X4 Matrix);
 	char		field_4[60];
 	ENTITY_TYPE *m_pEntity;
-	int 		field_44;
+	DWORD		m_dwGTAId;
 };
 
 //----------------------------------------------------------
