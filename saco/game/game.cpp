@@ -26,7 +26,7 @@ CGame::CGame()
 	// TODO: CGame::CGame()
 	m_pGameAudio = new CAudio();
 	m_pGameCamera = new CCamera();
-	field_8 = 0;
+	m_pGamePlayer = NULL;
 	field_4D = 0;
 	field_29 = 0;
 	field_31 = 0;

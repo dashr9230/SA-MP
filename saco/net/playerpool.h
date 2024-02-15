@@ -12,7 +12,7 @@ private:
 	short field_4;
 	std::string	field_6;
 	int field_22;
-	int field_26;
+	CLocalPlayer	*m_pLocalPlayer;
 	int field_2A[MAX_PLAYERS];
 
 	char _gapFDA[4016];

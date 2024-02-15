@@ -13,9 +13,10 @@
 class CGame // size: 322
 {
 private:
-	CAudio *m_pGameAudio;
-	CCamera *m_pGameCamera;
-	int field_8;
+
+	CAudio			*m_pGameAudio;
+	CCamera			*m_pGameCamera;
+	CPlayerPed		*m_pGamePlayer;
 	char gapC[29];
 	int field_29;
 	char gap2D[4];
@@ -46,6 +47,10 @@ public:
 
 	void	StartGame();
 	void	InitGame();
+	CPlayerPed  *FindPlayerPed() {
+		if(m_pGamePlayer==NULL)	m_pGamePlayer = new CPlayerPed();
+		return m_pGamePlayer;
+	};
 
 	DWORD GetWeaponInfo(int iWeapon, int iUnk);
 

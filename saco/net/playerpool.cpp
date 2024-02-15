@@ -10,7 +10,7 @@ CPlayerPool::CPlayerPool()
 		field_1F8A[playerId] = 0;
 		field_2A[playerId] = 0;
 	}
-	//field_26 = new sub_10004C50(); // TODO: sub_10004C50()
+	m_pLocalPlayer = new CLocalPlayer();
 	field_0 = 0;
 	field_22 = 0;
 	field_4 = 0;
