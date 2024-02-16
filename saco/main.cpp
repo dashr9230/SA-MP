@@ -25,6 +25,8 @@ CFontRender				*pDefaultFont=0;
 
 HANDLE			hInstance=0;
 
+bool					bShowDebugLabels = false;
+
 CGame					*pGame=0;
 DWORD					dwGraphicsLoop=0;
 

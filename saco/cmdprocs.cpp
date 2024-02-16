@@ -7,6 +7,7 @@ extern CDeathWindow	 *pDeathWindow;
 extern CNetGame		 *pNetGame;
 extern GAME_SETTINGS tSettings;
 
+extern bool bShowDebugLabels;
 
 void cmdDefaultCmdProc(PCHAR szCmd)
 {
@@ -143,7 +144,7 @@ void cmdToggleObjectLight(PCHAR szCmd)
 
 void cmdDebugLabels(PCHAR szCmd)
 {
-	// TODO: cmdDebugLabels
+	bShowDebugLabels = !bShowDebugLabels;
 }
 
 void cmdRcon(PCHAR szCmd)
