@@ -19,6 +19,8 @@ CNetGame::CNetGame(PCHAR szHostOrIp, int iPort,
 
 	InitPools();
 
+	RegisterRPCs(m_pRakClient);
+	RegisterScriptRPCs(m_pRakClient);	// Register server-side scripting RPCs.
 
 	m_iGameState = GAMESTATE_WAIT_CONNECT;
 
