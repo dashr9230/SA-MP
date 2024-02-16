@@ -62,7 +62,6 @@ void LaunchMonitor(PVOID v)
 
 BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 {
-	// TODO: DllMain
 	if(DLL_PROCESS_ATTACH==fdwReason)
 	{
 		hInstance = hinstDLL;
@@ -97,7 +96,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 	else if(DLL_PROCESS_DETACH==fdwReason)
 	{
 		if(tSettings.bDebug || tSettings.bPlayOnline) {
-			//sub_10062D90
+			UninstallFileSystemHooks();
 		}
 	}
 

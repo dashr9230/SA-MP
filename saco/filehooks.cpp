@@ -157,3 +157,19 @@ void InstallFileSystemHooks()
 
 //----------------------------------------------------------
 
+void UninstallFileSystemHooks()
+{
+	if(bFileHooksInstalled) {
+		DetourRemove((PBYTE)Real_CreateFileA,(PBYTE)Arch_CreateFileA);
+		DetourRemove((PBYTE)Real_ReadFile,(PBYTE)Arch_ReadFile);
+		DetourRemove((PBYTE)Real_GetFileSize,(PBYTE)Arch_GetFileSize);
+		DetourRemove((PBYTE)Real_SetFilePointer,(PBYTE)Arch_SetFilePointer);
+		DetourRemove((PBYTE)Real_CloseHandle,(PBYTE)Arch_CloseHandle);
+		DetourRemove((PBYTE)Real_GetFileType,(PBYTE)Arch_GetFileType);
+		DetourRemove((PBYTE)Real_ShowCursor,(PBYTE)Arch_ShowCursor);
+		bFileHooksInstalled = FALSE;
+	}
+}
+
+//----------------------------------------------------------
+
