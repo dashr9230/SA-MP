@@ -100,9 +100,8 @@ DWORD WINAPI Arch_GetFileType( HANDLE hFile )
 
 int WINAPI Arch_ShowCursor(BOOL bShow)
 {
-	// TODO: Arch_ShowCursor
-
-	return Real_ShowCursor(bShow);
+	if (bShow != FALSE) return 0;
+	return -1;
 }
 
 //----------------------------------------------------------
