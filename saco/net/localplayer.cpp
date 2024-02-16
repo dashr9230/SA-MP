@@ -77,3 +77,10 @@ void CLocalPlayer::ResetAllSyncAttributes()
 
 //----------------------------------------------------------
 
+void CLocalPlayer::Say(PCHAR szText)
+{
+	// TODO: CLocalPlayer::Say .text:10005A10
+}
+
+//----------------------------------------------------------
+

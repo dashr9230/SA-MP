@@ -67,4 +67,6 @@ public:
 
 	DWORD GetTime();
 
+	CPlayerPool * GetPlayerPool() { return m_pPools->pPlayerPool; };
+
 };

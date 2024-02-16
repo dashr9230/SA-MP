@@ -92,6 +92,8 @@ public:
 
 	void ResetAllSyncAttributes();
 
+	void Say(PCHAR szText);
+
 };
 
 //----------------------------------------------------------

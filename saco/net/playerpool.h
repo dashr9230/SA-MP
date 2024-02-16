@@ -21,6 +21,9 @@ private:
 	int field_2F3A;
 
 public:
+
+	CLocalPlayer * GetLocalPlayer() { return m_pLocalPlayer; };
+
 	CPlayerPool();
 };
 

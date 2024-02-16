@@ -4,12 +4,17 @@
 extern CChatWindow   *pChatWindow;
 extern CCmdWindow	 *pCmdWindow;
 extern CDeathWindow	 *pDeathWindow;
+extern CNetGame		 *pNetGame;
 extern GAME_SETTINGS tSettings;
 
 
 void cmdDefaultCmdProc(PCHAR szCmd)
 {
-	// TODO: cmdDefaultCmdProc
+	if(pNetGame) {
+		CLocalPlayer *pLocalPlayer;
+		pLocalPlayer = pNetGame->GetPlayerPool()->GetLocalPlayer();
+		pLocalPlayer->Say(szCmd);
+	}
 }
 
 void cmdTestDeathWindow(PCHAR szCmd)
