@@ -13,6 +13,8 @@ public:
 
 	void  GetMatrix(PMATRIX4X4 Matrix);
 	void  SetMatrix(MATRIX4X4 Matrix);
+	void  sub_1009EC80();
+
 	char		field_4[60];
 	ENTITY_TYPE *m_pEntity;
 	DWORD		m_dwGTAId;

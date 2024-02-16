@@ -42,6 +42,7 @@ typedef struct _ENTITY_TYPE
 	char _pad4[16];
 
 	MATRIX4X4 *mat; // 20-24
+	DWORD *pdwRenderWare; // 24-28
 
 } ENTITY_TYPE;
 

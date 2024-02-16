@@ -51,3 +51,29 @@ void CEntity::SetMatrix(MATRIX4X4 Matrix)
 
 //-----------------------------------------------------------
 
+void CEntity::sub_1009EC80()
+{
+	if(!m_pEntity || m_pEntity->vtable == 0x863C40) return;
+
+	DWORD dwRenderWare = (DWORD)m_pEntity->pdwRenderWare;
+	DWORD dwMatrix = (DWORD)m_pEntity->mat;
+	DWORD dwEntity = (DWORD)m_pEntity;
+
+	if(dwEntity && dwRenderWare && dwMatrix)
+	{
+		_asm mov edx, dwRenderWare
+		_asm mov eax, [edx+4]
+		_asm add eax, 16
+		_asm push eax
+		_asm mov ecx, dwMatrix
+		_asm mov edx, 0x59AD70
+		_asm call edx
+
+		_asm mov ecx, dwEntity
+		_asm mov edx, 0x532B00
+		_asm call edx
+	}
+}
+
+//-----------------------------------------------------------
+
