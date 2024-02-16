@@ -8,6 +8,7 @@
 #define MAX_VEHICLES		2000
 #define MAX_OBJECTS			1000
 #define MAX_MENUS			128
+#define MAX_TEXT_DRAWS		2304
 #define MAX_LABELS			2048
 #define PLAYER_PED_SLOTS	210
 

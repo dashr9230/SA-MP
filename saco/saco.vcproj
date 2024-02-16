@@ -316,6 +316,12 @@
 				RelativePath=".\net\scriptrpc.h">
 			</File>
 			<File
+				RelativePath=".\net\textdrawpool.cpp">
+			</File>
+			<File
+				RelativePath=".\net\textdrawpool.h">
+			</File>
+			<File
 				RelativePath=".\net\vehiclepool.cpp">
 			</File>
 			<File

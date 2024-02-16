@@ -36,6 +36,7 @@ void CNetGame::InitPools()
 	m_pPools->pObjectPool	= new CObjectPool();
 	m_pPools->pMenuPool		= new CMenuPool();
 	m_pPools->pLabelPool	= new CLabelPool();
+	m_pPools->pTextDrawPool	= new CTextDrawPool();
 	m_pPools->pPlayerPool	= new CPlayerPool();
 	m_pPools->pVehiclePool	= new CVehiclePool();
 	m_pPools->pPickupPool	= new CPickupPool();
