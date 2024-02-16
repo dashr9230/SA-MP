@@ -35,6 +35,7 @@ private:
 
 public:
 
+	BOOL	IsGameLoaded();
 
 	void	SetGravity(float fGravity);
 

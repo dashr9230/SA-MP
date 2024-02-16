@@ -230,6 +230,18 @@ void CGame::sub_100A1C10()
 
 
 
+
+//-----------------------------------------------------------
+// Return TRUE if the world has been loaded.
+
+BOOL CGame::IsGameLoaded()
+{
+	if(!(*(PBYTE)ADDR_GAME_STARTED)) return TRUE;
+	return FALSE;
+}
+
+//-----------------------------------------------------------
+
 //-----------------------------------------------------------
 
 DWORD CGame::GetD3DDevice()
