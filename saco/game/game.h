@@ -26,7 +26,7 @@ private:
 	char gap51[4];
 	int field_55;
 	int field_59;
-	int field_5D;
+	DWORD field_5D;
 	int field_61;
 	int field_65;
 	int field_69;
@@ -36,6 +36,26 @@ private:
 public:
 
 	BOOL	IsGameLoaded();
+
+	void	RequestModel(int iModelID, int iLoadingStream = 2);
+	void	LoadRequestedModels();
+	BOOL	IsModelLoaded(int iModelID);
+
+	void	SetWorldWeather(int iWeatherID);
+	int		GetWorldWeather();
+	void	DisplayHud(BOOL bDisp);
+	BYTE	IsHudEnabled();
+	void	SetFrameLimiterOn(BOOL bLimiter);
+	BOOL	IsFrameLimiterEnabled();
+	void	EnableFrameLimiter();
+	void	SetFrameLimit(DWORD dwLimit);
+	void	SetMaxStats();
+	void	DisableTrainTraffic();
+	void	RefreshStreamingAt(float x, float y);
+	void    RequestAnimation(char *szAnimFile);
+	int		IsAnimationLoaded(char *szAnimFile);
+	void	ReleaseAnimation(char *szAnimFile);
+	void	ToggleRadar(int iToggle);
 
 	void	SetGravity(float fGravity);
 

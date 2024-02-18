@@ -242,6 +242,160 @@ BOOL CGame::IsGameLoaded()
 
 //-----------------------------------------------------------
 
+void CGame::RequestModel(int iModelID, int iLoadingStream)
+{
+	/*
+	_asm push iLoadingStream
+	_asm push iModelID
+	_asm mov edx, 0x4087E0
+	_asm call edx
+	_asm pop edx
+	_asm pop edx*/
+
+	ScriptCommand(&request_model,iModelID);
+}
+
+//-----------------------------------------------------------
+
+void CGame::LoadRequestedModels()
+{
+	/*
+	_asm push 0
+	_asm mov edx, 0x40EA10
+	_asm call edx
+	_asm add esp, 4*/
+
+	ScriptCommand(&load_requested_models);
+}
+
+//-----------------------------------------------------------
+
+BOOL CGame::IsModelLoaded(int iModelID)
+{
+	if(iModelID > 20000 || iModelID < 0) return TRUE;
+
+	return ScriptCommand(&is_model_available,iModelID);
+}
+
+//-----------------------------------------------------------
+
+void CGame::SetWorldWeather(int iWeatherID)
+{
+	*(DWORD*)(0xC81318) = iWeatherID;
+
+	if(!field_69) {
+		*(DWORD*)(0xC8131C) = iWeatherID;
+		*(DWORD*)(0xC81320) = iWeatherID;
+	}
+}
+
+//-----------------------------------------------------------
+
+int CGame::GetWorldWeather()
+{
+	return *(int*)0xC81318;
+}
+
+//-----------------------------------------------------------
+
+BYTE CGame::IsHudEnabled()
+{
+	return *(BYTE*)ADDR_ENABLE_HUD;
+}
+
+//-----------------------------------------------------------
+
+void CGame::SetFrameLimiterOn(BOOL bLimiter)
+{
+
+}
+
+//-----------------------------------------------------------
+
+BOOL CGame::IsFrameLimiterEnabled()
+{
+	if(*(PBYTE)0xBA6794) return TRUE;
+	return FALSE;
+}
+
+//-----------------------------------------------------------
+
+void CGame::EnableFrameLimiter()
+{
+	*(BYTE*)0xBA6794 = 1;
+}
+
+//-----------------------------------------------------------
+
+void CGame::SetFrameLimit(DWORD dwLimit)
+{
+	field_5D = dwLimit;
+
+	UnFuck(0xC1704C,4);
+	*(DWORD*)0xC1704C = 200;
+}
+
+//-----------------------------------------------------------
+
+void CGame::SetMaxStats()
+{
+	// driving stat
+	_asm mov eax, 0x4399D0
+	_asm call eax
+
+	// weapon stats
+	_asm mov eax, 0x439940
+	_asm call eax
+
+	UnFuck(0x55A070,1);
+	*(BYTE*)0x55A070 = 0xC3;
+}
+
+//-----------------------------------------------------------
+
+void CGame::DisableTrainTraffic()
+{
+	ScriptCommand(&enable_train_traffic,0);
+}
+
+//-----------------------------------------------------------
+
+void CGame::RefreshStreamingAt(float x, float y)
+{
+	ScriptCommand(&refresh_streaming_at,x,y);
+}
+
+//-----------------------------------------------------------
+
+void CGame::RequestAnimation(char *szAnimFile)
+{
+	ScriptCommand(&request_animation, szAnimFile);
+}
+
+//-----------------------------------------------------------
+
+int CGame::IsAnimationLoaded(char *szAnimFile)
+{
+	return ScriptCommand(&is_animation_loaded,szAnimFile);
+}
+
+//-----------------------------------------------------------
+
+void CGame::ReleaseAnimation(char *szAnimFile)
+{
+	if (IsAnimationLoaded(szAnimFile))
+		ScriptCommand(&release_animation,szAnimFile);
+}
+
+//-----------------------------------------------------------
+
+void CGame::ToggleRadar(int iToggle)
+{
+	*(PBYTE)0xBAA3FB = (BYTE)!iToggle;
+}
+
+//-----------------------------------------------------------
+
 //-----------------------------------------------------------
 
 DWORD CGame::GetD3DDevice()
