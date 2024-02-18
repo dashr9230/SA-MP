@@ -36,6 +36,7 @@ typedef struct _GAME_SETTINGS {
 #include "net/vehiclepool.h"
 #include "net/pickuppool.h"
 #include "net/objectpool.h"
+#include "net/gangzonepool.h"
 #include "net/menupool.h"
 #include "net/textdrawpool.h"
 #include "net/labelpool.h"

@@ -31,7 +31,7 @@ typedef struct _NETGAME_POOLS {
 	CPickupPool		*pPickupPool;
 	CObjectPool		*pObjectPool;
 	CActorPool		*pActorPool;
-	char _gap0[4];
+	CGangZonePool	*pGangZonePool;
 	CLabelPool		*pLabelPool;
 	CTextDrawPool	*pTextDrawPool;
 	CMenuPool		*pMenuPool;
