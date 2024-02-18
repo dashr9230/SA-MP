@@ -77,3 +77,21 @@ void CEntity::sub_1009EC80()
 
 //-----------------------------------------------------------
 
+void CEntity::GetMoveSpeedVector(PVECTOR Vector)
+{
+	Vector->X = m_pEntity->vecMoveSpeed.X;
+	Vector->Y = m_pEntity->vecMoveSpeed.Y;
+	Vector->Z = m_pEntity->vecMoveSpeed.Z;
+}
+
+//-----------------------------------------------------------
+
+void CEntity::SetMoveSpeedVector(VECTOR Vector)
+{
+	m_pEntity->vecMoveSpeed.X = Vector.X;
+	m_pEntity->vecMoveSpeed.Y = Vector.Y;
+	m_pEntity->vecMoveSpeed.Z = Vector.Z;
+}
+
+//-----------------------------------------------------------
+

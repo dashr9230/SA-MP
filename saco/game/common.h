@@ -45,6 +45,10 @@ typedef struct _ENTITY_TYPE
 	MATRIX4X4 *mat; // 20-24
 	DWORD *pdwRenderWare; // 24-28
 
+	char _gap1C[40];
+
+	VECTOR vecMoveSpeed; // 68-80
+
 } ENTITY_TYPE;
 
 //-----------------------------------------------------------
