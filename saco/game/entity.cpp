@@ -95,3 +95,27 @@ void CEntity::SetMoveSpeedVector(VECTOR Vector)
 
 //-----------------------------------------------------------
 
+void CEntity::sub_1009ED40(float fX, float fY, float fZ)
+{
+	int x=4;
+	while(x) {
+		field_4[x-1].X = field_4[x].X;
+		field_4[x-1].Y = field_4[x].Y;
+		field_4[x-1].Z = field_4[x].Z;
+		x--;
+	}
+
+	field_4[4].X = fX;
+	field_4[4].Y = fY;
+	field_4[4].Z = fZ;
+
+	m_pEntity->vecMoveSpeed.X =
+		(field_4[0].X + field_4[1].X + field_4[2].X + field_4[3].X + field_4[4].X) * 0.2f;
+	m_pEntity->vecMoveSpeed.Y =
+		(field_4[0].Y + field_4[1].Y + field_4[2].Y + field_4[3].Y + field_4[4].Y) * 0.2f;
+	m_pEntity->vecMoveSpeed.Z =
+		(field_4[0].Z + field_4[1].Z + field_4[2].Z + field_4[3].Z + field_4[4].Z) * 0.2f;
+}
+
+//-----------------------------------------------------------
+
