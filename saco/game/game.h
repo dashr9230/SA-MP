@@ -64,6 +64,8 @@ public:
 	void	DrawGangZone(float* fPos, DWORD dwColor);
 	DWORD	GetD3DDevice();
 
+	DWORD	GetD3D() { return *(DWORD *)ADDR_ID3D9DEVICE; };
+
 	HWND	GetMainWindowHwnd() { return *(HWND *)ADDR_HWND; };
 
 	void	StartGame();

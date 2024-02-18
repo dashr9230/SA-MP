@@ -22,6 +22,8 @@ typedef struct _GAME_SETTINGS {
 	CHAR szDebugScript[MAX_SETTINGS_STRING+1];
 } GAME_SETTINGS;
 
+#include "d3d9/include/d3d9.h"
+#include "d3d9/include/d3dx9core.h"
 #include "game/game.h"
 
 #include "../raknet/RakClientInterface.h"

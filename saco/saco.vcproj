@@ -19,6 +19,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+				AdditionalIncludeDirectories="d3d9\include\"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;SACO_EXPORTS"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
@@ -32,7 +33,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wsock32.lib"
+				AdditionalDependencies="wsock32.lib winmm.lib"
 				OutputFile="$(OutDir)/samp.dll"
 				LinkIncremental="2"
 				GenerateDebugInformation="TRUE"
@@ -69,6 +70,7 @@
 			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalIncludeDirectories="d3d9\include\"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;SACO_EXPORTS"
 				RuntimeLibrary="0"
 				StructMemberAlignment="1"
@@ -81,7 +83,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wsock32.lib"
+				AdditionalDependencies="wsock32.lib winmm.lib"
 				OutputFile="$(OutDir)/samp.dll"
 				LinkIncremental="1"
 				GenerateDebugInformation="TRUE"
@@ -476,6 +478,50 @@
 			<File
 				RelativePath="..\raknet\TEABlockEncryptor.h">
 			</File>
+		</Filter>
+		<Filter
+			Name="d3dhook"
+			Filter="">
+			<Filter
+				Name="d3d9"
+				Filter="">
+				<File
+					RelativePath=".\d3d9\include\d3d.h">
+				</File>
+				<File
+					RelativePath=".\d3d9\include\d3d9.h">
+				</File>
+				<File
+					RelativePath=".\d3d9\include\d3d9caps.h">
+				</File>
+				<File
+					RelativePath=".\d3d9\include\d3d9types.h">
+				</File>
+				<File
+					RelativePath=".\d3d9\include\d3dx9.h">
+				</File>
+				<File
+					RelativePath=".\d3d9\include\d3dx9core.h">
+				</File>
+				<File
+					RelativePath=".\d3d9\include\d3dx9effect.h">
+				</File>
+				<File
+					RelativePath=".\d3d9\include\d3dx9math.h">
+				</File>
+				<File
+					RelativePath=".\d3d9\include\d3dx9mesh.h">
+				</File>
+				<File
+					RelativePath=".\d3d9\include\d3dx9shader.h">
+				</File>
+				<File
+					RelativePath=".\d3d9\include\d3dx9shape.h">
+				</File>
+				<File
+					RelativePath=".\d3d9\include\d3dx9tex.h">
+				</File>
+			</Filter>
 		</Filter>
 		<File
 			RelativePath=".\audiostream.cpp">

@@ -7,6 +7,9 @@ int				iGtaVersion=0;
 GAME_SETTINGS			tSettings;
 
 CHAR					szArtworkProxy[MAX_PATH+1];
+CHAR					szConfigFile[MAX_PATH+1];
+CHAR					byte_1026E710[256]; // unused
+CHAR					szChatLogFile[MAX_PATH+1];
 CHAR					szSAMPDir[MAX_PATH+1];
 CHAR					szCacheDir[MAX_PATH+1];
 
@@ -23,6 +26,11 @@ CFontRender				*pDefaultFont=0;
 //DWORD					dword_1026EBA4=0;
 //DWORD					dword_1026EBA8=0;
 
+BOOL					bGameInited=FALSE;
+
+IDirect3D9				*pD3D;
+IDirect3DDevice9		*pD3DDevice	= NULL;
+
 HANDLE			hInstance=0;
 
 bool					bShowDebugLabels = false;
@@ -34,6 +42,7 @@ CFileSystem *pFileSystem=NULL;
 
 // forwards
 
+BOOL SubclassGameWindow();
 void TheGraphicsLoop();
 LONG WINAPI exc_handler(_EXCEPTION_POINTERS* exc_inf);
 void sub_1009DD50();
@@ -213,8 +222,55 @@ void CallRwRenderStateGet(int state, int *option)
 
 //----------------------------------------------------
 
+void DoInitStuff()
+{
+	// GAME INIT
+	if(!bGameInited)
+	{
+		SetupDirectories();
+
+		sprintf(szConfigFile, "%s\\sa-mp.cfg", szSAMPDir);
+		sprintf(szChatLogFile, "%s\\chatlog.txt", szSAMPDir);
+
+		pConfig = new CConfig(szConfigFile);
+
+		timeBeginPeriod(1); // increases the accuracy of Sleep()
+		sub_1009DD50();
+		SubclassGameWindow();
+
+		// Grab the real IDirect3D9 * from the game.
+		pD3D = (IDirect3D9 *)pGame->GetD3D();
+
+		// Grab the real IDirect3DDevice9 * from the game.
+		pD3DDevice = (IDirect3DDevice9 *)pGame->GetD3DDevice();
+
+		// TODO: DoInitStuff
+
+		bGameInited = TRUE;
+
+		return;
+	}
+
+	
+	
+}
+
+//----------------------------------------------------
+
+void DoProcessStuff()
+{
+	DoInitStuff();
+}
+
+//----------------------------------------------------
+
 void TheGraphicsLoop()
 {
+	_asm pushad // because we're called from a hook
+
+	DoProcessStuff();
+
+	_asm popad
 }
 
 //----------------------------------------------------

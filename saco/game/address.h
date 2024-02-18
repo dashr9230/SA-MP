@@ -2,6 +2,7 @@
 #pragma once
 
 #define ADDR_HWND								0xC97C1C
+#define ADDR_ID3D9DEVICE						0xC97C28
 
 #define ADDR_KEYSTATES							0xB73458
 
