@@ -49,6 +49,7 @@ typedef struct _ENTITY_TYPE
 	char _gap1C[40];
 
 	VECTOR vecMoveSpeed; // 68-80
+	VECTOR vecTurnSpeed; // 80-92
 
 } ENTITY_TYPE;
 

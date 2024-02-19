@@ -17,6 +17,8 @@ public:
 	void  GetMoveSpeedVector(PVECTOR Vector);
 	void  SetMoveSpeedVector(VECTOR Vector);
 	void  sub_1009ED40(float fX, float fY, float fZ); // unused
+	void  GetTurnSpeedVector(PVECTOR Vector);
+	void  SetTurnSpeedVector(VECTOR Vector);
 
 	VECTOR		field_4[5];
 	ENTITY_TYPE *m_pEntity;
