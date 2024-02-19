@@ -560,6 +560,9 @@
 			RelativePath=".\deathwindow.h">
 		</File>
 		<File
+			RelativePath=".\detours.h">
+		</File>
+		<File
 			RelativePath=".\exceptbox.rc">
 		</File>
 		<File
