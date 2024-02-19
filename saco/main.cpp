@@ -47,6 +47,12 @@ void TheGraphicsLoop();
 LONG WINAPI exc_handler(_EXCEPTION_POINTERS* exc_inf);
 void sub_1009DD50();
 
+DWORD dwOrgRwSetState=0;
+DWORD dwSetStateCaller=0;
+DWORD dwSetStateOption=0;
+DWORD dwSetStateParam=0;
+char dbgstr[256];
+
 // polls the game until it's able to run.
 void LaunchMonitor(PVOID v)
 {
@@ -217,6 +223,51 @@ void SetupD3DFog(BOOL bEnable)
 		//pD3DDevice->SetRenderState(D3DRS_FOGSTART, *(DWORD*)(&fFogStart));
 		//pD3DDevice->SetRenderState(D3DRS_FOGEND, *(DWORD*)(&fFogEnd));
 	}
+}
+
+//----------------------------------------------------
+
+void _declspec(naked) RwRenderStateSetHook()
+{
+	_asm mov eax, [esp]
+	_asm mov dwSetStateCaller, eax
+	_asm mov eax, [esp+4]
+	_asm mov dwSetStateOption, eax
+	_asm mov eax, [esp+8]
+	_asm mov dwSetStateParam, eax
+
+	if(dwSetStateOption == 14) {
+		if(dwSetStateParam) {
+			SetupD3DFog(TRUE);
+			dwFogEnabled = 1;
+		} else {
+			SetupD3DFog(FALSE);
+			dwFogEnabled = 0;
+		}
+		_asm mov [esp+8], 0 ; no fog
+	}
+
+	_asm mov eax, dwOrgRwSetState
+	_asm jmp eax
+}
+
+//----------------------------------------------------
+
+void HookRwRenderStateSet()
+{
+	DWORD dwNewRwSetState = (DWORD)RwRenderStateSetHook;
+
+	_asm mov ebx, 0xC97B24
+	_asm mov eax, [ebx]
+	_asm mov edx, [eax+32]
+	_asm mov dwOrgRwSetState, edx
+	_asm mov edx, dwNewRwSetState
+	_asm mov [eax+32], edx
+
+#ifdef _DEBUG
+	sprintf(dbgstr,"HookRwRenderStateSet(0x%X)",dwOrgRwSetState);
+	OutputDebugString(dbgstr);
+#endif
 }
 
 //----------------------------------------------------
