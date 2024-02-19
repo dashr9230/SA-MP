@@ -1147,6 +1147,55 @@ void _VehicleEnvMappingFromScreen()
 	*(float *)0x8A7780 = 2.0f;
 }
 
+//----------------------------------------------------
+
+int Width,Height,Depth;
+DWORD dwRwImage;
+
+void WriteRwRasterToFile(DWORD raster,char *filename)
+{
+	// RwImageCreate(width,height,depth)
+	_asm push Depth
+	_asm push Height
+	_asm push Width
+	_asm mov edx, 0x8026E0
+	_asm call edx
+	_asm mov dwRwImage, eax
+	_asm pop edx
+	_asm pop edx
+	_asm pop edx
+
+	// RwImageAllocatePixels
+	_asm push dwRwImage
+	_asm mov edx, 0x8027A0
+	_asm call edx
+	_asm pop edx
+
+	// RwImageSetFromRaster
+	_asm push raster
+	_asm push dwRwImage
+	_asm mov edx, 0x804250
+	_asm call edx
+	_asm pop edx
+	_asm pop edx
+
+	// RtBmpImageWrite
+	_asm push filename
+	_asm push dwRwImage
+	_asm mov edx, 0x7CE990
+	_asm call edx
+	_asm pop edx
+	_asm pop edx
+
+	// RwImageDestroy
+	_asm push dwRwImage
+	_asm mov edx, 0x802740
+	_asm call edx
+	_asm pop edx
+}
+
+//----------------------------------------------------
+
 BOOL IsFileOrDirectoryExists(char * szPath)
 {
 	struct _stat buf;
