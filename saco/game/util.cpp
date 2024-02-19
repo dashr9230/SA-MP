@@ -1206,6 +1206,30 @@ BOOL IsFileOrDirectoryExists(char * szPath)
 //----------------------------------------------------
 
 
+DWORD unnamed_100B6100(char *szString, int nMaxLen)
+{
+	char tmp_buf[2049];
+	memset(tmp_buf, 0, sizeof(tmp_buf));
+
+	if(szString &&
+		strlen(szString) < 400 &&
+		strstr(szString, "~k~") != NULL)
+	{
+		strcpy(tmp_buf, szString);
+
+		_asm lea edx, tmp_buf
+		_asm push edx
+		_asm mov edx, 0x69E160
+		_asm call edx
+		_asm pop edx
+
+		if((int)strlen(tmp_buf) > nMaxLen) return 0;
+
+		strcpy(szString, tmp_buf);
+		return strlen(tmp_buf);
+	}
+	return 0;
+}
 
 
 

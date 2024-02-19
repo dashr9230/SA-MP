@@ -14,3 +14,5 @@ BYTE __stdcall FindPlayerNumFromPedPtr(DWORD dwPedPtr);
 void GameResetRadarColors();
 
 BOOL IsFileOrDirectoryExists(char * szPath);
+
+DWORD unnamed_100B6100(char *szString, int nMaxLen);
