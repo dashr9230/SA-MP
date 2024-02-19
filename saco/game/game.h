@@ -77,6 +77,8 @@ public:
 
 	DWORD GetWeaponInfo(int iWeapon, int iUnk);
 
+	const PCHAR GetWeaponName(int iWeaponID);
+
 
 	CGame();
 
