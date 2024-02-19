@@ -482,6 +482,12 @@
 		<Filter
 			Name="d3dhook"
 			Filter="">
+			<File
+				RelativePath=".\d3dhook\IDirect3DDevice9Hook.cpp">
+			</File>
+			<File
+				RelativePath=".\d3dhook\IDirect3DDevice9Hook.h">
+			</File>
 			<Filter
 				Name="d3d9"
 				Filter="">
