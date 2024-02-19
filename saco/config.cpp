@@ -3,7 +3,18 @@
 
 CConfig::CConfig(char* a2)
 {
-	// TODO: CConfig::CConfig 100663E0
+	for(int i = 0; i != MAX_CONFIG_ENTRIES; i++) {
+		memset(&field_0[i], 0, sizeof(UNNAMED_STRUCT_1));
+		field_7A00[i] = 0;
+	}
+
+	field_8305 = 0;
+
+	if(a2 && strlen(a2)) {
+		strcpy(field_8200, a2);
+
+		ReadFile();
+	}
 }
 
 void CConfig::sub_10066270()
@@ -11,7 +22,7 @@ void CConfig::sub_10066270()
 	// TODO: CConfig::sub_10066270 10066270
 }
 
-void CConfig::sub_100661E0()
+BOOL CConfig::ReadFile()
 {
 	// TODO: CConfig::sub_100661E0 100661E0
 }
