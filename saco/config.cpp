@@ -1,5 +1,7 @@
 
-#include "config.h"
+#include "main.h"
+
+//----------------------------------------------------------
 
 CConfig::CConfig(char* a2)
 {
@@ -17,14 +19,108 @@ CConfig::CConfig(char* a2)
 	}
 }
 
-void CConfig::sub_10066270()
+//----------------------------------------------------------
+
+void CConfig::AddConfigEntry(char * szName, char * szData)
 {
-	// TODO: CConfig::sub_10066270 10066270
+	// TODO: CConfig::AddConfigEntry 100661E0
 }
 
 BOOL CConfig::ReadFile()
 {
-	// TODO: CConfig::sub_100661E0 100661E0
+	char	szReadBuffer[MAX_CONFIG_STRSIZE];
+	char	szDirectiveName[MAX_CONFIG_STRSIZE];
+	char	szDirectiveData[MAX_CONFIG_STRSIZE];
+
+	char	*szReadPtr;
+	int		iDirectiveLength;
+	int		iDirectiveDataLength;
+
+	FILE	*fReadFile = fopen(field_8200,"r");
+
+	if(!fReadFile) return FALSE;
+
+	while(!feof(fReadFile)) {
+		fgets(szReadBuffer,MAX_CONFIG_STRSIZE,fReadFile);
+		szReadPtr = szReadBuffer;
+		iDirectiveLength = 0;
+		iDirectiveDataLength = 0;
+
+		// Skip any leading whitespace
+		while(*szReadPtr == ' ' || *szReadPtr == '\t') szReadPtr++;
+
+		// Check for comment char, blank line or a key name. Key names
+		// are currently resevered for future use.
+		if( *szReadPtr == '\0' || *szReadPtr == ';' ||
+			*szReadPtr == '\n' || *szReadPtr == '[' ) {
+
+			continue;
+		}
+
+		// Parse out the directive name
+		while( *szReadPtr != '\0' &&
+			 *szReadPtr != ' ' &&
+			 *szReadPtr != '=' &&
+			 *szReadPtr != '\n' &&
+			 *szReadPtr != '\t' &&
+			 *szReadPtr != ';' ) {
+			szDirectiveName[iDirectiveLength] = toupper(*szReadPtr);
+			iDirectiveLength++;
+			szReadPtr++;
+		}
+
+		if(iDirectiveLength == 0) {
+			continue;
+		}
+
+		szDirectiveName[iDirectiveLength] = '\0';
+
+		// Skip any whitespace
+		while(*szReadPtr == ' ' || *szReadPtr == '\t') szReadPtr++;
+
+		// The config entry is delimited by '='
+		if(*szReadPtr != '=') {
+			continue;
+		}
+
+		// The rest is the directive data
+		*szReadPtr++;
+
+		// Skip any whitespace
+		while(*szReadPtr == ' ' || *szReadPtr == '\t') szReadPtr++;
+
+		if( *szReadPtr == '\0' ) {
+			continue;
+		}
+
+		while( *szReadPtr != '\0' && 
+			   *szReadPtr != '\n' ) {
+			szDirectiveData[iDirectiveDataLength] = *szReadPtr;
+			iDirectiveDataLength++;
+			szReadPtr++;
+		}
+
+		if(iDirectiveDataLength == 0) {
+			continue;
+		}
+
+		szDirectiveData[iDirectiveDataLength] = '\0';
+
+		// cleanup any trailing whitespace on the directive data.
+		iDirectiveDataLength--;
+		while(szDirectiveData[iDirectiveDataLength] == ' '  ||
+			  szDirectiveData[iDirectiveDataLength] == '\t' ||
+			  szDirectiveData[iDirectiveDataLength] == '\r')
+		{
+			szDirectiveData[iDirectiveDataLength] = '\0';
+			iDirectiveDataLength--;
+		}
+
+		AddConfigEntry(szDirectiveName,szDirectiveData);
+	}
+
+	fclose(fReadFile);
+	return TRUE;
 }
 
 void CConfig::sub_10066180()

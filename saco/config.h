@@ -1,6 +1,7 @@
 
 #pragma once
 
+#define MAX_CONFIG_STRSIZE 256
 #define MAX_CONFIG_ENTRIES 512
 
 typedef struct _UNNAMED_STRUCT_1 {
@@ -15,10 +16,11 @@ private:
 	char field_8200[MAX_PATH+1];
 	int field_8305;
 
+	void AddConfigEntry(char * szName, char * szData);
+
 public:
 
 	CConfig(char* a2);
-	void sub_10066270();
 
 	BOOL ReadFile();
 
