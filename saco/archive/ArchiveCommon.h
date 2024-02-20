@@ -8,6 +8,7 @@
 //	first 3 bits are 010 anyhow :)
 #define SAA_FILE_ID			0x83433
 #define SAA_FILE_VERSION	2
+#define SAA_BLOCK_SIZE		2048
 
 #define SAA_MAX_ENTRIES		256
 
@@ -16,7 +17,15 @@
 typedef struct _SAA_ENTRY
 {
 	DWORD dwFileNameHash;
-	int field_4;
+	union
+	{
+		struct
+		{
+			DWORD dwPrevEntry	: 8;		// index to previous entry (link to fake entry if none)
+			DWORD dwFileSize	: 24;		// 24bits = max filesize of 16mb
+		};
+		DWORD dwDataBlock;
+	};
 } SAA_ENTRY;
 
 typedef struct _SAA_FILE_HEADER

@@ -10,6 +10,8 @@
 
 #include "../filesystem.h"
 
+#define FS_INVALID_FILE	0xFFFFFFFF
+
 typedef struct _AFS_ENTRYBT_NODE
 {
 	SAA_ENTRY* pEntry;
@@ -52,6 +54,35 @@ typedef struct _AFS_ENTRYBT_NODE
 		}
 	}
 
+	_AFS_ENTRYBT_NODE* FindEntry(DWORD dwHash)
+	{
+		if (this->pEntry->dwFileNameHash == dwHash) {
+			return this;
+		} else {
+			if (dwHash < this->pEntry->dwFileNameHash) {
+				if (this->pLNode == NULL)
+					return NULL;
+				else
+					return this->pLNode->FindEntry(dwHash);
+			} else {
+				if (this->pRNode == NULL)
+					return NULL;
+				else
+					return this->pRNode->FindEntry(dwHash);
+			}
+		}
+	}
+
+	~_AFS_ENTRYBT_NODE()
+	{
+		if (this->pLNode != NULL)
+			delete this->pLNode;
+		if (this->pRNode != NULL)
+			delete this->pRNode;
+		if (this->pbData != NULL)
+			delete[] this->pbData;
+	}
+
 } AFS_ENTRYBT_NODE;
 
 class CArchiveFS // size: 2357
@@ -69,20 +100,22 @@ private:
 
 	void LoadEntries();
 
+	static DWORD ms_dwHashInit;
+	DWORD HashString(PCHAR szString);
+
 public:
 	CArchiveFS(void);
 	CArchiveFS(DWORD dwNumEntries, DWORD dwFDSize);
+	virtual ~CArchiveFS(void);
 
 	virtual bool Load(char* szFileName);
+	virtual bool Load(BYTE* pbData, DWORD nLength);
+	virtual void Unload();
 
-	// TODO: CArchiveFS vftable 100E9AA8
-	void CArchiveFS__sub_10065590() {};
-	void CArchiveFS__sub_100654A0() {};
-	void CArchiveFS__sub_10064E10() {};
-	void CArchiveFS__sub_10064EC0() {};
-	void CArchiveFS__sub_10064F20() {};
-	void CArchiveFS__sub_10064F60() {};
-	void CArchiveFS__sub_10064D30() {};
-	void CArchiveFS__sub_10064E40() {};
-	void CArchiveFS__sub_10065150() {};
+	virtual DWORD GetFileIndex(DWORD dwFileHash);
+	virtual DWORD GetFileIndex(char* szFileName);
+	virtual DWORD GetFileSize(DWORD dwFileIndex);
+	virtual BYTE* GetFileData(DWORD dwFileIndex);
+
+	virtual void UnloadData(DWORD dwFileIndex);
 };
