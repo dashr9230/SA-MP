@@ -51,6 +51,9 @@ typedef struct _ENTITY_TYPE
 	VECTOR vecMoveSpeed; // 68-80
 	VECTOR vecTurnSpeed; // 80-92
 
+	char _gap5C[88];
+
+	DWORD dwUnkModelRel; // 180-184
 } ENTITY_TYPE;
 
 //-----------------------------------------------------------

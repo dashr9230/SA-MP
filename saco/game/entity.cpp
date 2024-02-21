@@ -136,3 +136,69 @@ void CEntity::SetTurnSpeedVector(VECTOR Vector)
 }
 //-----------------------------------------------------------
 
+void CEntity::sub_1009EE90()
+{
+	DWORD dwEnt = (DWORD)m_pEntity;
+	if(!dwEnt) return;
+
+	_asm mov ecx, dwEnt
+	_asm mov eax, 0x542E20
+	_asm call eax
+}
+
+//-----------------------------------------------------------
+
+float CEntity::sub_1009EEB0()
+{
+	DWORD dwEnt = (DWORD)m_pEntity;
+	float fResult = 0.0f;
+
+	if(!dwEnt) return 0.0f;
+
+	_asm mov ecx, dwEnt
+	_asm mov edx, 0x536BE0
+	_asm call edx
+	_asm mov fResult, eax
+
+	return fResult;
+}
+
+//-----------------------------------------------------------
+
+void CEntity::sub_1009EEF0(PVECTOR Vector)
+{
+	DWORD dwEnt = (DWORD)m_pEntity;
+	if(!dwEnt) return;
+
+	_asm push Vector
+	_asm mov ecx, dwEnt
+	_asm mov edx, 0x534250
+	_asm call edx
+}
+
+//-----------------------------------------------------------
+
+void CEntity::sub_1009EF20(int a2)
+{
+	DWORD dwEnt = (DWORD)m_pEntity;
+	if(!dwEnt) return;
+
+	_asm push a2
+	_asm mov ecx, dwEnt
+	_asm mov edx, 0x534120
+	_asm call edx
+}
+
+//-----------------------------------------------------------
+
+BOOL CEntity::sub_1009FDE0()
+{
+	return m_pEntity
+		&& m_pEntity->vtable != 0x863C40
+		&& m_pEntity->dwUnkModelRel
+		&& m_pEntity->vecMoveSpeed.X == 0.0f
+		&& m_pEntity->vecMoveSpeed.Y == 0.0f
+		&& m_pEntity->vecMoveSpeed.Z == 0.0f;
+}
+
+//-----------------------------------------------------------
