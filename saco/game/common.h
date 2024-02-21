@@ -122,3 +122,7 @@ typedef struct _PED_TYPE
 
 //-----------------------------------------------------------
 
+#define MAPICON_LOCAL					0
+#define MAPICON_GLOBAL					1
+#define MAPICON_LOCAL_CHECKPOINT		2
+#define MAPICON_GLOBAL_CHECKPOINT		3
