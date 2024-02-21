@@ -427,6 +427,13 @@ DWORD CGame::CreateRadarMarkerIcon(int iMarkerType, float fX, float fY, float fZ
 
 //-----------------------------------------------------------
 
+void CGame::DisableMarker(DWORD dwMarkerID)
+{
+	ScriptCommand(&disable_marker, dwMarkerID);
+}
+
+//-----------------------------------------------------------
+
 const PCHAR CGame::GetWeaponName(int iWeaponID)
 {
 	switch(iWeaponID) {

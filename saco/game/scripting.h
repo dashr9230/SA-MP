@@ -29,6 +29,7 @@ const SCRIPT_COMMAND point_camera						= { 0x0160, "fffi" };	// x, y, z, type
 const SCRIPT_COMMAND restore_camera_jumpcut				= { 0x02EB, "" };		// -/-
 const SCRIPT_COMMAND set_camera_position				= { 0x015F, "ffffff" }; // x, y, z, vx, vy, vz
 
+const SCRIPT_COMMAND disable_marker						= { 0x0164, "i" };		// var_marker
 const SCRIPT_COMMAND set_marker_color					= { 0x0165, "ii" };		// var_marker, color
 
 const SCRIPT_COMMAND create_radar_marker_without_sphere	= { 0x04CE, "fffiv" };	// x, y, z, marker_type, var_marker

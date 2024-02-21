@@ -64,6 +64,7 @@ public:
 	void	DrawGangZone(float* fPos, DWORD dwColor);
 
 	DWORD	CreateRadarMarkerIcon(int iMarkerType, float fX, float fY, float fZ, DWORD dwColor, int iStyle);
+	void	DisableMarker(DWORD dwMarkerID);
 
 	DWORD	GetD3DDevice();
 
