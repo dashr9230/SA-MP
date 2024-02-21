@@ -2,6 +2,7 @@
 #include "main.h"
 
 int AMXAPI aux_LoadProgram(AMX* amx, char* filename);
+int AMXAPI aux_FreeProgram(AMX *amx);
 void AMXPrintError(CGameMode* pGameMode, AMX *amx, int error);
 
 char szGameModeFileName[256];
@@ -51,6 +52,16 @@ bool CGameMode::Load(char* pFileName)
 void CGameMode::Unload()
 {
 	// TODO: CGameMode::Unload
+	int tmp;
+	if (!amx_FindPublic(&m_amx, "OnNPCModeExit", &tmp))
+		amx_Exec(&m_amx, (cell*)&tmp, tmp);
+
+	if (m_bInitialised)
+	{
+		aux_FreeProgram(&m_amx);
+	}
+	m_bInitialised = false;
+	m_bSleeping = false;
 }
 
 //----------------------------------------------------------------------------------
