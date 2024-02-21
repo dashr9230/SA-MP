@@ -1020,6 +1020,17 @@ DWORD dwHudColors[NUM_RADAR_COLORS] = {
 DWORD dwUseHudColors[NUM_RADAR_COLORS];
 
 //-----------------------------------------------------------
+
+void  ProcessLineOfSight(VECTOR *vecOrigin, VECTOR *vecLine, VECTOR *colPoint,
+		DWORD *pHitEntity, int bCheckBuildings, int bCheckVehicles, int bCheckPeds,
+		int bCheckObjects, int bCheckDummies, int bSeeThroughStuff,
+		int  bIgnoreSomeObjectsForCamera, int bUnk1)
+{
+	_asm mov eax, 0x56BA00
+	_asm jmp eax
+}
+
+//-----------------------------------------------------------
 // Return the PED_TYPE * of the local player actor.
 
 PED_TYPE * __stdcall GamePool_FindPlayerPed()

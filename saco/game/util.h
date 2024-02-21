@@ -1,6 +1,11 @@
 
 #pragma once
 
+void ProcessLineOfSight(VECTOR *vecOrigin, VECTOR *vecLine, VECTOR *colPoint,
+		DWORD *pHitEntity, int bCheckBuildings, int bCheckVehicles, int bCheckPeds,
+		int bCheckObjects, int bCheckDummies, int bSeeThroughStuff,
+		int  bIgnoreSomeObjectsForCamera, int bUnk1);
+
 void __stdcall SetRadarColor(int nIndex,DWORD dwColor);
 
 PED_TYPE * __stdcall GamePool_FindPlayerPed();
