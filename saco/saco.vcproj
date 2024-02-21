@@ -545,6 +545,12 @@
 			RelativePath=".\chatwindow.h">
 		</File>
 		<File
+			RelativePath=".\checksums.cpp">
+		</File>
+		<File
+			RelativePath=".\checksums.h">
+		</File>
+		<File
 			RelativePath=".\cmdprocs.cpp">
 		</File>
 		<File
