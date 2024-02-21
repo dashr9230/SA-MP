@@ -1,6 +1,7 @@
 
 #include "main.h"
 
+int AMXAPI aux_LoadProgram(AMX* amx, char* filename);
 void AMXPrintError(CGameMode* pGameMode, AMX *amx, int error);
 
 char szGameModeFileName[256];
@@ -18,6 +19,31 @@ CGameMode::CGameMode()
 CGameMode::~CGameMode()
 {
 	Unload();
+}
+
+//----------------------------------------------------------------------------------
+
+bool CGameMode::Load(char* pFileName)
+{
+	if (m_bInitialised)
+		Unload();
+
+	FILE* f = fopen(pFileName, "rb");
+	if (!f) return false;
+	fclose(f);
+
+	memset((void*)&m_amx, 0, sizeof(AMX));
+	m_fSleepTime = 0.0f;
+	strcpy(szGameModeFileName, pFileName);
+
+	int err = aux_LoadProgram(&m_amx, szGameModeFileName);
+	if (err != AMX_ERR_NONE)
+	{
+		AMXPrintError(this, &m_amx, err);
+		return false;
+	}
+
+	return false;
 }
 
 //----------------------------------------------------------------------------------

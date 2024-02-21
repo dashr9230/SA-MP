@@ -20,6 +20,7 @@ public:
 
 	char* GetFileName() { return &szGameModeFileName[0]; };
 
+	bool Load(char* pFileName);
 	void Unload();
 
 	void Frame(float fElapsedTime);
