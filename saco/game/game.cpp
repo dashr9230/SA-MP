@@ -396,6 +396,37 @@ void CGame::ToggleRadar(int iToggle)
 
 //-----------------------------------------------------------
 
+DWORD CGame::CreateRadarMarkerIcon(int iMarkerType, float fX, float fY, float fZ, DWORD dwColor, int iStyle)
+{
+	DWORD dwMarkerID=0;
+	switch(iStyle) {
+	case MAPICON_LOCAL:
+		ScriptCommand(&create_radar_marker_without_sphere, fX, fY, fZ, iMarkerType, &dwMarkerID);
+		break;
+	case MAPICON_GLOBAL:
+		ScriptCommand(&create_marker_at, fX, fY, fZ, iMarkerType, &dwMarkerID);
+		break;
+	case MAPICON_LOCAL_CHECKPOINT:
+		ScriptCommand(&create_radar_marker_icon, fX, fY, fZ, iMarkerType, &dwMarkerID);
+		break;
+	case MAPICON_GLOBAL_CHECKPOINT:
+		ScriptCommand(&create_icon_marker_sphere, fX, fY, fZ, iMarkerType, &dwMarkerID);
+		break;
+	}
+	if(iMarkerType == 0) {
+		if(dwColor >= 1004) {
+			ScriptCommand(&set_marker_color, dwMarkerID, dwColor);
+			ScriptCommand(&show_on_radar, dwMarkerID, 3);
+		} else {
+			ScriptCommand(&set_marker_color, dwMarkerID, dwColor);
+			ScriptCommand(&show_on_radar, dwMarkerID, 2);
+		}
+	}
+	return dwMarkerID;
+}
+
+//-----------------------------------------------------------
+
 const PCHAR CGame::GetWeaponName(int iWeaponID)
 {
 	switch(iWeaponID) {

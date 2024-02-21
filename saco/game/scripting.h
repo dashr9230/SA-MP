@@ -29,6 +29,13 @@ const SCRIPT_COMMAND point_camera						= { 0x0160, "fffi" };	// x, y, z, type
 const SCRIPT_COMMAND restore_camera_jumpcut				= { 0x02EB, "" };		// -/-
 const SCRIPT_COMMAND set_camera_position				= { 0x015F, "ffffff" }; // x, y, z, vx, vy, vz
 
+const SCRIPT_COMMAND set_marker_color					= { 0x0165, "ii" };		// var_marker, color
+
+const SCRIPT_COMMAND create_radar_marker_without_sphere	= { 0x04CE, "fffiv" };	// x, y, z, marker_type, var_marker
+const SCRIPT_COMMAND show_on_radar						= { 0x0168, "ii" };		// var_marker, size
+
+const SCRIPT_COMMAND create_icon_marker_sphere			= { 0x02A7, "fffiv" };
+
 const SCRIPT_COMMAND set_actor_can_be_decapitated		= { 0x0446, "ii" };
 
 const SCRIPT_COMMAND enable_train_traffic				= { 0x06d7, "i" };
@@ -40,11 +47,21 @@ const SCRIPT_COMMAND is_animation_loaded				= { 0x04EE, "s" };
 const SCRIPT_COMMAND release_animation					= { 0x04EF, "s" };
 
 const SCRIPT_COMMAND set_actor_weapon_droppable 		= { 0x087e, "ii" };
+const SCRIPT_COMMAND create_radar_marker_icon			= { 0x0570, "fffiv" };
+
 
 const SCRIPT_COMMAND restore_camera_to_user_defined = { 0x925, "" };
 const SCRIPT_COMMAND set_camera_position_to = { 0x936, "ffffffii" };
 const SCRIPT_COMMAND point_camera_transverse_to = { 0x920, "ffffffii" };
 const SCRIPT_COMMAND lock_camera_target_point = { 0x92F, "i" };
 const SCRIPT_COMMAND lock_camera_position = { 0x930, "i" };
+
+const SCRIPT_COMMAND create_marker_at = { 0x2A8, "fffiv" };
+
+
+
+
+
+
 
 

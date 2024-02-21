@@ -62,6 +62,9 @@ public:
 	void	SetWantedLevel(BYTE byteLevel);
 	void	SetGameTextCount(WORD wCount);
 	void	DrawGangZone(float* fPos, DWORD dwColor);
+
+	DWORD	CreateRadarMarkerIcon(int iMarkerType, float fX, float fY, float fZ, DWORD dwColor, int iStyle);
+
 	DWORD	GetD3DDevice();
 
 	DWORD	GetD3D() { return *(DWORD *)ADDR_ID3D9DEVICE; };
