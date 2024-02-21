@@ -51,7 +51,7 @@ private:
 	char field_234;
 	int m_iPort;
 	int field_239;
-	char field_23D[400];
+	DWORD		m_dwMapIcon[100];
 	int m_iGameState;
 	int field_3D1;
 	struc_41 *field_3D5;
@@ -69,4 +69,7 @@ public:
 
 	CPlayerPool * GetPlayerPool() { return m_pPools->pPlayerPool; };
 
+	void  ResetMapIcons();
+	void  SetMapIcon(BYTE byteIndex, float fX, float fY, float fZ, BYTE byteIcon, DWORD dwColor, int iStyle);
+	void  DisableMapIcon(BYTE byteIndex);
 };

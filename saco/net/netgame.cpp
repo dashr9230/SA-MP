@@ -1,6 +1,7 @@
 
 #include "../main.h"
 
+extern CGame		 *pGame;
 extern CChatWindow   *pChatWindow;
 
 CNetGame::CNetGame(PCHAR szHostOrIp, int iPort, 
@@ -50,3 +51,37 @@ DWORD CNetGame::GetTime()
 {
 	return (DWORD)RakNet::GetTime();
 }
+
+//-----------------------------------------------------------
+// Puts a personal marker using any of the radar icons on the map
+
+void CNetGame::SetMapIcon(BYTE byteIndex, float fX, float fY, float fZ, BYTE byteIcon, DWORD dwColor, int iStyle)
+{
+	if (byteIndex >= 100) return;
+	if (m_dwMapIcon[byteIndex] != NULL) DisableMapIcon(byteIndex);
+	//ScriptCommand(&create_radar_marker_without_sphere, fX, fY, fZ, byteIcon, &m_dwMapIcon);
+	m_dwMapIcon[byteIndex] = pGame->CreateRadarMarkerIcon(byteIcon, fX, fY, fZ, dwColor, iStyle);
+}
+
+//-----------------------------------------------------------
+// Removes the Map Icon
+
+void CNetGame::DisableMapIcon(BYTE byteIndex)
+{
+	if (byteIndex >= 100) return;
+	ScriptCommand(&disable_marker, m_dwMapIcon[byteIndex]);
+	m_dwMapIcon[byteIndex] = NULL;
+}
+
+//----------------------------------------------------
+
+void CNetGame::ResetMapIcons()
+{
+	BYTE i;
+	for (i = 0; i < 100; i++)
+	{
+		if (m_dwMapIcon[i] != NULL) DisableMapIcon(i);
+	}
+}
+
+//----------------------------------------------------
