@@ -39,6 +39,8 @@ const SCRIPT_COMMAND create_icon_marker_sphere			= { 0x02A7, "fffiv" };
 
 const SCRIPT_COMMAND set_actor_can_be_decapitated		= { 0x0446, "ii" };
 
+const SCRIPT_COMMAND play_sound							= { 0x018c, "fffi" };
+
 const SCRIPT_COMMAND enable_train_traffic				= { 0x06d7, "i" };
 
 const SCRIPT_COMMAND refresh_streaming_at				= { 0x04E4, "ff" };
@@ -60,7 +62,11 @@ const SCRIPT_COMMAND lock_camera_position = { 0x930, "i" };
 const SCRIPT_COMMAND create_marker_at = { 0x2A8, "fffiv" };
 
 
-
+const SCRIPT_COMMAND load_wav = { 0x3CF, "ii" };
+const SCRIPT_COMMAND is_wav_loaded = { 0x3D0, "i" };
+const SCRIPT_COMMAND play_wav = { 0x3D1, "i" };
+const SCRIPT_COMMAND unload_wav = { 0x40D, "i" };
+const SCRIPT_COMMAND set_wav_at_location = { 0x3D7, "ifff" };
 
 
 

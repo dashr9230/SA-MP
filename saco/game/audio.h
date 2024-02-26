@@ -8,16 +8,15 @@ public:
 	char field_4;
 
 	CAudio() {
-		// TODO: CAudio::CAudio()
 		field_0 = 0;
 		field_4 = 0;
-	}
+	};
 
-	void GetRadioStation();
-	void StartRadio();
-	void GetRadioVolume();
+	int GetRadioStation();
+	void StartRadio(int iStation);
+	float GetRadioVolume();
 	void StopOutdoorAmbienceTrack();
-	void SetOutdoorAmbienceTrack();
-	void Play();
-	void IsOutdoorAmbienceTrackDisabled();
+	void SetOutdoorAmbienceTrack(int iTrack);
+	void PlaySound(int iSound, float fX, float fY, float fZ);
+	bool IsOutdoorAmbienceTrackDisabled();
 };
