@@ -248,6 +248,12 @@
 				RelativePath="..\raknet\SingleProducerConsumer.h">
 			</File>
 			<File
+				RelativePath="..\raknet\TCPInterface.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\TCPInterface.h">
+			</File>
+			<File
 				RelativePath="..\raknet\TEABlockEncryptor.cpp">
 			</File>
 			<File
