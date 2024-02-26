@@ -317,6 +317,12 @@ void DoInitStuff()
 
 		// Grab the real IDirect3DDevice9 * from the game.
 		pD3DDevice = (IDirect3DDevice9 *)pGame->GetD3DDevice();
+		*(IDirect3DDevice9Hook**)ADDR_ID3D9DEVICE = new IDirect3DDevice9Hook();
+
+		pD3DDevice->ShowCursor(FALSE);
+
+
+
 
 		// TODO: DoInitStuff
 
