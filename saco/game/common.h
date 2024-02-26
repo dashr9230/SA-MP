@@ -65,6 +65,14 @@ typedef struct _PED_TYPE
 } PED_TYPE;
 
 //-----------------------------------------------------------
+typedef struct _VEHICLE_TYPE
+{
+	char _gap0;
+} VEHICLE_TYPE;
+
+//-----------------------------------------------------------
+
+//-----------------------------------------------------------
 
 // ---- weapon id defines ----
 #define WEAPON_BRASSKNUCKLE				1

@@ -21,4 +21,11 @@
 
 #define ADDR_ENABLE_HUD							0xBA6769
 
+#define ADDR_ID_FROM_ACTOR						0x4442D0
+#define ADDR_ACTOR_FROM_ID						0x404910  // Converts id to actor ptr
+#define ADDR_PED_TABLE							0xB74490  // Contains ptr to actor/ped table
+
+#define ADDR_VEHICLE_FROM_ID					0x4048E0  // Converts id to vehicle ptr
+#define ADDR_VEHICLE_TABLE						0xB74494  // Contains ptr to the vehicles table
+
 #define ADDR_CAMERA								0xB6F99C

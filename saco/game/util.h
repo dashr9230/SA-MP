@@ -8,6 +8,16 @@ void ProcessLineOfSight(VECTOR *vecOrigin, VECTOR *vecLine, VECTOR *colPoint,
 
 void __stdcall SetRadarColor(int nIndex,DWORD dwColor);
 
+void __stdcall WorldRemoveEntity(DWORD *dwEnt);
+void __stdcall WorldAddEntity(DWORD *dwEnt);
+
+void __stdcall GameDisableCheatCodes();
+
+PED_TYPE * __stdcall GamePool_Ped_GetAt(int iID);
+int __stdcall GamePool_Ped_GetIndex(PED_TYPE *pActor);
+VEHICLE_TYPE * __stdcall GamePool_Vehicle_GetAt(int iID);
+DWORD __stdcall GamePool_Vehicle_GetIndex(VEHICLE_TYPE *pVehicle);
+ENTITY_TYPE * __stdcall GamePool_Object_GetAt(int iID);
 PED_TYPE * __stdcall GamePool_FindPlayerPed();
 
 DWORD __stdcall TranslateColorCodeToRGBA(int iCode);

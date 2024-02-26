@@ -1031,12 +1031,121 @@ void  ProcessLineOfSight(VECTOR *vecOrigin, VECTOR *vecLine, VECTOR *colPoint,
 }
 
 //-----------------------------------------------------------
+
+void __stdcall WorldAddEntity(DWORD *dwEnt)
+{
+	_asm push dwEnt
+	_asm mov ebx, 0x563220
+	_asm call ebx
+	_asm pop ebx
+}
+
+//-----------------------------------------------------------
+
+void __stdcall WorldRemoveEntity(DWORD *dwEnt)
+{
+	_asm push dwEnt
+	_asm mov ebx, 0x563280
+	_asm call ebx
+	_asm pop ebx
+}
+
+//-----------------------------------------------------------
+
+void __stdcall GameDisableCheatCodes()
+{
+
+}
+
+//-----------------------------------------------------------
+
+PED_TYPE * __stdcall GamePool_Ped_GetAt(int iID)
+{
+	PED_TYPE *pActorRet;
+
+	_asm mov ebx, ADDR_PED_TABLE
+	_asm mov ecx, [ebx]
+	_asm push iID
+	_asm mov ebx, ADDR_ACTOR_FROM_ID
+	_asm call ebx
+	_asm mov pActorRet, eax
+
+	return pActorRet;	
+}
+
+//-----------------------------------------------------------
+
+int __stdcall GamePool_Ped_GetIndex(PED_TYPE *pActor)
+{
+	int iRetVal;
+
+	_asm mov ebx, ADDR_PED_TABLE
+	_asm mov ecx, [ebx]
+	_asm push pActor
+	_asm mov ebx, ADDR_ID_FROM_ACTOR
+	_asm call ebx
+	_asm mov iRetVal, eax
+
+	return iRetVal;
+}
+
+//-----------------------------------------------------------
+
+VEHICLE_TYPE * __stdcall GamePool_Vehicle_GetAt(int iID)
+{
+	VEHICLE_TYPE *pVehicleRet;
+
+	_asm mov ebx, ADDR_VEHICLE_TABLE
+	_asm mov ecx, [ebx]
+	_asm push iID
+	_asm mov ebx, ADDR_VEHICLE_FROM_ID
+	_asm call ebx
+	_asm mov pVehicleRet, eax
+
+	return pVehicleRet;
+}
+
+//-----------------------------------------------------------
+
+DWORD __stdcall GamePool_Vehicle_GetIndex(VEHICLE_TYPE *pVehicle)
+{
+	DWORD dwID=0;
+
+	_asm mov eax, ADDR_VEHICLE_TABLE
+	_asm mov ecx, [eax]
+	_asm push pVehicle
+	_asm mov edx, 0x424160
+	_asm call edx
+	_asm mov dwID, eax
+
+	return dwID;
+}
+
+//-----------------------------------------------------------
+
+ENTITY_TYPE * __stdcall GamePool_Object_GetAt(int iID)
+{
+	ENTITY_TYPE *pObjectRet;
+
+	_asm mov ebx, 0xB7449C
+	_asm mov ecx, [ebx]
+	_asm push iID
+	_asm mov ebx, 0x465040
+	_asm call ebx
+	_asm mov pObjectRet, eax
+
+	return pObjectRet;
+}
+
+//-----------------------------------------------------------
 // Return the PED_TYPE * of the local player actor.
 
 PED_TYPE * __stdcall GamePool_FindPlayerPed()
 {
 	return *(PED_TYPE **)(0xB7CD98);
 }
+
+//-----------------------------------------------------------
 
 void __stdcall SetRadarColor(int nIndex,DWORD dwColor)
 {
@@ -1068,7 +1177,7 @@ void GameResetRadarColors()
 void __stdcall InitPlayerPedPtrRecords() 
 {
 	memset(&dwPlayerPedPtrs[0],0,sizeof(DWORD) * PLAYER_PED_SLOTS);
-	memset(unnamed_1026C258, 0, sizeof(struc_96) * PLAYER_PED_SLOTS);
+	memset(unnamed_1026C258, 0, sizeof(unnamed_1026C258));
 }
 
 //-----------------------------------------------------------
