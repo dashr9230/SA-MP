@@ -397,4 +397,9 @@ void CConsole::Execute(char* pExecLine)
 		}
 	}
 
+	ConsoleVariable_s* ConVar = FindVariable(cmd);
+	if (ConVar != NULL)
+	{
+		return;
+	}
 }
