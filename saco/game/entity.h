@@ -23,6 +23,9 @@ public:
 	float sub_1009EEB0(); // unused
 	void  sub_1009EEF0(PVECTOR Vector);
 	void  sub_1009EF20(int a2); // unused
+	UINT  GetModelIndex();
+	void  TeleportTo(float x, float y, float z);
+
 	BOOL  sub_1009FDE0();
 
 	VECTOR		field_4[5];

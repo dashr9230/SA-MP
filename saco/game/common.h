@@ -46,7 +46,11 @@ typedef struct _ENTITY_TYPE
 	MATRIX4X4 *mat; // 20-24
 	DWORD *pdwRenderWare; // 24-28
 
-	char _gap1C[40];
+	char _gap1C[6];
+
+	WORD nModelIndex; // 34-36
+
+	char _gap24[32];
 
 	VECTOR vecMoveSpeed; // 68-80
 	VECTOR vecTurnSpeed; // 80-92
@@ -72,6 +76,12 @@ typedef struct _VEHICLE_TYPE
 
 //-----------------------------------------------------------
 
+#define TRAIN_PASSENGER_LOCO			537
+#define TRAIN_FREIGHT_LOCO				538
+#define TRAIN_PASSENGER					569
+#define TRAIN_FREIGHT					570
+#define TRAIN_TRAM						449
+#define HYDRA							520
 //-----------------------------------------------------------
 
 // ---- weapon id defines ----

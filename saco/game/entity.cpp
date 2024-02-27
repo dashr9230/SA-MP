@@ -191,6 +191,36 @@ void CEntity::sub_1009EF20(int a2)
 
 //-----------------------------------------------------------
 
+UINT CEntity::GetModelIndex()
+{
+	return m_pEntity->nModelIndex;
+}
+
+//-----------------------------------------------------------
+
+void CEntity::TeleportTo(float x, float y, float z)
+{
+	DWORD dwThisEntity = (DWORD)m_pEntity;
+
+	if(dwThisEntity && m_pEntity->vtable != 0x863C40) {
+		if( GetModelIndex() != TRAIN_PASSENGER_LOCO &&
+			GetModelIndex() != TRAIN_FREIGHT_LOCO &&
+			GetModelIndex() != TRAIN_TRAM) {
+			_asm mov ecx, dwThisEntity
+			_asm mov edx, [ecx] ; vtbl
+			_asm push 0
+			_asm push z
+			_asm push y
+			_asm push x
+			_asm call dword ptr [edx+56] ; method 14
+		} else {
+			ScriptCommand(&put_train_at,m_dwGTAId,x,y,z);
+		}
+	}
+}
+
+//-----------------------------------------------------------
+
 BOOL CEntity::sub_1009FDE0()
 {
 	return m_pEntity
