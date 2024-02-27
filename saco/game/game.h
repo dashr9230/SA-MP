@@ -18,9 +18,9 @@ private:
 	CCamera			*m_pGameCamera;
 	CPlayerPed		*m_pGamePlayer;
 	char gapC[29];
-	int field_29;
+	BOOL			m_bRaceCheckpointsEnabled;
 	char gap2D[4];
-	int field_31;
+	DWORD			m_dwRaceCheckpointHandle;
 	char gap35[24];
 	int field_4D;
 	char gap51[4];
@@ -56,6 +56,7 @@ public:
 	int		IsAnimationLoaded(char *szAnimFile);
 	void	ReleaseAnimation(char *szAnimFile);
 	void	ToggleRadar(int iToggle);
+	void	DisplayGameText(char *szStr,int iTime,int iSize);
 
 	void	SetGravity(float fGravity);
 
@@ -63,8 +64,16 @@ public:
 	void	SetGameTextCount(WORD wCount);
 	void	DrawGangZone(float* fPos, DWORD dwColor);
 
+	void	DisableRaceCheckpoint();
+
 	DWORD	CreateRadarMarkerIcon(int iMarkerType, float fX, float fY, float fZ, DWORD dwColor, int iStyle);
 	void	DisableMarker(DWORD dwMarkerID);
+
+	void   AddToLocalMoney(int iAmount);
+	int	   GetLocalMoney();
+
+	BYTE   GetActiveInterior();
+	void   UpdateFarClippingPlane();
 
 	DWORD	GetD3DDevice();
 

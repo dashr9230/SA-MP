@@ -28,8 +28,8 @@ CGame::CGame()
 	m_pGameCamera = new CCamera();
 	m_pGamePlayer = NULL;
 	field_4D = 0;
-	field_29 = 0;
-	field_31 = 0;
+	m_bRaceCheckpointsEnabled = FALSE;
+	m_dwRaceCheckpointHandle = NULL;
 	field_61 = 0;
 	field_65 = 0;
 	field_69 = 0;
@@ -396,6 +396,49 @@ void CGame::ToggleRadar(int iToggle)
 
 //-----------------------------------------------------------
 
+void sub_0(PCHAR szString)
+{
+	while(*szString) {
+		if(*szString >= 1 && *szString < ' ' && *szString != '\n') {
+			*szString = ' ';
+		}
+		szString++;
+	}
+}
+
+void CGame::DisplayGameText(char *szStr,int iTime,int iSize)
+{
+	if(iSize > 200) return;
+
+	ScriptCommand(&text_clear_all);
+
+	memset(szGameTextMessage,0,sizeof(szGameTextMessage)); // not a typo
+	strncpy(szGameTextMessage,szStr,512);
+
+	sub_0(szGameTextMessage);
+
+	_asm push iSize
+	_asm push iTime
+	_asm push szGameTextMessage
+	_asm mov eax, 0x69F2B0
+	_asm call eax
+	_asm add esp, 12
+}
+
+//-----------------------------------------------------------
+
+void CGame::DisableRaceCheckpoint()
+{
+	if (m_dwRaceCheckpointHandle)
+	{
+		ScriptCommand(&destroy_racing_checkpoint, m_dwRaceCheckpointHandle);
+		m_dwRaceCheckpointHandle = NULL;
+	}
+	m_bRaceCheckpointsEnabled = false;
+}
+
+//-----------------------------------------------------------
+
 DWORD CGame::CreateRadarMarkerIcon(int iMarkerType, float fX, float fY, float fZ, DWORD dwColor, int iStyle)
 {
 	DWORD dwMarkerID=0;
@@ -430,6 +473,54 @@ DWORD CGame::CreateRadarMarkerIcon(int iMarkerType, float fX, float fY, float fZ
 void CGame::DisableMarker(DWORD dwMarkerID)
 {
 	ScriptCommand(&disable_marker, dwMarkerID);
+}
+
+//-----------------------------------------------------------
+// Get the current active interior
+
+BYTE CGame::GetActiveInterior()
+{
+	DWORD dwRet;
+	ScriptCommand(&get_active_interior,&dwRet);
+	return (BYTE)dwRet;
+}
+
+//-----------------------------------------------------------
+
+extern float fFarClip;
+
+void CGame::UpdateFarClippingPlane()
+{
+	PED_TYPE *pPlayerPed = GamePool_FindPlayerPed();
+
+	if(pPlayerPed) {
+		if(GetActiveInterior() == 0) {
+			fFarClip = 1250.0f - (pPlayerPed->entity.mat->pos.Z + pPlayerPed->entity.mat->pos.Z);
+			if(fFarClip < 700.0f) {
+				fFarClip = 700.0f;
+			}
+		}
+		else {
+			fFarClip = 400.0f;
+		}
+	}
+	else {
+		fFarClip = 1250.0f;
+	}
+}
+
+//-----------------------------------------------------------
+
+void CGame::AddToLocalMoney(int iAmount)
+{
+	ScriptCommand(&add_to_player_money,0,iAmount);
+}
+
+//-----------------------------------------------------------
+
+int CGame::GetLocalMoney()
+{
+	return *(int *)0xB7CE50;
 }
 
 //-----------------------------------------------------------

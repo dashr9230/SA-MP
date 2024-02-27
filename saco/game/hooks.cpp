@@ -9,6 +9,8 @@ extern DWORD dwGraphicsLoop; // Used for the external dll game loop.
 
 BYTE	*pbyteCameraMode = (BYTE *)0xB6F1A8;
 
+float fFarClip=1400.0f;
+
 DWORD unnamed_101516D4;
 
 WORD wLastRendObj=0;

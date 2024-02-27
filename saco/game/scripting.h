@@ -37,6 +37,10 @@ const SCRIPT_COMMAND show_on_radar						= { 0x0168, "ii" };		// var_marker, size
 
 const SCRIPT_COMMAND create_icon_marker_sphere			= { 0x02A7, "fffiv" };
 
+const SCRIPT_COMMAND add_to_player_money				= { 0x0109, "ii" };		// PLAYER_CHAR, money
+
+const SCRIPT_COMMAND destroy_racing_checkpoint			= { 0x06d6,	"i" };
+
 const SCRIPT_COMMAND set_actor_can_be_decapitated		= { 0x0446, "ii" };
 
 const SCRIPT_COMMAND play_sound							= { 0x018c, "fffi" };
@@ -45,6 +49,8 @@ const SCRIPT_COMMAND enable_train_traffic				= { 0x06d7, "i" };
 
 const SCRIPT_COMMAND put_train_at						= { 0x07c7, "ifff" };
 
+const SCRIPT_COMMAND get_active_interior				= { 0x077e, "v" };
+
 const SCRIPT_COMMAND refresh_streaming_at				= { 0x04E4, "ff" };
 
 const SCRIPT_COMMAND request_animation					= { 0x04ED, "s" };
@@ -52,6 +58,8 @@ const SCRIPT_COMMAND is_animation_loaded				= { 0x04EE, "s" };
 const SCRIPT_COMMAND release_animation					= { 0x04EF, "s" };
 
 const SCRIPT_COMMAND set_actor_weapon_droppable 		= { 0x087e, "ii" };
+const SCRIPT_COMMAND text_clear_all						= { 0x00be, "" };
+
 const SCRIPT_COMMAND create_radar_marker_icon			= { 0x0570, "fffiv" };
 
 
