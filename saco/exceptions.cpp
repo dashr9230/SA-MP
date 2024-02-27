@@ -10,8 +10,10 @@
 PCONTEXT pContextRecord;
 extern	 HANDLE		hInstance;
 extern   CGame		*pGame;
+extern   CNetGame	*pNetGame;
 extern   DWORD		dwScmOpcodeDebug;
 extern   BOOL       bScmLocalDebug;
+extern   int		iGtaVersion;
 extern	 WORD		wLastRendObj;
 
 CHAR szErrorString[16384];
@@ -132,7 +134,17 @@ void DumpMain(BOOL bIncModules)
 	sprintf(s,"\r\nSCM Op: 0x%X, lDbg: %d LastRendObj: %u\r\n", dwScmOpcodeDebug, bScmLocalDebug, wLastRendObj);
 	strcat(szErrorString,s);
 
-	// TODO: DumpMain 100605B0
+	const char *szGameVersion = (iGtaVersion == GTASA_VERSION_USA10) ? "US 1.0" :
+								(iGtaVersion == GTASA_VERSION_EU10) ? "EU 1.0" :
+								"UNKNOWN";
+	sprintf(s, "\r\nGame Version: %s\r\n", szGameVersion);
+	strcat(szErrorString,s);
+
+	if(pNetGame)
+	{
+		DumpNetworkStateInformation(s);
+		strcat(szErrorString,s);
+	}
 
 	if (bIncModules)
 	{
