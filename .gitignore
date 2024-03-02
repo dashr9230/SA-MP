@@ -14,3 +14,10 @@
 # Delphi compiled units and diagram portfolio
 *.dcu
 *.ddp
+
+# IDA files
+*.id0
+*.id1
+*.id2
+*.nam
+*.til
