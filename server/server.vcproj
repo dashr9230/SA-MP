@@ -122,6 +122,40 @@
 			</File>
 		</Filter>
 		<Filter
+			Name="amx"
+			Filter="">
+			<File
+				RelativePath=".\amx\amx.c">
+			</File>
+			<File
+				RelativePath=".\amx\amx.h">
+			</File>
+			<File
+				RelativePath=".\amx\amxcons.c">
+			</File>
+			<File
+				RelativePath=".\amx\amxcore.c">
+			</File>
+			<File
+				RelativePath=".\amx\amxDGram.c">
+			</File>
+			<File
+				RelativePath=".\amx\amxfile.c">
+			</File>
+			<File
+				RelativePath=".\amx\amxfloat.c">
+			</File>
+			<File
+				RelativePath=".\amx\amxstring.c">
+			</File>
+			<File
+				RelativePath=".\amx\amxtime.c">
+			</File>
+			<File
+				RelativePath=".\amx\osdefs.h">
+			</File>
+		</Filter>
+		<Filter
 			Name="raknet"
 			Filter="">
 			<File
