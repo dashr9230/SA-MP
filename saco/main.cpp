@@ -77,7 +77,7 @@ void LaunchMonitor(PVOID v)
 
 #define ARCHIVE_FILE	"samp.saa"
 
-BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
+BOOL WINAPI DllMain_2(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 {
 	if(DLL_PROCESS_ATTACH==fdwReason)
 	{
@@ -118,6 +118,13 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 	}
 
 	return TRUE;
+}
+
+//----------------------------------------------------
+
+BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
+{
+	_asm jmp DllMain_2
 }
 
 //----------------------------------------------------
