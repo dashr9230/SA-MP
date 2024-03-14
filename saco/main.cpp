@@ -321,6 +321,8 @@ void DoInitStuff()
 
 		pD3DDevice->ShowCursor(FALSE);
 
+		// Create instances of the chat and input classes.
+		pDefaultFont = new CFontRender(pD3DDevice);
 
 
 
