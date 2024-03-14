@@ -1,5 +1,6 @@
 
 #include "../main.h"
+extern CNetGame *pNetGame;
 
 //----------------------------------------------------
 
@@ -9,6 +10,23 @@ CVehiclePool::CVehiclePool()
 	for(VEHICLEID VehicleID = 0; VehicleID < MAX_VEHICLES; VehicleID++) {
 		field_84D0[VehicleID] = 0;
 	}
+}
+
+//----------------------------------------------------
+
+CVehiclePool::~CVehiclePool()
+{
+	for(VEHICLEID VehicleID = 0; VehicleID < MAX_VEHICLES; VehicleID++) {
+		Delete(VehicleID);
+	}
+}
+
+//----------------------------------------------------
+
+BOOL CVehiclePool::Delete(VEHICLEID VehicleID)
+{
+	pNetGame->sub_415EC0(VehicleID, FALSE);
+	return TRUE;
 }
 
 //----------------------------------------------------

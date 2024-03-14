@@ -60,6 +60,8 @@ public:
 	void Init(PCHAR szHostOrIp,int iPort,PCHAR szPlayerName,PCHAR szPass,PCHAR szNpcMode);
 	void Process();
 
+	void sub_415EA0(PLAYERID playerId, BOOL a2);
+	void sub_415EC0(VEHICLEID VehicleID, BOOL a2);
 };
 
 //----------------------------------------------------

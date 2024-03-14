@@ -3,12 +3,12 @@
 
 char unnamed_2[63];
 char unnamed_5[1000][24];
-int unnamed_6[1000];
+BOOL unnamed_6[MAX_PLAYERS];
 char unnamed_9;
 char unnamed_1[68];
 char unnamed_3[1000][68];
 char unnamed_8[1000];
-int unnamed_7[2000];
+BOOL unnamed_7[MAX_VEHICLES];
 char unnamed_4[1000][63];
 
 //----------------------------------------------------
@@ -27,39 +27,9 @@ CNetGame::~CNetGame()
 	UnRegisterScriptRPCs(m_pRakClient);	// Unregister server-side scripting RPCs.
 	RakNetworkFactory::DestroyRakClientInterface(m_pRakClient);
 	SAFE_DELETE(m_pGameMode);
-
-	// TODO: ~CNetGame (W: 00416D50 L: 080ACFDE)
-	/*
-	if ( this->field_38A )
-	{
-		v4 = (void *)this->field_38A;
-		if ( v4 )
-		{
-			sub_80B8160(v4);
-			operator delete(v4);
-		}
-		this->field_38A = 0;
-	}
-	if ( this->field_4 )
-	{
-		v3 = (void *)this->field_4;
-		if ( v3 )
-		{
-			sub_80B1FF8(v3);
-			operator delete(v3);
-		}
-		this->field_4 = 0;
-	}
-	if ( this->field_8 )
-	{
-		v2 = (void *)this->field_8;
-		if ( v2 )
-		{
-			sub_80B9470(v2);
-			operator delete(v2);
-		}
-		this->field_8 = 0;
-	}*/
+	SAFE_DELETE(m_pScriptTimers);
+	SAFE_DELETE(m_pPlayerPool);
+	SAFE_DELETE(m_pVehiclePool);
 }
 
 //----------------------------------------------------
@@ -171,3 +141,20 @@ void CNetGame::Process()
 }
 
 //----------------------------------------------------
+
+void CNetGame::sub_415EA0(PLAYERID playerId, BOOL a2)
+{
+	if(playerId < MAX_PLAYERS)
+	{
+		unnamed_6[playerId] = a2;
+	}
+}
+
+void CNetGame::sub_415EC0(VEHICLEID VehicleID, BOOL a2)
+{
+	if(VehicleID < MAX_VEHICLES)
+	{
+		unnamed_7[VehicleID] = a2;
+	}
+}
+

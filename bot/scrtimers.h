@@ -4,7 +4,8 @@
 
 struct ScriptTimer_s
 {
-	char _gap0[283];
+	char _gap0[279];
+	void* cellParams;
 };
 
 typedef std::map<DWORD, ScriptTimer_s*> DwordTimerMap;
@@ -18,7 +19,9 @@ private:
 	DWORD m_dwTimerCount;
 public:
 	CScriptTimers();
+	~CScriptTimers();
 
+	void FreeMem(ScriptTimer_s* Timer);
 };
 
 #endif

@@ -8,4 +8,7 @@ private:
 
 public:
 	CVehiclePool();
+	~CVehiclePool();
+
+	BOOL Delete(VEHICLEID VehicleID);
 };

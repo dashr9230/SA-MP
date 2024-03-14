@@ -4,7 +4,7 @@
 class CPlayerPool // size: 41035
 {
 private:
-	int field_0[1000];
+	BOOL			m_bPlayerSlotState[MAX_PLAYERS];
 	char _gapFA0[2];
 	CHAR			m_szLocalPlayerName[MAX_PLAYER_NAME+1];
 	char gapFBB[25000];
@@ -19,4 +19,8 @@ public:
 	void SetLocalPlayerName(PCHAR szName) { strcpy(m_szLocalPlayerName,szName); };
 
 	CPlayerPool();
+	~CPlayerPool();
+
+	BOOL Delete(PLAYERID playerId, BYTE byteReason);
+
 };
