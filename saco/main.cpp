@@ -349,6 +349,18 @@ void DoInitStuff()
 void DoProcessStuff()
 {
 	DoInitStuff();
+
+	SetupD3DFog(TRUE);
+
+	// Process the netgame if it's active.
+	if(pNetGame) {
+		//Sleep(0); // This hands the context over to raknet
+		pNetGame->Process();
+	}
+
+	if(pAudioStream) {
+		pAudioStream->Process();
+	}
 }
 
 //----------------------------------------------------

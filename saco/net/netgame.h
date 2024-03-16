@@ -43,6 +43,8 @@ private:
 
 	RakClientInterface	*m_pRakClient;
 
+	void UpdateNetwork();
+
 	char _gap4[44];
 	char m_szHostOrIp[257];
 	char m_szHostName[257];
@@ -62,6 +64,8 @@ private:
 public:
 
 	CNetGame(char *a2, int a3, char *a4, char *a5);
+
+	void Process();
 
 	void InitPools();
 

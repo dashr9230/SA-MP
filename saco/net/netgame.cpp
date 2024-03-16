@@ -4,6 +4,34 @@
 extern CGame		 *pGame;
 extern CChatWindow   *pChatWindow;
 
+//----------------------------------------------------
+
+BYTE GetPacketID(Packet *p)
+{
+	if (p==0) return 255;
+
+	if ((unsigned char)p->data[0] == ID_TIMESTAMP) {
+		assert(p->length > sizeof(unsigned char) + sizeof(unsigned long));
+		return (unsigned char) p->data[sizeof(unsigned char) + sizeof(unsigned long)];
+	}
+	else {
+		return (unsigned char) p->data[0];
+	}
+}
+
+//----------------------------------------------------
+
+bool HasTimestamps(Packet *p)
+{
+	if (p==0) return 0;
+
+	if ((unsigned char)p->data[0] == ID_TIMESTAMP)
+		return true;
+	return false;
+}
+
+//----------------------------------------------------
+
 CNetGame::CNetGame(PCHAR szHostOrIp, int iPort, 
 				   PCHAR szPlayerName, PCHAR szPass)
 {
@@ -31,6 +59,29 @@ CNetGame::CNetGame(PCHAR szHostOrIp, int iPort,
 }
 
 //----------------------------------------------------
+
+void CNetGame::Process()
+{
+	UpdateNetwork();
+	// TODO: CNetGame::Process()
+}
+
+//----------------------------------------------------
+// UPDATE NETWORK
+//----------------------------------------------------
+
+void CNetGame::UpdateNetwork()
+{
+/*	Packet* pkt=NULL;
+	unsigned char packetIdentifier;
+
+	while((pkt = m_pRakClient->Receive()))
+	{
+
+	}*/
+	
+	// TODO: CNetGame::UpdateNetwork()
+}
 
 void CNetGame::InitPools()
 {
