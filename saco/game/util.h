@@ -11,6 +11,7 @@ void __stdcall SetRadarColor(int nIndex,DWORD dwColor);
 void __stdcall WorldRemoveEntity(DWORD *dwEnt);
 void __stdcall WorldAddEntity(DWORD *dwEnt);
 
+int __stdcall GameGetWeaponModelIDFromWeaponID(int iWeaponID);
 void __stdcall GameDisableCheatCodes();
 
 PED_TYPE * __stdcall GamePool_Ped_GetAt(int iID);
