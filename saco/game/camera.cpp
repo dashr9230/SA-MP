@@ -1,6 +1,7 @@
 
 #include "game.h"
 #include "util.h"
+#include <math.h>
 
 bool byte_1014FD8C;
 
@@ -10,7 +11,7 @@ void CCamera::SetBehindPlayer()
 {
 	ScriptCommand(&lock_camera_position, 0);
 	ScriptCommand(&restore_camera_to_user_defined);
-	field_0 = 0;
+	field_0 = NULL;
 	ScriptCommand(&set_camera_behind_player);
 	ScriptCommand(&restore_camera_jumpcut);
 }
@@ -20,7 +21,7 @@ void CCamera::SetBehindPlayer()
 void CCamera::SetPosition(float fX, float fY, float fZ, float fRotationX, float fRotationY, float fRotationZ)
 {
 	ScriptCommand(&restore_camera_to_user_defined);
-	field_0 = 0;
+	field_0 = NULL;
 	ScriptCommand(&set_camera_position,fX,fY,fZ,fRotationX,fRotationY,fRotationZ);
 }
 
@@ -29,7 +30,7 @@ void CCamera::SetPosition(float fX, float fY, float fZ, float fRotationX, float 
 void CCamera::LookAtPoint(float fX, float fY, float fZ, int iType)
 {
 	ScriptCommand(&restore_camera_to_user_defined);
-	field_0 = 0;
+	field_0 = NULL;
 	ScriptCommand(&point_camera,fX,fY,fZ,iType);
 }
 
@@ -37,7 +38,7 @@ void CCamera::LookAtPoint(float fX, float fY, float fZ, int iType)
 
 void CCamera::Restore()
 {
-	field_0 = 0;
+	field_0 = NULL;
 	ScriptCommand(&restore_camera_jumpcut);
 }
 
@@ -130,5 +131,48 @@ void CCamera::InterpolateLookAt(VECTOR *vecFrom, VECTOR *vecTo, int iTime, BYTE 
 
 //-----------------------------------------------------------
 
+void CCamera::sub_1009D660(CEntity *pEntity)
+{
+	field_0 = pEntity;
 
+	if(pEntity) {
+		MATRIX4X4 mat;
+		pEntity->GetMatrix(&mat);
+		if(unnamed_100B4B50(&mat.pos)) {
+			InterpolatePosition(&mat.pos, &mat.pos, 100, 1);
+		}
+	}
+}
 
+//-----------------------------------------------------------
+
+void CCamera::sub_1009D6B0()
+{
+	if(!field_0 || field_0->m_pEntity) return;
+
+	MATRIX4X4 mat;
+	field_0->GetMatrix(&mat);
+	if(unnamed_100B4B50(&mat.pos)) {
+		InterpolatePosition(&mat.pos, &mat.pos, 100, 1);
+	}
+}
+
+//-----------------------------------------------------------
+
+float CCamera::GetDistanceFromPoint(VECTOR *vecPos)
+{
+	VECTOR		vecCameraPos;
+	float		fSX,fSY,fSZ;
+
+	vecCameraPos.X = *(float*)0xB6F9CC;
+	vecCameraPos.Y = *(float*)0xB6F9D0;
+	vecCameraPos.Z = *(float*)0xB6F9D4;
+
+	fSX = (vecPos->X - vecCameraPos.X) * (vecPos->X - vecCameraPos.X);
+	fSY = (vecPos->Y - vecCameraPos.Y) * (vecPos->Y - vecCameraPos.Y);
+	fSZ = (vecPos->Z - vecCameraPos.Z) * (vecPos->Z - vecCameraPos.Z);
+
+	return (float)sqrt(fSX + fSY + fSZ);
+}
+
+//-----------------------------------------------------------

@@ -8,7 +8,7 @@
 class CCamera // size: 8
 {
 public:
-	int field_0;
+	CEntity *field_0;
 	MATRIX4X4 *m_matPos;
 public:
 	void SetBehindPlayer();
@@ -21,9 +21,12 @@ public:
 	void Attach(int unk1, int unk2, int unk3);
 	void InterpolatePosition(VECTOR *vecFrom, VECTOR *vecTo, int iTime, BYTE byteCut);
 	void InterpolateLookAt(VECTOR *vecFrom, VECTOR *vecTo, int iTime, BYTE byteCut);
+	void sub_1009D660(CEntity *pEntity);
+	void sub_1009D6B0();
+	float GetDistanceFromPoint(VECTOR *vecPos);
 
 	CCamera() {
 		m_matPos = (MATRIX4X4 *)ADDR_CAMERA;
-		field_0 = 0;
+		field_0 = NULL;
 	}
 };

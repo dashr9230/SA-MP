@@ -1350,6 +1350,21 @@ BYTE __stdcall FindPlayerNumFromPedPtr(DWORD dwPedPtr)
 	return 0;
 }
 
+//-----------------------------------------------------------
+
+
+
+
+
+
+bool unnamed_100B4B50(VECTOR *vecPos)
+{
+	return
+		vecPos->X < 20000.0f && vecPos->X > -20000.0f &&
+		vecPos->Y < 20000.0f && vecPos->Y > -20000.0f &&
+		vecPos->Z < 100000.0f && vecPos->Z > -10000.0f;
+}
+
 
 
 
