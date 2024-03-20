@@ -37,7 +37,8 @@ private:
 	void CreateFonts();
 
 public:
-	CChatWindow();
 
 	void AddDebugMessage(CHAR *szFormat, ...);
+
+	CChatWindow(IDirect3DDevice9 *pD3DDevice, CFontRender *pFontRender, CHAR *szChatLogFile);
 };
