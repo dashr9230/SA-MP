@@ -1,7 +1,24 @@
 
 #include "main.h"
 
-CCmdWindow::CCmdWindow()
+//----------------------------------------------------
+
+CCmdWindow::CCmdWindow(IDirect3DDevice9 *pD3DDevice)
+{
+	m_pD3DDevice			= pD3DDevice;
+	field_14E0				= 0;
+	m_iCmdCount				= 0;
+	field_1AF4				= 0;
+	field_8					= 0;
+	field_1AF0				= 0;
+
+	memset(&field_1565[0],0,1290);
+	memset(&field_14E4[0],0,129);
+	memset(&field_1A6F[0],0,129);
+}
+
+//----------------------------------------------------
+
 {
 	// TODO: CCmdWindow::CCmdWindow() .text:100693D0
 }

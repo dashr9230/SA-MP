@@ -331,6 +331,7 @@ void DoInitStuff()
 		// Create instances of the chat and input classes.
 		pDefaultFont = new CFontRender(pD3DDevice);
 		pChatWindow = new CChatWindow(pD3DDevice,pDefaultFont,szChatLogFile);
+		pCmdWindow = new CCmdWindow(pD3DDevice);
 
 
 
