@@ -333,6 +333,9 @@ void DoInitStuff()
 		pChatWindow = new CChatWindow(pD3DDevice,pDefaultFont,szChatLogFile);
 		pCmdWindow = new CCmdWindow(pD3DDevice);
 
+		if(tSettings.bPlayOnline) {
+			pDeathWindow = new CDeathWindow(pD3DDevice);
+		}
 
 
 		// TODO: DoInitStuff
