@@ -54,6 +54,7 @@ typedef struct _GAME_SETTINGS {
 #include "chatwindow.h"
 #include "cmdwindow.h"
 #include "deathwindow.h"
+#include "spawnscreen.h"
 #include "audiostream.h"
 #include "archive/ArchiveFS.h"
 

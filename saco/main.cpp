@@ -18,7 +18,7 @@ CChatWindow				*pChatWindow=0;
 CCmdWindow				*pCmdWindow=0;
 CDeathWindow			*pDeathWindow=0;
 CAudioStream			*pAudioStream=0;
-//DWORD					dword_1026EB90=0;
+CSpawnScreen			*pSpawnScreen=0;
 CNetGame				*pNetGame=0;
 //DWORD					dword_1026EB98=0;
 CFontRender				*pDefaultFont=0;
@@ -335,6 +335,7 @@ void DoInitStuff()
 
 		if(tSettings.bPlayOnline) {
 			pDeathWindow = new CDeathWindow(pD3DDevice);
+			pSpawnScreen = new CSpawnScreen(pD3DDevice);
 		}
 
 
