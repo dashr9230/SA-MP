@@ -308,7 +308,7 @@ static int AMXAPI amx_DGramIdle(AMX *amx)
     } /* if */
     while (err==AMX_ERR_SLEEP)
       err=amx_Exec(amx,NULL,AMX_EXEC_CONT);
-    amx_Release(amx,amx_addr);
+    amx_Release(amx,amx_addr_msg);
     amx_Release(amx,amx_addr_src);
   } /* if */
 
