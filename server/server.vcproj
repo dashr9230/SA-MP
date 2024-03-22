@@ -31,7 +31,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="winmm.lib"
+				AdditionalDependencies="wsock32.lib winmm.lib"
 				OutputFile="$(OutDir)/samp-server.exe"
 				LinkIncremental="2"
 				GenerateDebugInformation="TRUE"
@@ -78,7 +78,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="winmm.lib"
+				AdditionalDependencies="wsock32.lib winmm.lib"
 				OutputFile="$(OutDir)/samp-server.exe"
 				LinkIncremental="1"
 				GenerateDebugInformation="TRUE"
@@ -282,6 +282,12 @@
 				RelativePath="..\raknet\SingleProducerConsumer.h">
 			</File>
 			<File
+				RelativePath="..\raknet\SocketLayer.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\SocketLayer.h">
+			</File>
+			<File
 				RelativePath="..\raknet\TCPInterface.cpp">
 			</File>
 			<File
@@ -293,20 +299,8 @@
 			<File
 				RelativePath="..\raknet\TEABlockEncryptor.h">
 			</File>
-		<Filter
-			Name="amx"
-			Filter="">
 			<File
-				RelativePath=".\amx\amx.c">
-			</File>
-			<File
-				RelativePath=".\amx\amx.h">
-			</File>
-			<File
-				RelativePath=".\amx\amxfloat.c">
-			</File>
-			<File
-				RelativePath=".\amx\amxtime.c">
+				RelativePath="..\raknet\Types.h">
 			</File>
 		</Filter>
 		<File
