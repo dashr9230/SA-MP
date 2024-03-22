@@ -35,6 +35,8 @@ private:
 
 public:
 
+	void	StartGame();
+	void	InitGame();
 	BOOL	IsGameLoaded();
 
 	void	RequestModel(int iModelID, int iLoadingStream = 2);
@@ -57,9 +59,7 @@ public:
 	void	ReleaseAnimation(char *szAnimFile);
 	void	ToggleRadar(int iToggle);
 	void	DisplayGameText(char *szStr,int iTime,int iSize);
-
 	void	SetGravity(float fGravity);
-
 	void	SetWantedLevel(BYTE byteLevel);
 	void	SetGameTextCount(WORD wCount);
 	void	DrawGangZone(float* fPos, DWORD dwColor);
@@ -81,17 +81,21 @@ public:
 
 	HWND	GetMainWindowHwnd() { return *(HWND *)ADDR_HWND; };
 
-	void	StartGame();
-	void	InitGame();
+	void	RestartEverything();
+
+	//-----------------------------------------------------------
+
 	CPlayerPed  *FindPlayerPed() {
 		if(m_pGamePlayer==NULL)	m_pGamePlayer = new CPlayerPed();
 		return m_pGamePlayer;
 	};
 
-	DWORD GetWeaponInfo(int iWeapon, int iUnk);
-
 	const PCHAR GetWeaponName(int iWeaponID);
 
+	int GetScreenWidth() { return *(int*)0xC17044; };
+	int GetScreenHeight() { return *(int*)0xC17048; };
+
+	DWORD GetWeaponInfo(int iWeapon, int iUnk);
 
 	CGame();
 
@@ -108,8 +112,6 @@ public:
 	void sub_100A03D0();
 	void sub_100A03E0();
 	void sub_100A0400();
-
-
 
 	void sub_100A05D0();
 	void sub_100A06F0();

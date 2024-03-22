@@ -2,6 +2,7 @@
 #pragma once
 
 #include <windows.h>
+#include <assert.h>
 
 #define MAX_PLAYERS			1004
 #define MAX_ACTORS			1000

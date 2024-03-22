@@ -33,9 +33,10 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="$(OutDir)/samp.dll"
 				AdditionalDependencies="dxguid.lib d3d9.lib d3dx9.lib comctl32.lib wsock32.lib winmm.lib"
+				OutputFile="$(OutDir)/samp.dll"
 				LinkIncremental="2"
+				AdditionalLibraryDirectories="d3d9"
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile="$(OutDir)/saco.pdb"
 				SubSystem="2"
@@ -83,9 +84,10 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="$(OutDir)/samp.dll"
 				AdditionalDependencies="dxguid.lib d3d9.lib d3dx9.lib comctl32.lib wsock32.lib winmm.lib"
+				OutputFile="$(OutDir)/samp.dll"
 				LinkIncremental="1"
+				AdditionalLibraryDirectories="d3d9"
 				GenerateDebugInformation="TRUE"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -473,10 +475,25 @@
 				RelativePath="..\raknet\SingleProducerConsumer.h">
 			</File>
 			<File
+				RelativePath="..\raknet\SocketLayer.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\SocketLayer.h">
+			</File>
+			<File
+				RelativePath="..\raknet\TCPInterface.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\TCPInterface.h">
+			</File>
+			<File
 				RelativePath="..\raknet\TEABlockEncryptor.cpp">
 			</File>
 			<File
 				RelativePath="..\raknet\TEABlockEncryptor.h">
+			</File>
+			<File
+				RelativePath="..\raknet\Types.h">
 			</File>
 		</Filter>
 		<Filter
@@ -639,6 +656,12 @@
 		</File>
 		<File
 			RelativePath=".\saco.rc">
+		</File>
+		<File
+			RelativePath=".\spawnscreen.cpp">
+		</File>
+		<File
+			RelativePath=".\spawnscreen.h">
 		</File>
 		<File
 			RelativePath=".\subclass.cpp">

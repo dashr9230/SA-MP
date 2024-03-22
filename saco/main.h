@@ -5,6 +5,8 @@
 #include <windows.h>
 #include <process.h>
 
+#define SAFE_DELETE(p)	{ if (p) { delete (p); (p) = NULL; } }
+
 #define MAX_SETTINGS_STRING		256
 
 #define GTASA_VERSION_UNKNOWN	0
@@ -31,6 +33,7 @@ typedef struct _GAME_SETTINGS {
 
 #include "../raknet/RakClientInterface.h"
 #include "../raknet/RakNetworkFactory.h"
+#include "../raknet/PacketEnumerations.h"
 #include "../raknet/SAMPRPC.h"
 #include "../raknet/GetTime.h"
 
