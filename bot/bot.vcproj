@@ -31,7 +31,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="winmm.lib"
+				AdditionalDependencies="wsock32.lib winmm.lib"
 				OutputFile="$(OutDir)/samp-npc.exe"
 				LinkIncremental="2"
 				GenerateDebugInformation="TRUE"
@@ -77,7 +77,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="winmm.lib"
+				AdditionalDependencies="wsock32.lib winmm.lib"
 				OutputFile="$(OutDir)/samp-npc.exe"
 				LinkIncremental="1"
 				GenerateDebugInformation="TRUE"
@@ -271,10 +271,25 @@
 				RelativePath="..\raknet\SingleProducerConsumer.h">
 			</File>
 			<File
+				RelativePath="..\raknet\SocketLayer.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\SocketLayer.h">
+			</File>
+			<File
+				RelativePath="..\raknet\TCPInterface.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\TCPInterface.h">
+			</File>
+			<File
 				RelativePath="..\raknet\TEABlockEncryptor.cpp">
 			</File>
 			<File
 				RelativePath="..\raknet\TEABlockEncryptor.h">
+			</File>
+			<File
+				RelativePath="..\raknet\Types.h">
 			</File>
 		</Filter>
 		<Filter
@@ -287,10 +302,28 @@
 				RelativePath="..\server\amx\amx.h">
 			</File>
 			<File
+				RelativePath="..\server\amx\amxcons.c">
+			</File>
+			<File
+				RelativePath="..\server\amx\amxcore.c">
+			</File>
+			<File
+				RelativePath="..\server\amx\amxDGram.c">
+			</File>
+			<File
+				RelativePath="..\server\amx\amxfile.c">
+			</File>
+			<File
 				RelativePath="..\server\amx\amxfloat.c">
 			</File>
 			<File
+				RelativePath="..\server\amx\amxstring.c">
+			</File>
+			<File
 				RelativePath="..\server\amx\amxtime.c">
+			</File>
+			<File
+				RelativePath="..\server\amx\osdefs.h">
 			</File>
 		</Filter>
 		<File
@@ -313,6 +346,9 @@
 		</File>
 		<File
 			RelativePath=".\scrcore.cpp">
+		</File>
+		<File
+			RelativePath=".\scrcustom.cpp">
 		</File>
 		<File
 			RelativePath=".\scrtimers.cpp">
