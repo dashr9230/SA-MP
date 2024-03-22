@@ -3,6 +3,11 @@
 #ifndef __NETWORK_TYPES_H
 #define __NETWORK_TYPES_H
 
+#include "Export.h"
+
+/// Given a number of bits, return how many bytes are needed to represent that.
+#define BITS_TO_BYTES(x) (((x)+7)>>3)
+
 // Define __GET_TIME_64BIT if you want to use large types for GetTime (takes more bandwidth when you transmit time though!)
 // You would want to do this if your system is going to run long enough to overflow the millisecond counter (over a month)
 #ifdef __GET_TIME_64BIT
@@ -28,6 +33,10 @@ struct RAK_DLL_EXPORT PlayerID
 /// This represents a user message from another system.
 struct Packet
 {
+	/// The length of the data in bytes
+	/// \deprecated You should use bitSize.
+	unsigned int length;
+
 	/// The data from the sender
 	unsigned char* data;
 };

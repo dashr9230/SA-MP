@@ -283,3 +283,9 @@ void RakClient::vftable_D8()
 {
 	// TODO: RakClient::vftable_D8() (saco 10034A20) (server L: 8069550) (bot W: 403260 L: 806CF0C)
 }
+
+void RakClient::vftable_DC()
+{
+	// TODO: RakClient::vftable_DC() (bot L: 0806CF1A)
+}
+
