@@ -1,0 +1,24 @@
+*.cpp text eol=crlf
+*.c text eol=crlf
+*.h text eol=crlf
+*.inl text eol=crlf
+*.rc text eol=crlf
+*.rc2 text eol=crlf
+*.dsp text eol=crlf
+*.clw text eol=crlf
+*.dsw text eol=crlf
+*.sln text eol=crlf
+*.vcproj text eol=crlf
+*.txt text eol=crlf
+
+Makefile text eol=crlf
+Makefile.am text eol=crlf
+
+archive/files/*.cfg text eol=crlf
+archive/files/*.ini text eol=crlf
+archive/files/*.dat text eol=crlf
+archive/files/*.ide text eol=crlf
+archive/files/*.bin binary
+archive/files/*.txd binary
+archive/files/*.png binary
+archive/files/*.scm binary
