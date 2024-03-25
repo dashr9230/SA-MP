@@ -40,6 +40,8 @@ enum
 	ID_PING,
 	/// 8: Ping from an unconnected system.  Only reply if we have open connections. Do not update timestamps. (internal use only)
 	ID_PING_OPEN_CONNECTIONS,
+	/// 9: Pong from a connected system.  Update timestamps (internal use only)
+	ID_CONNECTED_PONG,
 
 	/// 15: Connecting to a secured server/peer
 	ID_SECURED_CONNECTION_RESPONSE = 15,
@@ -50,6 +52,9 @@ enum
 	ID_SET_RANDOM_NUMBER_SEED = 19,
 	/// 20: Remote procedure call (internal use only)
 	ID_RPC,
+
+	/// 22: ???
+	ID_NEW_INCOMING_CONNECTION_2,
 
 	/// [PEER|SERVER|CLIENT] 29: Sent to the player when a connection request cannot be completed due to inability to connect.
 	/// Never transmitted.
@@ -184,7 +189,9 @@ enum
 	ID_AIM_SYNC,
 	ID_WEAPONS_UPDATE,
 	ID_STATS_UPDATE,
-	ID_PLAYER_SYNC = 207,
+	ID_WEAPON_SHOT_SYNC,
+	ID_PLAYER_SYNC,
+	// 208
 	ID_UNOCCUPIED_SYNC = 209,
 	ID_TRAILER_SYNC,
 	ID_PASSENGER_SYNC,
