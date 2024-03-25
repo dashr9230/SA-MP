@@ -62,6 +62,7 @@ typedef struct _GAME_SETTINGS {
 #include "archive/ArchiveFS.h"
 
 #include "unkclass1.h"
+#include "unkclass2.h"
 void SetStringFromCommandLine(char *szCmdLine, char *szString);
 void SetStringFromQuotedCommandLine(char *szCmdLine, char *szString);
 void InitSettings();
