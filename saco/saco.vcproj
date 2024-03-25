@@ -546,6 +546,16 @@
 				</File>
 			</Filter>
 		</Filter>
+		<Filter
+			Name="temp"
+			Filter="">
+			<File
+				RelativePath=".\unkclass1.cpp">
+			</File>
+			<File
+				RelativePath=".\unkclass1.h">
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\audiostream.cpp">
 		</File>

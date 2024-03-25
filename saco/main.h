@@ -61,6 +61,7 @@ typedef struct _GAME_SETTINGS {
 #include "audiostream.h"
 #include "archive/ArchiveFS.h"
 
+#include "unkclass1.h"
 void SetStringFromCommandLine(char *szCmdLine, char *szString);
 void SetStringFromQuotedCommandLine(char *szCmdLine, char *szString);
 void InitSettings();

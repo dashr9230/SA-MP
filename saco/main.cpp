@@ -32,6 +32,7 @@ IDirect3D9				*pD3D;
 IDirect3DDevice9		*pD3DDevice	= NULL;
 
 HANDLE			hInstance=0;
+CUnkClass1 *pUnkClass1=NULL;
 
 bool					bShowDebugLabels = false;
 
@@ -336,6 +337,7 @@ void DoInitStuff()
 		if(tSettings.bPlayOnline) {
 			pDeathWindow = new CDeathWindow(pD3DDevice);
 			pSpawnScreen = new CSpawnScreen(pD3DDevice);
+			pUnkClass1 = new CUnkClass1(pD3DDevice);
 		}
 
 
