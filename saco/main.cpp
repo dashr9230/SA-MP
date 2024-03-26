@@ -35,6 +35,7 @@ HANDLE			hInstance=0;
 CUnkClass1 *pUnkClass1=NULL;
 CUnkClass2 *pUnkClass2=NULL;
 CUnkClass3 *pUnkClass3=NULL;
+CUnkClass4 *pUnkClass4=NULL;
 
 bool					bShowDebugLabels = false;
 
@@ -342,6 +343,7 @@ void DoInitStuff()
 			pUnkClass1 = new CUnkClass1(pD3DDevice);
 			pUnkClass2 = new CUnkClass2(pD3DDevice);
 			pUnkClass3 = new CUnkClass3(pD3DDevice);
+			pUnkClass4 = new CUnkClass4(pD3DDevice);
 		}
 
 
