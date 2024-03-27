@@ -58,6 +58,7 @@ typedef struct _GAME_SETTINGS {
 #include "cmdwindow.h"
 #include "deathwindow.h"
 #include "spawnscreen.h"
+#include "svrnetstats.h"
 #include "audiostream.h"
 #include "archive/ArchiveFS.h"
 

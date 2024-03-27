@@ -38,6 +38,7 @@ CUnkClass3 *pUnkClass3=NULL;
 CUnkClass4 *pUnkClass4=NULL;
 CUnkClass5 *pUnkClass5=NULL;
 CUnkClass6 *pUnkClass6=NULL;
+CSvrNetStats			*pSvrNetStats=NULL;
 
 bool					bShowDebugLabels = false;
 
@@ -348,6 +349,7 @@ void DoInitStuff()
 			pUnkClass4 = new CUnkClass4(pD3DDevice);
 			pUnkClass5 = new CUnkClass5(pD3DDevice);
 			pUnkClass6 = new CUnkClass6(pD3DDevice);
+			pSvrNetStats = new CSvrNetStats(pD3DDevice);
 		}
 
 

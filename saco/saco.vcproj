@@ -706,6 +706,12 @@
 		<File
 			RelativePath=".\subclass.cpp">
 		</File>
+		<File
+			RelativePath=".\svrnetstats.cpp">
+		</File>
+		<File
+			RelativePath=".\svrnetstats.h">
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
