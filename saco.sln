@@ -1,0 +1,45 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "announce", "announce\announce.vcproj", "{9C34928B-BD5D-466C-A8BE-5F0997893411}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bot", "bot\bot.vcproj", "{37F1D255-C360-4C8C-9493-696835E30CDA}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "saco", "saco\saco.vcproj", "{15E976E8-3DD1-456C-B294-01FA05E2A116}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "server", "server\server.vcproj", "{1FA99388-7480-4F50-A42A-A02406C91F3A}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{9C34928B-BD5D-466C-A8BE-5F0997893411}.Debug.ActiveCfg = Debug|Win32
+		{9C34928B-BD5D-466C-A8BE-5F0997893411}.Debug.Build.0 = Debug|Win32
+		{9C34928B-BD5D-466C-A8BE-5F0997893411}.Release.ActiveCfg = Release|Win32
+		{9C34928B-BD5D-466C-A8BE-5F0997893411}.Release.Build.0 = Release|Win32
+		{37F1D255-C360-4C8C-9493-696835E30CDA}.Debug.ActiveCfg = Debug|Win32
+		{37F1D255-C360-4C8C-9493-696835E30CDA}.Debug.Build.0 = Debug|Win32
+		{37F1D255-C360-4C8C-9493-696835E30CDA}.Release.ActiveCfg = Release|Win32
+		{37F1D255-C360-4C8C-9493-696835E30CDA}.Release.Build.0 = Release|Win32
+		{15E976E8-3DD1-456C-B294-01FA05E2A116}.Debug.ActiveCfg = Debug|Win32
+		{15E976E8-3DD1-456C-B294-01FA05E2A116}.Debug.Build.0 = Debug|Win32
+		{15E976E8-3DD1-456C-B294-01FA05E2A116}.Release.ActiveCfg = Release|Win32
+		{15E976E8-3DD1-456C-B294-01FA05E2A116}.Release.Build.0 = Release|Win32
+		{1FA99388-7480-4F50-A42A-A02406C91F3A}.Debug.ActiveCfg = Debug|Win32
+		{1FA99388-7480-4F50-A42A-A02406C91F3A}.Debug.Build.0 = Debug|Win32
+		{1FA99388-7480-4F50-A42A-A02406C91F3A}.Release.ActiveCfg = Release|Win32
+		{1FA99388-7480-4F50-A42A-A02406C91F3A}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
