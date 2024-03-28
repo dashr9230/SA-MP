@@ -37,6 +37,7 @@ CUnkClass2 *pUnkClass2=NULL;
 CUnkClass3 *pUnkClass3=NULL;
 CUnkClass4 *pUnkClass4=NULL;
 CUnkClass5 *pUnkClass5=NULL;
+CUnkClass9 *pUnkClass9=NULL;
 CUnkClass6 *pUnkClass6=NULL;
 CSvrNetStats			*pSvrNetStats=NULL;
 CUnkClass7 *pUnkClass7=NULL;
@@ -356,6 +357,7 @@ void DoInitStuff()
 			pUnkClass8 = new CUnkClass8();
 		}
 
+		pUnkClass9 = new CUnkClass9(pD3DDevice);
 
 		// TODO: DoInitStuff
 
