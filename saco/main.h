@@ -69,6 +69,7 @@ typedef struct _GAME_SETTINGS {
 #include "unkclass5.h"
 #include "unkclass6.h"
 #include "unkclass7.h"
+#include "unkclass8.h"
 
 void SetStringFromCommandLine(char *szCmdLine, char *szString);
 void SetStringFromQuotedCommandLine(char *szCmdLine, char *szString);

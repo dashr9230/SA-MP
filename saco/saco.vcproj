@@ -591,6 +591,12 @@
 			<File
 				RelativePath=".\unkclass7.h">
 			</File>
+			<File
+				RelativePath=".\unkclass8.cpp">
+			</File>
+			<File
+				RelativePath=".\unkclass8.h">
+			</File>
 		</Filter>
 		<File
 			RelativePath=".\audiostream.cpp">
