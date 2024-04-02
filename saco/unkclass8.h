@@ -3,7 +3,13 @@
 
 struct struc_157
 {
-	char _gap0[280];
+	int field_0;
+	char field_4[256];
+	DWORD field_104;
+	int field_108;
+	DWORD field_10C;
+	int field_110;
+	int field_114;
 };
 
 class CUnkClass8
