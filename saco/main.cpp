@@ -22,9 +22,9 @@ CSpawnScreen			*pSpawnScreen=0;
 CNetGame				*pNetGame=0;
 //DWORD					dword_1026EB98=0;
 CFontRender				*pDefaultFont=0;
-//DWORD					dword_1026EBA0=0;
 //DWORD					dword_1026EBA4=0;
 //DWORD					dword_1026EBA8=0;
+CUnkClass13				*pUnkClass13=0;
 
 BOOL					bGameInited=FALSE;
 
@@ -364,6 +364,7 @@ void DoInitStuff()
 		pUnkClass10 = new CUnkClass10(pD3DDevice);
 		pUnkClass11 = new CUnkClass11();
 		pUnkClass12 = new CUnkClass12();
+		pUnkClass13 = new CUnkClass13(pD3DDevice);
 
 		// TODO: DoInitStuff
 
