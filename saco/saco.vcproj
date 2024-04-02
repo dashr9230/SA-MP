@@ -186,6 +186,12 @@
 				RelativePath=".\game\playerped.h">
 			</File>
 			<File
+				RelativePath=".\game\rwstuff.cpp">
+			</File>
+			<File
+				RelativePath=".\game\rwstuff.h">
+			</File>
+			<File
 				RelativePath=".\game\scripting.cpp">
 			</File>
 			<File
@@ -584,6 +590,12 @@
 			</File>
 			<File
 				RelativePath=".\unkclass14.h">
+			</File>
+			<File
+				RelativePath=".\unkclass15.cpp">
+			</File>
+			<File
+				RelativePath=".\unkclass15.h">
 			</File>
 			<File
 				RelativePath=".\unkclass2.cpp">
