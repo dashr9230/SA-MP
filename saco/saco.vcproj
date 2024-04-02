@@ -568,6 +568,12 @@
 				RelativePath=".\unkclass11.h">
 			</File>
 			<File
+				RelativePath=".\unkclass12.cpp">
+			</File>
+			<File
+				RelativePath=".\unkclass12.h">
+			</File>
+			<File
 				RelativePath=".\unkclass2.cpp">
 			</File>
 			<File
