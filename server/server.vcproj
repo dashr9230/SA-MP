@@ -319,6 +319,9 @@
 				RelativePath=".\gamemodes.h">
 			</File>
 			<File
+				RelativePath=".\scrcustom.cpp">
+			</File>
+			<File
 				RelativePath=".\scrhttps.cpp">
 			</File>
 			<File
