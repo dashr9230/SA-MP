@@ -743,6 +743,12 @@
 			RelativePath=".\mod.h">
 		</File>
 		<File
+			RelativePath=".\playertags.cpp">
+		</File>
+		<File
+			RelativePath=".\playertags.h">
+		</File>
+		<File
 			RelativePath=".\resource.h">
 		</File>
 		<File
