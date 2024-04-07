@@ -303,6 +303,34 @@
 				RelativePath="..\raknet\Types.h">
 			</File>
 		</Filter>
+		<Filter
+			Name="scripting"
+			Filter="">
+			<File
+				RelativePath=".\filterscripts.cpp">
+			</File>
+			<File
+				RelativePath=".\filterscripts.h">
+			</File>
+			<File
+				RelativePath=".\gamemodes.cpp">
+			</File>
+			<File
+				RelativePath=".\gamemodes.h">
+			</File>
+			<File
+				RelativePath=".\scrhttps.cpp">
+			</File>
+			<File
+				RelativePath=".\scrhttps.h">
+			</File>
+			<File
+				RelativePath=".\scrtimers.cpp">
+			</File>
+			<File
+				RelativePath=".\scrtimers.h">
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\actorpool.cpp">
 		</File>
@@ -317,18 +345,6 @@
 		</File>
 		<File
 			RelativePath=".\exceptions.cpp">
-		</File>
-		<File
-			RelativePath=".\filterscripts.cpp">
-		</File>
-		<File
-			RelativePath=".\filterscripts.h">
-		</File>
-		<File
-			RelativePath=".\gamemodes.cpp">
-		</File>
-		<File
-			RelativePath=".\gamemodes.h">
 		</File>
 		<File
 			RelativePath=".\gangzonepool.cpp">
@@ -398,18 +414,6 @@
 		</File>
 		<File
 			RelativePath=".\resource.h">
-		</File>
-		<File
-			RelativePath=".\scrhttps.cpp">
-		</File>
-		<File
-			RelativePath=".\scrhttps.h">
-		</File>
-		<File
-			RelativePath=".\scrtimers.cpp">
-		</File>
-		<File
-			RelativePath=".\scrtimers.h">
 		</File>
 		<File
 			RelativePath=".\server.rc">
