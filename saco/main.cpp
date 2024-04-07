@@ -56,6 +56,7 @@ CFileSystem *pFileSystem=NULL;
 // forwards
 
 BOOL SubclassGameWindow();
+void SetupCommands();
 void TheGraphicsLoop();
 LONG WINAPI exc_handler(_EXCEPTION_POINTERS* exc_inf);
 void sub_1009DD50();
@@ -367,6 +368,18 @@ void DoInitStuff()
 		pUnkClass13 = new CUnkClass13(pD3DDevice);
 		pUnkClass14 = new CUnkClass14(pD3DDevice);
 		pUnkClass15 = new CUnkClass15();
+
+		// Setting up the commands.
+		OutputDebugString("Setting up commands..");
+		SetupCommands();
+
+		OutputDebugString("Hooking RwSetState..");
+		HookRwRenderStateSet();
+
+		pGame->SetMaxStats();
+
+		if(tSettings.bDebug) {
+		}
 
 		// TODO: DoInitStuff
 
