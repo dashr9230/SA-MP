@@ -154,6 +154,13 @@
 			<File
 				RelativePath=".\amx\osdefs.h">
 			</File>
+			<Filter
+				Name="sqlite"
+				Filter="">
+				<File
+					RelativePath=".\sqlite\sqlite_amx.cpp">
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="raknet"
