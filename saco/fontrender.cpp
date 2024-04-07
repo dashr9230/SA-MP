@@ -1,19 +1,65 @@
 
 #include "main.h"
+#include "fontrender.h"
+
+//----------------------------------------------------
 
 CFontRender::CFontRender(IDirect3DDevice9* pD3DDevice)
 {
-	// TODO: CFontRender::CFontRender() .text:1006BAF0
+	m_pD3DDevice = pD3DDevice;
+	field_0 = NULL;
+	field_4 = NULL;
+	field_8 = NULL;
+	field_C = NULL;
+	field_14 = NULL;
+	field_10 = NULL;
+
+	CreateFonts();
+}
+
+CFontRender::~CFontRender()
+{
+	SAFE_RELEASE(field_0);
+	SAFE_RELEASE(field_4);
+	SAFE_RELEASE(field_8);
+	SAFE_RELEASE(field_C);
+	SAFE_RELEASE(field_14);
+	SAFE_RELEASE(field_10);
+}
+
+void CFontRender::CreateFonts()
+{
+	if(!m_pD3DDevice) return;
+	SAFE_RELEASE(field_0);
+	SAFE_RELEASE(field_4);
+	SAFE_RELEASE(field_8);
+	SAFE_RELEASE(field_C);
+	SAFE_RELEASE(field_14);
+	SAFE_RELEASE(field_10);
+
+	// TODO: CFontRender::CreateFonts
+
+	//D3DXCreateFont();
 }
 
 void CFontRender::DeleteDeviceObjects()
 {
-	// TODO: CFontRender::DeleteDeviceObjects() .text:1006B180
+	field_0->OnLostDevice();
+	field_4->OnLostDevice();
+	field_8->OnLostDevice();
+	field_C->OnLostDevice();
+	field_14->OnLostDevice();
+	field_10->OnLostDevice();
 }
 
 void CFontRender::RestoreDeviceObjects()
 {
-	// TODO: CFontRender::RestoreDeviceObjects() .text:1006B1C0
+	field_0->OnResetDevice();
+	field_4->OnResetDevice();
+	field_8->OnResetDevice();
+	field_C->OnResetDevice();
+	field_14->OnResetDevice();
+	field_10->OnResetDevice();
 }
 
 SIZE CFontRender::MeasureText(char * szString, DWORD dwFormat)
