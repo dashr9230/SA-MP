@@ -35,6 +35,66 @@ void UnFuck(DWORD addr, int size)
 
 //----------------------------------------------------------
 
+BYTE pbyteVehiclePoolAllocPatch[] = {0x6A,0x00,0x68,0xC6,0x2,0x00,0x00}; // 710
+BYTE pbyteCollisionPoolAllocPatch[] = { 0x68,0xFF,0x7E,0x00,0x00 }; // 32511
+
+void ApplyGameLimitPatches()
+{
+	// Increase the vehicle pool limit (see top of proc for patch)
+	UnFuckAndCheck(0x551024,sizeof(pbyteVehiclePoolAllocPatch),0x68);
+	memcpy((PVOID)0x551024,pbyteVehiclePoolAllocPatch,sizeof(pbyteVehiclePoolAllocPatch));
+
+	// Increase Buildings
+	UnFuck(0x55105F,4);
+	*(DWORD *)0x55105F = 20000;
+
+	// Increase Dummys
+	UnFuck(0x5510CF,4);
+	*(DWORD *)0x5510CF = 4000;
+
+	// Increase Ptr Node Single
+	UnFuck(0x550F46,4);
+	*(DWORD *)0x550F46 = 100000;
+
+	// Increase Ptr Node Double
+	UnFuck(0x550F82,4);
+	*(DWORD *)0x550F82 = 8000;
+
+	// Increase EntryInfoNode
+	UnFuck(0x550FBA,4);
+	*(DWORD *)0x550FBA = 5000;
+
+	// Increase Object Pool
+	UnFuck(0x551097,4);
+	*(DWORD *)0x551097 = 3000;
+
+	// Increase the ped pool limit (240)
+	UnFuck(0x550FF2,1);
+	*(PBYTE)0x550FF2 = 240;
+
+	// And we need 240 ped intelligence too plz
+	UnFuck(0x551283,1);
+	*(PBYTE)0x551283 = 240;
+
+	// And a larger task pool
+	UnFuck(0x551140,1);
+	*(PBYTE)0x551140 = 0x05; // 1524
+
+	// And a larger event pool
+	UnFuck(0x551178,1);
+	*(PBYTE)0x551178 = 0x01; // 456
+
+	// Increase CPlaceable matrix array
+	UnFuck(0x54F3A1,4);
+	*(DWORD *)0x54F3A1 = 6000;
+
+	// Increase the collision model ptr
+	UnFuck(0x551106,sizeof(pbyteCollisionPoolAllocPatch));
+	memcpy((PVOID)0x551106,pbyteCollisionPoolAllocPatch,sizeof(pbyteCollisionPoolAllocPatch));
+}
+
+//----------------------------------------------------------
+
 BOOL ApplyPreGamePatches()
 {
 	BYTE * pbyteVersionDetermination = (PBYTE)ADDR_BYPASS_VIDS_USA10;
