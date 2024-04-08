@@ -8,6 +8,84 @@ extern int iGtaVersion;
 
 //----------------------------------------------------------
 
+#define memadd(num,arr) dwAlloc+=num;cBytes=(char*)&dwAlloc;for(int i=0;i<4;i++)arr[i]=cBytes[i]
+#define patch(a,b) _patch(a,b,sizeof(b))
+
+//----------------------------------------------------------
+
+void _patch(DWORD dwAddress,BYTE* bData,int iSize)
+{
+	DWORD dwProtect[2];
+	VirtualProtect((PVOID)dwAddress,iSize,PAGE_EXECUTE_READWRITE,&dwProtect[0]);
+	memcpy((PVOID)dwAddress,bData,iSize);
+	VirtualProtect((PVOID)dwAddress,iSize,dwProtect[0],&dwProtect[1]);
+}
+
+//----------------------------------------------------------
+
+void SetIPLs(int iIPLs, int iGtaVersion)
+{
+	DWORD dwAlloc = (DWORD) malloc(iIPLs+4);
+	if(dwAlloc)
+	{
+		memset((void*)dwAlloc,0x0,iIPLs+4);
+		char* cBytes = (char*)&dwAlloc;
+
+		BYTE bIPLs[] = { cBytes[0], cBytes[1], cBytes[2], cBytes[3] };
+
+		if(iGtaVersion == GTASA_VERSION_USA10)
+		{
+			patch(0x1569777,bIPLs);
+			patch(0x15649FA,bIPLs);
+			patch(0x1561160,bIPLs);
+		}
+		else
+		{
+			patch(0x1569717,bIPLs);
+			patch(0x156495A,bIPLs);
+			patch(0x156115C,bIPLs);
+		}
+		patch(0x40619B,bIPLs);
+		patch(0x405C3D,bIPLs);
+	}
+}
+
+//----------------------------------------------------------
+
+void SetTimedObjects(int iTimedObjects)
+{
+	DWORD dwAlloc = (DWORD) malloc((0x24*iTimedObjects)+4);
+	if(dwAlloc)
+	{
+		memset((LPVOID)dwAlloc,0x00,(0x24*iTimedObjects)+4);
+		for(DWORD i=dwAlloc+4;i<(dwAlloc+4+(0x24*iTimedObjects));i+=0x24)
+		{
+			*(BYTE*) i = 0xB0;
+			*(BYTE*) (i+1) = 0xBC;
+			*(BYTE*) (i+2) = 0x85;
+			*(BYTE*) (i+10) = 0xFF;
+			*(BYTE*) (i+11) = 0xFF;
+			*(BYTE*) (i+34) = 0xFF;
+			*(BYTE*) (i+35) = 0xFF;
+		}
+		char* cBytes = (char*)&dwAlloc;
+		BYTE bTimedObjects[] = { cBytes[0], cBytes[1], cBytes[2], cBytes[3] };
+		patch(0x4C66B1,bTimedObjects);
+		patch(0x4C66C2,bTimedObjects);
+		patch(0x84BC51,bTimedObjects);
+		patch(0x856261,bTimedObjects);
+		patch(0x4C683B,bTimedObjects);
+		memadd(4,bTimedObjects);
+		patch(0x4C6464,bTimedObjects);
+		patch(0x4C66BD,bTimedObjects);
+		cBytes = (char*)&iTimedObjects;
+		BYTE pushTimedObjects[] = { 0x68, cBytes[0], cBytes[1], cBytes[2], cBytes[3] };
+		patch(0x4C58A5,pushTimedObjects);
+	}
+}
+
+//----------------------------------------------------------
+
 void UnFuckAndCheck(DWORD addr, int size, BYTE byteCheck)
 {
 	DWORD d;
