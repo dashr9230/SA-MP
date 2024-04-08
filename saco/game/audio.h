@@ -1,22 +1,29 @@
 
 #pragma once
 
-class CAudio // size: 5
-{
-public:
-	int field_0;
-	char field_4;
+//-----------------------------------------------------------
 
+class CAudio
+{
+private:
+	int field_0;
+	bool field_4;
+
+public:
 	CAudio() {
 		field_0 = 0;
-		field_4 = 0;
-	};
+		field_4 = false;
+	}
 
+	void sub_100A21D0();
 	int GetRadioStation();
 	void StartRadio(int iStation);
+	void StopRadio();
 	float GetRadioVolume();
 	void StopOutdoorAmbienceTrack();
 	void SetOutdoorAmbienceTrack(int iTrack);
 	void PlaySound(int iSound, float fX, float fY, float fZ);
 	bool IsOutdoorAmbienceTrackDisabled();
 };
+
+//-----------------------------------------------------------

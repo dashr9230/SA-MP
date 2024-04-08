@@ -3,6 +3,20 @@
 
 //-----------------------------------------------------------
 
+void CAudio::sub_100A21D0()
+{
+	if(field_0 && field_0 == 1)
+	{
+		if(ScriptCommand(&is_wav_loaded, 1))
+		{
+			ScriptCommand(&play_wav, 1);
+			field_0 = 2;
+		}
+	}
+}
+
+//-----------------------------------------------------------
+
 int CAudio::GetRadioStation() 
 {
 	int iRadioStation = 0;
@@ -25,6 +39,17 @@ void CAudio::StartRadio(int iStation)
 	_asm push iStation
 	_asm mov ecx, 0xB6BC90
 	_asm mov edx, 0x507DC0
+	_asm call edx
+}
+
+//-----------------------------------------------------------
+
+void CAudio::StopRadio()
+{
+	_asm push 0
+	_asm push 0
+	_asm mov ecx, 0xB6BC90
+	_asm mov edx, 0x506F70
 	_asm call edx
 }
 
