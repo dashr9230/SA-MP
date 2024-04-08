@@ -15,6 +15,12 @@ CChatWindow::CChatWindow(IDirect3DDevice9 *pD3DDevice, CFontRender *pFontRender,
 	D3DXCreateSprite(pD3DDevice,&field_63A6);
 	D3DXCreateSprite(pD3DDevice,&field_63AA);
 
+	// Init the chat window lines to 0
+	while(x!=MAX_MESSAGES) {
+		memset(&m_ChatWindowEntries[x],0,sizeof(CHAT_WINDOW_ENTRY));
+		x++;
+	}
+
 	m_dwChatTextColor = D3DCOLOR_ARGB(255,255,255,255);
 	m_dwChatInfoColor = D3DCOLOR_ARGB(255,136,170,98);
 	m_dwChatDebugColor = D3DCOLOR_ARGB(255,169,196,228);
