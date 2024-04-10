@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "../amx/amx.h"
+#include "sqlite3.h"
 
 // native DB:db_open(name[]);
 static cell AMX_NATIVE_CALL n_open(AMX* amx, cell* params)
