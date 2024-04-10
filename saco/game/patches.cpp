@@ -4,6 +4,10 @@
 DWORD dwSystemMemory;
 DWORD dwStreamingMemory;
 
+void RelocateScanListHack();
+void RelocatePedsListHack();
+void RelocateBaseModelInfoHack();
+
 extern int iGtaVersion;
 
 //----------------------------------------------------------
@@ -263,6 +267,28 @@ BOOL ApplyPreGamePatches()
 	*(PDWORD)0x731F60 = 20000;
 
 	return TRUE;
+}
+
+//----------------------------------------------------------
+
+extern DWORD dwFarClipHookAddr;
+extern DWORD dwFarClipReturnAddr;
+
+void ApplyInGamePatches()
+{
+	if(GTASA_VERSION_USA10 == iGtaVersion) {
+		dwFarClipHookAddr = 0x7EE2A0;
+		dwFarClipReturnAddr = dwFarClipHookAddr+9;
+	} else {
+		dwFarClipHookAddr = 0x7EE2E0;
+		dwFarClipReturnAddr = dwFarClipHookAddr+9;
+	}
+
+	RelocateScanListHack();
+	RelocatePedsListHack(); // allows us to use all 300 ped model slots
+
+	RelocateBaseModelInfoHack();
+
 }
 
 //----------------------------------------------------------
