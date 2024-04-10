@@ -293,6 +293,42 @@ void RelocatePedsListHack()
 	*(DWORD *)0x4C67AD = (DWORD)aPedsListMemory;
 }
 
+//----------------------------------------------------------
+
+#pragma pack(1)
+typedef struct _BASE_MODEL_INFO
+{
+	DWORD func_tbl;
+	BYTE  data[28];
+} BASE_MODEL_INFO;
+
+BASE_MODEL_INFO BaseModelInfoMemory[20000];
+
+DWORD dwPatchAddrBaseModelInfoReloc[14] = {
+0x4C63F2,0x4C662D,0x4C6822,0x4C6829,0x4C6877,0x4C6881,
+0x4C6890,0x4C68A5,0x4C68F3,0x4C6932,0x4C6971,0x4C69B0,
+0x4C69EF,0x4C6A2E };
+
+void RelocateBaseModelInfoHack()
+{
+	DWORD oldProt;
+	BYTE *aModelListMemory = (BYTE*)&BaseModelInfoMemory[0];
+
+	// Init the mem
+	int x=0;
+	while(x!=20000) {
+		BaseModelInfoMemory[x].func_tbl = 0x85BBF0;
+		memset(PedModelsMemory[x].data,0,28);
+		x++;
+	}
+
+	x=0;
+	while(x!=14) {
+		VirtualProtect((LPVOID)dwPatchAddrBaseModelInfoReloc[x],4,PAGE_EXECUTE_READWRITE,&oldProt);
+		*(PDWORD)dwPatchAddrBaseModelInfoReloc[x] = (DWORD)aModelListMemory;
+		x++;
+	}
+}
 
 //----------------------------------------------------------
 // FOLLOWING IS TO RELOCATE THE SCANLIST MEMORY, A BIG
