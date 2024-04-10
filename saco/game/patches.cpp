@@ -298,7 +298,9 @@ void RelocatePedsListHack()
 // FOLLOWING IS TO RELOCATE THE SCANLIST MEMORY, A BIG
 // HACK THAT ALLOWS US TO HAVE MORE THAN 2 CPlayerInfo STRUCTURES.
 
-unsigned char ScanListMemory[8*20000];
+#define SCANLIST_SIZE 8*20000
+
+unsigned char ScanListMemory[SCANLIST_SIZE];
 
 // Pointers to actual code addresses to patch. The first list
 // has taken into account the instruction bytes, second list
@@ -348,7 +350,7 @@ DWORD dwPatchAddrScanRelocEnd[4] = { 0x005634A6, 0x005638DF, 0x0056420F, 0x00564
 void RelocateScanListHack()
 {
 	DWORD oldProt;
-	memset(&ScanListMemory[0], 0, sizeof(ScanListMemory));
+	memset(&ScanListMemory[0], 0, SCANLIST_SIZE);
 	unsigned char *aScanListMemory = &ScanListMemory[0];
 
 	// FIRST PREPARED LIST OF ACCESSORS
