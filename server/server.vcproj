@@ -332,6 +332,9 @@
 				RelativePath=".\gamemodes.h">
 			</File>
 			<File
+				RelativePath=".\scrcore.cpp">
+			</File>
+			<File
 				RelativePath=".\scrcustom.cpp">
 			</File>
 			<File
