@@ -158,6 +158,12 @@
 				Name="sqlite"
 				Filter="">
 				<File
+					RelativePath=".\sqlite\sqlite3.c">
+				</File>
+				<File
+					RelativePath=".\sqlite\sqlite3.h">
+				</File>
+				<File
 					RelativePath=".\sqlite\sqlite_amx.cpp">
 				</File>
 			</Filter>
