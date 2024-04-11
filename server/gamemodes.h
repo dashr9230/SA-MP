@@ -2,20 +2,31 @@
 #ifndef SAMPSRV_GAMEMODES_H
 #define SAMPSRV_GAMEMODES_H
 
-class CGameMode // size: WL 110
+extern char szGameModeFileName[256];
+
+//----------------------------------------------------------------------------------
+
+class CGameMode
 {
 private:
-	char gap0[104];
-	char field_68;
-	char field_69;
-	char gap6A[4];
+	AMX m_amx;
+	bool m_bInitialised;
+	bool m_bSleeping;
+	float m_fSleepTime;
 
 public:
 	CGameMode();
 	~CGameMode();
 
+	char* GetFileName() { return &szGameModeFileName[0]; };
+
 	bool Load(char* pFileName);
 	void Unload();
+
+	int CallPublic(char* szFuncName);
+
 };
+
+//----------------------------------------------------------------------------------
 
 #endif
