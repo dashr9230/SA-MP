@@ -57,6 +57,9 @@ private:
 	PLAYER_SPAWN_INFO	m_AvailableSpawns[319];
 
 public:
+
+	CScriptTimers* GetTimers() { return m_pScriptTimers; };
+
 	CNetGame();
 	~CNetGame();
 
