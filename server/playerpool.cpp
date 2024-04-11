@@ -6,7 +6,7 @@ CPlayerPool::CPlayerPool()
 {
 	for(PLAYERID playerId = 0; playerId < MAX_PLAYERS; playerId++) {
 		m_bPlayerSlotState[playerId] = FALSE;
-		field_2599C[playerId] = 0;
+		m_pPlayers[playerId] = NULL;
 		field_23A5C[playerId] = 0;
 		field_3E8C[playerId] = pNetGame->GetTime();
 	}

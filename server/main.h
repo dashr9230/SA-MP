@@ -6,6 +6,7 @@
 // DEFINES
 // -------
 
+#define MAX_PLAYER_NAME			24
 #define MAX_PLAYERS				1000
 #define MAX_VEHICLES			2000
 #define MAX_FILTER_SCRIPTS		16
@@ -82,6 +83,7 @@ typedef unsigned short VEHICLEID;
 #include "gamemodes.h"
 #include "filterscripts.h"
 #include "netrpc.h"
+#include "player.h"
 #include "playerpool.h"
 #include "vehiclepool.h"
 #include "pickuppool.h"
@@ -99,6 +101,7 @@ typedef unsigned short VEHICLEID;
 // ---------
 
 extern CConsole* pConsole;
+extern CNetGame* pNetGame;
 
 // -------------------
 // FUNCTION PROTOTYPES

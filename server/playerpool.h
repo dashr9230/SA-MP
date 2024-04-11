@@ -18,12 +18,19 @@ private:
 	int field_FA8;
 	int m_iPlayerScore[MAX_PLAYERS];
 	int m_iPlayerMoney[MAX_PLAYERS];
-	char gap2EEC[4000];
+	int m_iPlayerDrunkLevel[MAX_PLAYERS];
 	DWORD field_3E8C[1000];
-	int field_23A5C[1000];
+	CHAR m_szPlayerClientID[MAX_PLAYERS][101];
+	CHAR m_szPlayerVersion[MAX_PLAYERS][25];
+	int field_23A5C[MAX_PLAYERS];
 	BOOL m_bPlayerSlotState[MAX_PLAYERS];
-	int field_2599C[1000];
-	char gap2693C[41000];
+	CPlayer *m_pPlayers[MAX_PLAYERS];
+	CHAR m_szPlayerName[MAX_PLAYERS][MAX_PLAYER_NAME+1];
+	BOOL m_bIsAnAdmin[MAX_PLAYERS];
+	BOOL m_bIsAnNPC[MAX_PLAYERS];
+
+	char _gap2CAE4[8000];
+
 	int field_30964;
 	int field_30968;
 	int field_3096C;

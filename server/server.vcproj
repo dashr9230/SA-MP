@@ -350,6 +350,16 @@
 				RelativePath=".\scrtimers.h">
 			</File>
 		</Filter>
+		<Filter
+			Name="player"
+			Filter="">
+			<File
+				RelativePath=".\player.cpp">
+			</File>
+			<File
+				RelativePath=".\player.h">
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\actorpool.cpp">
 		</File>
