@@ -103,6 +103,8 @@ typedef unsigned short VEHICLEID;
 extern CConsole* pConsole;
 extern CNetGame* pNetGame;
 
+extern PLAYERID RconUser;
+
 // -------------------
 // FUNCTION PROTOTYPES
 // -------------------

@@ -5,6 +5,8 @@ CNetGame		*pNetGame	= NULL;
 CConsole		*pConsole	= NULL;
 CPlugins		*pPlugins	= NULL;
 
+PLAYERID	RconUser=INVALID_ID;
+
 FILE		*pLogFile;
 bool		bQuitApp = false;
 BOOL		bGameModeFinished=FALSE;

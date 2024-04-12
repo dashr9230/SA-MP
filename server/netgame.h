@@ -4,6 +4,8 @@
 
 #define GAMESTATE_RUNNING	 1
 
+#define INVALID_ID			0xFFFF
+
 class CNetGame // size: W: 14808 L: 14816
 {
 private:

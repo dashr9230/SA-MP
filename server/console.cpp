@@ -106,9 +106,81 @@ void con_reloadlog() {
 void con_players() {} // TODO: con_players W: 0048A8A0 L: 0809F140
 void con_gravity() {} // TODO: con_gravity W: 0048A950 L: 0809F220
 void con_weather() {} // TODO: con_weather W: 0048A980 L: 0809F260
-void con_loadfs() {} // TODO: con_loadfs W: 0048A9B0 L: 0809F2A0
-void con_reloadfs() {} // TODO: con_reloadfs W: 0048AA20 L: 0809F330
-void con_unloadfs() {} // TODO: con_unloadfs W: 0048AAC0 L: 0809F410
+
+void con_loadfs()
+{
+	PLAYERID Temp = RconUser;
+	// Stop sending all the filterscripts prints to the user if they used in-game RCON
+	RconUser = INVALID_ID;
+	char* arg = strtok(NULL, "");
+	if (arg)
+	{
+		if(!pNetGame->GetFilterScripts()->LoadFilterScript(arg))
+		{
+			RconUser = Temp;
+			logprintf("  Filterscript '%s.amx' load failed.", arg);
+		}
+		else
+		{
+			RconUser = Temp;
+			logprintf("  Filterscript '%s.amx' loaded.", arg);
+		}
+	}
+}
+
+void con_reloadfs()
+{
+	PLAYERID Temp = RconUser;
+	// Stop sending all the filterscripts prints to the user if they used in-game RCON
+	RconUser = INVALID_ID;
+	char* arg = strtok(NULL, "");
+	if (arg)
+	{
+		if(pNetGame->GetFilterScripts()->UnloadOneFilterScript(arg))
+		{
+			RconUser = Temp;
+			logprintf("  Filterscript '%s.amx' unloaded.", arg);
+		}
+		else
+		{
+			RconUser = Temp;
+			logprintf("  Filterscript '%s.amx' unload failed.", arg);
+		}
+
+		RconUser = INVALID_ID;
+		if(!pNetGame->GetFilterScripts()->LoadFilterScript(arg))
+		{
+			RconUser = Temp;
+			logprintf("  Filterscript '%s.amx' load failed'.", arg);
+		}
+		else
+		{
+			RconUser = Temp;
+			logprintf("  Filterscript '%s.amx' loaded.", arg);
+		}
+	}
+}
+
+void con_unloadfs()
+{
+	PLAYERID Temp = RconUser;
+	// Stop sending all the filterscripts prints to the user if they used in-game RCON
+	RconUser = INVALID_ID;
+	char* arg = strtok(NULL, "");
+	if (arg)
+	{
+		if(pNetGame->GetFilterScripts()->UnloadOneFilterScript(arg))
+		{
+			RconUser = Temp;
+			logprintf("  Filterscript '%s.amx' unloaded.", arg);
+		}
+		else
+		{
+			RconUser = Temp;
+			logprintf("  Filterscript '%s.amx' unload failed.", arg);
+		}
+	}
+}
 
 #define CON_CMDFLAG_DEBUG		1
 
