@@ -150,6 +150,20 @@ void con_cmdlist()
 	logprintf("");
 }
 
+char* strrtrim(char* str)
+{
+	for (int i=strlen(str)-1; i>=0; i--)
+	{
+		if ((str[i] == ' ') || (str[i] == '\t'))
+		{
+			str[i] = 0;
+		} else {
+			break;
+		}
+	}
+	return str;
+}
+
 CConsole::CConsole()
 {
 
@@ -369,8 +383,6 @@ void CConsole::SetBoolVariable(char* pVarName, bool bBool)
 
 void CConsole::Execute(char* pExecLine)
 {
-	// TODO: CConsole::Execute W: 0048B610 L: 0809FBD0
-
 	if (!pExecLine) return;
 
 	// Ya can't strtok on a read-only string!
@@ -385,7 +397,7 @@ void CConsole::Execute(char* pExecLine)
 	{
 		if (stricmp(cmd, ConsoleCommands[i].CmdName) == 0)
 		{
-			if (ConsoleCommands[i].CmdFlags & 1)
+			if (ConsoleCommands[i].CmdFlags & CON_CMDFLAG_DEBUG)
 			{
 				#ifndef _DEBUG
 					logprintf("Unable to execute command '%s'. Debug mode required.", ConsoleCommands[i].CmdName);
@@ -400,6 +412,90 @@ void CConsole::Execute(char* pExecLine)
 	ConsoleVariable_s* ConVar = FindVariable(cmd);
 	if (ConVar != NULL)
 	{
+		bool readonly = (ConVar->VarFlags & CON_VARFLAG_READONLY) == CON_VARFLAG_READONLY;
+		if (ConVar->VarFlags & CON_VARFLAG_DEBUG)
+		{
+			#ifndef _DEBUG
+				logprintf("Unable to access variable '%s'. Debug mode required.", cmd);
+				return;
+			#endif
+		}
+		bool bChangedVar = false;
+		char* arg = strtok(NULL, " ");
+		switch (ConVar->VarType)
+		{
+			case CON_VARTYPE_FLOAT:
+				if ((arg) && (!readonly))
+				{
+					*(float*)ConVar->VarPtr = (float)atof(arg);
+					bChangedVar = true;
+				} else {
+					logprintf("%s = %f  (float%s)", cmd, *(float*)ConVar->VarPtr, readonly?", read-only":"");
+				}
+				break;
+			case CON_VARTYPE_INT:
+				if ((arg) && (!readonly))
+				{
+					*(int*)ConVar->VarPtr = atoi(arg);
+					bChangedVar = true;
+				} else {
+					logprintf("%s = %d  (int%s)", cmd, *(int*)ConVar->VarPtr, readonly?", read-only":"");
+				}
+				break;
+			case CON_VARTYPE_BOOL:
+				if ((arg) && (!readonly))
+				{
+					*(bool*)ConVar->VarPtr = (atoi(arg) > 0);
+					bChangedVar = true;
+				} else {
+					logprintf("%s = %d  (bool%s)", cmd, *(bool*)ConVar->VarPtr, readonly?", read-only":"");
+				}
+				break;
+			case CON_VARTYPE_STRING:
+				if ((arg) && (!readonly))
+				{
+					if (ConVar->VarPtr != NULL)
+						free(ConVar->VarPtr);
+
+					char* str;
+					char* ext = strtok(NULL, "");
+					if (ext)
+					{
+						str = (char*)malloc(strlen(arg)+strlen(ext)+2);
+						strcpy(str, arg);
+						strcat(str, " ");
+						strrtrim(ext);
+						strcat(str, ext);
+					} else {
+						str = (char*)malloc(strlen(arg)+1);
+						strcpy(str, arg);
+					}
+					if (strlen(str) > 1023) str[1022] = 0;
+					ConVar->VarPtr = str;
+					bChangedVar = true;
+				} else {
+					logprintf("%s = \"%s\"  (string%s)", cmd, (char*)ConVar->VarPtr, readonly?", read-only":"");
+				}
+				break;
+		}
+		if (bChangedVar)
+		{
+			if (ConVar->VarChangeFunc)
+			{
+				ConVar->VarChangeFunc();
+			}
+		}
 		return;
+	}
+
+	if (!pNetGame->GetFilterScripts()->OnRconCommand(pExecLine))
+	{
+		if (pNetGame->GetGameMode())
+		{
+			if (!pNetGame->GetGameMode()->OnRconCommand(pExecLine))
+			{
+					logprintf("Unknown command or variable:\n  %s", cmd);
+			}
+		}
 	}
 }
