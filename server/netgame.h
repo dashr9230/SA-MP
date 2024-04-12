@@ -71,6 +71,7 @@ public:
 	void Init(BOOL bFirst);
 	void ShutdownForGameModeRestart();
 
+	CPlayerPool * GetPlayerPool() { return m_pPlayerPool; };
 	RakServerInterface * GetRakServer() { return m_pRak; };
 
 	void LoadAllFilterscripts();

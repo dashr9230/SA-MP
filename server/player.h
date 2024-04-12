@@ -9,6 +9,8 @@ private:
 
 public:
 
+	void Say(unsigned char * szText, BYTE byteTextLength);
+
 };
 
 #endif

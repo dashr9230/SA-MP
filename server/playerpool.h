@@ -42,6 +42,18 @@ public:
 
 	BOOL Delete(PLAYERID playerId, BYTE byteReason);
 
+	// Retrieve a player
+	CPlayer* GetAt(PLAYERID playerId) {
+		if (playerId >= MAX_PLAYERS) { return NULL; }
+		return m_pPlayers[playerId];
+	};
+
+	// Find out if the slot is inuse.
+	BOOL GetSlotState(PLAYERID playerId) {
+		if(playerId >= MAX_PLAYERS) { return FALSE; }
+		return m_bPlayerSlotState[playerId];
+	};
+
 	void ResetPlayerScoresAndMoney() {
 		memset(&m_iPlayerScore[0],0,sizeof(int) * MAX_PLAYERS);
 		memset(&m_iPlayerMoney[0],0,sizeof(int) * MAX_PLAYERS);
