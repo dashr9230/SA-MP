@@ -2,6 +2,8 @@
 #ifndef SAMPSRV_NETGAME_H
 #define SAMPSRV_NETGAME_H
 
+#define MAX_SPAWNS 319
+
 #define GAMESTATE_RUNNING	 1
 
 #define INVALID_ID			0xFFFF
