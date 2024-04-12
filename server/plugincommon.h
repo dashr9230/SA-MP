@@ -2,6 +2,8 @@
 #ifndef _PLUGINCOMMON_H_INCLUDED
 #define _PLUGINCOMMON_H_INCLUDED
 
+//----------------------------------------------------------
+
 enum PLUGIN_DATA_TYPE
 {
 	// For some debugging
@@ -9,7 +11,11 @@ enum PLUGIN_DATA_TYPE
 
 	// AMX
 	PLUGIN_DATA_AMX_EXPORTS		= 0x10,	// void* AmxFunctionTable[]    (see PLUGIN_AMX_EXPORT)
+	PLUGIN_DATA_CALLPUBLIC_FS	= 0x11, // int (*AmxCallPublicFilterScript)(char *szFunctionName)
+	PLUGIN_DATA_CALLPUBLIC_GM	= 0x12, // int (*AmxCallPublicGameMode)(char *szFunctionName)
 };
+
+//----------------------------------------------------------
 
 enum PLUGIN_AMX_EXPORT
 {

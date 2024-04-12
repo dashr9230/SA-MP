@@ -73,6 +73,8 @@ public:
 
 	CPlayerPool * GetPlayerPool() { return m_pPlayerPool; };
 	RakServerInterface * GetRakServer() { return m_pRak; };
+	CGameMode * GetGameMode() { return m_pGameMode; };
+	CFilterScripts * GetFilterScripts() { return m_pFilterScripts; };
 
 	void LoadAllFilterscripts();
 

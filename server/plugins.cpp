@@ -1,6 +1,61 @@
 
 #include "main.h"
 
+//---------------------------------------
+// Some Helpers
+
+extern "C" RakServerInterface* PluginGetRakServer()
+{
+	if (pNetGame != NULL)
+		return pNetGame->GetRakServer();
+	else
+		return NULL;
+}
+
+extern "C" CNetGame* PluginGetNetGame()
+{
+	return pNetGame;
+}
+
+extern "C" CConsole* PluginGetConsole()
+{
+	return pConsole;
+}
+
+extern "C" bool PluginUnloadFilterScript(char* pFileName)
+{
+	if (pNetGame != NULL)
+		return pNetGame->GetFilterScripts()->UnloadOneFilterScript(pFileName);
+	else
+		return false;
+}
+
+extern "C" bool PluginLoadFilterScriptFromMemory(char* pFileName, char* pFileData)
+{
+	if (pNetGame != NULL)
+		return pNetGame->GetFilterScripts()->LoadFilterScriptFromMemory(pFileName, pFileData);
+	else
+		return false;
+}
+
+extern "C" int PluginCallPublicFS(char *szFunctionName)
+{
+	if (pNetGame != NULL)
+		return pNetGame->GetFilterScripts()->CallPublic(szFunctionName);
+	else
+		return 0;
+}
+
+extern "C" int PluginCallPublicGM(char *szFunctionName)
+{
+	if (pNetGame != NULL && pNetGame->GetGameMode())
+		return pNetGame->GetGameMode()->CallPublic(szFunctionName);
+	else
+		return 0;
+}
+
+//---------------------------------------
+
 CPlugins::CPlugins()
 {
 	// Set up the table of AMX functions to be exported
@@ -57,9 +112,18 @@ CPlugins::CPlugins()
 	m_PluginData[PLUGIN_DATA_LOGPRINTF] = (void*)&logprintf;
 
 	m_PluginData[PLUGIN_DATA_AMX_EXPORTS] = m_AMXExports;
+	m_PluginData[PLUGIN_DATA_CALLPUBLIC_FS] = (void*)&PluginCallPublicFS;
+	m_PluginData[PLUGIN_DATA_CALLPUBLIC_GM] = (void*)&PluginCallPublicGM;
 
-	// TODO: CPlugins::CPlugins W: 0046A1D0 L: constructor
+	// Internals
+	m_PluginData[PLUGIN_DATA_NETGAME] = (void*)&PluginGetNetGame;
+	m_PluginData[PLUGIN_DATA_CONSOLE] = (void*)&PluginGetConsole;
+	m_PluginData[PLUGIN_DATA_RAKSERVER] = (void*)&PluginGetRakServer;
+	m_PluginData[PLUGIN_DATA_LOADFSCRIPT] = (void*)&PluginLoadFilterScriptFromMemory;
+	m_PluginData[PLUGIN_DATA_UNLOADFSCRIPT] = (void*)&PluginUnloadFilterScript;
 }
+
+//---------------------------------------
 
 CPlugins::~CPlugins()
 {
