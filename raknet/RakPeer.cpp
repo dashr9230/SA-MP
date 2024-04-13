@@ -3,6 +3,7 @@
 #include "RakPeer.h"
 
 #include <string.h>
+#include <stdlib.h>
 
 RakPeer::RakPeer()
 {
@@ -158,9 +159,20 @@ void RakPeer::vftable_38()
 	// TODO: RakPeer::vftable_38() (saco W: 10040FD0) (server W: 458510 L: 806EA30) (bot W: 40BCE0 L: 8073806)
 }
 
-void RakPeer::vftable_3C()
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Description:
+// Call this to deallocate a packet returned by Receive, in the same order returned to you from Receive
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+void RakPeer::DeallocatePacket( Packet *packet )
 {
-	// TODO: RakPeer::vftable_3C() (saco W: 100385B0) (server W: 4500B0 L: 8071D60) (bot W: 404050 L: 80739A2)
+	if ( packet == 0 )
+		return;
+
+	if (packet->deleteData)
+		if (packet->data)
+			delete packet->data;
+
+	free(packet);
 }
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

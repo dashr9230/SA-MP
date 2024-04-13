@@ -33,12 +33,20 @@ struct RAK_DLL_EXPORT PlayerID
 /// This represents a user message from another system.
 struct Packet
 {
+	char _gap0[8];
+
 	/// The length of the data in bytes
 	/// \deprecated You should use bitSize.
 	unsigned int length;
 
+	char _gapC[4];
+
 	/// The data from the sender
 	unsigned char* data;
+
+	/// @internal
+	/// Indicates whether to delete the data, or to simply delete the packet.
+	bool deleteData;
 };
 
 struct RPCParameters

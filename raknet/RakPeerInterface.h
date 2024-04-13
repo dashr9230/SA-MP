@@ -63,7 +63,10 @@ public:
 	virtual void vftable_30()=0;
 	virtual void vftable_34()=0;
 	virtual void vftable_38()=0;
-	virtual void vftable_3C()=0;
+
+	/// Call this to deallocate a message returned by Receive() when you are done handling it.
+	/// \param[in] packet The message to deallocate.	
+	virtual void DeallocatePacket( Packet *packet )=0;
 
 	/// Return the total number of connections we are allowed
 	// TODO - rename for RakNet 3.0

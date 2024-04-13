@@ -67,7 +67,10 @@ public:
 	void vftable_30();
 	void vftable_34();
 	void vftable_38();
-	void vftable_3C();
+
+	/// Call this to deallocate a message returned by Receive() when you are done handling it.
+	/// \param[in] packet The message to deallocate.	
+	void DeallocatePacket( Packet *packet );
 
 	/// Return the total number of connections we are allowed
 	unsigned short GetMaximumNumberOfPeers( void ) const;
