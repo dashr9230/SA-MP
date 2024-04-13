@@ -68,7 +68,9 @@ public:
 	void vftable_34();
 	void vftable_38();
 	void vftable_3C();
-	void vftable_40();
+
+	/// Return the total number of connections we are allowed
+	unsigned short GetMaximumNumberOfPeers( void ) const;
 
 	// --------------------------------------------------------------------------------------------Remote Procedure Call Functions - Functions to initialize and perform RPC--------------------------------------------------------------------------------------------
 	/// \ingroup RAKNET_RPC
@@ -144,6 +146,8 @@ protected:
 	///Set this to true to terminate the Peer thread execution 
 	volatile bool endThreads;
 
+	///Store the maximum number of peers allowed to connect
+	unsigned short maximumNumberOfPeers;
 	///Store the maximum incoming connection allowed 
 	unsigned short maximumIncomingConnections;
 

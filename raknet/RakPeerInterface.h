@@ -64,7 +64,10 @@ public:
 	virtual void vftable_34()=0;
 	virtual void vftable_38()=0;
 	virtual void vftable_3C()=0;
-	virtual void vftable_40()=0;
+
+	/// Return the total number of connections we are allowed
+	// TODO - rename for RakNet 3.0
+	virtual unsigned short GetMaximumNumberOfPeers( void ) const=0;
 
 	// --------------------------------------------------------------------------------------------Remote Procedure Call Functions - Functions to initialize and perform RPC--------------------------------------------------------------------------------------------
 	/// \ingroup RAKNET_RPC
