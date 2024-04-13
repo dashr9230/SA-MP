@@ -127,9 +127,10 @@ void InstallFileSystemHooks()
 			(PBYTE)DetourFindFunction("kernel32.dll", "CreateFileA"),
 			(PBYTE)Arch_CreateFileA);
 
+		/*
 		Real_CreateFileW = (def_CreateFileW)DetourFunction(
 			(PBYTE)DetourFindFunction("kernel32.dll", "CreateFileW"),
-			(PBYTE)Arch_CreateFileW);
+			(PBYTE)Arch_CreateFileW);*/
 
 		Real_ReadFile = (def_ReadFile)DetourFunction(
 			(PBYTE)DetourFindFunction("kernel32.dll", "ReadFile"),
