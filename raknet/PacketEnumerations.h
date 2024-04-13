@@ -94,9 +94,11 @@ enum
 	/// [PEER|SERVER|CLIENT] 40: The four bytes following this byte represent an unsigned int which is automatically modified by the difference in system times between the sender and the recipient. Requires that you call StartOccasionalPing.
 	ID_TIMESTAMP,
 
+	/// [PEER|SERVER|CLIENT] 41: We got a bitstream containing static data.  You can now read this data. This packet is transmitted automatically on connections, and can also be manually sent.
+	ID_RECEIVED_STATIC_DATA,
 
 	/// [CLIENT] 42: In a client/server environment, a client other than ourselves has disconnected gracefully.  Packet::playerID is modified to reflect the playerID of this client.
-	ID_REMOTE_DISCONNECTION_NOTIFICATION = 42,
+	ID_REMOTE_DISCONNECTION_NOTIFICATION,
 
 	/// [CLIENT] 43: In a client/server environment, a client other than ourselves has been forcefully dropped. Packet::playerID is modified to reflect the playerID of this client.
 	ID_REMOTE_CONNECTION_LOST,
