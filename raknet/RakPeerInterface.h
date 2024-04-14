@@ -110,7 +110,12 @@ public:
 	virtual void vftable_90()=0;
 	virtual void vftable_94()=0;
 	virtual void vftable_98()=0;
-	virtual void vftable_9C()=0;
+
+	//--------------------------------------------------------------------------------------------Network Functions - Functions dealing with the network in general--------------------------------------------------------------------------------------------
+	/// Return the unique address identifier that represents you on the the network and is based on your local IP / port.
+	/// \return the identifier of your system internally, which may not be how other systems see if you if you are behind a NAT or proxy
+	virtual PlayerID GetInternalID( void ) const=0;
+
 	virtual void vftable_A0()=0;
 	virtual void vftable_A4()=0;
 	virtual void vftable_A8()=0;

@@ -113,7 +113,12 @@ public:
 	void vftable_90();
 	void vftable_94();
 	void vftable_98();
-	void vftable_9C();
+
+	//--------------------------------------------------------------------------------------------Network Functions - Functions dealing with the network in general--------------------------------------------------------------------------------------------
+	/// Return the unique address identifier that represents you on the the network and is based on your local IP / port.
+	/// \return the identifier of your system internally, which may not be how other systems see if you if you are behind a NAT or proxy
+	PlayerID GetInternalID( void ) const;
+
 	void vftable_A0();
 	void vftable_A4();
 	void vftable_A8();
@@ -149,11 +154,18 @@ protected:
 	///Set this to true to terminate the Peer thread execution 
 	volatile bool endThreads;
 
+	char _gap6[2];
+
 	///Store the maximum number of peers allowed to connect
 	unsigned short maximumNumberOfPeers;
 	///Store the maximum incoming connection allowed 
 	unsigned short maximumIncomingConnections;
 
+	RakNet::BitStream field_B;
+	RakNet::BitStream field_11C;
+
+	///Local Player ID
+	PlayerID myPlayerId;
 	char incomingPassword[256];
 	unsigned char incomingPasswordLength;
 

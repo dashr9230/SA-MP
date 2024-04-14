@@ -7,6 +7,12 @@
 
 RakPeer::RakPeer()
 {
+	maximumIncomingConnections = 0;
+	maximumNumberOfPeers = 0;
+	endThreads = true;
+	myPlayerId = UNASSIGNED_PLAYER_ID;
+	incomingPasswordLength=0;
+
 	// TODO: RakPeer ctor saco .text:1003DE50 server W .text:00455140 L .text:08072970 bot W .text:00408DF0 L .text:08071AB0
 }
 
@@ -319,9 +325,14 @@ void RakPeer::vftable_98()
 	// TODO: RakPeer::vftable_98() (saco W: 10038730) (server W: 450230 L: 8070B60) (bot W: 404170 L: 8074FA8)
 }
 
-void RakPeer::vftable_9C()
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Description:
+// Return the unique PlayerID that represents you on the the network
+// Note that unlike in previous versions, this is a struct and is not sequential
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PlayerID RakPeer::GetInternalID( void ) const
 {
-	// TODO: RakPeer::vftable_9C() (saco W: 10038780) (server W: 450280 L: 806DBC0) (bot W: 4041C0 L: 8074FD2)
+	return myPlayerId;
 }
 
 void RakPeer::vftable_A0()
