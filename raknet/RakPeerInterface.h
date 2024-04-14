@@ -164,7 +164,10 @@ public:
 	/// \return The compression ratio
 	virtual float GetCompressionRatio( void ) const=0;
 
-	virtual void vftable_E4()=0;
+	///Returns the decompression ratio.  A high decompression ratio is good.  Decompression is for incoming data
+	/// \return The decompression ratio
+	virtual float GetDecompressionRatio( void ) const=0;
+
 	virtual void vftable_E8()=0;
 	virtual void vftable_EC()=0;
 	virtual void vftable_F0()=0;

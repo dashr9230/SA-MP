@@ -168,7 +168,10 @@ public:
 	/// \return The compression ratio
 	float GetCompressionRatio( void ) const;
 
-	void vftable_E4();
+	///Returns the decompression ratio.  A high decompression ratio is good.  Decompression is for incoming data
+	/// \return The decompression ratio
+	float GetDecompressionRatio( void ) const;
+
 	void vftable_E8();
 	void vftable_EC();
 	void vftable_F0();
@@ -208,13 +211,9 @@ protected:
 
 	char _gap7D1[8];
 
-	unsigned int rawBytesSent;
+	unsigned int rawBytesSent, rawBytesReceived, compressedBytesSent, compressedBytesReceived;
 
-	char _gap7DD[4];
-
-	unsigned int compressedBytesSent;
-
-	char _gap7E5[28];
+	char _gap7E9[24];
 
 	RPCMap rpcMap; // Can't use StrPtrHash because runtime insertions will screw up the indices
 	int MTUSize;

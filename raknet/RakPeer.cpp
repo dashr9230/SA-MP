@@ -8,7 +8,7 @@
 RakPeer::RakPeer()
 {
 	memset( frequencyTable, 0, sizeof( unsigned int ) * 256 );
-	rawBytesSent = compressedBytesSent = 0;
+	rawBytesSent = rawBytesReceived = compressedBytesSent = compressedBytesReceived = 0;
 	MTUSize = DEFAULT_MTU_SIZE;
 	trackFrequencyTable = false;
 	maximumIncomingConnections = 0;
@@ -506,9 +506,19 @@ float RakPeer::GetCompressionRatio( void ) const
 		return 0.0f;
 }
 
-void RakPeer::vftable_E4()
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Returns:
+// The decompression ratio.  A high decompression ratio is good.  Decompression is for incoming data
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+float RakPeer::GetDecompressionRatio( void ) const
 {
-	// TODO: RakPeer::vftable_E4() (saco W: 10038B90) (server W: 450670 L: 806E3C0) (bot W: 4045B0 L: 80758BE)
+	if ( rawBytesReceived > 0 )
+	{
+		return ( float ) compressedBytesReceived / ( float ) rawBytesReceived;
+	}
+
+	else
+		return 0.0f;
 }
 
 void RakPeer::vftable_E8()
