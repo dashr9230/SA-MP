@@ -15,6 +15,28 @@ ReliabilityLayer::ReliabilityLayer()
 void ReliabilityLayer::InitializeVariables( void )
 {
 	// TODO: ReliabilityLayer::InitializeVariables
+
+	SetPing( 1000 );
+}
+
+//-------------------------------------------------------------------------------------------------------
+// How long to wait between packet resends
+//-------------------------------------------------------------------------------------------------------
+void ReliabilityLayer::SetPing( RakNetTime i )
+{
+	//assert(i < (RakNetTimeNS)timeoutTime*1000);
+	if (i > timeoutTime)
+		ping=500;
+	else
+		ping = i;
+	if (ping < 30)
+		ping=30; // Leave a buffer for variations in ping
+#ifndef _RELEASE
+	if (ping < (RakNetTime)(minExtraPing+extraPingVariance)*2)
+		ping=(minExtraPing+extraPingVariance)*2;
+#endif
+
+	UpdateNextActionTime();
 }
 
 //-------------------------------------------------------------------------------------------------------

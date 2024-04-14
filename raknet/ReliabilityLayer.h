@@ -13,6 +13,10 @@ public:
 	/// Constructor
 	ReliabilityLayer();
 
+	/// Sets the ping, which is used by the reliability layer to determine how long to wait for resends.  Mostly for flow control.
+	/// \param[in] The ping time.
+	void SetPing( RakNetTime i );
+
 private:
 
 	// Initialize the variables
@@ -25,9 +29,19 @@ private:
 
 	RakNetTime ping;
 
-	char _gap[1020];
+	char _gap2D1[2];
+
+	RakNetTime timeoutTime; // How long to wait in MS before timing someone out
+
+	char _gap2D7[1014];
 
 	RakNetTimeNS ackTimeIncrement;
+
+	char _gap6D1[25];
+
+	// Internet simulator
+	RakNetTime minExtraPing, extraPingVariance;
+
 };
 
 #endif
