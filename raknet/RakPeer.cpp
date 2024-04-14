@@ -7,6 +7,7 @@
 
 RakPeer::RakPeer()
 {
+	MTUSize = DEFAULT_MTU_SIZE;
 	maximumIncomingConnections = 0;
 	maximumNumberOfPeers = 0;
 	endThreads = true;
@@ -350,9 +351,16 @@ void RakPeer::vftable_A8()
 	// TODO: RakPeer::vftable_A8() (saco W: 10038860) (server W: 450360 L: 8070050) (bot W: 4042A0 L: 807514E)
 }
 
-void RakPeer::vftable_AC()
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Description:
+// Returns the current MTU size
+//
+// Returns:
+// The MTU sized specified in SetMTUSize
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+int RakPeer::GetMTUSize( void ) const
 {
-	// TODO: RakPeer::vftable_AC() (saco W: 100388B0) (server W: 4503B0 L: 806DD50) (bot W: 4042F0 L: 807519E)
+	return MTUSize;
 }
 
 void RakPeer::vftable_B0()

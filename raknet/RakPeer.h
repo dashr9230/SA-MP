@@ -5,6 +5,7 @@
 
 #include "Export.h"
 #include "RakPeerInterface.h"
+#include "ReliabilityLayer.h"
 #include "RPCNode.h"
 #include "RPCMap.h"
 
@@ -122,7 +123,11 @@ public:
 	void vftable_A0();
 	void vftable_A4();
 	void vftable_A8();
-	void vftable_AC();
+
+	/// Returns the current MTU size
+	/// \return The current MTU size
+	int GetMTUSize( void ) const;
+
 	void vftable_B0();
 	void vftable_B4();
 	void vftable_B8();
@@ -169,8 +174,11 @@ protected:
 	char incomingPassword[256];
 	unsigned char incomingPasswordLength;
 
-	RPCMap rpcMap; // Can't use StrPtrHash because runtime insertions will screw up the indices
+	char _gap334[1230];
 
+	RPCMap rpcMap; // Can't use StrPtrHash because runtime insertions will screw up the indices
+	int MTUSize;
+	bool trackFrequencyTable;
 };
 
 #endif

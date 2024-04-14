@@ -119,7 +119,11 @@ public:
 	virtual void vftable_A0()=0;
 	virtual void vftable_A4()=0;
 	virtual void vftable_A8()=0;
-	virtual void vftable_AC()=0;
+	
+	/// Returns the current MTU size
+	/// \return The current MTU size
+	virtual int GetMTUSize( void ) const=0;
+
 	virtual void vftable_B0()=0;
 	virtual void vftable_B4()=0;
 	virtual void vftable_B8()=0;

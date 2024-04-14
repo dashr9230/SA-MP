@@ -4,6 +4,7 @@
 #define __RELIABILITY_LAYER_H
 
 #include "SocketLayer.h"
+#include "MTUSize.h"
 
 class ReliabilityLayer
 {
