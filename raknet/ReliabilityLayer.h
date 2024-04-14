@@ -13,9 +13,21 @@ public:
 	/// Constructor
 	ReliabilityLayer();
 
+private:
+
 	// Initialize the variables
 	void InitializeVariables( void );
 
+	// Make it so we don't do resends within a minimum threshold of time
+	void UpdateNextActionTime(void);
+
+	char _gap0[713];
+
+	RakNetTime ping;
+
+	char _gap[1020];
+
+	RakNetTimeNS ackTimeIncrement;
 };
 
 #endif
