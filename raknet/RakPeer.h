@@ -145,7 +145,14 @@ public:
 	void vftable_C4();
 	void vftable_C8();
 	void vftable_CC();
-	void vftable_D0();
+
+	// --------------------------------------------------------------------------------------------Compression Functions - Functions related to the compression layer--------------------------------------------------------------------------------------------
+	/// Enables or disables frequency table tracking.  This is required to get a frequency table, which is used in GenerateCompressionLayer()
+	/// This value persists between connect calls and defaults to false (no frequency tracking)
+	/// \pre You can call this at any time - however you SHOULD only call it when disconnected.  Otherwise you will only trackpart of the values sent over the network.
+	/// \param[in] doCompile True to enable tracking 
+	void SetCompileFrequencyTable( bool doCompile );
+
 	void vftable_D4();
 	void vftable_D8();
 	void vftable_DC();

@@ -8,6 +8,7 @@
 RakPeer::RakPeer()
 {
 	MTUSize = DEFAULT_MTU_SIZE;
+	trackFrequencyTable = false;
 	maximumIncomingConnections = 0;
 	maximumNumberOfPeers = 0;
 	endThreads = true;
@@ -435,9 +436,20 @@ void RakPeer::vftable_CC()
 	// TODO: RakPeer::vftable_CC() (saco W: 100389C0) (server W: 4504C0 L: 806E110) (bot W: 404400 L: 807558A)
 }
 
-void RakPeer::vftable_D0()
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Description:
+// Enables or disables our tracking of bytes input to and output from the network.
+// This is required to get a frequency table, which is used to generate a new compression layer.
+// You can call this at any time - however you SHOULD only call it when disconnected.  Otherwise you will only track
+// part of the values sent over the network.
+// This value persists between connect calls and defaults to false (no frequency tracking)
+//
+// Parameters:
+// doCompile - true to track bytes.  Defaults to false
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+void RakPeer::SetCompileFrequencyTable( bool doCompile )
 {
-	// TODO: RakPeer::vftable_D0() (saco W: 10038A10) (server W: 450510 L: 806E170) (bot W: 404450 L: 80755EA)
+	trackFrequencyTable = doCompile;
 }
 
 void RakPeer::vftable_D4()
