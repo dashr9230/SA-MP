@@ -8,6 +8,7 @@
 RakPeer::RakPeer()
 {
 	memset( frequencyTable, 0, sizeof( unsigned int ) * 256 );
+	rawBytesSent = compressedBytesSent = 0;
 	MTUSize = DEFAULT_MTU_SIZE;
 	trackFrequencyTable = false;
 	maximumIncomingConnections = 0;
@@ -490,9 +491,19 @@ void RakPeer::vftable_DC()
 	// TODO: RakPeer::vftable_DC() (saco W: 1003ACA0) (server W: 451FE0 L: 806E250) (bot W: 405CD0 L: 80756CC)
 }
 
-void RakPeer::vftable_E0()
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Returns:
+// The compression ratio.  A low compression ratio is good.  Compression is for outgoing data
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+float RakPeer::GetCompressionRatio( void ) const
 {
-	// TODO: RakPeer::vftable_E0() (saco W: 10038B50) (server W: 450630 L: 806E330) (bot W: 404570 L: 80757FA)
+	if ( rawBytesSent > 0 )
+	{
+		return ( float ) compressedBytesSent / ( float ) rawBytesSent;
+	}
+
+	else
+		return 0.0f;
 }
 
 void RakPeer::vftable_E4()

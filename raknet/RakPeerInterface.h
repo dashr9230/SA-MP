@@ -159,7 +159,11 @@ public:
 
 	virtual void vftable_D8()=0;
 	virtual void vftable_DC()=0;
-	virtual void vftable_E0()=0;
+
+	/// Returns the compression ratio. A low compression ratio is good.  Compression is for outgoing data
+	/// \return The compression ratio
+	virtual float GetCompressionRatio( void ) const=0;
+
 	virtual void vftable_E4()=0;
 	virtual void vftable_E8()=0;
 	virtual void vftable_EC()=0;

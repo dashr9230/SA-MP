@@ -163,7 +163,11 @@ public:
 
 	void vftable_D8();
 	void vftable_DC();
-	void vftable_E0();
+
+	/// Returns the compression ratio. A low compression ratio is good.  Compression is for outgoing data
+	/// \return The compression ratio
+	float GetCompressionRatio( void ) const;
+
 	void vftable_E4();
 	void vftable_E8();
 	void vftable_EC();
@@ -202,7 +206,15 @@ protected:
 	/// Compression stuff
 	unsigned int frequencyTable[ 256 ];
 
-	char _gap7D1[48];
+	char _gap7D1[8];
+
+	unsigned int rawBytesSent;
+
+	char _gap7DD[4];
+
+	unsigned int compressedBytesSent;
+
+	char _gap7E5[28];
 
 	RPCMap rpcMap; // Can't use StrPtrHash because runtime insertions will screw up the indices
 	int MTUSize;
