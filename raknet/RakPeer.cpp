@@ -346,9 +346,41 @@ void RakPeer::vftable_A4()
 	// TODO: RakPeer::vftable_A4() (saco W: 1003E520) (server W: 455810 L: 806DC70) (bot W: 4094C0 L: 8075056)
 }
 
-void RakPeer::vftable_A8()
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Description:
+// Change the MTU size in order to improve performance when sending large packets
+// This can only be called when not connected.
+// A too high of value will cause packets not to arrive at worst and be fragmented at best.
+// A too low of value will split packets unnecessarily.
+//
+// Parameters:
+// size: Set according to the following table:
+// 1500. The largest Ethernet packet size
+// This is the typical setting for non-PPPoE, non-VPN connections. The default value for NETGEAR routers, adapters and switches.
+// 1492. The size PPPoE prefers.
+// 1472. Maximum size to use for pinging. (Bigger packets are fragmented.)
+// 1468. The size DHCP prefers.
+// 1460. Usable by AOL if you don't have large email attachments, etc.
+// 1430. The size VPN and PPTP prefer.
+// 1400. Maximum size for AOL DSL.
+// 576. Typical value to connect to dial-up ISPs. (Default)
+//
+// Returns:
+// False on failure (we are connected).  True on success.  Maximum allowed size is MAXIMUM_MTU_SIZE
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+bool RakPeer::SetMTUSize( int size )
 {
-	// TODO: RakPeer::vftable_A8() (saco W: 10038860) (server W: 450360 L: 8070050) (bot W: 4042A0 L: 807514E)
+	if ( IsActive() )
+		return false;
+
+	if ( size < 512 )
+		size = 512;
+	else if ( size > MAXIMUM_MTU_SIZE )
+		size = MAXIMUM_MTU_SIZE;
+
+	MTUSize = size;
+
+	return true;
 }
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

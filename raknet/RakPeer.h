@@ -122,7 +122,16 @@ public:
 
 	void vftable_A0();
 	void vftable_A4();
-	void vftable_A8();
+
+	/// Set the MTU per datagram.  It's important to set this correctly - otherwise packets will be needlessly split, decreasing performance and throughput.
+	/// Maximum allowed size is MAXIMUM_MTU_SIZE.
+	/// Too high of a value will cause packets not to arrive at worst and be fragmented at best.
+	/// Too low of a value will split packets unnecessarily.
+	/// Recommended size is 1500
+	/// sa MTUSize.h
+	/// \pre Can only be called when not connected.
+	/// \return false on failure (we are connected), else true
+	bool SetMTUSize( int size );
 
 	/// Returns the current MTU size
 	/// \return The current MTU size
