@@ -5,6 +5,7 @@
 
 #include "SocketLayer.h"
 #include "MTUSize.h"
+#include "RakNetStatistics.h"
 
 class ReliabilityLayer
 {
@@ -33,7 +34,13 @@ private:
 
 	RakNetTime timeoutTime; // How long to wait in MS before timing someone out
 
-	char _gap2D7[1014];
+	char _gap2D7[4];
+
+	RakNetStatisticsStruct statistics;
+
+	unsigned int field_403;
+
+	char _gap407[710];
 
 	RakNetTimeNS ackTimeIncrement;
 

@@ -12,9 +12,22 @@ ReliabilityLayer::ReliabilityLayer()
 	InitializeVariables();
 }
 
+//-------------------------------------------------------------------------------------------------------
+// Initialize the variables
+//-------------------------------------------------------------------------------------------------------
 void ReliabilityLayer::InitializeVariables( void )
 {
 	// TODO: ReliabilityLayer::InitializeVariables
+
+	memset( &statistics, 0, sizeof( statistics ) );
+	statistics.connectionStartTime = RakNet::GetTime();
+	statistics.field_110 = RakNet::GetTime();
+	statistics.field_114 = 0;
+	statistics.field_118 = 0;
+	statistics.field_11C = RakNet::GetTime();
+	statistics.field_120 = 0;
+	statistics.field_124 = 0;
+	field_403 = 4;
 
 	SetPing( 1000 );
 }
