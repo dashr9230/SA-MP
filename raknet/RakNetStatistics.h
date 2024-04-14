@@ -25,14 +25,6 @@
 
 typedef unsigned long long uint64_t;
 
-/*
-	RakNetStatisticsStruct sizes
-	saco 296u
-	server W 312u L 296u
-	npc W 296u L 296u
-*/
-
-
 /// \brief Network Statisics Usage
 ///
 /// Store Statistics information related to network usage
@@ -58,9 +50,6 @@ struct RAK_DLL_EXPORT RakNetStatisticsStruct
 	unsigned acknowlegementsSent;
 	///  Number of acknowledgements waiting to be sent
 	unsigned acknowlegementsPending;
-#if defined(_WIN32) && defined(SAMPSRV)
-	unsigned field_7C;
-#endif
 	///  Number of acknowledgements bits sent
 	uint64_t acknowlegementBitsSent;
 
@@ -76,8 +65,6 @@ struct RAK_DLL_EXPORT RakNetStatisticsStruct
 	///  Number of messages waiting for ack (// TODO - rename this)
 	unsigned messagesOnResendQueue;
 
-
-
 	///  Number of messages not split for sending
 	unsigned numberOfUnsplitMessages;
 	///  Number of messages split for sending
@@ -87,10 +74,6 @@ struct RAK_DLL_EXPORT RakNetStatisticsStruct
 
 	///  Total packets sent
 	unsigned packetsSent;
-
-#if defined(_WIN32) && defined(SAMPSRV)
-	unsigned field_B4;
-#endif
 
 	///  Number of bits added by encryption
 	uint64_t encryptionBitsSent;
@@ -129,15 +112,18 @@ struct RAK_DLL_EXPORT RakNetStatisticsStruct
 	unsigned messagesWaitingForReassembly;
 	///  Number of messages in reliability output queue
 	unsigned internalOutputQueueSize;
-#if defined(_WIN32) && defined(SAMPSRV)
-	unsigned field_10C;
-#endif
 	///  Current bits per second
 	double bitsPerSecond;
 	///  connection start time
 	RakNetTime connectionStartTime;
 
-	char _gap110[25];
+	RakNetTime field_110;
+	unsigned field_114;
+	unsigned field_118;
+	RakNetTime field_11C;
+	unsigned field_120;
+	unsigned field_124;
+
 };
 
 void StatisticsToString( RakNetStatisticsStruct *s, char *buffer, int verbosityLevel );
