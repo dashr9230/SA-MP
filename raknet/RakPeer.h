@@ -153,7 +153,14 @@ public:
 	/// \param[in] doCompile True to enable tracking 
 	void SetCompileFrequencyTable( bool doCompile );
 
-	void vftable_D4();
+	/// Returns the frequency of outgoing bytes into output frequency table
+	/// The purpose is to save to file as either a master frequency table from a sample game session for passing to
+	/// GenerateCompressionLayer() 
+	/// \pre You should only call this when disconnected. Requires that you first enable data frequency tracking by calling SetCompileFrequencyTable(true)
+	/// \param[out] outputFrequencyTable  The frequency of each corresponding byte
+	/// \return False (failure) if connected or if frequency table tracking is not enabled. Otherwise true (success)
+	bool GetOutgoingFrequencyTable( unsigned int outputFrequencyTable[ 256 ] );
+
 	void vftable_D8();
 	void vftable_DC();
 	void vftable_E0();
@@ -190,7 +197,12 @@ protected:
 	char incomingPassword[256];
 	unsigned char incomingPasswordLength;
 
-	char _gap334[1230];
+	char _gap334[158];
+	
+	/// Compression stuff
+	unsigned int frequencyTable[ 256 ];
+
+	char _gap7D1[48];
 
 	RPCMap rpcMap; // Can't use StrPtrHash because runtime insertions will screw up the indices
 	int MTUSize;

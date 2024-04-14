@@ -7,6 +7,7 @@
 
 RakPeer::RakPeer()
 {
+	memset( frequencyTable, 0, sizeof( unsigned int ) * 256 );
 	MTUSize = DEFAULT_MTU_SIZE;
 	trackFrequencyTable = false;
 	maximumIncomingConnections = 0;
@@ -452,9 +453,31 @@ void RakPeer::SetCompileFrequencyTable( bool doCompile )
 	trackFrequencyTable = doCompile;
 }
 
-void RakPeer::vftable_D4()
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Description:
+// Returns the frequency of outgoing bytes into outputFrequencyTable
+// The purpose is to save to file as either a master frequency table from a sample game session for passing to
+// GenerateCompressionLayer(false)
+// You should only call this when disconnected.
+// Requires that you first enable data frequency tracking by calling SetCompileFrequencyTable(true)
+//
+// Parameters:
+// outputFrequencyTable (out): The frequency of each corresponding byte
+//
+// Returns:
+// Ffalse (failure) if connected or if frequency table tracking is not enabled.  Otherwise true (success)
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+bool RakPeer::GetOutgoingFrequencyTable( unsigned int outputFrequencyTable[ 256 ] )
 {
-	// TODO: RakPeer::vftable_D4() (saco W: 10038A20) (server W: 450520 L: 806E1D0) (bot W: 404460 L: 807564A)
+	if ( IsActive() )
+		return false;
+
+	if ( trackFrequencyTable == false )
+		return false;
+
+	memcpy( outputFrequencyTable, frequencyTable, sizeof( unsigned int ) * 256 );
+
+	return true;
 }
 
 void RakPeer::vftable_D8()

@@ -149,7 +149,14 @@ public:
 	/// \param[in] doCompile True to enable tracking 
 	virtual void SetCompileFrequencyTable( bool doCompile )=0;
 
-	virtual void vftable_D4()=0;
+	/// Returns the frequency of outgoing bytes into output frequency table
+	/// The purpose is to save to file as either a master frequency table from a sample game session for passing to
+	/// GenerateCompressionLayer() 
+	/// \pre You should only call this when disconnected. Requires that you first enable data frequency tracking by calling SetCompileFrequencyTable(true)
+	/// \param[out] outputFrequencyTable  The frequency of each corresponding byte
+	/// \return False (failure) if connected or if frequency table tracking is not enabled. Otherwise true (success)
+	virtual bool GetOutgoingFrequencyTable( unsigned int outputFrequencyTable[ 256 ] )=0;
+
 	virtual void vftable_D8()=0;
 	virtual void vftable_DC()=0;
 	virtual void vftable_E0()=0;
