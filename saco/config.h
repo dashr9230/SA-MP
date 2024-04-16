@@ -2,41 +2,53 @@
 #pragma once
 
 #define MAX_CONFIG_STRSIZE 256
-#define MAX_CONFIG_ENTRIES 512
+#define MAX_CONFIG_VARIABLES 512
+#define MAX_CONFIG_VARIABLE_NAME 40
 
-typedef struct _UNNAMED_STRUCT_1 {
-	char _gap0[61];
-} UNNAMED_STRUCT_1;
+enum CONFIG_VARTYPE
+{
+	CONFIG_VARTYPE_NONE = 0,
+	CONFIG_VARTYPE_INT,
+	CONFIG_VARTYPE_STRING,
+	CONFIG_VARTYPE_FLOAT,
+};
+
+struct ConfigVariable_s
+{
+	char szVarName[MAX_CONFIG_VARIABLE_NAME+1];
+	BOOL bReadOnly;
+	CONFIG_VARTYPE VarType;
+	int iVarValue;
+	float fVarValue;
+	char* szVarValue;
+};
 
 class CConfig
 {
 private:
-	UNNAMED_STRUCT_1 field_0[MAX_CONFIG_ENTRIES];
-	int field_7A00[MAX_CONFIG_ENTRIES];
-	char field_8200[MAX_PATH+1];
-	int field_8305;
-
-	void AddConfigEntry(char * szName, char * szData);
+	ConfigVariable_s	m_Variables[MAX_CONFIG_VARIABLES];
+	BOOL				m_bVariableSlotState[MAX_CONFIG_VARIABLES];
+	CHAR				m_szConfigFileName[MAX_PATH+1];
+	int					m_iUpperIndex;
 
 public:
-
-	CConfig(char* a2);
-
+	~CConfig();
+	void RecalcSize();
+	int FindVariableIndex(char *szName);
+	bool IsVariableExist(char *szName);
+	int AddVariable(char *szName);
+	int GetIntVariable(char *szName);
+	char *GetStringVariable(char *szName);
+	float GetFloatVariable(char *szName);
+	BOOL RemoveVariable(char *szName);
+	CONFIG_VARTYPE GetVariableType(char *szName);
+	ConfigVariable_s *GetVariableAtIndex(int iIndex);
+	CONFIG_VARTYPE DetermineDataType(char *szData);
+	BOOL WriteFile();
+	BOOL SetIntVariable(char *szName, int iValue, BOOL bReadOnly = FALSE);
+	BOOL SetStringVariable(char *szName, char *szValue, BOOL bReadOnly = FALSE);
+	BOOL SetFloatVariable(char *szName, float fValue, BOOL bReadOnly = FALSE);
+	void AddConfigEntry(char *szName, char *szData);
 	BOOL ReadFile();
-
-	void sub_10066180();
-	void sub_100660E0();
-	void sub_10065FD0();
-	void sub_10065F30();
-	void sub_10065C90();
-	void sub_10065D30();
-	void sub_10065D50();
-	void sub_10065C40();
-	void sub_10065E10();
-	void sub_10065C00();
-	void sub_10065E40();
-	void sub_10065E70();
-	void sub_10065EA0();
-	void sub_10065F00();
-	void sub_10066080();
+	CConfig(char* szFileName);	
 };
