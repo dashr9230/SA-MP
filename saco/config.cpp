@@ -28,9 +28,9 @@ void CConfig::AddConfigEntry(char * szName, char * szData)
 
 BOOL CConfig::ReadFile()
 {
-	char	szReadBuffer[MAX_CONFIG_STRSIZE];
-	char	szDirectiveName[MAX_CONFIG_STRSIZE];
-	char	szDirectiveData[MAX_CONFIG_STRSIZE];
+	char	szReadBuffer[MAX_CONFIG_STRSIZE+1];
+	char	szDirectiveName[MAX_CONFIG_STRSIZE+1];
+	char	szDirectiveData[MAX_CONFIG_STRSIZE+1];
 
 	char	*szReadPtr;
 	int		iDirectiveLength;
