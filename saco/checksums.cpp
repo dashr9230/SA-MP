@@ -5,19 +5,16 @@
 
 //----------------------------------------------------------
 
-void SHA1_HashData(PCHAR szData, DWORD dwLen, DWORD *pdwDigest)
+void CalcSHA1(char *data, unsigned int len, unsigned int *digest)
 {
 	fhicl::SHA1 sha1;
 
-	for(int i = 0; i < 5; i++) {
-		pdwDigest[i] = 0;
-	}
+	memset(digest, 0, sizeof(unsigned int) * 5);
 
-	if(!IsBadReadPtr(szData, dwLen))
-	{
-		sha1.Input(szData, dwLen);
-		sha1.Result((unsigned int*)pdwDigest);
-	}
+	if(IsBadReadPtr(data, len)) return;
+
+	sha1.Input(data, len);
+	sha1.Result(digest);
 }
 
 //----------------------------------------------------------
