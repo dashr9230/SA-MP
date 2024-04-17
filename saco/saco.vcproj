@@ -704,6 +704,12 @@
 			RelativePath=".\fhicl-sha1.h">
 		</File>
 		<File
+			RelativePath=".\filechecks.cpp">
+		</File>
+		<File
+			RelativePath=".\filechecks.h">
+		</File>
+		<File
 			RelativePath=".\filehooks.cpp">
 		</File>
 		<File
