@@ -9,9 +9,16 @@ void UninstallFileSystemHooks();
 
 typedef struct _ARCH_FILE_RECORD
 {
-	char _gap0[20];
+	HANDLE hHandle;
+	DWORD dwReadPosition;
+	DWORD dwFileSize;
+	BYTE * pbyteDataStart;
+	BYTE * pbyteDataCurrent;
 
 } ARCH_FILE_RECORD;
+
+#define CUSTOM_HANDLE_BASE  0xFF000001
+#define CUSTOM_HANDLE_LIMIT 0xFF000101
 
 // File API definitions
 typedef DWORD (WINAPI *def_GetFileSize)(HANDLE,PDWORD);
