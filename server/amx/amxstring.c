@@ -547,7 +547,7 @@ static cell AMX_NATIVE_CALL n_strval(AMX *amx,cell *params)
   amx_GetAddr(amx,params[1],&cstr);
   amx_StrLen(cstr,&len);
   if (len>=50) {
-    amx_RaiseError(amx,AMX_ERR_NATIVE);
+    //amx_RaiseError(amx,AMX_ERR_NATIVE);
     return 0;
   } /* if */
   amx_GetString(str,cstr,0,sizeof str);
