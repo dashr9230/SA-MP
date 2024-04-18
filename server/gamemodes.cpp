@@ -71,6 +71,8 @@ bool CGameMode::Load(char* pFileName)
 	amx_CustomInit(&m_amx);
 	amx_sampDbInit(&m_amx);
 
+	pPlugins->DoAmxLoad(&m_amx);
+
 	m_bInitialised = true;
 
 	// Execute OnGameModeInit callback, if it exists!
@@ -117,6 +119,7 @@ void CGameMode::Unload()
 	if (m_bInitialised)
 	{
 		aux_FreeProgram(&m_amx);
+		pPlugins->DoAmxUnload(&m_amx);
 		amx_sampDbCleanup(&m_amx);
 		amx_TimeCleanup(&m_amx);
 		amx_FileCleanup(&m_amx);

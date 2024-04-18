@@ -103,6 +103,7 @@ typedef unsigned short VEHICLEID;
 
 extern CConsole* pConsole;
 extern CNetGame* pNetGame;
+extern CPlugins* pPlugins;
 
 extern PLAYERID RconUser;
 

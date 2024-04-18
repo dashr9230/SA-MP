@@ -76,6 +76,8 @@ bool CFilterScripts::LoadFilterScript(char* pFileName)
 	amx_CustomInit(amx);
 	amx_sampDbInit(amx);
 
+	pPlugins->DoAmxLoad(amx);
+
 	int tmp;
 	if (!amx_FindPublic(amx, "OnFilterScriptInit", &tmp))
 		amx_Exec(amx, (cell*)&tmp, tmp);
@@ -120,6 +122,8 @@ bool CFilterScripts::LoadFilterScriptFromMemory(char* pFileName, char* pFileData
 	amx_TimeInit(amx);
 	amx_CustomInit(amx);
 	amx_sampDbInit(amx);
+
+	pPlugins->DoAmxLoad(amx);
 
 	int tmp;
 	if (!amx_FindPublic(amx, "OnFilterScriptInit", &tmp))
@@ -181,6 +185,7 @@ void CFilterScripts::RemoveFilterScript(int iIndex)
 
 	// Do the other stuff from before
 	aux_FreeProgram(m_pFilterScripts[iIndex]);
+	pPlugins->DoAmxUnload(m_pFilterScripts[iIndex]);
 
 	amx_TimeCleanup(m_pFilterScripts[iIndex]);
 	amx_FileCleanup(m_pFilterScripts[iIndex]);
