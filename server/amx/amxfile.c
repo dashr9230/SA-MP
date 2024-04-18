@@ -630,7 +630,7 @@ static cell AMX_NATIVE_CALL n_fseek(AMX *amx, cell *params)
     return 0;
   } /* switch */
   UNUSED_PARAM(amx);
-  return lseek(fileno((FILE*)params[1]),params[2],whence);
+  return fseek((FILE*)params[1], params[2], whence);
 }
 
 /* bool: fexist(const name[]) */
