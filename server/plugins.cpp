@@ -127,10 +127,290 @@ CPlugins::CPlugins()
 
 CPlugins::~CPlugins()
 {
-	// TODO: CPlugins::~CPlugins W: 00469DB0 L: 080D20E0
+	ServerPluginVector::iterator itor;
+
+	for(itor=m_Plugins.begin(); itor!=m_Plugins.end(); itor++) 
+	{
+		ServerPlugin_s* pSPlugin = *itor;
+		if (pSPlugin->Unload)
+			pSPlugin->Unload();
+		PLUGIN_UNLOAD(pSPlugin->hModule);
+		delete pSPlugin;
+	}
 }
+
+//---------------------------------------
+
+BOOL CPlugins::LoadSinglePlugin(char *szPluginPath)
+{
+	// Load it
+	ServerPlugin_s* pSPlugin;
+	pSPlugin = new ServerPlugin_s();
+
+	pSPlugin->hModule = PLUGIN_LOAD(szPluginPath);
+	if (pSPlugin->hModule == NULL)
+	{
+		// Failed to load
+		delete pSPlugin;
+		return FALSE;
+	}
+
+	pSPlugin->Load = (ServerPluginLoad_t)PLUGIN_GETFUNCTION(pSPlugin->hModule, "Load");
+	pSPlugin->Unload = (ServerPluginUnload_t)PLUGIN_GETFUNCTION(pSPlugin->hModule, "Unload");
+	pSPlugin->Supports = (ServerPluginSupports_t)PLUGIN_GETFUNCTION(pSPlugin->hModule, "Supports");
+
+	if (pSPlugin->Load == NULL || pSPlugin->Supports == NULL) 
+	{
+		// Not proper architecture!
+		logprintf("  Plugin does not conform to architecture.");
+		PLUGIN_UNLOAD(pSPlugin->hModule);
+		delete pSPlugin;
+		return FALSE;
+	}
+
+	pSPlugin->dwSupportFlags = (SUPPORTS_FLAGS)pSPlugin->Supports();
+
+	if ((pSPlugin->dwSupportFlags & SUPPORTS_VERSION_MASK) > SUPPORTS_VERSION) 
+	{
+		// Unsupported version, sorry!
+		logprintf("  Unsupported version - This plugin requires version %x.", (pSPlugin->dwSupportFlags & SUPPORTS_VERSION_MASK));
+		PLUGIN_UNLOAD(pSPlugin->hModule);
+		delete pSPlugin;
+		return FALSE;
+	}
+
+	if ((pSPlugin->dwSupportFlags & SUPPORTS_AMX_NATIVES) != 0)
+	{
+		pSPlugin->AmxLoad = (ServerPluginAmxLoad_t)PLUGIN_GETFUNCTION(pSPlugin->hModule, "AmxLoad");
+		pSPlugin->AmxUnload = (ServerPluginAmxUnload_t)PLUGIN_GETFUNCTION(pSPlugin->hModule, "AmxUnload");
+	} 
+	else
+	{
+		pSPlugin->AmxLoad = NULL;
+		pSPlugin->AmxUnload = NULL;
+	}
+
+	if ((pSPlugin->dwSupportFlags & SUPPORTS_PROCESS_TICK) != 0)
+	{
+		pSPlugin->ProcessTick = (ServerPluginProcessTick_t)PLUGIN_GETFUNCTION(pSPlugin->hModule, "ProcessTick");
+	}
+	else
+	{
+		pSPlugin->ProcessTick = NULL;
+	}
+
+	if (!pSPlugin->Load(m_PluginData))
+	{
+		// Initialize failed!
+		PLUGIN_UNLOAD(pSPlugin->hModule);
+		delete pSPlugin;
+		return FALSE;
+	}
+
+	m_Plugins.push_back(pSPlugin);
+
+	return TRUE;
+}
+
+//---------------------------------------
 
 void CPlugins::LoadPlugins(char *szSearchPath)
 {
-	// TODO: CPlugins::LoadPlugins W: 0046A570 L: 080D29E0
+	char szPath[MAX_PATH];
+	char szFullPath[MAX_PATH];
+	char *szDlerror = NULL;
+	strcpy(szPath, szSearchPath);
+
+#ifdef LINUX
+	if (szPath[strlen(szPath)-1] != '/')
+		strcat(szPath, "/");
+#else
+	if (szPath[strlen(szPath)-1] != '\\')
+		strcat(szPath, "\\");
+#endif
+
+	logprintf("");
+	logprintf("Server Plugins");
+	logprintf("--------------");
+
+	char* szFilename = strtok(pConsole->GetStringVariable("plugins"), " ");
+	while (szFilename)
+	{
+		logprintf(" Loading plugin: %s", szFilename);
+
+		strcpy(szFullPath, szPath);
+		strcat(szFullPath, szFilename);
+
+		if (LoadSinglePlugin(szFullPath))
+		{
+			logprintf("  Loaded.");
+		}
+		else
+		{
+#ifdef LINUX
+			szDlerror = PLUGIN_GETERROR();
+			if (szDlerror)
+				logprintf("  Failed (%s)", szDlerror);
+			else
+				logprintf("  Failed.");
+#else
+			logprintf("  Failed.");
+#endif
+		}
+
+		szFilename = strtok(NULL, " ");
+	}
+	logprintf(" Loaded %d plugins.\n", GetPluginCount());
 }
+
+// [OBSOLETE: Using the non search defined method]
+void CPlugins::LoadPluginsSearch(char *szSearchPath)
+{
+#ifdef LINUX
+	DIR *dir = opendir(szSearchPath);
+	struct dirent *file;
+	char *szFilename = NULL;
+	char *szExt = NULL;
+	int iStrLen;
+	char szPath[255];
+	strcpy(szPath, szSearchPath);
+	if (szPath[strlen(szPath)-1] != '/') strcat(szPath, "/");
+	char szFullPath[255];
+	char *szDlerror = NULL;
+	if (dir)
+	{
+		logprintf("");
+		logprintf("Server Plugins");
+		logprintf("--------------");
+
+		// Load the plugins
+		while (dir)
+		{
+			strcpy(szFullPath, szPath);
+			if ((file = readdir(dir)) != NULL)
+			{
+				szFilename = (char*)file->d_name;
+				iStrLen = strlen(szFilename);
+				if (iStrLen > 3)
+				{
+					szExt = szFilename+iStrLen-3;
+					if (strcmp(".so", szExt) == 0)
+					{
+						logprintf(" Loading plugin: %s", szFilename);
+						strcat(szFullPath, szFilename);
+						bool bSuccess = LoadSinglePlugin(szFullPath);
+						if (!bSuccess)
+						{
+							szDlerror = PLUGIN_GETERROR();
+							if (szDlerror)
+								logprintf("  Failed (%s)", szDlerror);
+							else
+								logprintf(("  Failed.");
+						}
+					}
+				}
+			}
+			else
+			{
+				closedir(dir);
+				dir = NULL;
+			}
+		}
+		logprintf("");
+	}
+#else
+	char szPath[MAX_PATH];
+	char szSearch[MAX_PATH];
+
+	strcpy(szPath, szSearchPath);
+
+	char cLastChar = szPath[strlen(szPath)-1];
+	if (cLastChar != '\\' && cLastChar != '/')
+		strcat(szPath, "\\");
+
+	DWORD szPathLen = strlen(szPath);
+
+	strcpy(szSearch, szPath);
+	strcat(szSearch, "*.dll");
+
+	WIN32_FIND_DATA fdFindData;
+	HANDLE hFindFile = FindFirstFile(szSearch, &fdFindData);
+	if (hFindFile != INVALID_HANDLE_VALUE)
+	{
+		logprintf("");
+		logprintf("Server Plugins");
+		logprintf("--------------");
+
+		// Load the plugins
+		while(true) {
+			logprintf(" Loading plugin: %s", fdFindData.cFileName);
+			strcpy(szPath+szPathLen, fdFindData.cFileName);
+			BOOL bSuccess = LoadSinglePlugin(szPath);
+			if (!bSuccess)
+				logprintf("  Failed.");
+			if(!FindNextFile(hFindFile, &fdFindData))
+				break;
+		}
+		logprintf("");
+	}
+	FindClose(hFindFile);
+#endif
+}
+
+//---------------------------------------
+
+DWORD CPlugins::GetPluginCount()
+{
+	return (DWORD)m_Plugins.size();
+}
+
+//---------------------------------------
+
+ServerPlugin_s* CPlugins::GetPlugin(DWORD index)
+{
+	return m_Plugins[index];
+}
+
+//---------------------------------------
+
+void CPlugins::DoProcessTick()
+{
+	ServerPluginVector::iterator itor;
+
+	for(itor=m_Plugins.begin(); itor!=m_Plugins.end(); itor++) {
+		ServerPlugin_s* pSPlugin = *itor;
+		if ((pSPlugin->dwSupportFlags & SUPPORTS_PROCESS_TICK) != 0)
+			if (pSPlugin->ProcessTick != NULL)
+				pSPlugin->ProcessTick();
+	}
+}
+
+//---------------------------------------
+
+void CPlugins::DoAmxLoad(AMX *amx)
+{
+	ServerPluginVector::iterator itor;
+
+	for(itor=m_Plugins.begin(); itor!=m_Plugins.end(); itor++) {
+		ServerPlugin_s* pSPlugin = *itor;
+		if ((pSPlugin->dwSupportFlags & SUPPORTS_AMX_NATIVES) != 0)
+			if (pSPlugin->AmxLoad != NULL)
+				pSPlugin->AmxLoad(amx);
+	}
+}
+
+//---------------------------------------
+
+void CPlugins::DoAmxUnload(AMX *amx)
+{
+	ServerPluginVector::iterator itor;
+
+	for(itor=m_Plugins.begin(); itor!=m_Plugins.end(); itor++) {
+		ServerPlugin_s* pSPlugin = *itor;
+		if ((pSPlugin->dwSupportFlags & SUPPORTS_AMX_NATIVES) != 0)
+			if (pSPlugin->AmxUnload != NULL)
+				pSPlugin->AmxUnload(amx);
+	}
+}
+
+//---------------------------------------

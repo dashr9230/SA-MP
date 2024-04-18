@@ -59,6 +59,7 @@
 // Std
 #include <map>
 #include <string>
+#include <vector>
 
 // Raknet
 #include "../raknet/RakServer.h"
