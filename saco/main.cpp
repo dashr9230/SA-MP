@@ -41,7 +41,7 @@ CLabel					*pLabel=NULL;
 CUnkClass10 *pUnkClass10=NULL;
 CUnkClass11 *pUnkClass11=NULL;
 CUnkClass12 *pUnkClass12=NULL;
-CUnkClass6 *pUnkClass6=NULL;
+CNetStats				*pNetStats=NULL;
 CSvrNetStats			*pSvrNetStats=NULL;
 CUnkClass7 *pUnkClass7=NULL;
 CUnkClass8 *pUnkClass8=NULL;
@@ -355,7 +355,7 @@ void DoInitStuff()
 			pUnkClass3 = new CUnkClass3(pD3DDevice);
 			pUnkClass4 = new CUnkClass4(pD3DDevice);
 			pUnkClass5 = new CUnkClass5(pD3DDevice);
-			pUnkClass6 = new CUnkClass6(pD3DDevice);
+			pNetStats = new CNetStats(pD3DDevice);
 			pSvrNetStats = new CSvrNetStats(pD3DDevice);
 			pUnkClass7 = new CUnkClass7(pD3DDevice);
 			pUnkClass8 = new CUnkClass8();

@@ -622,12 +622,6 @@
 				RelativePath=".\unkclass5.h">
 			</File>
 			<File
-				RelativePath=".\unkclass6.cpp">
-			</File>
-			<File
-				RelativePath=".\unkclass6.h">
-			</File>
-			<File
 				RelativePath=".\unkclass7.cpp">
 			</File>
 			<File
@@ -747,6 +741,12 @@
 		</File>
 		<File
 			RelativePath=".\mod.h">
+		</File>
+		<File
+			RelativePath=".\netstats.cpp">
+		</File>
+		<File
+			RelativePath=".\netstats.h">
 		</File>
 		<File
 			RelativePath=".\playertags.cpp">

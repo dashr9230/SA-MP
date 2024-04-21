@@ -1,7 +1,7 @@
 
 #include "main.h"
 
-CUnkClass6::CUnkClass6(IDirect3DDevice9 *pD3DDevice)
+CNetStats::CNetStats(IDirect3DDevice9 *pD3DDevice)
 {
 	field_8 = GetTickCount();
 	field_4 = 0;

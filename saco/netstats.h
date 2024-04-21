@@ -1,7 +1,7 @@
 
 #pragma once
 
-class CUnkClass6
+class CNetStats
 {
 private:
 	int field_0;
@@ -12,6 +12,6 @@ private:
 	IDirect3DDevice9* m_pD3DDevice;
 
 public:
-	CUnkClass6(IDirect3DDevice9 *pD3DDevice);
+	CNetStats(IDirect3DDevice9 *pD3DDevice);
 
 };
