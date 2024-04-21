@@ -33,7 +33,7 @@ IDirect3DDevice9		*pD3DDevice	= NULL;
 
 HANDLE			hInstance=0;
 CNewPlayerTags			*pNewPlayerTags=NULL;
-CUnkClass2 *pUnkClass2=NULL;
+CScoreBoard				*pScoreBoard=NULL;
 CUnkClass3 *pUnkClass3=NULL;
 CUnkClass4 *pUnkClass4=NULL;
 CUnkClass5 *pUnkClass5=NULL;
@@ -351,7 +351,7 @@ void DoInitStuff()
 			pDeathWindow = new CDeathWindow(pD3DDevice);
 			pSpawnScreen = new CSpawnScreen(pD3DDevice);
 			pNewPlayerTags = new CNewPlayerTags(pD3DDevice);
-			pUnkClass2 = new CUnkClass2(pD3DDevice);
+			pScoreBoard = new CScoreBoard(pD3DDevice);
 			pUnkClass3 = new CUnkClass3(pD3DDevice);
 			pUnkClass4 = new CUnkClass4(pD3DDevice);
 			pUnkClass5 = new CUnkClass5(pD3DDevice);

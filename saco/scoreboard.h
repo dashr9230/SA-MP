@@ -1,7 +1,7 @@
 
 #pragma once
 
-class CUnkClass2
+class CScoreBoard
 {
 private:
 	int field_0;
@@ -23,7 +23,7 @@ private:
 	int field_40;
 
 public:
-	CUnkClass2(IDirect3DDevice9 *pD3DDevice);
+	CScoreBoard(IDirect3DDevice9 *pD3DDevice);
 
 	void sub_1006E930();
 };

@@ -3,7 +3,7 @@
 
 extern CGame* pGame;
 
-CUnkClass2::CUnkClass2(IDirect3DDevice9 *pD3DDevice)
+CScoreBoard::CScoreBoard(IDirect3DDevice9 *pD3DDevice)
 {
 	m_pD3DDevice = pD3DDevice;
 	field_34 = 0;
@@ -33,7 +33,7 @@ CUnkClass2::CUnkClass2(IDirect3DDevice9 *pD3DDevice)
 	field_0 = 0;
 }
 
-void CUnkClass2::sub_1006E930()
+void CScoreBoard::sub_1006E930()
 {
 	RECT rect;
 

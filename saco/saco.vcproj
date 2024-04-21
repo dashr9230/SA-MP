@@ -592,12 +592,6 @@
 				RelativePath=".\unkclass15.h">
 			</File>
 			<File
-				RelativePath=".\unkclass2.cpp">
-			</File>
-			<File
-				RelativePath=".\unkclass2.h">
-			</File>
-			<File
 				RelativePath=".\unkclass3.cpp">
 			</File>
 			<File
@@ -768,6 +762,12 @@
 		</File>
 		<File
 			RelativePath=".\saco.rc">
+		</File>
+		<File
+			RelativePath=".\scoreboard.cpp">
+		</File>
+		<File
+			RelativePath=".\scoreboard.h">
 		</File>
 		<File
 			RelativePath=".\spawnscreen.cpp">
