@@ -556,12 +556,6 @@
 			Name="temp"
 			Filter="">
 			<File
-				RelativePath=".\unkclass1.cpp">
-			</File>
-			<File
-				RelativePath=".\unkclass1.h">
-			</File>
-			<File
 				RelativePath=".\unkclass10.cpp">
 			</File>
 			<File
@@ -747,6 +741,12 @@
 		</File>
 		<File
 			RelativePath=".\netstats.h">
+		</File>
+		<File
+			RelativePath=".\newplayertags.cpp">
+		</File>
+		<File
+			RelativePath=".\newplayertags.h">
 		</File>
 		<File
 			RelativePath=".\playertags.cpp">

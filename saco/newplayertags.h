@@ -1,7 +1,7 @@
 
 #pragma once
 
-class CUnkClass1
+class CNewPlayerTags
 {
 private:
 	IDirect3DDevice9* m_pD3DDevice;
@@ -9,6 +9,6 @@ private:
 	ID3DXSprite* m_pD3DSprite;
 
 public:
-	CUnkClass1(IDirect3DDevice9 *pD3DDevice);
+	CNewPlayerTags(IDirect3DDevice9 *pD3DDevice);
 
 };

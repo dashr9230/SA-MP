@@ -32,7 +32,7 @@ IDirect3D9				*pD3D;
 IDirect3DDevice9		*pD3DDevice	= NULL;
 
 HANDLE			hInstance=0;
-CUnkClass1 *pUnkClass1=NULL;
+CNewPlayerTags			*pNewPlayerTags=NULL;
 CUnkClass2 *pUnkClass2=NULL;
 CUnkClass3 *pUnkClass3=NULL;
 CUnkClass4 *pUnkClass4=NULL;
@@ -350,7 +350,7 @@ void DoInitStuff()
 		if(tSettings.bPlayOnline) {
 			pDeathWindow = new CDeathWindow(pD3DDevice);
 			pSpawnScreen = new CSpawnScreen(pD3DDevice);
-			pUnkClass1 = new CUnkClass1(pD3DDevice);
+			pNewPlayerTags = new CNewPlayerTags(pD3DDevice);
 			pUnkClass2 = new CUnkClass2(pD3DDevice);
 			pUnkClass3 = new CUnkClass3(pD3DDevice);
 			pUnkClass4 = new CUnkClass4(pD3DDevice);
