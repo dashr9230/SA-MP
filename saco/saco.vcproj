@@ -610,12 +610,6 @@
 				RelativePath=".\unkclass5.h">
 			</File>
 			<File
-				RelativePath=".\unkclass7.cpp">
-			</File>
-			<File
-				RelativePath=".\unkclass7.h">
-			</File>
-			<File
 				RelativePath=".\unkclass8.cpp">
 			</File>
 			<File
@@ -702,6 +696,12 @@
 		</File>
 		<File
 			RelativePath=".\fontrender.h">
+		</File>
+		<File
+			RelativePath=".\helpdialog.cpp">
+		</File>
+		<File
+			RelativePath=".\helpdialog.h">
 		</File>
 		<File
 			RelativePath=".\httpclient.cpp">

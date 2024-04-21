@@ -64,6 +64,7 @@ typedef struct _GAME_SETTINGS {
 #include "label.h"
 #include "netstats.h"
 #include "svrnetstats.h"
+#include "helpdialog.h"
 #include "audiostream.h"
 #include "archive/ArchiveFS.h"
 

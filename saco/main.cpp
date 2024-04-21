@@ -43,7 +43,7 @@ CUnkClass11 *pUnkClass11=NULL;
 CUnkClass12 *pUnkClass12=NULL;
 CNetStats				*pNetStats=NULL;
 CSvrNetStats			*pSvrNetStats=NULL;
-CUnkClass7 *pUnkClass7=NULL;
+CHelpDialog				*pHelpDialog=NULL;
 CUnkClass8 *pUnkClass8=NULL;
 
 bool					bShowDebugLabels = false;
@@ -357,7 +357,7 @@ void DoInitStuff()
 			pUnkClass5 = new CUnkClass5(pD3DDevice);
 			pNetStats = new CNetStats(pD3DDevice);
 			pSvrNetStats = new CSvrNetStats(pD3DDevice);
-			pUnkClass7 = new CUnkClass7(pD3DDevice);
+			pHelpDialog = new CHelpDialog(pD3DDevice);
 			pUnkClass8 = new CUnkClass8();
 		}
 

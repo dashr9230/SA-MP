@@ -1,12 +1,12 @@
 
 #pragma once
 
-class CUnkClass7
+class CHelpDialog
 {
 private:
 	IDirect3DDevice9* m_pD3DDevice;
 
 public:
-	CUnkClass7(IDirect3DDevice9 *pD3DDevice);
+	CHelpDialog(IDirect3DDevice9 *pD3DDevice);
 
 };
