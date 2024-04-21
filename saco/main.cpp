@@ -37,7 +37,7 @@ CUnkClass2 *pUnkClass2=NULL;
 CUnkClass3 *pUnkClass3=NULL;
 CUnkClass4 *pUnkClass4=NULL;
 CUnkClass5 *pUnkClass5=NULL;
-CUnkClass9 *pUnkClass9=NULL;
+CLabel					*pLabel=NULL;
 CUnkClass10 *pUnkClass10=NULL;
 CUnkClass11 *pUnkClass11=NULL;
 CUnkClass12 *pUnkClass12=NULL;
@@ -361,7 +361,7 @@ void DoInitStuff()
 			pUnkClass8 = new CUnkClass8();
 		}
 
-		pUnkClass9 = new CUnkClass9(pD3DDevice);
+		pLabel = new CLabel(pD3DDevice);
 		pUnkClass10 = new CUnkClass10(pD3DDevice);
 		pUnkClass11 = new CUnkClass11();
 		pUnkClass12 = new CUnkClass12();

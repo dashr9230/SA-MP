@@ -1,13 +1,13 @@
 
 #pragma once
 
-class CUnkClass9
+class CLabel
 {
 private:
 	IDirect3DDevice9 *m_pD3DDevice;
 	ID3DXSprite *m_pD3DSprite;
 
 public:
-	CUnkClass9(IDirect3DDevice9 *pD3DDevice);
+	CLabel(IDirect3DDevice9 *pD3DDevice);
 
 };
