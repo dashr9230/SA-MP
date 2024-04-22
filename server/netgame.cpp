@@ -1,6 +1,8 @@
 
 #include "main.h"
 
+int CanFileBeOpenedForReading(char * filename);
+
 char szGameModeFile[256];
 
 CNetGame::CNetGame()
@@ -239,8 +241,58 @@ char *CNetGame::GetNextScriptFile()
 	return szTemp;
 }
 
+BOOL CNetGame::SetNextScriptFile(char *szFile)
+{
+	char szConfigFileName[64];
+	char *szTemp;
+	int  iConfigRepeatCount=0;
 
+	if(NULL == szFile) {
+		// rotate by config
 
+		if(m_iCurrentGameModeRepeat || !m_bFirstGameModeLoaded) {
+			// repeats of this script, cycle to the current
+			m_iCurrentGameModeIndex--;
+		}
+
+		szTemp = this->GetNextScriptFile();
+		if (szTemp == NULL) return false;
+
+		sscanf(szTemp,"%s%d",szConfigFileName,&iConfigRepeatCount);
+
+		// set it and verify the file is readable
+		sprintf(szGameModeFile,"gamemodes/%s.amx",szConfigFileName);
+
+		if(!CanFileBeOpenedForReading(szGameModeFile)) {
+			return FALSE;
+		}
+
+		if(!m_iCurrentGameModeRepeat) {
+			m_iCurrentGameModeRepeat = iConfigRepeatCount;
+		}
+
+		m_iCurrentGameModeRepeat--;
+
+		m_bFirstGameModeLoaded = TRUE;
+
+		return TRUE;
+
+	} else {
+		// set the script from szFile
+
+		// set it and verify the file is readable
+		sprintf(szGameModeFile,"gamemodes/%s.amx",szFile);
+
+		if(!CanFileBeOpenedForReading(szGameModeFile)) {
+			return FALSE;
+		}
+
+		m_iCurrentGameModeRepeat = 0;
+
+		return TRUE;
+	}
+
+}
 
 //----------------------------------------------------
 
