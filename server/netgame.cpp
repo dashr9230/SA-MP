@@ -208,9 +208,41 @@ void CNetGame::LoadAllFilterscripts()
 	logprintf("  Loaded %d filterscripts.\n", iScriptCount);
 }
 
+//----------------------------------------------------
+// Handles rotation and setting of the current
+// script file to be used. If szFile is NULL, it
+// will attempt to rotate scripts as per configuration.
+// returns FALSE if it was not able to set the script,
+// true otherwise.
+
+// Returns the name of the next gamemode
+// Code taken from SetNextScriptFile but required by "gmx" (easiest way without major re-write)
+char *CNetGame::GetNextScriptFile()
+{
+	char *szTemp;
+	char szCurGameModeConsoleVar[64];
+
+	m_iCurrentGameModeIndex++;
+
+	sprintf(szCurGameModeConsoleVar,"gamemode%u",m_iCurrentGameModeIndex);
+	szTemp = strtok(pConsole->GetStringVariable(szCurGameModeConsoleVar), " ");
+
+	// if the var isn't there then cycle back to 0
+	if(!szTemp || !strlen(szTemp)) {
+		m_iCurrentGameModeIndex = 0;
+		sprintf(szCurGameModeConsoleVar,"gamemode%u",m_iCurrentGameModeIndex);
+		szTemp = strtok(pConsole->GetStringVariable(szCurGameModeConsoleVar), " ");
+	}
+
+	// if it's still NULL then we've got an error.
+	if(!szTemp || !strlen(szTemp)) return NULL;
+	return szTemp;
+}
 
 
 
+
+//----------------------------------------------------
 
 void CNetGame::Init(BOOL bFirst)
 {

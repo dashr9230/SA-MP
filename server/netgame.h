@@ -80,6 +80,7 @@ public:
 	CGameMode * GetGameMode() { return m_pGameMode; };
 	CFilterScripts * GetFilterScripts() { return m_pFilterScripts; };
 
+	char *GetNextScriptFile();
 	void LoadAllFilterscripts();
 
 	void Process();
