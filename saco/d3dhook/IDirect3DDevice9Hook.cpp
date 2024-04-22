@@ -13,6 +13,7 @@
 #include "../main.h"
 
 extern IDirect3DDevice9 *pD3DDevice;
+D3DXMATRIX matView, matProj, matWorld;
 
 //-------------------------------------------
 
@@ -244,7 +245,18 @@ HRESULT __stdcall IDirect3DDevice9Hook::Clear(DWORD Count, CONST D3DRECT* pRects
 
 HRESULT __stdcall IDirect3DDevice9Hook::SetTransform(D3DTRANSFORMSTATETYPE State, CONST D3DMATRIX* mat)
 {
-	// TODO: IDirect3DDevice9Hook::SetTransform
+	switch (State)
+	{
+	case D3DTS_PROJECTION:
+		matProj = *mat;
+		break;
+	case D3DTS_VIEW:
+		matView = *mat;
+		break;
+	case D3DTS_WORLD:
+		matWorld = *mat;
+		break;
+	}
 
 	return pD3DDevice->SetTransform(State, mat);
 }
