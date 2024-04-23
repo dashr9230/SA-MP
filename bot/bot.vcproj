@@ -271,6 +271,12 @@
 				RelativePath="..\raknet\SingleProducerConsumer.h">
 			</File>
 			<File
+				RelativePath="..\raknet\SocketDataEncryptor.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\SocketDataEncryptor.h">
+			</File>
+			<File
 				RelativePath="..\raknet\SocketLayer.cpp">
 			</File>
 			<File
