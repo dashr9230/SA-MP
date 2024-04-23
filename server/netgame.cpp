@@ -1,5 +1,6 @@
 
 #include "main.h"
+#include "../raknet/SocketDataEncryptor.h"
 
 int CanFileBeOpenedForReading(char * filename);
 
@@ -65,7 +66,7 @@ CNetGame::CNetGame()
 	// Setup RakNet
 	m_pRak = RakNetworkFactory::GetRakServerInterface();
 
-
+	SocketDataEncryptor::SetKey(dwPort);
 
 
 

@@ -1,5 +1,6 @@
 
 #include "../main.h"
+#include "../../raknet/SocketDataEncryptor.h"
 
 extern CGame		 *pGame;
 extern CChatWindow   *pChatWindow;
@@ -47,6 +48,8 @@ CNetGame::CNetGame(PCHAR szHostOrIp, int iPort,
 	m_pRakClient = RakNetworkFactory::GetRakClientInterface();
 
 	InitPools();
+
+	SocketDataEncryptor::SetKey(iPort);
 
 	RegisterRPCs(m_pRakClient);
 	RegisterScriptRPCs(m_pRakClient);	// Register server-side scripting RPCs.

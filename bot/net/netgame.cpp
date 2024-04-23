@@ -1,5 +1,6 @@
 
 #include "../main.h"
+#include "../../raknet/SocketDataEncryptor.h"
 
 char unnamed_2[63];
 char unnamed_5[1000][24];
@@ -51,6 +52,8 @@ void CNetGame::Init(PCHAR szHostOrIp, int iPort,
 	m_pVehiclePool = new CVehiclePool();
 
 	m_pRakClient = RakNetworkFactory::GetRakClientInterface();
+
+	SocketDataEncryptor::SetKey(iPort);
 
 	RegisterRPCs(m_pRakClient);
 	RegisterScriptRPCs(m_pRakClient);
