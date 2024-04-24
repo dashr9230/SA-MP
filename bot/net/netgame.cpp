@@ -14,9 +14,26 @@ char unnamed_4[1000][63];
 
 //----------------------------------------------------
 
+// TODO: length assert has to be at line 397
+// what the fuck is on top of the netgame.cpp that makes GetPacketID is at line 397 ????
+BYTE GetPacketID(Packet *p)
+{
+	if (p==0) return 255;
+
+	if ((unsigned char)p->data[0] == ID_TIMESTAMP) {
+		assert(p->length > sizeof(unsigned char) + sizeof(unsigned long));
+		return (unsigned char) p->data[sizeof(unsigned char) + sizeof(unsigned long)];
+	}
+	else {
+		return (unsigned char) p->data[0];
+	}
+}
+
+//----------------------------------------------------
+
 CNetGame::CNetGame()
 {
-
+	// nothing
 }
 
 //----------------------------------------------------
