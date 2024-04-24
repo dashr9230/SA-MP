@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="7.10"
 	Name="announce"
-	ProjectGUID="{5E296905-6C96-4D7A-8E0D-E730B406C9BE}"
+	ProjectGUID="{9C34928B-BD5D-466C-A8BE-5F0997893411}"
 	Keyword="Win32Proj">
 	<Platforms>
 		<Platform
@@ -68,7 +68,6 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
-				ExceptionHandling="TRUE"
 				RuntimeLibrary="4"
 				BufferSecurityCheck="FALSE"
 				UsePrecompiledHeader="0"
@@ -82,7 +81,6 @@
 				AdditionalDependencies="wsock32.lib"
 				OutputFile="$(OutDir)/announce.exe"
 				LinkIncremental="1"
-				GenerateDebugInformation="FALSE"
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"

@@ -1,5 +1,5 @@
 Microsoft Visual Studio Solution File, Format Version 8.00
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "announce", "announce.vcproj", "{5E296905-6C96-4D7A-8E0D-E730B406C9BE}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "announce", "announce.vcproj", "{9C34928B-BD5D-466C-A8BE-5F0997893411}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
@@ -9,10 +9,10 @@ Global
 		Release = Release
 	EndGlobalSection
 	GlobalSection(ProjectConfiguration) = postSolution
-		{5E296905-6C96-4D7A-8E0D-E730B406C9BE}.Debug.ActiveCfg = Debug|Win32
-		{5E296905-6C96-4D7A-8E0D-E730B406C9BE}.Debug.Build.0 = Debug|Win32
-		{5E296905-6C96-4D7A-8E0D-E730B406C9BE}.Release.ActiveCfg = Release|Win32
-		{5E296905-6C96-4D7A-8E0D-E730B406C9BE}.Release.Build.0 = Release|Win32
+		{9C34928B-BD5D-466C-A8BE-5F0997893411}.Debug.ActiveCfg = Debug|Win32
+		{9C34928B-BD5D-466C-A8BE-5F0997893411}.Debug.Build.0 = Debug|Win32
+		{9C34928B-BD5D-466C-A8BE-5F0997893411}.Release.ActiveCfg = Release|Win32
+		{9C34928B-BD5D-466C-A8BE-5F0997893411}.Release.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
