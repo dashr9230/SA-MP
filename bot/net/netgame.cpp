@@ -4,11 +4,25 @@
 
 char szGameModeFile[256];
 
+#define PLAYER_STATE_NONE						0
+#define PLAYER_STATE_ONFOOT						1
+#define PLAYER_STATE_DRIVER						2
+#define PLAYER_STATE_PASSENGER					3
+#define PLAYER_STATE_WASTED						7
+#define PLAYER_STATE_SPAWNED					8
+#define PLAYER_STATE_SPECTATING					9
+
 #pragma pack(1)
 typedef struct _AIM_SYNC_DATA // size: 31
 {
 	char _gap0[31];
 } AIM_SYNC_DATA;
+
+#pragma pack(1)
+typedef struct _PASSENGER_SYNC_DATA // size: 24
+{
+	char _gap0[24];
+} PASSENGER_SYNC_DATA;
 
 #pragma pack(1)
 typedef struct _TRAILER_SYNC_DATA // size: 54
@@ -17,12 +31,12 @@ typedef struct _TRAILER_SYNC_DATA // size: 54
 } TRAILER_SYNC_DATA;
 
 char unnamed_2[63];
-char unnamed_5[1000][24];
+PASSENGER_SYNC_DATA unnamed_5[MAX_PLAYERS];
 BOOL unnamed_6[MAX_PLAYERS];
 char unnamed_9;
 char unnamed_1[68];
 char unnamed_3[1000][68];
-char unnamed_8[1000];
+BYTE unnamed_8[MAX_PLAYERS];
 BOOL unnamed_7[MAX_VEHICLES];
 char unnamed_4[1000][63];
 
@@ -246,6 +260,10 @@ void CNetGame::UpdateNetwork()
 		case ID_MODIFIED_PACKET:
 			Packet_ModifiedPacket(pkt);
 			break;
+
+		case ID_PASSENGER_SYNC:
+			Packet_PassengerSync(pkt);
+			break;
 		case ID_AIM_SYNC:
 			Packet_AimSync(pkt);
 			break;
@@ -272,6 +290,28 @@ void CNetGame::Packet_AimSync(Packet *p)
 	bsAimSync.Read(bytePacketID);
 	bsAimSync.Read(bytePlayerID);
 	bsAimSync.Read((PCHAR)&aimSync,sizeof(AIM_SYNC_DATA));
+}
+
+//----------------------------------------------------
+
+void CNetGame::Packet_PassengerSync(Packet *p)
+{
+	RakNet::BitStream bsPassengerSync((PCHAR)p->data, p->length, false);
+	BYTE		bytePacketID=0;
+	PLAYERID	playerId=0;
+	PASSENGER_SYNC_DATA psSync;
+
+	if(GetGameState() != GAMESTATE_CONNECTED) return;
+
+	bsPassengerSync.Read(bytePacketID);
+	bsPassengerSync.Read(playerId);
+	bsPassengerSync.Read((PCHAR)&psSync,sizeof(PASSENGER_SYNC_DATA));
+
+	if (playerId < MAX_PLAYERS)
+	{
+		memcpy(&unnamed_5[playerId],&psSync,sizeof(PASSENGER_SYNC_DATA));
+		unnamed_8[playerId] = PLAYER_STATE_PASSENGER;
+	}
 }
 
 //----------------------------------------------------
