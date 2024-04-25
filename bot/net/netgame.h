@@ -1,6 +1,7 @@
 
 #pragma once
 
+#define GAMESTATE_CONNECTING	1
 #define GAMESTATE_CONNECTED		2
 
 //----------------------------------------------------
@@ -10,28 +11,27 @@ class CNetGame // size: 910 bytes
 private:
 	RakClientInterface	*m_pRakClient;
 	CPlayerPool			*m_pPlayerPool;
+	CVehiclePool		*m_pVehiclePool;
+	int					m_iGameState;
+	BOOL				m_bLanMode;
 
-
-	CVehiclePool* m_pVehiclePool;
-	int m_iGameState;
-	int field_10;
-	int field_14;
+	int			m_iSpawnsAvailable;
 	char _gap18[6];
-	char field_1E; // m_byteWorldTime ?
-	char field_1F;
-	char field_20;
+	BYTE		m_byteWorldTime;
+	BYTE		m_byteWorldMinute;
+	BYTE		m_byteWeather;
 	char _gap21[16];
-	char field_31;
+	BYTE		m_byteFriendlyFire;
 	char _gap32[2];
-	int field_34;
-	int field_38;
-	char field_3C;
-	char field_3D;
-	char field_3E;
+	float		m_fGravity;
+	int			m_iDeathDropMoney;
+	BYTE		m_byteHoldTime;
+	bool		m_bInstagib;
+	bool		m_bZoneNames;
 	char _gap3F;
-	char field_40;
+	bool		m_bUseCJWalk;
 	char _gap41[9];
-	int field_4A[100];
+	DWORD		m_dwMapIcon[100];
 	char _gap1DA[4];
 	int field_1DE;
 	int field_1E2;

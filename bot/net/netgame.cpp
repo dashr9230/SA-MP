@@ -2,6 +2,8 @@
 #include "../main.h"
 #include "../../raknet/SocketDataEncryptor.h"
 
+char szGameModeFile[256];
+
 char unnamed_2[63];
 char unnamed_5[1000][24];
 BOOL unnamed_6[MAX_PLAYERS];
@@ -73,45 +75,39 @@ void CNetGame::Init(PCHAR szHostOrIp, int iPort,
 	SocketDataEncryptor::SetKey(iPort);
 
 	RegisterRPCs(m_pRakClient);
-	RegisterScriptRPCs(m_pRakClient);
+	RegisterScriptRPCs(m_pRakClient);	// Register server-side scripting RPCs.
 	
+	sprintf(szGameModeFile, "npcmodes/%s.amx", szNpcMode);
+	if (!m_pGameMode->Load(szGameModeFile))
+		exit(1);
 	
-	
-	
+	m_pRakClient->SetPassword(szPass);
+	m_pRakClient->Connect(szHostOrIp,iPort,0,0,10);
 
-	// TODO: CNetGame::Init (W: 00416490 L: 080AD126)
+	m_iGameState = GAMESTATE_CONNECTING;
 
 	/*
-	this->field_0 = sub_8070E80();
-	sub_8094DD0((unsigned __int16)a3);
-	sub_80B1714(this->field_0);
-	sub_80B7032(this->field_0);
-	sprintf(byte_810A720, "npcmodes/%s.amx", a6);
-	if ( !(unsigned __int8)sub_80A9448((void *)this->field_386, byte_810A720) )
-		exit(1);
-	(*(void (__cdecl **)(int, char *))(*(_DWORD *)this->field_0 + 20))(this->field_0, a5);
-	(*(void (__cdecl **)(int, char *, _DWORD, _DWORD, _DWORD, signed int))(*(_DWORD *)this->field_0 + 8))(
-		this->field_0,
-		src,
-		(unsigned __int16)a3,
-		0,
-		0,
-		10);*/
-	m_iGameState = 1;
-	field_14 = 0;
-	field_1E = 12;
-	field_1F = 0;
-	field_20 = 10;
-	field_34 = 1006834287;
-	field_38 = 0;
-	field_10 = 0;
-	field_3C = 1;
-	field_40 = 0;
-	for (int i = 0; i < 100; ++i )
-		field_4A[i] = 0;
-	field_31 = 1;
-	field_3E = 0;
-	field_3D = 0;
+	char s[256];
+	sprintf(s,"Bot(%s): connecting to %s:%d...",szPlayerName,szHostOrIp,iPort);
+	OutputDebugString(s);*/
+
+	m_iSpawnsAvailable = 0;
+	m_byteWorldTime = 12;
+	m_byteWorldMinute = 0;
+	m_byteWeather	= 10;
+	m_fGravity = (float)0.008000000;
+	m_iDeathDropMoney = 0;
+	m_bLanMode = FALSE;
+	m_byteHoldTime = 1;
+	m_bUseCJWalk = FALSE;
+
+	int i;
+	for (i = 0; i < 100; i++) m_dwMapIcon[i] = NULL;
+
+	m_byteFriendlyFire = 1;
+	m_bZoneNames = FALSE;
+	m_bInstagib = FALSE;
+
 	memset(unnamed_1,0,sizeof(unnamed_1));
 	memset(unnamed_2,0,sizeof(unnamed_2));
 	memset(unnamed_3,0,sizeof(unnamed_3));
