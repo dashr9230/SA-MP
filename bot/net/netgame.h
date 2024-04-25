@@ -15,6 +15,11 @@ private:
 	int					m_iGameState;
 	BOOL				m_bLanMode;
 
+	void UpdateNetwork();
+
+	// Packet handlers
+	void Packet_ModifiedPacket(Packet* packet);
+
 	int			m_iSpawnsAvailable;
 	char _gap18[6];
 	BYTE		m_byteWorldTime;

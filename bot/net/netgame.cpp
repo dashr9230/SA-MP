@@ -187,10 +187,14 @@ float GetElapsedTime()
 
 void CNetGame::Process()
 {
+	float fElapsedTime = GetElapsedTime();
+
+	UpdateNetwork();
+
+
+
 	// TODO: CNetGame::Process (W: 00418370 L: 080AD6A4)
 	/*
-	v2 = sub_80AC130();
-	sub_80AE6A4(this);
 	if ( this->field_C == 2 )
 	{
 		if ( this->field_386 )
@@ -210,6 +214,36 @@ void CNetGame::Process()
 			}
 		}
 	}*/
+}
+
+//----------------------------------------------------
+// UPDATE NETWORK
+//----------------------------------------------------
+
+void CNetGame::UpdateNetwork()
+{
+	Packet* pkt=NULL;
+	unsigned char packetIdentifier;
+
+	while((pkt = m_pRakClient->Receive()))
+	{
+		packetIdentifier = GetPacketID(pkt);
+
+		switch(packetIdentifier)
+		{
+		case ID_MODIFIED_PACKET:
+			Packet_ModifiedPacket(pkt);
+			break;
+		}
+	}
+}
+
+//----------------------------------------------------
+// PACKET HANDLERS INTERNAL
+//----------------------------------------------------
+
+void CNetGame::Packet_ModifiedPacket(Packet* packet)
+{
 }
 
 //----------------------------------------------------
