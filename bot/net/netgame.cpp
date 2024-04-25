@@ -10,6 +10,12 @@ typedef struct _AIM_SYNC_DATA // size: 31
 	char _gap0[31];
 } AIM_SYNC_DATA;
 
+#pragma pack(1)
+typedef struct _TRAILER_SYNC_DATA // size: 54
+{
+	char _gap0[54];
+} TRAILER_SYNC_DATA;
+
 char unnamed_2[63];
 char unnamed_5[1000][24];
 BOOL unnamed_6[MAX_PLAYERS];
@@ -243,6 +249,9 @@ void CNetGame::UpdateNetwork()
 		case ID_AIM_SYNC:
 			Packet_AimSync(pkt);
 			break;
+		case ID_TRAILER_SYNC:
+			Packet_TrailerSync(pkt);
+			break;
 		}
 	}
 }
@@ -263,6 +272,22 @@ void CNetGame::Packet_AimSync(Packet *p)
 	bsAimSync.Read(bytePacketID);
 	bsAimSync.Read(bytePlayerID);
 	bsAimSync.Read((PCHAR)&aimSync,sizeof(AIM_SYNC_DATA));
+}
+
+//----------------------------------------------------
+
+void CNetGame::Packet_TrailerSync(Packet *p)
+{
+	RakNet::BitStream bsTrailerSync((PCHAR)p->data, p->length, false);
+	if(GetGameState() != GAMESTATE_CONNECTED) return;
+
+	BYTE bytePacketID=0;
+	BYTE bytePlayerID=0;
+	TRAILER_SYNC_DATA trSync;
+
+	bsTrailerSync.Read(bytePacketID);
+	bsTrailerSync.Read(bytePlayerID);
+	bsTrailerSync.Read((PCHAR)&trSync, sizeof(TRAILER_SYNC_DATA));
 }
 
 //----------------------------------------------------

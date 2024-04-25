@@ -20,6 +20,7 @@ private:
 	// Packet handlers
 	void Packet_AimSync(Packet *p);
 	void Packet_ModifiedPacket(Packet* packet);
+	void Packet_TrailerSync(Packet *p);
 
 	int			m_iSpawnsAvailable;
 	char _gap18[6];
