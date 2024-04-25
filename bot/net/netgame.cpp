@@ -4,6 +4,12 @@
 
 char szGameModeFile[256];
 
+#pragma pack(1)
+typedef struct _AIM_SYNC_DATA // size: 31
+{
+	char _gap0[31];
+} AIM_SYNC_DATA;
+
 char unnamed_2[63];
 char unnamed_5[1000][24];
 BOOL unnamed_6[MAX_PLAYERS];
@@ -234,12 +240,31 @@ void CNetGame::UpdateNetwork()
 		case ID_MODIFIED_PACKET:
 			Packet_ModifiedPacket(pkt);
 			break;
+		case ID_AIM_SYNC:
+			Packet_AimSync(pkt);
+			break;
 		}
 	}
 }
 
 //----------------------------------------------------
 // PACKET HANDLERS INTERNAL
+//----------------------------------------------------
+
+void CNetGame::Packet_AimSync(Packet *p)
+{
+	RakNet::BitStream bsAimSync((PCHAR)p->data, p->length, false);
+	AIM_SYNC_DATA aimSync;
+	BYTE bytePacketID=0;
+	BYTE bytePlayerID=0;
+
+	if(GetGameState() != GAMESTATE_CONNECTED) return;
+
+	bsAimSync.Read(bytePacketID);
+	bsAimSync.Read(bytePlayerID);
+	bsAimSync.Read((PCHAR)&aimSync,sizeof(AIM_SYNC_DATA));
+}
+
 //----------------------------------------------------
 
 void CNetGame::Packet_ModifiedPacket(Packet* packet)

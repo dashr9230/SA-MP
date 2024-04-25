@@ -18,6 +18,7 @@ private:
 	void UpdateNetwork();
 
 	// Packet handlers
+	void Packet_AimSync(Packet *p);
 	void Packet_ModifiedPacket(Packet* packet);
 
 	int			m_iSpawnsAvailable;
