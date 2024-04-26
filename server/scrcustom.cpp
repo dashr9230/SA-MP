@@ -67,11 +67,17 @@ static cell AMX_NATIVE_CALL n_GetTickCount(AMX *amx, cell *params)
 	return (cell)pNetGame->GetTime();
 }
 
+//----------------------------------------------------------------------------------
+// native GetMaxPlayers()
 static cell AMX_NATIVE_CALL n_GetMaxPlayers(AMX *amx, cell *params)
 {
-	// TODO: GetMaxPlayers
-	return 0;
+	CHECK_PARAMS(0);
+
+	extern CConsole *pConsole;
+	return pConsole->GetIntVariable("maxplayers");
 }
+
+//----------------------------------------------------------------------------------
 
 static cell AMX_NATIVE_CALL n_SetTimerEx(AMX *amx, cell *params)
 {
