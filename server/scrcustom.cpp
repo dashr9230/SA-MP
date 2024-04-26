@@ -1,6 +1,8 @@
 
 #include "main.h"
 
+#define CHECK_PARAMS(n)
+
 static cell AMX_NATIVE_CALL n_gpci(AMX *amx, cell *params)
 {
 	// TODO: gpci
@@ -55,10 +57,14 @@ static cell AMX_NATIVE_CALL n_KillTimer(AMX *amx, cell *params)
 	return 0;
 }
 
+//----------------------------------------------------------------------------------
+
+// native GetTickCount()
 static cell AMX_NATIVE_CALL n_GetTickCount(AMX *amx, cell *params)
 {
-	// TODO: GetTickCount
-	return 0;
+	CHECK_PARAMS(0);
+
+	return (cell)pNetGame->GetTime();
 }
 
 static cell AMX_NATIVE_CALL n_GetMaxPlayers(AMX *amx, cell *params)
