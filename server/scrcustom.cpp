@@ -523,9 +523,16 @@ static cell AMX_NATIVE_CALL n_GangZoneStopFlashForAll(AMX *amx, cell *params)
 	return 0;
 }
 
+// native IsPlayerAdmin(playerid)
 static cell AMX_NATIVE_CALL n_IsPlayerAdmin(AMX *amx, cell *params)
 {
-	// TODO: IsPlayerAdmin
+	CHECK_PARAMS(1);
+	CPlayerPool* pPlayerPool = pNetGame->GetPlayerPool();
+
+	if (pPlayerPool->GetSlotState((PLAYERID)params[1]))
+	{
+		return pPlayerPool->IsAdmin((PLAYERID)params[1]);
+	}
 	return 0;
 }
 

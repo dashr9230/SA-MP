@@ -29,7 +29,7 @@ private:
 	BOOL m_bIsAnAdmin[MAX_PLAYERS];
 	BOOL m_bIsAnNPC[MAX_PLAYERS];
 
-	char _gap2CAE4[8000];
+	char _gap2EA24[8000];
 
 	int field_30964;
 	int field_30968;
@@ -58,7 +58,10 @@ public:
 		memset(&m_iPlayerScore[0],0,sizeof(int) * MAX_PLAYERS);
 		memset(&m_iPlayerMoney[0],0,sizeof(int) * MAX_PLAYERS);
 		memset(&m_iVirtualWorld[0],0,sizeof(int) * MAX_PLAYERS);
-	}
+	};
+
+	BOOL IsAdmin(PLAYERID playerId) { return m_bIsAnAdmin[playerId]; };
+
 };
 
 #endif
