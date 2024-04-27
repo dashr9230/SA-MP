@@ -357,10 +357,13 @@ static cell AMX_NATIVE_CALL n_GetGravity(AMX *amx, cell *params)
 	return 0;
 }
 
+//----------------------------------------------------------------------------------
+
+// native AllowAdminTeleport(allow)
 static cell AMX_NATIVE_CALL n_AllowAdminTeleport(AMX *amx, cell *params)
 {
-	// TODO: AllowAdminTeleport
-	return 0;
+	logprintf("AllowAdminTeleport() : function is deprecated. Please see OnPlayerClickMap()");
+	return 1;
 }
 
 //----------------------------------------------------------------------------------
