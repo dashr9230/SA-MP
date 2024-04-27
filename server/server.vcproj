@@ -112,16 +112,6 @@
 	</References>
 	<Files>
 		<Filter
-			Name="ttmath"
-			Filter="">
-			<File
-				RelativePath="..\ttmath\ttmathuint.h">
-			</File>
-			<File
-				RelativePath="..\ttmath\ttmathuint_x86.h">
-			</File>
-		</Filter>
-		<Filter
 			Name="amx"
 			Filter="">
 			<File
@@ -320,6 +310,16 @@
 			</File>
 			<File
 				RelativePath="..\raknet\Types.h">
+			</File>
+		</Filter>
+		<Filter
+			Name="ttmath"
+			Filter="">
+			<File
+				RelativePath="..\ttmath\ttmathuint.h">
+			</File>
+			<File
+				RelativePath="..\ttmath\ttmathuint_x86.h">
 			</File>
 		</Filter>
 		<Filter
