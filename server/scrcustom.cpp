@@ -341,10 +341,13 @@ static cell AMX_NATIVE_CALL n_GetWeaponName(AMX *amx, cell *params)
 	return 0;
 }
 
+//----------------------------------------------------------------------------------
+
+// native EnableTirePopping(enable)
 static cell AMX_NATIVE_CALL n_EnableTirePopping(AMX *amx, cell *params)
 {
-	// TODO: EnableTirePopping
-	return 0;
+	logprintf("EnableTirePopping() function is removed.");
+	return 1;
 }
 
 static cell AMX_NATIVE_CALL n_EnableVehicleFriendlyFire(AMX *amx, cell *params)
