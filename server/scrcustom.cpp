@@ -393,10 +393,12 @@ static cell AMX_NATIVE_CALL n_UsePlayerPedAnims(AMX *amx, cell *params)
 	return 0;
 }
 
+// native DisableInteriorEnterExits()
 static cell AMX_NATIVE_CALL n_DisableInteriorEnterExits(AMX *amx, cell *params)
 {
-	// TODO: DisableInteriorEnterExits
-	return 0;
+	pNetGame->m_bDisableEnterExits = true;
+
+	return 1;
 }
 
 // native SetNameTagDrawDistance(Float:distance)
