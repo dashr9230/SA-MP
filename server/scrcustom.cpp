@@ -399,10 +399,12 @@ static cell AMX_NATIVE_CALL n_DisableInteriorEnterExits(AMX *amx, cell *params)
 	return 0;
 }
 
+// native SetNameTagDrawDistance(Float:distance)
 static cell AMX_NATIVE_CALL n_SetNameTagDrawDistance(AMX *amx, cell *params)
 {
-	// TODO: SetNameTagDrawDistance
-	return 0;
+	pNetGame->m_fNameTagDrawDistance = amx_ctof(params[1]);
+
+	return 1;
 }
 
 // native DisableNameTagLOS()
