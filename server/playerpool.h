@@ -62,6 +62,8 @@ public:
 
 	BOOL IsAdmin(PLAYERID playerId) { return m_bIsAnAdmin[playerId]; };
 
+	BOOL IsNPC(PLAYERID playerId) { return m_bIsAnNPC[playerId]; };
+
 };
 
 #endif

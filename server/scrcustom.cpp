@@ -397,10 +397,24 @@ static cell AMX_NATIVE_CALL n_ConnectNPC(AMX *amx, cell *params)
 	return 0;
 }
 
+// native IsPlayerNPC(playerid)
 static cell AMX_NATIVE_CALL n_IsPlayerNPC(AMX *amx, cell *params)
 {
-	// TODO: IsPlayerNPC
-	return 0;
+	BOOL bResult = FALSE;
+
+	if(pNetGame)
+	{
+		CPlayerPool* pPlayerPool = pNetGame->GetPlayerPool();
+
+		if(pPlayerPool && pPlayerPool->GetSlotState((PLAYERID)params[1]))
+		{
+			if(pPlayerPool->IsNPC((PLAYERID)params[1]))
+			{
+				bResult = TRUE;
+			}
+		}
+	}
+	return bResult;
 }
 
 static cell AMX_NATIVE_CALL n_Create3DTextLabel(AMX *amx, cell *params)
