@@ -405,10 +405,11 @@ static cell AMX_NATIVE_CALL n_SetNameTagDrawDistance(AMX *amx, cell *params)
 	return 0;
 }
 
+// native DisableNameTagLOS()
 static cell AMX_NATIVE_CALL n_DisableNameTagLOS(AMX *amx, cell *params)
 {
-	// TODO: DisableNameTagLOS
-	return 0;
+	pNetGame->m_bNameTagLOS = false;
+	return 1;
 }
 
 static cell AMX_NATIVE_CALL n_ConnectNPC(AMX *amx, cell *params)

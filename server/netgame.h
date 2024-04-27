@@ -38,6 +38,11 @@ private:
 	int							m_iServerTickRate;
 
 	BOOL m_bLanMode;
+
+	void UpdateNetwork();
+
+public:
+
 	int m_iShowPlayerMarkers;
 	bool m_bShowNameTags;
 	BYTE m_byteWorldTime;
@@ -64,8 +69,6 @@ private:
 #ifndef WIN32
 	double m_dElapsedTime;
 #endif
-
-public:
 
 	CScriptTimers* GetTimers() { return m_pScriptTimers; };
 
