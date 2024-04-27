@@ -350,10 +350,12 @@ static cell AMX_NATIVE_CALL n_EnableTirePopping(AMX *amx, cell *params)
 	return 1;
 }
 
+//----------------------------------------------------------------------------------
+// native EnableVehicleFriendlyFire()
 static cell AMX_NATIVE_CALL n_EnableVehicleFriendlyFire(AMX *amx, cell *params)
 {
-	// TODO: EnableVehicleFriendlyFire
-	return 0;
+	pNetGame->m_bVehicleFriendlyFire = TRUE;
+	return 1;
 }
 
 static cell AMX_NATIVE_CALL n_AllowInteriorWeapons(AMX *amx, cell *params)
