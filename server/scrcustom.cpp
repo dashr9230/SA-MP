@@ -368,16 +368,18 @@ static cell AMX_NATIVE_CALL n_AllowInteriorWeapons(AMX *amx, cell *params)
 	return 1;
 }
 
+//----------------------------------------------------------------------------------
+
 static cell AMX_NATIVE_CALL n_SetGravity(AMX *amx, cell *params)
 {
 	// TODO: SetGravity
 	return 0;
 }
 
+// native GetGravity()
 static cell AMX_NATIVE_CALL n_GetGravity(AMX *amx, cell *params)
 {
-	// TODO: GetGravity
-	return 0;
+	return amx_ftoc(pNetGame->m_fGravity);
 }
 
 //----------------------------------------------------------------------------------
