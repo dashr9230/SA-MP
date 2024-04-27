@@ -82,6 +82,7 @@ public:
 	RakServerInterface * GetRakServer() { return m_pRak; };
 	CGameMode * GetGameMode() { return m_pGameMode; };
 	CFilterScripts * GetFilterScripts() { return m_pFilterScripts; };
+	CActorPool * GetActorPool() { return m_pActorPool; };
 
 	char *GetNextScriptFile();
 	void LoadAllFilterscripts();
