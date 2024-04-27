@@ -163,6 +163,13 @@ static cell AMX_NATIVE_CALL n_acos(AMX *amx, cell *params)
 	return amx_ftoc(fResult);
 }
 
+static cell AMX_NATIVE_CALL n_atan(AMX *amx, cell *params)
+{
+	CHECK_PARAMS(1);
+	float fResult = (float)(atan(amx_ctof(params[1])) * (180.0f / PI));
+	return amx_ftoc(fResult);
+}
+
 static cell AMX_NATIVE_CALL n_atan2(AMX *amx, cell *params)
 {
 	CHECK_PARAMS(2);
@@ -170,11 +177,7 @@ static cell AMX_NATIVE_CALL n_atan2(AMX *amx, cell *params)
 	return amx_ftoc(fResult);
 }
 
-static cell AMX_NATIVE_CALL n_atan(AMX *amx, cell *params)
-{
-	// TODO: atan
-	return 0;
-}
+//----------------------------------------------------
 
 static cell AMX_NATIVE_CALL n_SHA256_PassHash(AMX *amx, cell *params)
 {
