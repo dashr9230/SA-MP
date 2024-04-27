@@ -387,10 +387,11 @@ static cell AMX_NATIVE_CALL n_SetDisabledWeapons(AMX *amx, cell *params)
 	return 0;
 }
 
+// native UsePlayerPedAnims()
 static cell AMX_NATIVE_CALL n_UsePlayerPedAnims(AMX *amx, cell *params)
 {
-	// TODO: UsePlayerPedAnims
-	return 0;
+	pNetGame->m_bUseCJWalk = true;
+	return 1;
 }
 
 // native DisableInteriorEnterExits()
