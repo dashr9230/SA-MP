@@ -99,6 +99,7 @@ typedef unsigned short VEHICLEID;
 #include "actorpool.h"
 #include "netgame.h"
 #include "plugins.h"
+#include "mathutils.h"
 
 // ---------
 // EXTERNALS

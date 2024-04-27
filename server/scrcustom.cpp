@@ -141,10 +141,16 @@ static cell AMX_NATIVE_CALL n_CallLocalFunction(AMX *amx, cell *params)
 	return 0;
 }
 
+//----------------------------------------------------------------------------------
+// native Float:VectorSize(Float:x, Float:y, Float:z)
 static cell AMX_NATIVE_CALL n_VectorSize(AMX *amx, cell *params)
 {
-	// TODO: VectorSize
-	return 0;
+	VECTOR vec;
+	vec.X = amx_ctof(params[1]);
+	vec.Y = amx_ctof(params[2]);
+	vec.Z = amx_ctof(params[3]);
+	float fResult = GetLength(&vec);
+	return amx_ftoc(fResult);
 }
 
 //----------------------------------------------------------------------------------

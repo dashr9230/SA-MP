@@ -400,6 +400,12 @@
 			RelativePath=".\main.h">
 		</File>
 		<File
+			RelativePath=".\mathutils.cpp">
+		</File>
+		<File
+			RelativePath=".\mathutils.h">
+		</File>
+		<File
 			RelativePath=".\menupool.cpp">
 		</File>
 		<File

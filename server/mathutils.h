@@ -1,0 +1,3 @@
+
+float GetLength(PVECTOR vec);
+
