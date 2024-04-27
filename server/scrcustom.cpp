@@ -165,8 +165,9 @@ static cell AMX_NATIVE_CALL n_acos(AMX *amx, cell *params)
 
 static cell AMX_NATIVE_CALL n_atan2(AMX *amx, cell *params)
 {
-	// TODO: atan2
-	return 0;
+	CHECK_PARAMS(2);
+	float fResult = (float)(atan2(amx_ctof(params[1]), amx_ctof(params[2])) * (180.0f / PI));
+	return amx_ftoc(fResult);
 }
 
 static cell AMX_NATIVE_CALL n_atan(AMX *amx, cell *params)
