@@ -147,10 +147,13 @@ static cell AMX_NATIVE_CALL n_VectorSize(AMX *amx, cell *params)
 	return 0;
 }
 
+//----------------------------------------------------------------------------------
+
 static cell AMX_NATIVE_CALL n_asin(AMX *amx, cell *params)
 {
-	// TODO: asin
-	return 0;
+	CHECK_PARAMS(1);
+	float fResult = (float)(asin(amx_ctof(params[1])) * (180.0f / PI));
+	return amx_ftoc(fResult);
 }
 
 static cell AMX_NATIVE_CALL n_acos(AMX *amx, cell *params)

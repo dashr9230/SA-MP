@@ -20,6 +20,8 @@
 #define DEFAULT_MAX_PLAYERS		50
 #define DEFAULT_LISTEN_PORT		8192
 
+#define PI 3.14159265f
+
 #define ARRAY_SIZE(a)	( sizeof((a)) / sizeof(*(a)) )
 #define SAFE_DELETE(p)	{ if (p) { delete (p); (p) = NULL; } }
 
@@ -55,6 +57,7 @@
 // Regular crap
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 // Std
 #include <map>
