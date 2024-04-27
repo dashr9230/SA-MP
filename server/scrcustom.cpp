@@ -358,10 +358,14 @@ static cell AMX_NATIVE_CALL n_EnableVehicleFriendlyFire(AMX *amx, cell *params)
 	return 1;
 }
 
+//----------------------------------------------------------------------------------
+
+// native AllowInteriorWeapons(allow)
 static cell AMX_NATIVE_CALL n_AllowInteriorWeapons(AMX *amx, cell *params)
 {
-	// TODO: AllowInteriorWeapons
-	return 0;
+	CHECK_PARAMS(1);
+	pNetGame->m_bAllowWeapons = (bool)params[1];
+	return 1;
 }
 
 static cell AMX_NATIVE_CALL n_SetGravity(AMX *amx, cell *params)
