@@ -78,6 +78,7 @@ public:
 
 
 	CPlayerPool * GetPlayerPool() { return m_pPlayerPool; };
+	CVehiclePool * GetVehiclePool() { return m_pVehiclePool; };
 	RakServerInterface * GetRakServer() { return m_pRak; };
 	CGameMode * GetGameMode() { return m_pGameMode; };
 	CFilterScripts * GetFilterScripts() { return m_pFilterScripts; };

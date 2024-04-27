@@ -9,7 +9,7 @@ CVehiclePool::CVehiclePool()
 		field_D4[VehicleID] = 0;
 	}
 	memset(field_0,0,sizeof(field_0));
-	field_5E94 = 0;
+	m_iPoolSize = 0;
 }
 
 CVehiclePool::~CVehiclePool()

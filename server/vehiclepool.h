@@ -9,7 +9,7 @@ private:
 	int field_D4[2000];
 	int field_2014[2000];
 	int field_3F54[2000];
-	int field_5E94;
+	int m_iPoolSize;
 
 public:
 	CVehiclePool();
@@ -18,6 +18,8 @@ public:
 	BOOL Delete(VEHICLEID VehicleID);
 
 	int GetModelCount();
+
+	int GetPoolSize() { return m_iPoolSize; };
 };
 
 #endif

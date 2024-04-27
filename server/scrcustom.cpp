@@ -21,10 +21,16 @@ static cell AMX_NATIVE_CALL n_GetPlayerPoolSize(AMX *amx, cell *params)
 	return -1;
 }
 
+//----------------------------------------------------------------------------------
+// native GetVehiclePoolSize()
 static cell AMX_NATIVE_CALL n_GetVehiclePoolSize(AMX *amx, cell *params)
 {
-	// TODO: GetVehiclePoolSize
-	return 0;
+	if(!pNetGame) return -1;
+	CVehiclePool *pVehiclePool = pNetGame->GetVehiclePool();
+	if(pVehiclePool) {
+		return pVehiclePool->GetPoolSize();
+	}
+	return -1;
 }
 
 static cell AMX_NATIVE_CALL n_GetActorPoolSize(AMX *amx, cell *params)
