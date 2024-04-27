@@ -363,11 +363,17 @@ static cell AMX_NATIVE_CALL n_AllowAdminTeleport(AMX *amx, cell *params)
 	return 0;
 }
 
+//----------------------------------------------------------------------------------
+
+// native SetDeathDropAmount(amount)
 static cell AMX_NATIVE_CALL n_SetDeathDropAmount(AMX *amx, cell *params)
 {
-	// TODO: SetDeathDropAmount
-	return 0;
+	CHECK_PARAMS(1);
+	pNetGame->m_iDeathDropMoney = params[1];
+	return 1;
 }
+
+//----------------------------------------------------------------------------------
 
 static cell AMX_NATIVE_CALL n_CreateExplosion(AMX *amx, cell *params)
 {
