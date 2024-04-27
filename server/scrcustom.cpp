@@ -383,8 +383,8 @@ static cell AMX_NATIVE_CALL n_CreateExplosionForPlayer(AMX *amx, cell *params)
 
 static cell AMX_NATIVE_CALL n_SetDisabledWeapons(AMX *amx, cell *params)
 {
-	// TODO: SetDisabledWeapons
-	return 0;
+	logprintf("[warning] SetDisabledWeapons() : function is deprecated. Check weapon in OnPlayerUpdate.");
+	return 1;
 }
 
 // native UsePlayerPedAnims()
