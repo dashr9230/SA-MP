@@ -11,7 +11,7 @@ CPlayerPool::CPlayerPool()
 		field_3E8C[playerId] = pNetGame->GetTime();
 	}
 	field_30964 = 0;
-	field_30968 = 0;
+	m_iPoolSize = 0;
 	field_FA0 = pNetGame->GetTime();
 	field_FA4 = 0;
 	field_FA8 = 0;

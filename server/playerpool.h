@@ -32,7 +32,7 @@ private:
 	char _gap2EA24[8000];
 
 	int field_30964;
-	int field_30968;
+	int m_iPoolSize;
 	int field_3096C;
 
 public:
@@ -64,6 +64,7 @@ public:
 
 	BOOL IsNPC(PLAYERID playerId) { return m_bIsAnNPC[playerId]; };
 
+	int GetPoolSize() { return m_iPoolSize; };
 };
 
 #endif
