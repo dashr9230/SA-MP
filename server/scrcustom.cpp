@@ -293,9 +293,9 @@ static cell AMX_NATIVE_CALL n_SetGameModeText(AMX *amx, cell *params)
 	return 0;
 }
 
+// native SetTeamCount(count)
 static cell AMX_NATIVE_CALL n_SetTeamCount(AMX *amx, cell *params)
 {
-	// TODO: SetTeamCount
 	return 0;
 }
 
