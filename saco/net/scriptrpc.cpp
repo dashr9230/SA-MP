@@ -5,7 +5,7 @@ void ScrUnkA7(RPCParameters *rpcParams) {}
 void ScrUnk38(RPCParameters *rpcParams) {}
 void ScrUnk90(RPCParameters *rpcParams) {}
 void ScrUnk91(RPCParameters *rpcParams) {}
-void ScrUnk92(RPCParameters *rpcParams) {}
+void ScrSetGravity(RPCParameters *rpcParams) {}
 void ScrUnk93(RPCParameters *rpcParams) {}
 void ScrUnk94(RPCParameters *rpcParams) {}
 void ScrUnk95(RPCParameters *rpcParams) {}
@@ -34,10 +34,10 @@ void ScrUnk85(RPCParameters *rpcParams) {}
 void ScrUnk86(RPCParameters *rpcParams) {}
 void ScrUnk87(RPCParameters *rpcParams) {}
 void ScrUnk69(RPCParameters *rpcParams) {}
-void ScrUnk6C(RPCParameters *rpcParams) {}
-void ScrUnk78(RPCParameters *rpcParams) {}
-void ScrUnk79(RPCParameters *rpcParams) {}
-void ScrUnk55(RPCParameters *rpcParams) {}
+void ScrAddGangZone(RPCParameters *rpcParams) {}
+void ScrRemoveGangZone(RPCParameters *rpcParams) {}
+void ScrFlashGangZone(RPCParameters *rpcParams) {}
+void ScrStopFlashGangZone(RPCParameters *rpcParams) {}
 void ScrUnk56(RPCParameters *rpcParams) {}
 void ScrUnk57(RPCParameters *rpcParams) {}
 void ScrUnk58(RPCParameters *rpcParams) {}
@@ -98,9 +98,9 @@ void ScrUnkAF(RPCParameters *rpcParams) {}
 void ScrUnkB0(RPCParameters *rpcParams) {}
 void ScrUnkB2(RPCParameters *rpcParams) {}
 void ScrUnk30(RPCParameters *rpcParams) {}
-void ScrUnk4C(RPCParameters *rpcParams) {}
-void ScrUnk4D(RPCParameters *rpcParams) {}
-void ScrUnk4E(RPCParameters *rpcParams) {}
+void ScrInitMenu(RPCParameters *rpcParams) {}
+void ScrShowMenu(RPCParameters *rpcParams) {}
+void ScrHideMenu(RPCParameters *rpcParams) {}
 
 //----------------------------------------------------
 
@@ -110,7 +110,7 @@ void RegisterScriptRPCs(RakClientInterface* pRakClient)
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk38);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk90);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk91);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk92);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetGravity);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk93);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk94);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk95);
@@ -134,10 +134,10 @@ void RegisterScriptRPCs(RakClientInterface* pRakClient)
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk86);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk87);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk69);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk6C);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk78);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk79);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk55);
+	REGISTER_STATIC_RPC(pRakClient, ScrAddGangZone);
+	REGISTER_STATIC_RPC(pRakClient, ScrRemoveGangZone);
+	REGISTER_STATIC_RPC(pRakClient, ScrFlashGangZone);
+	REGISTER_STATIC_RPC(pRakClient, ScrStopFlashGangZone);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk56);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk57);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk58);
@@ -198,9 +198,9 @@ void RegisterScriptRPCs(RakClientInterface* pRakClient)
 	REGISTER_STATIC_RPC(pRakClient, ScrUnkB0);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnkB2);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk30);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk4C);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk4D);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk4E);
+	REGISTER_STATIC_RPC(pRakClient, ScrInitMenu);
+	REGISTER_STATIC_RPC(pRakClient, ScrShowMenu);
+	REGISTER_STATIC_RPC(pRakClient, ScrHideMenu);
 }
 
 //----------------------------------------------------
@@ -214,10 +214,10 @@ void UnRegisterScriptRPCs(RakClientInterface* pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk86);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk87);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk69);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk6C);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk78);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk79);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk55);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrAddGangZone);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrRemoveGangZone);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrFlashGangZone);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrStopFlashGangZone);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk56);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk57);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk58);
@@ -233,7 +233,7 @@ void UnRegisterScriptRPCs(RakClientInterface* pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk38);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk90);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk91);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk92);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetGravity);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk93);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk94);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk95);
@@ -298,9 +298,9 @@ void UnRegisterScriptRPCs(RakClientInterface* pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnkB0);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnkB2);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk30);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk4C);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk4D);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk4E);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrInitMenu);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrShowMenu);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrHideMenu);
 }
 
 //----------------------------------------------------

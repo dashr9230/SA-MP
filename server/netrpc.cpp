@@ -3,38 +3,38 @@
 
 RakServerInterface		*pRak=0;
 
-void Unk66(RPCParameters *rpcParams) {} // TODO: Unk66
-void Unk76(RPCParameters *rpcParams) {} // TODO: Unk76
-void Unk60(RPCParameters *rpcParams) {} // TODO: Unk60
-void Unk1F(RPCParameters *rpcParams) {} // TODO: Unk1F
-void Unk77(RPCParameters *rpcParams) {} // TODO: Unk77
-void Unk88(RPCParameters *rpcParams) {} // TODO: Unk88
-void Unk61(RPCParameters *rpcParams) {} // TODO: Unk61
-void Unk83(RPCParameters *rpcParams) {} // TODO: Unk83
-void Unk84(RPCParameters *rpcParams) {} // TODO: Unk84
-void Unk8C(RPCParameters *rpcParams) {} // TODO: Unk8C
-void Unk3E(RPCParameters *rpcParams) {} // TODO: Unk3E
-void Unk17(RPCParameters *rpcParams) {} // TODO: Unk17
-void Unk19(RPCParameters *rpcParams) {} // TODO: Unk19
-void Unk36(RPCParameters *rpcParams) {} // TODO: Unk36
-void Unk65(RPCParameters *rpcParams) {} // TODO: Unk65
-void Unk80(RPCParameters *rpcParams) {} // TODO: Unk80
-void Unk81(RPCParameters *rpcParams) {} // TODO: Unk81
-void Unk34(RPCParameters *rpcParams) {} // TODO: Unk34
-void Unk35(RPCParameters *rpcParams) {} // TODO: Unk35
-void Unk6A(RPCParameters *rpcParams) {} // TODO: Unk6A
-void Unk1A(RPCParameters *rpcParams) {} // TODO: Unk1A
-void Unk9A(RPCParameters *rpcParams) {} // TODO: Unk9A
-void Unk32(RPCParameters *rpcParams) {} // TODO: Unk32
-void Unk9B(RPCParameters *rpcParams) {} // TODO: Unk9B
-void Unk74(RPCParameters *rpcParams) {} // TODO: Unk74
-void Unk75(RPCParameters *rpcParams) {} // TODO: Unk75
-void Unk1B(RPCParameters *rpcParams) {} // TODO: Unk1B
-void Unk53(RPCParameters *rpcParams) {} // TODO: Unk53
-void Unk67(RPCParameters *rpcParams) {} // TODO: Unk67
-void UnkA8(RPCParameters *rpcParams) {} // TODO: UnkA8
-void Unk73(RPCParameters *rpcParams) {} // TODO: Unk73
-void UnkB1(RPCParameters *rpcParams) {} // TODO: UnkB1
+void SvrStats(RPCParameters *rpcParams) {} // TODO: SvrStats
+void SetInteriorId(RPCParameters *rpcParams) {} // TODO: SetInteriorId
+void ScmEvent(RPCParameters *rpcParams) {} // TODO: ScmEvent
+void ScriptCash(RPCParameters *rpcParams) {} // TODO: ScriptCash
+void ClickMap(RPCParameters *rpcParams) {} // TODO: ClickMap
+void VehicleDestroyed(RPCParameters *rpcParams) {} // TODO: VehicleDestroyed
+void PickedUpWeapon(RPCParameters *rpcParams) {} // TODO: PickedUpWeapon
+void PickedUpPickup(RPCParameters *rpcParams) {} // TODO: PickedUpPickup
+void MenuSelect(RPCParameters *rpcParams) {} // TODO: MenuSelect
+void MenuQuit(RPCParameters *rpcParams) {} // TODO: MenuQuit
+void DialogResponse(RPCParameters *rpcParams) {} // TODO: DialogResponse
+void ClickPlayer(RPCParameters *rpcParams) {} // TODO: ClickPlayer
+void ClientJoin(RPCParameters *rpcParams) {} // TODO: ClientJoin
+void NPCJoin(RPCParameters *rpcParams) {} // TODO: NPCJoin
+void Chat(RPCParameters *rpcParams) {} // TODO: Chat
+void RequestClass(RPCParameters *rpcParams) {} // TODO: RequestClass
+void RequestSpawn(RPCParameters *rpcParams) {} // TODO: RequestSpawn
+void Spawn(RPCParameters *rpcParams) {} // TODO: Spawn
+void Death(RPCParameters *rpcParams) {} // TODO: Death
+void DamageVehicle(RPCParameters *rpcParams) {} // TODO: DamageVehicle
+void EnterVehicle(RPCParameters *rpcParams) {} // TODO: EnterVehicle
+void ExitVehicle(RPCParameters *rpcParams) {} // TODO: ExitVehicle
+void ServerCommand(RPCParameters *rpcParams) {} // TODO: ServerCommand
+void UpdateScoresPingsIPs(RPCParameters *rpcParams) {} // TODO: UpdateScoresPingsIPs
+void EditAttachedObject(RPCParameters *rpcParams) {} // TODO: EditAttachedObject
+void EditObject(RPCParameters *rpcParams) {} // TODO: EditObject
+void SelectObject(RPCParameters *rpcParams) {} // TODO: SelectObject
+void ClickTextDraw(RPCParameters *rpcParams) {} // TODO: ClickTextDraw
+void ClientCheck(RPCParameters *rpcParams) {} // TODO: ClientCheck
+void CameraTarget(RPCParameters *rpcParams) {} // TODO: CameraTarget
+void PlayerDamage(RPCParameters *rpcParams) {} // TODO: PlayerDamage
+void ActorDamage(RPCParameters *rpcParams) {} // TODO: ActorDamage
 
 //----------------------------------------------------
 
@@ -42,75 +42,75 @@ void RegisterRPCs(RakServerInterface * pRakServer)
 {
 	pRak = pRakServer;
 
-	REGISTER_STATIC_RPC(pRakServer, Unk66);
-	REGISTER_STATIC_RPC(pRakServer, Unk76);
-	REGISTER_STATIC_RPC(pRakServer, Unk60);
-	REGISTER_STATIC_RPC(pRakServer, Unk1F);
-	REGISTER_STATIC_RPC(pRakServer, Unk77);
-	REGISTER_STATIC_RPC(pRakServer, Unk88);
-	REGISTER_STATIC_RPC(pRakServer, Unk61);
-	REGISTER_STATIC_RPC(pRakServer, Unk83);
-	REGISTER_STATIC_RPC(pRakServer, Unk84);
-	REGISTER_STATIC_RPC(pRakServer, Unk8C);
-	REGISTER_STATIC_RPC(pRakServer, Unk3E);
-	REGISTER_STATIC_RPC(pRakServer, Unk17);
-	REGISTER_STATIC_RPC(pRakServer, Unk19);
-	REGISTER_STATIC_RPC(pRakServer, Unk36);
-	REGISTER_STATIC_RPC(pRakServer, Unk65);
-	REGISTER_STATIC_RPC(pRakServer, Unk80);
-	REGISTER_STATIC_RPC(pRakServer, Unk81);
-	REGISTER_STATIC_RPC(pRakServer, Unk34);
-	REGISTER_STATIC_RPC(pRakServer, Unk35);
-	REGISTER_STATIC_RPC(pRakServer, Unk6A);
-	REGISTER_STATIC_RPC(pRakServer, Unk1A);
-	REGISTER_STATIC_RPC(pRakServer, Unk9A);
-	REGISTER_STATIC_RPC(pRakServer, Unk32);
-	REGISTER_STATIC_RPC(pRakServer, Unk9B);
-	REGISTER_STATIC_RPC(pRakServer, Unk74);
-	REGISTER_STATIC_RPC(pRakServer, Unk75);
-	REGISTER_STATIC_RPC(pRakServer, Unk1B);
-	REGISTER_STATIC_RPC(pRakServer, Unk53);
-	REGISTER_STATIC_RPC(pRakServer, Unk67);
-	REGISTER_STATIC_RPC(pRakServer, UnkA8);
-	REGISTER_STATIC_RPC(pRakServer, Unk73);
-	REGISTER_STATIC_RPC(pRakServer, UnkB1);
+	REGISTER_STATIC_RPC(pRakServer, SvrStats);
+	REGISTER_STATIC_RPC(pRakServer, SetInteriorId);
+	REGISTER_STATIC_RPC(pRakServer, ScmEvent);
+	REGISTER_STATIC_RPC(pRakServer, ScriptCash);
+	REGISTER_STATIC_RPC(pRakServer, ClickMap);
+	REGISTER_STATIC_RPC(pRakServer, VehicleDestroyed);
+	REGISTER_STATIC_RPC(pRakServer, PickedUpWeapon);
+	REGISTER_STATIC_RPC(pRakServer, PickedUpPickup);
+	REGISTER_STATIC_RPC(pRakServer, MenuSelect);
+	REGISTER_STATIC_RPC(pRakServer, MenuQuit);
+	REGISTER_STATIC_RPC(pRakServer, DialogResponse);
+	REGISTER_STATIC_RPC(pRakServer, ClickPlayer);
+	REGISTER_STATIC_RPC(pRakServer, ClientJoin);
+	REGISTER_STATIC_RPC(pRakServer, NPCJoin);
+	REGISTER_STATIC_RPC(pRakServer, Chat);
+	REGISTER_STATIC_RPC(pRakServer, RequestClass);
+	REGISTER_STATIC_RPC(pRakServer, RequestSpawn);
+	REGISTER_STATIC_RPC(pRakServer, Spawn);
+	REGISTER_STATIC_RPC(pRakServer, Death);
+	REGISTER_STATIC_RPC(pRakServer, DamageVehicle);
+	REGISTER_STATIC_RPC(pRakServer, EnterVehicle);
+	REGISTER_STATIC_RPC(pRakServer, ExitVehicle);
+	REGISTER_STATIC_RPC(pRakServer, ServerCommand);
+	REGISTER_STATIC_RPC(pRakServer, UpdateScoresPingsIPs);
+	REGISTER_STATIC_RPC(pRakServer, EditAttachedObject);
+	REGISTER_STATIC_RPC(pRakServer, EditObject);
+	REGISTER_STATIC_RPC(pRakServer, SelectObject);
+	REGISTER_STATIC_RPC(pRakServer, ClickTextDraw);
+	REGISTER_STATIC_RPC(pRakServer, ClientCheck);
+	REGISTER_STATIC_RPC(pRakServer, CameraTarget);
+	REGISTER_STATIC_RPC(pRakServer, PlayerDamage);
+	REGISTER_STATIC_RPC(pRakServer, ActorDamage);
 }
 
 //----------------------------------------------------
 
 void UnRegisterRPCs(RakServerInterface * pRakServer)
 {
-	UNREGISTER_STATIC_RPC(pRakServer, Unk73);
-	UNREGISTER_STATIC_RPC(pRakServer, Unk66);
-	UNREGISTER_STATIC_RPC(pRakServer, Unk76);
-	UNREGISTER_STATIC_RPC(pRakServer, Unk60);
-	UNREGISTER_STATIC_RPC(pRakServer, Unk1F);
-	UNREGISTER_STATIC_RPC(pRakServer, Unk77);
-	UNREGISTER_STATIC_RPC(pRakServer, Unk88);
-	UNREGISTER_STATIC_RPC(pRakServer, Unk61);
-	UNREGISTER_STATIC_RPC(pRakServer, Unk83);
-	UNREGISTER_STATIC_RPC(pRakServer, Unk84);
-	UNREGISTER_STATIC_RPC(pRakServer, Unk8C);
-	UNREGISTER_STATIC_RPC(pRakServer, Unk3E);
-	UNREGISTER_STATIC_RPC(pRakServer, Unk17);
-	UNREGISTER_STATIC_RPC(pRakServer, Unk19);
-	UNREGISTER_STATIC_RPC(pRakServer, Unk36);
-	UNREGISTER_STATIC_RPC(pRakServer, Unk65);
-	UNREGISTER_STATIC_RPC(pRakServer, Unk80);
-	UNREGISTER_STATIC_RPC(pRakServer, Unk81);
-	UNREGISTER_STATIC_RPC(pRakServer, Unk34);
-	UNREGISTER_STATIC_RPC(pRakServer, Unk35);
-	UNREGISTER_STATIC_RPC(pRakServer, Unk6A);
-	UNREGISTER_STATIC_RPC(pRakServer, Unk1A);
-	UNREGISTER_STATIC_RPC(pRakServer, Unk9A);
-	UNREGISTER_STATIC_RPC(pRakServer, Unk32);
-	UNREGISTER_STATIC_RPC(pRakServer, Unk9B);
-	UNREGISTER_STATIC_RPC(pRakServer, Unk74);
-	UNREGISTER_STATIC_RPC(pRakServer, Unk75);
-	UNREGISTER_STATIC_RPC(pRakServer, Unk1B);
-	UNREGISTER_STATIC_RPC(pRakServer, Unk53);
-	UNREGISTER_STATIC_RPC(pRakServer, Unk67);
-	UNREGISTER_STATIC_RPC(pRakServer, UnkA8);
+	UNREGISTER_STATIC_RPC(pRakServer, PlayerDamage);
+	UNREGISTER_STATIC_RPC(pRakServer, SvrStats);
+	UNREGISTER_STATIC_RPC(pRakServer, SetInteriorId);
+	UNREGISTER_STATIC_RPC(pRakServer, ScmEvent);
+	UNREGISTER_STATIC_RPC(pRakServer, ScriptCash);
+	UNREGISTER_STATIC_RPC(pRakServer, ClickMap);
+	UNREGISTER_STATIC_RPC(pRakServer, VehicleDestroyed);
+	UNREGISTER_STATIC_RPC(pRakServer, PickedUpWeapon);
+	UNREGISTER_STATIC_RPC(pRakServer, PickedUpPickup);
+	UNREGISTER_STATIC_RPC(pRakServer, MenuSelect);
+	UNREGISTER_STATIC_RPC(pRakServer, MenuQuit);
+	UNREGISTER_STATIC_RPC(pRakServer, DialogResponse);
+	UNREGISTER_STATIC_RPC(pRakServer, ClickPlayer);
+	UNREGISTER_STATIC_RPC(pRakServer, ClientJoin);
+	UNREGISTER_STATIC_RPC(pRakServer, NPCJoin);
+	UNREGISTER_STATIC_RPC(pRakServer, Chat);
+	UNREGISTER_STATIC_RPC(pRakServer, RequestClass);
+	UNREGISTER_STATIC_RPC(pRakServer, RequestSpawn);
+	UNREGISTER_STATIC_RPC(pRakServer, Spawn);
+	UNREGISTER_STATIC_RPC(pRakServer, Death);
+	UNREGISTER_STATIC_RPC(pRakServer, DamageVehicle);
+	UNREGISTER_STATIC_RPC(pRakServer, EnterVehicle);
+	UNREGISTER_STATIC_RPC(pRakServer, ExitVehicle);
+	UNREGISTER_STATIC_RPC(pRakServer, ServerCommand);
+	UNREGISTER_STATIC_RPC(pRakServer, UpdateScoresPingsIPs);
+	UNREGISTER_STATIC_RPC(pRakServer, EditAttachedObject);
+	UNREGISTER_STATIC_RPC(pRakServer, EditObject);
+	UNREGISTER_STATIC_RPC(pRakServer, SelectObject);
+	UNREGISTER_STATIC_RPC(pRakServer, ClickTextDraw);
+	UNREGISTER_STATIC_RPC(pRakServer, ClientCheck);
+	UNREGISTER_STATIC_RPC(pRakServer, CameraTarget);
 
 	pRak = 0;
 }
