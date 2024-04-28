@@ -3,10 +3,17 @@
 
 #define CHECK_PARAMS(n)
 
+int set_amxstring(AMX *amx,cell amx_addr,const char *source,int max);
+
+//----------------------------------------------------------------------------------
+
+// native gpci(playerid, const clientid[], len) 
 static cell AMX_NATIVE_CALL n_gpci(AMX *amx, cell *params)
 {
-	// TODO: gpci
-	return 0;
+	PLAYERID playerId = (PLAYERID)params[1];
+	if (playerId >= MAX_PLAYERS || !pNetGame->GetPlayerPool()->GetSlotState(playerId)) return 0;
+	return set_amxstring(amx, params[2], pNetGame->GetPlayerPool()->
+		GetPlayerClientID(playerId), params[3]);
 }
 
 //----------------------------------------------------------------------------------

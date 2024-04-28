@@ -54,6 +54,11 @@ public:
 		return m_bPlayerSlotState[playerId];
 	};
 
+	PCHAR GetPlayerClientID(PLAYERID playerId) {
+		if(playerId >= MAX_PLAYERS) { return NULL; }
+		return m_szPlayerClientID[playerId];
+	};
+
 	void ResetPlayerScoresAndMoney() {
 		memset(&m_iPlayerScore[0],0,sizeof(int) * MAX_PLAYERS);
 		memset(&m_iPlayerMoney[0],0,sizeof(int) * MAX_PLAYERS);
