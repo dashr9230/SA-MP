@@ -341,11 +341,17 @@ static cell AMX_NATIVE_CALL n_ShowNameTags(AMX *amx, cell *params)
 	return 1;
 }
 
+//----------------------------------------------------------------------------------
+
+// native ShowPlayerMarkers(mode)
 static cell AMX_NATIVE_CALL n_ShowPlayerMarkers(AMX *amx, cell *params)
 {
-	// TODO: ShowPlayerMarkers
-	return 0;
+	CHECK_PARAMS(1);
+	pNetGame->m_iShowPlayerMarkers = params[1];
+	return 1;
 }
+
+//----------------------------------------------------------------------------------
 
 static cell AMX_NATIVE_CALL n_SetWorldTime(AMX *amx, cell *params)
 {
