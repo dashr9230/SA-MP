@@ -381,10 +381,13 @@ static cell AMX_NATIVE_CALL n_SetWorldTime(AMX *amx, cell *params)
 	return 0;
 }
 
+// native GetWeaponName(weaponid, const weapon[], len)
 static cell AMX_NATIVE_CALL n_GetWeaponName(AMX *amx, cell *params)
 {
-	// TODO: GetWeaponName
-	return 0;
+	CHECK_PARAMS(3);
+	if(params[1] > WEAPON_COLLISION) return 0;
+
+	return set_amxstring(amx,params[2],pNetGame->GetWeaponName(params[1]),params[3]);
 }
 
 //----------------------------------------------------------------------------------
