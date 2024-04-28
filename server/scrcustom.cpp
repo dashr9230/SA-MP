@@ -2403,9 +2403,10 @@ static cell AMX_NATIVE_CALL n_AttachObjectToPlayer(AMX *amx, cell *params)
 	return 0;
 }
 
+// native AttachPlayerObjectToPlayer(objectplayer, objectid, attachplayer, Float:OffsetX, Float:OffsetY, Float:OffsetZ, Float:rX, Float:rY, Float:rZ)
 static cell AMX_NATIVE_CALL n_AttachPlayerObjectToPlayer(AMX *amx, cell *params)
 {
-	// TODO: AttachPlayerObjectToPlayer
+	logprintf("AttachPlayerObjectToPlayer : removed in 0.3. I can only attach global objects.");
 	return 0;
 }
 
