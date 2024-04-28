@@ -580,10 +580,11 @@ static cell AMX_NATIVE_CALL n_ShowPlayerDialog(AMX *amx, cell *params)
 	return 0;
 }
 
+// native EnableZoneNames(enable)
 static cell AMX_NATIVE_CALL n_EnableZoneNames(AMX *amx, cell *params)
 {
-	// TODO: EnableZoneNames
-	return 0;
+	logprintf("[warning] EnableZoneNames() is removed since 0.3");
+	return 1;
 }
 
 static cell AMX_NATIVE_CALL n_GangZoneCreate(AMX *amx, cell *params)
