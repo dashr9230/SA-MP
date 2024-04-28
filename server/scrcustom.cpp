@@ -287,9 +287,15 @@ static cell AMX_NATIVE_CALL n_GameModeExit(AMX *amx, cell *params)
 	return 0;
 }
 
+// native SetGameModeText(const string[])
 static cell AMX_NATIVE_CALL n_SetGameModeText(AMX *amx, cell *params)
 {
-	// TODO: SetGameModeText
+	CHECK_PARAMS(1);
+
+	char* szGameModeText;
+	amx_StrParam(amx, params[1], szGameModeText);
+	pConsole->SetStringVariable("gamemodetext", szGameModeText);
+
 	return 0;
 }
 
