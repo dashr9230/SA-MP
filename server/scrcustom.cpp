@@ -105,10 +105,16 @@ static cell AMX_NATIVE_CALL n_SetTimerEx(AMX *amx, cell *params)
 	return 0;
 }
 
+//----------------------------------------------------------------------------------
+// native LimitGlobalChatRadius(Float:chat_radius)
 static cell AMX_NATIVE_CALL n_LimitGlobalChatRadius(AMX *amx, cell *params)
 {
-	// TODO: LimitGlobalChatRadius
-	return 0;
+	float fRadius = amx_ctof(params[1]);
+
+	pNetGame->m_bLimitGlobalChatRadius = true;
+	pNetGame->m_fGlobalChatRadius = fRadius;
+
+	return 1;
 }
 
 static cell AMX_NATIVE_CALL n_LimitPlayerMarkerRadius(AMX *amx, cell *params)
