@@ -5,6 +5,8 @@
 
 int set_amxstring(AMX *amx,cell amx_addr,const char *source,int max);
 
+extern BOOL bGameModeFinished;
+
 //----------------------------------------------------------------------------------
 
 // native gpci(playerid, const clientid[], len) 
@@ -272,9 +274,16 @@ static cell AMX_NATIVE_CALL n_GetSVarsUpperIndex(AMX *amx, cell *params)
 	return 0;
 }
 
+// native GameModeExit()
 static cell AMX_NATIVE_CALL n_GameModeExit(AMX *amx, cell *params)
 {
-	// TODO: GameModeExit
+	if(pNetGame->SetNextScriptFile(NULL)) {
+		bGameModeFinished = TRUE;
+	} else {
+		logprintf("The gamemode finished and I couldn't start another script.");
+		fcloseall();
+		exit(1);
+	}
 	return 0;
 }
 
