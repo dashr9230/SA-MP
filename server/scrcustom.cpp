@@ -331,10 +331,14 @@ static cell AMX_NATIVE_CALL n_SetPlayerWorldBounds(AMX *amx, cell *params)
 	return 0;
 }
 
+//----------------------------------------------------------------------------------
+
+// native ShowNameTags(show)
 static cell AMX_NATIVE_CALL n_ShowNameTags(AMX *amx, cell *params)
 {
-	// TODO: ShowNameTags
-	return 0;
+	CHECK_PARAMS(1);
+	pNetGame->m_bShowNameTags = (bool)params[1];
+	return 1;
 }
 
 static cell AMX_NATIVE_CALL n_ShowPlayerMarkers(AMX *amx, cell *params)
