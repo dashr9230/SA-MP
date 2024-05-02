@@ -376,3 +376,24 @@ CTaskGoToPoint::CTaskGoToPoint(int unk, VECTOR* vecPos, float unk2, int unk3, in
 
 //-----------------------------------------------------------
 
+CTaskKillPedOnFootArmed::CTaskKillPedOnFootArmed( int unk, int unk2, int unk3, int unk4, PED_TYPE* pToShoot )
+{
+	m_pPlayerPed = NULL;
+	Create(92);
+
+	BYTE* pTaskType = m_pTaskType;
+	__asm
+	{
+		PUSH unk
+		PUSH unk3
+		PUSH unk2
+		PUSH unk4
+		push pToShoot
+		mov ecx, pTaskType
+		mov eax, 0x00621190
+		call eax
+	}
+}
+
+//==========================================================
+

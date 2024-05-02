@@ -62,3 +62,9 @@ public:
 	CTaskGoToPoint(int unk, VECTOR* vecPos, float unk2, int unk3, int unk4 );
 };
 
+class CTaskKillPedOnFootArmed :
+	public CTask
+{
+public:
+	CTaskKillPedOnFootArmed( int unk, int unk2, int unk3, int unk4, PED_TYPE* pToShoot );
+};
