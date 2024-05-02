@@ -41,3 +41,10 @@ public:
 	~CTaskJetpack();
 };
 
+class CTaskTakeDamageFall :
+	public CTask
+{
+public:
+	CTaskTakeDamageFall(DWORD dwFallType, DWORD dwNum);
+};
+

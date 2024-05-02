@@ -316,3 +316,24 @@ CTaskJetpack::~CTaskJetpack()
 	CTask::Destroy();
 }
 
+//==========================================================
+// TAKE_DAMAGE_FALL TASK
+
+CTaskTakeDamageFall::CTaskTakeDamageFall(DWORD dwFallType, DWORD dwNum)
+{
+	m_pPlayerPed = NULL;
+
+	Create(24);
+
+	BYTE *pTaskType = m_pTaskType;
+	__asm
+	{
+		push dwNum;
+		push 0;
+		push dwFallType;
+		mov ecx, pTaskType;
+		mov eax, 0x6786C0;
+		call eax;				// CTaskTakeDamageFall_ctor2
+	}
+}
+
