@@ -276,3 +276,43 @@ BOOL CTask::IsSimple()
 	return bRet;
 }
 
+//==========================================================
+// JETPACK TASK
+
+CTaskJetpack::CTaskJetpack()
+{
+	m_pPlayerPed = NULL;
+
+	Create(112);
+
+	BYTE *pTaskType = m_pTaskType;
+	__asm
+	{
+		push 0;
+		push 0;
+		push 0x41200000;		// 10.0f
+		push 0;
+		mov ecx, pTaskType;
+		mov eax, 0x67B4E0;	//  CTaskJetpack_CreateJetpack
+		call eax;
+	}
+}
+
+//----------------------------------------------------------
+
+CTaskJetpack::CTaskJetpack(BYTE *pTaskType)
+{
+	m_pPlayerPed = NULL;
+
+	Create(pTaskType);
+}
+
+//----------------------------------------------------------
+
+CTaskJetpack::~CTaskJetpack()
+{
+	if (m_pPlayerPed)
+		m_pPlayerPed->m_pPed->Tasks->pdwJumpJetPack = NULL;
+	CTask::Destroy();
+}
+

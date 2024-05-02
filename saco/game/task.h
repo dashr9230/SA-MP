@@ -32,3 +32,12 @@ public:
 
 };
 
+class CTaskJetpack :
+	public CTask
+{
+public:
+	CTaskJetpack();
+	CTaskJetpack(BYTE *pTaskType);
+	~CTaskJetpack();
+};
+
