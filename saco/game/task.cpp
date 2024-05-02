@@ -355,3 +355,24 @@ CTaskGoggles::CTaskGoggles()
 
 //-----------------------------------------------------------
 
+CTaskGoToPoint::CTaskGoToPoint(int unk, VECTOR* vecPos, float unk2, int unk3, int unk4 )
+{
+	m_pPlayerPed = NULL;
+	Create(48);
+
+	BYTE* pTaskType = m_pTaskType;
+	__asm
+	{
+		push unk4
+		push unk3
+		push unk2
+		push vecPos
+		push unk
+		mov ecx, pTaskType
+		mov eax, 0x667CD0
+		call eax
+	}	
+}
+
+//-----------------------------------------------------------
+

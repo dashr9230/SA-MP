@@ -55,3 +55,10 @@ public:
 	CTaskGoggles();
 };
 
+class CTaskGoToPoint :
+	public CTask
+{
+public:
+	CTaskGoToPoint(int unk, VECTOR* vecPos, float unk2, int unk3, int unk4 );
+};
+
