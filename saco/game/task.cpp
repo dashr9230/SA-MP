@@ -337,3 +337,21 @@ CTaskTakeDamageFall::CTaskTakeDamageFall(DWORD dwFallType, DWORD dwNum)
 	}
 }
 
+//==========================================================
+// ACTIVATE_GOGGLES
+
+CTaskGoggles::CTaskGoggles()
+{
+	m_pPlayerPed = NULL;
+	Create(12);
+
+	BYTE *pTaskType = m_pTaskType;
+	_asm push ecx
+	_asm mov ecx, pTaskType
+	_asm mov eax, 0x634EF0
+	_asm call eax
+	_asm pop ecx
+}
+
+//-----------------------------------------------------------
+

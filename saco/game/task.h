@@ -48,3 +48,10 @@ public:
 	CTaskTakeDamageFall(DWORD dwFallType, DWORD dwNum);
 };
 
+class CTaskGoggles :
+	public CTask
+{
+public:
+	CTaskGoggles();
+};
+
