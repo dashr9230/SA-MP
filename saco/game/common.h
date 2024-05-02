@@ -35,6 +35,13 @@ typedef struct _MATRIX4X4 {
 	float  pad_p;
 } MATRIX4X4, *PMATRIX4X4;
 
+typedef struct _PED_TASKS_TYPE
+{
+	char _gap0[16];
+
+	DWORD * pdwJumpJetPack;
+} PED_TASKS_TYPE;
+
 //-----------------------------------------------------------
 #pragma pack(1)
 typedef struct _ENTITY_TYPE
@@ -66,6 +73,10 @@ typedef struct _ENTITY_TYPE
 typedef struct _PED_TYPE
 {
 	ENTITY_TYPE entity;
+
+	char _gapB8[964];
+
+	PED_TASKS_TYPE *Tasks; // 1148-1152
 
 } PED_TYPE;
 

@@ -198,6 +198,12 @@
 				RelativePath=".\game\scripting.h">
 			</File>
 			<File
+				RelativePath=".\game\task.cpp">
+			</File>
+			<File
+				RelativePath=".\game\task.h">
+			</File>
+			<File
 				RelativePath=".\game\unnamed_1.cpp">
 			</File>
 			<File

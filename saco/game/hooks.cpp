@@ -8,6 +8,7 @@ extern DWORD dwGraphicsLoop; // Used for the external dll game loop.
 #define NUDE void _declspec(naked) 
 
 BYTE	*pbyteCameraMode = (BYTE *)0xB6F1A8;
+BYTE	*pbyteCurrentPlayer = (BYTE *)0xB7CD74;
 
 float fFarClip=1400.0f;
 
