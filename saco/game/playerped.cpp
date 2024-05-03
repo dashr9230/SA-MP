@@ -3,6 +3,8 @@
 #include "util.h"
 #include "keystuff.h"
 
+extern CGame *pGame;
+
 extern BYTE	*pbyteCurrentPlayer;
 
 //-----------------------------------------------------------
@@ -45,6 +47,47 @@ CPlayerPed::CPlayerPed()
 		x++;
 	}
 	field_2F9 = 0;
+}
+
+void CPlayerPed::GiveWeapon(int iWeaponID, int iAmmo)
+{
+	if(!m_pPed) return;
+	if(!GamePool_Ped_GetAt(m_dwGTAId)) return;
+
+	int iModelID = 0;
+	iModelID = GameGetWeaponModelIDFromWeaponID(iWeaponID);
+
+	if(iModelID == -1) return;
+
+	if(!pGame->IsModelLoaded(iModelID)) {
+		pGame->RequestModel(iModelID);
+		pGame->LoadRequestedModels();
+		while(!pGame->IsModelLoaded(iModelID)) Sleep(1);
+	}
+
+	//ScriptCommand(&give_actor_weapon,this->m_dwGTAId,iWeaponID,iAmmo);
+
+	*pbyteCurrentPlayer = m_bytePlayerNumber;
+
+	GameStoreLocalPlayerWeaponSkills();
+	GameSetRemotePlayerWeaponSkills(m_bytePlayerNumber);
+
+	DWORD dwPedPtr = (DWORD)m_pPed;
+
+	_asm mov ecx, dwPedPtr
+	_asm push 1
+	_asm push iAmmo
+	_asm push iWeaponID
+	_asm mov edx, 0x5E6080
+	_asm call edx
+
+	GameSetLocalPlayerWeaponSkills();
+
+	SetArmedWeapon(iWeaponID, false);
+
+	*pbyteCurrentPlayer = 0;
+
+	//pGame->RemoveModel(iModelID);
 }
 
 //-----------------------------------------------------------

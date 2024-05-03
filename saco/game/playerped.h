@@ -1,6 +1,7 @@
 
 #pragma once
 
+#include "game.h"
 #include "aimstuff.h"
 #include "entity.h"
 
@@ -17,6 +18,7 @@ public:
 
 	WORD  GetAmmo();
 
+	void GiveWeapon(int iWeaponID, int iAmmo);
 	void SetArmedWeapon(int iWeaponType, bool bUnk);
 	WEAPON_SLOT_TYPE * GetCurrentWeaponSlot();
 	WEAPON_SLOT_TYPE * FindWeaponSlot(DWORD dwWeapon);
