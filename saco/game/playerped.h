@@ -23,6 +23,7 @@ public:
 	WEAPON_SLOT_TYPE * GetCurrentWeaponSlot();
 	WEAPON_SLOT_TYPE * FindWeaponSlot(DWORD dwWeapon);
 
+	void StartGoggles();
 	void StopGoggles();
 	BOOL HasGoggles();
 

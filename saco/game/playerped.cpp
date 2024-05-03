@@ -2,6 +2,7 @@
 #include "../main.h"
 #include "util.h"
 #include "keystuff.h"
+#include "task.h"
 
 extern CGame *pGame;
 
@@ -161,6 +162,19 @@ WEAPON_SLOT_TYPE * CPlayerPed::FindWeaponSlot(DWORD dwWeapon)
 		}
 	}
 	return NULL;
+}
+
+//-----------------------------------------------------------
+
+void CPlayerPed::StartGoggles()
+{
+	if (HasGoggles()) return;
+	if (FindWeaponSlot( 44 ) == NULL && FindWeaponSlot( 45 ) == NULL)
+		GiveWeapon( 44, 1 ); // Prevents crashing due to lack of animations.
+
+	CTaskGoggles* pGoggles = new CTaskGoggles();
+	pGoggles->ApplyToPed( this );
+	m_bGoggleState = TRUE;
 }
 
 //-----------------------------------------------------------
