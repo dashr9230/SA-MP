@@ -14,6 +14,8 @@ class CPlayerPed : public CEntity
 {
 public:
 
+	WORD  GetAmmo();
+
 	WEAPON_SLOT_TYPE * GetCurrentWeaponSlot();
 	WEAPON_SLOT_TYPE * FindWeaponSlot(DWORD dwWeapon);
 

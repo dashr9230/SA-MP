@@ -40,7 +40,11 @@ typedef struct _WEAPON_SLOT_TYPE
 {
 	DWORD dwType;
 
-	char _gap4[24];
+	char _gap4[8];
+
+	DWORD dwAmmo;
+
+	char _gap10[12];
 
 } WEAPON_SLOT_TYPE;  // MUST BE EXACTLY ALIGNED TO 28 bytes
 
