@@ -95,6 +95,10 @@ typedef struct _PED_TYPE
 
 	WEAPON_SLOT_TYPE WeaponSlots[13]; // 1440-1804
 
+	char _gap70C[12];
+
+	BYTE byteCurWeaponSlot; // 1816-1817
+
 } PED_TYPE;
 
 //-----------------------------------------------------------

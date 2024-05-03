@@ -46,6 +46,16 @@ CPlayerPed::CPlayerPed()
 
 //-----------------------------------------------------------
 
+WEAPON_SLOT_TYPE * CPlayerPed::GetCurrentWeaponSlot()
+{
+	if(m_pPed) {
+		return &m_pPed->WeaponSlots[m_pPed->byteCurWeaponSlot];
+	}
+	return NULL;
+}
+
+//-----------------------------------------------------------
+
 WEAPON_SLOT_TYPE * CPlayerPed::FindWeaponSlot(DWORD dwWeapon)
 {
 	if (m_pPed)

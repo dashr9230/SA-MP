@@ -14,6 +14,7 @@ class CPlayerPed : public CEntity
 {
 public:
 
+	WEAPON_SLOT_TYPE * GetCurrentWeaponSlot();
 	WEAPON_SLOT_TYPE * FindWeaponSlot(DWORD dwWeapon);
 
 	void StopGoggles();
