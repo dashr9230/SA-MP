@@ -46,6 +46,21 @@ CPlayerPed::CPlayerPed()
 
 //-----------------------------------------------------------
 
+WEAPON_SLOT_TYPE * CPlayerPed::FindWeaponSlot(DWORD dwWeapon)
+{
+	if (m_pPed)
+	{
+		BYTE i;
+		for (i = 0; i < 13; i++)
+		{
+			if (m_pPed->WeaponSlots[i].dwType == dwWeapon) return &m_pPed->WeaponSlots[i];
+		}
+	}
+	return NULL;
+}
+
+//-----------------------------------------------------------
+
 void CPlayerPed::StopGoggles()
 {
 	if (!m_pPed || !HasGoggles()) return;

@@ -35,6 +35,15 @@ typedef struct _MATRIX4X4 {
 	float  pad_p;
 } MATRIX4X4, *PMATRIX4X4;
 
+//-----------------------------------------------------------
+typedef struct _WEAPON_SLOT_TYPE
+{
+	DWORD dwType;
+
+	char _gap4[24];
+
+} WEAPON_SLOT_TYPE;  // MUST BE EXACTLY ALIGNED TO 28 bytes
+
 typedef struct _PED_TASKS_TYPE
 {
 	char _gap0[16];
@@ -81,6 +90,10 @@ typedef struct _PED_TYPE
 	char _gap480[128];
 
 	DWORD dwActiveVision; // 1280-1284
+
+	char _gap504[156];
+
+	WEAPON_SLOT_TYPE WeaponSlots[13]; // 1440-1804
 
 } PED_TYPE;
 
