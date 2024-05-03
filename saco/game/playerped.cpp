@@ -46,6 +46,19 @@ CPlayerPed::CPlayerPed()
 
 //-----------------------------------------------------------
 
+void CPlayerPed::StopGoggles()
+{
+	if (!m_pPed || !HasGoggles()) return;
+
+	m_bGoggleState = FALSE;
+	DWORD dwPedPointer = (DWORD)m_pPed;
+	_asm mov ecx, dwPedPointer
+	_asm mov eax, 0x5E6010
+	_asm call eax
+}
+
+//-----------------------------------------------------------
+
 BOOL CPlayerPed::HasGoggles()
 {
 	if (!m_pPed) return FALSE;

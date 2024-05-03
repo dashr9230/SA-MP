@@ -14,6 +14,7 @@ class CPlayerPed : public CEntity
 {
 public:
 
+	void StopGoggles();
 	BOOL HasGoggles();
 
 	CPlayerPed();
