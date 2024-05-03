@@ -13,6 +13,9 @@ struct struc_97
 class CPlayerPed : public CEntity
 {
 public:
+
+	BOOL HasGoggles();
+
 	CPlayerPed();
 
 	int field_48;
@@ -43,7 +46,7 @@ public:
 
 	int field_2DE;
 	int field_2E2;
-	int field_2E6;
+	BOOL		m_bGoggleState;
 
 	char _gap2EA[8];
 

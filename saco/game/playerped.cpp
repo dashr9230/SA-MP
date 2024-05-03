@@ -26,7 +26,7 @@ CPlayerPed::CPlayerPed()
 	field_2DE = 0;
 	field_2E2 = 0;
 	field_48 = 0;
-	field_2E6 = 0;
+	m_bGoggleState = FALSE;
 	field_2C1 = 0;
 	field_2C5 = 0;
 	field_2C9 = 0;
@@ -42,6 +42,14 @@ CPlayerPed::CPlayerPed()
 		x++;
 	}
 	field_2F9 = 0;
+}
+
+//-----------------------------------------------------------
+
+BOOL CPlayerPed::HasGoggles()
+{
+	if (!m_pPed) return FALSE;
+	return (BOOL)(m_pPed->dwActiveVision != 0 || m_bGoggleState);
 }
 
 //-----------------------------------------------------------

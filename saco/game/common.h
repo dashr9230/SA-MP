@@ -78,6 +78,10 @@ typedef struct _PED_TYPE
 
 	PED_TASKS_TYPE *Tasks; // 1148-1152
 
+	char _gap480[128];
+
+	DWORD dwActiveVision; // 1280-1284
+
 } PED_TYPE;
 
 //-----------------------------------------------------------
@@ -94,6 +98,7 @@ typedef struct _VEHICLE_TYPE
 #define TRAIN_FREIGHT					570
 #define TRAIN_TRAM						449
 #define HYDRA							520
+
 //-----------------------------------------------------------
 
 // ---- weapon id defines ----
