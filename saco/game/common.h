@@ -36,6 +36,10 @@ typedef struct _MATRIX4X4 {
 } MATRIX4X4, *PMATRIX4X4;
 
 //-----------------------------------------------------------
+
+#define IN_VEHICLE(x) ((x->dwStateFlags & 256) >> 8)
+
+//-----------------------------------------------------------
 typedef struct _WEAPON_SLOT_TYPE
 {
 	DWORD dwType;
@@ -87,7 +91,11 @@ typedef struct _PED_TYPE
 {
 	ENTITY_TYPE entity;
 
-	char _gapB8[964];
+	char _gapB8[948];
+
+	DWORD dwStateFlags; // 1132-1136
+
+	char _gap470[12];
 
 	PED_TASKS_TYPE *Tasks; // 1148-1152
 

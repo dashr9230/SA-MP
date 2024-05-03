@@ -1,6 +1,7 @@
 
 #pragma once
 
+#include "aimstuff.h"
 #include "entity.h"
 
 struct struc_97
@@ -16,6 +17,7 @@ public:
 
 	WORD  GetAmmo();
 
+	void SetArmedWeapon(int iWeaponType, bool bUnk);
 	WEAPON_SLOT_TYPE * GetCurrentWeaponSlot();
 	WEAPON_SLOT_TYPE * FindWeaponSlot(DWORD dwWeapon);
 

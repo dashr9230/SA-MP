@@ -1,6 +1,9 @@
 
 #include "../main.h"
 #include "util.h"
+#include "keystuff.h"
+
+extern BYTE	*pbyteCurrentPlayer;
 
 //-----------------------------------------------------------
 // Used for instancing the local player.
@@ -42,6 +45,36 @@ CPlayerPed::CPlayerPed()
 		x++;
 	}
 	field_2F9 = 0;
+}
+
+//-----------------------------------------------------------
+
+void CPlayerPed::SetArmedWeapon(int iWeaponType, bool bUnk)
+{
+	if(!m_pPed) return;
+	if(!GamePool_Ped_GetAt(m_dwGTAId)) return;
+
+	*pbyteCurrentPlayer = m_bytePlayerNumber;
+
+	GameStoreLocalPlayerWeaponSkills();
+	GameSetRemotePlayerWeaponSkills(m_bytePlayerNumber);
+
+	if(m_pPed && IN_VEHICLE(m_pPed) || bUnk)
+	{
+		DWORD dwPedPtr = (DWORD)m_pPed;
+		if(dwPedPtr) {
+			_asm mov ecx, dwPedPtr
+			_asm push iWeaponType
+			_asm mov edx, 0x5E6280
+			_asm call edx
+		}
+	}
+	else
+		ScriptCommand(&set_actor_armed_weapon,m_dwGTAId,iWeaponType);
+
+	GameSetLocalPlayerWeaponSkills();
+
+	*pbyteCurrentPlayer = 0;
 }
 
 //-----------------------------------------------------------
