@@ -22,6 +22,7 @@ public:
 	void SetArmedWeapon(int iWeaponType, bool bUnk);
 	WEAPON_SLOT_TYPE * GetCurrentWeaponSlot();
 	WEAPON_SLOT_TYPE * FindWeaponSlot(DWORD dwWeapon);
+	BOOL HasAmmoForCurrentWeapon();
 
 	void StartGoggles();
 	void StopGoggles();

@@ -133,6 +133,24 @@ WEAPON_SLOT_TYPE * CPlayerPed::GetCurrentWeaponSlot()
 
 //-----------------------------------------------------------
 
+BOOL CPlayerPed::HasAmmoForCurrentWeapon()
+{
+	if(m_pPed) {
+		WEAPON_SLOT_TYPE * WeaponSlot = GetCurrentWeaponSlot();
+
+		if(!WeaponSlot) return TRUE;
+
+		// Melee types always have ammo.
+		if( WeaponSlot->dwType <= WEAPON_CANE ||
+			WeaponSlot->dwType == WEAPON_PARACHUTE ) return TRUE;
+
+		if(!WeaponSlot->dwAmmo) return FALSE;
+	}
+	return TRUE;
+}
+
+//-----------------------------------------------------------
+
 WORD CPlayerPed::GetAmmo()
 {
 	if(m_pPed) {
