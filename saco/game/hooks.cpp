@@ -55,7 +55,6 @@ NUDE HOOK_2() {}
 NUDE HOOK_3() {}
 NUDE HOOK_4() {}
 NUDE HOOK_5() {}
-NUDE HOOK_6() {}
 NUDE HOOK_7() {}
 NUDE HOOK_8() {}
 NUDE HOOK_9() {}
@@ -117,6 +116,15 @@ NUDE HOOK_64() {}
 NUDE HOOK_65() {}
 NUDE HOOK_66() {}
 
+
+
+NUDE HOOK_6()
+{
+	Sleep(1);
+
+	_asm mov edx, 0x561A80
+	_asm jmp edx
+}
 
 //-----------------------------------------------------------
 
