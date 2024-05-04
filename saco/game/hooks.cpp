@@ -166,6 +166,42 @@ do_process_cols:
 }
 
 //-----------------------------------------------------------
+DWORD dwMat;
+DWORD dwMatEffects;
+DWORD dwDataParam;
+
+NUDE VehicleModel_SetEnvironmentMapHook()
+{
+	_asm mov eax, [esp+4]
+	_asm mov dwMat, eax
+	_asm mov eax, [esp+8]
+	_asm mov dwDataParam, eax
+
+	UnFuck(0x6D64F0,1);
+	*(PBYTE)0x6D64F0 = 0xC3;
+
+	/*
+	_asm push dwMat
+	_asm mov edx, 0x812140	// _RpMatFXMaterialGetEffects
+	_asm call edx
+	_asm pop edx
+	_asm mov dwMatEffects, eax*/
+
+	_asm push 0
+	_asm push dwMat
+	_asm mov edx, 0x811C80	// _RpMatFXMaterialSetEffects
+	_asm call edx
+	_asm pop edx
+	_asm pop edx
+
+	//pChatWindow->AddDebugMessage("SetEnvironmentMapCB(0x%X,0x%X,%d)",dwMat,dwDataParam,dwMatEffects);
+
+	_asm mov edx, 0x4C8848
+    _asm cmp [esp+8], 0FFFFh
+	_asm jmp edx
+}
+
+//-----------------------------------------------------------
 
 void InstallMethodHook(	DWORD dwInstallAddress,
 						DWORD dwHookFunction )
