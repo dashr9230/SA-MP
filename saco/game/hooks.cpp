@@ -61,7 +61,6 @@ NUDE HOOK_9() {}
 NUDE HOOK_10() {}
 NUDE HOOK_11() {}
 NUDE HOOK_12() {}
-NUDE HOOK_13() {}
 NUDE HOOK_14() {}
 NUDE HOOK_15() {}
 NUDE HOOK_16() {}
@@ -144,6 +143,26 @@ NUDE Rand_Hook()
 
 	rand();
 	_asm ret
+}
+
+//-----------------------------------------------------------
+// We use a special bit (32) on dwProcFlags (+28) to indicate
+// whether we should process gravity/collisions on this PlayerPed.
+
+NUDE CPlayerPed_ProcessCollision_Hook()
+{
+	_asm test ecx, ecx
+	_asm jnz ptr_is_ok
+	_asm ret
+ptr_is_ok:
+	_asm mov eax, [ecx+28]
+	_asm shr eax, 31
+	_asm cmp eax, 1
+	_asm jne do_process_cols
+	_asm ret // we set top bit so don't process this
+do_process_cols:
+    _asm mov edx, 0x54DFB0
+	_asm jmp edx
 }
 
 //-----------------------------------------------------------
@@ -233,7 +252,7 @@ void GameInstallHooks()
 
 	InstallCallHook(0x7330A2,(DWORD)HOOK_12);
 
-	InstallMethodHook(0x86D194,(DWORD)HOOK_13);
+	InstallMethodHook(0x86D194,(DWORD)CPlayerPed_ProcessCollision_Hook);
 
 	InstallCallHook(0x5689FD,(DWORD)HOOK_14);
 
