@@ -126,6 +126,26 @@ NUDE HOOK_6()
 	_asm jmp edx
 }
 
+
+//-----------------------------------------------------------
+
+DWORD dwRandCaller;
+
+NUDE Rand_Hook()
+{
+	_asm mov eax, [esp+0]
+	_asm mov dwRandCaller, eax
+
+	/*
+	if(dwRandCaller > 0x73FB10 && dwRandCaller < 0x74132E) {
+		_asm mov eax, iSyncedRandomNumber
+		_asm ret
+	}*/
+
+	rand();
+	_asm ret
+}
+
 //-----------------------------------------------------------
 
 void InstallMethodHook(	DWORD dwInstallAddress,
