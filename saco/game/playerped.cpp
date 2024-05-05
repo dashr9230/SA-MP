@@ -173,6 +173,14 @@ void CPlayerPed::SetImmunities(BOOL bBullet, BOOL bFire, BOOL bExplosion, BOOL b
 
 //-----------------------------------------------------------
 
+float CPlayerPed::GetHealth()
+{
+	if(!m_pPed) return 0.0f;
+	return m_pPed->fHealth;
+}
+
+//-----------------------------------------------------------
+
 void CPlayerPed::GiveWeapon(int iWeaponID, int iAmmo)
 {
 	if(!m_pPed) return;

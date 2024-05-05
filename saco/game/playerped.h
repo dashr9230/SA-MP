@@ -28,6 +28,7 @@ public:
 	BYTE  GetCurrentWeapon();
 	int   GetCurrentVehicleID();
 	BOOL  IsOnScreen();
+	float GetHealth();
 
 	WORD  GetAmmo();
 
