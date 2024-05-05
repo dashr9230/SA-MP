@@ -44,6 +44,8 @@ const SCRIPT_COMMAND destroy_racing_checkpoint			= { 0x06d6,	"i" };
 const SCRIPT_COMMAND set_actor_armed_weapon				= { 0x01b9, "ii" };
 const SCRIPT_COMMAND get_actor_armed_weapon				= { 0x0470, "iv" };
 
+const SCRIPT_COMMAND set_actor_immunities				= { 0x02ab, "iiiiii" };
+
 const SCRIPT_COMMAND set_actor_can_be_decapitated		= { 0x0446, "ii" };
 
 const SCRIPT_COMMAND play_sound							= { 0x018c, "fffi" };

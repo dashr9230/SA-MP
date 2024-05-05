@@ -37,6 +37,8 @@ public:
 	WEAPON_SLOT_TYPE * FindWeaponSlot(DWORD dwWeapon);
 	BOOL HasAmmoForCurrentWeapon();
 
+	void SetImmunities(BOOL bBullet, BOOL bFire, BOOL bExplosion, BOOL bDamage, BOOL bUnknown);
+
 	void StartGoggles();
 	void StopGoggles();
 	BOOL HasGoggles();

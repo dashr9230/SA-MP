@@ -163,6 +163,16 @@ BOOL CPlayerPed::IsOnScreen()
 
 //-----------------------------------------------------------
 
+void CPlayerPed::SetImmunities(BOOL bBullet, BOOL bFire, BOOL bExplosion, BOOL bDamage, BOOL bUnknown)
+{
+	if(!m_pPed) return;
+	if(GamePool_Ped_GetAt(m_dwGTAId) == 0) return;
+
+	ScriptCommand(&set_actor_immunities, m_dwGTAId, bBullet, bFire, bExplosion, bDamage, bUnknown);
+}
+
+//-----------------------------------------------------------
+
 void CPlayerPed::GiveWeapon(int iWeaponID, int iAmmo)
 {
 	if(!m_pPed) return;
