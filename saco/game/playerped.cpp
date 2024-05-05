@@ -109,6 +109,13 @@ BYTE CPlayerPed::GetSpecialKey()
 }
 
 
+//-----------------------------------------------------------
+
+CAMERA_AIM * CPlayerPed::GetCurrentAim()
+{
+	return GameGetInternalAim();
+}
+
 void CPlayerPed::GiveWeapon(int iWeaponID, int iAmmo)
 {
 	if(!m_pPed) return;

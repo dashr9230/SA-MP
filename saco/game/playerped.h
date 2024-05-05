@@ -21,6 +21,8 @@ public:
 
 	BYTE GetSpecialKey();
 
+	CAMERA_AIM * GetCurrentAim();
+
 	WORD  GetAmmo();
 
 	void GiveWeapon(int iWeaponID, int iAmmo);
