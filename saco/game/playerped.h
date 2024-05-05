@@ -19,6 +19,8 @@ public:
 	void ResetPointers();
 	void SetInitialState();
 
+	BYTE GetSpecialKey();
+
 	WORD  GetAmmo();
 
 	void GiveWeapon(int iWeaponID, int iAmmo);

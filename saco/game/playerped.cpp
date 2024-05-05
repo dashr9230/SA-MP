@@ -92,6 +92,23 @@ void CPlayerPed::SetInitialState()
 	*/
 }
 
+//-----------------------------------------------------------
+
+BYTE CPlayerPed::GetSpecialKey()
+{
+	GTA_CONTROLSET *pInternalKeys = GameGetInternalKeys();
+
+	if(pInternalKeys->wKeys1[11]) // yes
+		return 1;
+	else if(pInternalKeys->wKeys1[10]) // no
+		return 2;
+	else if(pInternalKeys->wKeys1[9]) // honk
+		return 3;
+
+	return 0;
+}
+
+
 void CPlayerPed::GiveWeapon(int iWeaponID, int iAmmo)
 {
 	if(!m_pPed) return;
