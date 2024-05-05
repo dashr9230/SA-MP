@@ -24,6 +24,8 @@ public:
 	CAMERA_AIM * GetCurrentAim();
 	void SetCurrentAim(CAMERA_AIM *pAim);
 
+	BYTE  GetCurrentWeapon();
+
 	WORD  GetAmmo();
 
 	void GiveWeapon(int iWeaponID, int iAmmo);

@@ -123,6 +123,19 @@ void CPlayerPed::SetCurrentAim(CAMERA_AIM *pAim)
 	GameStoreRemotePlayerAim(m_bytePlayerNumber, pAim);
 }
 
+//-----------------------------------------------------------
+
+BYTE CPlayerPed::GetCurrentWeapon()
+{
+	if(!m_pPed) return 0;
+	if(GamePool_Ped_GetAt(m_dwGTAId) == 0) return 0;
+
+	DWORD dwRetVal;
+	ScriptCommand(&get_actor_armed_weapon,m_dwGTAId,&dwRetVal);
+	return (BYTE)dwRetVal;
+}
+
+//-----------------------------------------------------------
 void CPlayerPed::GiveWeapon(int iWeaponID, int iAmmo)
 {
 	if(!m_pPed) return;
