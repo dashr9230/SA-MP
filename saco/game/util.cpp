@@ -1354,6 +1354,20 @@ int __stdcall GameGetWeaponModelIDFromWeaponID(int iWeaponID)
 
 //-----------------------------------------------------------
 
+BOOL __stdcall GameIsEntityOnScreen(DWORD * pdwEnt)
+{
+	BOOL bResult = FALSE;
+
+	_asm mov ecx, pdwEnt
+	_asm mov edx, 0x534540
+	_asm call edx
+	_asm mov bResult, eax
+
+	return bResult != FALSE;
+}
+
+//-----------------------------------------------------------
+
 void __stdcall SetRadarColor(int nIndex,DWORD dwColor)
 {
 	if(nIndex < sizeof(dwUseHudColors)) {

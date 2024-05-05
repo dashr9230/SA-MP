@@ -22,6 +22,7 @@ ENTITY_TYPE * __stdcall GamePool_Object_GetAt(int iID);
 PED_TYPE * __stdcall GamePool_FindPlayerPed();
 
 DWORD __stdcall TranslateColorCodeToRGBA(int iCode);
+BOOL __stdcall GameIsEntityOnScreen(DWORD * pdwEnt);
 void __stdcall InitPlayerPedPtrRecords();
 void __stdcall SetPlayerPedPtrRecord(BYTE bytePlayer, DWORD dwPedPtr);
 DWORD __stdcall GetPlayerPedPtrRecord(BYTE bytePlayer);
