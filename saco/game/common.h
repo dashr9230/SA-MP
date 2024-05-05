@@ -107,8 +107,11 @@ typedef struct _PED_TYPE
 
 	float fHealth;		 // 1344-1348
 
-	//char _gap544[92];
-	char _gap544[72];
+	char _gap544[4];
+
+	float fArmour;		// 1352-1356
+
+	char _gap54C[64];
 
 	DWORD pVehicle;	// 1420-1424
 

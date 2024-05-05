@@ -30,6 +30,7 @@ public:
 	BOOL  IsOnScreen();
 	float GetHealth();
 	void  SetHealth(float fHealth);
+	float GetArmour();
 
 	WORD  GetAmmo();
 
