@@ -1146,6 +1146,20 @@ PED_TYPE * __stdcall GamePool_FindPlayerPed()
 }
 
 //-----------------------------------------------------------
+
+BUILDING_TYPE * GamePool_GetBuilding()
+{
+	BUILDING_TYPE *pBuildingRet;
+
+	_asm mov eax, 0xB74498
+	_asm mov edx, [eax]
+	_asm mov eax, [edx]
+	_asm mov pBuildingRet, eax
+
+	return pBuildingRet;
+}
+
+//-----------------------------------------------------------
 // Translate Weapon model ID into actual weapon ID.
 
 int __stdcall GameGetWeaponModelIDFromWeaponID(int iWeaponID)
