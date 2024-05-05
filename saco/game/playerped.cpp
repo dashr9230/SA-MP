@@ -155,6 +155,14 @@ void CPlayerPed::HideMarker()
 
 //-----------------------------------------------------------
 
+BOOL CPlayerPed::IsOnScreen()
+{
+	if(m_pPed) return GameIsEntityOnScreen((DWORD *)m_pPed);
+	return FALSE;
+}
+
+//-----------------------------------------------------------
+
 void CPlayerPed::GiveWeapon(int iWeaponID, int iAmmo)
 {
 	if(!m_pPed) return;

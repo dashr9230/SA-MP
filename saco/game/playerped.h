@@ -27,6 +27,7 @@ public:
 	void  HideMarker();
 	BYTE  GetCurrentWeapon();
 	int   GetCurrentVehicleID();
+	BOOL  IsOnScreen();
 
 	WORD  GetAmmo();
 
