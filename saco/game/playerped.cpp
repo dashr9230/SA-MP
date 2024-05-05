@@ -219,6 +219,15 @@ void CPlayerPed::SetStateFlags(DWORD dwState)
 	m_pPed->dwStateFlags = dwState;
 }
 
+//-----------------------------------------------------------
+
+BOOL CPlayerPed::IsDead()
+{
+	if(!m_pPed) return TRUE;
+	if(m_pPed->fHealth > 0.0f) return FALSE;
+	return TRUE;
+}
+
 //-----------------------------------------------------------	
 
 void CPlayerPed::GiveWeapon(int iWeaponID, int iAmmo)

@@ -34,6 +34,7 @@ public:
 	void  SetArmour(float fArmour);
 	DWORD GetStateFlags();
 	void  SetStateFlags(DWORD dwStateFlags);
+	BOOL  IsDead();
 
 	WORD  GetAmmo();
 
