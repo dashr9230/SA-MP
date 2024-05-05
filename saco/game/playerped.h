@@ -32,6 +32,7 @@ public:
 	void  SetHealth(float fHealth);
 	float GetArmour();
 	void  SetArmour(float fArmour);
+	DWORD GetStateFlags();
 
 	WORD  GetAmmo();
 

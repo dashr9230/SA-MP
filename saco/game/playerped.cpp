@@ -203,6 +203,14 @@ void CPlayerPed::SetArmour(float fArmour)
 	m_pPed->fArmour = fArmour;
 }
 
+//-----------------------------------------------------------
+
+DWORD CPlayerPed::GetStateFlags()
+{
+	if(!m_pPed) return 0;
+	return m_pPed->dwStateFlags;
+}
+
 //-----------------------------------------------------------	
 
 void CPlayerPed::GiveWeapon(int iWeaponID, int iAmmo)
