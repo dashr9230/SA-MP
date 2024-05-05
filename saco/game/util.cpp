@@ -1601,6 +1601,45 @@ void SaveCameraRaster(char *filename)
 
 //----------------------------------------------------
 
+void CreateCameraRaster()
+{
+	if(CamFrameBuffer2 || CamZBuffer2) return;
+
+	_asm mov eax, 0xC402D8
+	_asm mov ebx, [eax]
+	_asm mov CamFrameBuffer, ebx
+
+	_asm mov esi, CamFrameBuffer
+	_asm mov eax, [esi+20]
+	_asm mov Depth, eax
+	_asm mov eax, [esi+16]
+	_asm mov Height, eax
+	_asm mov eax, [esi+12]
+	_asm mov Width, eax
+
+	// RwRasterCreate
+	_asm push 5
+	_asm push Depth
+	_asm push 1024
+	_asm push 2048
+	_asm mov edx, 0x7FB230
+	_asm call edx
+	_asm mov CamFrameBuffer2, eax
+	_asm add esp, 16
+
+	// RwRasterCreate
+	_asm push 1
+	_asm push Depth
+	_asm push 1024
+	_asm push 2048
+	_asm mov edx, 0x7FB230
+	_asm call edx
+	_asm mov CamZBuffer2, eax
+	_asm add esp, 16
+}
+
+//----------------------------------------------------
+
 BOOL IsFileOrDirectoryExists(char * szPath)
 {
 	struct _stat buf;
