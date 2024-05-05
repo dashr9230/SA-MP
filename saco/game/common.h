@@ -103,7 +103,11 @@ typedef struct _PED_TYPE
 
 	DWORD dwActiveVision; // 1280-1284
 
-	char _gap504[60];
+	char _gap504[44];
+
+	DWORD dwAction; // 1328-1332
+
+	char _gap534[12];
 
 	float fHealth;		 // 1344-1348
 

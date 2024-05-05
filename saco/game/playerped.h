@@ -35,6 +35,7 @@ public:
 	DWORD GetStateFlags();
 	void  SetStateFlags(DWORD dwStateFlags);
 	BOOL  IsDead();
+	BYTE  GetActionTrigger();
 
 	WORD  GetAmmo();
 

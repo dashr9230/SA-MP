@@ -228,6 +228,13 @@ BOOL CPlayerPed::IsDead()
 	return TRUE;
 }
 
+//-----------------------------------------------------------
+
+BYTE CPlayerPed::GetActionTrigger()
+{
+	return (BYTE)m_pPed->dwAction;
+}
+
 //-----------------------------------------------------------	
 
 void CPlayerPed::GiveWeapon(int iWeaponID, int iAmmo)
