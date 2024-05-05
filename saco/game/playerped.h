@@ -31,6 +31,7 @@ public:
 	float GetHealth();
 	void  SetHealth(float fHealth);
 	float GetArmour();
+	void  SetArmour(float fArmour);
 
 	WORD  GetAmmo();
 

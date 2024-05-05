@@ -195,6 +195,14 @@ float CPlayerPed::GetArmour()
 	return m_pPed->fArmour;
 }
 
+//-----------------------------------------------------------
+
+void CPlayerPed::SetArmour(float fArmour)
+{
+	if(!m_pPed) return;
+	m_pPed->fArmour = fArmour;
+}
+
 //-----------------------------------------------------------	
 
 void CPlayerPed::GiveWeapon(int iWeaponID, int iAmmo)
