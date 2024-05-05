@@ -17,6 +17,7 @@ class CPlayerPed : public CEntity
 public:
 
 	void ResetPointers();
+	void SetInitialState();
 
 	WORD  GetAmmo();
 
