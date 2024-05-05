@@ -22,6 +22,7 @@ public:
 	BYTE GetSpecialKey();
 
 	CAMERA_AIM * GetCurrentAim();
+	void SetCurrentAim(CAMERA_AIM *pAim);
 
 	WORD  GetAmmo();
 

@@ -116,6 +116,13 @@ CAMERA_AIM * CPlayerPed::GetCurrentAim()
 	return GameGetInternalAim();
 }
 
+//-----------------------------------------------------------
+
+void CPlayerPed::SetCurrentAim(CAMERA_AIM *pAim)
+{
+	GameStoreRemotePlayerAim(m_bytePlayerNumber, pAim);
+}
+
 void CPlayerPed::GiveWeapon(int iWeaponID, int iAmmo)
 {
 	if(!m_pPed) return;
