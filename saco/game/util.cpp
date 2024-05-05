@@ -1175,6 +1175,20 @@ DUMMY_TYPE * GamePool_GetDummy()
 
 //-----------------------------------------------------------
 
+OBJECT_TYPE * GamePool_GetObject()
+{
+	OBJECT_TYPE *pObjectRet;
+
+	_asm mov eax, 0xB7449C
+	_asm mov edx, [eax]
+	_asm mov eax, [edx]
+	_asm mov pObjectRet, eax
+
+	return pObjectRet;
+}
+
+//-----------------------------------------------------------
+
 //-----------------------------------------------------------
 // Translate Weapon model ID into actual weapon ID.
 

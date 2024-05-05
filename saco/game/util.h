@@ -37,4 +37,5 @@ bool unnamed_100B4B50(VECTOR *vecPos);
 
 BUILDING_TYPE * GamePool_GetBuilding();
 DUMMY_TYPE * GamePool_GetDummy();
+OBJECT_TYPE * GamePool_GetObject();
 
