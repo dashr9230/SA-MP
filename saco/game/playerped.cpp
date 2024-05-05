@@ -25,7 +25,7 @@ CPlayerPed::CPlayerPed()
 
 	field_2A8 = 1;
 	field_2AC = 1;
-	field_2CD = 0;
+	m_dwArrow = 0;
 	field_2B9 = 0;
 	field_2F2 = 0;
 	field_2D2 = 0;
@@ -143,6 +143,14 @@ int CPlayerPed::GetCurrentVehicleID()
 
 	VEHICLE_TYPE *pVehicle = (VEHICLE_TYPE *)m_pPed->pVehicle;
 	return GamePool_Vehicle_GetIndex(pVehicle);
+}
+
+//-----------------------------------------------------------
+
+void CPlayerPed::HideMarker()
+{
+	if (m_dwArrow) ScriptCommand(&disable_marker, m_dwArrow);
+	m_dwArrow = NULL; // Just make sure
 }
 
 //-----------------------------------------------------------

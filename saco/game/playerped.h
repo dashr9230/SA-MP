@@ -24,6 +24,7 @@ public:
 	CAMERA_AIM * GetCurrentAim();
 	void SetCurrentAim(CAMERA_AIM *pAim);
 
+	void  HideMarker();
 	BYTE  GetCurrentWeapon();
 	int   GetCurrentVehicleID();
 
@@ -59,7 +60,7 @@ public:
 	int field_2C1;
 	int field_2C5;
 	int field_2C9;
-	int field_2CD;
+	DWORD 		m_dwArrow;
 
 	char _gap2D1;
 
