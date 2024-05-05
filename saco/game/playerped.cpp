@@ -50,6 +50,16 @@ CPlayerPed::CPlayerPed()
 	field_2F9 = 0;
 }
 
+//-----------------------------------------------------------
+// If the game has internally destroyed the ped
+// during this frame, the ped pointer should become 0
+
+void CPlayerPed::ResetPointers()
+{
+	m_pPed = GamePool_Ped_GetAt(m_dwGTAId);
+	m_pEntity = (ENTITY_TYPE *)m_pPed;
+}
+
 void CPlayerPed::GiveWeapon(int iWeaponID, int iAmmo)
 {
 	if(!m_pPed) return;

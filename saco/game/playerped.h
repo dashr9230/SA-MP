@@ -16,6 +16,8 @@ class CPlayerPed : public CEntity
 {
 public:
 
+	void ResetPointers();
+
 	WORD  GetAmmo();
 
 	void GiveWeapon(int iWeaponID, int iAmmo);
