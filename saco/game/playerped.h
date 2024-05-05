@@ -35,6 +35,7 @@ public:
 	DWORD GetStateFlags();
 	void  SetStateFlags(DWORD dwStateFlags);
 	BOOL  IsDead();
+	BOOL  IsInVehicle();
 	BYTE  GetActionTrigger();
 	void  SetActionTrigger(BYTE byteTrigger);
 

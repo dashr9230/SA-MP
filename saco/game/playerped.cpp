@@ -244,6 +244,18 @@ void CPlayerPed::SetActionTrigger(BYTE byteTrigger)
 	m_pPed->dwAction = byteTrigger;
 }
 
+//-----------------------------------------------------------
+
+BOOL CPlayerPed::IsInVehicle()
+{
+	if(!m_pPed) return FALSE;
+
+	if(IN_VEHICLE(m_pPed)) {
+		return TRUE;
+	}
+	return FALSE;
+}
+
 //-----------------------------------------------------------	
 
 void CPlayerPed::GiveWeapon(int iWeaponID, int iAmmo)
