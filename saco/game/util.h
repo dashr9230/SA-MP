@@ -39,3 +39,5 @@ BUILDING_TYPE * GamePool_GetBuilding();
 DUMMY_TYPE * GamePool_GetDummy();
 OBJECT_TYPE * GamePool_GetObject();
 
+void ReplaceBuildingModel(ENTITY_TYPE *pEntity, int iModelID);
+

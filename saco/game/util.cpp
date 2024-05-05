@@ -1189,6 +1189,14 @@ OBJECT_TYPE * GamePool_GetObject()
 
 //-----------------------------------------------------------
 
+void ReplaceBuildingModel(ENTITY_TYPE *pEntity, int iModelID)
+{
+	_asm push iModelID
+	_asm mov ecx, pEntity
+	_asm mov edx, 0x403EC0
+	_asm call edx
+}
+
 //-----------------------------------------------------------
 // Translate Weapon model ID into actual weapon ID.
 
