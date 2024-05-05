@@ -1160,6 +1160,22 @@ BUILDING_TYPE * GamePool_GetBuilding()
 }
 
 //-----------------------------------------------------------
+
+DUMMY_TYPE * GamePool_GetDummy()
+{
+	DUMMY_TYPE *pDummyRet;
+
+	_asm mov eax, 0xB744A0
+	_asm mov edx, [eax]
+	_asm mov eax, [edx]
+	_asm mov pDummyRet, eax
+
+	return pDummyRet;
+}
+
+//-----------------------------------------------------------
+
+//-----------------------------------------------------------
 // Translate Weapon model ID into actual weapon ID.
 
 int __stdcall GameGetWeaponModelIDFromWeaponID(int iWeaponID)

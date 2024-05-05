@@ -128,6 +128,13 @@ typedef struct _BUILDING_TYPE
 
 //-----------------------------------------------------------
 
+typedef struct _DUMMY_TYPE
+{
+	char _gap0[56];
+} DUMMY_TYPE;
+
+//-----------------------------------------------------------
+
 #define TRAIN_PASSENGER_LOCO			537
 #define TRAIN_FREIGHT_LOCO				538
 #define TRAIN_PASSENGER					569
