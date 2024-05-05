@@ -235,6 +235,15 @@ BYTE CPlayerPed::GetActionTrigger()
 	return (BYTE)m_pPed->dwAction;
 }
 
+//-----------------------------------------------------------
+
+void CPlayerPed::SetActionTrigger(BYTE byteTrigger)
+{
+	if(!m_pPed) return;
+
+	m_pPed->dwAction = byteTrigger;
+}
+
 //-----------------------------------------------------------	
 
 void CPlayerPed::GiveWeapon(int iWeaponID, int iAmmo)

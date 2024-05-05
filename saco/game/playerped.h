@@ -36,6 +36,7 @@ public:
 	void  SetStateFlags(DWORD dwStateFlags);
 	BOOL  IsDead();
 	BYTE  GetActionTrigger();
+	void  SetActionTrigger(BYTE byteTrigger);
 
 	WORD  GetAmmo();
 
