@@ -1198,6 +1198,20 @@ void ReplaceBuildingModel(ENTITY_TYPE *pEntity, int iModelID)
 }
 
 //-----------------------------------------------------------
+
+int GetInvalidModelInfoCount()
+{
+	DWORD *dwModelInfos = (DWORD *)0xA9C068;
+	int iCount = 0;
+	for(int i = 0; i != 19000; i++)
+	{
+		if(dwModelInfos[i] == NULL)
+			iCount++;
+	}
+	return iCount;
+}
+
+//-----------------------------------------------------------
 // Translate Weapon model ID into actual weapon ID.
 
 int __stdcall GameGetWeaponModelIDFromWeaponID(int iWeaponID)
