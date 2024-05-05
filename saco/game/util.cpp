@@ -1640,6 +1640,24 @@ void CreateCameraRaster()
 
 //----------------------------------------------------
 
+void ResetLocalPad(int unk1, int unk2)
+{
+	// CPad__GetPadAt(int index)
+	_asm push 0
+	_asm mov edx, 0x53FB70
+	_asm call edx
+	_asm mov ecx, eax
+	_asm pop edx
+
+	// CPad__Reset(int unk1, int unk2)
+	_asm push unk2
+	_asm push unk1
+	_asm mov edx, 0x541A70
+	_asm call edx
+}
+
+//----------------------------------------------------
+
 BOOL IsFileOrDirectoryExists(char * szPath)
 {
 	struct _stat buf;
