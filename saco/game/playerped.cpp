@@ -136,6 +136,17 @@ BYTE CPlayerPed::GetCurrentWeapon()
 }
 
 //-----------------------------------------------------------
+
+int CPlayerPed::GetCurrentVehicleID()
+{
+	if(!m_pPed) return 0;
+
+	VEHICLE_TYPE *pVehicle = (VEHICLE_TYPE *)m_pPed->pVehicle;
+	return GamePool_Vehicle_GetIndex(pVehicle);
+}
+
+//-----------------------------------------------------------
+
 void CPlayerPed::GiveWeapon(int iWeaponID, int iAmmo)
 {
 	if(!m_pPed) return;

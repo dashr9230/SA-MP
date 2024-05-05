@@ -103,7 +103,11 @@ typedef struct _PED_TYPE
 
 	DWORD dwActiveVision; // 1280-1284
 
-	char _gap504[156];
+	char _gap504[136];
+
+	DWORD pVehicle;	// 1420-1424
+
+	char _gap590[16];
 
 	WEAPON_SLOT_TYPE WeaponSlots[13]; // 1440-1804
 

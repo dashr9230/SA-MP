@@ -25,6 +25,7 @@ public:
 	void SetCurrentAim(CAMERA_AIM *pAim);
 
 	BYTE  GetCurrentWeapon();
+	int   GetCurrentVehicleID();
 
 	WORD  GetAmmo();
 
