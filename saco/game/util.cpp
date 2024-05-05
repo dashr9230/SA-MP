@@ -1552,6 +1552,55 @@ void WriteRwRasterToFile(DWORD raster,char *filename)
 
 //----------------------------------------------------
 
+DWORD CamFrameBuffer2=0;
+DWORD CamZBuffer2=0;
+
+void SaveCameraRaster(char *filename)
+{
+	// get the frame buffer from the main RwCamera
+	//_asm mov ebx, 0xC1703C
+	//_asm mov esi, [ebx]
+	//_asm mov ebx, [esi+96]
+
+	_asm mov eax, 0xC402D8
+	_asm mov ebx, [eax]
+	_asm mov CamFrameBuffer, ebx
+
+	_asm mov esi, CamFrameBuffer
+	_asm mov eax, [esi+20]
+	_asm mov Depth, eax
+	_asm mov eax, [esi+16]
+	_asm mov Height, eax
+	_asm mov eax, [esi+12]
+	_asm mov Width, eax
+
+	if(CamFrameBuffer) {
+		WriteRwRasterToFile(CamFrameBuffer,"Raster1.bmp");
+		pChatWindow->AddDebugMessage("Width %u Height: %u Depth: %u",Width,Height,Depth);
+	}
+
+	//_asm mov eax, 0xC7C71C
+	//_asm mov ebx, [eax]
+	//_asm mov CamFrameBuffer, ebx
+
+	if(!CamFrameBuffer2) return;
+
+	_asm mov esi, CamFrameBuffer2
+	_asm mov eax, [esi+20]
+	_asm mov Depth, eax
+	_asm mov eax, [esi+16]
+	_asm mov Height, eax
+	_asm mov eax, [esi+12]
+	_asm mov Width, eax
+
+	if(CamFrameBuffer2) {
+		WriteRwRasterToFile(CamFrameBuffer2,"Raster2.bmp");
+		pChatWindow->AddDebugMessage("Width %u Height: %u Depth: %u",Width,Height,Depth);
+	}
+}
+
+//----------------------------------------------------
+
 BOOL IsFileOrDirectoryExists(char * szPath)
 {
 	struct _stat buf;
