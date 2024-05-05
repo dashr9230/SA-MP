@@ -33,6 +33,7 @@ public:
 	float GetArmour();
 	void  SetArmour(float fArmour);
 	DWORD GetStateFlags();
+	void  SetStateFlags(DWORD dwStateFlags);
 
 	WORD  GetAmmo();
 

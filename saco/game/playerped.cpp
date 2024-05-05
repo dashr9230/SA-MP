@@ -211,6 +211,14 @@ DWORD CPlayerPed::GetStateFlags()
 	return m_pPed->dwStateFlags;
 }
 
+//-----------------------------------------------------------
+
+void CPlayerPed::SetStateFlags(DWORD dwState)
+{
+	if(!m_pPed) return;
+	m_pPed->dwStateFlags = dwState;
+}
+
 //-----------------------------------------------------------	
 
 void CPlayerPed::GiveWeapon(int iWeaponID, int iAmmo)
