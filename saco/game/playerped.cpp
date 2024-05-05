@@ -181,6 +181,14 @@ float CPlayerPed::GetHealth()
 
 //-----------------------------------------------------------
 
+void CPlayerPed::SetHealth(float fHealth)
+{
+	if(!m_pPed) return;
+	m_pPed->fHealth = fHealth;
+}
+
+//-----------------------------------------------------------	
+
 void CPlayerPed::GiveWeapon(int iWeaponID, int iAmmo)
 {
 	if(!m_pPed) return;

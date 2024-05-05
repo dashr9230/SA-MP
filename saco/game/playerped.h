@@ -29,6 +29,7 @@ public:
 	int   GetCurrentVehicleID();
 	BOOL  IsOnScreen();
 	float GetHealth();
+	void  SetHealth(float fHealth);
 
 	WORD  GetAmmo();
 
