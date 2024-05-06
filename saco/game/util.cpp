@@ -1467,6 +1467,18 @@ float DegToRad(float fDegrees)
 
 //----------------------------------------------------
 
+float InvDegToRad(float fDegrees)
+{
+	if (fDegrees > 360.0f || fDegrees < 0.0f) return 0.0f;
+	if (fDegrees > 180.0f) {
+		return (float)((-(PI - (((fDegrees - 180.0f) * PI) / 180.0f))) * -1.0f);
+	} else {
+		return (float)(((fDegrees * PI) / 180.0f) * -1.0f);
+	}
+}
+
+//----------------------------------------------------
+
 bool IsNumeric(char * szString)
 {
 	while(*szString) {
