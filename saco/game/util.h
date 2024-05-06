@@ -30,6 +30,7 @@ BYTE __stdcall FindPlayerNumFromPedPtr(DWORD dwPedPtr);
 
 void GameResetRadarColors();
 
+float DegToRad(float fDegrees);
 void SaveCameraRaster(char *filename);
 
 BOOL IsFileOrDirectoryExists(char * szPath);

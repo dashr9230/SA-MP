@@ -14,6 +14,8 @@ struc_96 unnamed_1026C258[PLAYER_PED_SLOTS];
 
 #define NUM_RADAR_COLORS 1000
 
+#define PI 3.14159265f
+
 DWORD dwHudColors[NUM_RADAR_COLORS] = {
 0xFF8C13FF, // dark orange
 0xC715FFFF, // Medium violet red
@@ -1449,6 +1451,19 @@ bool unnamed_100B4B50(VECTOR *vecPos)
 
 
 
+
+//----------------------------------------------------
+
+
+float DegToRad(float fDegrees)
+{
+	if (fDegrees > 360.0f || fDegrees < 0.0f) return 0.0f;
+	if (fDegrees > 180.0f) {
+		return (float)(-(PI - (((fDegrees - 180.0f) * PI) / 180.0f)));
+	} else {
+		return (float)((fDegrees * PI) / 180.0f);
+	}
+}
 
 //----------------------------------------------------
 
