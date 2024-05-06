@@ -49,3 +49,4 @@ void ReplaceBuildingModel(ENTITY_TYPE *pEntity, int iModelID);
 int GetInvalidModelInfoCount();
 
 bool HasCollisionLoaded(VECTOR *vec);
+BOOL __stdcall IsATrainPart(ENTITY_TYPE *pEntity);

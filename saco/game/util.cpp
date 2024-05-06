@@ -1471,6 +1471,23 @@ bool HasCollisionLoaded(VECTOR *vec)
 
 //----------------------------------------------------
 
+DWORD dwEntityModelIndex;
+
+BOOL __stdcall IsATrainPart(ENTITY_TYPE *pEntity)
+{
+	int nModel;
+
+	if(pEntity) {
+		nModel = pEntity->nModelIndex;
+		dwEntityModelIndex = pEntity->nModelIndex;
+		if(nModel == TRAIN_FREIGHT_LOCO) return TRUE;
+		if(nModel == TRAIN_FREIGHT) return TRUE;
+		if(nModel == TRAIN_PASSENGER_LOCO) return TRUE;
+		if(nModel == TRAIN_PASSENGER) return TRUE;
+		if(nModel == TRAIN_TRAM) return TRUE;
+	}
+	return FALSE;
+}
 
 float DegToRad(float fDegrees)
 {
