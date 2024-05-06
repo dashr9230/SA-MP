@@ -1454,6 +1454,23 @@ bool unnamed_100B4B50(VECTOR *vecPos)
 
 //----------------------------------------------------
 
+bool HasCollisionLoaded(VECTOR *vec)
+{
+	bool bResult = false;
+
+	_asm push 0
+	_asm push vec
+	_asm mov edx, 0x410CE0
+	_asm call edx
+	_asm mov bResult, al
+	_asm pop edx
+	_asm pop edx
+
+	return bResult;
+}
+
+//----------------------------------------------------
+
 
 float DegToRad(float fDegrees)
 {

@@ -47,3 +47,5 @@ OBJECT_TYPE * GamePool_GetObject();
 
 void ReplaceBuildingModel(ENTITY_TYPE *pEntity, int iModelID);
 int GetInvalidModelInfoCount();
+
+bool HasCollisionLoaded(VECTOR *vec);
