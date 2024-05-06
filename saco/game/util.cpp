@@ -1496,6 +1496,14 @@ float FloatDifference(float f1, float f2)
 	return f1 - f2;
 }
 
+//-----------------------------------------------------------
+
+float FloatOffset(float f1, float f2)
+{
+	if(f1 >= f2) return f1 - f2;
+	else return (f2 - f1);
+}
+
 float DegToRad(float fDegrees)
 {
 	if (fDegrees > 360.0f || fDegrees < 0.0f) return 0.0f;
