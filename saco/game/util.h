@@ -8,6 +8,7 @@ void ProcessLineOfSight(VECTOR *vecOrigin, VECTOR *vecLine, VECTOR *colPoint,
 
 float FloatDifference(float f1, float f2);
 float FloatOffset(float f1, float f2);
+float NormalizeAngle(float fAngle);
 
 void __stdcall SetRadarColor(int nIndex,DWORD dwColor);
 

@@ -1504,6 +1504,15 @@ float FloatOffset(float f1, float f2)
 	else return (f2 - f1);
 }
 
+//-----------------------------------------------------------
+
+float NormalizeAngle(float fAngle)
+{
+	if(fAngle > 180.0f) fAngle -= 360.0f;
+	if(fAngle < -180.0f) fAngle += 360.0f;
+	return fAngle;
+}
+
 float DegToRad(float fDegrees)
 {
 	if (fDegrees > 360.0f || fDegrees < 0.0f) return 0.0f;
