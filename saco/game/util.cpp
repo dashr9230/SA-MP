@@ -1489,6 +1489,13 @@ BOOL __stdcall IsATrainPart(ENTITY_TYPE *pEntity)
 	return FALSE;
 }
 
+//-----------------------------------------------------------
+
+float FloatDifference(float f1, float f2)
+{
+	return f1 - f2;
+}
+
 float DegToRad(float fDegrees)
 {
 	if (fDegrees > 360.0f || fDegrees < 0.0f) return 0.0f;

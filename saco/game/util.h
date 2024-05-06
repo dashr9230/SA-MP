@@ -6,6 +6,8 @@ void ProcessLineOfSight(VECTOR *vecOrigin, VECTOR *vecLine, VECTOR *colPoint,
 		int bCheckObjects, int bCheckDummies, int bSeeThroughStuff,
 		int  bIgnoreSomeObjectsForCamera, int bUnk1);
 
+float FloatDifference(float f1, float f2);
+
 void __stdcall SetRadarColor(int nIndex,DWORD dwColor);
 
 void __stdcall WorldRemoveEntity(DWORD *dwEnt);
