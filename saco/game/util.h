@@ -33,6 +33,7 @@ DWORD __stdcall GetPlayerPedPtrRecord(BYTE bytePlayer);
 BYTE __stdcall FindPlayerNumFromPedPtr(DWORD dwPedPtr);
 float __stdcall SquaredDistanceBetweenHorizontalPoints(float x1, float y1, float x2, float y2);
 float DistanceBetweenHorizontalPoints(float x1, float y1, float x2, float y2);
+float DistanceBetweenPoints(float x1, float y1, float z1, float x2, float y2, float z2);
 
 void GameResetRadarColors();
 

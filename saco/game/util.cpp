@@ -1539,6 +1539,19 @@ float __stdcall DistanceBetweenHorizontalPoints(float x1, float y1, float x2, fl
 
 //-----------------------------------------------------------
 
+float __stdcall DistanceBetweenPoints(float x1, float y1, float z1, float x2, float y2, float z2)
+{
+	float fSX,fSY,fSZ;
+
+	fSX = (x1 - x2) * (x1 - x2);
+	fSY = (y1 - y2) * (y1 - y2);
+	fSZ = (z1 - z2) * (z1 - z2);
+
+	return (float)sqrt(fSX + fSY + fSZ);
+}
+
+//----------------------------------------------------
+
 float DegToRad(float fDegrees)
 {
 	if (fDegrees > 360.0f || fDegrees < 0.0f) return 0.0f;
