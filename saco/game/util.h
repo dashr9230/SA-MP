@@ -6,6 +6,8 @@ void ProcessLineOfSight(VECTOR *vecOrigin, VECTOR *vecLine, VECTOR *colPoint,
 		int bCheckObjects, int bCheckDummies, int bSeeThroughStuff,
 		int  bIgnoreSomeObjectsForCamera, int bUnk1);
 
+float GetNormalisation(VECTOR *vec);
+
 float FloatDifference(float f1, float f2);
 float FloatOffset(float f1, float f2);
 float NormalizeAngle(float fAngle);

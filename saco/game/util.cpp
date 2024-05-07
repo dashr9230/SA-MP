@@ -1587,6 +1587,13 @@ void _VectorNormalise(VECTOR *vec)
 
 //----------------------------------------------------
 
+float GetNormalisation(VECTOR *vec)
+{
+	return ((vec->X * vec->X) + (vec->Y * vec->Y) + (vec->Z * vec->Z));
+}
+
+//----------------------------------------------------
+
 float DegToRad(float fDegrees)
 {
 	if (fDegrees > 360.0f || fDegrees < 0.0f) return 0.0f;
