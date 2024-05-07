@@ -37,6 +37,8 @@ float DistanceBetweenPoints(float x1, float y1, float z1, float x2, float y2, fl
 float __stdcall SquaredDistanceBetweenPoints(float x1, float y1, float z1, float x2, float y2, float z2);
 float __stdcall SquaredDistanceBetweenPoints(VECTOR *vec1, VECTOR *vec2);
 
+void __stdcall _VectorNormalise(VECTOR *vec);
+
 void GameResetRadarColors();
 
 float DegToRad(float fDegrees);

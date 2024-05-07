@@ -1578,6 +1578,15 @@ float __stdcall SquaredDistanceBetweenPoints(VECTOR *vec1, VECTOR *vec2)
 
 //----------------------------------------------------
 
+void _VectorNormalise(VECTOR *vec)
+{
+	_asm mov ecx, vec
+	_asm mov edx, 0x59C910
+	_asm call edx
+}
+
+//----------------------------------------------------
+
 float DegToRad(float fDegrees)
 {
 	if (fDegrees > 360.0f || fDegrees < 0.0f) return 0.0f;
