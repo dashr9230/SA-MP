@@ -1513,6 +1513,20 @@ float NormalizeAngle(float fAngle)
 	return fAngle;
 }
 
+//-----------------------------------------------------------
+
+float __stdcall SquaredDistanceBetweenHorizontalPoints(float x1, float y1, float x2, float y2)
+{
+	float fSX,fSY;
+
+	fSX = (x1 - x2) * (x1 - x2);
+	fSY = (y1 - y2) * (y1 - y2);
+
+	return fSX + fSY;
+}
+
+//-----------------------------------------------------------
+
 float DegToRad(float fDegrees)
 {
 	if (fDegrees > 360.0f || fDegrees < 0.0f) return 0.0f;
