@@ -261,6 +261,10 @@ void CNetGame::UpdateNetwork()
 			Packet_ConnectionBanned(pkt);
 			break;
 
+		case ID_DISCONNECTION_NOTIFICATION:
+			Packet_DisconnectionNotification(pkt);
+			break;
+
 		case ID_MODIFIED_PACKET:
 			Packet_ModifiedPacket(pkt);
 			break;
@@ -339,6 +343,15 @@ void CNetGame::Packet_TrailerSync(Packet *p)
 void CNetGame::Packet_ConnectionBanned(Packet* packet)
 {
 	//OutputDebugString("BOT: You're banned from the server.");
+	exit(1);
+}
+
+//----------------------------------------------------
+
+void CNetGame::Packet_DisconnectionNotification(Packet* packet)
+{
+	//OutputDebugString("BOT: Disconnected.");
+	m_pRakClient->Disconnect(0);
 	exit(1);
 }
 
