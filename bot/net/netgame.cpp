@@ -257,6 +257,10 @@ void CNetGame::UpdateNetwork()
 
 		switch(packetIdentifier)
 		{
+		case ID_CONNECTION_BANNED:
+			Packet_ConnectionBanned(pkt);
+			break;
+
 		case ID_MODIFIED_PACKET:
 			Packet_ModifiedPacket(pkt);
 			break;
@@ -328,6 +332,14 @@ void CNetGame::Packet_TrailerSync(Packet *p)
 	bsTrailerSync.Read(bytePacketID);
 	bsTrailerSync.Read(bytePlayerID);
 	bsTrailerSync.Read((PCHAR)&trSync, sizeof(TRAILER_SYNC_DATA));
+}
+
+//----------------------------------------------------
+
+void CNetGame::Packet_ConnectionBanned(Packet* packet)
+{
+	//OutputDebugString("BOT: You're banned from the server.");
+	exit(1);
 }
 
 //----------------------------------------------------
