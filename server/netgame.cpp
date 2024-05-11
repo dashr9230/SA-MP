@@ -6,6 +6,22 @@ int CanFileBeOpenedForReading(char * filename);
 
 char szGameModeFile[256];
 
+//----------------------------------------------------
+
+// This is from RakNet sources.
+BYTE GetPacketID(Packet *p) 
+{
+	if (p==0) return 255;
+
+	if ((unsigned char)p->data[0] == ID_TIMESTAMP) {
+		assert(p->length > sizeof(unsigned char) + sizeof(unsigned long));
+		return (unsigned char) p->data[sizeof(unsigned char) + sizeof(unsigned long)];
+	}
+	else return (unsigned char) p->data[0];
+}
+
+//----------------------------------------------------
+
 CNetGame::CNetGame()
 {
 	m_bAllowWeapons = FALSE;
