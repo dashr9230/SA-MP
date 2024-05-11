@@ -22,6 +22,17 @@ BYTE GetPacketID(Packet *p)
 
 //----------------------------------------------------
 
+bool HasTimestamps(Packet *p)
+{
+	if (p==0) return 0;
+
+	if ((unsigned char)p->data[0] == ID_TIMESTAMP)
+		return true;
+	return false;
+}
+
+//----------------------------------------------------
+
 CNetGame::CNetGame()
 {
 	m_bAllowWeapons = FALSE;
