@@ -87,6 +87,7 @@ public:
 	CFilterScripts * GetFilterScripts() { return m_pFilterScripts; };
 	CActorPool * GetActorPool() { return m_pActorPool; };
 
+	void MasterServerAnnounce(float fElapsedTime);
 	char *GetNextScriptFile();
 	void LoadAllFilterscripts();
 

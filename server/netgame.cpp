@@ -552,6 +552,42 @@ float GetElapsedTime()
 
 //----------------------------------------------------
 
+void CNetGame::MasterServerAnnounce(float fElapsedTime)
+{
+	static float fRemainingTime = 0.0f;
+	fRemainingTime -= fElapsedTime;
+	char szPort[32];
+
+	if(fRemainingTime <= 0.0f)
+	{
+		fRemainingTime = 300.0f; // 300secs = 5mins.
+		sprintf(szPort,"%d",pConsole->GetIntVariable("port"));
+
+		CHAR *szBindAddress = pConsole->GetStringVariable("bind");
+		if (szBindAddress && szBindAddress[0] == 0)
+			szBindAddress = NULL;
+
+#ifdef WIN32
+		char szParams[256];
+		sprintf(szParams, "%s", szPort);
+		ShellExecute(0,"open","announce.exe",szParams,NULL,SW_HIDE);
+#else
+		char szCurrentDir[256];
+		char szAnnounceCmd[256];
+		getcwd(szCurrentDir,256);
+		if(szBindAddress)
+			sprintf(szAnnounceCmd,"%s/announce %s %s &",szCurrentDir,szPort,szBindAddress);
+		else
+			sprintf(szAnnounceCmd,"%s/announce %s &",szCurrentDir,szPort);
+		//printf("Running announce. %s",szAnnounceCmd);
+		system(szAnnounceCmd);
+#endif
+
+	}
+}
+
+//----------------------------------------------------
+
 void CNetGame::Process()
 {
 	float fElapsedTime = GetElapsedTime();
