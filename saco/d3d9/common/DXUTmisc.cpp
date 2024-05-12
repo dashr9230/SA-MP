@@ -10,6 +10,17 @@
 #undef max // use __max instead
 
 //--------------------------------------------------------------------------------------
+// Global/Static Members
+//--------------------------------------------------------------------------------------
+CDXUTTimer* DXUTGetGlobalTimer()
+{
+    // Using an accessor function gives control of the construction order
+    static CDXUTTimer timer;
+    return &timer;
+}
+
+
+//--------------------------------------------------------------------------------------
 CDXUTTimer::CDXUTTimer()
 {
     m_bUsingQPF         = false;
