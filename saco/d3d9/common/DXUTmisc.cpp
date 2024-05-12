@@ -213,3 +213,79 @@ HRESULT DXUTSetMediaSearchPath( LPCTSTR strPath )
 }
 
 
+//--------------------------------------------------------------------------------------
+// Search a set of typical directories
+//--------------------------------------------------------------------------------------
+bool DXUTFindMediaSearchTypicalDirs( TCHAR* strSearchPath, int cchSearch, LPCTSTR strLeaf, 
+                                     TCHAR* strExePath, TCHAR* strExeName )
+{
+    // Typical directories:
+    //      .\
+    //      ..\
+    //      ..\..\
+    //      %EXE_DIR%\
+    //      %EXE_DIR%\..\
+    //      %EXE_DIR%\..\..\
+    //      %EXE_DIR%\..\%EXE_NAME%
+    //      %EXE_DIR%\..\..\%EXE_NAME%
+    //      DXSDK media path
+
+    // Search in .\  
+    StringCchCopy( strSearchPath, cchSearch, strLeaf ); 
+    if( GetFileAttributes( strSearchPath ) != 0xFFFFFFFF )
+        return true;
+
+    // Search in ..\  
+    StringCchPrintf( strSearchPath, cchSearch, "..\\%s", strLeaf ); 
+    if( GetFileAttributes( strSearchPath ) != 0xFFFFFFFF )
+        return true;
+
+    // Search in ..\..\ 
+    StringCchPrintf( strSearchPath, cchSearch, "..\\..\\%s", strLeaf ); 
+    if( GetFileAttributes( strSearchPath ) != 0xFFFFFFFF )
+        return true;
+
+    // Search in ..\..\ 
+    StringCchPrintf( strSearchPath, cchSearch, "..\\..\\%s", strLeaf ); 
+    if( GetFileAttributes( strSearchPath ) != 0xFFFFFFFF )
+        return true;
+
+    // Search in the %EXE_DIR%\ 
+    StringCchPrintf( strSearchPath, cchSearch, "%s\\%s", strExePath, strLeaf ); 
+    if( GetFileAttributes( strSearchPath ) != 0xFFFFFFFF )
+        return true;
+
+    // Search in the %EXE_DIR%\..\ 
+    StringCchPrintf( strSearchPath, cchSearch, "%s\\..\\%s", strExePath, strLeaf ); 
+    if( GetFileAttributes( strSearchPath ) != 0xFFFFFFFF )
+        return true;
+
+    // Search in the %EXE_DIR%\..\..\ 
+    StringCchPrintf( strSearchPath, cchSearch, "%s\\..\\..\\%s", strExePath, strLeaf ); 
+    if( GetFileAttributes( strSearchPath ) != 0xFFFFFFFF )
+        return true;
+
+    // Search in "%EXE_DIR%\..\%EXE_NAME%\".  This matches the DirectX SDK layout
+    StringCchPrintf( strSearchPath, cchSearch, "%s\\..\\%s\\%s", strExePath, strExeName, strLeaf ); 
+    if( GetFileAttributes( strSearchPath ) != 0xFFFFFFFF )
+        return true;
+
+    // Search in "%EXE_DIR%\..\..\%EXE_NAME%\".  This matches the DirectX SDK layout
+    StringCchPrintf( strSearchPath, cchSearch, "%s\\..\\..\\%s\\%s", strExePath, strExeName, strLeaf ); 
+    if( GetFileAttributes( strSearchPath ) != 0xFFFFFFFF )
+        return true;
+
+    // Search in media search dir 
+    TCHAR* s_strSearchPath = DXUTMediaSearchPath();
+    if( s_strSearchPath[0] != 0 )
+    {
+        StringCchPrintf( strSearchPath, cchSearch, "%s%s", s_strSearchPath, strLeaf ); 
+        if( GetFileAttributes( strSearchPath ) != 0xFFFFFFFF )
+            return true;
+    }
+
+    return false;
+}
+
+
+
