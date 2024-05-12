@@ -572,6 +572,22 @@
 			</Filter>
 		</Filter>
 		<Filter
+			Name="DXUT"
+			Filter="">
+			<File
+				RelativePath=".\d3d9\common\dxstdafx.cpp">
+			</File>
+			<File
+				RelativePath=".\d3d9\common\dxstdafx.h">
+			</File>
+			<File
+				RelativePath=".\d3d9\common\DXUTmisc.cpp">
+			</File>
+			<File
+				RelativePath=".\d3d9\common\DXUTmisc.h">
+			</File>
+		</Filter>
+		<Filter
 			Name="temp"
 			Filter="">
 			<File
