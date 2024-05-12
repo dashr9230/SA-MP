@@ -289,3 +289,35 @@ bool DXUTFindMediaSearchTypicalDirs( TCHAR* strSearchPath, int cchSearch, LPCTST
 
 
 
+//--------------------------------------------------------------------------------------
+// Search parent directories starting at strStartAt, and appending strLeafName
+// at each parent directory.  It stops at the root directory.
+//--------------------------------------------------------------------------------------
+bool DXUTFindMediaSearchParentDirs( TCHAR* strSearchPath, int cchSearch, TCHAR* strStartAt, TCHAR* strLeafName )
+{
+    TCHAR strFullPath[MAX_PATH] = {0};
+    TCHAR strFullFileName[MAX_PATH] = {0};
+    TCHAR strSearch[MAX_PATH] = {0};
+    TCHAR* strFilePart = NULL;
+
+    GetFullPathName( strStartAt, MAX_PATH, strFullPath, &strFilePart );
+    if( strFilePart == NULL )
+        return false;
+   
+    while( strFilePart != NULL && *strFilePart != '\0' )
+    {
+        StringCchPrintf( strFullFileName, MAX_PATH, "%s\\%s", strFullPath, strLeafName ); 
+        if( GetFileAttributes( strFullFileName ) != 0xFFFFFFFF )
+        {
+            StringCchCopy( strSearchPath, cchSearch, strFullFileName ); 
+            return true;
+        }
+
+        StringCchPrintf( strSearch, MAX_PATH, "%s\\..", strFullPath ); 
+        GetFullPathName( strSearch, MAX_PATH, strFullPath, &strFilePart );
+    }
+
+    return false;
+}
+
+
