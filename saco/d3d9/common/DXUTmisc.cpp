@@ -173,3 +173,13 @@ bool CDXUTTimer::IsStopped()
 }
 
 
+//--------------------------------------------------------------------------------------
+// Returns pointer to static media search buffer
+//--------------------------------------------------------------------------------------
+TCHAR* DXUTMediaSearchPath()
+{
+    static TCHAR s_strMediaSearchPath[MAX_PATH] = {0};
+    return s_strMediaSearchPath;
+
+}   
+
