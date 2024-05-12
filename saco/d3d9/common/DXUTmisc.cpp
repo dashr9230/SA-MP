@@ -190,3 +190,26 @@ LPCTSTR DXUTGetMediaSearchPath()
 }
 
 
+//--------------------------------------------------------------------------------------
+HRESULT DXUTSetMediaSearchPath( LPCTSTR strPath )
+{
+    HRESULT hr;
+
+    TCHAR* s_strSearchPath = DXUTMediaSearchPath();
+
+    hr = StringCchCopy( s_strSearchPath, MAX_PATH, strPath );   
+    if( SUCCEEDED(hr) )
+    {
+        // append slash if needed
+        size_t ch;
+        hr = StringCchLength( s_strSearchPath, MAX_PATH, &ch );
+        if( SUCCEEDED(hr) && s_strSearchPath[ch-1] != L'\\')
+        {
+            hr = StringCchCat( s_strSearchPath, MAX_PATH, "\\" );
+        }
+    }
+
+    return hr;
+}
+
+

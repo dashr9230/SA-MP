@@ -21,6 +21,10 @@
 #include <stdio.h>
 #include <multimon.h> 
 
+
+#define STRSAFE_NO_DEPRECATE
+#include <strsafe.h>
+
 #include "DXUTmisc.h"
 
 #endif // !defined(DXSDK_STDAFX_H)
