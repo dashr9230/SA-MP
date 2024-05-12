@@ -183,3 +183,10 @@ TCHAR* DXUTMediaSearchPath()
 
 }   
 
+//--------------------------------------------------------------------------------------
+LPCTSTR DXUTGetMediaSearchPath()
+{
+    return DXUTMediaSearchPath();
+}
+
+
