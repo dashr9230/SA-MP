@@ -21,6 +21,11 @@
 #include <stdio.h>
 #include <multimon.h> 
 
+// Direct3D includes
+#include <d3d9.h>
+#include <d3dx9.h>
+#include <dxerr9.h>
+
 
 #define STRSAFE_NO_DEPRECATE
 #include <strsafe.h>
