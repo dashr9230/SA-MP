@@ -581,6 +581,12 @@
 				RelativePath=".\d3d9\common\dxstdafx.h">
 			</File>
 			<File
+				RelativePath=".\d3d9\common\DXUTgui.cpp">
+			</File>
+			<File
+				RelativePath=".\d3d9\common\DXUTgui.h">
+			</File>
+			<File
 				RelativePath=".\d3d9\common\DXUTmisc.cpp">
 			</File>
 			<File

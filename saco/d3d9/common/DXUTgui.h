@@ -35,4 +35,45 @@ struct DXUTBlendColor
 };
 
 
+//--------------------------------------------------------------------------------------
+// Structs for shared resources
+//--------------------------------------------------------------------------------------
+struct DXUTTextureNode
+{
+    TCHAR strFilename[MAX_PATH];
+    IDirect3DTexture9* pTexture;
+    DWORD dwWidth;
+    DWORD dwHeight;
+};
+
+struct DXUTFontNode
+{
+    TCHAR strFace[MAX_PATH];
+    ID3DXFont* pFont;
+    LONG  nHeight;
+    LONG  nWeight;
+};
+
+
+//-----------------------------------------------------------------------------
+// Manages shared resources of dialogs
+//-----------------------------------------------------------------------------
+class CDXUTDialogResourceManager
+{
+public:
+    CDXUTDialogResourceManager();
+
+    // Shared between all dialogs
+    IDirect3DStateBlock9* m_pStateBlock;
+    ID3DXSprite*          m_pSprite;          // Sprite used for drawing
+
+protected:
+    CGrowableArray< DXUTTextureNode* > m_TextureCache;   // Shared textures
+    CGrowableArray< DXUTFontNode* > m_FontCache;         // Shared fonts
+    
+    IDirect3DDevice9* m_pd3dDevice;
+
+};
+
+
 #endif // DXUT_GUI_H

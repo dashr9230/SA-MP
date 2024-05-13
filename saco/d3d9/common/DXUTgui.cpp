@@ -11,6 +11,15 @@
 #undef max // use __max instead
 
 //--------------------------------------------------------------------------------------
+CDXUTDialogResourceManager::CDXUTDialogResourceManager()
+{
+    m_pd3dDevice = NULL;
+    m_pStateBlock = NULL;
+    m_pSprite = NULL;
+}
+
+
+//--------------------------------------------------------------------------------------
 void DXUTBlendColor::Init( D3DCOLOR defaultColor, D3DCOLOR disabledColor, D3DCOLOR hiddenColor )
 {
     for( int i=0; i < MAX_CONTROL_STATES; i++ )
