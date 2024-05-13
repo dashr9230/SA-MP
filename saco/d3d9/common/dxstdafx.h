@@ -31,5 +31,6 @@
 #include <strsafe.h>
 
 #include "DXUTmisc.h"
+#include "DXUTgui.h"
 
 #endif // !defined(DXSDK_STDAFX_H)
