@@ -35,6 +35,23 @@ struct DXUTBlendColor
 };
 
 
+//-----------------------------------------------------------------------------
+// Contains all the display tweakables for a sub-control
+//-----------------------------------------------------------------------------
+class CDXUTElement
+{
+public:
+    UINT iTexture;          // Index of the texture for this Element 
+    UINT iFont;             // Index of the font for this Element
+    DWORD dwTextFormat;     // The format argument to DrawText 
+
+    RECT rcTexture;         // Bounding rect of this element on the composite texture
+    
+    DXUTBlendColor TextureColor;
+    DXUTBlendColor FontColor;
+};
+
+
 //--------------------------------------------------------------------------------------
 // Structs for shared resources
 //--------------------------------------------------------------------------------------
