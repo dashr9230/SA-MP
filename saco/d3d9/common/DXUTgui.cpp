@@ -84,6 +84,40 @@ void CDXUTDialogResourceManager::OnDestroyDevice()
 }
 
 
+
+
+
+//--------------------------------------------------------------------------------------
+// CDXUTControl class
+//--------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------
+// MATCH
+CDXUTControl::CDXUTControl( CDXUTDialog *pDialog )
+{
+    m_Type = DXUT_CONTROL_BUTTON;
+    m_pDialog = pDialog;
+    m_ID = 0;
+    m_Index = 0;
+    m_pUserData = NULL;
+
+    m_bEnabled = true;
+    m_bVisible = true;
+    m_bMouseOver = false;
+    m_bHasFocus = false;
+    m_bIsDefault = false;
+
+    m_pDialog = NULL;
+
+    m_x = 0;
+    m_y = 0;
+    m_width = 0;
+    m_height = 0;
+
+   ZeroMemory( &m_rcBoundingBox, sizeof( m_rcBoundingBox ) );
+}
+
+
 //--------------------------------------------------------------------------------------
 void DXUTBlendColor::Init( D3DCOLOR defaultColor, D3DCOLOR disabledColor, D3DCOLOR hiddenColor )
 {
