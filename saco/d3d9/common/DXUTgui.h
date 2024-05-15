@@ -64,6 +64,7 @@ public:
     CDXUTDialogResourceManager();
 
     HRESULT     OnResetDevice();
+    void        OnLostDevice();
 
     // Shared between all dialogs
     IDirect3DStateBlock9* m_pStateBlock;

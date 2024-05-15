@@ -40,6 +40,25 @@ HRESULT CDXUTDialogResourceManager::OnResetDevice()
     return S_OK;
 }
 
+
+//--------------------------------------------------------------------------------------
+void CDXUTDialogResourceManager::OnLostDevice()
+{
+    for( int i=0; i < m_FontCache.GetSize(); i++ )
+    {
+        DXUTFontNode* pFontNode = m_FontCache.GetAt( i );
+
+        if( pFontNode->pFont )
+            pFontNode->pFont->OnLostDevice();
+    }
+
+    if( m_pSprite )
+        m_pSprite->OnLostDevice();
+
+    SAFE_RELEASE( m_pStateBlock  );
+}
+
+    
 //--------------------------------------------------------------------------------------
 void DXUTBlendColor::Init( D3DCOLOR defaultColor, D3DCOLOR disabledColor, D3DCOLOR hiddenColor )
 {
