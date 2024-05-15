@@ -63,6 +63,8 @@ class CDXUTDialogResourceManager
 public:
     CDXUTDialogResourceManager();
 
+    HRESULT     OnResetDevice();
+
     // Shared between all dialogs
     IDirect3DStateBlock9* m_pStateBlock;
     ID3DXSprite*          m_pSprite;          // Sprite used for drawing
