@@ -60,6 +60,31 @@ void CDXUTDialogResourceManager::OnLostDevice()
 
     
 //--------------------------------------------------------------------------------------
+void CDXUTDialogResourceManager::OnDestroyDevice()
+{
+    int i=0; 
+
+    //m_pd3dDevice = NULL;
+
+    // Release the resources but don't clear the cache, as these will need to be
+    // recreated if the device is recreated
+    for( i=0; i < m_FontCache.GetSize(); i++ )
+    {
+        DXUTFontNode* pFontNode = m_FontCache.GetAt( i );
+        SAFE_RELEASE( pFontNode->pFont );
+    }
+    
+    for( i=0; i < m_TextureCache.GetSize(); i++ )
+    {
+        DXUTTextureNode* pTextureNode = m_TextureCache.GetAt( i );
+        SAFE_RELEASE( pTextureNode->pTexture );
+    }
+
+    SAFE_RELEASE( m_pSprite );
+}
+
+
+//--------------------------------------------------------------------------------------
 void DXUTBlendColor::Init( D3DCOLOR defaultColor, D3DCOLOR disabledColor, D3DCOLOR hiddenColor )
 {
     for( int i=0; i < MAX_CONTROL_STATES; i++ )
