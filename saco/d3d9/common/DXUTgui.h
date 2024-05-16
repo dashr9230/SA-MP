@@ -146,4 +146,19 @@ protected:
 };
 
 
+//-----------------------------------------------------------------------------
+// Static control
+//-----------------------------------------------------------------------------
+class CDXUTStatic : public CDXUTControl
+{
+public:
+
+    HRESULT GetTextCopy( PCHAR strDest, UINT bufferCount );
+
+
+protected:
+    TCHAR m_strText[MAX_PATH];      // Window text  
+};
+
+
 #endif // DXUT_GUI_H

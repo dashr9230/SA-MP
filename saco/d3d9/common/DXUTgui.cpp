@@ -119,6 +119,25 @@ CDXUTControl::CDXUTControl( CDXUTDialog *pDialog )
 
 
 //--------------------------------------------------------------------------------------
+// CDXUTStatic class
+//--------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------
+HRESULT CDXUTStatic::GetTextCopy( PCHAR strDest, UINT bufferCount )
+{
+    // Validate incoming parameters
+    if( strDest == NULL || bufferCount == 0 )
+    {
+        return E_INVALIDARG;
+    }
+
+    // Copy the window text
+    StringCchCopy( strDest, bufferCount, m_strText );
+
+    return S_OK;
+}
+
+//--------------------------------------------------------------------------------------
 void DXUTBlendColor::Init( D3DCOLOR defaultColor, D3DCOLOR disabledColor, D3DCOLOR hiddenColor )
 {
     for( int i=0; i < MAX_CONTROL_STATES; i++ )
