@@ -119,6 +119,41 @@ class CDXUTControl
 public:
     CDXUTControl( CDXUTDialog *pDialog = NULL );
 
+    virtual HRESULT OnInit() { return S_OK; }
+    virtual void Render( IDirect3DDevice9* pd3dDevice, float fElapsedTime ) { };
+
+    // Windows message handler
+    virtual bool MsgProc( UINT uMsg, WPARAM wParam, LPARAM lParam ) { return false; }
+
+    virtual bool HandleKeyboard( UINT uMsg, WPARAM wParam, LPARAM lParam ) { return false; }
+    virtual bool HandleMouse( UINT uMsg, POINT pt, WPARAM wParam, LPARAM lParam ) { return false; }
+
+    virtual bool CanHaveFocus() { return false; }
+    virtual void OnFocusIn() { m_bHasFocus = true; }
+    virtual void OnFocusOut() { m_bHasFocus = false; }
+    virtual void OnMouseEnter() { m_bMouseOver = true; }
+    virtual void OnMouseLeave() { m_bMouseOver = false; }
+    virtual void OnHotkey() {}
+
+    virtual BOOL ContainsPoint( POINT pt ) { return PtInRect( &m_rcBoundingBox, pt ); }
+
+    virtual void SetEnabled( bool bEnabled ) { m_bEnabled = bEnabled; }
+    virtual bool GetEnabled() { return m_bEnabled; }
+    virtual void SetVisible( bool bVisible ) { m_bVisible = bVisible; }
+    virtual bool GetVisible() { return m_bVisible; }
+
+    UINT GetType() const { return m_Type; }
+
+    int  GetID() const { return m_ID; }
+    void SetID( int ID ) { m_ID = ID; }
+
+    void SetHotkey( UINT nHotkey ) { m_nHotkey = nHotkey; }
+    UINT GetHotkey() { return m_nHotkey; }
+
+    void SetUserData( void *pUserData ) { m_pUserData = pUserData; }
+    void *GetUserData() const { return m_pUserData; }
+
+
     bool m_bVisible;                // Shown/hidden flag
     bool m_bMouseOver;              // Mouse pointer is above control
     bool m_bHasFocus;               // Control has input focus
