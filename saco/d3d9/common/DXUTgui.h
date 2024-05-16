@@ -9,6 +9,16 @@
 #ifndef DXUT_GUI_H
 #define DXUT_GUI_H
 
+//--------------------------------------------------------------------------------------
+// Forward declarations
+//--------------------------------------------------------------------------------------
+class CDXUTDialogResourceManager;
+class CDXUTControl;
+class CDXUTStatic;
+class CDXUTElement;
+struct DXUTElementHolder;
+typedef VOID (CALLBACK *PCALLBACKDXUTGUIEVENT) ( UINT nEvent, int nControlID, CDXUTControl* pControl, void* pUserContext );
+
 
 //--------------------------------------------------------------------------------------
 // Enums for pre-defined control types
@@ -63,6 +73,61 @@ public:
     
     DXUTBlendColor TextureColor;
     DXUTBlendColor FontColor;
+};
+
+
+//-----------------------------------------------------------------------------
+// All controls must be assigned to a dialog, which handles
+// input and rendering for the controls.
+//-----------------------------------------------------------------------------
+class CDXUTDialog
+{
+public:
+    CDXUTDialog();
+
+    bool m_bNonUserEvents;
+    bool m_bKeyboardInput;
+    bool m_bMouseInput;
+
+private:
+    int m_nDefaultControlID;
+
+    static double s_fTimeRefresh;
+    double m_fTimeLastRefresh;
+
+
+    CDXUTControl* m_pControlMouseOver;           // The control which is hovered over
+
+    bool m_bVisible;
+    bool m_bCaption;
+    bool m_bMinimized;
+    TCHAR m_wszCaption[256];
+
+    int m_x;
+    int m_y;
+    int m_width;
+    int m_height;
+    int m_nCaptionHeight;
+
+    D3DCOLOR m_colorTopLeft;
+    D3DCOLOR m_colorTopRight;
+    D3DCOLOR m_colorBottomLeft;
+    D3DCOLOR m_colorBottomRight;
+
+    CDXUTDialogResourceManager* m_pManager;
+    PCALLBACKDXUTGUIEVENT m_pCallbackEvent;
+    void* m_pCallbackEventUserContext;
+
+    CGrowableArray< int > m_Textures;   // Index into m_TextureCache;
+    CGrowableArray< int > m_Fonts;      // Index into m_FontCache;
+
+    CGrowableArray< CDXUTControl* > m_Controls;
+    CGrowableArray< DXUTElementHolder* > m_DefaultElements;
+
+    CDXUTElement m_CapElement;  // Element for the caption
+
+    CDXUTDialog* m_pNextDialog;
+    CDXUTDialog* m_pPrevDialog;
 };
 
 
@@ -178,6 +243,18 @@ protected:
     bool m_bEnabled;           // Enabled/disabled flag
     
     RECT m_rcBoundingBox;      // Rectangle defining the active region of the control
+};
+
+
+//-----------------------------------------------------------------------------
+// Contains all the display information for a given control type
+//-----------------------------------------------------------------------------
+struct DXUTElementHolder
+{
+    UINT nControlType;
+    UINT iElement;
+
+    CDXUTElement Element;
 };
 
 

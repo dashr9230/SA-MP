@@ -11,6 +11,46 @@
 #undef max // use __max instead
 
 //--------------------------------------------------------------------------------------
+// CDXUTDialog class
+//--------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------
+CDXUTDialog::CDXUTDialog()
+{
+    m_x = 0;
+    m_y = 0;
+    m_width = 0;
+    m_height = 0;
+
+    m_pManager = NULL;
+    m_bVisible = true;
+    m_bCaption = false;
+    m_bMinimized = false;
+    m_wszCaption[0] = L'\0';
+    m_nCaptionHeight = 18;
+
+    m_colorTopLeft = 0;
+    m_colorTopRight = 0;
+    m_colorBottomLeft = 0;
+    m_colorBottomRight = 0;
+
+    m_pCallbackEvent = NULL;
+    m_pCallbackEventUserContext = NULL;
+
+    m_fTimeLastRefresh = 0;
+
+    m_pControlMouseOver = NULL;
+
+    m_pNextDialog = this;
+    m_pPrevDialog = this;
+
+    m_nDefaultControlID = 0xffff;
+    m_bNonUserEvents = false;
+    m_bKeyboardInput = false;
+    m_bMouseInput = true;
+}
+
+//--------------------------------------------------------------------------------------
 CDXUTDialogResourceManager::CDXUTDialogResourceManager()
 {
     m_pd3dDevice = NULL;
@@ -92,7 +132,6 @@ void CDXUTDialogResourceManager::OnDestroyDevice()
 //--------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------
-// MATCH
 CDXUTControl::CDXUTControl( CDXUTDialog *pDialog )
 {
     m_Type = DXUT_CONTROL_BUTTON;
