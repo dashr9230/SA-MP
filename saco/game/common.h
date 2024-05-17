@@ -24,6 +24,10 @@ typedef struct _VECTOR {
 	float X,Y,Z;
 } VECTOR, *PVECTOR;
 
+typedef struct _VECTOR2D {
+	float X,Y;
+} VECTOR2D, *PVECTOR2D;
+
 typedef struct _MATRIX4X4 {
 	VECTOR right;
 	DWORD  flags;
