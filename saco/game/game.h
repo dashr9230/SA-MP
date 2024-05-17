@@ -17,13 +17,26 @@ private:
 	CAudio			*m_pGameAudio;
 	CCamera			*m_pGameCamera;
 	CPlayerPed		*m_pGamePlayer;
-	char gapC[29];
-	BOOL			m_bRaceCheckpointsEnabled;
-	char gap2D[4];
-	DWORD			m_dwRaceCheckpointHandle;
-	char gap35[24];
-	int field_4D;
-	char gap51[4];
+
+	struct
+	{
+		VECTOR position;
+		VECTOR size;
+		bool bEnabled;
+		DWORD handle;
+	} m_checkpoint;
+
+	struct
+	{
+		VECTOR currentPosition;
+		VECTOR nextPosition;
+		float size;
+		BYTE type;
+		bool bEnabled;
+		DWORD marker;
+		DWORD handle;
+	} m_racingCheckpoint;
+
 	int field_55;
 	int field_59;
 	DWORD field_5D;
@@ -65,6 +78,13 @@ public:
 	void	SetGameTextCount(WORD wCount);
 	void	DrawGangZone(float* fPos, DWORD dwColor);
 
+	void	UpdateCheckpoints();
+	void	ToggleCheckpoints(bool bEnabled) { m_checkpoint.bEnabled = bEnabled; }
+	void	SetCheckpointInformation(VECTOR* vecPos, VECTOR* vecSize);
+
+	void	ToggleRaceCheckpoints(bool bEnabled) { m_racingCheckpoint.bEnabled = bEnabled; }
+	void	SetRaceCheckpointInformation(BYTE byteType, VECTOR* vecPos, VECTOR* vecNextPos, float fSize);
+	void	MakeRaceCheckpoint();
 	void	DisableRaceCheckpoint();
 
 	DWORD	CreateRadarMarkerIcon(int iMarkerType, float fX, float fY, float fZ, DWORD dwColor, int iStyle);

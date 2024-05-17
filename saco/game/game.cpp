@@ -27,15 +27,15 @@ CGame::CGame()
 	m_pGameAudio = new CAudio();
 	m_pGameCamera = new CCamera();
 	m_pGamePlayer = NULL;
-	field_4D = 0;
-	m_bRaceCheckpointsEnabled = FALSE;
-	m_dwRaceCheckpointHandle = NULL;
+
 	field_61 = 0;
 	field_65 = 0;
 	field_69 = 0;
 	field_6D = 0;
 	memset(unnamed_10150340, 0, sizeof(unnamed_10150340));
 	memset(field_6E, 0, sizeof(field_6E));
+	memset(&m_checkpoint, 0, sizeof(m_checkpoint));
+	memset(&m_racingCheckpoint, 0, sizeof(m_racingCheckpoint));
 	field_55 = 0;
 	field_59 = 1;
 	field_5D = 90;
@@ -432,14 +432,117 @@ void CGame::DisplayGameText(char *szStr,int iTime,int iSize)
 
 //-----------------------------------------------------------
 
+void CGame::UpdateCheckpoints()
+{
+	if (m_checkpoint.bEnabled)
+	{
+		CPlayerPed* pPlayerPed = this->FindPlayerPed();
+		if (pPlayerPed)
+		{
+			ScriptCommand(&is_actor_near_point_3d, pPlayerPed->m_dwGTAId,
+				m_checkpoint.position.X, m_checkpoint.position.Y, m_checkpoint.position.Z,
+				m_checkpoint.size.X, m_checkpoint.size.Y, m_checkpoint.size.Z, 1);
+
+			if (!m_checkpoint.handle)
+			{
+				m_checkpoint.handle = CreateRadarMarkerIcon(0, m_checkpoint.position.X,
+					m_checkpoint.position.Y, m_checkpoint.position.Z, 1005, 0);
+			}
+		}
+	}
+	else if (m_checkpoint.handle)
+	{
+		DisableMarker(m_checkpoint.handle);
+		m_checkpoint.handle = 0;
+	}
+
+	if (m_racingCheckpoint.bEnabled)
+	{
+		if (!m_racingCheckpoint.marker)
+		{
+			m_racingCheckpoint.marker = CreateRadarMarkerIcon(0, m_racingCheckpoint.currentPosition.X,
+				m_racingCheckpoint.currentPosition.Y, m_racingCheckpoint.currentPosition.Z, 1005, 0);
+		}
+	}
+	else if (m_racingCheckpoint.marker)
+	{
+		DisableMarker(m_racingCheckpoint.marker);
+		DisableRaceCheckpoint();
+		m_racingCheckpoint.marker = 0;
+	}
+}
+
+//-----------------------------------------------------------
+
+void CGame::SetCheckpointInformation(VECTOR* vecPos, VECTOR* vecSize)
+{
+	m_checkpoint.position.X = vecPos->X;
+	m_checkpoint.position.Y = vecPos->Y;
+	m_checkpoint.position.Z = vecPos->Z;
+
+	m_checkpoint.size.X = vecSize->X;
+	m_checkpoint.size.Y = vecSize->Y;
+	m_checkpoint.size.Z = vecSize->Z;
+
+	if (m_checkpoint.handle)
+	{
+		DisableMarker(m_checkpoint.handle);
+		m_checkpoint.handle = 0;
+
+		m_checkpoint.handle = CreateRadarMarkerIcon(0, vecPos->X, vecPos->Y, vecPos->Z, 1005, 0);
+	}
+}
+
+//-----------------------------------------------------------
+
+void CGame::SetRaceCheckpointInformation(BYTE byteType, VECTOR* vecPos, VECTOR* vecNextPos, float fSize)
+{
+	m_racingCheckpoint.currentPosition.X = vecPos->X;
+	m_racingCheckpoint.currentPosition.Y = vecPos->Y;
+	m_racingCheckpoint.currentPosition.Z = vecPos->Z;
+
+	m_racingCheckpoint.nextPosition.X = vecNextPos->X;
+	m_racingCheckpoint.nextPosition.Y = vecNextPos->Y;
+	m_racingCheckpoint.nextPosition.Z = vecNextPos->Z;
+
+	m_racingCheckpoint.type = byteType;
+	m_racingCheckpoint.size = fSize;
+
+	if (m_racingCheckpoint.handle)
+	{
+		DisableMarker(m_racingCheckpoint.handle);
+
+		m_racingCheckpoint.handle = CreateRadarMarkerIcon(0, vecPos->X, vecPos->Y, vecPos->Z, 1005, 0);
+	}
+
+	MakeRaceCheckpoint();
+}
+
+//-----------------------------------------------------------
+
+void CGame::MakeRaceCheckpoint()
+{
+	DisableRaceCheckpoint();
+
+	ScriptCommand(&create_racing_checkpoint, (int)m_racingCheckpoint.type,
+		m_racingCheckpoint.currentPosition.X, m_racingCheckpoint.currentPosition.Y, m_racingCheckpoint.currentPosition.Z,
+		m_racingCheckpoint.nextPosition.X, m_racingCheckpoint.nextPosition.Y, m_racingCheckpoint.nextPosition.Z,
+		m_racingCheckpoint.size, &m_racingCheckpoint.handle);
+
+	m_racingCheckpoint.bEnabled = true;
+}
+
+//-----------------------------------------------------------
+
 void CGame::DisableRaceCheckpoint()
 {
-	if (m_dwRaceCheckpointHandle)
+	if (m_racingCheckpoint.handle)
 	{
-		ScriptCommand(&destroy_racing_checkpoint, m_dwRaceCheckpointHandle);
-		m_dwRaceCheckpointHandle = NULL;
+		ScriptCommand(&destroy_racing_checkpoint, m_racingCheckpoint.handle);
+		m_racingCheckpoint.handle = 0;
 	}
-	m_bRaceCheckpointsEnabled = false;
+
+	m_racingCheckpoint.bEnabled = false;
 }
 
 //-----------------------------------------------------------

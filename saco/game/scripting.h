@@ -67,6 +67,9 @@ const SCRIPT_COMMAND text_clear_all						= { 0x00be, "" };
 
 const SCRIPT_COMMAND create_radar_marker_icon			= { 0x0570, "fffiv" };
 
+const SCRIPT_COMMAND is_actor_near_point_3d				= { 0x00FE, "iffffffi" };
+const SCRIPT_COMMAND create_racing_checkpoint			= { 0x06d5,	"ifffffffv" };
+const SCRIPT_COMMAND destroy_racing_checkpoint			= { 0x06d6,	"i" };
 
 const SCRIPT_COMMAND restore_camera_to_user_defined = { 0x925, "" };
 const SCRIPT_COMMAND set_camera_position_to = { 0x936, "ffffffii" };
