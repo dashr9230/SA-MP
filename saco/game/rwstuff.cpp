@@ -52,6 +52,17 @@ RwFrame* RwFrameCreate()
 	return pFrame;
 }
 
+// 0x100B17D0 - SAMP
+void RwFrameDestroy(RwFrame* frame)
+{
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7F05E0 : 0x7F05A0;
+
+	_asm push frame
+	_asm mov edx, dwFunc
+	_asm call edx
+	_asm pop edx
+}
+
 RwCamera* RwCameraCreate()
 {
 	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7EE530 : 0x7EE4F0;
@@ -145,6 +156,84 @@ void RwCameraSetViewWindow(RwCamera *camera, VECTOR2D *viewWindow)
 	_asm pop edx
 }
 
+// 0x100B18F0 - SAMP
+void RwCameraClear(RwCamera* camera, DWORD* color, int clearMode)
+{
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7EE380 : 0x7EE340;
+
+	_asm push clearMode
+	_asm push color
+	_asm push camera
+	_asm mov edx, dwFunc
+	_asm call edx
+	_asm pop edx
+	_asm pop edx
+	_asm pop edx
+}
+
+// 0x100B1920 - SAMP
+void RwCameraBeginUpdate(RwCamera* camera)
+{
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7EE1D0 : 0x7EE190;
+
+	_asm push camera
+	_asm mov edx, dwFunc
+	_asm call edx
+	_asm pop edx
+}
+
+// 0x100B1950 - SAMP
+void RwCameraEndUpdate(RwCamera* camera)
+{
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7EE1C0 : 0x7EE180;
+
+	_asm push camera
+	_asm mov edx, dwFunc
+	_asm call edx
+	_asm pop edx
+}
+
+// 0x100B1C40 - SAMP
+void SetRenderWareCamera(RwCamera* camera)
+{
+	_asm push camera
+	_asm mov edx, 0x7328C0
+	_asm call edx
+	_asm pop edx
+}
+
+// 0x100B1C40 - SAMP
+void RpWorldAddLight(RpLight* light)
+{
+	DWORD dwWorld = *(DWORD*)0xC17038;
+	if (!dwWorld) return;
+
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x751960 : 0x751910;
+
+	_asm push light
+	_asm push dwWorld
+	_asm mov edx, dwFunc
+	_asm call edx
+	_asm pop edx
+	_asm pop edx
+}
+
+// 0x100B1C40 - SAMP
+void RpWorldRemoveLight(RpLight* light)
+{
+	DWORD dwWorld = *(DWORD*)0xC17038;
+	if (!dwWorld) return;
+
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7519B0 : 0x751960;
+
+	_asm push light
+	_asm push dwWorld
+	_asm mov edx, dwFunc
+	_asm call edx
+	_asm pop edx
+	_asm pop edx
+}
+
 RpLight* RpLightCreate(int _type)
 {
 	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x752160 : 0x752110;
@@ -197,16 +286,16 @@ void RwFrameTranslate(RwFrame *frame, VECTOR *v, int combine)
 	_asm pop edx
 }
 
-VECTOR stru_10117384[3] = {
-	{1.0f, 0.0f, 0.0f},
-	{0.0f, 1.0f, 0.0f},
-	{0.0f, 0.0f, 1.0f},
+static VECTOR _axis[3] = {
+		{1.0f, 0.0f, 0.0f},
+		{0.0f, 1.0f, 0.0f},
+		{0.0f, 0.0f, 1.0f}
 };
 
 void RwFrameRotate(RwFrame* frame, int axis, float angle)
 {
 	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7F1050 : 0x7F1010;
-	VECTOR* pAxis = &stru_10117384[axis];
+	VECTOR* pAxis = &_axis[axis];
 
 	_asm push 1
 	_asm push angle
@@ -220,3 +309,140 @@ void RwFrameRotate(RwFrame* frame, int axis, float angle)
 	_asm pop edx
 }
 
+// 0x100B5790 - SAMP
+void RwMatrixRotate(MATRIX4X4* mat, int axis, float angle)
+{
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7F2010 : 0x7F1FD0;
+	VECTOR* pAxis = &_axis[axis];
+
+	_asm push 1
+	_asm push angle
+	_asm push pAxis
+	_asm push mat
+	_asm mov edx, dwFunc
+	_asm call edx
+	_asm pop edx
+	_asm pop edx
+	_asm pop edx
+	_asm pop edx
+}
+
+void RwMatrixScale(MATRIX4X4* matrix, VECTOR* scale)
+{
+	matrix->right.X *= scale->X;
+	matrix->right.Y *= scale->X;
+	matrix->right.Z *= scale->X;
+
+	matrix->up.X *= scale->Y;
+	matrix->up.Y *= scale->Y;
+	matrix->up.Z *= scale->Y;
+
+	matrix->at.X *= scale->Z;
+	matrix->at.Y *= scale->Z;
+	matrix->at.Z *= scale->Z;
+
+	matrix->flags &= 0xFFFDFFFC;
+}
+
+// 0x100B5790 - SAMP
+void RwMatrixInvert(MATRIX4X4* matOut, MATRIX4X4* matIn)
+{
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7F20B0 : 0x7F2070;
+
+	_asm push matIn
+	_asm push matOut
+	_asm mov edx, dwFunc
+	_asm call edx
+	_asm pop edx
+	_asm pop edx
+}
+
+// 0x100B62F0 - SAMP
+void RpAtomicRender(DWORD rpAtomic)
+{
+	((void(__thiscall*)(DWORD))(*(void***)rpAtomic)[18])(rpAtomic);
+}
+
+// 0x100B1800 - SAMP
+void RpAtomicDestroy(DWORD atomic)
+{
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x749E10 : 0x749DC0;
+
+	_asm push atomic
+	_asm mov edx, dwFunc
+	_asm call edx
+	_asm pop edx
+}
+
+// 0x100B19D0 - SAMP
+void RpClumpRender(DWORD rpClump)
+{
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x749B70 : 0x749B20;
+
+	_asm push rpClump
+	_asm mov edx, dwFunc
+	_asm call edx
+	_asm pop edx
+}
+
+// 0x100B1C80 - SAMP
+void RpClumpDestroy(DWORD rpClump)
+{
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x74A360 : 0x74A310;
+
+	_asm push clump
+	_asm mov edx, dwFunc
+	_asm call edx
+	_asm pop edx
+}
+
+// 0x100B6330 - SAMP
+void RenderClumpOrAtomic(DWORD rwObject)
+{
+	if (rwObject)
+	{
+		if (*(BYTE*)rwObject == 1)
+		{
+			RpAtomicRender(rwObject);
+		}
+		else if (*(BYTE*)rwObject == 2)
+		{
+			RpClumpRender(rwObject);
+		}
+	}
+}
+
+// 0x100B62B0 - SAMP
+void DestroyAtomicOrClump(DWORD rwObject)
+{
+	if (rwObject)
+	{
+		if (*(BYTE*)rwObject == 1)
+		{
+			RpAtomicDestroy(rwObject);
+
+			uintptr_t parent = *(uintptr_t*)(rwObject + 4);
+			if (parent)
+			{
+				RwFrameDestroy((RwFrame*)parent);
+			}
+		}
+		else if (*(BYTE*)rwObject == 2)
+		{
+			RpClumpDestroy(rwObject);
+		}
+	}
+}
+
+// 0x100B1DA0 - SAMP
+void RpAnimBlendClumpUpdateAnimations(DWORD rwObject, float step, int flag)
+{
+	_asm push flag
+	_asm push step
+	_asm push rwObject
+	_asm mov edx, 0x4D34F0
+	_asm call edx
+	_asm pop edx
+	_asm pop edx
+	_asm pop edx
+}
