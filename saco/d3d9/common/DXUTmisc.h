@@ -83,6 +83,70 @@ protected:
     LONGLONG m_llBaseTime;
 };
 
+
+//-----------------------------------------------------------------------------
+// Resource cache for textures, fonts, meshs, and effects.  
+// Use DXUTGetGlobalResourceCache() to access the global cache
+//-----------------------------------------------------------------------------
+
+enum DXUTCACHE_SOURCELOCATION { DXUTCACHE_LOCATION_FILE, DXUTCACHE_LOCATION_RESOURCE };
+
+struct DXUTCache_Texture
+{
+    DXUTCACHE_SOURCELOCATION Location;
+    TCHAR wszSource[MAX_PATH];
+    HMODULE hSrcModule;
+    UINT Width;
+    UINT Height;
+    UINT Depth;
+    UINT MipLevels;
+    DWORD Usage;
+    D3DFORMAT Format;
+    D3DPOOL Pool;
+    D3DRESOURCETYPE Type;
+    IDirect3DBaseTexture9 *pTexture;
+};
+
+struct DXUTCache_Font : public D3DXFONT_DESC
+{
+    ID3DXFont *pFont;
+};
+
+struct DXUTCache_Effect
+{
+    DXUTCACHE_SOURCELOCATION Location;
+    TCHAR wszSource[MAX_PATH];
+    HMODULE hSrcModule;
+    DWORD dwFlags;
+    ID3DXEffect *pEffect;
+};
+
+
+class CDXUTResourceCache
+{
+public:
+    ~CDXUTResourceCache();
+
+
+public:
+    HRESULT OnResetDevice( IDirect3DDevice9 *pd3dDevice );
+    HRESULT OnLostDevice();
+    HRESULT OnDestroyDevice();
+
+protected:
+    friend CDXUTResourceCache& DXUTGetGlobalResourceCache();
+    friend HRESULT DXUTInitialize3DEnvironment();
+    friend HRESULT DXUTReset3DEnvironment();
+    friend void DXUTCleanup3DEnvironment( bool bReleaseSettings );
+
+    CDXUTResourceCache() { }
+
+    CGrowableArray< DXUTCache_Texture > m_TextureCache;
+    CGrowableArray< DXUTCache_Effect > m_EffectCache;
+    CGrowableArray< DXUTCache_Font > m_FontCache;
+};
+
+CDXUTResourceCache& DXUTGetGlobalResourceCache();
 //--------------------------------------------------------------------------------------
 // Implementation of CGrowableArray
 //--------------------------------------------------------------------------------------
