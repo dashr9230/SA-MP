@@ -87,6 +87,8 @@ public:
 
 	void sub_10062570() { field_55++; };
 
+	CAudio* GetAudio() { return m_pGameAudio; }
+
 	CPlayerPed  *FindPlayerPed() {
 		if(m_pGamePlayer==NULL)	m_pGamePlayer = new CPlayerPed();
 		return m_pGamePlayer;

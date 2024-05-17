@@ -383,6 +383,8 @@ void DoInitStuff()
 
 		// TODO: DoInitStuff
 
+		pAudioStream = new CAudioStream();
+
 		bGameInited = TRUE;
 
 		return;
@@ -407,7 +409,7 @@ void DoProcessStuff()
 	}
 
 	if(pAudioStream) {
-		pAudioStream->Process();
+		pAudioStream->ControlGameRadio();
 	}
 }
 

@@ -1,23 +1,23 @@
 
 #pragma once
 
-class CAudioStream // size=1
+class CAudioStream
 {
 private:
-	char field_0;
+	bool m_bInited;
 
 public:
 
 	CAudioStream() {
-		field_0 = 0;
+		m_bInited = true;
 	}
 
-	void Reset();
-	void Stop();
+	bool Initialize();
 	void ConstructInfo();
-	void SyncProc();
-	void Process();
-	void Play();
+	static void CALLBACK SyncProc(HSYNC handle, DWORD channel, DWORD data, void* user);
+	static void AudioStreamThread(PVOID v);
+	bool Play(char* szURL, float fX, float fY, float fZ, float fRadius, bool bUsePos);
+	bool Stop(bool bWaitThread);
 	void ControlGameRadio();
 	void DrawInfo();
 };

@@ -33,10 +33,10 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="dxguid.lib d3d9.lib d3dx9.lib comctl32.lib wsock32.lib winmm.lib"
+				AdditionalDependencies="bass.lib dxguid.lib d3d9.lib d3dx9.lib comctl32.lib wsock32.lib winmm.lib"
 				OutputFile="$(OutDir)/samp.dll"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="d3d9"
+				AdditionalLibraryDirectories="d3d9 bass"
 				GenerateDebugInformation="TRUE"
 				ProgramDatabaseFile="$(OutDir)/saco.pdb"
 				SubSystem="2"
@@ -91,10 +91,10 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="dxguid.lib d3d9.lib d3dx9.lib comctl32.lib wsock32.lib winmm.lib"
+				AdditionalDependencies="bass.lib dxguid.lib d3d9.lib d3dx9.lib comctl32.lib wsock32.lib winmm.lib"
 				OutputFile="$(OutDir)/samp.dll"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="d3d9"
+				AdditionalLibraryDirectories="d3d9 bass"
 				GenerateDebugInformation="TRUE"
 				SubSystem="2"
 				OptimizeReferences="1"
@@ -365,6 +365,13 @@
 			</File>
 			<File
 				RelativePath="..\ttmath\ttmathuint_x86.h">
+			</File>
+		</Filter>
+		<Filter
+			Name="bass"
+			Filter="">
+			<File
+				RelativePath=".\bass\bass.h">
 			</File>
 		</Filter>
 		<Filter
