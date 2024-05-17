@@ -2,6 +2,8 @@
 #include "../main.h"
 #include "../../raknet/SocketDataEncryptor.h"
 
+#define NETGAME_VERSION 4057
+
 char szGameModeFile[256];
 
 #define PLAYER_STATE_NONE						0
@@ -269,6 +271,9 @@ void CNetGame::UpdateNetwork()
 			Packet_ModifiedPacket(pkt);
 			break;
 
+		case ID_CONNECTION_REQUEST_ACCEPTED:
+			Packet_ConnectionSucceeded(pkt);
+			break;
 		case ID_PASSENGER_SYNC:
 			Packet_PassengerSync(pkt);
 			break;
@@ -359,6 +364,43 @@ void CNetGame::Packet_DisconnectionNotification(Packet* packet)
 
 void CNetGame::Packet_ModifiedPacket(Packet* packet)
 {
+}
+
+//----------------------------------------------------
+// Connection Success
+
+void CNetGame::Packet_ConnectionSucceeded(Packet *p)
+{
+	m_iGameState = GAMESTATE_AWAIT_JOIN;
+
+	RakNet::BitStream bsReturnParams((PCHAR)p->data, p->length, true);
+
+	BYTE bytePacketID=0;
+	unsigned int binaryAddr=0;
+	unsigned short port=0;
+	unsigned short playerId=0;
+	unsigned int uiChallenge=0;
+
+	bsReturnParams.Read(bytePacketID);
+	bsReturnParams.Read(binaryAddr);
+	bsReturnParams.Read(port);
+	bsReturnParams.Read(playerId);
+	bsReturnParams.Read(uiChallenge);
+
+	uiChallenge ^= NETGAME_VERSION;
+
+	int iVersion = NETGAME_VERSION;
+	BYTE byteMod = 1;
+	BYTE byteNameLen = (BYTE)strlen(m_pPlayerPool->GetLocalPlayerName());
+
+	RakNet::BitStream bsSend;
+	bsSend.Write(iVersion);
+	bsSend.Write(byteMod);
+	bsSend.Write(byteNameLen);
+	bsSend.Write(m_pPlayerPool->GetLocalPlayerName(),byteNameLen);
+	bsSend.Write(uiChallenge);
+
+	m_pRakClient->RPC(RPC_NPCJoin,&bsSend,HIGH_PRIORITY,RELIABLE,0,FALSE);
 }
 
 //----------------------------------------------------

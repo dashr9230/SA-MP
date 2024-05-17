@@ -1,8 +1,10 @@
 
 #pragma once
 
+#define GAMESTATE_NONE			0 // used for debugging modes and such
 #define GAMESTATE_CONNECTING	1
 #define GAMESTATE_CONNECTED		2
+#define GAMESTATE_AWAIT_JOIN	3
 
 //----------------------------------------------------
 
@@ -20,6 +22,7 @@ private:
 	// Packet handlers
 	void Packet_AimSync(Packet *p);
 	void Packet_PassengerSync(Packet *p);
+	void Packet_ConnectionSucceeded(Packet *p);
 	void Packet_ConnectionBanned(Packet* packet);
 	void Packet_DisconnectionNotification(Packet* packet);
 	void Packet_ModifiedPacket(Packet* packet);
