@@ -228,8 +228,13 @@ void CGame::sub_100A1C10()
 	// TODO: CGame::sub_100A1C10() .text:100A1C10
 }
 
+//-----------------------------------------------------------
 
-
+BOOL CGame::IsMenuActive()
+{
+	if (*(PDWORD)ADDR_MENU) return true;
+	return false;
+}
 
 //-----------------------------------------------------------
 // Return TRUE if the world has been loaded.

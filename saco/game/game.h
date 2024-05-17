@@ -37,6 +37,7 @@ public:
 
 	void	StartGame();
 	void	InitGame();
+	BOOL	IsMenuActive();
 	BOOL	IsGameLoaded();
 
 	void	RequestModel(int iModelID, int iLoadingStream = 2);
