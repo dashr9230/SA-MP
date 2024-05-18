@@ -56,3 +56,19 @@ TCHAR* DXUTMultisampleTypeToString(D3DMULTISAMPLE_TYPE MultiSampleType)
 }
 
 
+//--------------------------------------------------------------------------------------
+// Returns the string for the given vertex processing type
+//--------------------------------------------------------------------------------------
+TCHAR* DXUTVertexProcessingTypeToString(DWORD vpt)
+{
+    switch (vpt)
+    {
+    case D3DCREATE_SOFTWARE_VERTEXPROCESSING: return "Software vertex processing";
+    case D3DCREATE_MIXED_VERTEXPROCESSING:    return "Mixed vertex processing";
+    case D3DCREATE_HARDWARE_VERTEXPROCESSING: return "Hardware vertex processing";
+    case D3DCREATE_PUREDEVICE:                return "Pure hardware vertex processing";
+    default:                                  return "Unknown vertex processing type";
+    }
+}
+
+
