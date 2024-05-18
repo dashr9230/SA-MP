@@ -72,3 +72,21 @@ TCHAR* DXUTVertexProcessingTypeToString(DWORD vpt)
 }
 
 
+//--------------------------------------------------------------------------------------
+// Returns the string for the given present interval.
+//--------------------------------------------------------------------------------------
+TCHAR* DXUTPresentIntervalToString( UINT pi )
+{
+    switch( pi )
+    {
+    case D3DPRESENT_INTERVAL_IMMEDIATE: return "D3DPRESENT_INTERVAL_IMMEDIATE";
+    case D3DPRESENT_INTERVAL_DEFAULT:   return "D3DPRESENT_INTERVAL_DEFAULT";
+    case D3DPRESENT_INTERVAL_ONE:       return "D3DPRESENT_INTERVAL_ONE";
+    case D3DPRESENT_INTERVAL_TWO:       return "D3DPRESENT_INTERVAL_TWO";
+    case D3DPRESENT_INTERVAL_THREE:     return "D3DPRESENT_INTERVAL_THREE";
+    case D3DPRESENT_INTERVAL_FOUR:      return "D3DPRESENT_INTERVAL_FOUR";
+    default:                            return "Unknown PresentInterval";
+    }
+}
+
+
