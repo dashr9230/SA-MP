@@ -592,6 +592,12 @@
 			<File
 				RelativePath=".\d3d9\common\DXUTmisc.h">
 			</File>
+			<File
+				RelativePath=".\d3d9\common\DXUTSettingsDlg.cpp">
+			</File>
+			<File
+				RelativePath=".\d3d9\common\DXUTSettingsDlg.h">
+			</File>
 		</Filter>
 		<Filter
 			Name="temp"
