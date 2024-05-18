@@ -68,6 +68,8 @@ public:
     void SetTexture( UINT iTexture, RECT* prcTexture, D3DCOLOR defaultTextureColor = D3DCOLOR_ARGB(255, 255, 255, 255) );
     void SetFont( UINT iFont, D3DCOLOR defaultFontColor = D3DCOLOR_ARGB(255, 255, 255, 255), DWORD dwTextFormat = DT_CENTER | DT_VCENTER );
     
+    void Refresh();
+    
     UINT iTexture;          // Index of the texture for this Element 
     UINT iFont;             // Index of the font for this Element
     DWORD dwTextFormat;     // The format argument to DrawText 

@@ -225,3 +225,9 @@ void CDXUTElement::SetFont( UINT iFont, D3DCOLOR defaultFontColor, DWORD dwTextF
 
 
 //--------------------------------------------------------------------------------------
+void CDXUTElement::Refresh()
+{
+    TextureColor.Current = TextureColor.States[ DXUT_STATE_HIDDEN ];
+    FontColor.Current = FontColor.States[ DXUT_STATE_HIDDEN ];
+}
+
