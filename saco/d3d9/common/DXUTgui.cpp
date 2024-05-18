@@ -214,3 +214,14 @@ void CDXUTElement::SetTexture( UINT iTexture, RECT* prcTexture, D3DCOLOR default
 }
     
 
+//--------------------------------------------------------------------------------------
+void CDXUTElement::SetFont( UINT iFont, D3DCOLOR defaultFontColor, DWORD dwTextFormat )
+{
+    this->iFont = iFont;
+    this->dwTextFormat = dwTextFormat;
+
+    FontColor.Init( defaultFontColor );
+}
+
+
+//--------------------------------------------------------------------------------------
