@@ -7,6 +7,7 @@
 //--------------------------------------------------------------------------------------
 #include "dxstdafx.h"
 #include "DXUTgui.h"
+#include "DXUTsettingsDlg.h"
 #undef min // use __min instead
 #undef max // use __max instead
 
@@ -198,4 +199,18 @@ void DXUTBlendColor::Blend( UINT iState, float fElapsedTime, float fRate )
 }
 
 
+
+//--------------------------------------------------------------------------------------
+void CDXUTElement::SetTexture( UINT iTexture, RECT* prcTexture, D3DCOLOR defaultTextureColor )
+{
+    this->iTexture = iTexture;
+    
+    if( prcTexture )
+        rcTexture = *prcTexture;
+    else
+        SetRectEmpty( &rcTexture );
+    
+    TextureColor.Init( defaultTextureColor );
+}
+    
 
