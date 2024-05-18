@@ -27,3 +27,32 @@ TCHAR* DXUTD3DDeviceTypeToString(D3DDEVTYPE devType)
 }
 
 
+//--------------------------------------------------------------------------------------
+// Returns the string for the given D3DMULTISAMPLE_TYPE.
+//--------------------------------------------------------------------------------------
+TCHAR* DXUTMultisampleTypeToString(D3DMULTISAMPLE_TYPE MultiSampleType)
+{
+    switch (MultiSampleType)
+    {
+    case D3DMULTISAMPLE_NONE:       return "D3DMULTISAMPLE_NONE";
+    case D3DMULTISAMPLE_NONMASKABLE: return "D3DMULTISAMPLE_NONMASKABLE";
+    case D3DMULTISAMPLE_2_SAMPLES:  return "D3DMULTISAMPLE_2_SAMPLES";
+    case D3DMULTISAMPLE_3_SAMPLES:  return "D3DMULTISAMPLE_3_SAMPLES";
+    case D3DMULTISAMPLE_4_SAMPLES:  return "D3DMULTISAMPLE_4_SAMPLES";
+    case D3DMULTISAMPLE_5_SAMPLES:  return "D3DMULTISAMPLE_5_SAMPLES";
+    case D3DMULTISAMPLE_6_SAMPLES:  return "D3DMULTISAMPLE_6_SAMPLES";
+    case D3DMULTISAMPLE_7_SAMPLES:  return "D3DMULTISAMPLE_7_SAMPLES";
+    case D3DMULTISAMPLE_8_SAMPLES:  return "D3DMULTISAMPLE_8_SAMPLES";
+    case D3DMULTISAMPLE_9_SAMPLES:  return "D3DMULTISAMPLE_9_SAMPLES";
+    case D3DMULTISAMPLE_10_SAMPLES: return "D3DMULTISAMPLE_10_SAMPLES";
+    case D3DMULTISAMPLE_11_SAMPLES: return "D3DMULTISAMPLE_11_SAMPLES";
+    case D3DMULTISAMPLE_12_SAMPLES: return "D3DMULTISAMPLE_12_SAMPLES";
+    case D3DMULTISAMPLE_13_SAMPLES: return "D3DMULTISAMPLE_13_SAMPLES";
+    case D3DMULTISAMPLE_14_SAMPLES: return "D3DMULTISAMPLE_14_SAMPLES";
+    case D3DMULTISAMPLE_15_SAMPLES: return "D3DMULTISAMPLE_15_SAMPLES";
+    case D3DMULTISAMPLE_16_SAMPLES: return "D3DMULTISAMPLE_16_SAMPLES";
+    default:                        return "Unknown Multisample Type";
+    }
+}
+
+
