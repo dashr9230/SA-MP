@@ -177,6 +177,21 @@ HRESULT CDXUTStatic::GetTextCopy( PCHAR strDest, UINT bufferCount )
     return S_OK;
 }
 
+
+//--------------------------------------------------------------------------------------
+// CDXUTIMEEditBox class
+//--------------------------------------------------------------------------------------
+bool      CDXUTIMEEditBox::s_bEnableImeSystem;  // Whether the IME system is active
+
+//--------------------------------------------------------------------------------------
+// Enable/disable the entire IME system.  When disabled, the default IME handling
+// kicks in.
+void CDXUTIMEEditBox::EnableImeSystem( bool bEnable )
+{
+    s_bEnableImeSystem = bEnable;
+}
+
+
 //--------------------------------------------------------------------------------------
 void DXUTBlendColor::Init( D3DCOLOR defaultColor, D3DCOLOR disabledColor, D3DCOLOR hiddenColor )
 {

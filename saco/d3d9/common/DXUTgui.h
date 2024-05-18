@@ -278,4 +278,25 @@ protected:
 };
 
 
+
+//-----------------------------------------------------------------------------
+// EditBox control
+//-----------------------------------------------------------------------------
+class CDXUTEditBox : public CDXUTControl
+{
+};
+
+
+//-----------------------------------------------------------------------------
+// IME-enabled EditBox control
+//-----------------------------------------------------------------------------
+
+class CDXUTIMEEditBox : public CDXUTEditBox
+{
+public:
+
+    static  void EnableImeSystem( bool bEnable );
+
+protected:
+    static bool    s_bEnableImeSystem;    // Whether the IME system is active
 #endif // DXUT_GUI_H
