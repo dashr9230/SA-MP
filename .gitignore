@@ -26,3 +26,7 @@
 *.id2
 *.nam
 *.til
+
+# Other
+samp.exe
+USERDATA.DAT
