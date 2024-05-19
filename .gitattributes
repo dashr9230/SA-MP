@@ -10,6 +10,8 @@
 *.sln text eol=crlf
 *.vcproj text eol=crlf
 *.txt text eol=crlf
+*.pas text eol=crlf
+*.dfm binary
 
 Makefile text eol=crlf
 Makefile.am text eol=crlf
