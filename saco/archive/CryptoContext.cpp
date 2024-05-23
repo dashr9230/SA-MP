@@ -8,6 +8,7 @@ DWORD CCryptoContext::ms_dwRefCount = 0;
 DWORD CCryptoContext::ms_dwProviderType = PROV_RSA_FULL;
 LPTSTR CCryptoContext::ms_szProviderName = NULL;
 LPTSTR CCryptoContext::ms_szContainerName = (LPTSTR)"SAMP";
+HMODULE CCryptoContext::ms_hAdvApi32 = NULL;
 
 //------------------------------------
 
