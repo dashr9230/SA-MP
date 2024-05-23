@@ -20,4 +20,9 @@ public:
 	~CCryptoContext(void);
 
 	HCRYPTPROV GetProvider();
+
+#ifdef ARCTOOL
+	void GenerateRandom(DWORD dwLength, BYTE* pbBuffer);
+#endif
+
 };

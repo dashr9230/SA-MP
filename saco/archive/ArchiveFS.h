@@ -9,7 +9,12 @@
 
 #include "../mod.h"
 
+#ifndef ARCTOOL
+
+// Load the original CFileSystem class
 #include "../filesystem.h"
+
+#endif
 
 #define FS_INVALID_FILE	0xFFFFFFFF
 
@@ -86,8 +91,10 @@ typedef struct _AFS_ENTRYBT_NODE
 
 } AFS_ENTRYBT_NODE;
 
-class CArchiveFS // size: 2357
+class CArchiveFS
+#ifndef ARCTOOL
 	: public CFileSystem
+#endif
 {
 private:
 	bool m_bLoaded;

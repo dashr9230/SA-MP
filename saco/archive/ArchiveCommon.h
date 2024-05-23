@@ -75,6 +75,28 @@ typedef struct _SAA_FILE_HEADER
 		return(sizeof(DWORD)*2 + sizeof(WORD)*dwFakeDataSize + sizeof(VER2_HEADER));
 	}
 
+#ifdef ARCTOOL
+	void InitializeDataV1()
+	{
+		headerV1.dwSAAV = 0x32414153;	// "SAA2"
+		headerV1.dwFileCount = 0x16;
+		// All other data should be random, or predefined outside.
+	}
+
+	void InitializeDataV2()
+	{
+		headerV2.dwSAMPID = SAA_FILE_ID;
+		headerV2.dwVersion = SAA_FILE_VERSION;
+	}
+
+	void Write(FILE *f)
+	{
+		fseek(f, 0, SEEK_SET);
+		fwrite(&headerV1, 1, sizeof(DWORD)*2 + sizeof(WORD)*dwFakeDataSize, f);
+		fwrite(&headerV2, 1, sizeof(VER2_HEADER), f);
+	}
+#endif
+
 	bool VerifyIdentifier()
 	{
 		return ((headerV2.dwSAMPID == SAA_FILE_ID) &&

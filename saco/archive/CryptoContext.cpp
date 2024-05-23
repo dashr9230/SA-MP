@@ -60,3 +60,10 @@ HCRYPTPROV CCryptoContext::GetProvider()
 }
 
 //------------------------------------
+
+#ifdef ARCTOOL
+void CCryptoContext::GenerateRandom(DWORD dwLength, BYTE* pbBuffer)
+{
+	CryptGenRandom(m_hCryptProv, dwLength, pbBuffer);
+}
+#endif

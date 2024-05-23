@@ -16,6 +16,13 @@ public:
 	CKeyPair(CCryptoContext* pContext);
 	~CKeyPair(void);
 
+#ifdef ARCTOOL
+	void GenerateKey();
+	void LoadFromFile(PCHAR szFileName);
+	void WriteToFile(PCHAR szFileName);
+	void WriteCHeaderFile(PCHAR szFileName);
+#endif
+
 	void LoadFromMemory(DWORD dwPubKeySize, BYTE* pbPubKeyBlob, BYTE bytXORKey);
 	void ReleaseKey();
 
