@@ -62,6 +62,11 @@ public:
 		TypeBinary,
 	};
 
+	CFileStream()
+	{
+		m_fiFile = NULL;
+	}
+
 	CFileStream(const char *szFilename, eType type, eMode mode)
 	{
 		m_fiFile = NULL;

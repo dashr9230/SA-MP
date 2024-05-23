@@ -4,6 +4,7 @@
 #include <windows.h>
 
 #include "ArchiveCommon.h"
+#include "Obfuscator.h"
 #include "Stream.h"
 
 #include "../mod.h"
