@@ -7,6 +7,8 @@
 class CKeyPair
 {
 private:
+	static DWORD ms_dwRSAKeySize;
+
 	HCRYPTKEY m_hCryptKey;
 	CCryptoContext* m_pContext;
 

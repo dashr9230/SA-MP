@@ -4,6 +4,10 @@
 
 //------------------------------------
 
+DWORD CKeyPair::ms_dwRSAKeySize = 1024;
+
+//------------------------------------
+
 CKeyPair::CKeyPair(CCryptoContext* pContext)
 {
 	m_pContext = pContext;
