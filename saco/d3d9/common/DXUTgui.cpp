@@ -373,6 +373,25 @@ CDXUTControl* CDXUTDialog::GetControl( int ID, UINT nControlType )
 
 
 //--------------------------------------------------------------------------------------
+CDXUTControl* CDXUTDialog::GetNextControl( CDXUTControl* pControl )
+{
+    int index = pControl->m_Index + 1;
+
+    CDXUTDialog* pDialog = pControl->m_pDialog;
+    
+    // Cycle through dialogs in the loop to find the next control. Note
+    // that if only one control exists in all looped dialogs it will
+    // be the returned 'next' control.
+    while( index >= (int) pDialog->m_Controls.GetSize() )
+    {
+        pDialog = pDialog->m_pNextDialog;
+        index = 0;
+    }
+    
+    return pDialog->m_Controls.GetAt( index );    
+}
+
+//--------------------------------------------------------------------------------------
 // CDXUTControl class
 //--------------------------------------------------------------------------------------
 
