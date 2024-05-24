@@ -86,6 +86,26 @@ void CDXUTDialog::SetCallback( PCALLBACKDXUTGUIEVENT pCallback, void* pUserConte
 }
 
 
+//--------------------------------------------------------------------------------------
+void CDXUTDialog::RemoveAllControls()
+{
+    if( s_pControlFocus && s_pControlFocus->m_pDialog == this )
+        s_pControlFocus = NULL;
+    if( s_pControlPressed && s_pControlPressed->m_pDialog == this )
+        s_pControlPressed = NULL;
+    m_pControlMouseOver = NULL;
+
+    for( int i=0; i < m_Controls.GetSize(); i++ )
+    {
+        CDXUTControl* pControl = m_Controls.GetAt( i );
+        SAFE_DELETE( pControl );
+    }
+
+    m_Controls.RemoveAll();
+}
+
+
+//--------------------------------------------------------------------------------------
 CDXUTDialogResourceManager::CDXUTDialogResourceManager()
 {
     m_pd3dDevice = NULL;

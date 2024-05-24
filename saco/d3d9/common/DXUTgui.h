@@ -91,6 +91,7 @@ public:
     CDXUTDialog();
     ~CDXUTDialog();
 
+    void RemoveAllControls();
 
     // Sets the callback used to notify the app of control events
     void SetCallback( PCALLBACKDXUTGUIEVENT pCallback, void* pUserContext = NULL );
