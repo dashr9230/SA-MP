@@ -179,7 +179,28 @@ void CDXUTDialogResourceManager::OnDestroyDevice()
 }
 
 
+//--------------------------------------------------------------------------------------
+void CDXUTDialog::Refresh()
+{
+    if( s_pControlFocus )
+        s_pControlFocus->OnFocusOut();
 
+    if( m_pControlMouseOver )
+        m_pControlMouseOver->OnMouseLeave();
+
+    s_pControlFocus = NULL;
+    s_pControlPressed = NULL;
+    m_pControlMouseOver = NULL;
+
+    for( int i=0; i < m_Controls.GetSize(); i++ )
+    {
+        CDXUTControl* pControl = m_Controls.GetAt(i);
+        pControl->Refresh();
+    }
+
+    if( m_bKeyboardInput )
+        FocusDefaultControl();
+}
 
 
 //--------------------------------------------------------------------------------------

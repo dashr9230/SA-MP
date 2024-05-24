@@ -96,6 +96,9 @@ public:
     // Sets the callback used to notify the app of control events
     void SetCallback( PCALLBACKDXUTGUIEVENT pCallback, void* pUserContext = NULL );
 
+    // Device state notification
+    void Refresh();
+
 
     bool m_bNonUserEvents;
     bool m_bKeyboardInput;
