@@ -91,6 +91,7 @@ public:
     CDXUTDialog();
     ~CDXUTDialog();
 
+    HRESULT AddControl( CDXUTControl* pControl );
     HRESULT InitControl( CDXUTControl* pControl );
 
 

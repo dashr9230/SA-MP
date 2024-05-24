@@ -313,6 +313,26 @@ HRESULT CDXUTDialog::InitControl( CDXUTControl* pControl )
 
 
 //--------------------------------------------------------------------------------------
+HRESULT CDXUTDialog::AddControl( CDXUTControl* pControl )
+{
+    HRESULT hr = S_OK;
+
+    hr = InitControl( pControl );
+    if( FAILED(hr) )
+        return DXTRACE_ERR( "CDXUTDialog::InitControl", hr );
+
+    // Add to the list
+    hr = m_Controls.Add( pControl );
+    if( FAILED(hr) )
+    {
+        return DXTRACE_ERR( "CGrowableArray::Add", hr );
+    }
+
+    return S_OK;
+}
+
+
+//--------------------------------------------------------------------------------------
 // CDXUTControl class
 //--------------------------------------------------------------------------------------
 
