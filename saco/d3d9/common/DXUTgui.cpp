@@ -279,6 +279,14 @@ HRESULT CDXUTDialog::SetFont( UINT index, LPCTSTR strFaceName, LONG height, LONG
 
 
 //--------------------------------------------------------------------------------------
+DXUTFontNode* CDXUTDialog::GetFont( UINT index )
+{
+    if( NULL == m_pManager )
+        return NULL;
+    return m_pManager->GetFontNode( m_Fonts.GetAt( index ) );
+}
+
+//--------------------------------------------------------------------------------------
 // CDXUTControl class
 //--------------------------------------------------------------------------------------
 

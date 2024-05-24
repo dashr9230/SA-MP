@@ -106,6 +106,8 @@ public:
     // Shared resource access. Indexed fonts and textures are shared among
     // all the controls.
     HRESULT       SetFont( UINT index, LPCTSTR strFaceName, LONG height, LONG weight );
+    DXUTFontNode* GetFont( UINT index );
+
 
 
     bool m_bNonUserEvents;
