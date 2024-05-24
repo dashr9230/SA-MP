@@ -286,6 +286,32 @@ DXUTFontNode* CDXUTDialog::GetFont( UINT index )
     return m_pManager->GetFontNode( m_Fonts.GetAt( index ) );
 }
 
+
+//--------------------------------------------------------------------------------------
+HRESULT CDXUTDialog::InitControl( CDXUTControl* pControl )
+{
+    HRESULT hr;
+
+    if( pControl == NULL )
+        return E_INVALIDARG;
+
+    pControl->m_Index = m_Controls.GetSize();
+    
+    // Look for a default Element entries
+    for( int i=0; i < m_DefaultElements.GetSize(); i++ )
+    {
+        DXUTElementHolder* pElementHolder = m_DefaultElements.GetAt( i );
+        if( pElementHolder->nControlType == pControl->GetType() )
+            pControl->SetElement( pElementHolder->iElement, &pElementHolder->Element );
+    }
+
+    V_RETURN( pControl->OnInit() );
+
+    return S_OK;
+}
+
+
+
 //--------------------------------------------------------------------------------------
 // CDXUTControl class
 //--------------------------------------------------------------------------------------

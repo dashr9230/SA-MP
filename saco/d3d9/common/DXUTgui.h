@@ -91,6 +91,8 @@ public:
     CDXUTDialog();
     ~CDXUTDialog();
 
+    HRESULT InitControl( CDXUTControl* pControl );
+
 
     // Methods called by controls
     void SendEvent( UINT nEvent, bool bTriggeredByUser, CDXUTControl* pControl );
