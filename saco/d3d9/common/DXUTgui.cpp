@@ -204,6 +204,22 @@ void CDXUTDialog::Refresh()
 
 
 //--------------------------------------------------------------------------------------
+VOID CDXUTDialog::SendEvent( UINT nEvent, bool bTriggeredByUser, CDXUTControl* pControl )
+{
+    // If no callback has been registered there's nowhere to send the event to
+    if( m_pCallbackEvent == NULL )
+        return;
+
+    // Discard events triggered programatically if these types of events haven't been
+    // enabled
+    if( !bTriggeredByUser && !m_bNonUserEvents )
+        return;
+
+    m_pCallbackEvent( nEvent, pControl->GetID(), pControl, m_pCallbackEventUserContext );
+}
+
+
+//--------------------------------------------------------------------------------------
 // CDXUTControl class
 //--------------------------------------------------------------------------------------
 

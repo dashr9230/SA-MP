@@ -91,6 +91,10 @@ public:
     CDXUTDialog();
     ~CDXUTDialog();
 
+
+    // Methods called by controls
+    void SendEvent( UINT nEvent, bool bTriggeredByUser, CDXUTControl* pControl );
+
     void RemoveAllControls();
 
     // Sets the callback used to notify the app of control events
