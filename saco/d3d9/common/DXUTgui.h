@@ -103,6 +103,10 @@ public:
     // Device state notification
     void Refresh();
 
+    // Shared resource access. Indexed fonts and textures are shared among
+    // all the controls.
+    HRESULT       SetFont( UINT index, LPCTSTR strFaceName, LONG height, LONG weight );
+
 
     bool m_bNonUserEvents;
     bool m_bKeyboardInput;

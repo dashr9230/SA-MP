@@ -256,6 +256,29 @@ int CDXUTDialogResourceManager::AddFont( LPCTSTR strFaceName, LONG height, LONG 
 
 
 //--------------------------------------------------------------------------------------
+HRESULT CDXUTDialog::SetFont( UINT index, LPCTSTR strFaceName, LONG height, LONG weight )
+{
+    // If this assert triggers, you need to call CDXUTDialog::Init() first.  This change
+    // was made so that the DXUT's GUI could become seperate and optional from DXUT's core.  The 
+    // creation and interfacing with CDXUTDialogResourceManager is now the responsibility 
+    // of the application if it wishes to use DXUT's GUI.
+    assert( m_pManager != NULL && "To fix call CDXUTDialog::Init() first.  See comments for details." ); 
+
+    // Make sure the list is at least as large as the index being set
+    UINT i;
+    for( i=m_Fonts.GetSize(); i <= index; i++ )
+    {
+        m_Fonts.Add( -1 );
+    }
+
+    int iFont = m_pManager->AddFont( strFaceName, height, weight );
+    m_Fonts.SetAt( index, iFont );
+
+    return S_OK;
+}
+
+
+//--------------------------------------------------------------------------------------
 // CDXUTControl class
 //--------------------------------------------------------------------------------------
 
