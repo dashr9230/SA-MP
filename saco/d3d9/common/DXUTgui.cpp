@@ -11,6 +11,10 @@
 #undef min // use __min instead
 #undef max // use __max instead
 
+double        CDXUTDialog::s_fTimeRefresh = 0.0f;
+CDXUTControl* CDXUTDialog::s_pControlFocus = NULL;        // The control which has focus
+CDXUTControl* CDXUTDialog::s_pControlPressed = NULL;      // The control currently pressed
+
 //--------------------------------------------------------------------------------------
 // CDXUTDialog class
 //--------------------------------------------------------------------------------------
@@ -390,6 +394,29 @@ CDXUTControl* CDXUTDialog::GetNextControl( CDXUTControl* pControl )
     
     return pDialog->m_Controls.GetAt( index );    
 }
+
+//--------------------------------------------------------------------------------------
+CDXUTControl* CDXUTDialog::GetPrevControl( CDXUTControl* pControl )
+{
+    int index = pControl->m_Index - 1;
+
+    CDXUTDialog* pDialog = pControl->m_pDialog;
+    
+    // Cycle through dialogs in the loop to find the next control. Note
+    // that if only one control exists in all looped dialogs it will
+    // be the returned 'previous' control.
+    while( index < 0 )
+    {
+        pDialog = pDialog->m_pPrevDialog;
+        if( pDialog == NULL )
+            pDialog = pControl->m_pDialog;
+
+        index = pDialog->m_Controls.GetSize() - 1;
+    }
+    
+    return pDialog->m_Controls.GetAt( index );    
+}
+
 
 //--------------------------------------------------------------------------------------
 // CDXUTControl class

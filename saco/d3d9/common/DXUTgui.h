@@ -103,6 +103,8 @@ public:
 
 
     static CDXUTControl* GetNextControl( CDXUTControl* pControl );
+    static CDXUTControl* GetPrevControl( CDXUTControl* pControl );
+
     void RemoveAllControls();
 
     // Sets the callback used to notify the app of control events
@@ -128,6 +130,8 @@ private:
     static double s_fTimeRefresh;
     double m_fTimeLastRefresh;
 
+    static CDXUTControl* s_pControlFocus;        // The control which has focus
+    static CDXUTControl* s_pControlPressed;      // The control currently pressed
 
     CDXUTControl* m_pControlMouseOver;           // The control which is hovered over
 
