@@ -89,6 +89,8 @@ class CDXUTDialog
 {
 public:
     CDXUTDialog();
+    ~CDXUTDialog();
+
 
     bool m_bNonUserEvents;
     bool m_bKeyboardInput;

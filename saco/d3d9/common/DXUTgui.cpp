@@ -51,6 +51,27 @@ CDXUTDialog::CDXUTDialog()
     m_bMouseInput = true;
 }
 
+
+//--------------------------------------------------------------------------------------
+CDXUTDialog::~CDXUTDialog()
+{
+    int i=0;
+
+    RemoveAllControls();
+
+    m_Fonts.RemoveAll();
+    m_Textures.RemoveAll();
+
+    for( i=0; i < m_DefaultElements.GetSize(); i++ )
+    {
+        DXUTElementHolder* pElementHolder = m_DefaultElements.GetAt( i );
+        SAFE_DELETE( pElementHolder );
+    }
+
+    m_DefaultElements.RemoveAll();
+}
+
+
 //--------------------------------------------------------------------------------------
 CDXUTDialogResourceManager::CDXUTDialogResourceManager()
 {
