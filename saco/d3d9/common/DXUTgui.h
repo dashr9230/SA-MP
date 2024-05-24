@@ -181,6 +181,8 @@ public:
     HRESULT     OnResetDevice();
     void        OnLostDevice();
     void        OnDestroyDevice();
+    
+    int AddFont( LPCTSTR strFaceName, LONG height, LONG weight );
 
     // Shared between all dialogs
     IDirect3DStateBlock9* m_pStateBlock;

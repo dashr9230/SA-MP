@@ -220,6 +220,42 @@ VOID CDXUTDialog::SendEvent( UINT nEvent, bool bTriggeredByUser, CDXUTControl* p
 
 
 //--------------------------------------------------------------------------------------
+int CDXUTDialogResourceManager::AddFont( LPCTSTR strFaceName, LONG height, LONG weight )
+{
+    // See if this font already exists
+    for( int i=0; i < m_FontCache.GetSize(); i++ )
+    {
+        DXUTFontNode* pFontNode = m_FontCache.GetAt(i);
+        if( 0 == _strnicmp( pFontNode->strFace, strFaceName, MAX_PATH-1 ) &&
+            pFontNode->nHeight == height &&
+            pFontNode->nWeight == weight )
+        {
+            return i;
+        }
+    }
+
+    // Add a new font and try to create it
+    DXUTFontNode* pNewFontNode = new DXUTFontNode();
+    if( pNewFontNode == NULL )
+        return -1;
+
+    ZeroMemory( pNewFontNode, sizeof(DXUTFontNode) );
+    StringCchCopy( pNewFontNode->strFace, MAX_PATH, strFaceName );
+    pNewFontNode->nHeight = height;
+    pNewFontNode->nWeight = weight;
+    m_FontCache.Add( pNewFontNode );
+    
+    int iFont = m_FontCache.GetSize()-1;
+
+    // If a device is available, try to create immediately
+    if( m_pd3dDevice )
+        CreateFont( iFont );
+
+    return iFont;
+}
+
+
+//--------------------------------------------------------------------------------------
 // CDXUTControl class
 //--------------------------------------------------------------------------------------
 
