@@ -92,6 +92,10 @@ public:
     ~CDXUTDialog();
 
 
+    // Sets the callback used to notify the app of control events
+    void SetCallback( PCALLBACKDXUTGUIEVENT pCallback, void* pUserContext = NULL );
+
+
     bool m_bNonUserEvents;
     bool m_bKeyboardInput;
     bool m_bMouseInput;

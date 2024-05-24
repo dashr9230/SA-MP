@@ -73,6 +73,19 @@ CDXUTDialog::~CDXUTDialog()
 
 
 //--------------------------------------------------------------------------------------
+void CDXUTDialog::SetCallback( PCALLBACKDXUTGUIEVENT pCallback, void* pUserContext )
+{
+    // If this assert triggers, you need to call CDXUTDialog::Init() first.  This change
+    // was made so that the DXUT's GUI could become seperate and optional from DXUT's core.  The 
+    // creation and interfacing with CDXUTDialogResourceManager is now the responsibility 
+    // of the application if it wishes to use DXUT's GUI.
+    assert( m_pManager != NULL && "To fix call CDXUTDialog::Init() first.  See comments for details." ); 
+
+    m_pCallbackEvent = pCallback; 
+    m_pCallbackEventUserContext = pUserContext; 
+}
+
+
 CDXUTDialogResourceManager::CDXUTDialogResourceManager()
 {
     m_pd3dDevice = NULL;
