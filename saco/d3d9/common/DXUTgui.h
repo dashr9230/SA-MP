@@ -94,6 +94,9 @@ public:
     HRESULT AddControl( CDXUTControl* pControl );
     HRESULT InitControl( CDXUTControl* pControl );
 
+    CDXUTControl* GetControl( int ID );
+    CDXUTControl* GetControl( int ID, UINT nControlType );
+
 
     // Methods called by controls
     void SendEvent( UINT nEvent, bool bTriggeredByUser, CDXUTControl* pControl );
