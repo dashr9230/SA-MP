@@ -17,7 +17,9 @@ static cell AMX_NATIVE_CALL n_print(AMX *amx, cell *params)
 // native printf(const format[], {Float,_}:...)
 static cell AMX_NATIVE_CALL n_printf(AMX *amx, cell *params)
 {
-	// TODO: n_printf
+	//int len;
+	//logprintf("%s",format_amxstring(amx, params, 1, len));
+
 	return 0;
 }
 
