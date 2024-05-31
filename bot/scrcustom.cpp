@@ -1,6 +1,10 @@
 
 #include "main.h"
 
+#define CHECK_PARAMS(n) { if (params[0] != (n * sizeof(cell))) { logprintf("SCRIPT: Bad parameter count (Count is %d, Should be %d): ", params[0] / sizeof(cell), n); return 0; } }
+
+//----------------------------------------------------------------------------------
+
 // native print(const string[])
 static cell AMX_NATIVE_CALL n_print(AMX *amx, cell *params)
 {
@@ -46,8 +50,9 @@ static cell AMX_NATIVE_CALL n_GetTickCount(AMX *amx, cell *params)
 // native Float:asin(Float:value)
 static cell AMX_NATIVE_CALL n_asin(AMX *amx, cell *params)
 {
-	// TODO: n_asin
-	return 0;
+	CHECK_PARAMS(1);
+	float fResult = (float)(asin(amx_ctof(params[1])) * 180 / PI);
+	return amx_ftoc(fResult);
 }
 
 // native Float:acos(Float:value)
