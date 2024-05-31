@@ -74,8 +74,9 @@ static cell AMX_NATIVE_CALL n_atan(AMX *amx, cell *params)
 // native Float:atan2(Float:x, Float:y)
 static cell AMX_NATIVE_CALL n_atan2(AMX *amx, cell *params)
 {
-	// TODO: n_atan2
-	return 0;
+	CHECK_PARAMS(2);
+	float fResult = (float)(atan2(amx_ctof(params[1]), amx_ctof(params[2])) * 180 / PI);
+	return amx_ftoc(fResult);
 }
 
 // native StartRecordingPlayback(playbacktype, recordname[])
