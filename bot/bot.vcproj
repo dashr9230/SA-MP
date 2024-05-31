@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="7.10"
 	Name="bot"
-	ProjectGUID="{96047257-E60B-4E20-9C92-45F405B89220}"
+	ProjectGUID="{37F1D255-C360-4C8C-9493-696835E30CDA}"
 	Keyword="Win32Proj">
 	<Platforms>
 		<Platform
