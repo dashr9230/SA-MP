@@ -8,7 +8,9 @@
 // native print(const string[])
 static cell AMX_NATIVE_CALL n_print(AMX *amx, cell *params)
 {
-	// TODO: n_print
+	char* msg;
+	amx_StrParam(amx, params[1], msg);
+	//logprintf("%s",msg);
 	return 0;
 }
 
