@@ -111,6 +111,62 @@
 	</References>
 	<Files>
 		<Filter
+			Name="scripting"
+			Filter="">
+			<File
+				RelativePath=".\gamemodes.cpp">
+			</File>
+			<File
+				RelativePath=".\gamemodes.h">
+			</File>
+			<File
+				RelativePath=".\scrcore.cpp">
+			</File>
+			<File
+				RelativePath=".\scrcustom.cpp">
+			</File>
+			<File
+				RelativePath=".\scrtimers.cpp">
+			</File>
+			<File
+				RelativePath=".\scrtimers.h">
+			</File>
+			<Filter
+				Name="amx"
+				Filter="">
+				<File
+					RelativePath="..\server\amx\amx.c">
+				</File>
+				<File
+					RelativePath="..\server\amx\amx.h">
+				</File>
+				<File
+					RelativePath="..\server\amx\amxcons.c">
+				</File>
+				<File
+					RelativePath="..\server\amx\amxcore.c">
+				</File>
+				<File
+					RelativePath="..\server\amx\amxDGram.c">
+				</File>
+				<File
+					RelativePath="..\server\amx\amxfile.c">
+				</File>
+				<File
+					RelativePath="..\server\amx\amxfloat.c">
+				</File>
+				<File
+					RelativePath="..\server\amx\amxstring.c">
+				</File>
+				<File
+					RelativePath="..\server\amx\amxtime.c">
+				</File>
+				<File
+					RelativePath="..\server\amx\osdefs.h">
+				</File>
+			</Filter>
+		</Filter>
+		<Filter
 			Name="net"
 			Filter="">
 			<File
@@ -298,48 +354,8 @@
 				RelativePath="..\raknet\Types.h">
 			</File>
 		</Filter>
-		<Filter
-			Name="amx"
-			Filter="">
-			<File
-				RelativePath="..\server\amx\amx.c">
-			</File>
-			<File
-				RelativePath="..\server\amx\amx.h">
-			</File>
-			<File
-				RelativePath="..\server\amx\amxcons.c">
-			</File>
-			<File
-				RelativePath="..\server\amx\amxcore.c">
-			</File>
-			<File
-				RelativePath="..\server\amx\amxDGram.c">
-			</File>
-			<File
-				RelativePath="..\server\amx\amxfile.c">
-			</File>
-			<File
-				RelativePath="..\server\amx\amxfloat.c">
-			</File>
-			<File
-				RelativePath="..\server\amx\amxstring.c">
-			</File>
-			<File
-				RelativePath="..\server\amx\amxtime.c">
-			</File>
-			<File
-				RelativePath="..\server\amx\osdefs.h">
-			</File>
-		</Filter>
 		<File
 			RelativePath=".\bot.rc">
-		</File>
-		<File
-			RelativePath=".\gamemodes.cpp">
-		</File>
-		<File
-			RelativePath=".\gamemodes.h">
 		</File>
 		<File
 			RelativePath=".\main.cpp">
@@ -351,16 +367,7 @@
 			RelativePath=".\resource.h">
 		</File>
 		<File
-			RelativePath=".\scrcore.cpp">
-		</File>
-		<File
-			RelativePath=".\scrcustom.cpp">
-		</File>
-		<File
-			RelativePath=".\scrtimers.cpp">
-		</File>
-		<File
-			RelativePath=".\scrtimers.h">
+			RelativePath="..\server\system.h">
 		</File>
 	</Files>
 	<Globals>
