@@ -43,8 +43,9 @@ static cell AMX_NATIVE_CALL n_KillTimer(AMX *amx, cell *params)
 // native GetTickCount()
 static cell AMX_NATIVE_CALL n_GetTickCount(AMX *amx, cell *params)
 {
-	// TODO: n_GetTickCount
-	return 0;
+	CHECK_PARAMS(0);
+
+	return (cell)GetTickCount();
 }
 
 // native Float:asin(Float:value)
