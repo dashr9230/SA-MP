@@ -307,6 +307,9 @@ void CNetGame::UpdateNetwork()
 		case ID_CONNECTION_LOST:
 			Packet_ConnectionLost(pkt);
 			break;
+		case ID_INVALID_PASSWORD:
+			Packet_InvalidPassword(pkt);
+			break;
 		case ID_MODIFIED_PACKET:
 			Packet_ModifiedPacket(pkt);
 			break;
@@ -430,6 +433,15 @@ void CNetGame::Packet_DisconnectionNotification(Packet* packet)
 void CNetGame::Packet_ConnectionLost(Packet* packet)
 {
 	//logprintf("NPC: Lost connection to the server.");
+	m_pRakClient->Disconnect(0);
+	exit(1);
+}
+
+//----------------------------------------------------
+
+void CNetGame::Packet_InvalidPassword(Packet* packet)
+{
+	//logprintf("NPC: Wrong server password.");
 	m_pRakClient->Disconnect(0);
 	exit(1);
 }

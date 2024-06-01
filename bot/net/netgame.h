@@ -31,6 +31,7 @@ private:
 	void Packet_NoFreeIncomingConnections(Packet* packet);
 	void Packet_DisconnectionNotification(Packet* packet);
 	void Packet_ConnectionLost(Packet* packet);
+	void Packet_InvalidPassword(Packet* packet);
 	void Packet_ModifiedPacket(Packet* packet);
 	void Packet_ConnectAttemptFailed(Packet* packet);
 	void Packet_TrailerSync(Packet *p);
