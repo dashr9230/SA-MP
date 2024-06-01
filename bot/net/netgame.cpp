@@ -303,7 +303,9 @@ void CNetGame::UpdateNetwork()
 		case ID_MODIFIED_PACKET:
 			Packet_ModifiedPacket(pkt);
 			break;
-
+		case ID_CONNECTION_ATTEMPT_FAILED:
+			Packet_ConnectAttemptFailed(pkt);
+			break;
 		case ID_CONNECTION_REQUEST_ACCEPTED:
 			Packet_ConnectionSucceeded(pkt);
 			break;
@@ -397,6 +399,15 @@ void CNetGame::Packet_DisconnectionNotification(Packet* packet)
 
 void CNetGame::Packet_ModifiedPacket(Packet* packet)
 {
+}
+
+//----------------------------------------------------
+// RST
+
+void CNetGame::Packet_ConnectAttemptFailed(Packet* packet)
+{
+	//logprintf("NPC: Connection attempt failed.");
+	exit(1);
 }
 
 //----------------------------------------------------

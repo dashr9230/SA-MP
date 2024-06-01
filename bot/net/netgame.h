@@ -28,6 +28,7 @@ private:
 	void Packet_ConnectionBanned(Packet* packet);
 	void Packet_DisconnectionNotification(Packet* packet);
 	void Packet_ModifiedPacket(Packet* packet);
+	void Packet_ConnectAttemptFailed(Packet* packet);
 	void Packet_TrailerSync(Packet *p);
 
 	int			m_iSpawnsAvailable;
