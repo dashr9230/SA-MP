@@ -393,7 +393,7 @@ void CNetGame::Packet_RSAPublicKeyMismatch(Packet* packet)
 
 void CNetGame::Packet_ConnectionBanned(Packet* packet)
 {
-	//OutputDebugString("BOT: You're banned from the server.");
+	//logprintf("NPC: You're banned from the server.");
 	exit(1);
 }
 
