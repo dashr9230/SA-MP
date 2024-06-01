@@ -94,8 +94,8 @@ static cell AMX_NATIVE_CALL n_StartRecordingPlayback(AMX *amx, cell *params)
 // native StopRecordingPlayback()
 static cell AMX_NATIVE_CALL n_StopRecordingPlayback(AMX *amx, cell *params)
 {
-	// TODO: n_StopRecordingPlayback
-	return 0;
+	pNetGame->StopRecordingPlayback();
+	return 1;
 }
 
 // native PauseRecordingPlayback()
