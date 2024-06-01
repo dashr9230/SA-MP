@@ -9,9 +9,14 @@ void Unk26(RPCParameters *rpcParams) {}
 void Unk27(RPCParameters *rpcParams) {}
 void UpdateScoresPingsIPs(RPCParameters *rpcParams) {}
 
+RakNetStatisticsStruct RakServerStats;
+
 void SvrStats(RPCParameters *rpcParams)
 {
-	// TODO: SvrStats
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
+	bsData.Read((char *)&RakServerStats,sizeof(RakNetStatisticsStruct));
 }
 
 void Unk28(RPCParameters *rpcParams)
