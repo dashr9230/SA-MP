@@ -399,6 +399,13 @@ void CNetGame::Packet_ConnectionBanned(Packet* packet)
 
 //----------------------------------------------------
 
+void CNetGame::Packet_ConnectionRequestAccepted(Packet* packet)
+{
+	//logprintf("NPC: Server has accepted the connection.");
+}
+
+//----------------------------------------------------
+
 void CNetGame::Packet_DisconnectionNotification(Packet* packet)
 {
 	//OutputDebugString("BOT: Disconnected.");
