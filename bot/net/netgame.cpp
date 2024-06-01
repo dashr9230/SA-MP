@@ -304,7 +304,9 @@ void CNetGame::UpdateNetwork()
 		case ID_DISCONNECTION_NOTIFICATION:
 			Packet_DisconnectionNotification(pkt);
 			break;
-
+		case ID_CONNECTION_LOST:
+			Packet_ConnectionLost(pkt);
+			break;
 		case ID_MODIFIED_PACKET:
 			Packet_ModifiedPacket(pkt);
 			break;
@@ -419,6 +421,15 @@ void CNetGame::Packet_NoFreeIncomingConnections(Packet* packet)
 void CNetGame::Packet_DisconnectionNotification(Packet* packet)
 {
 	//logprintf("NPC: Disconnected.");
+	m_pRakClient->Disconnect(0);
+	exit(1);
+}
+
+//----------------------------------------------------
+
+void CNetGame::Packet_ConnectionLost(Packet* packet)
+{
+	//logprintf("NPC: Lost connection to the server.");
 	m_pRakClient->Disconnect(0);
 	exit(1);
 }

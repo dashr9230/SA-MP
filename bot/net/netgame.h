@@ -30,6 +30,7 @@ private:
 	void Packet_ConnectionRequestAccepted(Packet* packet);
 	void Packet_NoFreeIncomingConnections(Packet* packet);
 	void Packet_DisconnectionNotification(Packet* packet);
+	void Packet_ConnectionLost(Packet* packet);
 	void Packet_ModifiedPacket(Packet* packet);
 	void Packet_ConnectAttemptFailed(Packet* packet);
 	void Packet_TrailerSync(Packet *p);
