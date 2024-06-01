@@ -448,6 +448,16 @@ void CNetGame::ResetVehiclePool()
 
 //----------------------------------------------------
 
+void CNetGame::ResetPlayerPool()
+{
+	if(m_pPlayerPool) {
+		delete m_pPlayerPool;
+	}
+	m_pPlayerPool = new CPlayerPool();
+}
+
+//----------------------------------------------------
+
 void CNetGame::sub_415EA0(PLAYERID playerId, BOOL a2)
 {
 	if(playerId < MAX_PLAYERS)

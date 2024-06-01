@@ -75,6 +75,7 @@ public:
 	void Init(PCHAR szHostOrIp,int iPort,PCHAR szPlayerName,PCHAR szPass,PCHAR szNpcMode);
 	void Process();
 	void ResetVehiclePool();
+	void ResetPlayerPool();
 	void ShutdownForGameModeRestart();
 
 	void sub_415EA0(PLAYERID playerId, BOOL a2);
