@@ -1,5 +1,10 @@
 
 #include "../main.h"
+using namespace RakNet;
+
+#define REJECT_REASON_BAD_VERSION   1
+#define REJECT_REASON_BAD_NICKNAME  2
+#define REJECT_REASON_BAD_MOD		3
 
 void EnterVehicle(RPCParameters *rpcParams) {}
 void ExitVehicle(RPCParameters *rpcParams) {}
@@ -24,9 +29,24 @@ void GameModeRestart(RPCParameters *rpcParams)
 	pNetGame->ShutdownForGameModeRestart();
 }
 
-void Unk82(RPCParameters *rpcParams)
+void ConnectionRejected(RPCParameters *rpcParams)
 {
-	// TODO: Unk82
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
+	BYTE byteRejectReason;
+
+	bsData.Read(byteRejectReason);
+
+	if(byteRejectReason==REJECT_REASON_BAD_VERSION) {
+		//logprintf("BOT: CONNECTION REJECTED. INCORRECT SA-MP VERSION!");
+	} 
+	else if(byteRejectReason==REJECT_REASON_BAD_NICKNAME) {
+		//logprintf("BOT: CONNECTION REJECTED. BAD NICKNAME!");
+	}
+
+	pNetGame->GetRakClient()->Disconnect(500);
+	exit(1);
 }
 
 void ClientMessage(RPCParameters *rpcParams)
@@ -111,7 +131,7 @@ void RegisterRPCs(RakClientInterface * pRakClient)
 	REGISTER_STATIC_RPC(pRakClient,UpdateScoresPingsIPs);
 	REGISTER_STATIC_RPC(pRakClient,SvrStats);
 	REGISTER_STATIC_RPC(pRakClient,GameModeRestart);
-	REGISTER_STATIC_RPC(pRakClient,Unk82);
+	REGISTER_STATIC_RPC(pRakClient,ConnectionRejected);
 	REGISTER_STATIC_RPC(pRakClient,ClientMessage);
 	REGISTER_STATIC_RPC(pRakClient,WorldTime);
 	REGISTER_STATIC_RPC(pRakClient,Unk5F);
@@ -147,7 +167,7 @@ void UnRegisterRPCs(RakClientInterface * pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient,UpdateScoresPingsIPs);
 	UNREGISTER_STATIC_RPC(pRakClient,SvrStats);
 	UNREGISTER_STATIC_RPC(pRakClient,GameModeRestart);
-	UNREGISTER_STATIC_RPC(pRakClient,Unk82);
+	UNREGISTER_STATIC_RPC(pRakClient,ConnectionRejected);
 	UNREGISTER_STATIC_RPC(pRakClient,ClientMessage);
 	UNREGISTER_STATIC_RPC(pRakClient,WorldTime);
 	UNREGISTER_STATIC_RPC(pRakClient,Unk5F);
