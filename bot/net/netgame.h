@@ -28,6 +28,7 @@ private:
 	void Packet_RSAPublicKeyMismatch(Packet* packet);
 	void Packet_ConnectionBanned(Packet* packet);
 	void Packet_ConnectionRequestAccepted(Packet* packet);
+	void Packet_NoFreeIncomingConnections(Packet* packet);
 	void Packet_DisconnectionNotification(Packet* packet);
 	void Packet_ModifiedPacket(Packet* packet);
 	void Packet_ConnectAttemptFailed(Packet* packet);

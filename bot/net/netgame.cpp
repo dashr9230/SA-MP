@@ -298,7 +298,9 @@ void CNetGame::UpdateNetwork()
 		case ID_CONNECTION_BANNED:
 			Packet_ConnectionBanned(pkt);
 			break;
-
+		case ID_NO_FREE_INCOMING_CONNECTIONS:
+			Packet_NoFreeIncomingConnections(pkt);
+			break;
 		case ID_DISCONNECTION_NOTIFICATION:
 			Packet_DisconnectionNotification(pkt);
 			break;
@@ -402,6 +404,14 @@ void CNetGame::Packet_ConnectionBanned(Packet* packet)
 void CNetGame::Packet_ConnectionRequestAccepted(Packet* packet)
 {
 	//logprintf("NPC: Server has accepted the connection.");
+}
+
+//----------------------------------------------------
+
+void CNetGame::Packet_NoFreeIncomingConnections(Packet* packet)
+{
+	//logprintf("NPC: The server is full.");
+	exit(1);
 }
 
 //----------------------------------------------------
