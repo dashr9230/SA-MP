@@ -70,6 +70,7 @@ public:
 
 	int GetGameState() { return m_iGameState; };
 
+	CPlayerPool * GetPlayerPool() { return m_pPlayerPool; };
 	RakClientInterface * GetRakClient() { return m_pRakClient; };
 
 	void Init(PCHAR szHostOrIp,int iPort,PCHAR szPlayerName,PCHAR szPass,PCHAR szNpcMode);

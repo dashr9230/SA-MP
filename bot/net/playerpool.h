@@ -25,4 +25,10 @@ public:
 
 	BOOL Delete(PLAYERID playerId, BYTE byteReason);
 
+	// Find out if the slot is inuse.
+	BOOL GetSlotState(PLAYERID playerId) {
+		if(playerId >= MAX_PLAYERS) { return FALSE; }
+		return m_bPlayerSlotState[playerId];
+	};
+
 };
