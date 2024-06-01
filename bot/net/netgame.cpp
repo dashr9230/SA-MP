@@ -418,7 +418,7 @@ void CNetGame::Packet_NoFreeIncomingConnections(Packet* packet)
 
 void CNetGame::Packet_DisconnectionNotification(Packet* packet)
 {
-	//OutputDebugString("BOT: Disconnected.");
+	//logprintf("NPC: Disconnected.");
 	m_pRakClient->Disconnect(0);
 	exit(1);
 }
