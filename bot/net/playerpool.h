@@ -15,6 +15,8 @@ private:
 	char gap90AB[4000];
 
 public:
+	// Process All CPlayers
+	BOOL Process();
 
 	void SetLocalPlayerName(PCHAR szName) { strcpy(m_szLocalPlayerName,szName); };
 

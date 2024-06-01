@@ -37,3 +37,10 @@ BOOL CPlayerPool::Delete(PLAYERID playerId, BYTE byteReason)
 }
 
 //----------------------------------------------------
+
+BOOL CPlayerPool::Process()
+{
+	return TRUE;
+}
+
+//----------------------------------------------------

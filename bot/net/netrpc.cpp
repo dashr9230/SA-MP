@@ -19,9 +19,9 @@ void SvrStats(RPCParameters *rpcParams)
 	bsData.Read((char *)&RakServerStats,sizeof(RakNetStatisticsStruct));
 }
 
-void Unk28(RPCParameters *rpcParams)
+void GameModeRestart(RPCParameters *rpcParams)
 {
-	// TODO: Unk28
+	pNetGame->ShutdownForGameModeRestart();
 }
 
 void Unk82(RPCParameters *rpcParams)
@@ -110,7 +110,7 @@ void RegisterRPCs(RakClientInterface * pRakClient)
 	REGISTER_STATIC_RPC(pRakClient,Unk27);
 	REGISTER_STATIC_RPC(pRakClient,UpdateScoresPingsIPs);
 	REGISTER_STATIC_RPC(pRakClient,SvrStats);
-	REGISTER_STATIC_RPC(pRakClient,Unk28);
+	REGISTER_STATIC_RPC(pRakClient,GameModeRestart);
 	REGISTER_STATIC_RPC(pRakClient,Unk82);
 	REGISTER_STATIC_RPC(pRakClient,ClientMessage);
 	REGISTER_STATIC_RPC(pRakClient,WorldTime);
@@ -146,7 +146,7 @@ void UnRegisterRPCs(RakClientInterface * pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient,Unk27);
 	UNREGISTER_STATIC_RPC(pRakClient,UpdateScoresPingsIPs);
 	UNREGISTER_STATIC_RPC(pRakClient,SvrStats);
-	UNREGISTER_STATIC_RPC(pRakClient,Unk28);
+	UNREGISTER_STATIC_RPC(pRakClient,GameModeRestart);
 	UNREGISTER_STATIC_RPC(pRakClient,Unk82);
 	UNREGISTER_STATIC_RPC(pRakClient,ClientMessage);
 	UNREGISTER_STATIC_RPC(pRakClient,WorldTime);

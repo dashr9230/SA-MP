@@ -13,8 +13,8 @@ void Unk26(RPCParameters *rpcParams) {}
 void Unk27(RPCParameters *rpcParams) {}
 void UpdateScoresPingsIPs(RPCParameters *rpcParams) {}
 void SvrStats(RPCParameters *rpcParams) {}
-void Unk28(RPCParameters *rpcParams) {}
 void Unk82(RPCParameters *rpcParams) {}
+void GameModeRestart(RPCParameters *rpcParams) {}
 void ClientMessage(RPCParameters *rpcParams) {}
 void WorldTime(RPCParameters *rpcParams) {}
 void Unk5F(RPCParameters *rpcParams) {}
@@ -64,8 +64,8 @@ void RegisterRPCs(RakClientInterface * pRakClient)
 	REGISTER_STATIC_RPC(pRakClient,Unk27);
 	REGISTER_STATIC_RPC(pRakClient,UpdateScoresPingsIPs);
 	REGISTER_STATIC_RPC(pRakClient,SvrStats);
-	REGISTER_STATIC_RPC(pRakClient,Unk28);
 	REGISTER_STATIC_RPC(pRakClient,Unk82);
+	REGISTER_STATIC_RPC(pRakClient,GameModeRestart);
 	REGISTER_STATIC_RPC(pRakClient,ClientMessage);
 	REGISTER_STATIC_RPC(pRakClient,WorldTime);
 	REGISTER_STATIC_RPC(pRakClient,Unk5F);
@@ -132,8 +132,8 @@ void UnRegisterRPCs(RakClientInterface * pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient,Unk27);
 	UNREGISTER_STATIC_RPC(pRakClient,UpdateScoresPingsIPs);
 	UNREGISTER_STATIC_RPC(pRakClient,SvrStats);
-	UNREGISTER_STATIC_RPC(pRakClient,Unk28);
 	UNREGISTER_STATIC_RPC(pRakClient,Unk82);
+	UNREGISTER_STATIC_RPC(pRakClient,GameModeRestart);
 	UNREGISTER_STATIC_RPC(pRakClient,ClientMessage);
 	UNREGISTER_STATIC_RPC(pRakClient,WorldTime);
 	UNREGISTER_STATIC_RPC(pRakClient,Unk5F);

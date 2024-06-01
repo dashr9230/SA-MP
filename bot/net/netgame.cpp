@@ -82,6 +82,39 @@ CNetGame::~CNetGame()
 
 //----------------------------------------------------
 
+void CNetGame::ShutdownForGameModeRestart()
+{
+	m_byteWorldTime = 12;
+	m_byteWorldMinute = 0;
+	m_byteWeather	= 10;
+	m_byteHoldTime = 1;
+	m_bUseCJWalk = FALSE;
+	m_fGravity = (float)0.008000000;
+	m_iDeathDropMoney = 0;
+
+	m_iGameState = GAMESTATE_RESTARTING;
+
+	// Process the pool one last time
+	m_pPlayerPool->Process();
+
+	ResetVehiclePool();
+
+	StopRecordingPlayback();
+
+	memset(unnamed_1,0,sizeof(unnamed_1));
+	memset(unnamed_2,0,sizeof(unnamed_2));
+	memset(unnamed_3,0,sizeof(unnamed_3));
+	memset(unnamed_4,0,sizeof(unnamed_4));
+	memset(unnamed_5,0,sizeof(unnamed_5));
+	memset(unnamed_6,0,sizeof(unnamed_6));
+	memset(unnamed_7,0,sizeof(unnamed_7));
+	memset(unnamed_8,0,sizeof(unnamed_8));
+
+	m_bZoneNames = FALSE;
+}
+
+//----------------------------------------------------
+
 void CNetGame::Init(PCHAR szHostOrIp, int iPort,
 				    PCHAR szPlayerName, PCHAR szPass,
 				    PCHAR szNpcMode)
@@ -405,6 +438,16 @@ void CNetGame::Packet_ConnectionSucceeded(Packet *p)
 
 //----------------------------------------------------
 
+void CNetGame::ResetVehiclePool()
+{
+	if(m_pVehiclePool) {
+		delete m_pVehiclePool;
+	}
+	m_pVehiclePool = new CVehiclePool();
+}
+
+//----------------------------------------------------
+
 void CNetGame::sub_415EA0(PLAYERID playerId, BOOL a2)
 {
 	if(playerId < MAX_PLAYERS)
@@ -420,4 +463,12 @@ void CNetGame::sub_415EC0(VEHICLEID VehicleID, BOOL a2)
 		unnamed_7[VehicleID] = a2;
 	}
 }
+
+void CNetGame::StopRecordingPlayback()
+{
+	field_1DE = 0;
+	field_1DA = 0;
+}
+
+
 

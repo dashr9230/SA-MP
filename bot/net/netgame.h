@@ -6,6 +6,8 @@
 #define GAMESTATE_CONNECTED		2
 #define GAMESTATE_AWAIT_JOIN	3
 
+#define GAMESTATE_RESTARTING	5
+
 //----------------------------------------------------
 
 class CNetGame // size: 910 bytes
@@ -45,7 +47,7 @@ private:
 	bool		m_bUseCJWalk;
 	char _gap41[9];
 	DWORD		m_dwMapIcon[100];
-	char _gap1DA[4];
+	int field_1DA;
 	int field_1DE;
 	int field_1E2;
 	char _gap1E6[12];
@@ -72,9 +74,13 @@ public:
 
 	void Init(PCHAR szHostOrIp,int iPort,PCHAR szPlayerName,PCHAR szPass,PCHAR szNpcMode);
 	void Process();
+	void ResetVehiclePool();
+	void ShutdownForGameModeRestart();
 
 	void sub_415EA0(PLAYERID playerId, BOOL a2);
 	void sub_415EC0(VEHICLEID VehicleID, BOOL a2);
+
+	void StopRecordingPlayback();
 };
 
 //----------------------------------------------------
