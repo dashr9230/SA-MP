@@ -25,6 +25,7 @@ private:
 	void Packet_AimSync(Packet *p);
 	void Packet_PassengerSync(Packet *p);
 	void Packet_ConnectionSucceeded(Packet *p);
+	void Packet_RSAPublicKeyMismatch(Packet* packet);
 	void Packet_ConnectionBanned(Packet* packet);
 	void Packet_DisconnectionNotification(Packet* packet);
 	void Packet_ModifiedPacket(Packet* packet);

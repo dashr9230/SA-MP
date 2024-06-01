@@ -292,6 +292,9 @@ void CNetGame::UpdateNetwork()
 
 		switch(packetIdentifier)
 		{
+		case ID_RSA_PUBLIC_KEY_MISMATCH:
+			Packet_RSAPublicKeyMismatch(pkt);
+			break;
 		case ID_CONNECTION_BANNED:
 			Packet_ConnectionBanned(pkt);
 			break;
@@ -376,6 +379,14 @@ void CNetGame::Packet_TrailerSync(Packet *p)
 	bsTrailerSync.Read(bytePacketID);
 	bsTrailerSync.Read(bytePlayerID);
 	bsTrailerSync.Read((PCHAR)&trSync, sizeof(TRAILER_SYNC_DATA));
+}
+
+//----------------------------------------------------
+
+void CNetGame::Packet_RSAPublicKeyMismatch(Packet* packet)
+{
+	//logprintf("NPC: Failed to initialize encryption.");
+	exit(1);
 }
 
 //----------------------------------------------------
