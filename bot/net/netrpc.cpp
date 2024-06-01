@@ -1,6 +1,7 @@
 
 #include "../main.h"
 using namespace RakNet;
+extern CNetGame* pNetGame;
 
 #define REJECT_REASON_BAD_VERSION   1
 #define REJECT_REASON_BAD_NICKNAME  2
@@ -51,7 +52,21 @@ void ConnectionRejected(RPCParameters *rpcParams)
 
 void ClientMessage(RPCParameters *rpcParams)
 {
-	// TODO: ClientMessage
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
+	DWORD dwStrLen;
+	DWORD dwColor;
+
+	bsData.Read(dwColor);
+	bsData.Read(dwStrLen);
+	unsigned char* szMsg = (unsigned char *)malloc(dwStrLen+1);
+	bsData.Read((char *)szMsg, dwStrLen);
+	szMsg[dwStrLen] = 0;
+
+	if(pNetGame->GetBotMode()) pNetGame->GetBotMode()->OnClientMessage(dwColor, szMsg);
+
+	free(szMsg);
 }
 
 void WorldTime(RPCParameters *rpcParams) {}

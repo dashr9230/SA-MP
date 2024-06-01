@@ -233,19 +233,19 @@ int CGameMode::OnNPCExitVehicle()
 //----------------------------------------------------------------------------------
 
 // forward OnClientMessage(color, text[]);
-int CGameMode::OnClientMessage(cell color, char *szText)
+int CGameMode::OnClientMessage(cell color, unsigned char * szText)
 {
 	int idx;
 	cell ret = 1;
-	int orig_strlen = strlen(szText) + 1;
+	int orig_strlen = strlen((char*)szText) + 1;
 
 	if (!amx_FindPublic(&m_amx, "OnClientMessage", &idx))
 	{
 		cell amx_addr, *phys_addr;
-		amx_PushString(&m_amx, &amx_addr, &phys_addr, szText, 0, 0);
+		amx_PushString(&m_amx, &amx_addr, &phys_addr, (char*)szText, 0, 0);
 		amx_Push(&m_amx, color);
 		amx_Exec(&m_amx, &ret, idx);
-		amx_GetString(szText, phys_addr, 0, orig_strlen);
+		amx_GetString((char*)szText, phys_addr, 0, orig_strlen);
 		amx_Release(&m_amx, amx_addr);
 	}
 	return (int)ret;

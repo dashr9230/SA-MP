@@ -73,6 +73,7 @@ public:
 
 	CPlayerPool * GetPlayerPool() { return m_pPlayerPool; };
 	RakClientInterface * GetRakClient() { return m_pRakClient; };
+	CGameMode * GetBotMode() { return m_pGameMode; };
 
 	void Init(PCHAR szHostOrIp,int iPort,PCHAR szPlayerName,PCHAR szPass,PCHAR szNpcMode);
 	void Process();

@@ -32,7 +32,7 @@ public:
 	int OnNPCSpawn();
 	int OnNPCEnterVehicle(cell vehicleid, cell seatid);
 	int OnNPCExitVehicle();
-	int OnClientMessage(cell color, char *szText);
+	int OnClientMessage(cell color, unsigned char * szText);
 	int OnPlayerDeath(cell playerid);
 	int OnPlayerText(cell playerid, unsigned char * szText);
 	int OnPlayerStreamIn(cell playerid);
