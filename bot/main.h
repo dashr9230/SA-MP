@@ -6,6 +6,7 @@
 
 	#include <windows.h>
 	#include <mmsystem.h>
+	#include <malloc.h>
 #else
 	#define SLEEP(x) { usleep(x * 1000); }
 
