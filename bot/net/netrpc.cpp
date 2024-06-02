@@ -83,9 +83,22 @@ void Unk89(RPCParameters *rpcParams)
 	// TODO: Unk89
 }
 
-void Unk8A(RPCParameters *rpcParams)
+void ServerQuit(RPCParameters *rpcParams)
 {
-	// TODO: Unk8A
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	PlayerID sender = rpcParams->sender;
+
+	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
+	CPlayerPool *pPlayerPool = pNetGame->GetPlayerPool();
+	PLAYERID playerId;
+	BYTE byteReason;
+
+	bsData.Read(playerId);
+	bsData.Read(byteReason);
+
+	// Delete this client from the player pool.
+	pPlayerPool->Delete(playerId,byteReason);
 }
 
 void Unk8B(RPCParameters *rpcParams)
@@ -173,7 +186,7 @@ void RegisterRPCs(RakClientInterface * pRakClient)
 	REGISTER_STATIC_RPC(pRakClient,Unk1D);
 	REGISTER_STATIC_RPC(pRakClient,Unk1E);
 	REGISTER_STATIC_RPC(pRakClient,Unk89);
-	REGISTER_STATIC_RPC(pRakClient,Unk8A);
+	REGISTER_STATIC_RPC(pRakClient,ServerQuit);
 	REGISTER_STATIC_RPC(pRakClient,Unk8B);
 	REGISTER_STATIC_RPC(pRakClient,Chat);
 	REGISTER_STATIC_RPC(pRakClient,RequestClass);
@@ -214,7 +227,7 @@ void UnRegisterRPCs(RakClientInterface * pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient,UnkA4);
 	UNREGISTER_STATIC_RPC(pRakClient,UnkA5);
 	UNREGISTER_STATIC_RPC(pRakClient,Unk89);
-	UNREGISTER_STATIC_RPC(pRakClient,Unk8A);
+	UNREGISTER_STATIC_RPC(pRakClient,ServerQuit);
 	UNREGISTER_STATIC_RPC(pRakClient,Unk8B);
 	UNREGISTER_STATIC_RPC(pRakClient,Chat);
 	UNREGISTER_STATIC_RPC(pRakClient,RequestClass);
