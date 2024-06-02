@@ -123,7 +123,7 @@
 #define RPC_ScrUnk5C				"\x5C"
 #define RPC_ScrUnk96				"\x96"
 #define RPC_ScrUnk70				"\x70"
-#define RPC_ScrUnk44				"\x44"
+#define RPC_ScrSetSpawnInfo			"\x44"
 #define RPC_ScrUnk45				"\x45"
 #define RPC_ScrUnk99				"\x99"
 #define RPC_ScrUnk0B				"\x0B"

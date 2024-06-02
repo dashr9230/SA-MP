@@ -1,10 +1,23 @@
 
 #include "../main.h"
 
-void ScrUnk44(RPCParameters *rpcParams)
+using namespace RakNet;
+extern CNetGame*	pNetGame;
+
+//----------------------------------------------------
+
+void ScrSetSpawnInfo(RPCParameters *rpcParams)
 {
-	// TODO: ScrUnk44
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	PlayerID sender = rpcParams->sender;
+	PLAYER_SPAWN_INFO SpawnInfo;
+	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
+	CPlayerPool *pPlayerPool = pNetGame->GetPlayerPool();
+	bsData.Read((PCHAR)&SpawnInfo, sizeof(PLAYER_SPAWN_INFO));
 }
+
+//----------------------------------------------------
 
 void ScrUnk45(RPCParameters *rpcParams) {}
 void ScrUnk99(RPCParameters *rpcParams) {}
@@ -121,7 +134,7 @@ void ScrUnk58(RPCParameters *rpcParams) {}
 
 void RegisterScriptRPCs(RakClientInterface* pRakClient)
 {
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk44);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetSpawnInfo);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk45);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk99);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk0B);
@@ -195,7 +208,7 @@ void RegisterScriptRPCs(RakClientInterface* pRakClient)
 
 void UnRegisterScriptRPCs(RakClientInterface* pRakClient)
 {
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk44);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetSpawnInfo);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk45);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk0B);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk99);

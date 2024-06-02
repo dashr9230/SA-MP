@@ -61,3 +61,11 @@ void SignalHandler(int sig);
 long GetTickCount();
 char* strlwr(char* str);
 #endif
+
+#pragma pack(1)
+typedef struct _PLAYER_SPAWN_INFO
+{
+	char _gap0[46];
+
+} PLAYER_SPAWN_INFO;
+
