@@ -30,9 +30,28 @@ void ScrUnk47(RPCParameters *rpcParams)
 
 void ScrUnk48(RPCParameters *rpcParams) {}
 
-void ScrUnk49(RPCParameters *rpcParams)
+void ScrDisplayGameText(RPCParameters *rpcParams)
 {
-	// TODO: ScrUnk49
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	PlayerID sender = rpcParams->sender;
+
+	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
+	char szMessage[512];
+	int iType;
+	int iTime;
+	int iLength;
+
+	bsData.Read(iType);
+	bsData.Read(iTime);
+	bsData.Read(iLength);
+
+	if(iLength > 512) return;
+
+	bsData.Read(szMessage,iLength);
+	szMessage[iLength] = '\0';
+
+	//OutputDebugString(szMessage);
 }
 
 void ScrUnk9C(RPCParameters *rpcParams) {}
@@ -112,7 +131,7 @@ void RegisterScriptRPCs(RakClientInterface* pRakClient)
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk46);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk47);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk48);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk49);
+	REGISTER_STATIC_RPC(pRakClient, ScrDisplayGameText);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk9C);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk9D);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk9E);
@@ -186,7 +205,7 @@ void UnRegisterScriptRPCs(RakClientInterface* pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk46);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk47);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk48);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk49);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrDisplayGameText);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk9C);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk9D);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk9E);

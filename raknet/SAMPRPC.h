@@ -133,7 +133,7 @@
 #define RPC_ScrUnk46				"\x46"
 #define RPC_ScrUnk47				"\x47"
 #define RPC_ScrUnk48				"\x48"
-#define RPC_ScrUnk49				"\x49"
+#define RPC_ScrDisplayGameText		"\x49"
 #define RPC_ScrUnk9C				"\x9C"
 #define RPC_ScrUnk9D				"\x9D"
 #define RPC_ScrUnk9E				"\x9E"
