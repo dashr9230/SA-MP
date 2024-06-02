@@ -6,7 +6,7 @@
 #endif
 
 #ifndef MAX
-	#define MAX(x, y) ((x) < (y) ? (y) : (x))
+	#define MAX(x, y) ((y) < (x) ? (x) : (y))
 #endif
 
 //----------------------------------------------------
@@ -34,21 +34,23 @@ void MatrixToQuaternion(float m00, float m01, float m02,
 						float m20, float m21, float m22,
 						float &qw, float &qx, float &qy, float &qz)
 {
-	float tw = sqrt(MAX(m00 + 1.0f + m11 + m22, 0.0f)) / 2.0f;
-	float tx = sqrt(MAX(m00 + 1.0f - m11 - m22, 0.0f)) / 2.0f;
-	float ty = sqrt(MAX(1.0f - m00 + m11 - m22, 0.0f)) / 2.0f;
-	float tz = sqrt(MAX(1.0f - m00 - m11 + m22, 0.0f)) / 2.0f;
+	double w, x, y, z;
 
-	if(tw < 0.0f) tw = 0.0f;
-	if(tx < 0.0f) tx = 0.0f;
-	if(ty < 0.0f) ty = 0.0f;
-	if(tz < 0.0f) tz = 0.0f;
+	w = sqrt(MAX(0.0f, 1.0f + m00 + m11 + m22)) / 2.0f;
+	x = sqrt(MAX(0.0f, 1.0f + m00 - m11 - m22)) / 2.0f;
+	y = sqrt(MAX(0.0f, 1.0f - m00 + m11 - m22)) / 2.0f;
+	z = sqrt(MAX(0.0f, 1.0f - m00 - m11 + m22)) / 2.0f;
 
-	float x = (float)copysign(tx, m21 - m12);
-	float y = (float)copysign(ty, m02 - m20);
-	float z = (float)copysign(tz, m10 - m01);
+	if(w < 0.0f) w = 0.0f;
+	if(x < 0.0f) x = 0.0f;
+	if(y < 0.0f) y = 0.0f;
+	if(z < 0.0f) z = 0.0f;
 
-	qw = tw;
+	x = copysign(x, m21 - m12);
+	y = copysign(y, m02 - m20);
+	z = copysign(z, m10 - m01);
+
+	qw = w;
 	qx = x;
 	qy = y;
 	qz = z;
