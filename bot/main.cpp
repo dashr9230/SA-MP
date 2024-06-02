@@ -57,7 +57,7 @@ void logprintf(char* format, ...)
 	va_list ap;
 	va_start(ap, format);
 
-	char buffer[2048];
+	char buffer[2049];
 	vsprintf(buffer, format, ap);
 
 #ifdef WIN32
