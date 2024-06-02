@@ -95,7 +95,23 @@ void Unk8B(RPCParameters *rpcParams)
 
 void Chat(RPCParameters *rpcParams)
 {
-	// TODO: Chat
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	PlayerID sender = rpcParams->sender;
+
+	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
+	PLAYERID playerId;
+	BYTE byteTextLen;
+
+	unsigned char szText[256];
+	memset(szText,0,256);
+
+	bsData.Read(playerId);
+	bsData.Read(byteTextLen);
+	bsData.Read((char*)szText,byteTextLen);
+	szText[byteTextLen] = '\0';
+
+	if(pNetGame->GetBotMode()) pNetGame->GetBotMode()->OnPlayerText(playerId,szText);
 }
 
 void RequestClass(RPCParameters *rpcParams)
