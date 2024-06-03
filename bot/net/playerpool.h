@@ -5,9 +5,9 @@ class CPlayerPool // size: 41035
 {
 private:
 	BOOL			m_bPlayerSlotState[MAX_PLAYERS];
-	char _gapFA0[2];
+	PLAYERID		m_LocalPlayerID;
 	CHAR			m_szLocalPlayerName[MAX_PLAYER_NAME+1];
-	char gapFBB[25000];
+	CHAR			m_szPlayerNames[MAX_PLAYERS][MAX_PLAYER_NAME+1];
 	int field_7163;
 	int field_7167[1000];
 	int field_8107;
@@ -31,4 +31,8 @@ public:
 		return m_bPlayerSlotState[playerId];
 	};
 
+	void SetLocalPlayerID(PLAYERID MyPlayerID) {
+		strcpy(m_szPlayerNames[MyPlayerID],m_szLocalPlayerName);
+		m_LocalPlayerID = MyPlayerID;
+	};
 };

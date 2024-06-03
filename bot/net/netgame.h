@@ -36,22 +36,29 @@ private:
 	void Packet_ConnectAttemptFailed(Packet* packet);
 	void Packet_TrailerSync(Packet *p);
 
+public:
+
 	int			m_iSpawnsAvailable;
-	char _gap18[6];
+	bool		m_bShowPlayerMarkers;
+	int			m_iPlayerMarkersMode;
+	bool		m_bTirePopping;
 	BYTE		m_byteWorldTime;
 	BYTE		m_byteWorldMinute;
 	BYTE		m_byteWeather;
 	char _gap21[16];
 	BYTE		m_byteFriendlyFire;
-	char _gap32[2];
+	bool		m_bAllowWeapons;
+	bool		m_bNameTagLOS;
 	float		m_fGravity;
 	int			m_iDeathDropMoney;
 	BYTE		m_byteHoldTime;
 	bool		m_bInstagib;
 	bool		m_bZoneNames;
-	char _gap3F;
+	bool		m_bLimitGlobalChatRadius;
 	bool		m_bUseCJWalk;
-	char _gap41[9];
+	float		m_fGlobalChatRadius;
+	float		m_fNameTagDrawDistance;
+	bool		m_bDisableEnterExits;
 	DWORD		m_dwMapIcon[100];
 	int field_1DA;
 	int field_1DE;
@@ -75,6 +82,8 @@ public:
 	~CNetGame();
 
 	int GetGameState() { return m_iGameState; };
+	void SetGameState(int iGameState) { m_iGameState = iGameState; };
+	void SetLanMode(BOOL bMode) { m_bLanMode = bMode; };
 
 	CPlayerPool * GetPlayerPool() { return m_pPlayerPool; };
 	RakClientInterface * GetRakClient() { return m_pRakClient; };

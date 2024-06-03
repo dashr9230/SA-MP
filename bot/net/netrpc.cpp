@@ -101,9 +101,75 @@ void ServerQuit(RPCParameters *rpcParams)
 	pPlayerPool->Delete(playerId,byteReason);
 }
 
-void Unk8B(RPCParameters *rpcParams)
+int iNetModeNormalOnfootSendRate;
+int iNetModeNormalIncarSendRate;
+int iNetModeFiringSendRate;
+int iNetModeSendMultiplier;
+int iNetModeLagCompensation;
+
+void InitGame(RPCParameters *rpcParams)
 {
-	// TODO: Unk8B
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	PlayerID sender = rpcParams->sender;
+
+	RakNet::BitStream bsInitGame(Data,(iBitLength/8)+1,false);
+	CPlayerPool *pPlayerPool = pNetGame->GetPlayerPool();
+	PLAYERID MyPlayerID;
+	bool bLanMode, bStuntBonus;
+	bool bManualVehicleEngineAndLights;
+
+	bsInitGame.Read(pNetGame->m_bZoneNames);
+	bsInitGame.Read(pNetGame->m_bUseCJWalk);
+	bsInitGame.Read(pNetGame->m_bAllowWeapons);
+	bsInitGame.Read(pNetGame->m_bLimitGlobalChatRadius);
+	bsInitGame.Read(pNetGame->m_fGlobalChatRadius);
+	bsInitGame.Read(bStuntBonus);
+	bsInitGame.Read(pNetGame->m_fNameTagDrawDistance);
+	bsInitGame.Read(pNetGame->m_bDisableEnterExits);
+	bsInitGame.Read(pNetGame->m_bNameTagLOS);
+	pNetGame->m_bNameTagLOS = true;
+	bsInitGame.Read(bManualVehicleEngineAndLights);
+	bsInitGame.Read(pNetGame->m_iSpawnsAvailable);
+	bsInitGame.Read(MyPlayerID);
+	bsInitGame.Read(pNetGame->m_iPlayerMarkersMode);
+	bsInitGame.Read(pNetGame->m_bShowPlayerMarkers);
+	bsInitGame.Read(pNetGame->m_bTirePopping);
+	bsInitGame.Read(pNetGame->m_byteWorldTime);
+	bsInitGame.Read(pNetGame->m_byteWeather);
+	bsInitGame.Read(pNetGame->m_fGravity);
+	bsInitGame.Read(bLanMode);
+	bsInitGame.Read(pNetGame->m_iDeathDropMoney);
+	bsInitGame.Read(pNetGame->m_bInstagib);
+
+	// Server's send rate restrictions
+	bsInitGame.Read(iNetModeNormalOnfootSendRate);
+	bsInitGame.Read(iNetModeNormalIncarSendRate);
+	bsInitGame.Read(iNetModeFiringSendRate);
+	bsInitGame.Read(iNetModeSendMultiplier);
+	bsInitGame.Read(iNetModeLagCompensation);
+
+	BYTE byteStrLen;
+	bsInitGame.Read(byteStrLen);
+	if(byteStrLen) {
+		memset(pNetGame->m_szHostName,0,sizeof(pNetGame->m_szHostName));
+		bsInitGame.Read(pNetGame->m_szHostName, byteStrLen);
+	}
+	pNetGame->m_szHostName[byteStrLen] = '\0';
+
+	pPlayerPool->SetLocalPlayerID(MyPlayerID);
+	if(bLanMode) pNetGame->SetLanMode(TRUE);
+	pNetGame->SetGameState(GAMESTATE_CONNECTED);
+
+	//logprintf("NPC: Got InitGame. Sending class request.");
+
+	if(pNetGame->GetBotMode()) {
+		pNetGame->GetBotMode()->OnNPCConnect(MyPlayerID);
+	}
+
+	RakNet::BitStream bsSpawnRequest;
+	bsSpawnRequest.Write((int)0);
+	pNetGame->GetRakClient()->RPC(RPC_RequestClass,&bsSpawnRequest,HIGH_PRIORITY,RELIABLE,0,false);
 }
 
 void Chat(RPCParameters *rpcParams)
@@ -187,7 +253,7 @@ void RegisterRPCs(RakClientInterface * pRakClient)
 	REGISTER_STATIC_RPC(pRakClient,Unk1E);
 	REGISTER_STATIC_RPC(pRakClient,Unk89);
 	REGISTER_STATIC_RPC(pRakClient,ServerQuit);
-	REGISTER_STATIC_RPC(pRakClient,Unk8B);
+	REGISTER_STATIC_RPC(pRakClient,InitGame);
 	REGISTER_STATIC_RPC(pRakClient,Chat);
 	REGISTER_STATIC_RPC(pRakClient,RequestClass);
 	REGISTER_STATIC_RPC(pRakClient,RequestSpawn);
@@ -228,7 +294,7 @@ void UnRegisterRPCs(RakClientInterface * pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient,UnkA5);
 	UNREGISTER_STATIC_RPC(pRakClient,Unk89);
 	UNREGISTER_STATIC_RPC(pRakClient,ServerQuit);
-	UNREGISTER_STATIC_RPC(pRakClient,Unk8B);
+	UNREGISTER_STATIC_RPC(pRakClient,InitGame);
 	UNREGISTER_STATIC_RPC(pRakClient,Chat);
 	UNREGISTER_STATIC_RPC(pRakClient,RequestClass);
 	UNREGISTER_STATIC_RPC(pRakClient,RequestSpawn);
