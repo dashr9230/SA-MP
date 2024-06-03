@@ -7,6 +7,8 @@ extern CNetGame* pNetGame;
 #define REJECT_REASON_BAD_NICKNAME  2
 #define REJECT_REASON_BAD_MOD		3
 
+extern bool	bSpawned;
+
 void EnterVehicle(RPCParameters *rpcParams) {}
 void ExitVehicle(RPCParameters *rpcParams) {}
 void Unk6B(RPCParameters *rpcParams) {}
@@ -200,7 +202,21 @@ void RequestClass(RPCParameters *rpcParams)
 
 void RequestSpawn(RPCParameters *rpcParams)
 {
-	// TODO: RequestSpawn
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	PlayerID sender = rpcParams->sender;
+
+	BYTE byteRequestOutcome=0;
+	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
+	bsData.Read(byteRequestOutcome);
+
+	if(byteRequestOutcome) {
+		// Let the rest of the network know we're spawning.
+		if(pNetGame->GetBotMode()) pNetGame->GetBotMode()->OnNPCSpawn();
+		bSpawned = true;
+		RakNet::BitStream bsSendSpawn;
+		pNetGame->GetRakClient()->RPC(RPC_Spawn,&bsSendSpawn,HIGH_PRIORITY,RELIABLE_SEQUENCED,0,false);
+	}
 }
 
 void Unk20(RPCParameters *rpcParams)

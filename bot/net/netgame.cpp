@@ -42,6 +42,8 @@ BYTE unnamed_8[MAX_PLAYERS];
 BOOL unnamed_7[MAX_VEHICLES];
 char unnamed_4[1000][63];
 
+bool	bSpawned = false;
+
 //----------------------------------------------------
 
 // TODO: length assert has to be at line 397
