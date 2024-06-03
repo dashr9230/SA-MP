@@ -522,7 +522,7 @@ void CNetGame::ResetPlayerPool()
 
 //----------------------------------------------------
 
-void CNetGame::sub_415EA0(PLAYERID playerId, BOOL a2)
+void CNetGame::SetPlayerAdded(PLAYERID playerId, BOOL a2)
 {
 	if(playerId < MAX_PLAYERS)
 	{

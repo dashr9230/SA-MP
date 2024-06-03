@@ -95,8 +95,8 @@ public:
 	void ResetPlayerPool();
 	void ShutdownForGameModeRestart();
 
-	void sub_415EA0(PLAYERID playerId, BOOL a2);
 	void sub_415EC0(VEHICLEID VehicleID, BOOL a2);
+	void SetPlayerAdded(PLAYERID playerId, BOOL a2);
 
 	void StopRecordingPlayback();
 };

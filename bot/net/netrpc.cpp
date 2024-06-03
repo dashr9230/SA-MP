@@ -219,9 +219,39 @@ void RequestSpawn(RPCParameters *rpcParams)
 	}
 }
 
-void Unk20(RPCParameters *rpcParams)
+void WorldPlayerAdd(RPCParameters *rpcParams)
 {
-	// TODO: Unk20
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	PlayerID sender = rpcParams->sender;
+
+	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
+	CPlayerPool *pPlayerPool = pNetGame->GetPlayerPool();
+
+	PLAYERID playerId;
+	BYTE byteFightingStyle=4;
+	BYTE byteTeam=0;
+	int iSkin=0;
+	VECTOR vecPos;
+	float fRotation=0;
+	DWORD dwColor=0;
+
+	bsData.Read(playerId);
+	bsData.Read(byteTeam);
+	bsData.Read(iSkin);
+	bsData.Read(vecPos.X);
+	bsData.Read(vecPos.Y);
+	bsData.Read(vecPos.Z);
+	bsData.Read(fRotation);
+	bsData.Read(dwColor);
+	byteFightingStyle = 4;
+
+	if(pNetGame->GetPlayerPool()->GetSlotState(playerId) == FALSE) return;
+	pNetGame->SetPlayerAdded(playerId,TRUE);
+
+	if(pNetGame->GetBotMode()) {
+		pNetGame->GetBotMode()->OnPlayerStreamIn(playerId);
+	}
 }
 
 void UnkA6(RPCParameters *rpcParams)
@@ -273,7 +303,7 @@ void RegisterRPCs(RakClientInterface * pRakClient)
 	REGISTER_STATIC_RPC(pRakClient,Chat);
 	REGISTER_STATIC_RPC(pRakClient,RequestClass);
 	REGISTER_STATIC_RPC(pRakClient,RequestSpawn);
-	REGISTER_STATIC_RPC(pRakClient,Unk20);
+	REGISTER_STATIC_RPC(pRakClient,WorldPlayerAdd);
 	REGISTER_STATIC_RPC(pRakClient,UnkA6);
 	REGISTER_STATIC_RPC(pRakClient,UnkA3);
 	REGISTER_STATIC_RPC(pRakClient,UnkA4);
@@ -303,7 +333,7 @@ void UnRegisterRPCs(RakClientInterface * pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient,Weather);
 	UNREGISTER_STATIC_RPC(pRakClient,Unk1D);
 	UNREGISTER_STATIC_RPC(pRakClient,Unk1E);
-	UNREGISTER_STATIC_RPC(pRakClient,Unk20);
+	UNREGISTER_STATIC_RPC(pRakClient,WorldPlayerAdd);
 	UNREGISTER_STATIC_RPC(pRakClient,UnkA6);
 	UNREGISTER_STATIC_RPC(pRakClient,UnkA3);
 	UNREGISTER_STATIC_RPC(pRakClient,UnkA4);

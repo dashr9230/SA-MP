@@ -32,7 +32,7 @@ CPlayerPool::~CPlayerPool()
 BOOL CPlayerPool::Delete(PLAYERID playerId, BYTE byteReason)
 {
 	m_bPlayerSlotState[playerId] = FALSE;
-	pNetGame->sub_415EA0(playerId, FALSE);
+	pNetGame->SetPlayerAdded(playerId, FALSE);
 	return TRUE;
 }
 
