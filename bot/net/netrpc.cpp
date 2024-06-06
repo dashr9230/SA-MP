@@ -12,7 +12,7 @@ extern bool	bSpawned;
 void EnterVehicle(RPCParameters *rpcParams) {}
 void ExitVehicle(RPCParameters *rpcParams) {}
 void SetCheckpoint(RPCParameters *rpcParams) {}
-void Unk25(RPCParameters *rpcParams) {}
+void DisableCheckpoint(RPCParameters *rpcParams) {}
 void Unk26(RPCParameters *rpcParams) {}
 void Unk27(RPCParameters *rpcParams) {}
 void UpdateScoresPingsIPs(RPCParameters *rpcParams) {}
@@ -280,10 +280,10 @@ void RegisterRPCs(RakClientInterface * pRakClient)
 {
 	REGISTER_STATIC_RPC(pRakClient,EnterVehicle);
 	REGISTER_STATIC_RPC(pRakClient,ExitVehicle);
-	REGISTER_STATIC_RPC(pRakClient,Unk25);
 	REGISTER_STATIC_RPC(pRakClient,Unk26);
 	REGISTER_STATIC_RPC(pRakClient,Unk27);
 	REGISTER_STATIC_RPC(pRakClient,SetCheckpoint);
+	REGISTER_STATIC_RPC(pRakClient,DisableCheckpoint);
 	REGISTER_STATIC_RPC(pRakClient,UpdateScoresPingsIPs);
 	REGISTER_STATIC_RPC(pRakClient,SvrStats);
 	REGISTER_STATIC_RPC(pRakClient,GameModeRestart);
@@ -316,10 +316,10 @@ void UnRegisterRPCs(RakClientInterface * pRakClient)
 {
 	UNREGISTER_STATIC_RPC(pRakClient,EnterVehicle);
 	UNREGISTER_STATIC_RPC(pRakClient,ExitVehicle);
-	UNREGISTER_STATIC_RPC(pRakClient,Unk25);
 	UNREGISTER_STATIC_RPC(pRakClient,Unk26);
 	UNREGISTER_STATIC_RPC(pRakClient,Unk27);
 	UNREGISTER_STATIC_RPC(pRakClient,SetCheckpoint);
+	UNREGISTER_STATIC_RPC(pRakClient,DisableCheckpoint);
 	UNREGISTER_STATIC_RPC(pRakClient,UpdateScoresPingsIPs);
 	UNREGISTER_STATIC_RPC(pRakClient,SvrStats);
 	UNREGISTER_STATIC_RPC(pRakClient,GameModeRestart);
