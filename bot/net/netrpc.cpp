@@ -7,6 +7,7 @@ extern CNetGame* pNetGame;
 #define REJECT_REASON_BAD_NICKNAME  2
 #define REJECT_REASON_BAD_MOD		3
 
+extern ONFOOT_SYNC_DATA ofSync;
 extern bool	bSpawned;
 
 void EnterVehicle(RPCParameters *rpcParams) {}
@@ -197,7 +198,32 @@ void Chat(RPCParameters *rpcParams)
 
 void RequestClass(RPCParameters *rpcParams)
 {
-	// TODO: RequestClass
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	PlayerID sender = rpcParams->sender;
+
+	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
+	BYTE byteRequestOutcome=0;
+	PLAYER_SPAWN_INFO SpawnInfo;
+
+	bsData.Read(byteRequestOutcome);
+	bsData.Read((PCHAR)&SpawnInfo,sizeof(PLAYER_SPAWN_INFO));
+
+	ofSync.byteHealth = 100;
+	ofSync.byteArmour = 100;
+	ofSync.byteCurrentWeapon = 0;
+	ofSync.byteSpecialAction = 0;
+	ofSync.vecPos.X = SpawnInfo.vecPos.X;
+	ofSync.vecPos.Y = SpawnInfo.vecPos.Y;
+	ofSync.vecPos.Z = SpawnInfo.vecPos.Z;
+
+	pNetGame->SetMyZAngle(SpawnInfo.fRotation);
+
+	if(byteRequestOutcome) {
+		//logprintf("NPC: RequestClass. Requesting Spawn.");
+		RakNet::BitStream bsSpawnRequest;
+		pNetGame->GetRakClient()->RPC(RPC_RequestSpawn,&bsSpawnRequest,HIGH_PRIORITY,RELIABLE,0,false);
+	}
 }
 
 void RequestSpawn(RPCParameters *rpcParams)

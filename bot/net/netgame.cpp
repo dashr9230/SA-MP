@@ -1,6 +1,7 @@
 
 #include "../main.h"
 #include "../../raknet/SocketDataEncryptor.h"
+#include "../mathutils.h"
 
 #define NETGAME_VERSION 4057
 
@@ -36,13 +37,40 @@ char unnamed_2[63];
 PASSENGER_SYNC_DATA unnamed_5[MAX_PLAYERS];
 BOOL unnamed_6[MAX_PLAYERS];
 char unnamed_9;
-char unnamed_1[68];
+ONFOOT_SYNC_DATA ofSync;
 char unnamed_3[1000][68];
 BYTE unnamed_8[MAX_PLAYERS];
 BOOL unnamed_7[MAX_VEHICLES];
 char unnamed_4[1000][63];
 
 bool	bSpawned = false;
+
+//----------------------------------------------------
+// MATCH
+void CNetGame::SetMyZAngle(float fAngle)
+{
+	//logprintf("CNetGame::SetMyZAngle(%f)", fAngle);
+
+	float fRadians = fAngle * 0.017453292f; // (PI/180.0f)
+
+	MATRIX4X4 mat;
+	memset(&mat,0,sizeof(MATRIX4X4));
+	mat.right.Z = 0.0f;
+	mat.up.Z = 0.0f;
+	mat.at.X = 0.0f;
+	mat.at.Y = 0.0f;
+	mat.at.Z = 1.0f;
+
+	float fCos = cos(fRadians);
+	float fSin = sin(fRadians);
+
+	mat.right.X = fCos;
+	mat.right.Y = fSin;
+	mat.up.X = -fSin;
+	mat.up.Y = fCos;
+
+	MatrixToQuaternion(&mat, &ofSync.quatRotation);
+}
 
 //----------------------------------------------------
 
@@ -103,7 +131,6 @@ void CNetGame::ShutdownForGameModeRestart()
 
 	StopRecordingPlayback();
 
-	memset(unnamed_1,0,sizeof(unnamed_1));
 	memset(unnamed_2,0,sizeof(unnamed_2));
 	memset(unnamed_3,0,sizeof(unnamed_3));
 	memset(unnamed_4,0,sizeof(unnamed_4));
@@ -111,6 +138,7 @@ void CNetGame::ShutdownForGameModeRestart()
 	memset(unnamed_6,0,sizeof(unnamed_6));
 	memset(unnamed_7,0,sizeof(unnamed_7));
 	memset(unnamed_8,0,sizeof(unnamed_8));
+	memset(&ofSync,0,sizeof(ONFOOT_SYNC_DATA));
 
 	m_bZoneNames = FALSE;
 }
@@ -171,8 +199,8 @@ void CNetGame::Init(PCHAR szHostOrIp, int iPort,
 	m_bZoneNames = FALSE;
 	m_bInstagib = FALSE;
 
-	memset(unnamed_1,0,sizeof(unnamed_1));
 	memset(unnamed_2,0,sizeof(unnamed_2));
+	memset(&ofSync,0,sizeof(ONFOOT_SYNC_DATA));
 	memset(unnamed_3,0,sizeof(unnamed_3));
 	memset(unnamed_4,0,sizeof(unnamed_4));
 	memset(unnamed_5,0,sizeof(unnamed_5));

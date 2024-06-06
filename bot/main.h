@@ -66,7 +66,30 @@ char* strlwr(char* str);
 #pragma pack(1)
 typedef struct _PLAYER_SPAWN_INFO
 {
-	char _gap0[46];
+	char _gap0[6];
+
+	VECTOR vecPos;
+	float fRotation;
+
+	char _gap16[24];
 
 } PLAYER_SPAWN_INFO;
+
+#pragma pack(1)
+typedef struct _ONFOOT_SYNC_DATA
+{
+	WORD lrAnalog;
+	WORD udAnalog;
+	WORD wKeys;
+	VECTOR vecPos;
+	QUATERNION quatRotation;
+	BYTE byteHealth;
+	BYTE byteArmour;
+	BYTE byteCurrentWeapon : 6;
+	BYTE byteSpecialKey : 2;
+	BYTE byteSpecialAction;
+
+	char _gap26[30];
+
+} ONFOOT_SYNC_DATA;
 
