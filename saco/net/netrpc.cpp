@@ -7,10 +7,10 @@ void Unk24(RPCParameters *rpcParams) {}
 void Unk3A(RPCParameters *rpcParams) {}
 void Unk3B(RPCParameters *rpcParams) {}
 void Unk3D(RPCParameters *rpcParams) {}
-void Unk6B(RPCParameters *rpcParams) {}
 void Unk25(RPCParameters *rpcParams) {}
 void Unk26(RPCParameters *rpcParams) {}
 void Unk27(RPCParameters *rpcParams) {}
+void SetCheckpoint(RPCParameters *rpcParams) {}
 void UpdateScoresPingsIPs(RPCParameters *rpcParams) {}
 void SvrStats(RPCParameters *rpcParams) {}
 void GameModeRestart(RPCParameters *rpcParams) {}
@@ -58,10 +58,10 @@ void RegisterRPCs(RakClientInterface * pRakClient)
 	REGISTER_STATIC_RPC(pRakClient,Unk3A);
 	REGISTER_STATIC_RPC(pRakClient,Unk3B);
 	REGISTER_STATIC_RPC(pRakClient,Unk3D);
-	REGISTER_STATIC_RPC(pRakClient,Unk6B);
 	REGISTER_STATIC_RPC(pRakClient,Unk25);
 	REGISTER_STATIC_RPC(pRakClient,Unk26);
 	REGISTER_STATIC_RPC(pRakClient,Unk27);
+	REGISTER_STATIC_RPC(pRakClient,SetCheckpoint);
 	REGISTER_STATIC_RPC(pRakClient,UpdateScoresPingsIPs);
 	REGISTER_STATIC_RPC(pRakClient,SvrStats);
 	REGISTER_STATIC_RPC(pRakClient,GameModeRestart);
@@ -126,10 +126,10 @@ void UnRegisterRPCs(RakClientInterface * pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient,ServerQuit);
 	UNREGISTER_STATIC_RPC(pRakClient,InitGame);
 	UNREGISTER_STATIC_RPC(pRakClient,Chat);
-	UNREGISTER_STATIC_RPC(pRakClient,Unk6B);
 	UNREGISTER_STATIC_RPC(pRakClient,Unk25);
 	UNREGISTER_STATIC_RPC(pRakClient,Unk26);
 	UNREGISTER_STATIC_RPC(pRakClient,Unk27);
+	UNREGISTER_STATIC_RPC(pRakClient,SetCheckpoint);
 	UNREGISTER_STATIC_RPC(pRakClient,UpdateScoresPingsIPs);
 	UNREGISTER_STATIC_RPC(pRakClient,SvrStats);
 	UNREGISTER_STATIC_RPC(pRakClient,GameModeRestart);
