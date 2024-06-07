@@ -174,9 +174,16 @@ void ScrUnk12(RPCParameters *rpcParams)
 
 //----------------------------------------------------
 
-void ScrUnk13(RPCParameters *rpcParams)
+void ScrSetPlayerFacingAngle(RPCParameters *rpcParams)
 {
-	// TODO: ScrUnk13
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	PlayerID sender = rpcParams->sender;
+
+	float fAngle;
+	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
+	bsData.Read(fAngle);
+	pNetGame->SetMyZAngle(fAngle);
 }
 
 //----------------------------------------------------
@@ -470,7 +477,7 @@ void RegisterScriptRPCs(RakClientInterface* pRakClient)
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk10);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk11);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk12);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk13);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerFacingAngle);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk14);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk15);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk16);
@@ -544,7 +551,7 @@ void UnRegisterScriptRPCs(RakClientInterface* pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk10);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk11);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk12);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk13);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetPlayerFacingAngle);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk14);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk15);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk16);

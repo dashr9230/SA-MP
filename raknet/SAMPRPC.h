@@ -145,7 +145,7 @@
 #define RPC_ScrUnk10				"\x10"
 #define RPC_ScrUnk11				"\x11"
 #define RPC_ScrUnk12				"\x12"
-#define RPC_ScrUnk13				"\x13"
+#define RPC_ScrSetPlayerFacingAngle	"\x13"
 #define RPC_ScrUnk14				"\x14"
 #define RPC_ScrUnk15				"\x15"
 #define RPC_ScrUnk16				"\x16"

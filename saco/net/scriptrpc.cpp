@@ -72,7 +72,7 @@ void ScrUnk0F(RPCParameters *rpcParams) {}
 void ScrUnk10(RPCParameters *rpcParams) {}
 void ScrUnk11(RPCParameters *rpcParams) {}
 void ScrUnk12(RPCParameters *rpcParams) {}
-void ScrUnk13(RPCParameters *rpcParams) {}
+void ScrSetPlayerFacingAngle(RPCParameters *rpcParams) {}
 void ScrUnk14(RPCParameters *rpcParams) {}
 void ScrUnk15(RPCParameters *rpcParams) {}
 void ScrUnk16(RPCParameters *rpcParams) {}
@@ -172,7 +172,7 @@ void RegisterScriptRPCs(RakClientInterface* pRakClient)
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk10);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk11);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk12);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk13);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerFacingAngle);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk14);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk15);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk16);
@@ -280,7 +280,7 @@ void UnRegisterScriptRPCs(RakClientInterface* pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk10);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk11);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk12);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk13);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetPlayerFacingAngle);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk14);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk15);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk16);
