@@ -19,29 +19,62 @@ void ScrSetSpawnInfo(RPCParameters *rpcParams)
 
 //----------------------------------------------------
 
-void ScrUnk45(RPCParameters *rpcParams) {}
-void ScrUnk99(RPCParameters *rpcParams) {}
-void ScrUnk0B(RPCParameters *rpcParams) {}
+void ScrUnk45(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk0B(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk99(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
 
 void ScrUnk0C(RPCParameters *rpcParams)
 {
 	// TODO: ScrUnk0C
 }
 
-void ScrUnk0D(RPCParameters *rpcParams) {}
-void ScrUnk0E(RPCParameters *rpcParams) {}
+//----------------------------------------------------
+
+void ScrUnk0D(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk0E(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
 
 void ScrUnk46(RPCParameters *rpcParams)
 {
 	// TODO: ScrUnk46
 }
 
+//----------------------------------------------------
+
 void ScrUnk47(RPCParameters *rpcParams)
 {
 	// TODO: ScrUnk47
 }
 
-void ScrUnk48(RPCParameters *rpcParams) {}
+//----------------------------------------------------
+
+void ScrUnk48(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
 
 void ScrDisplayGameText(RPCParameters *rpcParams)
 {
@@ -67,68 +100,349 @@ void ScrDisplayGameText(RPCParameters *rpcParams)
 	//OutputDebugString(szMessage);
 }
 
-void ScrUnk9C(RPCParameters *rpcParams) {}
-void ScrUnk9D(RPCParameters *rpcParams) {}
-void ScrUnk9E(RPCParameters *rpcParams) {}
-void ScrUnk9F(RPCParameters *rpcParams) {}
-void ScrUnkA0(RPCParameters *rpcParams) {}
-void ScrUnkA1(RPCParameters *rpcParams) {}
-void ScrUnkA2(RPCParameters *rpcParams) {}
-void ScrUnk0F(RPCParameters *rpcParams) {}
-void ScrUnk10(RPCParameters *rpcParams) {}
-void ScrUnk11(RPCParameters *rpcParams) {}
-void ScrUnk12(RPCParameters *rpcParams) {}
+//----------------------------------------------------
+
+void ScrUnk9C(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk9D(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk9E(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk9F(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnkA0(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnkA1(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk41(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnkA2(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk0F(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk10(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk11(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk12(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
 
 void ScrUnk13(RPCParameters *rpcParams)
 {
 	// TODO: ScrUnk13
 }
 
-void ScrUnk14(RPCParameters *rpcParams) {}
-void ScrUnk15(RPCParameters *rpcParams) {}
-void ScrUnk16(RPCParameters *rpcParams) {}
-void ScrUnk40(RPCParameters *rpcParams) {}
-void ScrUnk41(RPCParameters *rpcParams) {}
-void ScrUnk42(RPCParameters *rpcParams) {}
-void ScrUnk37(RPCParameters *rpcParams) {}
-void ScrUnk38(RPCParameters *rpcParams) {}
-void ScrUnk90(RPCParameters *rpcParams) {}
-void ScrUnk91(RPCParameters *rpcParams) {}
-void ScrSetGravity(RPCParameters *rpcParams) {}
-void ScrUnk93(RPCParameters *rpcParams) {}
-void ScrUnk94(RPCParameters *rpcParams) {}
-void ScrUnk95(RPCParameters *rpcParams) {}
-void ScrUnk2C(RPCParameters *rpcParams) {}
-void ScrUnk2D(RPCParameters *rpcParams) {}
-void ScrUnk2E(RPCParameters *rpcParams) {}
-void ScrUnk2F(RPCParameters *rpcParams) {}
-void ScrUnk30(RPCParameters *rpcParams) {}
-void ScrUnk31(RPCParameters *rpcParams) {}
-void ScrUnk4F(RPCParameters *rpcParams) {}
-void ScrUnk50(RPCParameters *rpcParams) {}
-void ScrUnk63(RPCParameters *rpcParams) {}
-void ScrUnk7A(RPCParameters *rpcParams) {}
-void ScrUnk7B(RPCParameters *rpcParams) {}
-void ScrUnk7C(RPCParameters *rpcParams) {}
-void ScrUnk7D(RPCParameters *rpcParams) {}
-void ScrUnk7E(RPCParameters *rpcParams) {}
-void ScrUnk7F(RPCParameters *rpcParams) {}
-void ScrUnk39(RPCParameters *rpcParams) {}
-void ScrUnk4A(RPCParameters *rpcParams) {}
-void ScrUnk4B(RPCParameters *rpcParams) {}
-void ScrInitMenu(RPCParameters *rpcParams) {}
-void ScrShowMenu(RPCParameters *rpcParams) {}
-void ScrHideMenu(RPCParameters *rpcParams) {}
-void ScrUnk85(RPCParameters *rpcParams) {}
-void ScrUnk86(RPCParameters *rpcParams) {}
-void ScrUnk87(RPCParameters *rpcParams) {}
-void ScrAddGangZone(RPCParameters *rpcParams) {}
-void ScrRemoveGangZone(RPCParameters *rpcParams) {}
-void ScrFlashGangZone(RPCParameters *rpcParams) {}
-void ScrStopFlashGangZone(RPCParameters *rpcParams) {}
-void ScrUnk56(RPCParameters *rpcParams) {}
-void ScrUnk57(RPCParameters *rpcParams) {}
-void ScrUnk58(RPCParameters *rpcParams) {}
+//----------------------------------------------------
+
+
+void ScrUnk14(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk15(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk16(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk40(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk37(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk38(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk90(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk42(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk91(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrSetGravity(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk93(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk94(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk95(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk2C(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk2D(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk2E(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk2F(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk30(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk31(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk4F(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk50(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk63(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk7A(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk7B(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk7C(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk7D(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk7E(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk7F(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk39(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk4A(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk4B(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrInitMenu(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrShowMenu(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrHideMenu(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk85(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk86(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk87(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrAddGangZone(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrRemoveGangZone(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrFlashGangZone(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrStopFlashGangZone(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk56(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk57(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScrUnk58(RPCParameters *rpcParams)
+{
+}
 
 //----------------------------------------------------
 
