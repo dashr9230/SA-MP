@@ -3,6 +3,7 @@
 
 using namespace RakNet;
 extern CNetGame*	pNetGame;
+extern ONFOOT_SYNC_DATA ofSync;
 
 //----------------------------------------------------
 
@@ -37,9 +38,16 @@ void ScrUnk99(RPCParameters *rpcParams)
 
 //----------------------------------------------------
 
-void ScrUnk0C(RPCParameters *rpcParams)
+void ScrSetPlayerPos(RPCParameters *rpcParams)
 {
-	// TODO: ScrUnk0C
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	PlayerID sender = rpcParams->sender;
+	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
+	
+	bsData.Read(ofSync.vecPos.X);
+	bsData.Read(ofSync.vecPos.Y);
+	bsData.Read(ofSync.vecPos.Z);
 }
 
 //----------------------------------------------------
@@ -187,7 +195,6 @@ void ScrSetPlayerFacingAngle(RPCParameters *rpcParams)
 }
 
 //----------------------------------------------------
-
 
 void ScrUnk14(RPCParameters *rpcParams)
 {
@@ -459,7 +466,7 @@ void RegisterScriptRPCs(RakClientInterface* pRakClient)
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk45);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk99);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk0B);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk0C);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerPos);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk0D);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk0E);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk46);
@@ -533,7 +540,7 @@ void UnRegisterScriptRPCs(RakClientInterface* pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk45);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk0B);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk99);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk0C);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetPlayerPos);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk0D);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk0E);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk46);

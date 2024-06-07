@@ -54,7 +54,7 @@ void ScrSetSpawnInfo(RPCParameters *rpcParams) {}
 void ScrUnk45(RPCParameters *rpcParams) {}
 void ScrUnk99(RPCParameters *rpcParams) {}
 void ScrUnk0B(RPCParameters *rpcParams) {}
-void ScrUnk0C(RPCParameters *rpcParams) {}
+void ScrSetPlayerPos(RPCParameters *rpcParams) {}
 void ScrUnk0D(RPCParameters *rpcParams) {}
 void ScrUnk0E(RPCParameters *rpcParams) {}
 void ScrUnk46(RPCParameters *rpcParams) {}
@@ -154,7 +154,7 @@ void RegisterScriptRPCs(RakClientInterface* pRakClient)
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk45);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk99);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk0B);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk0C);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerPos);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk0D);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk0E);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk46);
@@ -262,7 +262,7 @@ void UnRegisterScriptRPCs(RakClientInterface* pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk45);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk0B);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk99);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk0C);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetPlayerPos);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk0D);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk0E);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk46);

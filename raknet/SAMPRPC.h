@@ -127,7 +127,7 @@
 #define RPC_ScrUnk45				"\x45"
 #define RPC_ScrUnk99				"\x99"
 #define RPC_ScrUnk0B				"\x0B"
-#define RPC_ScrUnk0C				"\x0C"
+#define RPC_ScrSetPlayerPos			"\x0C"
 #define RPC_ScrUnk0D				"\x0D"
 #define RPC_ScrUnk0E				"\x0E"
 #define RPC_ScrUnk46				"\x46"
