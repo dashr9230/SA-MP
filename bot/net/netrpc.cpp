@@ -10,81 +10,16 @@ extern CNetGame* pNetGame;
 extern ONFOOT_SYNC_DATA ofSync;
 extern bool	bSpawned;
 
-void EnterVehicle(RPCParameters *rpcParams) {}
-void ExitVehicle(RPCParameters *rpcParams) {}
-void SetCheckpoint(RPCParameters *rpcParams) {}
-void DisableCheckpoint(RPCParameters *rpcParams) {}
-void SetRaceCheckpoint(RPCParameters *rpcParams) {}
-void DisableRaceCheckpoint(RPCParameters *rpcParams) {}
-void UpdateScoresPingsIPs(RPCParameters *rpcParams) {}
-
-RakNetStatisticsStruct RakServerStats;
-
-void SvrStats(RPCParameters *rpcParams)
-{
-	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
-	int iBitLength = rpcParams->numberOfBitsOfData;
-	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
-	bsData.Read((char *)&RakServerStats,sizeof(RakNetStatisticsStruct));
-}
-
-void GameModeRestart(RPCParameters *rpcParams)
-{
-	pNetGame->ShutdownForGameModeRestart();
-}
-
-void ConnectionRejected(RPCParameters *rpcParams)
-{
-	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
-	int iBitLength = rpcParams->numberOfBitsOfData;
-	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
-	BYTE byteRejectReason;
-
-	bsData.Read(byteRejectReason);
-
-	if(byteRejectReason==REJECT_REASON_BAD_VERSION) {
-		//logprintf("BOT: CONNECTION REJECTED. INCORRECT SA-MP VERSION!");
-	} 
-	else if(byteRejectReason==REJECT_REASON_BAD_NICKNAME) {
-		//logprintf("BOT: CONNECTION REJECTED. BAD NICKNAME!");
-	}
-
-	pNetGame->GetRakClient()->Disconnect(500);
-	exit(1);
-}
-
-void ClientMessage(RPCParameters *rpcParams)
-{
-	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
-	int iBitLength = rpcParams->numberOfBitsOfData;
-	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
-	DWORD dwStrLen;
-	DWORD dwColor;
-
-	bsData.Read(dwColor);
-	bsData.Read(dwStrLen);
-	unsigned char* szMsg = (unsigned char *)malloc(dwStrLen+1);
-	bsData.Read((char *)szMsg, dwStrLen);
-	szMsg[dwStrLen] = 0;
-
-	if(pNetGame->GetBotMode()) pNetGame->GetBotMode()->OnClientMessage(dwColor, szMsg);
-
-	free(szMsg);
-}
-
-void WorldTime(RPCParameters *rpcParams) {}
-void Unk5F(RPCParameters *rpcParams) {}
-void Unk3F(RPCParameters *rpcParams) {}
-void Unk97(RPCParameters *rpcParams) {}
-void ScmEvent(RPCParameters *rpcParams) {}
-void Weather(RPCParameters *rpcParams) {}
-void Unk1D(RPCParameters *rpcParams) {}
-void Unk1E(RPCParameters *rpcParams) {}
+//----------------------------------------------------
 
 void Unk89(RPCParameters *rpcParams)
 {
 	// TODO: Unk89
 }
+
+//----------------------------------------------------
+// Sent when a client joins the server we're
+// currently connected to.
 
 void ServerQuit(RPCParameters *rpcParams)
 {
@@ -103,6 +38,9 @@ void ServerQuit(RPCParameters *rpcParams)
 	// Delete this client from the player pool.
 	pPlayerPool->Delete(playerId,byteReason);
 }
+
+//----------------------------------------------------
+// Server is giving us basic init information.
 
 int iNetModeNormalOnfootSendRate;
 int iNetModeNormalIncarSendRate;
@@ -175,6 +113,9 @@ void InitGame(RPCParameters *rpcParams)
 	pNetGame->GetRakClient()->RPC(RPC_RequestClass,&bsSpawnRequest,HIGH_PRIORITY,RELIABLE,0,false);
 }
 
+//----------------------------------------------------
+// Remote player has sent a chat message.
+
 void Chat(RPCParameters *rpcParams)
 {
 	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
@@ -196,54 +137,8 @@ void Chat(RPCParameters *rpcParams)
 	if(pNetGame->GetBotMode()) pNetGame->GetBotMode()->OnPlayerText(playerId,szText);
 }
 
-void RequestClass(RPCParameters *rpcParams)
-{
-	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
-	int iBitLength = rpcParams->numberOfBitsOfData;
-	PlayerID sender = rpcParams->sender;
-
-	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
-	BYTE byteRequestOutcome=0;
-	PLAYER_SPAWN_INFO SpawnInfo;
-
-	bsData.Read(byteRequestOutcome);
-	bsData.Read((PCHAR)&SpawnInfo,sizeof(PLAYER_SPAWN_INFO));
-
-	ofSync.byteHealth = 100;
-	ofSync.byteArmour = 100;
-	ofSync.byteCurrentWeapon = 0;
-	ofSync.byteSpecialAction = 0;
-	ofSync.vecPos.X = SpawnInfo.vecPos.X;
-	ofSync.vecPos.Y = SpawnInfo.vecPos.Y;
-	ofSync.vecPos.Z = SpawnInfo.vecPos.Z;
-
-	pNetGame->SetMyZAngle(SpawnInfo.fRotation);
-
-	if(byteRequestOutcome) {
-		//logprintf("NPC: RequestClass. Requesting Spawn.");
-		RakNet::BitStream bsSpawnRequest;
-		pNetGame->GetRakClient()->RPC(RPC_RequestSpawn,&bsSpawnRequest,HIGH_PRIORITY,RELIABLE,0,false);
-	}
-}
-
-void RequestSpawn(RPCParameters *rpcParams)
-{
-	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
-	int iBitLength = rpcParams->numberOfBitsOfData;
-	PlayerID sender = rpcParams->sender;
-
-	BYTE byteRequestOutcome=0;
-	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
-	bsData.Read(byteRequestOutcome);
-
-	if(byteRequestOutcome) {
-		// Let the rest of the network know we're spawning.
-		if(pNetGame->GetBotMode()) pNetGame->GetBotMode()->OnNPCSpawn();
-		bSpawned = true;
-		RakNet::BitStream bsSendSpawn;
-		pNetGame->GetRakClient()->RPC(RPC_Spawn,&bsSendSpawn,HIGH_PRIORITY,RELIABLE_SEQUENCED,0,false);
-	}
-}
+//----------------------------------------------------
+// Add a physical ingame player for this remote player.
 
 void WorldPlayerAdd(RPCParameters *rpcParams)
 {
@@ -280,24 +175,240 @@ void WorldPlayerAdd(RPCParameters *rpcParams)
 	}
 }
 
+//----------------------------------------------------
+
 void UnkA6(RPCParameters *rpcParams)
 {
 	// TODO: UnkA6
 }
+
+//----------------------------------------------------
 
 void UnkA3(RPCParameters *rpcParams)
 {
 	// TODO: UnkA3
 }
 
+//----------------------------------------------------
+
 void UnkA4(RPCParameters *rpcParams)
 {
 	// TODO: UnkA4
 }
 
+//----------------------------------------------------
+
 void UnkA5(RPCParameters *rpcParams)
 {
 	// TODO: UnkA5
+}
+
+//----------------------------------------------------
+// Reply to our class request from the server.
+
+void RequestClass(RPCParameters *rpcParams)
+{
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	PlayerID sender = rpcParams->sender;
+
+	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
+	BYTE byteRequestOutcome=0;
+	PLAYER_SPAWN_INFO SpawnInfo;
+
+	bsData.Read(byteRequestOutcome);
+	bsData.Read((PCHAR)&SpawnInfo,sizeof(PLAYER_SPAWN_INFO));
+
+	ofSync.byteHealth = 100;
+	ofSync.byteArmour = 100;
+	ofSync.byteCurrentWeapon = 0;
+	ofSync.byteSpecialAction = 0;
+	ofSync.vecPos.X = SpawnInfo.vecPos.X;
+	ofSync.vecPos.Y = SpawnInfo.vecPos.Y;
+	ofSync.vecPos.Z = SpawnInfo.vecPos.Z;
+
+	pNetGame->SetMyZAngle(SpawnInfo.fRotation);
+
+	if(byteRequestOutcome) {
+		//logprintf("NPC: RequestClass. Requesting Spawn.");
+		RakNet::BitStream bsSpawnRequest;
+		pNetGame->GetRakClient()->RPC(RPC_RequestSpawn,&bsSpawnRequest,HIGH_PRIORITY,RELIABLE,0,false);
+	}
+}
+
+//----------------------------------------------------
+// The server has allowed us to spawn!
+
+void RequestSpawn(RPCParameters *rpcParams)
+{
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	PlayerID sender = rpcParams->sender;
+
+	BYTE byteRequestOutcome=0;
+	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
+	bsData.Read(byteRequestOutcome);
+
+	if(byteRequestOutcome) {
+		// Let the rest of the network know we're spawning.
+		if(pNetGame->GetBotMode()) pNetGame->GetBotMode()->OnNPCSpawn();
+		bSpawned = true;
+		RakNet::BitStream bsSendSpawn;
+		pNetGame->GetRakClient()->RPC(RPC_Spawn,&bsSendSpawn,HIGH_PRIORITY,RELIABLE_SEQUENCED,0,false);
+	}
+}
+
+//----------------------------------------------------
+// Remote client is trying to enter vehicle gracefully.
+
+void EnterVehicle(RPCParameters *rpcParams)
+{	
+}
+
+//----------------------------------------------------
+// Remote client is trying to enter vehicle gracefully.
+
+void ExitVehicle(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void SetCheckpoint(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void DisableCheckpoint(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void SetRaceCheckpoint(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void DisableRaceCheckpoint(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void UpdateScoresPingsIPs(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+RakNetStatisticsStruct RakServerStats;
+
+void SvrStats(RPCParameters *rpcParams)
+{
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
+	bsData.Read((char *)&RakServerStats,sizeof(RakNetStatisticsStruct));
+}
+
+//----------------------------------------------------
+
+void GameModeRestart(RPCParameters *rpcParams)
+{
+	pNetGame->ShutdownForGameModeRestart();
+}
+
+//----------------------------------------------------
+
+void ConnectionRejected(RPCParameters *rpcParams)
+{
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
+	BYTE byteRejectReason;
+
+	bsData.Read(byteRejectReason);
+
+	if(byteRejectReason==REJECT_REASON_BAD_VERSION) {
+		//logprintf("BOT: CONNECTION REJECTED. INCORRECT SA-MP VERSION!");
+	}
+	else if(byteRejectReason==REJECT_REASON_BAD_NICKNAME) {
+		//logprintf("BOT: CONNECTION REJECTED. BAD NICKNAME!");
+	}
+
+	pNetGame->GetRakClient()->Disconnect(500);
+	exit(1);
+}
+
+//----------------------------------------------------
+
+void ClientMessage(RPCParameters *rpcParams)
+{
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
+	DWORD dwStrLen;
+	DWORD dwColor;
+
+	bsData.Read(dwColor);
+	bsData.Read(dwStrLen);
+	unsigned char* szMsg = (unsigned char *)malloc(dwStrLen+1);
+	bsData.Read((char *)szMsg, dwStrLen);
+	szMsg[dwStrLen] = 0;
+
+	if(pNetGame->GetBotMode()) pNetGame->GetBotMode()->OnClientMessage(dwColor, szMsg);
+
+	free(szMsg);
+}
+
+//----------------------------------------------------
+
+void WorldTime(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void Unk5F(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void Unk3F(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void Unk97(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void ScmEvent(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void Weather(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void Unk1D(RPCParameters *rpcParams)
+{
+}
+
+//----------------------------------------------------
+
+void Unk1E(RPCParameters *rpcParams)
+{
 }
 
 //----------------------------------------------------
