@@ -90,9 +90,14 @@ void ScrPutPlayerInVehicle(RPCParameters *rpcParams)
 
 //----------------------------------------------------
 
-void ScrUnk47(RPCParameters *rpcParams)
+void ScrRemovePlayerFromVehicle(RPCParameters *rpcParams)
 {
-	// TODO: ScrUnk47
+	MyVehicleID = INVALID_VEHICLE_ID;
+	byteMySeatID = 0;
+
+	if(pNetGame->GetBotMode()) {
+		pNetGame->GetBotMode()->OnNPCExitVehicle();
+	}
 }
 
 //----------------------------------------------------
@@ -488,8 +493,8 @@ void RegisterScriptRPCs(RakClientInterface* pRakClient)
 	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerPos);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk0D);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk0E);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk47);
 	REGISTER_STATIC_RPC(pRakClient, ScrPutPlayerInVehicle);
+	REGISTER_STATIC_RPC(pRakClient, ScrRemovePlayerFromVehicle);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk48);
 	REGISTER_STATIC_RPC(pRakClient, ScrDisplayGameText);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk9C);
@@ -562,8 +567,8 @@ void UnRegisterScriptRPCs(RakClientInterface* pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient, ScrSetPlayerPos);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk0D);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk0E);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk47);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrPutPlayerInVehicle);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrRemovePlayerFromVehicle);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk48);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrDisplayGameText);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk9C);
