@@ -223,10 +223,26 @@ void WorldPlayerDeath(RPCParameters *rpcParams)
 }
 
 //----------------------------------------------------
+// Physical player should be removed
 
-void UnkA3(RPCParameters *rpcParams)
+void WorldPlayerRemove(RPCParameters *rpcParams)
 {
-	// TODO: UnkA3
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	PlayerID sender = rpcParams->sender;
+
+	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
+
+	PLAYERID playerId=0;
+	CPlayerPool *pPlayerPool = pNetGame->GetPlayerPool();
+	bsData.Read(playerId);
+
+	if(pNetGame->GetPlayerPool()->GetSlotState(playerId) == FALSE) return;
+	pNetGame->SetPlayerAdded(playerId,FALSE);
+
+	if(pNetGame->GetBotMode()) {
+		pNetGame->GetBotMode()->OnPlayerStreamOut(playerId);
+	}
 }
 
 //----------------------------------------------------
@@ -481,10 +497,10 @@ void RegisterRPCs(RakClientInterface * pRakClient)
 	REGISTER_STATIC_RPC(pRakClient,RequestClass);
 	REGISTER_STATIC_RPC(pRakClient,RequestSpawn);
 	REGISTER_STATIC_RPC(pRakClient,WorldPlayerAdd);
-	REGISTER_STATIC_RPC(pRakClient,UnkA3);
 	REGISTER_STATIC_RPC(pRakClient,UnkA4);
 	REGISTER_STATIC_RPC(pRakClient,UnkA5);
 	REGISTER_STATIC_RPC(pRakClient,WorldPlayerDeath);
+	REGISTER_STATIC_RPC(pRakClient,WorldPlayerRemove);
 }
 
 //----------------------------------------------------
@@ -511,10 +527,10 @@ void UnRegisterRPCs(RakClientInterface * pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient,Unk1D);
 	UNREGISTER_STATIC_RPC(pRakClient,Unk1E);
 	UNREGISTER_STATIC_RPC(pRakClient,WorldPlayerAdd);
-	UNREGISTER_STATIC_RPC(pRakClient,UnkA3);
 	UNREGISTER_STATIC_RPC(pRakClient,UnkA4);
 	UNREGISTER_STATIC_RPC(pRakClient,UnkA5);
 	UNREGISTER_STATIC_RPC(pRakClient,WorldPlayerDeath);
+	UNREGISTER_STATIC_RPC(pRakClient,WorldPlayerRemove);
 	UNREGISTER_STATIC_RPC(pRakClient,ServerJoin);
 	UNREGISTER_STATIC_RPC(pRakClient,ServerQuit);
 	UNREGISTER_STATIC_RPC(pRakClient,InitGame);
