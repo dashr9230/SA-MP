@@ -4,6 +4,7 @@
 using namespace RakNet;
 extern CNetGame*	pNetGame;
 extern ONFOOT_SYNC_DATA ofSync;
+extern BYTE byteMySeatID;
 
 //----------------------------------------------------
 
@@ -64,9 +65,27 @@ void ScrUnk0E(RPCParameters *rpcParams)
 
 //----------------------------------------------------
 
-void ScrUnk46(RPCParameters *rpcParams)
+VEHICLEID MyVehicleID = INVALID_VEHICLE_ID;
+
+void ScrPutPlayerInVehicle(RPCParameters *rpcParams)
 {
-	// TODO: ScrUnk46
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	PlayerID sender = rpcParams->sender;
+
+	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
+	VEHICLEID vehicleid;
+	BYTE seatid;
+
+	bsData.Read(vehicleid);
+	bsData.Read(seatid);
+
+	MyVehicleID = vehicleid;
+	byteMySeatID = seatid;
+
+	if(pNetGame->GetBotMode()) {
+		pNetGame->GetBotMode()->OnNPCEnterVehicle(vehicleid, seatid);
+	}
 }
 
 //----------------------------------------------------
@@ -469,8 +488,8 @@ void RegisterScriptRPCs(RakClientInterface* pRakClient)
 	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerPos);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk0D);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk0E);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk46);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk47);
+	REGISTER_STATIC_RPC(pRakClient, ScrPutPlayerInVehicle);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk48);
 	REGISTER_STATIC_RPC(pRakClient, ScrDisplayGameText);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk9C);
@@ -543,8 +562,8 @@ void UnRegisterScriptRPCs(RakClientInterface* pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient, ScrSetPlayerPos);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk0D);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk0E);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk46);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk47);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrPutPlayerInVehicle);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk48);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrDisplayGameText);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk9C);

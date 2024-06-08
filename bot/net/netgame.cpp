@@ -42,6 +42,7 @@ char unnamed_3[1000][68];
 BYTE unnamed_8[MAX_PLAYERS];
 BOOL unnamed_7[MAX_VEHICLES];
 char unnamed_4[1000][63];
+BYTE byteMySeatID;
 
 bool	bSpawned = false;
 
