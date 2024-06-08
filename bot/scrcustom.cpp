@@ -178,8 +178,9 @@ static cell AMX_NATIVE_CALL n_GetPlayerSpecialAction(AMX *amx, cell *params)
 // native IsPlayerStreamedIn(playerid)
 static cell AMX_NATIVE_CALL n_IsPlayerStreamedIn(AMX *amx, cell *params)
 {
-	// TODO: n_IsPlayerStreamedIn
-	return 0;
+	if(!pNetGame->GetPlayerPool()->GetSlotState((PLAYERID)params[1])) return 0;
+
+	return pNetGame->IsPlayerAdded((PLAYERID)params[1]);
 }
 
 // native IsVehicleStreamedIn(vehicleid)

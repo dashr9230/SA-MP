@@ -48,6 +48,15 @@ bool	bSpawned = false;
 
 //----------------------------------------------------
 // MATCH
+BOOL CNetGame::IsPlayerAdded(PLAYERID playerId)
+{
+	if(playerId >= MAX_PLAYERS) return FALSE;
+
+	return bPlayerSlotState[playerId] != FALSE;
+}
+
+//----------------------------------------------------
+// MATCH
 void CNetGame::SetMyZAngle(float fAngle)
 {
 	//logprintf("CNetGame::SetMyZAngle(%f)", fAngle);
