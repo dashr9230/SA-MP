@@ -242,8 +242,10 @@ static cell AMX_NATIVE_CALL n_IsPlayerInRangeOfPoint(AMX *amx, cell *params)
 // native GetPlayerName(playerid, const name[], len)
 static cell AMX_NATIVE_CALL n_GetPlayerName(AMX *amx, cell *params)
 {
-	// TODO: n_GetPlayerName
-	return 0;
+	PLAYERID playerId = (PLAYERID)params[1];
+	if (playerId >= MAX_PLAYERS || !pNetGame->GetPlayerPool()->GetSlotState(playerId)) return 0;
+	return set_amxstring(amx, params[2], pNetGame->GetPlayerPool()->
+		GetPlayerName(playerId), params[3]);
 }
 
 // native IsPlayerConnected(playerid)
