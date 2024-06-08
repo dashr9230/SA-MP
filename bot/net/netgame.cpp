@@ -35,8 +35,8 @@ typedef struct _TRAILER_SYNC_DATA // size: 54
 
 char unnamed_2[63];
 PASSENGER_SYNC_DATA unnamed_5[MAX_PLAYERS];
-BOOL unnamed_6[MAX_PLAYERS];
 char unnamed_9;
+BOOL bPlayerSlotState[MAX_PLAYERS];
 ONFOOT_SYNC_DATA ofSync;
 char unnamed_3[1000][68];
 BYTE unnamed_8[MAX_PLAYERS];
@@ -136,10 +136,10 @@ void CNetGame::ShutdownForGameModeRestart()
 	memset(unnamed_3,0,sizeof(unnamed_3));
 	memset(unnamed_4,0,sizeof(unnamed_4));
 	memset(unnamed_5,0,sizeof(unnamed_5));
-	memset(unnamed_6,0,sizeof(unnamed_6));
 	memset(unnamed_7,0,sizeof(unnamed_7));
 	memset(unnamed_8,0,sizeof(unnamed_8));
 	memset(&ofSync,0,sizeof(ONFOOT_SYNC_DATA));
+	memset(&bPlayerSlotState[0],0,sizeof(BOOL)*MAX_PLAYERS);
 
 	m_bZoneNames = FALSE;
 }
@@ -205,9 +205,9 @@ void CNetGame::Init(PCHAR szHostOrIp, int iPort,
 	memset(unnamed_3,0,sizeof(unnamed_3));
 	memset(unnamed_4,0,sizeof(unnamed_4));
 	memset(unnamed_5,0,sizeof(unnamed_5));
-	memset(unnamed_6,0,sizeof(unnamed_6));
 	memset(unnamed_7,0,sizeof(unnamed_7));
 	memset(unnamed_8,0,sizeof(unnamed_8));
+	memset(&bPlayerSlotState[0],0,sizeof(BOOL)*MAX_PLAYERS);
 	field_1DE = 0;
 	field_1E2 = 0;
 	field_1F2 = GetTickCount();
@@ -555,7 +555,7 @@ void CNetGame::SetPlayerAdded(PLAYERID playerId, BOOL a2)
 {
 	if(playerId < MAX_PLAYERS)
 	{
-		unnamed_6[playerId] = a2;
+		bPlayerSlotState[playerId] = a2;
 	}
 }
 
