@@ -220,8 +220,8 @@ static cell AMX_NATIVE_CALL n_GetMyFacingAngle(AMX *amx, cell *params)
 // native SetMyFacingAngle(Float:ang)
 static cell AMX_NATIVE_CALL n_SetMyFacingAngle(AMX *amx, cell *params)
 {
-	// TODO: n_SetMyFacingAngle
-	return 0;
+	pNetGame->SetMyZAngle(amx_ctof(params[1]));
+	return 1;
 }
 
 // native GetDistanceFromMeToPoint(Float:X, Float:Y, Float:Z, &Float:Distance)
