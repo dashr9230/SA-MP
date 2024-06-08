@@ -369,6 +369,8 @@ void CNetGame::UpdateNetwork()
 			Packet_TrailerSync(pkt);
 			break;
 		}
+
+		m_pRakClient->DeallocatePacket(pkt);
 	}
 }
 
