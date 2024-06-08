@@ -29,6 +29,16 @@ CPlayerPool::~CPlayerPool()
 
 //----------------------------------------------------
 
+BOOL CPlayerPool::New(PLAYERID playerId, PCHAR szPlayerName)
+{
+	m_bPlayerSlotState[playerId] = TRUE;
+	strcpy(m_szPlayerNames[playerId], szPlayerName);
+	pNetGame->SetPlayerAdded(playerId, FALSE);
+	return TRUE;
+}
+
+//----------------------------------------------------
+
 BOOL CPlayerPool::Delete(PLAYERID playerId, BYTE byteReason)
 {
 	m_bPlayerSlotState[playerId] = FALSE;

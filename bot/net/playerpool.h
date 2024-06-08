@@ -23,6 +23,7 @@ public:
 	CPlayerPool();
 	~CPlayerPool();
 
+	BOOL New(PLAYERID playerId, PCHAR szPlayerName);
 	BOOL Delete(PLAYERID playerId, BYTE byteReason);
 
 	// Find out if the slot is inuse.

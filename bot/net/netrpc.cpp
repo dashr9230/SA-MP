@@ -11,10 +11,35 @@ extern ONFOOT_SYNC_DATA ofSync;
 extern bool	bSpawned;
 
 //----------------------------------------------------
+// Sent when a client joins the server we're
+// currently connected to.
 
-void Unk89(RPCParameters *rpcParams)
+void ServerJoin(RPCParameters *rpcParams)
 {
-	// TODO: Unk89
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	PlayerID sender = rpcParams->sender;
+
+	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
+	CPlayerPool *pPlayerPool = pNetGame->GetPlayerPool();
+	CHAR szPlayerName[MAX_PLAYER_NAME+1];
+	PLAYERID playerId;
+	DWORD dwColor;
+	BYTE byteNameLen=0;
+	BYTE byteNPC;
+
+	bsData.Read(playerId);
+	bsData.Read(dwColor);
+	bsData.Read(byteNPC);
+	bsData.Read(byteNameLen);
+
+	if(byteNameLen > MAX_PLAYER_NAME) return;
+
+	bsData.Read(szPlayerName,byteNameLen);
+	szPlayerName[byteNameLen] = '\0';
+
+	// Add this client to the player pool.
+	pPlayerPool->New(playerId, szPlayerName);
 }
 
 //----------------------------------------------------
@@ -434,7 +459,7 @@ void RegisterRPCs(RakClientInterface * pRakClient)
 	REGISTER_STATIC_RPC(pRakClient,Weather);
 	REGISTER_STATIC_RPC(pRakClient,Unk1D);
 	REGISTER_STATIC_RPC(pRakClient,Unk1E);
-	REGISTER_STATIC_RPC(pRakClient,Unk89);
+	REGISTER_STATIC_RPC(pRakClient,ServerJoin);
 	REGISTER_STATIC_RPC(pRakClient,ServerQuit);
 	REGISTER_STATIC_RPC(pRakClient,InitGame);
 	REGISTER_STATIC_RPC(pRakClient,Chat);
@@ -475,7 +500,7 @@ void UnRegisterRPCs(RakClientInterface * pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient,UnkA3);
 	UNREGISTER_STATIC_RPC(pRakClient,UnkA4);
 	UNREGISTER_STATIC_RPC(pRakClient,UnkA5);
-	UNREGISTER_STATIC_RPC(pRakClient,Unk89);
+	UNREGISTER_STATIC_RPC(pRakClient,ServerJoin);
 	UNREGISTER_STATIC_RPC(pRakClient,ServerQuit);
 	UNREGISTER_STATIC_RPC(pRakClient,InitGame);
 	UNREGISTER_STATIC_RPC(pRakClient,Chat);

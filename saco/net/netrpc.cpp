@@ -34,7 +34,7 @@ void DamageVehicle(RPCParameters *rpcParams) {}
 void Unk18(RPCParameters *rpcParams) {}
 void EnterVehicle(RPCParameters *rpcParams) {}
 void ExitVehicle(RPCParameters *rpcParams) {}
-void Unk89(RPCParameters *rpcParams) {}
+void ServerJoin(RPCParameters *rpcParams) {}
 void ServerQuit(RPCParameters *rpcParams) {}
 void InitGame(RPCParameters *rpcParams) {}
 void Chat(RPCParameters *rpcParams) {}
@@ -85,7 +85,7 @@ void RegisterRPCs(RakClientInterface * pRakClient)
 	REGISTER_STATIC_RPC(pRakClient,Unk18);
 	REGISTER_STATIC_RPC(pRakClient,EnterVehicle);
 	REGISTER_STATIC_RPC(pRakClient,ExitVehicle);
-	REGISTER_STATIC_RPC(pRakClient,Unk89);
+	REGISTER_STATIC_RPC(pRakClient,ServerJoin);
 	REGISTER_STATIC_RPC(pRakClient,ServerQuit);
 	REGISTER_STATIC_RPC(pRakClient,InitGame);
 	REGISTER_STATIC_RPC(pRakClient,Chat);
@@ -122,7 +122,7 @@ void UnRegisterRPCs(RakClientInterface * pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient,Unk3A);
 	UNREGISTER_STATIC_RPC(pRakClient,Unk3B);
 	UNREGISTER_STATIC_RPC(pRakClient,Unk3D);
-	UNREGISTER_STATIC_RPC(pRakClient,Unk89);
+	UNREGISTER_STATIC_RPC(pRakClient,ServerJoin);
 	UNREGISTER_STATIC_RPC(pRakClient,ServerQuit);
 	UNREGISTER_STATIC_RPC(pRakClient,InitGame);
 	UNREGISTER_STATIC_RPC(pRakClient,Chat);

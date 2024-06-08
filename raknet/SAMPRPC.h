@@ -45,7 +45,7 @@
 #define RPC_Unk18					"\x18"
 #define RPC_EnterVehicle			"\x1A"
 #define RPC_ExitVehicle				"\x9A"
-#define RPC_Unk89					"\x89"
+#define RPC_ServerJoin				"\x89"
 #define RPC_ServerQuit				"\x8A"
 #define RPC_InitGame				"\x8B"
 #define RPC_Chat					"\x65"
