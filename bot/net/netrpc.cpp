@@ -201,10 +201,25 @@ void WorldPlayerAdd(RPCParameters *rpcParams)
 }
 
 //----------------------------------------------------
+// Physical player is dead
 
-void UnkA6(RPCParameters *rpcParams)
+void WorldPlayerDeath(RPCParameters *rpcParams)
 {
-	// TODO: UnkA6
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	PlayerID sender = rpcParams->sender;
+
+	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
+
+	PLAYERID playerId;
+	CPlayerPool *pPlayerPool = pNetGame->GetPlayerPool();
+	bsData.Read(playerId);
+
+	if(pNetGame->GetPlayerPool()->GetSlotState(playerId) == FALSE) return;
+
+	if(pNetGame->GetBotMode()) {
+		pNetGame->GetBotMode()->OnPlayerDeath(playerId);
+	}
 }
 
 //----------------------------------------------------
@@ -466,10 +481,10 @@ void RegisterRPCs(RakClientInterface * pRakClient)
 	REGISTER_STATIC_RPC(pRakClient,RequestClass);
 	REGISTER_STATIC_RPC(pRakClient,RequestSpawn);
 	REGISTER_STATIC_RPC(pRakClient,WorldPlayerAdd);
-	REGISTER_STATIC_RPC(pRakClient,UnkA6);
 	REGISTER_STATIC_RPC(pRakClient,UnkA3);
 	REGISTER_STATIC_RPC(pRakClient,UnkA4);
 	REGISTER_STATIC_RPC(pRakClient,UnkA5);
+	REGISTER_STATIC_RPC(pRakClient,WorldPlayerDeath);
 }
 
 //----------------------------------------------------
@@ -496,10 +511,10 @@ void UnRegisterRPCs(RakClientInterface * pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient,Unk1D);
 	UNREGISTER_STATIC_RPC(pRakClient,Unk1E);
 	UNREGISTER_STATIC_RPC(pRakClient,WorldPlayerAdd);
-	UNREGISTER_STATIC_RPC(pRakClient,UnkA6);
 	UNREGISTER_STATIC_RPC(pRakClient,UnkA3);
 	UNREGISTER_STATIC_RPC(pRakClient,UnkA4);
 	UNREGISTER_STATIC_RPC(pRakClient,UnkA5);
+	UNREGISTER_STATIC_RPC(pRakClient,WorldPlayerDeath);
 	UNREGISTER_STATIC_RPC(pRakClient,ServerJoin);
 	UNREGISTER_STATIC_RPC(pRakClient,ServerQuit);
 	UNREGISTER_STATIC_RPC(pRakClient,InitGame);
