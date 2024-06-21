@@ -1720,7 +1720,7 @@ static const void * const amx_opcodelist[] = {
     return AMX_ERR_NOTFOUND;
   if ((amx->flags & AMX_FLAG_RELOC)==0)
     return AMX_ERR_INIT;
-  assert((amx->flags & AMX_FLAG_BROWSE)==0);
+  //assert((amx->flags & AMX_FLAG_BROWSE)==0);
 
   /* set up the registers */
   hdr=(AMX_HEADER *)amx->base;
@@ -2093,8 +2093,11 @@ static const void * const amx_opcodelist[] = {
     cip=JUMPABS(code, cip);                     /* jump to the address */
     NEXT(cip);
   op_call_pri:
+    /*
     PUSH((unsigned char *)cip-code);
     cip=(cell *)(code+(int)pri);
+    */
+    assert(0);
     NEXT(cip);
   op_jump:
     /* since the GETPARAM() macro modifies cip, you cannot
@@ -2506,7 +2509,10 @@ static const void * const amx_opcodelist[] = {
     SKIPPARAM(1);
     NEXT(cip);
   op_jump_pri:
+    /*
     cip=(cell *)(code+(int)pri);
+    */
+    assert(0);
     NEXT(cip);
   op_switch: {
     cell *cptr;
@@ -3065,8 +3071,11 @@ int AMXAPI amx_Exec(AMX *amx, cell *retval, int index)
       cip=JUMPABS(code, cip);                   /* jump to the address */
       break;
     case OP_CALL_PRI:
+      /*
       PUSH((unsigned char *)cip-code);
       cip=(cell *)(code+(int)pri);
+      */
+      ABORT(amx,AMX_ERR_INVINSTR);
       break;
     case OP_JUMP:
       /* since the GETPARAM() macro modifies cip, you cannot
@@ -3473,7 +3482,10 @@ int AMXAPI amx_Exec(AMX *amx, cell *retval, int index)
       SKIPPARAM(1);
       break;
     case OP_JUMP_PRI:
+      /*
       cip=(cell *)(code+(int)pri);
+      */
+      ABORT(amx,AMX_ERR_INVINSTR);
       break;
     case OP_SWITCH: {
       cell *cptr;
