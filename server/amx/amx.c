@@ -1286,9 +1286,6 @@ int AMXAPI amx_FindNative(AMX *amx, const char *name, int *index)
 int AMXAPI amx_NumPublics(AMX *amx, int *number)
 {
   AMX_HEADER *hdr=(AMX_HEADER *)amx->base;
-  assert(hdr!=NULL);
-  assert(hdr->magic==AMX_MAGIC);
-  assert(hdr->publics<=hdr->natives);
   *number=NUMENTRIES(hdr,publics,natives);
   return AMX_ERR_NONE;
 }
