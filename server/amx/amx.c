@@ -1265,27 +1265,18 @@ int AMXAPI amx_GetNative(AMX *amx, int index, char *funcname)
 
 int AMXAPI amx_FindNative(AMX *amx, const char *name, int *index)
 {
-  int first,last,mid,result;
+  int idx,last;
   char pname[sNAMEMAX+1];
 
   amx_NumNatives(amx, &last);
-  last--;       /* last valid index is 1 less than the number of functions */
-  first=0;
-  /* binary search */
-  while (first<=last) {
-    mid=(first+last)/2;
-    amx_GetNative(amx, mid, pname);
-    result=strcmp(pname,name);
-    if (result>0) {
-      last=mid-1;
-    } else if (result<0) {
-      first=mid+1;
-    } else {
-      *index=mid;
+  /* linear search, the natives table is not sorted alphabetically */
+  for (idx=0; idx<last; idx++) {
+    amx_GetNative(amx,idx,pname);
+    if (strcmp(pname,name)==0) {
+      *index=idx;
       return AMX_ERR_NONE;
     } /* if */
-  } /* while */
-  /* not found, set to an invalid index, so amx_Exec() will fail */
+  } /* for */
   *index=INT_MAX;
   return AMX_ERR_NOTFOUND;
 }
