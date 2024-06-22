@@ -19,10 +19,10 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;AMX_NODYNALOAD"
+				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;SAMPSRV"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="5"
+				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
@@ -67,9 +67,13 @@
 			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
-				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;AMX_NODYNALOAD"
-				RuntimeLibrary="4"
+				Optimization="3"
+				InlineFunctionExpansion="1"
+				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;SAMPSRV"
+				MinimalRebuild="TRUE"
+				RuntimeLibrary="0"
 				BufferSecurityCheck="FALSE"
+				EnableFunctionLevelLinking="TRUE"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
