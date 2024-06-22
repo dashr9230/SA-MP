@@ -729,27 +729,7 @@ static int printstring(AMX *amx,cell *cstr,cell *params,int num)
 
     TCHAR cache[100];
     int idx=0;
-    if ((ucell)*cstr>UNPACKEDMAX) {
-      int j=sizeof(cell)-sizeof(char);
-      char c;
-      /* the string is packed */
-      i=0;
-      for ( ; ; ) {
-        c=(char)((ucell)cstr[i] >> 8*j);
-        if (c==0)
-          break;
-        assert(idx<sizeof cache);
-        cache[idx++]=c;
-        if (idx==sizeof cache - 1) {
-          cache[idx]='\0';
-          amx_putstr(cache);
-          idx=0;
-        } /* if */
-        if (j==0)
-          i++;
-        j=(j+sizeof(cell)-sizeof(char)) % sizeof(cell);
-      } /* for */
-    } else {
+
       for (i=0; cstr[i]!=0; i++) {
         assert(idx<sizeof cache);
         cache[idx++]=(TCHAR)cstr[i];
@@ -759,7 +739,7 @@ static int printstring(AMX *amx,cell *cstr,cell *params,int num)
           idx=0;
         } /* if */
       } /* for */
-    } /* if */
+
     if (idx>0) {
       cache[idx]='\0';
       amx_putstr(cache);
@@ -767,38 +747,7 @@ static int printstring(AMX *amx,cell *cstr,cell *params,int num)
 
   } else {
 
-    /* check whether this is a packed string */
-    if ((ucell)*cstr>UNPACKEDMAX) {
-      int j=sizeof(cell)-sizeof(char);
-      char c;
-      /* the string is packed */
-      i=0;
-      for ( ; ; ) {
-        c=(char)((ucell)cstr[i] >> 8*j);
-        if (c==0)
-          break;
-        switch (formatstate(c,&fmtstate,&sign,&decpoint,&width,&digits)) {
-        case -1:
-          amx_putchar(c);
-          break;
-        case 1:
-          assert(params!=NULL);
-          if (digits>25)
-            digits=25;
-          paramidx+=dochar(amx,c,params[paramidx],sign,decpoint,width,digits);
-          fmtstate=FMT_NONE;
-          break;
-        case 0:
-          if (params==NULL || paramidx>=num)  /* insufficient parameters passed */
-            amx_RaiseError(amx, AMX_ERR_NATIVE);
-          break;
-        } /* switch */
-        if (j==0)
-          i++;
-        j=(j+sizeof(cell)-sizeof(char)) % sizeof(cell);
-      } /* for */
-    } else {
-      /* the string is unpacked */
+      /* unpacked */
       for (i=0; cstr[i]!=0; i++) {
         switch (formatstate((TCHAR)cstr[i],&fmtstate,&sign,&decpoint,&width,&digits)) {
         case -1:
@@ -815,7 +764,6 @@ static int printstring(AMX *amx,cell *cstr,cell *params,int num)
           break;
         } /* switch */
       } /* for */
-    } /* if */
 
   } /* if (params==NULL) */
 
