@@ -84,7 +84,11 @@ static cell AMX_NATIVE_CALL n_floatstr(AMX *amx,cell *params)
     amx_GetString(szSource, pString, 0, sizeof szSource);
 
     /* Now convert this to a float. */
+#ifdef WIN32
     fNum = (REAL)atof(szSource);
+#else
+	fNum = (REAL)strtod(szSource,NULL);
+#endif
 
     return amx_ftoc(fNum);
 }
