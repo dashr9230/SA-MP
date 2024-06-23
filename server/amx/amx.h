@@ -357,8 +357,8 @@ enum {
       amx_GetAddr((amx), (param), &amx_cstr_);                              \
       amx_StrLen(amx_cstr_, &amx_length_);                                  \
       if (amx_length_ > 0 &&                                                \
-          ((result) = (void*)alloca((amx_length_ + 1) * sizeof(*(result)))) != NULL) \
-        amx_GetString((char*)(result), amx_cstr_, sizeof(*(result))>1, amx_length_); \
+          ((result) = (char*)alloca((amx_length_ + 1) * sizeof(*(result)))) != NULL) \
+        amx_GetString((char*)(result), amx_cstr_, sizeof(*(result))>1, amx_length_ + 1); \
       else (result) = NULL;                                                 \
     } while (0)
 
