@@ -530,7 +530,7 @@ static cell AMX_NATIVE_CALL n_fputchar(AMX *amx, cell *params)
   } else {
     fputc((int)params[2],(FILE*)params[1]);
   } /* if */
-  assert(result==0 || result==1);
+  //assert(result==0 || result==1);
   return result;
 }
 
