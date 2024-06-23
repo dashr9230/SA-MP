@@ -307,7 +307,7 @@ static wchar_t buffer[_MAX_PATH];
   return buffer[0]!=L'\0' ? buffer : NULL;
 }
 #else
-char *getenv(const char *name)
+char *amx_getenv(const char *name)
 {
 static char buffer[_MAX_PATH];
   buffer[0]='\0';
@@ -315,6 +315,8 @@ static char buffer[_MAX_PATH];
   return buffer[0]!='\0' ? buffer : NULL;
 }
 #endif
+#else
+	#define amx_getenv getenv
 #endif
 
 static char *completename(TCHAR *dest, TCHAR *src, size_t size)
@@ -323,16 +325,17 @@ static char *completename(TCHAR *dest, TCHAR *src, size_t size)
     TCHAR *prefix,*ptr;
     size_t len;
 
+
     /* only files below a specific path are accessible */
-    prefix=getenv(AMXFILE_VAR);
+    prefix=amx_getenv(AMXFILE_VAR);
 
     /* if no specific path for files is present, use the "temporary" path */
     if (prefix==NULL)
-      prefix=getenv(__T("tmp"));    /* common under Windows and Unix */
+      prefix=amx_getenv(__T("tmp"));    /* common under Windows and Unix */
     if (prefix==NULL)
-      prefix=getenv(__T("temp"));   /* common under Windows */
+      prefix=amx_getenv(__T("temp"));   /* common under Windows */
     if (prefix==NULL)
-      prefix=getenv(__T("tmpdir")); /* common under Unix */
+      prefix=amx_getenv(__T("tmpdir")); /* common under Unix */
 
     /* if no path for files is defined, and no temporary directory exists,
      * fail the function; this is for security reasons.
