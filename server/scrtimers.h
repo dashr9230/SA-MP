@@ -29,6 +29,7 @@ public:
 
 	DWORD New(char* szScriptFunc, int iInterval, BOOL bRepeating, AMX* pAMX);
 	DWORD NewEx(char* szScriptFunc, int iInterval, BOOL bRepeating, cell *params, AMX* pAMX);
+	void Kill(DWORD dwTimerId);
 	void FreeMem(ScriptTimer_s* Timer);
 };
 

@@ -83,8 +83,9 @@ static cell AMX_NATIVE_CALL n_SetTimer(AMX *amx, cell *params)
 
 static cell AMX_NATIVE_CALL n_KillTimer(AMX *amx, cell *params)
 {
-	// TODO: KillTimer
-	return 0;
+	pNetGame->GetTimers()->Kill(params[1]);
+
+	return 1;
 }
 
 //----------------------------------------------------------------------------------
