@@ -34,6 +34,27 @@ void CScriptTimers::FreeMem(ScriptTimer_s* Timer)
 
 //----------------------------------------------------------------------------------
 
+void CScriptTimers::DeleteForMode(AMX* pEndedAMX)
+{
+	bool bRestart = false;
+	DwordTimerMap::iterator itor;
+	for (itor = m_Timers.begin(); itor != m_Timers.end(); bRestart?(itor=m_Timers.begin()):(itor++))
+	{
+		bRestart = false;
+		if (itor->second->pAMX == pEndedAMX)
+		{
+			FreeMem(itor->second);
+			SAFE_DELETE(itor->second);
+			m_Timers.erase(itor);
+
+			// Can't continue iteration if a node is deleted, start iteration from start again.
+			bRestart = true;
+		}
+	}
+}
+
+//----------------------------------------------------------------------------------
+
 DWORD CScriptTimers::New(char* szScriptFunc, int iInterval, BOOL bRepeating, AMX* pAMX)
 {
 	m_dwTimerCount++;
