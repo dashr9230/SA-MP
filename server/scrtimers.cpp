@@ -12,7 +12,25 @@ CScriptTimers::CScriptTimers()
 
 CScriptTimers::~CScriptTimers()
 {
-	// TODO: CScriptTimers::~CScriptTimers W .text:00482B00 L .text:080EBD50
+	DwordTimerMap::iterator itor;
+	for (itor = m_Timers.begin(); itor != m_Timers.end(); itor++)
+	{
+		FreeMem(itor->second);
+		SAFE_DELETE(itor->second);
+	}
+	m_Timers.clear();
 }
 
 //----------------------------------------------------------------------------------
+
+void CScriptTimers::FreeMem(ScriptTimer_s* Timer)
+{
+	if (Timer->cellParams != NULL)
+	{
+		free(Timer->cellParams);
+		Timer->cellParams = NULL;
+	}
+}
+
+//----------------------------------------------------------------------------------
+
