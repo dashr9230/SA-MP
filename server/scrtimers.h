@@ -4,7 +4,13 @@
 
 struct ScriptTimer_s
 {
-	char _gap0[279‬];
+	char szScriptFunc[255];
+	int iTotalTime;
+	int iRemainingTime;
+	BOOL bRepeating;
+	BOOL bKilled;
+	AMX* pAMX;
+	int iParamCount;
 	void* cellParams;
 };
 
@@ -21,6 +27,7 @@ public:
 	CScriptTimers();
 	~CScriptTimers();
 
+	DWORD New(char* szScriptFunc, int iInterval, BOOL bRepeating, AMX* pAMX);
 	void FreeMem(ScriptTimer_s* Timer);
 };
 

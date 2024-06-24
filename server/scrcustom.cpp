@@ -76,8 +76,9 @@ static cell AMX_NATIVE_CALL n_format(AMX *amx, cell *params)
 
 static cell AMX_NATIVE_CALL n_SetTimer(AMX *amx, cell *params)
 {
-	// TODO: SetTimer
-	return 0;
+	char* szFuncName;
+	amx_StrParam(amx, params[1], szFuncName);
+	return pNetGame->GetTimers()->New(szFuncName, params[2], params[3], amx);
 }
 
 static cell AMX_NATIVE_CALL n_KillTimer(AMX *amx, cell *params)
