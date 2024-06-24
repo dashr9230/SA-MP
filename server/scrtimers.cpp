@@ -54,3 +54,88 @@ DWORD CScriptTimers::New(char* szScriptFunc, int iInterval, BOOL bRepeating, AMX
 }
 
 //----------------------------------------------------------------------------------
+// Same as new only with parameters to be passed to the called function
+cell* get_amxaddr(AMX *amx, cell amx_addr);
+DWORD CScriptTimers::NewEx(char* szScriptFunc, int iInterval, BOOL bRepeating, cell *params, AMX* pAMX)
+{
+	m_dwTimerCount++;
+
+	ScriptTimer_s* NewTimer = new ScriptTimer_s;
+
+	strncpy(NewTimer->szScriptFunc, szScriptFunc, 255);
+	NewTimer->iTotalTime = iInterval;
+	NewTimer->iRemainingTime = iInterval;
+	NewTimer->bRepeating = bRepeating;
+	NewTimer->bKilled = false;
+	NewTimer->pAMX = pAMX;
+
+	cell amx_addr[256];
+
+	char* szParamList;
+	amx_StrParam(pAMX, params[4], szParamList);
+	int j, numstr, iOff = 5; // Count, func, interval, repeat, map
+	if (szParamList == NULL) j = 0;
+	else j = strlen(szParamList);
+	numstr = 0;
+	while (j)
+	{
+		j--;
+		cell *paddr = NULL;
+		if (*(szParamList + j) == 'a')
+		{
+			int numcells = *get_amxaddr(pAMX, params[j + iOff + 1]);
+			if (amx_Allot(pAMX, numcells, &amx_addr[numstr], &paddr) == AMX_ERR_NONE)
+			{
+				memcpy(paddr, get_amxaddr(pAMX, params[j + iOff]), numcells * sizeof (cell));
+				numstr++;
+			}
+		}
+		else if (*(szParamList + j) == 's')
+		{
+			char* szParamText;
+			amx_StrParam(pAMX, params[j + iOff], szParamText);
+			if (szParamText != NULL && strlen(szParamText) > 0)
+			{
+				int numcells = strlen(szParamText) + 1;
+				if (amx_Allot(pAMX, numcells, &amx_addr[numstr], &paddr) == AMX_ERR_NONE)
+				{
+					amx_SetString(paddr, szParamText, 0, 0, UNLIMITED);
+					numstr++;
+				}
+			}
+			else
+			{
+				*szParamText = 1;
+				*(szParamText + 1) = 0;
+				if (amx_Allot(pAMX, 1, &amx_addr[numstr], &paddr) == AMX_ERR_NONE)
+				{
+					amx_SetString(paddr, szParamText, 0, 0, UNLIMITED);
+					numstr++;
+				}
+			}
+		}
+		else
+		{
+			amx_addr[numstr] = *get_amxaddr(pAMX, params[j + iOff]);
+			numstr++;
+		}
+	}
+	void* mem = NULL;
+	if (numstr)
+	{
+		mem = malloc(numstr * sizeof (cell));
+		memcpy(mem, &amx_addr, numstr * sizeof (cell));
+		NewTimer->cellParams = mem;
+	}
+	else
+	{
+		NewTimer->cellParams = NULL;
+	}
+	NewTimer->iParamCount = numstr;
+
+	m_Timers.insert(DwordTimerMap::value_type(m_dwTimerCount, NewTimer));
+	return m_dwTimerCount;
+}
+
+//----------------------------------------------------------------------------------
+

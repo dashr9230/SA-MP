@@ -111,8 +111,20 @@ static cell AMX_NATIVE_CALL n_GetMaxPlayers(AMX *amx, cell *params)
 
 static cell AMX_NATIVE_CALL n_SetTimerEx(AMX *amx, cell *params)
 {
-	// TODO: SetTimerEx
-	return 0;
+	if (params[0] < 4 * sizeof (cell))
+	{
+		logprintf("SCRIPT: Bad parameter count (%d < 4): ", params[0]);
+		return 0;
+	}
+	else if (params[0] > 260 * sizeof (cell))
+	{
+		logprintf("SCRIPT: Bad parameter count (%d > 260): ", params[0]);
+		return 0;
+	}
+
+	char* szFuncName;
+	amx_StrParam(amx, params[1], szFuncName);
+	return pNetGame->GetTimers()->NewEx(szFuncName, params[2], params[3], params, amx);
 }
 
 //----------------------------------------------------------------------------------
