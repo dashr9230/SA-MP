@@ -5,7 +5,7 @@
 
 CScriptTimers::CScriptTimers()
 {
-	// TODO: CScriptTimers::CScriptTimers() W: .text:00482BF0 L: .text:080EBCF0
+	m_dwTimerCount = 0;
 }
 
 //----------------------------------------------------------------------------------
