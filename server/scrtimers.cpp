@@ -160,6 +160,20 @@ DWORD CScriptTimers::NewEx(char* szScriptFunc, int iInterval, BOOL bRepeating, c
 
 //----------------------------------------------------------------------------------
 
+void CScriptTimers::Delete(DWORD dwTimerId)
+{
+	DwordTimerMap::iterator itor;
+	itor = m_Timers.find(dwTimerId);
+	if (itor != m_Timers.end())
+	{
+		FreeMem(itor->second);
+		SAFE_DELETE(itor->second);
+		m_Timers.erase(itor);
+	}
+}
+
+//----------------------------------------------------------------------------------
+
 void CScriptTimers::Kill(DWORD dwTimerId)
 {
 	DwordTimerMap::iterator itor;
@@ -174,3 +188,57 @@ void CScriptTimers::Kill(DWORD dwTimerId)
 
 //-----------------------------------------------------------
 
+void CScriptTimers::Process(int iElapsedTime)
+{
+	DwordTimerMap::iterator itor;
+	CGameMode *pGameMode;
+	for (itor = m_Timers.begin(); itor != m_Timers.end(); itor++)
+	{
+		itor->second->iRemainingTime -= iElapsedTime;
+		if (itor->second->iRemainingTime <= 0)
+		{
+			DwordTimerMap::iterator itor_tmp = ++itor; itor--;
+			if (!itor->second->bKilled)
+			{
+				pGameMode = pNetGame->GetGameMode();
+				if (pGameMode)
+				{
+					int idx;
+					AMX* amx = itor->second->pAMX;
+					if (amx && !amx_FindPublic(amx, itor->second->szScriptFunc, &idx))
+					{
+						cell ret;
+						int count = itor->second->iParamCount;
+						int i = 0;
+						if (count > 0)
+						{
+							cell* pars = (cell*)itor->second->cellParams;
+							while (i < count)
+							{
+								amx_Push(amx, pars[i]);
+								i++; // Go forwards to maintain push order
+							}
+						}
+						amx_Exec(amx, &ret, idx);
+					}
+				}
+			}
+
+			if (itor->second->bRepeating)
+			{
+				itor->second->iRemainingTime = itor->second->iTotalTime;
+			}
+			else
+			{
+				// Release parameter memory
+				FreeMem(itor->second);
+				Delete(itor->first);
+			}
+			itor = itor_tmp;
+		}
+		if (itor == m_Timers.end()) break;
+	}
+}
+
+//----------------------------------------------------------------------------------
+// EOF

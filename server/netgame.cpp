@@ -595,6 +595,7 @@ void CNetGame::Process()
 	if(m_iGameState == GAMESTATE_RUNNING)
 	{
 		if(m_pGameMode) m_pGameMode->Frame(fElapsedTime);
+		if(m_pScriptTimers) m_pScriptTimers->Process((DWORD)(fElapsedTime * 1000.0f));
 	}
 	else if(m_iGameState == GAMESTATE_RESTARTING) 
 	{
