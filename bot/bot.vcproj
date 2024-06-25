@@ -117,6 +117,12 @@
 			Name="scripting"
 			Filter="">
 			<File
+				RelativePath=".\format.cpp">
+			</File>
+			<File
+				RelativePath=".\format.h">
+			</File>
+			<File
 				RelativePath=".\gamemodes.cpp">
 			</File>
 			<File

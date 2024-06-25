@@ -1,5 +1,7 @@
 
 #include "main.h"
+#include <ctype.h> 
+#include "format.h"
 
 //----------------------------------------------------------------------------------
 
@@ -143,6 +145,13 @@ void AMXPrintError(CGameMode* pGameMode, AMX *amx, int error)
 
 //----------------------------------------------------------------------------------
 
+cell* get_amxaddr(AMX *amx,cell amx_addr)
+{
+	return (cell *)(amx->base + (int)(((AMX_HEADER *)amx->base)->dat + amx_addr));
+}
+
+//----------------------------------------------------------------------------------
+
 int set_amxstring(AMX *amx,cell amx_addr,const char *source,int max)
 {
 	cell* dest = (cell *)(amx->base + (int)(((AMX_HEADER *)amx->base)->dat + amx_addr));
@@ -155,3 +164,12 @@ int set_amxstring(AMX *amx,cell amx_addr,const char *source,int max)
 
 //----------------------------------------------------------------------------------
 
+char* format_amxstring(AMX *amx, cell *params, int parm, int &len)
+{
+	static char outbuf[4096];
+	cell *addr = get_amxaddr(amx, params[parm++]);
+	len = atcprintf(outbuf, sizeof(outbuf)-1, addr, amx, params, &parm);
+	return outbuf;
+}
+
+//----------------------------------------------------------------------------------

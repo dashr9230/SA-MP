@@ -26,8 +26,8 @@ static cell AMX_NATIVE_CALL n_printf(AMX *amx, cell *params)
 // native format(output[], len, const format[], {Float,_}:...)
 static cell AMX_NATIVE_CALL n_format(AMX *amx, cell *params)
 {
-	// TODO: n_format
-	return 0;
+	int len;
+	return set_amxstring(amx, params[1], format_amxstring(amx, params, 3, len), params[2]);
 }
 
 // native SetTimer(funcname[], interval, repeating)
