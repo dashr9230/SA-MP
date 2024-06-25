@@ -592,11 +592,18 @@ void CNetGame::Process()
 {
 	float fElapsedTime = GetElapsedTime();
 
+	if(m_iGameState == GAMESTATE_RUNNING)
+	{
+		if(m_pGameMode) m_pGameMode->Frame(fElapsedTime);
+	}
+	else if(m_iGameState == GAMESTATE_RESTARTING) 
+	{
+
+	}
 
 	// TODO: CNetGame::Process W: 00491240 L: 080AEEE0
 
 /*
-  v4 = sub_80AA3D0();
   sub_80ABF00(this);
   sub_80AECE0((int)this);
   v1 = this->field_5E;
