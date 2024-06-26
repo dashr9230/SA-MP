@@ -23,6 +23,33 @@ CVehiclePool::~CVehiclePool()
 
 //----------------------------------------------------
 
+BOOL CVehiclePool::New(NEW_VEHICLE *pNewVehicle)
+{
+	if(pNewVehicle->VehicleId < MAX_VEHICLES)
+	{
+		memset(&m_SpawnInfo[pNewVehicle->VehicleId],0,sizeof(VEHICLE_SPAWN_INFO));
+
+		// Setup the spawninfo for the next respawn.
+		m_SpawnInfo[pNewVehicle->VehicleId].field_0 = pNewVehicle->field_2;
+		m_SpawnInfo[pNewVehicle->VehicleId].field_4 = pNewVehicle->field_6;
+		m_SpawnInfo[pNewVehicle->VehicleId].field_8 = pNewVehicle->field_6;
+		m_SpawnInfo[pNewVehicle->VehicleId].field_C = pNewVehicle->field_6;
+		m_SpawnInfo[pNewVehicle->VehicleId].field_10 = pNewVehicle->field_12;
+		m_SpawnInfo[pNewVehicle->VehicleId].field_14 = pNewVehicle->field_16;
+		m_SpawnInfo[pNewVehicle->VehicleId].field_18 = pNewVehicle->field_17;
+
+		pNetGame->SetVehicleAdded(pNewVehicle->VehicleId, TRUE);
+
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
+}
+
+//----------------------------------------------------
+
 BOOL CVehiclePool::Delete(VEHICLEID VehicleID)
 {
 	pNetGame->SetVehicleAdded(VehicleID, FALSE);

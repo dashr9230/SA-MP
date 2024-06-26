@@ -247,9 +247,25 @@ void WorldPlayerRemove(RPCParameters *rpcParams)
 
 //----------------------------------------------------
 
-void UnkA4(RPCParameters *rpcParams)
+void WorldVehicleAdd(RPCParameters *rpcParams)
 {
-	// TODO: UnkA4
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	PlayerID sender = rpcParams->sender;
+
+	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
+	CVehiclePool *pVehiclePool = pNetGame->GetVehiclePool();
+	if(!pVehiclePool) return;
+
+	NEW_VEHICLE NewVehicle;
+
+	bsData.Read((char *)&NewVehicle,sizeof(NEW_VEHICLE));
+
+	pNetGame->GetVehiclePool()->New(&NewVehicle);
+
+	if(pNetGame->GetBotMode()) {
+		pNetGame->GetBotMode()->OnVehicleStreamIn(NewVehicle.VehicleId);
+	}
 }
 
 //----------------------------------------------------
@@ -513,9 +529,9 @@ void RegisterRPCs(RakClientInterface * pRakClient)
 	REGISTER_STATIC_RPC(pRakClient,RequestClass);
 	REGISTER_STATIC_RPC(pRakClient,RequestSpawn);
 	REGISTER_STATIC_RPC(pRakClient,WorldPlayerAdd);
-	REGISTER_STATIC_RPC(pRakClient,UnkA4);
 	REGISTER_STATIC_RPC(pRakClient,WorldPlayerDeath);
 	REGISTER_STATIC_RPC(pRakClient,WorldPlayerRemove);
+	REGISTER_STATIC_RPC(pRakClient,WorldVehicleAdd);
 	REGISTER_STATIC_RPC(pRakClient,WorldVehicleRemove);
 }
 
@@ -543,9 +559,9 @@ void UnRegisterRPCs(RakClientInterface * pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient,Unk1D);
 	UNREGISTER_STATIC_RPC(pRakClient,Unk1E);
 	UNREGISTER_STATIC_RPC(pRakClient,WorldPlayerAdd);
-	UNREGISTER_STATIC_RPC(pRakClient,UnkA4);
 	UNREGISTER_STATIC_RPC(pRakClient,WorldPlayerDeath);
 	UNREGISTER_STATIC_RPC(pRakClient,WorldPlayerRemove);
+	UNREGISTER_STATIC_RPC(pRakClient,WorldVehicleAdd);
 	UNREGISTER_STATIC_RPC(pRakClient,WorldVehicleRemove);
 	UNREGISTER_STATIC_RPC(pRakClient,ServerJoin);
 	UNREGISTER_STATIC_RPC(pRakClient,ServerQuit);
