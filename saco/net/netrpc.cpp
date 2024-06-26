@@ -26,10 +26,10 @@ void Unk1D(RPCParameters *rpcParams) {}
 void Unk1E(RPCParameters *rpcParams) {}
 void Unk3C(RPCParameters *rpcParams) {}
 void UnkA4(RPCParameters *rpcParams) {}
-void UnkA5(RPCParameters *rpcParams) {}
 void WorldPlayerAdd(RPCParameters *rpcParams) {}
 void WorldPlayerDeath(RPCParameters *rpcParams) {}
 void WorldPlayerRemove(RPCParameters *rpcParams) {}
+void WorldVehicleRemove(RPCParameters *rpcParams) {}
 void DamageVehicle(RPCParameters *rpcParams) {}
 void Unk18(RPCParameters *rpcParams) {}
 void EnterVehicle(RPCParameters *rpcParams) {}
@@ -77,10 +77,10 @@ void RegisterRPCs(RakClientInterface * pRakClient)
 	REGISTER_STATIC_RPC(pRakClient,Unk1E);
 	REGISTER_STATIC_RPC(pRakClient,Unk3C);
 	REGISTER_STATIC_RPC(pRakClient,UnkA4);
-	REGISTER_STATIC_RPC(pRakClient,UnkA5);
 	REGISTER_STATIC_RPC(pRakClient,WorldPlayerAdd);
 	REGISTER_STATIC_RPC(pRakClient,WorldPlayerDeath);
 	REGISTER_STATIC_RPC(pRakClient,WorldPlayerRemove);
+	REGISTER_STATIC_RPC(pRakClient,WorldVehicleRemove);
 	REGISTER_STATIC_RPC(pRakClient,DamageVehicle);
 	REGISTER_STATIC_RPC(pRakClient,Unk18);
 	REGISTER_STATIC_RPC(pRakClient,EnterVehicle);
@@ -107,10 +107,10 @@ void UnRegisterRPCs(RakClientInterface * pRakClient)
 {
 	UNREGISTER_STATIC_RPC(pRakClient,Unk3C);
 	UNREGISTER_STATIC_RPC(pRakClient,UnkA4);
-	UNREGISTER_STATIC_RPC(pRakClient,UnkA5);
 	UNREGISTER_STATIC_RPC(pRakClient,WorldPlayerAdd);
 	UNREGISTER_STATIC_RPC(pRakClient,WorldPlayerDeath);
 	UNREGISTER_STATIC_RPC(pRakClient,WorldPlayerRemove);
+	UNREGISTER_STATIC_RPC(pRakClient,WorldVehicleRemove);
 	UNREGISTER_STATIC_RPC(pRakClient,Unk18);
 	UNREGISTER_STATIC_RPC(pRakClient,RequestClass);
 	UNREGISTER_STATIC_RPC(pRakClient,RequestSpawn);

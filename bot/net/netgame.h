@@ -86,6 +86,7 @@ public:
 	void SetLanMode(BOOL bMode) { m_bLanMode = bMode; };
 
 	CPlayerPool * GetPlayerPool() { return m_pPlayerPool; };
+	CVehiclePool * GetVehiclePool() { return m_pVehiclePool; };
 	RakClientInterface * GetRakClient() { return m_pRakClient; };
 	CGameMode * GetBotMode() { return m_pGameMode; };
 
