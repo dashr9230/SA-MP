@@ -252,7 +252,7 @@ static cell AMX_NATIVE_CALL n_GetPlayerName(AMX *amx, cell *params)
 static cell AMX_NATIVE_CALL n_IsPlayerConnected(AMX *amx, cell *params)
 {
 	PLAYERID playerId = (PLAYERID)params[1];
-	if (playerId >= MAX_PLAYERS || pNetGame->GetPlayerPool()->GetSlotState(playerId)) return 0;
+	if (playerId >= MAX_PLAYERS || !pNetGame->GetPlayerPool()->GetSlotState(playerId)) return 0;
 	return 1;
 }
 
