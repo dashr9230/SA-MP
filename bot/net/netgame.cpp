@@ -40,7 +40,7 @@ BOOL bPlayerSlotState[MAX_PLAYERS];
 ONFOOT_SYNC_DATA ofSync;
 char unnamed_3[1000][68];
 BYTE unnamed_8[MAX_PLAYERS];
-BOOL unnamed_7[MAX_VEHICLES];
+BOOL bVehicleSlotState[MAX_VEHICLES];
 char unnamed_4[1000][63];
 BYTE byteMySeatID;
 
@@ -145,7 +145,7 @@ void CNetGame::ShutdownForGameModeRestart()
 	memset(unnamed_3,0,sizeof(unnamed_3));
 	memset(unnamed_4,0,sizeof(unnamed_4));
 	memset(unnamed_5,0,sizeof(unnamed_5));
-	memset(unnamed_7,0,sizeof(unnamed_7));
+	memset(&bVehicleSlotState[0],0,sizeof(BOOL)*MAX_VEHICLES);
 	memset(unnamed_8,0,sizeof(unnamed_8));
 	memset(&ofSync,0,sizeof(ONFOOT_SYNC_DATA));
 	memset(&bPlayerSlotState[0],0,sizeof(BOOL)*MAX_PLAYERS);
@@ -214,7 +214,7 @@ void CNetGame::Init(PCHAR szHostOrIp, int iPort,
 	memset(unnamed_3,0,sizeof(unnamed_3));
 	memset(unnamed_4,0,sizeof(unnamed_4));
 	memset(unnamed_5,0,sizeof(unnamed_5));
-	memset(unnamed_7,0,sizeof(unnamed_7));
+	memset(&bVehicleSlotState[0],0,sizeof(BOOL)*MAX_VEHICLES);
 	memset(unnamed_8,0,sizeof(unnamed_8));
 	memset(&bPlayerSlotState[0],0,sizeof(BOOL)*MAX_PLAYERS);
 	field_1DE = 0;
@@ -570,11 +570,11 @@ void CNetGame::SetPlayerAdded(PLAYERID playerId, BOOL a2)
 	}
 }
 
-void CNetGame::sub_415EC0(VEHICLEID VehicleID, BOOL a2)
+void CNetGame::SetVehicleAdded(VEHICLEID VehicleID, BOOL a2)
 {
 	if(VehicleID < MAX_VEHICLES)
 	{
-		unnamed_7[VehicleID] = a2;
+		bVehicleSlotState[VehicleID] = a2;
 	}
 }
 

@@ -95,11 +95,11 @@ public:
 	void ResetPlayerPool();
 	void ShutdownForGameModeRestart();
 
-	void sub_415EC0(VEHICLEID VehicleID, BOOL a2);
 	BOOL IsPlayerAdded(PLAYERID playerId);
 	void SetMyZAngle(float fAngle);
 
 	void SetPlayerAdded(PLAYERID playerId, BOOL a2);
+	void SetVehicleAdded(VEHICLEID VehicleID, BOOL a2);
 
 	void StopRecordingPlayback();
 };

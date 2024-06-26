@@ -25,7 +25,7 @@ CVehiclePool::~CVehiclePool()
 
 BOOL CVehiclePool::Delete(VEHICLEID VehicleID)
 {
-	pNetGame->sub_415EC0(VehicleID, FALSE);
+	pNetGame->SetVehicleAdded(VehicleID, FALSE);
 	return TRUE;
 }
 
