@@ -98,6 +98,8 @@ public:
 	void ResetPlayerPool();
 	void ShutdownForGameModeRestart();
 
+	void SendChat(char *szText);
+
 	BOOL IsPlayerAdded(PLAYERID playerId);
 	void SetMyZAngle(float fAngle);
 

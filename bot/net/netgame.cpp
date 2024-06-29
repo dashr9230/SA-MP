@@ -578,6 +578,17 @@ void CNetGame::SetVehicleAdded(VEHICLEID VehicleID, BOOL a2)
 	}
 }
 
+void CNetGame::SendChat(char *szText)
+{
+	BYTE byteTextLen = strlen(szText);
+
+	RakNet::BitStream bsSend;
+	bsSend.Write(byteTextLen);
+	bsSend.Write(szText,byteTextLen);
+
+	GetRakClient()->RPC(RPC_Chat,&bsSend,HIGH_PRIORITY,RELIABLE,0,false);
+}
+
 void CNetGame::StopRecordingPlayback()
 {
 	field_1DE = 0;

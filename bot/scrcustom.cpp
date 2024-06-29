@@ -115,8 +115,11 @@ static cell AMX_NATIVE_CALL n_ResumeRecordingPlayback(AMX *amx, cell *params)
 // native SendChat(msg[])
 static cell AMX_NATIVE_CALL n_SendChat(AMX *amx, cell *params)
 {
-	// TODO: n_SendChat
-	return 0;
+	char* szMessage;
+	amx_StrParam(amx, params[1], szMessage);
+	if(pNetGame)
+		pNetGame->SendChat(szMessage);
+	return 1;
 }
 
 // native SendCommand(commandtext[])
