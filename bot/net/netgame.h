@@ -99,6 +99,7 @@ public:
 	void ShutdownForGameModeRestart();
 
 	void SendChat(char *szText);
+	void SendCommand(char *szCommand);
 
 	BOOL IsPlayerAdded(PLAYERID playerId);
 	void SetMyZAngle(float fAngle);

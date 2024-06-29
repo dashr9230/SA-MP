@@ -589,6 +589,16 @@ void CNetGame::SendChat(char *szText)
 	GetRakClient()->RPC(RPC_Chat,&bsSend,HIGH_PRIORITY,RELIABLE,0,false);
 }
 
+void CNetGame::SendCommand(char *szCommand)
+{
+	RakNet::BitStream bsParams;
+	int iStrlen = strlen(szCommand);
+
+	bsParams.Write(iStrlen);
+	bsParams.Write(szCommand, iStrlen);
+	GetRakClient()->RPC(RPC_ServerCommand,&bsParams,HIGH_PRIORITY,RELIABLE,0,false);
+}
+
 void CNetGame::StopRecordingPlayback()
 {
 	field_1DE = 0;

@@ -125,8 +125,11 @@ static cell AMX_NATIVE_CALL n_SendChat(AMX *amx, cell *params)
 // native SendCommand(commandtext[])
 static cell AMX_NATIVE_CALL n_SendCommand(AMX *amx, cell *params)
 {
-	// TODO: n_SendCommand
-	return 0;
+	char* szCommand;
+	amx_StrParam(amx, params[1], szCommand);
+	if(pNetGame)
+		pNetGame->SendCommand(szCommand);
+	return 1;
 }
 
 // native GetPlayerState(playerid)
