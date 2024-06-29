@@ -46,6 +46,22 @@ BYTE byteMySeatID;
 
 bool	bSpawned = false;
 
+void CNetGame::SetPlayerAdded(PLAYERID playerId, BOOL a2)
+{
+	if(playerId < MAX_PLAYERS)
+	{
+		bPlayerSlotState[playerId] = a2;
+	}
+}
+
+void CNetGame::SetVehicleAdded(VEHICLEID VehicleID, BOOL a2)
+{
+	if(VehicleID < MAX_VEHICLES)
+	{
+		bVehicleSlotState[VehicleID] = a2;
+	}
+}
+
 BYTE CNetGame::GetPlayerState(PLAYERID playerId)
 {
 	if(playerId >= MAX_PLAYERS) return PLAYER_STATE_NONE;
@@ -569,22 +585,6 @@ void CNetGame::ResetPlayerPool()
 }
 
 //----------------------------------------------------
-
-void CNetGame::SetPlayerAdded(PLAYERID playerId, BOOL a2)
-{
-	if(playerId < MAX_PLAYERS)
-	{
-		bPlayerSlotState[playerId] = a2;
-	}
-}
-
-void CNetGame::SetVehicleAdded(VEHICLEID VehicleID, BOOL a2)
-{
-	if(VehicleID < MAX_VEHICLES)
-	{
-		bVehicleSlotState[VehicleID] = a2;
-	}
-}
 
 void CNetGame::SendChat(char *szText)
 {
