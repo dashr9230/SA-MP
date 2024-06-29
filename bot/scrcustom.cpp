@@ -135,7 +135,10 @@ static cell AMX_NATIVE_CALL n_SendCommand(AMX *amx, cell *params)
 // native GetPlayerState(playerid)
 static cell AMX_NATIVE_CALL n_GetPlayerState(AMX *amx, cell *params)
 {
-	// TODO: n_GetPlayerState
+	if(pNetGame->GetPlayerPool()->GetSlotState((PLAYERID)params[1]))
+	{
+		return (cell)pNetGame->GetPlayerState((PLAYERID)params[1]);
+	}
 	return 0;
 }
 
