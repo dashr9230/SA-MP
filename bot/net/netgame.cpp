@@ -62,6 +62,14 @@ void CNetGame::SetVehicleAdded(VEHICLEID VehicleID, BOOL a2)
 	}
 }
 
+void CNetGame::SetPlayerState(PLAYERID playerId, BYTE byteState)
+{
+	if(playerId < MAX_PLAYERS)
+	{
+		bytePlayerState[playerId] = byteState;
+	}
+}
+
 BYTE CNetGame::GetPlayerState(PLAYERID playerId)
 {
 	if(playerId >= MAX_PLAYERS) return PLAYER_STATE_NONE;
