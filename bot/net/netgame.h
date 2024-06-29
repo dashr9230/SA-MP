@@ -62,10 +62,12 @@ public:
 	DWORD		m_dwMapIcon[100];
 	int field_1DA;
 	int field_1DE;
-	int field_1E2;
-	char _gap1E6[12];
+	FILE *field_1E2;
+	char _gap1E6[4];
+	int field_1EA;
+	char _gap1EE[4];
 	int field_1F2;
-	char _gap1F6[4];
+	int field_1F6;
 	int field_1FA;
 	int field_1FE;
 
@@ -104,6 +106,7 @@ public:
 
 	void StopRecordingPlayback();
 	void PauseRecordingPlayback();
+	void ResumeRecordingPlayback();
 };
 
 //----------------------------------------------------

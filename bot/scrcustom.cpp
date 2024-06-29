@@ -108,8 +108,8 @@ static cell AMX_NATIVE_CALL n_PauseRecordingPlayback(AMX *amx, cell *params)
 // native ResumeRecordingPlayback()
 static cell AMX_NATIVE_CALL n_ResumeRecordingPlayback(AMX *amx, cell *params)
 {
-	// TODO: n_ResumeRecordingPlayback
-	return 0;
+	pNetGame->ResumeRecordingPlayback();
+	return 1;
 }
 
 // native SendChat(msg[])

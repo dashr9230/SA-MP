@@ -590,4 +590,12 @@ void CNetGame::PauseRecordingPlayback()
 		field_1FA = 11;
 }
 
-
+void CNetGame::ResumeRecordingPlayback()
+{
+	field_1FE = 9;
+	field_1DE = 1;
+	if(field_1FA == -1)
+		field_1EA += GetTickCount() - field_1F6 + 100;
+	else
+		field_1FA = -1;
+}
