@@ -584,5 +584,10 @@ void CNetGame::StopRecordingPlayback()
 	field_1DA = 0;
 }
 
+void CNetGame::PauseRecordingPlayback()
+{
+	if(field_1DE == 1 || field_1DE == 2)
+		field_1FA = 11;
+}
 
 

@@ -103,6 +103,7 @@ public:
 	void SetVehicleAdded(VEHICLEID VehicleID, BOOL a2);
 
 	void StopRecordingPlayback();
+	void PauseRecordingPlayback();
 };
 
 //----------------------------------------------------
