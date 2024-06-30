@@ -212,17 +212,17 @@ void CNetGame::Init(PCHAR szHostOrIp, int iPort,
 	
 	sprintf(szGameModeFile, "npcmodes/%s.amx", szNpcMode);
 	if (!m_pGameMode->Load(szGameModeFile))
+	{
+		//logprintf("NPC: I can't load %s so I'm quiting.", szGameModeFile);
 		exit(1);
-	
+	}
+
 	m_pRakClient->SetPassword(szPass);
 	m_pRakClient->Connect(szHostOrIp,iPort,0,0,10);
 
 	m_iGameState = GAMESTATE_CONNECTING;
 
-	/*
-	char s[256];
-	sprintf(s,"Bot(%s): connecting to %s:%d...",szPlayerName,szHostOrIp,iPort);
-	OutputDebugString(s);*/
+	//logprintf("NPC(%s): connecting to %s:%d...",szPlayerName,szHostOrIp,iPort);
 
 	m_iSpawnsAvailable = 0;
 	m_byteWorldTime = 12;
