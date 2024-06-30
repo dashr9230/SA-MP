@@ -382,6 +382,12 @@
 			RelativePath=".\resource.h">
 		</File>
 		<File
+			RelativePath=".\runutil.cpp">
+		</File>
+		<File
+			RelativePath=".\runutil.h">
+		</File>
+		<File
 			RelativePath="..\server\system.h">
 		</File>
 	</Files>
