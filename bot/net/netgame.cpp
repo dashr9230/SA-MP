@@ -558,6 +558,8 @@ void CNetGame::Packet_ConnectionSucceeded(Packet *p)
 
 	uiChallenge ^= NETGAME_VERSION;
 
+	//logprintf("NPC: Connection Succeeded");
+
 	int iVersion = NETGAME_VERSION;
 	BYTE byteMod = 1;
 	BYTE byteNameLen = (BYTE)strlen(m_pPlayerPool->GetLocalPlayerName());
