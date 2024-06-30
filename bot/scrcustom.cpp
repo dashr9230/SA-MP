@@ -279,7 +279,6 @@ AMX_NATIVE_INFO custom_Natives[] =
 	{ "acos",						n_acos },
 	{ "atan2",						n_atan2 },
 	{ "atan",						n_atan },
-	{ "asin",						n_asin },
 	{ "StartRecordingPlayback",		n_StartRecordingPlayback },
 	{ "StopRecordingPlayback",		n_StopRecordingPlayback },
 	{ "PauseRecordingPlayback",		n_PauseRecordingPlayback },
