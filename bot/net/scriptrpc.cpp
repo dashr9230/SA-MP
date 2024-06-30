@@ -86,6 +86,8 @@ void ScrPutPlayerInVehicle(RPCParameters *rpcParams)
 	if(pNetGame->GetBotMode()) {
 		pNetGame->GetBotMode()->OnNPCEnterVehicle(vehicleid, seatid);
 	}
+
+	//logprintf("NPC: Entering vehicle %u", vehicleid);
 }
 
 //----------------------------------------------------
