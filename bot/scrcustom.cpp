@@ -145,7 +145,21 @@ static cell AMX_NATIVE_CALL n_GetPlayerState(AMX *amx, cell *params)
 // native GetPlayerPos(playerid, &Float:x, &Float:y, &Float:z)
 static cell AMX_NATIVE_CALL n_GetPlayerPos(AMX *amx, cell *params)
 {
-	// TODO: n_GetPlayerPos
+	if(!pNetGame->GetPlayerPool()) return 0;
+	if(!pNetGame->GetPlayerPool()->GetSlotState((PLAYERID)params[1])) return 0;
+	
+	VECTOR vecPos;
+	if(pNetGame->GetPlayerPos((PLAYERID)params[1], &vecPos))
+	{
+		cell* cptr;
+		amx_GetAddr(amx, params[2], &cptr);
+		*cptr = amx_ftoc(vecPos.X);
+		amx_GetAddr(amx, params[3], &cptr);
+		*cptr = amx_ftoc(vecPos.Y);
+		amx_GetAddr(amx, params[4], &cptr);
+		*cptr = amx_ftoc(vecPos.Z);
+		return 1;
+	}
 	return 0;
 }
 

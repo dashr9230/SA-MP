@@ -22,12 +22,6 @@ typedef struct _AIM_SYNC_DATA // size: 31
 } AIM_SYNC_DATA;
 
 #pragma pack(1)
-typedef struct _PASSENGER_SYNC_DATA // size: 24
-{
-	char _gap0[24];
-} PASSENGER_SYNC_DATA;
-
-#pragma pack(1)
 typedef struct _TRAILER_SYNC_DATA // size: 54
 {
 	char _gap0[54];
@@ -38,10 +32,10 @@ PASSENGER_SYNC_DATA unnamed_5[MAX_PLAYERS];
 char unnamed_9;
 BOOL bPlayerSlotState[MAX_PLAYERS];
 ONFOOT_SYNC_DATA ofSync;
-char unnamed_3[1000][68];
+ONFOOT_SYNC_DATA unnamed_3[MAX_PLAYERS];
 BYTE bytePlayerState[MAX_PLAYERS];
 BOOL bVehicleSlotState[MAX_VEHICLES];
-char unnamed_4[1000][63];
+INCAR_SYNC_DATA unnamed_4[MAX_PLAYERS];
 BYTE byteMySeatID;
 
 bool	bSpawned = false;
@@ -76,6 +70,34 @@ BYTE CNetGame::GetPlayerState(PLAYERID playerId)
 	if(bPlayerSlotState[playerId] == FALSE) return PLAYER_STATE_NONE;
 
 	return bytePlayerState[playerId];
+}
+
+BOOL CNetGame::GetPlayerPos(PLAYERID playerId, PVECTOR Vector)
+{
+	if(playerId >= MAX_PLAYERS || !bPlayerSlotState[playerId])
+		return FALSE;
+
+	switch(bytePlayerState[playerId])
+	{
+	case PLAYER_STATE_ONFOOT:
+		Vector->X = unnamed_3[playerId].vecPos.X;
+		Vector->Y = unnamed_3[playerId].vecPos.Y;
+		Vector->Z = unnamed_3[playerId].vecPos.Z;
+		return TRUE;
+
+	case PLAYER_STATE_DRIVER:
+		Vector->X = unnamed_4[playerId].vecPos.X;
+		Vector->Y = unnamed_4[playerId].vecPos.Y;
+		Vector->Z = unnamed_4[playerId].vecPos.Z;
+		return TRUE;
+
+	case PLAYER_STATE_PASSENGER:
+		Vector->X = unnamed_5[playerId].vecPos.X;
+		Vector->Y = unnamed_5[playerId].vecPos.Y;
+		Vector->Z = unnamed_5[playerId].vecPos.Z;
+		return TRUE;
+	}
+	return FALSE;
 }
 
 //----------------------------------------------------

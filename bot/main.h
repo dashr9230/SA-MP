@@ -93,3 +93,40 @@ typedef struct _ONFOOT_SYNC_DATA
 
 } ONFOOT_SYNC_DATA;
 
+#pragma pack(1)
+typedef struct _INCAR_SYNC_DATA
+{
+	VEHICLEID VehicleID;
+	WORD lrAnalog;
+	WORD udAnalog;
+	WORD wKeys;
+	QUATERNION quatRotation;
+	VECTOR vecPos;
+
+	char _gap24[16];
+
+	BYTE bytePlayerHealth;
+	BYTE bytePlayerArmour;
+	BYTE byteCurrentWeapon : 6;
+	BYTE byteSpecialKey : 2;
+
+	char _gap37[8];
+
+} INCAR_SYNC_DATA;
+
+#pragma pack(1)
+typedef struct _PASSENGER_SYNC_DATA
+{
+	VEHICLEID VehicleID;
+
+	char _gap2;
+
+	BYTE byteCurrentWeapon : 6;
+	BYTE byteSpecialKey : 2;
+	BYTE bytePlayerHealth;
+	BYTE bytePlayerArmour;
+	WORD lrAnalog;
+	WORD udAnalog;
+	WORD wKeys;
+	VECTOR vecPos;	
+} PASSENGER_SYNC_DATA;

@@ -108,6 +108,7 @@ public:
 	void SetVehicleAdded(VEHICLEID VehicleID, BOOL a2);
 	void SetPlayerState(PLAYERID playerId, BYTE byteState);
 	BYTE GetPlayerState(PLAYERID playerId);
+	BOOL GetPlayerPos(PLAYERID playerId, PVECTOR Vector);
 	void StopRecordingPlayback();
 	void PauseRecordingPlayback();
 	void ResumeRecordingPlayback();
