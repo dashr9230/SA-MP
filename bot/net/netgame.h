@@ -110,6 +110,8 @@ public:
 	BYTE GetPlayerState(PLAYERID playerId);
 	BOOL GetPlayerPos(PLAYERID playerId, PVECTOR Vector);
 	VEHICLEID GetPlayerVehicleID(PLAYERID playerId);
+	BYTE GetPlayerArmedWeapon(PLAYERID playerId);
+
 	void StopRecordingPlayback();
 	void PauseRecordingPlayback();
 	void ResumeRecordingPlayback();

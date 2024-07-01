@@ -119,6 +119,29 @@ VEHICLEID CNetGame::GetPlayerVehicleID(PLAYERID playerId)
 	}
 }
 
+BYTE CNetGame::GetPlayerArmedWeapon(PLAYERID playerId)
+{
+	if(playerId >= MAX_PLAYERS) return 0;
+	if(bPlayerSlotState[playerId] == FALSE) return 0;
+
+	if(bytePlayerState[playerId] == PLAYER_STATE_ONFOOT)
+	{
+		return unnamed_3[playerId].byteCurrentWeapon;
+	}
+	else if(bytePlayerState[playerId] == PLAYER_STATE_DRIVER)
+	{
+		return unnamed_4[playerId].byteCurrentWeapon;
+	}
+	else if(bytePlayerState[playerId] == PLAYER_STATE_PASSENGER)
+	{
+		return unnamed_5[playerId].byteCurrentWeapon;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
 //----------------------------------------------------
 // MATCH
 BOOL CNetGame::IsPlayerAdded(PLAYERID playerId)

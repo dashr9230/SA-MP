@@ -176,7 +176,10 @@ static cell AMX_NATIVE_CALL n_GetPlayerVehicleID(AMX *amx, cell *params)
 // native GetPlayerArmedWeapon(playerid)
 static cell AMX_NATIVE_CALL n_GetPlayerArmedWeapon(AMX *amx, cell *params)
 {
-	// TODO: n_GetPlayerArmedWeapon
+	if(pNetGame->GetPlayerPool()->GetSlotState((PLAYERID)params[1]))
+	{
+		return (cell)pNetGame->GetPlayerArmedWeapon((PLAYERID)params[1]);
+	}
 	return 0;
 }
 
