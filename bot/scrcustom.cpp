@@ -264,7 +264,28 @@ static cell AMX_NATIVE_CALL n_GetDistanceFromMeToPoint(AMX *amx, cell *params)
 // native IsPlayerInRangeOfPoint(playerid, Float:range, Float:X, Float:Y, Float:Z)
 static cell AMX_NATIVE_CALL n_IsPlayerInRangeOfPoint(AMX *amx, cell *params)
 {
-	// TODO: n_IsPlayerInRangeOfPoint
+	if(!pNetGame->GetPlayerPool()) return 0;
+	if(!pNetGame->GetPlayerPool()->GetSlotState((PLAYERID)params[1])) return 0;
+
+	VECTOR vecTestPoint;
+	VECTOR vecThisPlayer;
+	if(pNetGame->GetPlayerPos((PLAYERID)params[1], &vecThisPlayer))
+	{
+		float fRange = amx_ctof(params[2]);
+		vecTestPoint.X = amx_ctof(params[3]);
+		vecTestPoint.Y = amx_ctof(params[4]);
+		vecTestPoint.Z = amx_ctof(params[5]);
+
+		fRange = fRange * fRange;
+
+		float fSX = (vecThisPlayer.X - vecTestPoint.X) * (vecThisPlayer.X - vecTestPoint.X);
+		float fSY = (vecThisPlayer.Y - vecTestPoint.Y) * (vecThisPlayer.Y - vecTestPoint.Y);
+		float fSZ = (vecThisPlayer.Z - vecTestPoint.Z) * (vecThisPlayer.Z - vecTestPoint.Z);
+
+		if((float)(fSX + fSY + fSZ) <= fRange) return 1;
+
+		return 0;
+	}
 	return 0;
 }
 
