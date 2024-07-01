@@ -100,6 +100,25 @@ BOOL CNetGame::GetPlayerPos(PLAYERID playerId, PVECTOR Vector)
 	return FALSE;
 }
 
+VEHICLEID CNetGame::GetPlayerVehicleID(PLAYERID playerId)
+{
+	if(playerId >= MAX_PLAYERS) return INVALID_VEHICLE_ID;
+	if(bPlayerSlotState[playerId] == FALSE) return INVALID_VEHICLE_ID;
+
+	if(bytePlayerState[playerId] == PLAYER_STATE_DRIVER)
+	{
+		return unnamed_4[playerId].VehicleID;
+	}
+	else if(bytePlayerState[playerId] == PLAYER_STATE_PASSENGER)
+	{
+		return unnamed_5[playerId].VehicleID;
+	}
+	else
+	{
+		return INVALID_VEHICLE_ID;
+	}
+}
+
 //----------------------------------------------------
 // MATCH
 BOOL CNetGame::IsPlayerAdded(PLAYERID playerId)

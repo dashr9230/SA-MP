@@ -166,7 +166,10 @@ static cell AMX_NATIVE_CALL n_GetPlayerPos(AMX *amx, cell *params)
 // native GetPlayerVehicleID(playerid)
 static cell AMX_NATIVE_CALL n_GetPlayerVehicleID(AMX *amx, cell *params)
 {
-	// TODO: n_GetPlayerVehicleID
+	if(pNetGame->GetPlayerPool()->GetSlotState((PLAYERID)params[1]))
+	{
+		return pNetGame->GetPlayerVehicleID((PLAYERID)params[1]);
+	}
 	return 0;
 }
 
