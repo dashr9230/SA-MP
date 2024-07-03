@@ -196,7 +196,10 @@ static cell AMX_NATIVE_CALL n_GetPlayerHealth(AMX *amx, cell *params)
 // native GetPlayerArmour(playerid)
 static cell AMX_NATIVE_CALL n_GetPlayerArmour(AMX *amx, cell *params)
 {
-	// TODO: n_GetPlayerArmour
+	if(pNetGame->GetPlayerPool()->GetSlotState((PLAYERID)params[1]))
+	{
+		return (cell)pNetGame->GetPlayerArmour((PLAYERID)params[1]);
+	}
 	return 0;
 }
 

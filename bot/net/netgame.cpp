@@ -165,6 +165,29 @@ BYTE CNetGame::GetPlayerHealth(PLAYERID playerId)
 	}
 }
 
+BYTE CNetGame::GetPlayerArmour(PLAYERID playerId)
+{
+	if(playerId >= MAX_PLAYERS) return 0;
+	if(bPlayerSlotState[playerId] == FALSE) return 0;
+
+	if(bytePlayerState[playerId] == PLAYER_STATE_ONFOOT)
+	{
+		return unnamed_3[playerId].byteArmour;
+	}
+	else if(bytePlayerState[playerId] == PLAYER_STATE_DRIVER)
+	{
+		return unnamed_4[playerId].bytePlayerArmour;
+	}
+	else if(bytePlayerState[playerId] == PLAYER_STATE_PASSENGER)
+	{
+		return unnamed_5[playerId].bytePlayerArmour;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
 //----------------------------------------------------
 // MATCH
 BOOL CNetGame::IsPlayerAdded(PLAYERID playerId)

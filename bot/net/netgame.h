@@ -112,6 +112,7 @@ public:
 	VEHICLEID GetPlayerVehicleID(PLAYERID playerId);
 	BYTE GetPlayerArmedWeapon(PLAYERID playerId);
 	BYTE GetPlayerHealth(PLAYERID playerId);
+	BYTE GetPlayerArmour(PLAYERID playerId);
 
 	void StopRecordingPlayback();
 	void PauseRecordingPlayback();
