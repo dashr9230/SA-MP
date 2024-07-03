@@ -186,7 +186,10 @@ static cell AMX_NATIVE_CALL n_GetPlayerArmedWeapon(AMX *amx, cell *params)
 // native GetPlayerHealth(playerid)
 static cell AMX_NATIVE_CALL n_GetPlayerHealth(AMX *amx, cell *params)
 {
-	// TODO: n_GetPlayerHealth
+	if(pNetGame->GetPlayerPool()->GetSlotState((PLAYERID)params[1]))
+	{
+		return (cell)pNetGame->GetPlayerHealth((PLAYERID)params[1]);
+	}
 	return 0;
 }
 

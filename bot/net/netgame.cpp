@@ -142,6 +142,29 @@ BYTE CNetGame::GetPlayerArmedWeapon(PLAYERID playerId)
 	}
 }
 
+BYTE CNetGame::GetPlayerHealth(PLAYERID playerId)
+{
+	if(playerId >= MAX_PLAYERS) return 0;
+	if(bPlayerSlotState[playerId] == FALSE) return 0;
+
+	if(bytePlayerState[playerId] == PLAYER_STATE_ONFOOT)
+	{
+		return unnamed_3[playerId].byteHealth;
+	}
+	else if(bytePlayerState[playerId] == PLAYER_STATE_DRIVER)
+	{
+		return unnamed_4[playerId].bytePlayerHealth;
+	}
+	else if(bytePlayerState[playerId] == PLAYER_STATE_PASSENGER)
+	{
+		return unnamed_5[playerId].bytePlayerHealth;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
 //----------------------------------------------------
 // MATCH
 BOOL CNetGame::IsPlayerAdded(PLAYERID playerId)
