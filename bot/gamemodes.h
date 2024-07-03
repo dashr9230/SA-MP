@@ -22,7 +22,6 @@ public:
 
 	bool Load(char* pFileName);
 	void Unload();
-
 	void Frame(float fElapsedTime);
 
 	int CallPublic(char* szFuncName);

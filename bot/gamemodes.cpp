@@ -55,6 +55,7 @@ bool CGameMode::Load(char* pFileName)
 	if (err != AMX_ERR_NONE)
 	{
 		AMXPrintError(this, &m_amx, err);
+		//logprintf("Failed to load '%s' script.", szGameModeFileName);
 		return false;
 	}
 
@@ -63,6 +64,7 @@ bool CGameMode::Load(char* pFileName)
 	amx_StringInit(&m_amx);
 	amx_FileInit(&m_amx);
 	amx_TimeInit(&m_amx);
+	//amx_DGramInit(&m_amx);
 	amx_CustomInit(&m_amx);
 
 	// Execute OnGameModeInit callback, if it exists!
@@ -100,6 +102,7 @@ void CGameMode::Unload()
 	if (m_bInitialised)
 	{
 		aux_FreeProgram(&m_amx);
+		//amx_DGramCleanup(&m_amx);
 		amx_TimeCleanup(&m_amx);
 		amx_FileCleanup(&m_amx);
 		amx_StringCleanup(&m_amx);
