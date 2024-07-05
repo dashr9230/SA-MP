@@ -40,7 +40,7 @@ class CVehiclePool // size: 114000
 {
 private:
 	char _gap0[34000];
-	int field_84D0[2000];
+	BOOL				m_bVehicleSlotState[MAX_VEHICLES];
 	VEHICLE_SPAWN_INFO	m_SpawnInfo[MAX_VEHICLES];
 
 public:
@@ -51,4 +51,10 @@ public:
 	BOOL New(NEW_VEHICLE *pNewVehicle);
 
 	BOOL Delete(VEHICLEID VehicleID);
+
+	// Find out if the slot is inuse.
+	BOOL GetSlotState(VEHICLEID VehicleID) {
+		if(VehicleID >= MAX_VEHICLES) { return FALSE; }
+		return m_bVehicleSlotState[VehicleID];
+	};
 };

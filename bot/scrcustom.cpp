@@ -221,8 +221,11 @@ static cell AMX_NATIVE_CALL n_IsPlayerStreamedIn(AMX *amx, cell *params)
 // native IsVehicleStreamedIn(vehicleid)
 static cell AMX_NATIVE_CALL n_IsVehicleStreamedIn(AMX *amx, cell *params)
 {
-	// TODO: n_IsVehicleStreamedIn
-	return 0;
+	if(pNetGame->GetVehiclePool()->GetSlotState((VEHICLEID)params[1]))
+	{
+		return pNetGame->IsVehicleAdded((VEHICLEID)params[1]);
+	}
+	return 0;	
 }
 
 // native GetPlayerKeys(playerid, &keys, &updown, &leftright)

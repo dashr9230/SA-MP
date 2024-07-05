@@ -113,6 +113,7 @@ public:
 	BYTE GetPlayerArmedWeapon(PLAYERID playerId);
 	BYTE GetPlayerHealth(PLAYERID playerId);
 	BYTE GetPlayerArmour(PLAYERID playerId);
+	BOOL IsVehicleAdded(VEHICLEID VehicleID);
 
 	void StopRecordingPlayback();
 	void PauseRecordingPlayback();

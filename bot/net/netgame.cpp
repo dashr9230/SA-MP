@@ -198,6 +198,14 @@ BOOL CNetGame::IsPlayerAdded(PLAYERID playerId)
 }
 
 //----------------------------------------------------
+BOOL CNetGame::IsVehicleAdded(VEHICLEID VehicleID)
+{
+	if(VehicleID >= MAX_VEHICLES) return FALSE;
+
+	return bVehicleSlotState[VehicleID] != FALSE;
+}
+
+//----------------------------------------------------
 // MATCH
 void CNetGame::SetMyZAngle(float fAngle)
 {
