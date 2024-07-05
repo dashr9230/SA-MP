@@ -1,6 +1,8 @@
 
 #pragma once
 
+#define INVALID_VEHICLE_ID	0xFFFF
+
 #pragma pack(1)
 typedef struct _NEW_VEHICLE {
 	VEHICLEID VehicleId;
