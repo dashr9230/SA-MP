@@ -188,6 +188,38 @@ BYTE CNetGame::GetPlayerArmour(PLAYERID playerId)
 	}
 }
 
+BOOL CNetGame::GetPlayerKeys(PLAYERID playerId, WORD *udAnalog, WORD *lrAnalog, WORD *wKeys)
+{
+	if(playerId >= MAX_PLAYERS) return FALSE;
+	if(bPlayerSlotState[playerId] == FALSE) return FALSE;
+
+	if(bytePlayerState[playerId] == PLAYER_STATE_ONFOOT)
+	{
+		*udAnalog = unnamed_3[playerId].udAnalog;
+		*lrAnalog = unnamed_3[playerId].lrAnalog;
+		*wKeys = unnamed_3[playerId].wKeys;
+		return TRUE;
+	}
+	else if(bytePlayerState[playerId] == PLAYER_STATE_DRIVER)
+	{
+		*udAnalog = unnamed_4[playerId].udAnalog;
+		*lrAnalog = unnamed_4[playerId].lrAnalog;
+		*wKeys = unnamed_4[playerId].wKeys;
+		return TRUE;
+	}
+	else if(bytePlayerState[playerId] == PLAYER_STATE_PASSENGER)
+	{
+		*udAnalog = unnamed_5[playerId].udAnalog;
+		*lrAnalog = unnamed_5[playerId].lrAnalog;
+		*wKeys = unnamed_5[playerId].wKeys;
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
+}
+
 //----------------------------------------------------
 // MATCH
 BOOL CNetGame::IsPlayerAdded(PLAYERID playerId)

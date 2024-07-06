@@ -231,7 +231,21 @@ static cell AMX_NATIVE_CALL n_IsVehicleStreamedIn(AMX *amx, cell *params)
 // native GetPlayerKeys(playerid, &keys, &updown, &leftright)
 static cell AMX_NATIVE_CALL n_GetPlayerKeys(AMX *amx, cell *params)
 {
-	// TODO: n_GetPlayerKeys
+	CPlayerPool *pPlayerPool = pNetGame->GetPlayerPool();
+	WORD wKeys=0, udAnalog=0, lrAnalog=0;
+
+	if(pPlayerPool->GetSlotState((PLAYERID)params[1]) &&
+		pNetGame->GetPlayerKeys((PLAYERID)params[1], &udAnalog, &lrAnalog, &wKeys))
+	{
+		cell* cptr;
+		amx_GetAddr(amx, params[2], &cptr);
+		*cptr = (cell)wKeys;
+		amx_GetAddr(amx, params[3], &cptr);
+		*cptr = (short)udAnalog;
+		amx_GetAddr(amx, params[4], &cptr);
+		*cptr = (short)lrAnalog;
+		return 1;
+	}
 	return 0;
 }
 
