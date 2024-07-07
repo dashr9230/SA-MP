@@ -249,11 +249,24 @@ static cell AMX_NATIVE_CALL n_GetPlayerKeys(AMX *amx, cell *params)
 	return 0;
 }
 
+
 // native GetMyPos(&Float:x, &Float:y, &Float:z)
 static cell AMX_NATIVE_CALL n_GetMyPos(AMX *amx, cell *params)
 {
-	// TODO: n_GetMyPos
-	return 0;
+	if(!pNetGame->GetPlayerPool()) return 0;
+
+	VECTOR vecPos;
+	pNetGame->GetMyPos(&vecPos);
+
+	cell* cptr;
+    amx_GetAddr(amx, params[1], &cptr);
+    *cptr = amx_ftoc(vecPos.X);
+    amx_GetAddr(amx, params[2], &cptr);
+    *cptr = amx_ftoc(vecPos.Y);
+    amx_GetAddr(amx, params[3], &cptr);
+    *cptr = amx_ftoc(vecPos.Z);
+
+	return 1;
 }
 
 // native SetMyPos(Float:x, Float:y, Float:z)

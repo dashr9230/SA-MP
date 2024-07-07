@@ -238,6 +238,30 @@ BOOL CNetGame::IsVehicleAdded(VEHICLEID VehicleID)
 }
 
 //----------------------------------------------------
+
+//----------------------------------------------------
+PVECTOR CNetGame::GetMyPos(PVECTOR Vector)
+{
+	if(byteState == PLAYER_STATE_ONFOOT)
+	{
+		Vector->X = ofSync.vecPos.X;
+		Vector->Y = ofSync.vecPos.Y;
+		Vector->Z = ofSync.vecPos.Z;
+		return Vector;
+	}
+	else if(byteState == PLAYER_STATE_DRIVER)
+	{
+		Vector->X = icSync.vecPos.X;
+		Vector->Y = icSync.vecPos.Y;
+		Vector->Z = icSync.vecPos.Z;
+		return Vector;
+	}
+	else
+	{
+		return NULL;
+	}
+}
+
 //----------------------------------------------------
 void CNetGame::SetMyPos(PVECTOR Vector)
 {
