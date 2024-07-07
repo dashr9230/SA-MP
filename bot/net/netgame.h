@@ -101,9 +101,6 @@ public:
 	void SendChat(char *szText);
 	void SendCommand(char *szCommand);
 
-	BOOL IsPlayerAdded(PLAYERID playerId);
-	void SetMyZAngle(float fAngle);
-
 	void SetPlayerAdded(PLAYERID playerId, BOOL a2);
 	void SetVehicleAdded(VEHICLEID VehicleID, BOOL a2);
 	void SetPlayerState(PLAYERID playerId, BYTE byteState);
@@ -114,10 +111,12 @@ public:
 	BYTE GetPlayerHealth(PLAYERID playerId);
 	BYTE GetPlayerArmour(PLAYERID playerId);
 	BOOL GetPlayerKeys(PLAYERID playerId, WORD *udAnalog, WORD *lrAnalog, WORD *wKeys);
+	BOOL IsPlayerAdded(PLAYERID playerId);
 	BOOL IsVehicleAdded(VEHICLEID VehicleID);
 	PVECTOR GetMyPos(PVECTOR Vector);
 	void SetMyPos(PVECTOR Vector);
 	float GetMyZAngle();
+	void SetMyZAngle(float fAngle);	
 
 	void StopRecordingPlayback();
 	void PauseRecordingPlayback();
