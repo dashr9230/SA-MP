@@ -29,8 +29,8 @@ typedef struct _TRAILER_SYNC_DATA // size: 54
 
 char unnamed_2[63];
 PASSENGER_SYNC_DATA unnamed_5[MAX_PLAYERS];
-char unnamed_9;
 BOOL bPlayerSlotState[MAX_PLAYERS];
+BYTE byteState;
 ONFOOT_SYNC_DATA ofSync;
 ONFOOT_SYNC_DATA unnamed_3[MAX_PLAYERS];
 BYTE bytePlayerState[MAX_PLAYERS];
@@ -238,6 +238,40 @@ BOOL CNetGame::IsVehicleAdded(VEHICLEID VehicleID)
 }
 
 //----------------------------------------------------
+float CNetGame::GetMyZAngle()
+{
+	MATRIX4X4 mat;
+
+	if(byteState == PLAYER_STATE_ONFOOT)
+	{
+		QuaternionToMatrix(&ofSync.quatRotation, &mat);
+
+		float fZAngle = atan2(-mat.up.X, mat.up.Y) * 180.0f / PI;
+		// Bound it to [0, 360)
+		if ( fZAngle < 0.0f )
+			fZAngle += 360.0f;
+		else if ( fZAngle >= 360.0f )
+			fZAngle -= 360.0f;
+		return fZAngle;
+	}
+	else if(byteState == PLAYER_STATE_DRIVER)
+	{
+		QuaternionToMatrix(&icSync.quatRotation, &mat);
+
+		float fZAngle = atan2(-mat.up.X, mat.up.Y) * 180.0f/PI;
+
+		// Bound it to [0, 360)
+		if ( fZAngle < 0.0f )
+			fZAngle += 360.0f;
+		else if ( fZAngle >= 360.0f )
+			fZAngle -= 360.0f;
+		return fZAngle;
+	}
+
+	return 0.0f;
+}
+
+//----------------------------------------------------
 // MATCH
 void CNetGame::SetMyZAngle(float fAngle)
 {
@@ -402,7 +436,7 @@ void CNetGame::Init(PCHAR szHostOrIp, int iPort,
 	field_1DE = 0;
 	field_1E2 = 0;
 	field_1F2 = GetTickCount();
-	unnamed_9 = 0;
+	byteState = PLAYER_STATE_NONE;
 	field_1FA = -1;
 	field_1FE = -1;
 	srand(0);

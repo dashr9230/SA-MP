@@ -266,8 +266,11 @@ static cell AMX_NATIVE_CALL n_SetMyPos(AMX *amx, cell *params)
 // native GetMyFacingAngle(&Float:ang)
 static cell AMX_NATIVE_CALL n_GetMyFacingAngle(AMX *amx, cell *params)
 {
-	// TODO: n_GetMyFacingAngle
-	return 0;
+	cell* cptr;
+	amx_GetAddr(amx, params[1], &cptr);
+	float fResult = pNetGame->GetMyZAngle();
+	*cptr = amx_ftoc(fResult);
+	return 1;
 }
 
 // native SetMyFacingAngle(Float:ang)

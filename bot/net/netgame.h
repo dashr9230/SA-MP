@@ -115,6 +115,7 @@ public:
 	BYTE GetPlayerArmour(PLAYERID playerId);
 	BOOL GetPlayerKeys(PLAYERID playerId, WORD *udAnalog, WORD *lrAnalog, WORD *wKeys);
 	BOOL IsVehicleAdded(VEHICLEID VehicleID);
+	float GetMyZAngle();
 
 	void StopRecordingPlayback();
 	void PauseRecordingPlayback();
