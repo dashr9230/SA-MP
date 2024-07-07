@@ -259,8 +259,13 @@ static cell AMX_NATIVE_CALL n_GetMyPos(AMX *amx, cell *params)
 // native SetMyPos(Float:x, Float:y, Float:z)
 static cell AMX_NATIVE_CALL n_SetMyPos(AMX *amx, cell *params)
 {
-	// TODO: n_SetMyPos
-	return 0;
+	if(!pNetGame->GetPlayerPool()) return 0;
+	VECTOR vecPos;
+	vecPos.X = amx_ctof(params[1]);
+    vecPos.Y = amx_ctof(params[2]);
+    vecPos.Z = amx_ctof(params[3]);
+    pNetGame->SetMyPos(&vecPos);
+	return 1;
 }
 
 // native GetMyFacingAngle(&Float:ang)
