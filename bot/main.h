@@ -63,6 +63,8 @@ long GetTickCount();
 char* strlwr(char* str);
 #endif
 
+#define SPECIAL_ACTION_NONE				0
+
 #pragma pack(1)
 typedef struct _PLAYER_SPAWN_INFO
 {

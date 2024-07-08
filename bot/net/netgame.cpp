@@ -220,6 +220,18 @@ BOOL CNetGame::GetPlayerKeys(PLAYERID playerId, WORD *udAnalog, WORD *lrAnalog, 
 	}
 }
 
+BYTE CNetGame::GetPlayerSpecialAction(PLAYERID playerId)
+{
+	if(playerId >= MAX_PLAYERS) return SPECIAL_ACTION_NONE;
+	if(bPlayerSlotState[playerId] == FALSE) return SPECIAL_ACTION_NONE;
+
+	if(bytePlayerState[playerId] == PLAYER_STATE_ONFOOT)
+	{
+		return unnamed_3[playerId].byteSpecialAction;
+	}
+	return SPECIAL_ACTION_NONE;
+}
+
 //----------------------------------------------------
 // MATCH
 BOOL CNetGame::IsPlayerAdded(PLAYERID playerId)

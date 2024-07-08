@@ -206,8 +206,11 @@ static cell AMX_NATIVE_CALL n_GetPlayerArmour(AMX *amx, cell *params)
 // native GetPlayerSpecialAction(playerid)
 static cell AMX_NATIVE_CALL n_GetPlayerSpecialAction(AMX *amx, cell *params)
 {
-	// TODO: n_GetPlayerSpecialAction
-	return 0;
+	if (pNetGame->GetPlayerPool()->GetSlotState((PLAYERID)params[1]))
+	{
+		return (cell)pNetGame->GetPlayerSpecialAction((PLAYERID)params[1]);
+	}
+	return SPECIAL_ACTION_NONE;
 }
 
 // native IsPlayerStreamedIn(playerid)

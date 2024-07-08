@@ -111,6 +111,7 @@ public:
 	BYTE GetPlayerHealth(PLAYERID playerId);
 	BYTE GetPlayerArmour(PLAYERID playerId);
 	BOOL GetPlayerKeys(PLAYERID playerId, WORD *udAnalog, WORD *lrAnalog, WORD *wKeys);
+	BYTE GetPlayerSpecialAction(PLAYERID playerId);
 	BOOL IsPlayerAdded(PLAYERID playerId);
 	BOOL IsVehicleAdded(VEHICLEID VehicleID);
 	PVECTOR GetMyPos(PVECTOR Vector);
