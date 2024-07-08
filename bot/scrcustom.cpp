@@ -306,8 +306,20 @@ static cell AMX_NATIVE_CALL n_SetMyFacingAngle(AMX *amx, cell *params)
 // native GetDistanceFromMeToPoint(Float:X, Float:Y, Float:Z, &Float:Distance)
 static cell AMX_NATIVE_CALL n_GetDistanceFromMeToPoint(AMX *amx, cell *params)
 {
-	// TODO: n_GetDistanceFromMeToPoint
-	return 0;
+	if(!pNetGame->GetPlayerPool()) return 0;
+
+	VECTOR vecPos;
+	vecPos.X = amx_ctof(params[1]);
+    vecPos.Y = amx_ctof(params[2]);
+    vecPos.Z = amx_ctof(params[3]);
+    
+	float fResult = pNetGame->GetDistanceFromMeToPoint(&vecPos);
+
+	cell* cptr;
+    amx_GetAddr(amx, params[4], &cptr);
+    *cptr = amx_ftoc(fResult);
+    
+	return 1;
 }
 
 // native IsPlayerInRangeOfPoint(playerid, Float:range, Float:X, Float:Y, Float:Z)

@@ -250,6 +250,23 @@ BOOL CNetGame::IsVehicleAdded(VEHICLEID VehicleID)
 }
 
 //----------------------------------------------------
+float CNetGame::GetDistanceFromMeToPoint(PVECTOR vecPos)
+{
+	VECTOR vecMyPos;
+
+	if(GetMyPos(&vecMyPos))
+	{
+	    float fX = vecMyPos.X - vecPos->X;
+	    float fY = vecMyPos.Y - vecPos->Y;
+	    float fZ = vecMyPos.Z - vecPos->Z;
+
+	    return (float)sqrt(fX * fX + fY * fY + fZ * fZ);
+	}
+	else
+	{
+		return 0.0f;
+	}
+}
 
 //----------------------------------------------------
 PVECTOR CNetGame::GetMyPos(PVECTOR Vector)

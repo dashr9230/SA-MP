@@ -114,6 +114,7 @@ public:
 	BYTE GetPlayerSpecialAction(PLAYERID playerId);
 	BOOL IsPlayerAdded(PLAYERID playerId);
 	BOOL IsVehicleAdded(VEHICLEID VehicleID);
+	float GetDistanceFromMeToPoint(PVECTOR vecPos);
 	PVECTOR GetMyPos(PVECTOR Vector);
 	void SetMyPos(PVECTOR Vector);
 	float GetMyZAngle();
