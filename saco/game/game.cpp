@@ -6,6 +6,8 @@
 
 extern int iGtaVersion;
 
+void InitAnimNameHashes();
+
 char *szGameTextMessage;
 
 int unnamed_10150340[210];
@@ -132,6 +134,13 @@ void CGame::InitGame()
 void CGame::StartGame()
 {
 	// TODO: CGame::StartGame() .text:100A08E0
+
+	InitAnimNameHashes();
+
+	*(PDWORD)ADDR_ENTRY = 8;
+	*(PBYTE)ADDR_GAME_STARTED = 1;
+	*(PBYTE)ADDR_MENU = 0;
+	*(PBYTE)ADDR_STARTGAME = 0;
 }
 
 //-----------------------------------------------------------

@@ -139,6 +139,9 @@
 				RelativePath=".\game\aimstuff.h">
 			</File>
 			<File
+				RelativePath=".\game\animlist.cpp">
+			</File>
+			<File
 				RelativePath=".\game\audio.cpp">
 			</File>
 			<File
