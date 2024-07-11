@@ -1437,7 +1437,7 @@ BYTE __stdcall FindPlayerNumFromPedPtr(DWORD dwPedPtr)
 
 
 
-DWORD CRC32FromUpcaseString(char *szString)
+DWORD __stdcall CRC32FromUpcaseString(char *szString)
 {
 	DWORD dwResult = 0;
 
