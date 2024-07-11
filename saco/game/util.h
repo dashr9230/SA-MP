@@ -40,6 +40,7 @@ float __stdcall SquaredDistanceBetweenPoints(float x1, float y1, float z1, float
 float __stdcall SquaredDistanceBetweenPoints(VECTOR *vec1, VECTOR *vec2);
 
 void __stdcall _VectorNormalise(VECTOR *vec);
+DWORD CRC32FromUpcaseString(char *szString);
 
 void GameResetRadarColors();
 

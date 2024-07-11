@@ -1437,6 +1437,21 @@ BYTE __stdcall FindPlayerNumFromPedPtr(DWORD dwPedPtr)
 
 
 
+DWORD CRC32FromUpcaseString(char *szString)
+{
+	DWORD dwResult = 0;
+
+	_asm push szString
+	_asm mov edx, 0x53CF30
+	_asm call edx
+	_asm mov dwResult, eax
+	_asm pop edx
+
+	return dwResult;
+}
+
+
+
 
 
 bool unnamed_100B4B50(VECTOR *vecPos)
