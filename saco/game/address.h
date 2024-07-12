@@ -10,6 +10,7 @@
 #define ADDR_MENU2								0xBA67A5
 #define ADDR_MENU3								0xBA67A6
 
+#define ADDR_STARTGAME							0xBA677B
 #define ADDR_GAME_STARTED						0xBA6831
 #define ADDR_ENTRY								0xC8D4C0
 
