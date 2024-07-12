@@ -231,7 +231,7 @@ LONG WINAPI exc_handler(_EXCEPTION_POINTERS* exc_inf)
 
 //----------------------------------------------------
 
-int exc_filter(unsigned int code, struct _EXCEPTION_POINTERS *ep, char *what)
+int WINAPI exc_filter(unsigned int code, struct _EXCEPTION_POINTERS *ep, char *what)
 {
 	if(pChatWindow)
 	{
