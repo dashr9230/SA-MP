@@ -28,6 +28,8 @@ CUnkClass15				*pUnkClass15=0;
 
 BOOL					bGameInited=FALSE;
 
+WORD					wVehicleComponentDebug=0;
+
 IDirect3D9				*pD3D;
 IDirect3DDevice9		*pD3DDevice	= NULL;
 
