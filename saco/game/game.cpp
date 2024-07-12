@@ -135,6 +135,9 @@ void CGame::StartGame()
 {
 	// TODO: CGame::StartGame() .text:100A08E0
 
+	// Setup scripting
+	InitScripting();
+
 	InitAnimNameHashes();
 
 	*(PDWORD)ADDR_ENTRY = 8;

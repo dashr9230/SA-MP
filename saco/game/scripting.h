@@ -25,6 +25,7 @@ struct SCRIPT_COMMAND		//	Params
 	char Params[MAX_SCRIPT_VARS]; //	v = variable
 };							//		s = string
 
+void InitScripting();
 int ScriptCommand(const SCRIPT_COMMAND* pScriptCommand, ...);	// The main scripting function. See notes.
 
 
