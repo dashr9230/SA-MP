@@ -38,6 +38,7 @@ typedef struct _GAME_SETTINGS {
 #include "../raknet/GetTime.h"
 
 #include "net/localplayer.h"
+#include "net/remoteplayer.h"
 #include "net/netrpc.h"
 #include "net/actorpool.h"
 #include "net/playerpool.h"
@@ -85,3 +86,6 @@ void SetStringFromQuotedCommandLine(char *szCmdLine, char *szString);
 void InitSettings();
 
 void UnFuck(DWORD addr, int size);
+
+//----------------------------------------------------
+// EOF
