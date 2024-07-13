@@ -55,6 +55,8 @@ public:
 
 	CPlayerPed();
 
+	//char _gap0[813];
+	//char _gap0[741];
 	int field_48;
 	int field_4C[10];
 	struc_97 field_74[10];
@@ -63,35 +65,27 @@ public:
 	int field_2A8;
 	int field_2AC;
 	BYTE		m_bytePlayerNumber;
-
 	char _gap2B1[8];
-
 	int field_2B9;
-
 	char _gap2BD[4];
-
 	int field_2C1;
 	int field_2C5;
 	int field_2C9;
 	DWORD 		m_dwArrow;
-
-	char _gap2D1;
-
+	char _gap2D1[1];
 	int field_2D2;
-
 	char _gap2D6[8];
-
 	int field_2DE;
 	int field_2E2;
 	BOOL		m_bGoggleState;
-
 	char _gap2EA[8];
-
 	int field_2F2;
 	char field_2F6;
 	char field_2F7;
 	char field_2F8;
 	int field_2F9;
+	char _gap2FD[48];
+
 };
 
 //-----------------------------------------------------------

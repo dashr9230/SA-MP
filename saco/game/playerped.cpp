@@ -20,7 +20,6 @@ CPlayerPed::CPlayerPed()
 	m_bytePlayerNumber = 0;
 	SetPlayerPedPtrRecord(m_bytePlayerNumber,(DWORD)m_pPed);
 	ScriptCommand(&set_actor_weapon_droppable,m_dwGTAId,1);
-
 	ScriptCommand(&set_actor_can_be_decapitated,m_dwGTAId,0);
 
 	field_2A8 = 1;
@@ -42,13 +41,18 @@ CPlayerPed::CPlayerPed()
 
 	int x=0;
 	while(x!=10) {
-		field_4C[x];
+		field_4C[x] = 0;
 		field_27C[x] = 0;
 		memset(&field_74[x], 0, sizeof(struc_97));
 		x++;
 	}
+
 	field_2F9 = 0;
 }
+
+//-----------------------------------------------------------
+
+
 
 //-----------------------------------------------------------
 // If the game has internally destroyed the ped
