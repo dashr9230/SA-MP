@@ -396,6 +396,15 @@ WEAPON_SLOT_TYPE * CPlayerPed::FindWeaponSlot(DWORD dwWeapon)
 
 //-----------------------------------------------------------
 
+void CPlayerPed::SetAnimationSet(PCHAR szAnim)
+{
+	if(m_pPed) {
+		ScriptCommand(&set_actor_animation_set,m_dwGTAId,szAnim);
+	}
+}
+
+//-----------------------------------------------------------
+
 void CPlayerPed::StartGoggles()
 {
 	if (HasGoggles()) return;

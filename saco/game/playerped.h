@@ -53,6 +53,7 @@ public:
 	void StopGoggles();
 	BOOL HasGoggles();
 
+	void SetAnimationSet(PCHAR szAnim);
 	CPlayerPed();
 
 	//char _gap0[813];

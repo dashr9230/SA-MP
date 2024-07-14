@@ -69,6 +69,7 @@ const SCRIPT_COMMAND get_active_interior				= { 0x077e, "v" };
 
 const SCRIPT_COMMAND refresh_streaming_at				= { 0x04E4, "ff" };
 
+const SCRIPT_COMMAND set_actor_animation_set  		 	= { 0x0245, "is" };
 const SCRIPT_COMMAND request_animation					= { 0x04ED, "s" };
 const SCRIPT_COMMAND is_animation_loaded				= { 0x04EE, "s" };
 const SCRIPT_COMMAND release_animation					= { 0x04EF, "s" };
