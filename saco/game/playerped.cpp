@@ -405,6 +405,14 @@ void CPlayerPed::SetAnimationSet(PCHAR szAnim)
 
 //-----------------------------------------------------------
 
+void CPlayerPed::SetMoney(int iAmount)
+{
+	ScriptCommand(&set_actor_money,m_dwGTAId,0);
+	ScriptCommand(&set_actor_money,m_dwGTAId,iAmount);
+}
+
+//-----------------------------------------------------------
+
 void CPlayerPed::StartGoggles()
 {
 	if (HasGoggles()) return;

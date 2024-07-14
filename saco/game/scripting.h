@@ -75,6 +75,8 @@ const SCRIPT_COMMAND is_animation_loaded				= { 0x04EE, "s" };
 const SCRIPT_COMMAND release_animation					= { 0x04EF, "s" };
 
 const SCRIPT_COMMAND set_actor_weapon_droppable 		= { 0x087e, "ii" };
+const SCRIPT_COMMAND set_actor_money					= { 0x03fe, "ii" };
+
 const SCRIPT_COMMAND text_clear_all						= { 0x00be, "" };
 
 const SCRIPT_COMMAND create_radar_marker_icon			= { 0x0570, "fffiv" };

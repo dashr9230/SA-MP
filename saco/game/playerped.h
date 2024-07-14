@@ -54,6 +54,8 @@ public:
 	BOOL HasGoggles();
 
 	void SetAnimationSet(PCHAR szAnim);
+	void SetMoney(int iAmount);
+
 	CPlayerPed();
 
 	//char _gap0[813];
