@@ -26,6 +26,14 @@ CMenu::CMenu(float fX, float fY, BYTE byteColumns, float fCol1Width, float fCol2
 	m_dwPanel = 0;
 }
 
+void CMenu::SetTitle(PCHAR pTitle)
+{
+	if(strlen(pTitle) > MAX_MENU_LINE) return;
+
+	memset(m_charTitle, 0, sizeof(m_charTitle));
+	strcpy(m_charTitle, pTitle);
+}
+
 void CMenu::Show()
 {
 	ScriptCommand(&create_panel, m_charTitle[0] ? "SAMPHED" : "DUMMY", m_fXPos, m_fYPos, (m_fCol1Width + m_fCol2Width) / m_byteColumns, m_byteColumns, m_MenuInteraction.bMenu, 1, 1, &m_dwPanel);
