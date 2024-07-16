@@ -92,3 +92,11 @@ void CMenuPool::ShowMenu(BYTE byteMenuID)
 	m_byteExited = 0;
 }
 
+void CMenuPool::HideMenu(BYTE byteMenuID)
+{
+	if (byteMenuID >= MAX_MENUS || m_byteCurrentMenu == MAX_MENUS) return;
+	if (m_bMenuSlotState[byteMenuID] == FALSE || !m_pMenus[byteMenuID]) return;
+	m_pMenus[byteMenuID]->Hide();
+	m_byteCurrentMenu = MAX_MENUS;
+}
+

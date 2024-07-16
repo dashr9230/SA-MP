@@ -21,6 +21,7 @@ public:
 	BOOL Delete(BYTE byteMenuID);
 
 	void ShowMenu(BYTE byteMenuID);
+	void HideMenu(BYTE byteMenuID);
 };
 
 //----------------------------------------------------
