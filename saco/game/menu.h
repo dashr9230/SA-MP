@@ -42,6 +42,7 @@ public:
 
 	void SetTitle(PCHAR pTitle);
 	void AddMenuItem(BYTE byteColumn, BYTE byteRow, PCHAR pText);
+	void SetColumnTitle(BYTE byteColumn, PCHAR pText);
 	void Show();
 	void Hide();
 	PCHAR GetMenuItem(BYTE byteColumn, BYTE byteRow);

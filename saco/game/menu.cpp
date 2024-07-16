@@ -44,6 +44,16 @@ void CMenu::AddMenuItem(BYTE byteColumn, BYTE byteRow, PCHAR pText)
 	strcpy(m_charItems[byteRow][byteColumn], pText);
 }
 
+void CMenu::SetColumnTitle(BYTE byteColumn, PCHAR pText)
+{
+	if(strlen(pText) > MAX_MENU_LINE) return;
+	if(byteColumn >= MAX_COLUMNS) return;
+
+	memset(m_charHeader[byteColumn], 0, sizeof(m_charHeader[byteColumn]));
+	strcpy(m_charHeader[byteColumn], pText);
+
+}
+
 void CMenu::Show()
 {
 	ScriptCommand(&create_panel, m_charTitle[0] ? "SAMPHED" : "DUMMY", m_fXPos, m_fYPos, (m_fCol1Width + m_fCol2Width) / m_byteColumns, m_byteColumns, m_MenuInteraction.bMenu, 1, 1, &m_dwPanel);
