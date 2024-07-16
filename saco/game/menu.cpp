@@ -25,3 +25,8 @@ CMenu::CMenu(float fX, float fY, BYTE byteColumns, float fCol1Width, float fCol2
 	m_dwPanel = 0;
 }
 
+void CMenu::Hide()
+{
+	ScriptCommand(&remove_panel, m_dwPanel);
+}
+

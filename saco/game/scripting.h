@@ -81,6 +81,7 @@ const SCRIPT_COMMAND text_clear_all						= { 0x00be, "" };
 
 const SCRIPT_COMMAND create_radar_marker_icon			= { 0x0570, "fffiv" };
 
+const SCRIPT_COMMAND remove_panel						= { 0x08DA, "i" };
 
 const SCRIPT_COMMAND restore_camera_to_user_defined = { 0x925, "" };
 const SCRIPT_COMMAND set_camera_position_to = { 0x936, "ffffffii" };

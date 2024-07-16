@@ -16,6 +16,21 @@ CMenuPool::CMenuPool()
 
 //----------------------------------------------------
 
+CMenuPool::~CMenuPool()
+{
+	if (m_byteCurrentMenu != MAX_MENUS) m_pMenus[m_byteCurrentMenu]->Hide();
+	for (BYTE byteMenuID = 0; byteMenuID < MAX_MENUS; byteMenuID++)
+	{
+		if (m_pMenus[byteMenuID])
+		{
+			delete m_pMenus[byteMenuID];
+			m_pMenus[byteMenuID] = NULL;
+		}
+	}
+}
+
+//----------------------------------------------------
+
 CMenu* CMenuPool::New(BYTE byteMenuID, float fX, float fY, BYTE byteColumns, float fCol1Width, float fCol2Width, MENU_INT *MenuInteraction)
 {
 	SAFE_DELETE(m_pMenus[byteMenuID]);
