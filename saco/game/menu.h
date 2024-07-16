@@ -42,5 +42,8 @@ public:
 
 	void Show();
 	void Hide();
+	PCHAR GetMenuItem(BYTE byteColumn, BYTE byteRow);
+	PCHAR GetMenuTitle();
+	PCHAR GetMenuHeader(BYTE byteColumn);
 	PCHAR MS(BYTE byteColumn, BYTE byteRow);
 };

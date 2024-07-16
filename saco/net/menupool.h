@@ -22,6 +22,9 @@ public:
 
 	void ShowMenu(BYTE byteMenuID);
 	void HideMenu(BYTE byteMenuID);
+
+	PCHAR GetTextPointer(PCHAR szName);
+
 };
 
 //----------------------------------------------------

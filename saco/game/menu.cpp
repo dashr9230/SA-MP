@@ -55,6 +55,21 @@ void CMenu::Hide()
 	ScriptCommand(&remove_panel, m_dwPanel);
 }
 
+PCHAR CMenu::GetMenuItem(BYTE byteColumn, BYTE byteRow)
+{
+	return m_charItems[byteRow][byteColumn];
+}
+
+PCHAR CMenu::GetMenuTitle()
+{
+	return m_charTitle;
+}
+
+PCHAR CMenu::GetMenuHeader(BYTE byteColumn)
+{
+	return m_charHeader[byteColumn];
+}
+
 PCHAR CMenu::MS(BYTE byteRow, BYTE byteColumn)
 {
 	if (m_charItems[byteRow][byteColumn][0]) return g_szMenuItems[byteRow][byteColumn];

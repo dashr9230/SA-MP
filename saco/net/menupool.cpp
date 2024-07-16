@@ -100,3 +100,20 @@ void CMenuPool::HideMenu(BYTE byteMenuID)
 	m_byteCurrentMenu = MAX_MENUS;
 }
 
+PCHAR CMenuPool::GetTextPointer(PCHAR szName)
+{
+	if (m_byteCurrentMenu == MAX_MENUS) return NULL;
+	CMenu* pMenu = m_pMenus[m_byteCurrentMenu];
+	if (!pMenu) return NULL;
+
+	if (!strcmp(szName, "HED")) return pMenu->GetMenuTitle();
+	if (!strcmp(szName, "RW1")) return pMenu->GetMenuHeader(0);
+	if (!strcmp(szName, "RW2")) return pMenu->GetMenuHeader(1);
+	for (BYTE i = 0; i < MAX_MENU_ITEMS; i++)
+	{
+		if (!strcmp(szName, g_szMenuItems[i][0] + 4)) return pMenu->GetMenuItem(0, i);
+		if (!strcmp(szName, g_szMenuItems[i][1] + 4)) return pMenu->GetMenuItem(1, i);
+	}
+	return NULL;
+}
+
