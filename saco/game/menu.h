@@ -41,6 +41,7 @@ public:
 	CMenu(float fX, float fY, BYTE byteColumns, float fCol1Width, float fCol2Width, MENU_INT *MenuInteraction);
 
 	void SetTitle(PCHAR pTitle);
+	void AddMenuItem(BYTE byteColumn, BYTE byteRow, PCHAR pText);
 	void Show();
 	void Hide();
 	PCHAR GetMenuItem(BYTE byteColumn, BYTE byteRow);
