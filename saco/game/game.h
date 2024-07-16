@@ -7,6 +7,7 @@
 #include "audio.h"
 #include "camera.h"
 #include "scripting.h"
+#include "menu.h"
 
 //-----------------------------------------------------------
 
