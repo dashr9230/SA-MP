@@ -1,6 +1,22 @@
 
 #include "../main.h"
 
+CHAR g_szMenuItems[MAX_MENU_ITEMS][MAX_COLUMNS][MAX_MENU_LINE+1] =
+{
+	{"SAMP000", "SAMP100"},
+	{"SAMP001", "SAMP101"},
+	{"SAMP002", "SAMP102"},
+	{"SAMP003", "SAMP103"},
+	{"SAMP004", "SAMP104"},
+	{"SAMP005", "SAMP105"},
+	{"SAMP006", "SAMP106"},
+	{"SAMP007", "SAMP107"},
+	{"SAMP008", "SAMP108"},
+	{"SAMP009", "SAMP109"},
+	{"SAMP010", "SAMP110"},
+	{"SAMP011", "SAMP111"},
+};
+
 //----------------------------------------------------
 
 CMenuPool::CMenuPool()
@@ -63,4 +79,16 @@ BOOL CMenuPool::Delete(BYTE byteMenuID)
 }
 
 //----------------------------------------------------
+
+void CMenuPool::ShowMenu(BYTE byteMenuID)
+{
+	if (byteMenuID >= MAX_MENUS) return;
+	if (m_bMenuSlotState[byteMenuID] == FALSE || !m_pMenus[byteMenuID]) return;
+
+	if (m_byteCurrentMenu != MAX_MENUS) m_pMenus[m_byteCurrentMenu]->Hide();
+	m_pMenus[byteMenuID]->Show();
+	m_byteCurrentMenu = byteMenuID;
+
+	m_byteExited = 0;
+}
 

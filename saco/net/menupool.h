@@ -6,11 +6,11 @@
 class CMenuPool
 {
 private:
-	char field_401;
 
 	CMenu *m_pMenus[MAX_MENUS];
 	BOOL m_bMenuSlotState[MAX_MENUS];
 	BYTE m_byteCurrentMenu;
+	BYTE m_byteExited;
 
 public:
 	CMenuPool();
@@ -20,6 +20,7 @@ public:
 
 	BOOL Delete(BYTE byteMenuID);
 
+	void ShowMenu(BYTE byteMenuID);
 };
 
 //----------------------------------------------------
