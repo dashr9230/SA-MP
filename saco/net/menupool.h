@@ -17,6 +17,7 @@ public:
 
 	CMenu* New(BYTE byteMenuID, float fX, float fY, BYTE byteColumns, float fCol1Width, float fCol2Width, MENU_INT *MenuInteraction);
 
+	BOOL Delete(BYTE byteMenuID);
 
 };
 

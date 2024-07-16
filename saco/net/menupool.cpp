@@ -30,3 +30,22 @@ CMenu* CMenuPool::New(BYTE byteMenuID, float fX, float fY, BYTE byteColumns, flo
 	}
 	return NULL;
 }
+
+//----------------------------------------------------
+
+BOOL CMenuPool::Delete(BYTE byteMenuID)
+{
+	if (m_bMenuSlotState[byteMenuID] == FALSE || !m_pMenus[byteMenuID])
+	{
+		return FALSE;
+	}
+
+	m_bMenuSlotState[byteMenuID] = FALSE;
+	delete m_pMenus[byteMenuID];
+	m_pMenus[byteMenuID] = NULL;
+
+	return TRUE;
+}
+
+//----------------------------------------------------
+
