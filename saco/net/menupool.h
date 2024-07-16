@@ -25,6 +25,7 @@ public:
 
 	PCHAR GetTextPointer(PCHAR szName);
 
+	void Process();
 };
 
 //----------------------------------------------------

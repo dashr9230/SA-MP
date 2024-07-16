@@ -49,4 +49,5 @@ public:
 	PCHAR GetMenuTitle();
 	PCHAR GetMenuHeader(BYTE byteColumn);
 	PCHAR MS(BYTE byteColumn, BYTE byteRow);
+	BYTE GetSelectedRow();
 };

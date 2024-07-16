@@ -104,3 +104,10 @@ PCHAR CMenu::MS(BYTE byteRow, BYTE byteColumn)
 	return "DUMMY";
 }
 
+BYTE CMenu::GetSelectedRow()
+{
+	if (!m_MenuInteraction.bMenu) return 0xFF;
+	DWORD dwRetVal;
+	ScriptCommand(&get_panel_active_row, m_dwPanel, &dwRetVal);
+	return (BYTE)dwRetVal;
+}
