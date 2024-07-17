@@ -551,3 +551,12 @@ int GetFontWeight()
 	return fontweight != 1 ? FW_BOLD : FW_NORMAL;
 }
 
+char *GetFontFace()
+{
+	if(pConfig && pConfig->GetStringVariable("fontface"))
+	{
+		return pConfig->GetStringVariable("fontface");
+	}
+	return "Arial";
+}
+
