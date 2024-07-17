@@ -510,3 +510,19 @@ void SetStringFromQuotedCommandLine(char *szCmdLine, char *szString)
 }
 
 //----------------------------------------------------
+int GetFontSize()
+{
+	int size;
+
+	if (pGame->GetScreenWidth() < 1024)
+		size = 14;
+	else if (pGame->GetScreenWidth() < 1400)
+		size = 16;
+	else if (pGame->GetScreenWidth() < 1600)
+		size = 18;
+	else
+		size = 20;
+
+	return size + 2 * pConfig->GetIntVariable("fontsize");
+}
+
