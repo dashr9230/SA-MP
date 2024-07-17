@@ -526,3 +526,15 @@ int GetFontSize()
 	return size + 2 * pConfig->GetIntVariable("fontsize");
 }
 
+int GetDeathWindowFontSize()
+{
+	int size = 14;
+	if (pGame->GetScreenWidth() < 1024)
+		size = 12;
+
+	int fontsize = size + 2 * pConfig->GetIntVariable("fontsize");
+	if(fontsize < size)
+		fontsize = size;
+	return fontsize;
+}
+
