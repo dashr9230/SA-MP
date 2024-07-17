@@ -543,3 +543,11 @@ int GetUIFontSize()
 	return 2 * pConfig->GetIntVariable("fontsize") + 20;
 }
 
+int GetFontWeight()
+{
+	int fontweight = pConfig->GetIntVariable("fontweight");
+	if(fontweight == 0) return FW_BOLD;
+
+	return fontweight != 1 ? FW_BOLD : FW_NORMAL;
+}
+
