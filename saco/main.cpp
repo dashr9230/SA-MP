@@ -538,3 +538,8 @@ int GetDeathWindowFontSize()
 	return fontsize;
 }
 
+int GetUIFontSize()
+{
+	return 2 * pConfig->GetIntVariable("fontsize") + 20;
+}
+
