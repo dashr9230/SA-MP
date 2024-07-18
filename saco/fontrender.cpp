@@ -2,6 +2,10 @@
 #include "main.h"
 #include "fontrender.h"
 
+int GetFontSize();
+int GetFontWeight();
+char *GetFontFace();
+
 //----------------------------------------------------
 
 CFontRender::CFontRender(IDirect3DDevice9* pD3DDevice)
@@ -30,6 +34,7 @@ CFontRender::~CFontRender()
 void CFontRender::CreateFonts()
 {
 	if(!m_pD3DDevice) return;
+
 	SAFE_RELEASE(field_0);
 	SAFE_RELEASE(field_4);
 	SAFE_RELEASE(field_8);
@@ -37,9 +42,45 @@ void CFontRender::CreateFonts()
 	SAFE_RELEASE(field_14);
 	SAFE_RELEASE(field_10);
 
-	// TODO: CFontRender::CreateFonts
+	int iFontSize = GetFontSize();
+	int iFontSize2 = iFontSize - 2;
+	int iFontWeight = GetFontWeight();
+	char *szFontFace = GetFontFace();
 
-	//D3DXCreateFont();
+	ID3DXFont* pFont;
+	D3DXCreateFont(m_pD3DDevice, iFontSize, 0, iFontWeight, 1, FALSE,
+		DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, ANTIALIASED_QUALITY, DEFAULT_PITCH, szFontFace, &pFont);
+
+	ID3DXFontHook *pFontHook = new ID3DXFontHook();
+	pFontHook->m_pD3DFont = pFont;
+	field_0 = pFontHook;
+
+	D3DXCreateFont(m_pD3DDevice, iFontSize, 0, iFontWeight, 1, FALSE,
+		DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, ANTIALIASED_QUALITY, DEFAULT_PITCH, szFontFace, &field_8);
+
+	D3DXCreateFont(m_pD3DDevice, iFontSize2, 0, iFontWeight, 1, FALSE,
+		DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, ANTIALIASED_QUALITY, DEFAULT_PITCH, szFontFace, &pFont);
+
+	ID3DXFontHook *pFontHook2 = new ID3DXFontHook();
+	pFontHook2->m_pD3DFont = pFont;
+	field_4 = pFontHook2;
+
+	D3DXCreateFontA(m_pD3DDevice, iFontSize2, 0, iFontWeight, 1, FALSE,
+		DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, ANTIALIASED_QUALITY, DEFAULT_PITCH, szFontFace, &field_C);
+
+	D3DXCreateSprite(m_pD3DDevice, &field_14);
+
+	field_1C = (char*)calloc(1u, 100001);
+
+	D3DXCreateFontA(m_pD3DDevice, 38, 10, FW_BOLD, 1, FALSE,
+		DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, ANTIALIASED_QUALITY, DEFAULT_PITCH, "Arial", &field_10);
+
+	ID3DXFontHook *pFontHook3 = new ID3DXFontHook();
+	pFontHook3->m_pD3DFont = field_10;
+	field_10 = pFontHook3;
+
+	field_20 = MeasureText("Y").cy;
+	field_24 = MeasureText2("Y").cy;
 }
 
 void CFontRender::DeleteDeviceObjects()
