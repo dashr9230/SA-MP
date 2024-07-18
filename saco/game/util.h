@@ -64,3 +64,6 @@ int GetInvalidModelInfoCount();
 
 bool HasCollisionLoaded(VECTOR *vec);
 BOOL __stdcall IsATrainPart(ENTITY_TYPE *pEntity);
+
+BOOL IsHexChar(char c);
+BOOL IsHexChar(wchar_t c);

@@ -1849,6 +1849,16 @@ BOOL IsFileOrDirectoryExists(char * szPath)
 //----------------------------------------------------
 
 
+BOOL IsHexChar(char c)
+{
+	return c >= '0' && c <= '9' || c >= 'A' && c <= 'F' || c >= 'a' && c <= 'f';
+}
+
+BOOL IsHexChar(wchar_t c)
+{
+	return c >= '0' && c <= '9' || c >= 'A' && c <= 'F' || c >= 'a' && c <= 'f';
+}
+
 DWORD unnamed_100B6100(char *szString, int nMaxLen)
 {
 	char tmp_buf[2049];
