@@ -14,6 +14,7 @@ extern   CNetGame	*pNetGame;
 extern   CChatWindow *pChatWindow;
 extern   DWORD		dwScmOpcodeDebug;
 extern   BOOL       bScmLocalDebug;
+extern	 BYTE		*pbyteCurrentPlayer;//internal GTA FindPlayerPed() number
 extern   int		iGtaVersion;
 extern	 WORD		wLastRendObj;
 extern   WORD		wVehicleComponentDebug;
@@ -25,6 +26,13 @@ int dword_10125A58=0;
 
 void DumpNetworkStateInformation(PCHAR sz)
 {
+	CPlayerPool   *pPlayerPool = pNetGame->GetPlayerPool();
+	PLAYERID playerId=0;
+
+	sz[0] = '\0';
+
+	sprintf(sz,"\r\nState Information: Ped Context: %u\r\n",*pbyteCurrentPlayer);
+
 	// TODO: DumpNetworkStateInformation 10060160
 }
 
