@@ -17,20 +17,20 @@ DWORD unnamed_101516D4;
 WORD wLastRendObj=0;
 
 BYTE Unk1_JmpCode[] = {0xFF,25,0xD1,0xBE,53,0x00};
-BYTE HOOK_24_JmpCode[] = {0xFF,0x25,0xBB,0x19,0x69,0x00,0x90};
-BYTE HOOK_25_JmpCode[] = {0xFF,0x25,0xBA,0xB8,0x63,0x00,0x90};
-BYTE HOOK_27_JmpCode[] = {0xFF,0x25,0x79,0x4A,0x58,0x00,0x90};
-BYTE HOOK_26_JmpCode[] = {0xFF,0x25,0xAA,0x85,0x43,0x00,0x90};
+BYTE TaskEnterVehicleDriver_HookJmpCode[] = {0xFF,0x25,0xBB,0x19,0x69,0x00,0x90};
+BYTE TaskExitVehicle_HookJmpCode[] = {0xFF,0x25,0xBA,0xB8,0x63,0x00,0x90};
+BYTE RadarTranslateColor_HookJmpCode[] = {0xFF,0x25,0x79,0x4A,0x58,0x00,0x90};
+BYTE CheatProcessHook_JmpCode[] = {0xFF,0x25,0xAA,0x85,0x43,0x00,0x90};
 BYTE Unk2_JmpCode[] = {0xFF,0x25,0x33,0x14,0x42,0x00};
 BYTE Unk3_JmpCode[] = {0xFF,0x25,0x61,0x36,0x53,0x00,0x90,0x90,0x90};
-BYTE HOOK_28_JmpCode[] = {0xFF,0x25,0xF1,0xC8,0x53,0x00,0x90};
-BYTE HOOK_29_JmpCode[] = {0xFF,0x25,0xBC,0x5A,0x4B,0x00};
+BYTE CGameShutdown_HookJmpCode[] = {0xFF,0x25,0xF1,0xC8,0x53,0x00,0x90};
+BYTE PedDamage_HookJmpCode[] = {0xFF,0x25,0xBC,0x5A,0x4B,0x00};
 BYTE Unk4_JmpCode[] = {0xFF,0x25,0x74,0x22,0x50,0x00,0x90,0x90,0x90,0x90};
 BYTE Unk5_JmpCode[] = {0xFF,0x25,0x61,0x38,0x4C,0x00};
-BYTE HOOK_34_JmpCode[] = {0xFF,0x25,0x43,0x00,0x6A,0x00,0x90,0x90,0x90};
+BYTE GetText_HookJmpCode[] = {0xFF,0x25,0x43,0x00,0x6A,0x00,0x90,0x90,0x90};
 BYTE Unk6_JmpCode[] = {0xFF,0x25,0xD8,0xFF,0x5E,0x00,0x90};
-BYTE HOOK_32_JmpCode[] = {0xFF,0x25,0x1B,0x8B,0x73,0x00};
-BYTE HOOK_33_JmpCode[] = {0xFF,0x25,0x5B,0x88,0x73,0x00};
+BYTE CProjectileInfo_Update_HookJmpCode[] = {0xFF,0x25,0x1B,0x8B,0x73,0x00};
+BYTE CWeapon__Satchel__Activate_HookJmpCode[] = {0xFF,0x25,0x5B,0x88,0x73,0x00};
 BYTE Unk7_JmpCode[] = {0xFF,0x25,0x36,0xA0,0x63,0x00,0x90};
 BYTE Unk8_JmpCode[] = {0xFF,0x25,0x77,0xAB,0x5E,0x00,0x90};
 BYTE Unk9_JmpCode[] = {0xFF,0x25,0x39,0x88,0x4C,0x00,0x90,0x90};
@@ -54,34 +54,34 @@ NUDE HOOK_1() {}
 NUDE HOOK_2() {}
 NUDE HOOK_3() {}
 NUDE HOOK_4() {}
-NUDE HOOK_5() {}
+NUDE CPed_Render_Hook() {}
 NUDE HOOK_7() {}
 NUDE HOOK_8() {}
-NUDE HOOK_9() {}
+NUDE CPlayerPed_ProcessControl_Hook() {}
 NUDE HOOK_10() {}
-NUDE HOOK_11() {}
+NUDE TaskUseGun_Hook() {}
 NUDE HOOK_12() {}
 NUDE HOOK_14() {}
 NUDE HOOK_15() {}
-NUDE HOOK_16() {}
+NUDE AllVehicles_ProcessControl_Hook() {}
 NUDE HOOK_17() {}
-NUDE HOOK_18() {}
-NUDE HOOK_19() {}
-NUDE HOOK_20() {}
-NUDE HOOK_21() {}
-NUDE HOOK_22() {}
-NUDE HOOK_23() {}
-NUDE HOOK_24() {}
-NUDE HOOK_25() {}
-NUDE HOOK_26() {}
-NUDE HOOK_27() {}
-NUDE HOOK_28() {}
-NUDE HOOK_29() {}
-NUDE HOOK_30() {}
+NUDE ZoneOverlay_Hook() {}
+NUDE PlayerWalk_Hook() {}
+NUDE PickUpPickup_Hook() {}
+NUDE CWeapon_FireCamera_Hook() {}
+NUDE CCameraCamShake_Sniper_Hook() {}
+NUDE CTrain_ProcessControl_Derailment() {}
+NUDE TaskEnterVehicleDriver_Hook() {}
+NUDE TaskExitVehicle() {}
+NUDE CheatProcessorHook() {}
+NUDE RadarTranslateColor() {}
+NUDE CGameShutdownHook() {}
+NUDE PedDamage_Hook() {}
+NUDE AnimCrashFixHook() {}
 NUDE HOOK_31() {}
-NUDE HOOK_32() {}
-NUDE HOOK_33() {}
-NUDE HOOK_34() {}
+NUDE CProjectile_Update_Hook() {}
+NUDE CWeapon__Satchel__Activate_Hook() {}
+NUDE GetText_Hook() {}
 NUDE HOOK_35() {}
 NUDE HOOK_36() {}
 NUDE HOOK_37() {}
@@ -261,11 +261,12 @@ void InstallGameAndGraphicsLoopHooks()
 
 	InstallCallHook(0x53E981,(DWORD)HOOK_4);
 
-	InstallMethodHook(0x86D1B0,(DWORD)HOOK_5);
-	InstallMethodHook(0x86C0F0,(DWORD)HOOK_5);
-	InstallMethodHook(0x86C168,(DWORD)HOOK_5);
-	InstallMethodHook(0x86C248,(DWORD)HOOK_5);
-	InstallMethodHook(0x86C3A0,(DWORD)HOOK_5);
+	// For fixing fogging issues (needed for both debug and net)
+	InstallMethodHook(0x86D1B0,(DWORD)CPed_Render_Hook); // This is PlayerPed
+	InstallMethodHook(0x86C0F0,(DWORD)CPed_Render_Hook);
+	InstallMethodHook(0x86C168,(DWORD)CPed_Render_Hook);
+	InstallMethodHook(0x86C248,(DWORD)CPed_Render_Hook);
+	InstallMethodHook(0x86C3A0,(DWORD)CPed_Render_Hook);
 
 	InstallCallHook(0x53E930,(DWORD)HOOK_6);
 }
@@ -280,11 +281,11 @@ void GameInstallHooks()
 
 	InstallHook(0x4D4610,(DWORD)HOOK_8,0x4D4609,HOOK_8_JmpCode,sizeof(HOOK_8_JmpCode));
 
-	InstallMethodHook(0x86D190,(DWORD)HOOK_9);
+	InstallMethodHook(0x86D190,(DWORD)CPlayerPed_ProcessControl_Hook);
 
 	InstallMethodHook(0x86C0D0,(DWORD)HOOK_10);
 
-	InstallMethodHook(0x86D744,(DWORD)HOOK_11);
+	InstallMethodHook(0x86D744,(DWORD)TaskUseGun_Hook);
 
 	InstallCallHook(0x7330A2,(DWORD)HOOK_12);
 
@@ -294,16 +295,16 @@ void GameInstallHooks()
 
 	InstallCallHook(0x53EA03,(DWORD)HOOK_15);
 
-	InstallMethodHook(0x871148,(DWORD)HOOK_16);
-	InstallMethodHook(0x8721C8,(DWORD)HOOK_16);
-	InstallMethodHook(0x871388,(DWORD)HOOK_16);
-	InstallMethodHook(0x871970,(DWORD)HOOK_16);
-	InstallMethodHook(0x8716A8,(DWORD)HOOK_16);
-	InstallMethodHook(0x871550,(DWORD)HOOK_16);
-	InstallMethodHook(0x871800,(DWORD)HOOK_16);
-	InstallMethodHook(0x871B10,(DWORD)HOOK_16);
-	InstallMethodHook(0x872398,(DWORD)HOOK_16);
-	InstallMethodHook(0x871C50,(DWORD)HOOK_16);
+	InstallMethodHook(0x871148,(DWORD)AllVehicles_ProcessControl_Hook); // Automobile
+	InstallMethodHook(0x8721C8,(DWORD)AllVehicles_ProcessControl_Hook); // boat
+	InstallMethodHook(0x871388,(DWORD)AllVehicles_ProcessControl_Hook); // motorbike1
+	InstallMethodHook(0x871970,(DWORD)AllVehicles_ProcessControl_Hook); // plane
+	InstallMethodHook(0x8716A8,(DWORD)AllVehicles_ProcessControl_Hook); // heli
+	InstallMethodHook(0x871550,(DWORD)AllVehicles_ProcessControl_Hook); // pushbike
+	InstallMethodHook(0x871800,(DWORD)AllVehicles_ProcessControl_Hook); // truck
+	InstallMethodHook(0x871B10,(DWORD)AllVehicles_ProcessControl_Hook); // quad
+	InstallMethodHook(0x872398,(DWORD)AllVehicles_ProcessControl_Hook); // train
+	InstallMethodHook(0x871C50,(DWORD)AllVehicles_ProcessControl_Hook);
 
 	InstallCallHook(0x501B1D,(DWORD)HOOK_17);
 	InstallCallHook(0x501B42,(DWORD)HOOK_17);
@@ -311,33 +312,49 @@ void GameInstallHooks()
 	InstallCallHook(0x502067,(DWORD)HOOK_17);
 	InstallCallHook(0x5021AE,(DWORD)HOOK_17);
 
-	InstallCallHook(0x5869BF,(DWORD)HOOK_18);
-	InstallCallHook(0x5759E4,(DWORD)HOOK_18);
+	// Radar and map hooks for gang zones
+	InstallCallHook(0x5869BF,(DWORD)ZoneOverlay_Hook);
+	InstallCallHook(0x5759E4,(DWORD)ZoneOverlay_Hook);
 
-	InstallCallHook(0x609A4E,(DWORD)HOOK_19);
+	InstallCallHook(0x609A4E,(DWORD)PlayerWalk_Hook);
+	InstallCallHook(0x4579C6,(DWORD)PickUpPickup_Hook, 0xE9);
+	InstallCallHook(0x73C252,(DWORD)CWeapon_FireCamera_Hook, 0xE9);
 
-	InstallCallHook(0x4579C6,(DWORD)HOOK_20,0xE9);
+	// Hook the call to CCamera::CamShake when called for sniper fire
+	InstallCallHook(0x73ACE2,(DWORD)CCameraCamShake_Sniper_Hook);
 
-	InstallCallHook(0x73C252,(DWORD)HOOK_21,0xE9);
+	// Hook the train derailment code
+	InstallCallHook(0x6F8CF8,(DWORD)CTrain_ProcessControl_Derailment);
 
-	InstallCallHook(0x73ACE2,(DWORD)HOOK_22);
+	InstallHook(0x6402F0,(DWORD)TaskEnterVehicleDriver_Hook,
+		0x6919BB,TaskEnterVehicleDriver_HookJmpCode,sizeof(TaskEnterVehicleDriver_HookJmpCode));
 
-	InstallCallHook(0x6F8CF8,(DWORD)HOOK_23);
+	InstallHook(0x63B8C0,(DWORD)TaskExitVehicle,
+		0x63B8BA,TaskExitVehicle_HookJmpCode,sizeof(TaskExitVehicle_HookJmpCode));
 
-	InstallHook(0x6402F0,(DWORD)HOOK_24,0x6919BB,HOOK_24_JmpCode,sizeof(HOOK_24_JmpCode));
-	InstallHook(0x63B8C0,(DWORD)HOOK_25,0x63B8BA,HOOK_25_JmpCode,sizeof(HOOK_25_JmpCode));
-	InstallHook(0x438576,(DWORD)HOOK_26,0x4385AA,HOOK_26_JmpCode,sizeof(HOOK_26_JmpCode));
-	InstallHook(0x584770,(DWORD)HOOK_27,0x584A79,HOOK_27_JmpCode,sizeof(HOOK_27_JmpCode));
-	InstallHook(0x53C900,(DWORD)HOOK_28,0x53C8F1,HOOK_28_JmpCode,sizeof(HOOK_28_JmpCode));
-	InstallHook(0x4B5AC0,(DWORD)HOOK_29,0x4B5ABC,HOOK_29_JmpCode,sizeof(HOOK_29_JmpCode));
+	InstallHook(0x438576,(DWORD)CheatProcessorHook,
+		0x4385AA,CheatProcessHook_JmpCode,sizeof(CheatProcessHook_JmpCode));
 
-	InstallCallHook(0x4D41C0,(DWORD)HOOK_30,0xE9);
+	InstallHook(0x584770,(DWORD)RadarTranslateColor,0x584A79,
+		RadarTranslateColor_HookJmpCode,sizeof(RadarTranslateColor_HookJmpCode));
+
+	InstallHook(0x53C900,(DWORD)CGameShutdownHook,0x53C8F1,
+		CGameShutdown_HookJmpCode,sizeof(CGameShutdown_HookJmpCode));
+
+	InstallHook(0x4B5AC0,(DWORD)PedDamage_Hook,0x4B5ABC,
+		PedDamage_HookJmpCode,sizeof(PedDamage_HookJmpCode));
+
+	// Fix for 0x004D41C5 crash
+	InstallCallHook(0x4D41C0, (DWORD)AnimCrashFixHook, 0xE9);
 
 	InstallCallHook(0x4E7427,(DWORD)HOOK_31);
 
-	InstallHook(0x738F3A,(DWORD)HOOK_32,0x738B1B,HOOK_32_JmpCode,sizeof(HOOK_32_JmpCode));
-	InstallHook(0x738877,(DWORD)HOOK_33,0x73885B,HOOK_33_JmpCode,sizeof(HOOK_33_JmpCode));
-	InstallHook(0x6A0050,(DWORD)HOOK_34,0x6A0043,HOOK_34_JmpCode,sizeof(HOOK_34_JmpCode));
+	// Fix for crash when the player who threw the satchel died
+	InstallHook(0x738F3A, (DWORD)CProjectile_Update_Hook, 0x738B1B, CProjectileInfo_Update_HookJmpCode, sizeof(CProjectileInfo_Update_HookJmpCode));
+	// Fix for all satchels blowing up when someone activated their satchel
+	InstallHook(0x738877, (DWORD)CWeapon__Satchel__Activate_Hook, 0x73885B, CWeapon__Satchel__Activate_HookJmpCode, sizeof(CWeapon__Satchel__Activate_HookJmpCode));
+	
+	InstallHook(0x6A0050, (DWORD)GetText_Hook, 0x6A0043, GetText_HookJmpCode, sizeof (GetText_HookJmpCode));
 
 	InstallCallHook(0x6FDED6,(DWORD)HOOK_35);
 
