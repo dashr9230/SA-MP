@@ -6,6 +6,9 @@
 
 extern int iGtaVersion;
 
+void GameInstallHooks();
+BOOL ApplyPreGamePatches();
+void ApplyInGamePatches();
 void InitAnimNameHashes();
 
 char *szGameTextMessage;
@@ -133,7 +136,10 @@ void CGame::InitGame()
 
 void CGame::StartGame()
 {
-	// TODO: CGame::StartGame() .text:100A08E0
+	ApplyInGamePatches();
+
+	// Install all hooks
+	GameInstallHooks();
 
 	// Setup scripting
 	InitScripting();
