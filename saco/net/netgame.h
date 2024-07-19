@@ -63,7 +63,7 @@ private:
 
 public:
 
-	CNetGame(char *a2, int a3, char *a4, char *a5);
+	CNetGame(PCHAR szHostOrIp,int iPort,PCHAR szPlayerName,PCHAR szPass);
 
 	void Process();
 
