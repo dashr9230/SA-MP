@@ -71,7 +71,7 @@
 			CharacterSet="0">
 			<Tool
 				Name="VCCLCompilerTool"
-				Optimization="4"
+				Optimization="2"
 				GlobalOptimizations="TRUE"
 				InlineFunctionExpansion="1"
 				EnableIntrinsicFunctions="TRUE"
