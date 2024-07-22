@@ -26,22 +26,24 @@ BOOL SubclassGameWindow()
 {
 	HWND hwndGameWnd = pGame->GetMainWindowHwnd();
 
-	if(!hwndGameWnd) return FALSE;
+	if(hwndGameWnd) {
 
-	DWORD dwStyle = GetClassLong(hwndGameWnd,GCL_STYLE);
-	SetClassLong(hwndGameWnd,GCL_STYLE,dwStyle|CS_DBLCLKS);
+		DWORD dwStyle = GetClassLong(hwndGameWnd,GCL_STYLE);
+		SetClassLong(hwndGameWnd,GCL_STYLE,dwStyle|CS_DBLCLKS);
 
-	InstallNewWindowProcedure();
+		InstallNewWindowProcedure();
 
-	SetWindowText(hwndGameWnd,"GTA:SA:MP");
+		SetWindowText(hwndGameWnd,"GTA:SA:MP");
 
-	if(IsWindowUnicode(hwndGameWnd)) {
-		OutputDebugString("GTA is unicode");
-	} else {
-		OutputDebugString("GTA is not unicode");
+		if(IsWindowUnicode(hwndGameWnd)) {
+			OutputDebugString("GTA is unicode");
+		} else {
+			OutputDebugString("GTA is not unicode");
+		}
+	
+		return TRUE;
 	}
-
-	return TRUE;
+	return FALSE;
 }
 
 //----------------------------------------------------
