@@ -1859,6 +1859,44 @@ BOOL IsHexChar(wchar_t c)
 	return c >= '0' && c <= '9' || c >= 'A' && c <= 'F' || c >= 'a' && c <= 'f';
 }
 
+DWORD GetColorFromEmbedCode(char *szString)
+{
+	if(szString[0] && szString[0] == '{'
+		&& szString[1] && IsHexChar(szString[1])
+		&& szString[2] && IsHexChar(szString[2])
+		&& szString[3] && IsHexChar(szString[3])
+		&& szString[4] && IsHexChar(szString[4])
+		&& szString[5] && IsHexChar(szString[5])
+		&& szString[6] && IsHexChar(szString[6])
+		&& szString[7] && szString[7] == '}')
+	{
+		char szBuffer[17];
+		memset(szBuffer,0,sizeof(szBuffer));
+		strncpy(szBuffer,szString+1,6);
+		return strtoul(szBuffer,NULL,16);
+	}
+	return 0xFFFFFFFF;
+}
+
+DWORD GetColorFromEmbedCode(wchar_t *szString)
+{
+	if(szString[0] && szString[0] == '{'
+		&& szString[1] && IsHexChar(szString[1])
+		&& szString[2] && IsHexChar(szString[2])
+		&& szString[3] && IsHexChar(szString[3])
+		&& szString[4] && IsHexChar(szString[4])
+		&& szString[5] && IsHexChar(szString[5])
+		&& szString[6] && IsHexChar(szString[6])
+		&& szString[7] && szString[7] == '}')
+	{
+		wchar_t szBuffer[17];
+		memset(szBuffer,0,sizeof(szBuffer));
+		wcsncpy(szBuffer,szString+1,6);
+		return wcstoul(szBuffer,NULL,16);
+	}
+	return 0xFFFFFFFF;
+}
+
 DWORD unnamed_100B6100(char *szString, int nMaxLen)
 {
 	char tmp_buf[2049];
