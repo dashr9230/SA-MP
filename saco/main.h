@@ -87,5 +87,7 @@ void InitSettings();
 
 void UnFuck(DWORD addr, int size);
 
+#include "outputdebugstring.h"
+
 //----------------------------------------------------
 // EOF
