@@ -119,6 +119,22 @@ SIZE CFontRender::MeasureText(char * szString, DWORD dwFormat)
 	return ret;
 }
 
+SIZE CFontRender::MeasureText2(char * szString, DWORD dwFormat)
+{
+	RECT rect;
+	SIZE ret = {0, 0};
+
+	if(strlen(szString) > 100000) return ret;
+
+	strcpy(field_1C,szString);
+	RemoveColorEmbedsFromString(field_1C);
+	field_4->DrawTextA(NULL,field_1C,-1,&rect,dwFormat|DT_CALCRECT,0xFF000000);
+	ret.cx = rect.right - rect.left;
+	ret.cy = rect.bottom - rect.top;
+
+	return ret;
+}
+
 void CFontRender::RenderText(ID3DXSprite * pSprite, char * sz, RECT rect, DWORD dwColor, BOOL bShadowed)
 {
 	// TODO: CFontRender::RenderText .text:1006B360
