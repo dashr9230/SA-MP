@@ -1,6 +1,6 @@
 
 #include "main.h"
-#include "fontrender.h"
+#include "game/util.h"
 
 int GetFontSize();
 int GetFontWeight();
@@ -105,11 +105,18 @@ void CFontRender::RestoreDeviceObjects()
 
 SIZE CFontRender::MeasureText(char * szString, DWORD dwFormat)
 {
-	SIZE size = {0,0};
+	RECT rect;
+	SIZE ret = {0, 0};
 
-	// TODO: CFontRender::MeasureText .text:1006B200
-	
-	return size;
+	if(strlen(szString) > 100000) return ret;
+
+	strcpy(field_1C,szString);
+	RemoveColorEmbedsFromString(field_1C);
+	field_0->DrawTextA(NULL,field_1C,-1,&rect,dwFormat|DT_CALCRECT,0xFF000000);
+	ret.cx = rect.right - rect.left;
+	ret.cy = rect.bottom - rect.top;
+
+	return ret;
 }
 
 void CFontRender::RenderText(ID3DXSprite * pSprite, char * sz, RECT rect, DWORD dwColor, BOOL bShadowed)
