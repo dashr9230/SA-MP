@@ -736,3 +736,10 @@ void CGame::DrawGangZone(float fPos[], DWORD dwColor)
 
 //-----------------------------------------------------------
 
+// TODO: CGame::sub_100A1520 text: 100A1520
+void CGame::EnableZoneNames(BYTE byteEnable)
+{
+	ScriptCommand(&enable_zone_names, byteEnable);
+}
+
+//-----------------------------------------------------------

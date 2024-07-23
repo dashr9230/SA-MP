@@ -61,6 +61,7 @@ public:
 	void	ToggleRadar(int iToggle);
 	void	DisplayGameText(char *szStr,int iTime,int iSize);
 	void	SetGravity(float fGravity);
+	void	EnableZoneNames(BYTE byteEnable);
 	void	SetWantedLevel(BYTE byteLevel);
 	void	SetGameTextCount(WORD wCount);
 	void	DrawGangZone(float* fPos, DWORD dwColor);
