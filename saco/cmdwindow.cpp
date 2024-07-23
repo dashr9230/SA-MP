@@ -3,14 +3,15 @@
 
 //----------------------------------------------------
 
+// MATCH
 CCmdWindow::CCmdWindow(IDirect3DDevice9 *pD3DDevice)
 {
-	m_pD3DDevice			= pD3DDevice;
 	field_14E0				= 0;
+	m_pD3DDevice			= pD3DDevice;
 	m_iCmdCount				= 0;
 	field_1AF4				= 0;
 	field_8					= 0;
-	field_1AF0				= 0;
+	field_1AF0				= -1;
 
 	memset(&field_1565[0],0,1290);
 	memset(&field_14E4[0],0,129);
