@@ -8,7 +8,7 @@ LRESULT APIENTRY NewWndProc(HWND,UINT,WPARAM,LPARAM);
 
 //----------------------------------------------------
 
-void InstallNewWindowProcedure()
+void InstallWindowProcedure()
 {
 	HWND hwndGameWnd = pGame->GetMainWindowHwnd();
 
@@ -31,7 +31,7 @@ BOOL SubclassGameWindow()
 		DWORD dwStyle = GetClassLong(hwndGameWnd,GCL_STYLE);
 		SetClassLong(hwndGameWnd,GCL_STYLE,dwStyle|CS_DBLCLKS);
 
-		InstallNewWindowProcedure();
+		InstallWindowProcedure();
 
 		SetWindowText(hwndGameWnd,"GTA:SA:MP");
 

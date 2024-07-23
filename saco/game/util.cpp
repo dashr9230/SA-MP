@@ -1897,6 +1897,20 @@ DWORD GetColorFromEmbedCode(wchar_t *szString)
 	return 0xFFFFFFFF;
 }
 
+void RemoveColorEmbedsFromString(char *szString)
+{
+	while(*szString)
+	{
+		if(GetColorFromEmbedCode(szString) != 0xFFFFFFFF)
+		{
+			strcpy(szString, szString + 8);
+			continue;
+		}
+		szString++;
+	}
+	*szString = 0;
+}
+
 DWORD unnamed_100B6100(char *szString, int nMaxLen)
 {
 	char tmp_buf[2049];

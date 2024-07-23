@@ -69,3 +69,4 @@ BOOL IsHexChar(char c);
 BOOL IsHexChar(wchar_t c);
 DWORD GetColorFromEmbedCode(char *szString);
 DWORD GetColorFromEmbedCode(wchar_t *szString);
+void RemoveColorEmbedsFromString(char *szString);
