@@ -20,9 +20,9 @@ private:
 	char field_C;
 	int field_D;
 	char field_11[261];
-	int field_116;
+	CDXUTDialog			*m_pGameUI;
 	int field_11A;
-	int field_11E;
+	CDXUTScrollBar		*m_pScrollBar;
 	DWORD				m_dwChatTextColor;
 	DWORD				m_dwChatInfoColor;
 	DWORD				m_dwChatDebugColor;
@@ -41,13 +41,19 @@ private:
 	int field_63D6;
 	int field_63DA;
 	int field_63DE;
-	char _gap63E2[8];
+	int field_63E2;
+	char _gap63E6[4];
+
 
 	void CreateFonts();
+
+	void FUNC_10067200();
 
 public:
 
 	void AddDebugMessage(CHAR *szFormat, ...);
+
+	void ResetDialogControls(CDXUTDialog *pGameUI);
 
 	CChatWindow(IDirect3DDevice9 *pD3DDevice, CFontRender *pFontRender, CHAR *szChatLogFile);
 };
