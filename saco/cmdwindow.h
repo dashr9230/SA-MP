@@ -11,8 +11,8 @@ class CCmdWindow // size: 6908
 private:
 
 	IDirect3DDevice9 *m_pD3DDevice;
-	int field_4;
-	int field_8;
+	CDXUTDialog		*m_pGameUI;
+	CDXUTIMEEditBox	*m_pEditControl;
 
 public:
 
@@ -35,4 +35,6 @@ public:
 
 	void AddDefaultCmdProc(CMDPROC cmdDefault);
 	void AddCmdProc(PCHAR szCmdName, CMDPROC cmdHandler);
+
+	void ResetDialogControls(CDXUTDialog *pGameUI);
 };
