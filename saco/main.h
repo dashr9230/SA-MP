@@ -72,7 +72,6 @@ typedef struct _GAME_SETTINGS {
 #include "unkclass3.h"
 #include "unkclass4.h"
 #include "unkclass5.h"
-#include "unkclass7.h"
 #include "unkclass8.h"
 #include "unkclass10.h"
 #include "unkclass11.h"
