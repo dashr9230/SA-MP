@@ -42,7 +42,7 @@ const SCRIPT_COMMAND set_camera_position				= { 0x015F, "ffffff" }; // x, y, z, 
 
 const SCRIPT_COMMAND disable_marker						= { 0x0164, "i" };		// var_marker
 const SCRIPT_COMMAND set_marker_color					= { 0x0165, "ii" };		// var_marker, color
-
+const SCRIPT_COMMAND enable_zone_names					= { 0x09BA, "i" };
 const SCRIPT_COMMAND create_radar_marker_without_sphere	= { 0x04CE, "fffiv" };	// x, y, z, marker_type, var_marker
 const SCRIPT_COMMAND show_on_radar						= { 0x0168, "ii" };		// var_marker, size
 
