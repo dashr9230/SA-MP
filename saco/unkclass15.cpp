@@ -9,10 +9,10 @@ CUnkClass15::CUnkClass15()
 	field_18 = 0;
 	m_pLight = NULL;
 
-	sub_1006BE40();
+	FUNC_1006BE40();
 }
 
-bool CUnkClass15::sub_1006BE40()
+bool CUnkClass15::FUNC_1006BE40()
 {
 	RwRGBAReal color;
 	VECTOR v;

@@ -463,7 +463,7 @@ void CheckFileNameHash(UINT *pDigest)
 		pDigest[4] == dwHandlingDigest[4] )
 	{
 		if(pGame)
-			pGame->sub_10062570();
+			pGame->FUNC_10062570();
 	}
 
 	if( pDigest[0] == dwWeaponDigest[0] &&
@@ -473,7 +473,7 @@ void CheckFileNameHash(UINT *pDigest)
 		pDigest[4] == dwWeaponDigest[4] )
 	{
 		if(pGame)
-			pGame->sub_10062570();
+			pGame->FUNC_10062570();
 	}
 
 	if( pDigest[0] == dwMeleeDigest[0] &&
@@ -483,7 +483,7 @@ void CheckFileNameHash(UINT *pDigest)
 		pDigest[4] == dwMeleeDigest[4] )
 	{
 		if(pGame)
-			pGame->sub_10062570();
+			pGame->FUNC_10062570();
 	}
 }
 

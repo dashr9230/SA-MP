@@ -25,5 +25,5 @@ private:
 public:
 	CScoreBoard(IDirect3DDevice9 *pD3DDevice);
 
-	void sub_1006E930();
+	void FUNC_1006E930();
 };

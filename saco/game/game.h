@@ -87,7 +87,7 @@ public:
 
 	//-----------------------------------------------------------
 
-	void sub_10062570() { field_55++; };
+	void FUNC_10062570() { field_55++; };
 
 	CPlayerPed  *FindPlayerPed() {
 		if(m_pGamePlayer==NULL)	m_pGamePlayer = new CPlayerPed();

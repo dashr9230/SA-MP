@@ -78,7 +78,7 @@ int CheckDuplicateD3D9Dlls()
 
 //----------------------------------------------------------
 
-void sub_1009DD50()
+void FUNC_1009DD50()
 {
 	unknown_1014FDA4 = TRUE;
 }

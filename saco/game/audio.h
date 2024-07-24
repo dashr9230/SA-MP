@@ -15,7 +15,7 @@ public:
 		field_4 = false;
 	}
 
-	void sub_100A21D0();
+	void FUNC_100A21D0();
 	int GetRadioStation();
 	void StartRadio(int iStation);
 	void StopRadio();

@@ -51,7 +51,7 @@ void CEntity::SetMatrix(MATRIX4X4 Matrix)
 
 //-----------------------------------------------------------
 
-void CEntity::sub_1009EC80()
+void CEntity::FUNC_1009EC80()
 {
 	if(!m_pEntity || m_pEntity->vtable == 0x863C40) return;
 
@@ -95,7 +95,7 @@ void CEntity::SetMoveSpeedVector(VECTOR Vector)
 
 //-----------------------------------------------------------
 
-void CEntity::sub_1009ED40(float fX, float fY, float fZ)
+void CEntity::FUNC_1009ED40(float fX, float fY, float fZ)
 {
 	int x=4;
 	while(x) {
@@ -136,7 +136,7 @@ void CEntity::SetTurnSpeedVector(VECTOR Vector)
 }
 //-----------------------------------------------------------
 
-void CEntity::sub_1009EE90()
+void CEntity::FUNC_1009EE90()
 {
 	DWORD dwEnt = (DWORD)m_pEntity;
 	if(!dwEnt) return;
@@ -148,7 +148,7 @@ void CEntity::sub_1009EE90()
 
 //-----------------------------------------------------------
 
-float CEntity::sub_1009EEB0()
+float CEntity::FUNC_1009EEB0()
 {
 	DWORD dwEnt = (DWORD)m_pEntity;
 	float fResult = 0.0f;
@@ -165,7 +165,7 @@ float CEntity::sub_1009EEB0()
 
 //-----------------------------------------------------------
 
-void CEntity::sub_1009EEF0(PVECTOR Vector)
+void CEntity::FUNC_1009EEF0(PVECTOR Vector)
 {
 	DWORD dwEnt = (DWORD)m_pEntity;
 	if(!dwEnt) return;
@@ -178,7 +178,7 @@ void CEntity::sub_1009EEF0(PVECTOR Vector)
 
 //-----------------------------------------------------------
 
-void CEntity::sub_1009EF20(int a2)
+void CEntity::FUNC_1009EF20(int a2)
 {
 	DWORD dwEnt = (DWORD)m_pEntity;
 	if(!dwEnt) return;
@@ -221,7 +221,6 @@ void CEntity::TeleportTo(float x, float y, float z)
 
 //-----------------------------------------------------------
 
-BOOL CEntity::sub_1009FDE0()
 {
 	return m_pEntity
 		&& m_pEntity->vtable != 0x863C40

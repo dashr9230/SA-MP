@@ -94,7 +94,7 @@ void CCamera::SetMatrix(MATRIX4X4 Matrix)
 //-----------------------------------------------------------
 
 // unused, also probably not part of CCamera
-void sub_1009D560(bool unk)
+void FUNC_1009D560(bool unk)
 {
 	byte_1014FD8C = unk;
 }
@@ -131,7 +131,7 @@ void CCamera::InterpolateLookAt(VECTOR *vecFrom, VECTOR *vecTo, int iTime, BYTE 
 
 //-----------------------------------------------------------
 
-void CCamera::sub_1009D660(CEntity *pEntity)
+void CCamera::FUNC_1009D660(CEntity *pEntity)
 {
 	field_0 = pEntity;
 
@@ -146,7 +146,7 @@ void CCamera::sub_1009D660(CEntity *pEntity)
 
 //-----------------------------------------------------------
 
-void CCamera::sub_1009D6B0()
+void CCamera::FUNC_1009D6B0()
 {
 	if(!field_0 || field_0->m_pEntity) return;
 

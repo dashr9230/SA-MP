@@ -28,12 +28,13 @@ CScoreBoard::CScoreBoard(IDirect3DDevice9 *pD3DDevice)
 	field_28 = 0.265625f;
 	field_2C = 0.437500f;
 
-	sub_1006E930();
+	FUNC_1006E930();
 
 	field_0 = 0;
 }
 
-void CScoreBoard::sub_1006E930()
+// MATCH
+void CScoreBoard::FUNC_1006E930()
 {
 	RECT rect;
 

@@ -77,7 +77,7 @@ void LaunchMonitor(PVOID v)
 
 	while(1) {
 		if(*(PDWORD)ADDR_ENTRY == 7) {
-			sub_1009DD50();
+			FUNC_1009DD50();
 			pGame->StartGame();
 			break;
 		}
@@ -332,7 +332,7 @@ void DoInitStuff()
 		pConfig = new CConfig(szConfigFile);
 
 		timeBeginPeriod(1); // increases the accuracy of Sleep()
-		sub_1009DD50();
+		FUNC_1009DD50();
 		SubclassGameWindow();
 
 		// Grab the real IDirect3D9 * from the game.

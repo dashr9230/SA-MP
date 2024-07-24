@@ -21,8 +21,8 @@ public:
 	void Attach(int unk1, int unk2, int unk3);
 	void InterpolatePosition(VECTOR *vecFrom, VECTOR *vecTo, int iTime, BYTE byteCut);
 	void InterpolateLookAt(VECTOR *vecFrom, VECTOR *vecTo, int iTime, BYTE byteCut);
-	void sub_1009D660(CEntity *pEntity);
-	void sub_1009D6B0();
+	void FUNC_1009D660(CEntity *pEntity);
+	void FUNC_1009D6B0();
 	float GetDistanceFromPoint(VECTOR *vecPos);
 
 	CCamera() {

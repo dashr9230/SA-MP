@@ -17,5 +17,5 @@ private:
 public:
 	CUnkClass15();
 
-	bool sub_1006BE40();
+	bool FUNC_1006BE40();
 };
