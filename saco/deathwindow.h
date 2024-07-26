@@ -9,7 +9,10 @@
 class CDeathWindow
 {
 private:
-	char _gap0[343];
+	char _gap0[331];
+	BOOL				field_14B;
+	ID3DXFont			*field_14F;
+	ID3DXFont			*field_153;
 
 public:
 	void AddMessage(CHAR *a1, CHAR *a2, DWORD a3, DWORD a4, BYTE a5);
@@ -17,6 +20,9 @@ public:
 	PCHAR SpriteIDForWeapon(BYTE byteWeaponID);
 
 	CDeathWindow(IDirect3DDevice9 *pD3DDevice);
+
+	void CreateAuxFonts();
+
 };
 
 //----------------------------------------------------

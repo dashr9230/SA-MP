@@ -10,6 +10,17 @@ CDeathWindow::CDeathWindow(IDirect3DDevice9 *pD3DDevice)
 
 //----------------------------------------------------
 
+void CDeathWindow::CreateAuxFonts()
+{
+	D3DXCreateFont(m_pD3DDevice, 20, 0, FW_NORMAL, 1, FALSE,
+		SYMBOL_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, "SAMPAUX3", &field_14F);
+
+	D3DXCreateFont(m_pD3DDevice, 22, 0, FW_NORMAL, 1, FALSE,
+		SYMBOL_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, "SAMPAUX3", &field_153);
+
+	field_14B = TRUE;
+}
+
 void CDeathWindow::AddMessage(CHAR *a1, CHAR *a2, DWORD a3, DWORD a4, BYTE a5)
 {
 	// TODO: CDeathWindow::AddMessage .text:1006A6B0
