@@ -51,14 +51,6 @@ PCHAR CDeathWindow::SpriteIDForWeapon(BYTE byteWeaponID)
 			return "!";
 		case WEAPON_CHAINSAW:
 			return "1";
-		/*case WEAPON_DILDO:
-			return "E";
-		case WEAPON_DILDO2:
-			return "E";
-		case WEAPON_VIBRATOR:
-			return "E";
-		case WEAPON_VIBRATOR2:
-			return "E";*/
 		case WEAPON_DILDO:
 		case WEAPON_DILDO2:
 		case WEAPON_VIBRATOR:
@@ -124,10 +116,6 @@ PCHAR CDeathWindow::SpriteIDForWeapon(BYTE byteWeaponID)
 			return "Q";
 		case WEAPON_COLLISION:
 			return "K";
-		/*case SPECIAL_ENTRY_CONNECT:
-			return "N";
-		case SPECIAL_ENTRY_DISCONNECT:
-			return "N";*/
 		case SPECIAL_ENTRY_CONNECT:
 		case SPECIAL_ENTRY_DISCONNECT:
 			return "N";
