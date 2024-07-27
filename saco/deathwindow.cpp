@@ -153,6 +153,18 @@ void CDeathWindow::RenderText(CHAR *sz,RECT rect,DWORD dwColor,DWORD dwParams)
 
 //----------------------------------------------------
 
+void CDeathWindow::RenderWeaponSprite(CHAR *WeaponChar,RECT rect,DWORD dwColor)
+{
+	rect.top -= 5;
+	m_pWeaponFont2->DrawText(m_pSprite,"G",-1,&rect,DT_NOCLIP|DT_LEFT,0xFF000000);
+
+	m_pWeaponFont2->DrawText(m_pSprite,"G",-1,&rect,DT_CALCRECT|DT_NOCLIP|DT_LEFT,0xFF000000);
+
+	m_pWeaponFont->DrawText(m_pSprite,WeaponChar,-1,&rect,DT_CENTER|DT_VCENTER|DT_NOCLIP,dwColor);
+}
+
+//----------------------------------------------------
+
 SIZE CDeathWindow::GetSymbolSize()
 {
 	SIZE ret;
