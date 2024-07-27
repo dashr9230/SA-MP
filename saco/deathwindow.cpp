@@ -26,6 +26,27 @@ void CDeathWindow::AddMessage(CHAR *a1, CHAR *a2, DWORD a3, DWORD a4, BYTE a5)
 	// TODO: CDeathWindow::AddMessage .text:1006A6B0
 }
 
+void CDeathWindow::AddToDeathWindowBuffer( CHAR *szKiller,
+										   CHAR *szKillee,
+										   DWORD dwKillerColor,
+										   DWORD dwKilleeColor,
+										   BYTE byteWeaponID )
+{
+	int n = MAX_DISP_DEATH_MESSAGES-1;
+
+	PushBack();
+
+	m_DeathWindowEntries[n].byteWeaponType = byteWeaponID;
+	m_DeathWindowEntries[n].dwKilleeColor = dwKilleeColor;
+	m_DeathWindowEntries[n].dwKillerColor = dwKillerColor;
+
+	if(szKiller) strcpy(m_DeathWindowEntries[n].szKiller,szKiller);
+	else m_DeathWindowEntries[n].szKiller[0] = '\0';
+
+	if(szKillee) strcpy(m_DeathWindowEntries[n].szKillee,szKillee);
+	else m_DeathWindowEntries[n].szKillee[0] = '\0';
+}
+
 //----------------------------------------------------
 
 void CDeathWindow::PushBack()

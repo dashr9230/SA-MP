@@ -6,8 +6,11 @@
 #pragma pack(1)
 typedef struct _DEATH_WINDOW_ENTRY
 {
-	char _gap0[59];
-
+	CHAR szKiller[MAX_PLAYER_NAME+1];
+	CHAR szKillee[MAX_PLAYER_NAME+1];
+	DWORD dwKillerColor;
+	DWORD dwKilleeColor;
+	BYTE  byteWeaponType;
 } DEATH_WINDOW_ENTRY;
 
 #define SPECIAL_ENTRY_CONNECT 200
@@ -26,6 +29,7 @@ private:
 	ID3DXFont			*field_153;
 	
 	void PushBack();
+	void AddToDeathWindowBuffer(CHAR *szKiller,CHAR *szKillee,DWORD dwKillerColor,DWORD dwKilleeColor,BYTE byteWeaponID);
 
 public:
 	void AddMessage(CHAR *a1, CHAR *a2, DWORD a3, DWORD a4, BYTE a5);
