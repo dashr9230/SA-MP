@@ -38,6 +38,7 @@ public:
 	PCHAR SpriteIDForWeapon(BYTE byteWeaponID);
 
 	CDeathWindow(IDirect3DDevice9 *pD3DDevice);
+	~CDeathWindow();
 
 	void CreateFonts();
 	void CreateAuxFonts();

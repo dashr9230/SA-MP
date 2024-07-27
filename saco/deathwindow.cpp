@@ -32,6 +32,16 @@ CDeathWindow::CDeathWindow(IDirect3DDevice9 *pD3DDevice)
 
 //----------------------------------------------------
 
+CDeathWindow::~CDeathWindow()
+{
+	SAFE_RELEASE(m_pD3DFont);
+	SAFE_RELEASE(m_pWeaponFont);
+	SAFE_RELEASE(m_pWeaponFont2);
+	SAFE_RELEASE(m_pSprite);
+}
+
+//----------------------------------------------------
+
 void CDeathWindow::CreateAuxFonts()
 {
 	D3DXCreateFont(m_pD3DDevice, 20, 0, FW_NORMAL, 1, FALSE,
