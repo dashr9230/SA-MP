@@ -5,10 +5,11 @@ class CNewPlayerTags
 {
 private:
 	IDirect3DDevice9* m_pDevice;
-	int field_4;
+	IDirect3DStateBlock9* m_pStates;
 	ID3DXSprite* m_pSprite;
 
 public:
 	CNewPlayerTags(IDirect3DDevice9* pDevice);
 
+	void RestoreDeviceObjects();
 };
