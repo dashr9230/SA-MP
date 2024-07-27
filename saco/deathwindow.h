@@ -35,6 +35,7 @@ private:
 public:
 	void AddMessage(CHAR *szKiller, CHAR *szKillee, DWORD dwKillerColor, DWORD dwKilleeColor, BYTE byteWeaponID);
 
+	void RenderText(CHAR *sz,RECT rect,DWORD dwColor,DWORD dwParams);
 	PCHAR SpriteIDForWeapon(BYTE byteWeaponID);
 
 	CDeathWindow(IDirect3DDevice9 *pD3DDevice);

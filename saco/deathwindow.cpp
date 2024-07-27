@@ -134,6 +134,25 @@ void CDeathWindow::PushBack()
 
 //----------------------------------------------------
 
+void CDeathWindow::RenderText(CHAR *sz,RECT rect,DWORD dwColor,DWORD dwParams)
+{
+	rect.top -= 1;
+	m_pD3DFont->DrawText(m_pSprite,sz,-1,&rect,DT_NOCLIP|dwParams,0xFF000000);
+	rect.top += 2;
+	m_pD3DFont->DrawText(m_pSprite,sz,-1,&rect,DT_NOCLIP|dwParams,0xFF000000);
+	rect.top -= 1;
+	rect.left -= 1;
+	m_pD3DFont->DrawText(m_pSprite,sz,-1,&rect,DT_NOCLIP|dwParams,0xFF000000);
+	rect.left += 2;
+	m_pD3DFont->DrawText(m_pSprite,sz,-1,&rect,DT_NOCLIP|dwParams,0xFF000000);
+	rect.left -= 1;
+
+	m_pD3DFont->DrawText(m_pSprite,sz,-1,&rect,DT_NOCLIP|dwParams,dwColor);
+
+}
+
+//----------------------------------------------------
+
 SIZE CDeathWindow::GetSymbolSize()
 {
 	SIZE ret;
