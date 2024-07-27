@@ -28,6 +28,17 @@ void CDeathWindow::AddMessage(CHAR *a1, CHAR *a2, DWORD a3, DWORD a4, BYTE a5)
 
 //----------------------------------------------------
 
+void CDeathWindow::PushBack()
+{
+	int x=0;
+	while(x!=(MAX_DISP_DEATH_MESSAGES - 1)) {
+		memcpy(&m_DeathWindowEntries[x],&m_DeathWindowEntries[x+1],sizeof(DEATH_WINDOW_ENTRY));
+		x++;
+	}
+}
+
+//----------------------------------------------------
+
 PCHAR CDeathWindow::SpriteIDForWeapon(BYTE byteWeaponID)
 {
 	switch (byteWeaponID) {
