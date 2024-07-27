@@ -22,7 +22,7 @@ typedef struct _DEATH_WINDOW_ENTRY
 class CDeathWindow
 {
 private:
-	char _gap0[4];
+	int					field_0;
 	DEATH_WINDOW_ENTRY	m_DeathWindowEntries[MAX_DISP_DEATH_MESSAGES];
 	int					m_iLongestNickLength; // In screen units, longest nick length;
 	LONG				field_12F;

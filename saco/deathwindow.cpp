@@ -9,7 +9,25 @@ int GetFontWeight();
 
 CDeathWindow::CDeathWindow(IDirect3DDevice9 *pD3DDevice)
 {
-	// TODO: CDeathWindow::CDeathWindow
+	int x=0;
+	m_pD3DFont = NULL;
+	m_pWeaponFont = NULL;
+	m_pWeaponFont2 = NULL;
+	m_pSprite = NULL;
+	field_14B = FALSE;
+	field_14F = NULL;
+	field_153 = NULL;
+	field_0 = 1;
+	
+	m_pD3DDevice = pD3DDevice;
+
+	CreateFonts();
+
+	// Init the chat window lines to 0
+	while(x!=MAX_DISP_DEATH_MESSAGES) {
+		memset(&m_DeathWindowEntries[x],0,sizeof(DEATH_WINDOW_ENTRY));
+		x++;
+	}
 }
 
 //----------------------------------------------------
