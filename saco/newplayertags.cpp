@@ -10,6 +10,12 @@ CNewPlayerTags::CNewPlayerTags(IDirect3DDevice9* pDevice)
 	D3DXCreateSprite(pDevice, &m_pSprite);
 }
 
+CNewPlayerTags::~CNewPlayerTags()
+{
+	if(m_pStates) m_pStates->Release();
+	SAFE_DELETE(m_pSprite);
+}
+
 void CNewPlayerTags::RestoreDeviceObjects()
 {
 	if(m_pSprite)

@@ -10,6 +10,7 @@ private:
 
 public:
 	CNewPlayerTags(IDirect3DDevice9* pDevice);
+	~CNewPlayerTags();
 
 	void RestoreDeviceObjects();
 };
