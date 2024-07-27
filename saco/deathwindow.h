@@ -22,7 +22,7 @@ typedef struct _DEATH_WINDOW_ENTRY
 class CDeathWindow
 {
 private:
-	int					field_0;
+	BOOL				m_bEnabled;
 	DEATH_WINDOW_ENTRY	m_DeathWindowEntries[MAX_DISP_DEATH_MESSAGES];
 	int					m_iLongestNickLength; // In screen units, longest nick length;
 	LONG				field_12F;
@@ -33,6 +33,7 @@ private:
 	void AddToDeathWindowBuffer(CHAR *szKiller,CHAR *szKillee,DWORD dwKillerColor,DWORD dwKilleeColor,BYTE byteWeaponID);
 
 public:
+	void Draw();
 	void AddMessage(CHAR *szKiller, CHAR *szKillee, DWORD dwKillerColor, DWORD dwKilleeColor, BYTE byteWeaponID);
 
 	void RenderText(CHAR *sz,RECT rect,DWORD dwColor,DWORD dwParams);

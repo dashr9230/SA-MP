@@ -5,6 +5,8 @@ int GetDeathWindowFontSize();
 char* GetFontFace();
 int GetFontWeight();
 
+extern CGame *pGame;
+
 //----------------------------------------------------
 
 CDeathWindow::CDeathWindow(IDirect3DDevice9 *pD3DDevice)
@@ -17,7 +19,7 @@ CDeathWindow::CDeathWindow(IDirect3DDevice9 *pD3DDevice)
 	field_14B = FALSE;
 	field_14F = NULL;
 	field_153 = NULL;
-	field_0 = 1;
+	m_bEnabled = TRUE;
 	
 	m_pD3DDevice = pD3DDevice;
 
@@ -91,6 +93,94 @@ void CDeathWindow::CreateFonts()
 
 //----------------------------------------------------
 
+void CDeathWindow::Draw()
+{
+	RECT rect;
+	RECT rectNickSize;
+	int iVerticalBase = (int)(pGame->GetScreenHeight() * 0.3f);
+	int iHorizontalBase = (int)(pGame->GetScreenWidth() * 0.75f);
+	int x=0;
+
+	LONG v4 = field_12F + 2 * m_iLongestNickLength;
+	if((v4 + iHorizontalBase) > pGame->GetScreenWidth()) {
+		iHorizontalBase = (int)(pGame->GetScreenWidth() - v4);
+	}
+
+	rect.top		= iVerticalBase;
+	rect.left		= iHorizontalBase;
+	rect.bottom		= rect.top + 30;
+	rect.right		= rect.left + 60;
+
+	if(m_pD3DFont && m_pWeaponFont && m_bEnabled)
+	{
+		m_pSprite->Begin(D3DXSPRITE_ALPHABLEND);
+
+		while(x!=(MAX_DISP_DEATH_MESSAGES)) {
+
+			if(strlen(m_DeathWindowEntries[x].szKiller) && strlen(m_DeathWindowEntries[x].szKillee))
+			{
+				// Get the rect length of the killee's nick so we can right justify.
+				m_pD3DFont->DrawText(0,m_DeathWindowEntries[x].szKiller,-1,
+					&rectNickSize,DT_CALCRECT|DT_LEFT,0xFFFFFFFF);
+
+				// Move in so it's right justified. (DT_RIGHT fucks the text)
+				rect.left += m_iLongestNickLength - (rectNickSize.right - rectNickSize.left);
+
+				RenderText(m_DeathWindowEntries[x].szKiller,rect,
+					m_DeathWindowEntries[x].dwKillerColor,DT_LEFT);
+
+				rect.left = iHorizontalBase + m_iLongestNickLength + 3;
+				rect.right = rect.left + 35;
+
+				RenderWeaponSprite(SpriteIDForWeapon(m_DeathWindowEntries[x].byteWeaponType),
+					rect,0xFFFFFFFF);
+
+				rect.left += field_12F;
+				rect.right += field_12F;
+
+				RenderText(m_DeathWindowEntries[x].szKillee,rect,m_DeathWindowEntries[x].dwKilleeColor,DT_LEFT);
+			}
+			else if(!strlen(m_DeathWindowEntries[x].szKiller) && strlen(m_DeathWindowEntries[x].szKillee))
+			{
+				DWORD dwColor = 0xFFFFFFFF;
+
+				// Get the rect length of the killee's nick so we can right justify.
+				m_pD3DFont->DrawText(0,m_DeathWindowEntries[x].szKillee,-1,
+					&rectNickSize,DT_CALCRECT|DT_LEFT,0xFF000000);
+
+				// Move in so it's right justified. (DT_RIGHT fucks the text)
+				rect.left += m_iLongestNickLength - (rectNickSize.right - rectNickSize.left);
+
+				RenderText(m_DeathWindowEntries[x].szKillee,rect,
+					m_DeathWindowEntries[x].dwKilleeColor,DT_LEFT);
+
+				rect.left = iHorizontalBase + m_iLongestNickLength + 3;
+				rect.right = rect.left + 35;
+
+				if(m_DeathWindowEntries[x].byteWeaponType == SPECIAL_ENTRY_CONNECT) {
+					dwColor = 0xFF1111AA;
+				}				
+				else if(m_DeathWindowEntries[x].byteWeaponType == SPECIAL_ENTRY_DISCONNECT) {
+					dwColor = 0xFFAA1111;
+				}
+
+				RenderWeaponSprite(SpriteIDForWeapon(m_DeathWindowEntries[x].byteWeaponType),rect,dwColor);
+			}
+
+			rect.top += field_133 + 5;
+			rect.bottom += field_133 + 5;
+			rect.left = iHorizontalBase;
+			rect.right = rect.left + 60;
+
+			x++;
+		}
+
+		m_pSprite->End();
+	}
+}
+
+//----------------------------------------------------
+
 void CDeathWindow::AddMessage( CHAR *szKiller,
 							   CHAR *szKillee,
 							   DWORD dwKillerColor,
@@ -99,6 +189,8 @@ void CDeathWindow::AddMessage( CHAR *szKiller,
 {
 	AddToDeathWindowBuffer(szKiller,szKillee,dwKillerColor,dwKilleeColor,byteWeaponID);
 }
+
+//----------------------------------------------------
 
 void CDeathWindow::AddToDeathWindowBuffer( CHAR *szKiller,
 										   CHAR *szKillee,
