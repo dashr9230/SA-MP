@@ -21,9 +21,13 @@ void CDeathWindow::CreateAuxFonts()
 	field_14B = TRUE;
 }
 
-void CDeathWindow::AddMessage(CHAR *a1, CHAR *a2, DWORD a3, DWORD a4, BYTE a5)
+void CDeathWindow::AddMessage( CHAR *szKiller,
+							   CHAR *szKillee,
+							   DWORD dwKillerColor,
+							   DWORD dwKilleeColor,
+							   BYTE byteWeaponID )
 {
-	// TODO: CDeathWindow::AddMessage .text:1006A6B0
+	AddToDeathWindowBuffer(szKiller,szKillee,dwKillerColor,dwKilleeColor,byteWeaponID);
 }
 
 void CDeathWindow::AddToDeathWindowBuffer( CHAR *szKiller,
