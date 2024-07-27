@@ -4,11 +4,11 @@
 class CNewPlayerTags
 {
 private:
-	IDirect3DDevice9* m_pD3DDevice;
+	IDirect3DDevice9* m_pDevice;
 	int field_4;
-	ID3DXSprite* m_pD3DSprite;
+	ID3DXSprite* m_pSprite;
 
 public:
-	CNewPlayerTags(IDirect3DDevice9 *pD3DDevice);
+	CNewPlayerTags(IDirect3DDevice9* pDevice);
 
 };

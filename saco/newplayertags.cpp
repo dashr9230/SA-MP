@@ -1,11 +1,11 @@
 
 #include "main.h"
 
-CNewPlayerTags::CNewPlayerTags(IDirect3DDevice9 *pD3DDevice)
+CNewPlayerTags::CNewPlayerTags(IDirect3DDevice9* pDevice)
 {
-	m_pD3DDevice = pD3DDevice;
-	field_4 = 0;
-	m_pD3DSprite = NULL;
+	m_pDevice			= pDevice;
+	field_4				= 0;
+	m_pSprite			= NULL;
 
-	D3DXCreateSprite(pD3DDevice, &m_pD3DSprite);
+	D3DXCreateSprite(pDevice, &m_pSprite);
 }
