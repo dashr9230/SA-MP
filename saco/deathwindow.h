@@ -18,17 +18,18 @@ typedef struct _DEATH_WINDOW_ENTRY
 
 //----------------------------------------------------
 
+#pragma pack(1)
 class CDeathWindow
 {
 private:
 	char _gap0[4];
 	DEATH_WINDOW_ENTRY	m_DeathWindowEntries[MAX_DISP_DEATH_MESSAGES];
-	char _gap012B[24];
-	BOOL				field_14B;
-	ID3DXFont			*field_14F;
-	ID3DXFont			*field_153;
-	
+	int					m_iLongestNickLength; // In screen units, longest nick length;
+	LONG				field_12F;
+	LONG				field_133;
+
 	void PushBack();
+	SIZE GetSymbolSize();
 	void AddToDeathWindowBuffer(CHAR *szKiller,CHAR *szKillee,DWORD dwKillerColor,DWORD dwKilleeColor,BYTE byteWeaponID);
 
 public:
@@ -38,8 +39,17 @@ public:
 
 	CDeathWindow(IDirect3DDevice9 *pD3DDevice);
 
+	void CreateFonts();
 	void CreateAuxFonts();
 
+	ID3DXFont		    *m_pD3DFont;
+	ID3DXFont			*m_pWeaponFont;
+	ID3DXFont			*m_pWeaponFont2;
+	ID3DXSprite			*m_pSprite;
+	IDirect3DDevice9	*m_pD3DDevice;
+	BOOL				field_14B;
+	ID3DXFont			*field_14F;
+	ID3DXFont			*field_153;
 };
 
 //----------------------------------------------------

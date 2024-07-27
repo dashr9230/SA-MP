@@ -1,6 +1,10 @@
 
 #include "main.h"
 
+int GetDeathWindowFontSize();
+char* GetFontFace();
+int GetFontWeight();
+
 //----------------------------------------------------
 
 CDeathWindow::CDeathWindow(IDirect3DDevice9 *pD3DDevice)
@@ -20,6 +24,44 @@ void CDeathWindow::CreateAuxFonts()
 
 	field_14B = TRUE;
 }
+
+//----------------------------------------------------
+
+void CDeathWindow::CreateFonts()
+{
+	if(!m_pD3DDevice) return;
+
+	RECT rectLongestNick = {0,0,0,0};
+	int	iFontSize;
+
+	SAFE_RELEASE(m_pD3DFont);
+	SAFE_RELEASE(m_pWeaponFont);
+	SAFE_RELEASE(m_pWeaponFont2);
+	SAFE_RELEASE(m_pSprite);
+
+	iFontSize = GetDeathWindowFontSize();
+
+	// Create a sprite to use when drawing text
+	D3DXCreateSprite(m_pD3DDevice,&m_pSprite);
+
+	D3DXCreateFont(m_pD3DDevice, iFontSize, 0, GetFontWeight(), 1, FALSE,
+		DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, GetFontFace(), &m_pD3DFont);
+
+	// Store the rect for right aligned name (DT_RIGHT fucks the text)
+	if(m_pD3DFont) m_pD3DFont->DrawText(0,"LONGESTNICKNICK_NICKNICK",-1,&rectLongestNick,DT_CALCRECT|DT_LEFT,0xFF000000);
+
+	m_iLongestNickLength = rectLongestNick.right - rectLongestNick.left;
+
+	D3DXCreateFont(m_pD3DDevice, iFontSize + 8, 0, FW_NORMAL, 1, FALSE,
+		SYMBOL_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, "GTAWEAPON3", &m_pWeaponFont);
+	D3DXCreateFont(m_pD3DDevice, iFontSize + 12, 0, FW_NORMAL, 1, FALSE,
+		SYMBOL_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, "GTAWEAPON3", &m_pWeaponFont2);
+
+	field_12F = GetSymbolSize().cx;
+	field_133 = GetSymbolSize().cy;
+}
+
+//----------------------------------------------------
 
 void CDeathWindow::AddMessage( CHAR *szKiller,
 							   CHAR *szKillee,
@@ -60,6 +102,27 @@ void CDeathWindow::PushBack()
 		memcpy(&m_DeathWindowEntries[x],&m_DeathWindowEntries[x+1],sizeof(DEATH_WINDOW_ENTRY));
 		x++;
 	}
+}
+
+//----------------------------------------------------
+
+SIZE CDeathWindow::GetSymbolSize()
+{
+	SIZE ret;
+	RECT rectSize;
+
+	rectSize.top = 0;
+	rectSize.bottom = 100;
+	rectSize.left = 0;
+	rectSize.right = 100;
+
+	if(m_pWeaponFont2) {
+		m_pWeaponFont2->DrawText(0,"G",-1,&rectSize,DT_CALCRECT|DT_NOCLIP|DT_VCENTER,0xFF000000);
+	}
+
+	ret.cx = rectSize.right - rectSize.left;
+	ret.cy = rectSize.bottom - rectSize.top;
+	return ret;
 }
 
 //----------------------------------------------------
