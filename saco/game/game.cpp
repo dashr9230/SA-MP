@@ -4,6 +4,8 @@
 #include "keystuff.h"
 #include "aimstuff.h"
 
+#include <dinput.h>
+
 extern int iGtaVersion;
 
 void GameInstallHooks();
@@ -14,6 +16,8 @@ void InitAnimNameHashes();
 char *szGameTextMessage;
 
 int unnamed_10150340[210];
+
+IDirectInputDevice8 *pDirectInputMouse;
 
 BYTE unnamed_10150688;
 int unnamed_1015068C;
@@ -136,6 +140,16 @@ float CGame::FindGroundZForCoord(float x, float y, float z)
 }
 
 //-----------------------------------------------------------
+
+void DIReleaseMouse()
+{
+	pDirectInputMouse = *(IDirectInputDevice8**)0xC8CFA4;
+	//SAFE_RELEASE(pDirectInputMouse);
+	if(pDirectInputMouse) {
+		pDirectInputMouse->Release();
+		*(IDirectInputDevice8**)0xC8CFA4 = NULL;
+	}
+}
 
 void CGame::InitGame()
 {
