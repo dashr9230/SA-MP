@@ -14,6 +14,7 @@ void ApplyInGamePatches();
 void InitAnimNameHashes();
 
 char *szGameTextMessage;
+HWND hWindowHandle;
 
 int unnamed_10150340[210];
 
@@ -149,6 +150,18 @@ void DIReleaseMouse()
 		pDirectInputMouse->Release();
 		*(IDirectInputDevice8**)0xC8CFA4 = NULL;
 	}
+}
+
+void DIInitMouse()
+{
+	pDirectInputMouse = *(IDirectInputDevice8**)0xC8CFA4;
+	hWindowHandle = *(HWND*)0xC97C1C;
+
+	if(!pDirectInputMouse || !hWindowHandle) return;
+
+	pDirectInputMouse->Unacquire();
+	pDirectInputMouse->SetCooperativeLevel(hWindowHandle,DISCL_NONEXCLUSIVE|DISCL_FOREGROUND);
+	pDirectInputMouse->Acquire();
 }
 
 void CGame::InitGame()
