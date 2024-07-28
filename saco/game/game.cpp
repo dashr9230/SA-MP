@@ -110,6 +110,13 @@ BYTE CGame::sub_100A00F0()
 
 //-----------------------------------------------------------
 
+int CGame::GetWeaponModelIDFromWeapon(int iWeaponID)
+{
+	return GameGetWeaponModelIDFromWeaponID(iWeaponID);
+}
+
+//-----------------------------------------------------------
+
 void CGame::InitGame()
 {
 	// Create a buffer for game text.

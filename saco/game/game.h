@@ -36,6 +36,7 @@ private:
 
 public:
 
+	int		GetWeaponModelIDFromWeapon(int iWeaponID);
 	void	StartGame();
 	void	InitGame();
 	BOOL	IsGameLoaded();
