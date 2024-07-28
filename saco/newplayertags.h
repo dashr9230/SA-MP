@@ -12,6 +12,7 @@ public:
 	CNewPlayerTags(IDirect3DDevice9* pDevice);
 	~CNewPlayerTags();
 
+	void Begin();
 	void DeleteDeviceObjects();
 	void RestoreDeviceObjects();
 };
