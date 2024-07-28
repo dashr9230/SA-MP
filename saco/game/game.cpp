@@ -164,6 +164,15 @@ void DIInitMouse()
 	pDirectInputMouse->Acquire();
 }
 
+void DIResetMouse()
+{
+	*(DWORD*)0xB73424 = 0;
+	*(DWORD*)0xB73428 = 0;
+
+	_asm mov edx, 0x541BD0
+	_asm call edx
+}
+
 void CGame::InitGame()
 {
 	// Create a buffer for game text.
