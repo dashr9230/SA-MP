@@ -13,6 +13,7 @@ BOOL ApplyPreGamePatches();
 void ApplyInGamePatches();
 void InitAnimNameHashes();
 
+DWORD dwDummyActiveMouseState;
 char *szGameTextMessage;
 HWND hWindowHandle;
 
@@ -177,6 +178,21 @@ void UpdatePads()
 {
 	_asm mov edx, 0x541DD0
 	_asm call edx
+}
+
+void DisableMousePositionUpdate()
+{
+	//*(DWORD*)0xB7340C = 0;
+	//*(DWORD*)0xB73410 = 0;
+	//*(DWORD*)0xB73414 = 0;
+	memset((PVOID)0xB7340C,0,12);
+
+	UnFuck(0x53F47A,4);
+	UnFuck(0x53F49A,4);
+	UnFuck(0x53F4B3,4);
+	*(DWORD*)0x53F47A = (DWORD)&dwDummyActiveMouseState;
+	*(DWORD*)0x53F49A = (DWORD)&dwDummyActiveMouseState;
+	*(DWORD*)0x53F4B3 = (DWORD)&dwDummyActiveMouseState;
 }
 
 void CGame::InitGame()
