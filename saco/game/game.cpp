@@ -205,6 +205,20 @@ void RestoreMousePositionUpdate()
 	*(DWORD*)0x53F4B3 = 0xB7340C;
 }
 
+void DisableMouseProcess()
+{
+	UnFuck(0x53F417,5);
+	memset((PVOID)0x53F417,0x90,5);
+
+	UnFuck(0x53F41F,4);
+	*(BYTE*)0x53F41F = 0x33;
+	*(BYTE*)0x53F420 = 0xC0;
+	*(BYTE*)0x53F421 = 0x0F;
+	*(BYTE*)0x53F422 = 0x84;
+}
+
+//-----------------------------------------------------------
+
 void CGame::InitGame()
 {
 	// Create a buffer for game text.
