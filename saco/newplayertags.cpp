@@ -41,6 +41,15 @@ void CNewPlayerTags::Begin()
 	m_pDevice->SetRenderState(D3DRS_ZENABLE, 0);
 }
 
+void CNewPlayerTags::End()
+{
+	if(m_pSprite)
+		m_pSprite->End();
+
+	if(m_pStates)
+		m_pStates->Apply();
+}
+
 void CNewPlayerTags::DeleteDeviceObjects()
 {
 	SAFE_RELEASE(m_pStates);

@@ -13,6 +13,7 @@ public:
 	~CNewPlayerTags();
 
 	void Begin();
+	void End();
 	void DeleteDeviceObjects();
 	void RestoreDeviceObjects();
 };
