@@ -415,39 +415,11 @@ void CGame::sub_100A0330()
 	// TODO: CGame::sub_100A0330() .text:100A0330
 }
 
-void CGame::sub_100A03D0()
-{
-	// TODO: CGame::sub_100A03D0() .text:100A03D0 (unused)
-}
-
-void CGame::sub_100A03E0()
-{
-	// TODO: CGame::sub_100A03E0() .text:100A03E0 (unused)
-}
-
-void CGame::sub_100A0400()
-{
-	// TODO: CGame::sub_100A0400() .text:100A0400
-}
 
 
 
 
 
-
-
-
-
-
-void CGame::sub_100A05D0()
-{
-	// TODO: CGame::sub_100A05D0() .text:100A05D0
-}
-
-void CGame::sub_100A06F0()
-{
-	// TODO: CGame::sub_100A06F0() .text:100A06F0
-}
 
 
 

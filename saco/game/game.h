@@ -118,12 +118,6 @@ public:
 	void sub_100A02E0();
 	void sub_100A0310();
 	void sub_100A0330();
-	void sub_100A03D0();
-	void sub_100A03E0();
-	void sub_100A0400();
-
-	void sub_100A05D0();
-	void sub_100A06F0();
 
 	void sub_100A1C10();
 };
