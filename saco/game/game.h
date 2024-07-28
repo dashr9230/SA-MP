@@ -38,6 +38,7 @@ public:
 
 	int		GetWeaponModelIDFromWeapon(int iWeaponID);
 	BOOL	IsKeyPressed(int iKeyIdentifier);
+	float	FindGroundZForCoord(float x, float y, float z);
 	void	StartGame();
 	void	InitGame();
 	BOOL	IsGameLoaded();

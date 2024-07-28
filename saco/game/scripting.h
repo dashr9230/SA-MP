@@ -50,6 +50,8 @@ const SCRIPT_COMMAND create_icon_marker_sphere			= { 0x02A7, "fffiv" };
 
 const SCRIPT_COMMAND add_to_player_money				= { 0x0109, "ii" };		// PLAYER_CHAR, money
 
+const SCRIPT_COMMAND get_ground_z						= { 0x02ce, "fffv" };	// x, y, z, var_ground_z
+
 const SCRIPT_COMMAND destroy_racing_checkpoint			= { 0x06d6,	"i" };
 
 const SCRIPT_COMMAND set_actor_armed_weapon				= { 0x01b9, "ii" };

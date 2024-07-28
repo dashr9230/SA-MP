@@ -128,6 +128,15 @@ BOOL CGame::IsKeyPressed(int iKeyIdentifier)
 
 //-----------------------------------------------------------
 
+float CGame::FindGroundZForCoord(float x, float y, float z)
+{
+	float fGroundZ;
+	ScriptCommand(&get_ground_z, x, y, z, &fGroundZ);
+	return fGroundZ;
+}
+
+//-----------------------------------------------------------
+
 void CGame::InitGame()
 {
 	// Create a buffer for game text.
