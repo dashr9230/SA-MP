@@ -173,6 +173,12 @@ void DIResetMouse()
 	_asm call edx
 }
 
+void UpdatePads()
+{
+	_asm mov edx, 0x541DD0
+	_asm call edx
+}
+
 void CGame::InitGame()
 {
 	// Create a buffer for game text.
