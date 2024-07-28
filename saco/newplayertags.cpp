@@ -16,6 +16,14 @@ CNewPlayerTags::~CNewPlayerTags()
 	SAFE_DELETE(m_pSprite);
 }
 
+void CNewPlayerTags::DeleteDeviceObjects()
+{
+	SAFE_RELEASE(m_pStates);
+
+	if(m_pSprite)
+		m_pSprite->OnLostDevice();
+}
+
 void CNewPlayerTags::RestoreDeviceObjects()
 {
 	if(m_pSprite)

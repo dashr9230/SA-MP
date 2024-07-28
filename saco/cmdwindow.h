@@ -1,12 +1,15 @@
 
 #pragma once
 
+#define MAX_CMD_INPUT   128
 #define MAX_CMDS		144
 #define MAX_CMD_STRLEN  32
 
 typedef void (__cdecl *CMDPROC)(PCHAR);
 
-class CCmdWindow // size: 6908
+//----------------------------------------------------
+
+class CCmdWindow
 {
 private:
 
@@ -20,21 +23,31 @@ public:
 	CHAR        m_szCmdNames[MAX_CMDS][MAX_CMD_STRLEN+1];
 	int			m_iCmdCount;
 
-	int field_14E0;
-	char field_14E4[129];
+	BOOL		m_bEnabled;
+
+	char		m_szInputBuffer[MAX_CMD_INPUT + 1];
 	char field_1565[1290];
 	char field_1A6F[129];
 	int field_1AF0;
 	int field_1AF4;
-
 	CMDPROC		m_pDefaultCmd;	 // used when no command specifier was
 								 // used (ie. a normal chat message)
 
+	void GetDialogSize(RECT *pRect);
 
-	CCmdWindow(IDirect3DDevice9 *pD3DDevice);
+	void Enable();
+	void Disable();
 
+	void ProcessInput();
+
+	CMDPROC GetCmdHandler(PCHAR szCmdName);
 	void AddDefaultCmdProc(CMDPROC cmdDefault);
 	void AddCmdProc(PCHAR szCmdName, CMDPROC cmdHandler);
 
 	void ResetDialogControls(CDXUTDialog *pGameUI);
+	CCmdWindow(IDirect3DDevice9 *pD3DDevice);
+	~CCmdWindow();
 };
+
+//----------------------------------------------------
+// EOF

@@ -1,13 +1,14 @@
 
 #include "main.h"
 
-extern CConfig *pConfig;
+extern CGame		*pGame;
+extern CConfig		*pConfig;
 
 //----------------------------------------------------
-// MATCH
+
 CCmdWindow::CCmdWindow(IDirect3DDevice9 *pD3DDevice)
 {
-	field_14E0				= 0;
+	m_bEnabled				= FALSE;
 	m_pD3DDevice			= pD3DDevice;
 	m_iCmdCount				= 0;
 	field_1AF4				= 0;
@@ -15,12 +16,18 @@ CCmdWindow::CCmdWindow(IDirect3DDevice9 *pD3DDevice)
 	field_1AF0				= -1;
 
 	memset(&field_1565[0],0,1290);
-	memset(&field_14E4[0],0,129);
+	memset(&m_szInputBuffer[0],0,(MAX_CMD_INPUT+1));
 	memset(&field_1A6F[0],0,129);
 }
 
 //----------------------------------------------------
-// MATCH
+
+CCmdWindow::~CCmdWindow()
+{
+}
+
+//----------------------------------------------------
+
 void CCmdWindow::ResetDialogControls(CDXUTDialog *pGameUI)
 {
 	m_pGameUI = pGameUI;
@@ -42,14 +49,92 @@ void CCmdWindow::ResetDialogControls(CDXUTDialog *pGameUI)
 }
 
 //----------------------------------------------------
-// MATCH
-void CCmdWindow::AddDefaultCmdProc(CMDPROC cmdDefault)
+
+void CCmdWindow::GetDialogSize(RECT *pRect)
 {
-	m_pDefaultCmd = cmdDefault;	
+	memset(pRect,0,sizeof(RECT));
+
+	if(m_pGameUI) {
+		pRect->right = m_pGameUI->GetWidth();
+		pRect->bottom = m_pGameUI->GetHeight();
+	}
 }
 
 //----------------------------------------------------
-// MATCH
+
+void CCmdWindow::Enable()
+{
+	if(m_bEnabled) return;
+
+	if(m_pEditControl) {
+		RECT rect;
+		GetClientRect(pGame->GetMainWindowHwnd(), &rect);
+
+		m_pEditControl->SetEnabled(true);
+		m_pEditControl->SetVisible(true);
+
+		// TODO: CCmdWindow::Enable()
+	}
+
+	m_bEnabled = TRUE;
+}
+
+//----------------------------------------------------
+
+void CCmdWindow::Disable()
+{
+	if(!m_bEnabled) return;
+
+	if(m_pEditControl) {
+		m_pEditControl->OnFocusOut();
+		m_pEditControl->SetEnabled(false);
+		m_pEditControl->SetVisible(false);
+	}
+	pGame->ToggleKeyInputsDisabled(0, TRUE);
+	m_bEnabled = FALSE;
+}
+
+//----------------------------------------------------
+
+
+
+
+
+//----------------------------------------------------
+
+void CCmdWindow::ProcessInput()
+{
+	if(!m_pEditControl) return;
+
+	strncpy(m_szInputBuffer,m_pEditControl->GetTextA(),MAX_CMD_INPUT);
+	m_szInputBuffer[MAX_CMD_INPUT] = '\0';
+
+	// TODO: CCmdWindow::ProcessInput()
+}
+
+//----------------------------------------------------
+
+CMDPROC CCmdWindow::GetCmdHandler(PCHAR szCmdName)
+{
+	int x=0;
+	while(x!=m_iCmdCount) {
+		if(!stricmp(szCmdName,m_szCmdNames[x])) {
+			return m_pCmds[x];
+		}
+		x++;
+	}
+	return NULL;
+}
+
+//----------------------------------------------------
+
+void CCmdWindow::AddDefaultCmdProc(CMDPROC cmdDefault)
+{
+	m_pDefaultCmd = cmdDefault;
+}
+
+//----------------------------------------------------
+
 void CCmdWindow::AddCmdProc(PCHAR szCmdName, CMDPROC cmdHandler)
 {
 	if(m_iCmdCount < MAX_CMDS && (strlen(szCmdName) < MAX_CMD_STRLEN)) {
@@ -60,4 +145,13 @@ void CCmdWindow::AddCmdProc(PCHAR szCmdName, CMDPROC cmdHandler)
 }
 
 //----------------------------------------------------
+
+
+
+
+
+
+
+
+
 
