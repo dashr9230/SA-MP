@@ -7,6 +7,7 @@
 #include <dinput.h>
 
 extern int iGtaVersion;
+extern IDirect3DDevice9 *pD3DDevice;
 
 void GameInstallHooks();
 BOOL ApplyPreGamePatches();
@@ -215,6 +216,52 @@ void DisableMouseProcess()
 	*(BYTE*)0x53F420 = 0xC0;
 	*(BYTE*)0x53F421 = 0x0F;
 	*(BYTE*)0x53F422 = 0x84;
+}
+
+//-----------------------------------------------------------
+
+BYTE byteGetKeyStateFunc[] = { 0xE8,0x46,0xF3,0xFE,0xFF };
+BYTE byteGetMouseStateCallEU10[] = { 0xE8,0x04,0x7B,0x20,0x00 };
+BYTE byteGetMouseStateCallUSA10[] = { 0xE8,0xB4,0x7A,0x20,0x00 };
+
+void CGame::ProcessInputDisabling()
+{
+	if(field_61 != 0) return;
+
+	if(!field_65) {
+		UnFuck(0x541DF5,5);
+		memcpy((PVOID)0x541DF5,byteGetKeyStateFunc,5);
+
+		if(iGtaVersion == GTASA_VERSION_USA10) {
+			UnFuck(0x53F417,5);
+			memcpy((PVOID)0x53F417,byteGetMouseStateCallUSA10,5);
+		} else {
+			UnFuck(0x53F417,5);
+			memcpy((PVOID)0x53F417,byteGetMouseStateCallEU10,5);
+		}
+
+		RestoreMousePositionUpdate();
+
+		UnFuck(0x53F421,4);
+		*(BYTE*)0x53F41F = 0x85;
+		*(BYTE*)0x53F420 = 0xC0;
+		*(BYTE*)0x53F421 = 0x0F;
+		*(BYTE*)0x53F422 = 0x8C;
+
+		DIResetMouse();
+		UpdatePads();
+		DIResetMouse();
+
+		UnFuck(0x6194A0,1);
+		*(BYTE*)0x6194A0 = 0xE9;
+
+		pD3DDevice->ShowCursor(FALSE);
+		field_65--;
+	} else {
+		if(field_65 <= 0)
+			return;
+		field_65 -= 1;
+	}
 }
 
 //-----------------------------------------------------------

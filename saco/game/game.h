@@ -87,6 +87,7 @@ public:
 	HWND	GetMainWindowHwnd() { return *(HWND *)ADDR_HWND; };
 
 	void	RestartEverything();
+	void	ProcessInputDisabling();
 
 	//-----------------------------------------------------------
 
