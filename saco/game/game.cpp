@@ -117,6 +117,17 @@ int CGame::GetWeaponModelIDFromWeapon(int iWeaponID)
 
 //-----------------------------------------------------------
 
+BOOL CGame::IsKeyPressed(int iKeyIdentifier)
+{
+	GTA_CONTROLSET * pControlSet = GameGetInternalKeys();
+
+	if(pControlSet->wKeys1[iKeyIdentifier]) return TRUE;
+
+	return FALSE;
+}
+
+//-----------------------------------------------------------
+
 void CGame::InitGame()
 {
 	// Create a buffer for game text.

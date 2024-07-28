@@ -37,6 +37,7 @@ private:
 public:
 
 	int		GetWeaponModelIDFromWeapon(int iWeaponID);
+	BOOL	IsKeyPressed(int iKeyIdentifier);
 	void	StartGame();
 	void	InitGame();
 	BOOL	IsGameLoaded();
