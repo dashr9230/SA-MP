@@ -35,7 +35,6 @@ typedef void (*DrawZone_t)(float *fPos, DWORD *dwColor, BYTE byteMenu);
 
 CGame::CGame()
 {
-	// TODO: CGame::CGame()
 	m_pGameAudio = new CAudio();
 	m_pGameCamera = new CCamera();
 	m_pGamePlayer = NULL;
