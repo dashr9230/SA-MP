@@ -609,17 +609,6 @@ void CGame::ToggleRadar(int iToggle)
 }
 
 //-----------------------------------------------------------
-
-void sub_0(PCHAR szString)
-{
-	while(*szString) {
-		if(*szString >= 1 && *szString < ' ' && *szString != '\n') {
-			*szString = ' ';
-		}
-		szString++;
-	}
-}
-
 void CGame::DisplayGameText(char *szStr,int iTime,int iSize)
 {
 	if(iSize > 200) return;
@@ -629,7 +618,12 @@ void CGame::DisplayGameText(char *szStr,int iTime,int iSize)
 	memset(szGameTextMessage,0,sizeof(szGameTextMessage)); // not a typo
 	strncpy(szGameTextMessage,szStr,512);
 
-	sub_0(szGameTextMessage);
+	char *str = szGameTextMessage;
+	while(*str != 0) {
+		if(*str >= 1 && *str < ' ' && *str != '\n')
+			*str = ' ';
+		str++;
+	}
 
 	_asm push iSize
 	_asm push iTime
