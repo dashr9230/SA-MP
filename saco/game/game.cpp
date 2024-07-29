@@ -15,7 +15,7 @@ void ApplyInGamePatches();
 void InitAnimNameHashes();
 
 DWORD dwDummyActiveMouseState;
-char *szGameTextMessage;
+unsigned char *szGameTextMessage;
 HWND hWindowHandle;
 
 int unnamed_10150340[210];
@@ -337,7 +337,7 @@ void CGame::ToggleKeyInputsDisabled(int a2, BOOL a3)
 void CGame::InitGame()
 {
 	// Create a buffer for game text.
-	szGameTextMessage = (char*)calloc(1,513);
+	szGameTextMessage = (unsigned char*)calloc(1,513);
 
 	// Init the keystate stuff.
 	GameKeyStatesInit();
@@ -609,6 +609,7 @@ void CGame::ToggleRadar(int iToggle)
 }
 
 //-----------------------------------------------------------
+// MATCH
 void CGame::DisplayGameText(char *szStr,int iTime,int iSize)
 {
 	if(iSize > 200) return;
@@ -616,9 +617,10 @@ void CGame::DisplayGameText(char *szStr,int iTime,int iSize)
 	ScriptCommand(&text_clear_all);
 
 	memset(szGameTextMessage,0,sizeof(szGameTextMessage)); // not a typo
-	strncpy(szGameTextMessage,szStr,512);
 
-	char *str = szGameTextMessage;
+	strncpy((char*)szGameTextMessage,szStr,512);
+
+	unsigned char *str = szGameTextMessage;
 	while(*str != 0) {
 		if(*str >= 1 && *str < ' ' && *str != '\n')
 			*str = ' ';
