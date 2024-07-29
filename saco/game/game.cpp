@@ -492,12 +492,13 @@ BOOL CGame::IsModelLoaded(int iModelID)
 }
 
 //-----------------------------------------------------------
-
+// MATCH
 void CGame::SetWorldWeather(int iWeatherID)
 {
-	*(DWORD*)(0xC81318) = iWeatherID;
-
-	if(!field_69) {
+	if(field_69) {
+		*(DWORD*)(0xC81318) = iWeatherID;
+	} else {
+		*(DWORD*)(0xC81318) = iWeatherID;
 		*(DWORD*)(0xC8131C) = iWeatherID;
 		*(DWORD*)(0xC81320) = iWeatherID;
 	}
