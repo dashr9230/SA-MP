@@ -147,8 +147,8 @@ void RwCameraSetViewWindow(RwCamera *camera, VECTOR2D *viewWindow)
 
 RpLight* RpLightCreate(int _type)
 {
-	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x752160 : 0x752110;
 	RpLight* pLight = NULL;
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x752160 : 0x752110;
 
 	_asm push _type
 	_asm mov edx, dwFunc
