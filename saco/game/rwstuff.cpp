@@ -62,6 +62,16 @@ RwFrame* RwFrameCreate()
 	return pFrame;
 }
 
+void RwFrameDestroy(RwFrame *frame)
+{
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7F05E0 : 0x7F05A0;
+
+	_asm push frame
+	_asm mov edx, dwFunc
+	_asm call edx
+	_asm pop edx
+}
+
 RwCamera* RwCameraCreate()
 {
 	RwCamera* pCamera = NULL;

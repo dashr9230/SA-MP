@@ -12,6 +12,7 @@ RwRaster* RwRasterCreate(int width, int height, int depth, int flags);
 RwTexture* RwTextureCreate(RwRaster *raster);
 void RwTextureDestroy(RwTexture *texture);
 RwFrame* RwFrameCreate();
+void RwFrameDestroy(RwFrame *frame);
 RwCamera* RwCameraCreate();
 void RpWorldAddCamera(RwCamera *camera);
 void RwObjectHasFrameSetFrame(RwCamera *camera, RwFrame *frame);
