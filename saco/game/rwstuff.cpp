@@ -28,8 +28,8 @@ RwRaster* RwRasterCreate(int width, int height, int depth, int flags)
 
 RwTexture* RwTextureCreate(RwRaster *raster)
 {
-	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7F3800 : 0x7F37C0;
 	RwTexture* pTexture = NULL;
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7F3800 : 0x7F37C0;
 
 	_asm push raster
 	_asm mov edx, dwFunc
