@@ -40,6 +40,16 @@ RwTexture* RwTextureCreate(RwRaster *raster)
 	return pTexture;
 }
 
+void RwTextureDestroy(RwTexture *texture)
+{
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7F3860 : 0x7F3820;
+
+	_asm push texture
+	_asm mov edx, dwFunc
+	_asm call edx
+	_asm pop edx
+}
+
 RwFrame* RwFrameCreate()
 {
 	RwFrame* pFrame = NULL;

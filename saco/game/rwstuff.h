@@ -10,6 +10,7 @@ struct RwRGBAReal { float r, g, b, a; };
 
 RwRaster* RwRasterCreate(int width, int height, int depth, int flags);
 RwTexture* RwTextureCreate(RwRaster *raster);
+void RwTextureDestroy(RwTexture *texture);
 RwFrame* RwFrameCreate();
 RwCamera* RwCameraCreate();
 void RpWorldAddCamera(RwCamera *camera);
