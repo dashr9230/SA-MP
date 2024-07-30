@@ -42,8 +42,8 @@ RwTexture* RwTextureCreate(RwRaster *raster)
 
 RwFrame* RwFrameCreate()
 {
-	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7F0450 : 0x7F0410;
 	RwFrame* pFrame = NULL;
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7F0450 : 0x7F0410;
 
 	_asm mov edx, dwFunc
 	_asm call edx
