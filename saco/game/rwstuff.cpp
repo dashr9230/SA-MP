@@ -8,8 +8,8 @@ extern int iGtaVersion;
 
 RwRaster* RwRasterCreate(int width, int height, int depth, int flags)
 {
-	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7FB270 : 0x7FB230;
 	RwRaster* pRaster = NULL;
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7FB270 : 0x7FB230;
 
 	_asm push flags
 	_asm push depth

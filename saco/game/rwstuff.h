@@ -1,35 +1,12 @@
 
 #pragma once
 
-struct RwRaster
-{
-	char _gap0;
-};
-
-struct RwTexture
-{
-	char _gap0;
-};
-
-struct RwFrame
-{
-	char _gap0;
-};
-
-struct RwCamera
-{
-	char _gap0;
-};
-
-struct RpLight
-{
-	char _gap0;
-};
-
-struct RwRGBAReal
-{
-	float r, g, b, a;
-};
+struct RwRaster { char _gap0; };
+struct RwTexture { char _gap0; };
+struct RwFrame { char _gap0; };
+struct RwCamera { char _gap0; };
+struct RpLight { char _gap0; };
+struct RwRGBAReal { float r, g, b, a; };
 
 RwRaster* RwRasterCreate(int width, int height, int depth, int flags);
 RwTexture* RwTextureCreate(RwRaster *raster);
