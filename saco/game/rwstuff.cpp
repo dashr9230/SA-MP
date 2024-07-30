@@ -54,8 +54,8 @@ RwFrame* RwFrameCreate()
 
 RwCamera* RwCameraCreate()
 {
-	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7EE530 : 0x7EE4F0;
 	RwCamera* pCamera = NULL;
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7EE530 : 0x7EE4F0;
 
 	_asm mov edx, dwFunc
 	_asm call edx
