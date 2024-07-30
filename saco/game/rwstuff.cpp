@@ -72,6 +72,16 @@ void RwFrameDestroy(RwFrame *frame)
 	_asm pop edx
 }
 
+void RpAtomicDestroy(RpAtomic *atomic)
+{
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x749E10 : 0x749DC0;
+
+	_asm push atomic
+	_asm mov edx, dwFunc
+	_asm call edx
+	_asm pop edx
+}
+
 RwCamera* RwCameraCreate()
 {
 	RwCamera* pCamera = NULL;

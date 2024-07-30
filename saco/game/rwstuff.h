@@ -7,12 +7,14 @@ struct RwFrame { char _gap0; };
 struct RwCamera { char _gap0; };
 struct RpLight { char _gap0; };
 struct RwRGBAReal { float r, g, b, a; };
+struct RpAtomic { char _gap0; };
 
 RwRaster* RwRasterCreate(int width, int height, int depth, int flags);
 RwTexture* RwTextureCreate(RwRaster *raster);
 void RwTextureDestroy(RwTexture *texture);
 RwFrame* RwFrameCreate();
 void RwFrameDestroy(RwFrame *frame);
+void RpAtomicDestroy(RpAtomic *atomic);
 RwCamera* RwCameraCreate();
 void RpWorldAddCamera(RwCamera *camera);
 void RwObjectHasFrameSetFrame(RwCamera *camera, RwFrame *frame);
