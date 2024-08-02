@@ -235,8 +235,8 @@ VECTOR stru_10117384[3] = {
 
 void RwFrameRotate(RwFrame* frame, int axis, float angle)
 {
-	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7F1050 : 0x7F1010;
 	VECTOR* pAxis = &stru_10117384[axis];
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7F1050 : 0x7F1010;
 
 	_asm push 1
 	_asm push angle
