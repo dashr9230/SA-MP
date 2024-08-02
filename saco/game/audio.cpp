@@ -102,15 +102,15 @@ void CAudio::PlaySound(int iSound, float fX, float fY, float fZ)
 	}
 	else if(iSound < 2000)
 	{
+		ScriptCommand(&play_sound, fX, fY, fZ, iSound);
+	}
+	else
+	{
 		ScriptCommand(&unload_wav, 1);
 		ScriptCommand(&load_wav, 1, iSound);
 		ScriptCommand(&set_wav_at_location, 1, fX, fY, fZ);
 		field_0 = 1;
-	}
-	else
-	{
-		ScriptCommand(&play_sound, fX, fY, fZ, iSound);
-	}
+	}	
 }
 
 //-----------------------------------------------------------
