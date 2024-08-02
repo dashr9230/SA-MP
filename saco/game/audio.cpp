@@ -26,9 +26,9 @@ int CAudio::GetRadioStation()
 	_asm mov al, [ecx+233]
 	_asm mov iRadioStation, eax
 
-	if(iRadioStation <= 12) return iRadioStation;
+	if(iRadioStation < 0 || iRadioStation > 12) return -1;
 
-	return -1;
+	return iRadioStation;
 }
 
 //-----------------------------------------------------------
