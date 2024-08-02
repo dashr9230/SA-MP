@@ -1495,10 +1495,10 @@ BOOL __stdcall IsATrainPart(ENTITY_TYPE *pEntity)
 	if(pEntity) {
 		nModel = pEntity->nModelIndex;
 		dwEntityModelIndex = pEntity->nModelIndex;
-		if(nModel == TRAIN_FREIGHT_LOCO) return TRUE;
-		if(nModel == TRAIN_FREIGHT) return TRUE;
 		if(nModel == TRAIN_PASSENGER_LOCO) return TRUE;
 		if(nModel == TRAIN_PASSENGER) return TRUE;
+		if(nModel == TRAIN_FREIGHT_LOCO) return TRUE;
+		if(nModel == TRAIN_FREIGHT) return TRUE;
 		if(nModel == TRAIN_TRAM) return TRUE;
 	}
 	return FALSE;

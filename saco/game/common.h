@@ -158,10 +158,10 @@ typedef struct _OBJECT_TYPE
 
 //-----------------------------------------------------------
 
-#define TRAIN_PASSENGER_LOCO			537
-#define TRAIN_FREIGHT_LOCO				538
-#define TRAIN_PASSENGER					569
-#define TRAIN_FREIGHT					570
+#define TRAIN_PASSENGER_LOCO			538
+#define TRAIN_FREIGHT_LOCO				537
+#define TRAIN_PASSENGER					570
+#define TRAIN_FREIGHT					569
 #define TRAIN_TRAM						449
 #define HYDRA							520
 
