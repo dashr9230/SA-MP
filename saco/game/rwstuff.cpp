@@ -142,6 +142,16 @@ void RwCameraClear(RwCamera *camera, RwRGBA *color, int clearMode)
 	_asm pop edx
 }
 
+void RwCameraBeginUpdate(RwCamera *camera)
+{
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7EE1D0 : 0x7EE190;
+
+	_asm push camera
+	_asm mov edx, dwFunc
+	_asm call edx
+	_asm pop edx
+}
+
 void RwObjectHasFrameSetFrame(RwCamera *camera, RwFrame *frame)
 {
 	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x804F30 : 0x804EF0l;

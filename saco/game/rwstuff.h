@@ -21,6 +21,7 @@ void RwRasterDestroy(RwRaster *raster);
 void CShadowCamera_Create(int iRasterSize);
 void RpWorldAddCamera(RwCamera *camera);
 void RwCameraClear(RwCamera *camera, RwRGBA *color, int clearMode);
+void RwCameraBeginUpdate(RwCamera *camera);
 void RwObjectHasFrameSetFrame(RwCamera *camera, RwFrame *frame);
 void SetCameraFrameAndZBuffer(RwCamera *camera, RwRaster *frameBuffer, RwRaster *zBuffer);
 void RwCameraSetClipPlane(RwCamera *camera, float farClip, float nearClip);
