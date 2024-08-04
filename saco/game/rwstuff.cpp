@@ -315,6 +315,18 @@ void RpLightSetColor(RpLight *light, RwRGBAReal *color)
 	_asm pop edx
 }
 
+void RpLightSetRadius(RpLight *light, float radius)
+{
+	DWORD dwFunc = 0x751A70;
+
+	_asm push radius
+	_asm push light
+	_asm mov edx, dwFunc
+	_asm call edx
+	_asm pop edx
+	_asm pop edx
+}
+
 void RwCameraSetProjection(RwCamera *camera, int projection)
 {
 	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7EE3E0 : 0x7EE3A0;
