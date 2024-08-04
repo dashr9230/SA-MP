@@ -94,6 +94,17 @@ RwCamera* RwCameraCreate()
 	return pCamera;
 }
 
+void RwRasterDestroy(RwRaster *raster)
+{
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7FB060 : 0x7FB020;
+
+	_asm push raster
+	_asm mov edx, dwFunc
+	_asm call edx
+	_asm pop edx
+
+}
+
 void RpWorldAddCamera(RwCamera *camera)
 {
 	DWORD dwWorld = *(DWORD*)0xC17038;

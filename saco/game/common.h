@@ -2,7 +2,6 @@
 #pragma once
 
 #include <windows.h>
-#include <assert.h>
 
 #define MAX_PLAYERS			1004
 #define MAX_ACTORS			1000
@@ -20,9 +19,15 @@ typedef unsigned short VEHICLEID;
 typedef unsigned short ACTORID;
 typedef unsigned short PLAYERID;
 
+#define PI 3.1415926f
+
 typedef struct _VECTOR {
 	float X,Y,Z;
 } VECTOR, *PVECTOR;
+
+typedef struct _VECTOR2D {
+	float X,Y;
+} VECTOR2D, *PVECTOR2D;
 
 typedef struct _MATRIX4X4 {
 	VECTOR right;
@@ -34,6 +39,10 @@ typedef struct _MATRIX4X4 {
 	VECTOR pos;
 	float  pad_p;
 } MATRIX4X4, *PMATRIX4X4;
+
+//-----------------------------------------------------------
+
+#define PADDING(x,y) BYTE x[y]
 
 //-----------------------------------------------------------
 
@@ -98,8 +107,8 @@ typedef struct _PED_TYPE
 	char _gap470[12];
 
 	PED_TASKS_TYPE *Tasks; // 1148-1152
-
-	char _gap480[128];
+	DWORD dwPlayerInfoOffset; // 1152-1156
+	char _gap484[124];
 
 	DWORD dwActiveVision; // 1280-1284
 
@@ -115,11 +124,20 @@ typedef struct _PED_TYPE
 
 	float fArmour;		// 1352-1356
 
-	char _gap54C[64];
+	char _gap54C[12];
+
+	float fRotation1;	// 1368-1372
+	float fRotation2;	// 1372-1376
+
+	char _gap560[44];
 
 	DWORD pVehicle;	// 1420-1424
 
-	char _gap590[16];
+	char _gap590[8];
+
+	DWORD dwPedType; // 1432-1436
+
+	char _gap59C[4];
 
 	WEAPON_SLOT_TYPE WeaponSlots[13]; // 1440-1804
 
@@ -132,7 +150,96 @@ typedef struct _PED_TYPE
 //-----------------------------------------------------------
 typedef struct _VEHICLE_TYPE
 {
-	char _gap0;
+	ENTITY_TYPE entity; // 0-184
+
+	char _gapB8[318];
+
+	BYTE byteHorn;		  // 502-503
+
+	char _gap1F7[561];
+
+	BYTE byteFlags;		  // 1064-1065
+
+	char _gap429[4];
+
+	BYTE _pad211  : 7;   // 1069-1070 (bits 0..6)
+	BYTE bSirenOn : 1;   // 1069-1070 (bit 7)
+
+	char _gap42E[6];
+
+	BYTE byteColor1;      // 1076-1077
+	BYTE byteColor2;      // 1077-1078
+
+	char _gap436[38];
+
+	WORD wAlarmState; // 1116-1118
+
+	char _gap45E[2];
+
+	PED_TYPE * pDriver;   // 1120-1124
+	PED_TYPE * pPassengers[7]; // 1124-1152
+
+	char _gap480[8];
+
+	BYTE byteMaxPassengers; // 1160-1161
+
+	char _gap489[31];
+
+	BYTE byteMoreFlags;	// 1192-1193
+
+	char _gap4A9[23];
+
+	float fHealth;			// 1216-1220
+	DWORD dwTractor;		// 1220-1224
+	DWORD dwTrailer;		// 1224-1228
+	
+	char _pad4CC[44];
+
+	DWORD dwDoorsLocked;	// 1272-1276
+
+	char _pad4FC[24];
+
+	BYTE byteHorn2;			// 1300-1301
+
+	char _gap515[139];
+
+	union {
+		struct {
+			DWORD dwDamageBase;     // 1440-1444
+			BYTE byteEngineStatus;  // 1444-1445
+			BYTE bCarWheelPopped[4]; // 1445-1449
+			DWORD dwDoorStatus1;	// 1449-1453
+			WORD wDoorStatus2;		// 1453-1455
+			BYTE byteDamageUnk1;	// 1455-1456
+			DWORD dwLightStatus;	// 1456-1460
+			DWORD dwPanelStatus;	// 1460-1464
+		};
+		struct {
+			DWORD dwTrainUnk;	 // 1440-1444
+			float fTrainSpeed;   // 1444-1448
+			PADDING(_pad2422,18); // 1448-1464
+		};
+	};
+
+	char _pad5BA[162];
+
+	BYTE bBikeWheelPopped[2]; // 1628-1630
+
+	char _gap65E[526];
+
+	DWORD dwHydraThrusters; // 2156-2160
+
+	char _gap870[220];
+
+	float fTankRotX;		// 2380-2384
+	float fTankRotY;		// 2384-2388
+
+	char _gap954[120];
+
+	float fPlaneLandingGear;// 2508-2512
+
+	char _gap9D0[1517];
+
 } VEHICLE_TYPE;
 
 //-----------------------------------------------------------
@@ -153,8 +260,34 @@ typedef struct _DUMMY_TYPE
 
 typedef struct _OBJECT_TYPE
 {
-	char _gap0[412];
+	DWORD vtable; // 0-4
+
+	char _gap4[30];
+
+	WORD nModelIndex; // 34-36
+
+	char _gap24[376];
+
 } OBJECT_TYPE;
+
+//-----------------------------------------------------------
+
+#define	VEHICLE_SUBTYPE_CAR				1
+#define	VEHICLE_SUBTYPE_BIKE			2
+#define	VEHICLE_SUBTYPE_HELI			3
+#define	VEHICLE_SUBTYPE_BOAT			4
+#define	VEHICLE_SUBTYPE_PLANE			5
+#define	VEHICLE_SUBTYPE_PUSHBIKE		6
+#define	VEHICLE_SUBTYPE_TRAIN			7
+
+//-----------------------------------------------------------
+
+#define ACTION_WASTED					55
+#define ACTION_DEATH					54
+#define ACTION_INCAR					50
+#define ACTION_NORMAL					1
+#define ACTION_SCOPE					12
+#define ACTION_NONE						0 
 
 //-----------------------------------------------------------
 
@@ -266,6 +399,8 @@ typedef struct _OBJECT_TYPE
 #define WEAPON_MODEL_INFRARED			369	// newly added
 #define WEAPON_MODEL_JETPACK			370	// newly added
 #define WEAPON_MODEL_PARACHUTE			371
+
+#define OBJECT_PARACHUTE				3131
 
 //-----------------------------------------------------------
 

@@ -16,6 +16,7 @@ RwFrame* RwFrameCreate();
 void RwFrameDestroy(RwFrame *frame);
 void RpAtomicDestroy(RpAtomic *atomic);
 RwCamera* RwCameraCreate();
+void RwRasterDestroy(RwRaster *raster);
 void RpWorldAddCamera(RwCamera *camera);
 void RwObjectHasFrameSetFrame(RwCamera *camera, RwFrame *frame);
 void SetCameraFrameAndZBuffer(RwCamera *camera, RwRaster *frameBuffer, RwRaster *zBuffer);
