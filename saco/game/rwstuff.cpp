@@ -327,6 +327,21 @@ void RpLightSetRadius(RpLight *light, float radius)
 	_asm pop edx
 }
 
+void RpWorldAddLight(RpLight *light)
+{
+	DWORD dwWorld = *(DWORD*)0xC17038;
+	if(!dwWorld) return;
+
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x751960 : 0x751910;
+
+	_asm push light
+	_asm push dwWorld
+	_asm mov edx, dwFunc
+	_asm call edx
+	_asm pop edx
+	_asm pop edx
+}
+
 void RwCameraSetProjection(RwCamera *camera, int projection)
 {
 	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7EE3E0 : 0x7EE3A0;
