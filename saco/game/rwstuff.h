@@ -28,6 +28,7 @@ void RwObjectHasFrameSetFrame(RwCamera *camera, RwFrame *frame);
 void SetCameraFrameAndZBuffer(RwCamera *camera, RwRaster *frameBuffer, RwRaster *zBuffer);
 void RpClumpRender(RpClump *clump);
 void RpWorldAddClump(RpClump *clump);
+void RpWorldRemoveClump(RpClump *clump);
 void RwCameraSetClipPlane(RwCamera *camera, float farClip, float nearClip);
 void RwCameraSetViewWindow(RwCamera *camera, VECTOR2D *viewWindow);
 RpLight* RpLightCreate(int type);
