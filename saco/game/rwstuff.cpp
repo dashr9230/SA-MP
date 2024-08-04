@@ -342,6 +342,21 @@ void RpWorldAddLight(RpLight *light)
 	_asm pop edx
 }
 
+void RpWorldRemoveLight(RpLight *light)
+{
+	DWORD dwWorld = *(DWORD*)0xC17038;
+	if(!dwWorld) return;
+
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7519B0 : 0x751960;
+
+	_asm push light
+	_asm push dwWorld
+	_asm mov edx, dwFunc
+	_asm call edx
+	_asm pop edx
+	_asm pop edx
+}
+
 void RwCameraSetProjection(RwCamera *camera, int projection)
 {
 	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7EE3E0 : 0x7EE3A0;

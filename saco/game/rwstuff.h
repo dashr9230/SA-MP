@@ -37,6 +37,7 @@ void RpClumpAddLight(RpClump *clump, RpLight *light);
 void RpLightSetColor(RpLight *light, RwRGBAReal *color);
 void RpLightSetRadius(RpLight *light, float radius);
 void RpWorldAddLight(RpLight *light);
+void RpWorldRemoveLight(RpLight *light);
 void RwCameraSetProjection(RwCamera *camera, int projection);
 void RwFrameTranslate(RwFrame *frame, VECTOR *v, int combine);
 void RwFrameRotate(RwFrame* frame, int axis, float angle);
