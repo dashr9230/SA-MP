@@ -357,6 +357,14 @@ void RpWorldRemoveLight(RpLight *light)
 	_asm pop edx
 }
 
+void CVisibilityPlugins_SetRenderWareCamera(RwCamera *camera)
+{
+	_asm push camera
+	_asm mov edx, 0x7328C0
+	_asm call edx
+	_asm pop edx
+}
+
 void RwCameraSetProjection(RwCamera *camera, int projection)
 {
 	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7EE3E0 : 0x7EE3A0;
