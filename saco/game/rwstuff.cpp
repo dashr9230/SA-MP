@@ -365,6 +365,21 @@ void CVisibilityPlugins_SetRenderWareCamera(RwCamera *camera)
 	_asm pop edx
 }
 
+RpClump * RpClumpClone(RpClump *clump)
+{
+	RpClump *pResult = NULL;
+
+	if(!clump) return NULL;
+
+	_asm push clump
+	_asm mov edx, 0x749F70
+	_asm call edx
+	_asm pop edx
+	_asm mov pResult, eax
+
+	return pResult;
+}
+
 void RwCameraSetProjection(RwCamera *camera, int projection)
 {
 	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7EE3E0 : 0x7EE3A0;
