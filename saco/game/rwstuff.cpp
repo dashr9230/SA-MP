@@ -221,6 +221,17 @@ void RpWorldRemoveClump(RpClump *clump)
 	_asm pop edx
 }
 
+void RpWorldRender()
+{
+	DWORD dwWorld = *(DWORD*)0xC17038;
+	if (!dwWorld) return;
+
+	_asm push dwWorld
+	_asm mov edx, 0x74F570
+	_asm call edx
+	_asm pop edx
+}
+
 void RwCameraSetClipPlane(RwCamera *camera, float farClip, float nearClip)
 {
 	DWORD dwRwCameraSetFarClipPlane;
