@@ -40,6 +40,7 @@ void RpWorldAddLight(RpLight *light);
 void RpWorldRemoveLight(RpLight *light);
 void CVisibilityPlugins_SetRenderWareCamera(RwCamera *camera);
 RpClump * RpClumpClone(RpClump *clump);
+int RpClumpDestroy(RpClump *clump);
 void RwCameraSetProjection(RwCamera *camera, int projection);
 void RwFrameTranslate(RwFrame *frame, VECTOR *v, int combine);
 void RwFrameRotate(RwFrame* frame, int axis, float angle);

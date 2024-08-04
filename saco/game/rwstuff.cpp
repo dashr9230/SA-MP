@@ -380,6 +380,20 @@ RpClump * RpClumpClone(RpClump *clump)
 	return pResult;
 }
 
+int RpClumpDestroy(RpClump *clump)
+{
+	int bResult = 0;
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x74A360 : 0x74A310;
+
+	_asm push clump
+	_asm mov eax, dwFunc
+	_asm call eax
+	_asm mov bResult, eax
+	_asm pop eax
+
+	return bResult;
+}
+
 void RwCameraSetProjection(RwCamera *camera, int projection)
 {
 	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7EE3E0 : 0x7EE3A0;
