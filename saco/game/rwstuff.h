@@ -33,6 +33,7 @@ void RpWorldRender();
 void RwCameraSetClipPlane(RwCamera *camera, float farClip, float nearClip);
 void RwCameraSetViewWindow(RwCamera *camera, VECTOR2D *viewWindow);
 RpLight* RpLightCreate(int type);
+void RpClumpAddLight(RpClump *clump, RpLight *light);
 void RpLightSetColor(RpLight *light, RwRGBAReal *color);
 void RwCameraSetProjection(RwCamera *camera, int projection);
 void RwFrameTranslate(RwFrame *frame, VECTOR *v, int combine);

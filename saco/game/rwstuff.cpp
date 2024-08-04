@@ -289,6 +289,20 @@ RpLight* RpLightCreate(int _type)
 	return pLight;
 }
 
+void RpClumpAddLight(RpClump *clump, RpLight *light)
+{
+	RpClump* pResult = NULL;
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x74A540 : 0x74A4F0;
+
+	_asm push light
+	_asm push clump
+	_asm mov edx, dwFunc
+	_asm call edx
+	_asm pop edx
+	_asm pop edx
+	_asm mov pResult, eax
+}
+
 void RpLightSetColor(RpLight *light, RwRGBAReal *color)
 {
 	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x751AE0 : 0x751A90;
