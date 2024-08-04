@@ -185,6 +185,16 @@ void SetCameraFrameAndZBuffer(RwCamera *camera, RwRaster *frameBuffer, RwRaster 
 	_asm mov [ebx+0x64], edx
 }
 
+void RpClumpRender(RpClump *clump)
+{
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x749B70 : 0x749B20;
+
+	_asm push clump
+	_asm mov edx, dwFunc
+	_asm call edx
+	_asm pop edx
+}
+
 void RwCameraSetClipPlane(RwCamera *camera, float farClip, float nearClip)
 {
 	DWORD dwRwCameraSetFarClipPlane;

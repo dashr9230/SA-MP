@@ -9,6 +9,7 @@ struct RpLight { char _gap0; };
 struct RwRGBAReal { float r, g, b, a; };
 struct RpAtomic { char _gap0; };
 struct RwRGBA { char _gap0; };
+struct RpClump { char _gap0; };
 
 RwRaster* RwRasterCreate(int width, int height, int depth, int flags);
 RwTexture* RwTextureCreate(RwRaster *raster);
@@ -25,6 +26,7 @@ void RwCameraBeginUpdate(RwCamera *camera);
 void RwCameraEndUpdate(RwCamera *camera);
 void RwObjectHasFrameSetFrame(RwCamera *camera, RwFrame *frame);
 void SetCameraFrameAndZBuffer(RwCamera *camera, RwRaster *frameBuffer, RwRaster *zBuffer);
+void RpClumpRender(RpClump *clump);
 void RwCameraSetClipPlane(RwCamera *camera, float farClip, float nearClip);
 void RwCameraSetViewWindow(RwCamera *camera, VECTOR2D *viewWindow);
 RpLight* RpLightCreate(int type);
