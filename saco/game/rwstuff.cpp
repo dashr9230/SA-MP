@@ -105,6 +105,14 @@ void RwRasterDestroy(RwRaster *raster)
 
 }
 
+void CShadowCamera_Create(int iRasterSize)
+{
+	_asm push iRasterSize
+	_asm mov edx, 0x705B60
+	_asm call edx
+	_asm pop edx
+}
+
 void RpWorldAddCamera(RwCamera *camera)
 {
 	DWORD dwWorld = *(DWORD*)0xC17038;
