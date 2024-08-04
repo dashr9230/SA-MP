@@ -177,7 +177,7 @@ void RwObjectHasFrameSetFrame(RwCamera *camera, RwFrame *frame)
 void SetCameraFrameAndZBuffer(RwCamera *camera, RwRaster *frameBuffer, RwRaster *zBuffer)
 {
 	_asm mov ebx, camera
-	
+
 	_asm mov edx, frameBuffer
 	_asm mov [ebx+0x60], edx
 
