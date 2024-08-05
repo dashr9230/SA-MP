@@ -358,7 +358,9 @@ void CPlayerPed::SetArmedWeapon(int iWeaponType, bool bUnk)
 	GameStoreLocalPlayerWeaponSkills();
 	GameSetRemotePlayerWeaponSkills(m_bytePlayerNumber);
 
-	if(m_pPed && IN_VEHICLE(m_pPed) || bUnk)
+	if((!m_pPed || !IN_VEHICLE(m_pPed)) && !bUnk)
+		ScriptCommand(&set_actor_armed_weapon,m_dwGTAId,iWeaponType);
+	else
 	{
 		DWORD dwPedPtr = (DWORD)m_pPed;
 		if(dwPedPtr) {
@@ -368,8 +370,6 @@ void CPlayerPed::SetArmedWeapon(int iWeaponType, bool bUnk)
 			_asm call edx
 		}
 	}
-	else
-		ScriptCommand(&set_actor_armed_weapon,m_dwGTAId,iWeaponType);
 
 	GameSetLocalPlayerWeaponSkills();
 
