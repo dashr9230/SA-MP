@@ -68,6 +68,7 @@ const SCRIPT_COMMAND enable_train_traffic				= { 0x06d7, "i" };
 const SCRIPT_COMMAND put_train_at						= { 0x07c7, "ifff" };
 
 const SCRIPT_COMMAND get_active_interior				= { 0x077e, "v" };
+const SCRIPT_COMMAND set_actor_z_angle					= { 0x0173, "if" };
 
 const SCRIPT_COMMAND refresh_streaming_at				= { 0x04E4, "ff" };
 

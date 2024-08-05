@@ -43,6 +43,8 @@ public:
 
 	float GetTargetRotation();
 	void  SetTargetRotation(float fRotation);
+	void  ForceTargetRotation(float fRotation);
+
 	void GiveWeapon(int iWeaponID, int iAmmo);
 	void SetArmedWeapon(int iWeaponType, bool bUnk);
 	WEAPON_SLOT_TYPE * GetCurrentWeaponSlot();
