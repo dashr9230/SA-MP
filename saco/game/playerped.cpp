@@ -260,6 +260,25 @@ BOOL CPlayerPed::IsInVehicle()
 	return FALSE;
 }
 
+//-----------------------------------------------------------
+
+float CPlayerPed::GetTargetRotation()
+{
+	if(!m_pPed) return 0.0f;
+	if(GamePool_Ped_GetAt(m_dwGTAId) == 0) return 0.0f;
+
+	MATRIX4X4 mat;
+	GetMatrix(&mat);
+
+	float fZAngle = atan2(-mat.up.X, mat.up.Y) * 180.0f / PI;
+	// Bound it to [0, 360)
+	if ( fZAngle < 0.0f )
+		fZAngle += 360.0f;
+	else if ( fZAngle >= 360.0f )
+		fZAngle -= 360.0f;
+	return fZAngle;
+}
+
 //-----------------------------------------------------------	
 
 void CPlayerPed::GiveWeapon(int iWeaponID, int iAmmo)
