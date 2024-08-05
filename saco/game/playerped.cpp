@@ -69,31 +69,11 @@ void CPlayerPed::ResetPointers()
 void CPlayerPed::SetInitialState()
 {
 	DWORD dwPedPtr = (DWORD)m_pPed;
-	//int iPlayerNumber = 0;
-	//DWORD dwPlayerActorID = 0;
 
 	_asm push 0
 	_asm mov ecx, dwPedPtr
 	_asm mov edx, 0x60CD20 ; internal_CPlayerPed_SetInitialState
 	_asm call edx
-	
-	/* DESTROY METHOD
-	_asm mov ecx, dwPedPtr
-	_asm mov ebx, [ecx] ; vtable
-	_asm push 1
-	_asm call [ebx] ; destroy
-	*/
-
-	// CREATE PLAYER
-	/*
-	ScriptCommand(&create_player, &iPlayerNumber, x, y, z, &dwPlayerActorID);
-	ScriptCommand(&create_actor_from_player,&iPlayerNumber,&dwPlayerActorID);
-
-	m_dwGTAId = dwPlayerActorID;
-	m_pPed = GamePool_Ped_GetAt(m_dwGTAId);
-	m_bytePlayerNumber = 0;
-	m_pEntity = (ENTITY_TYPE *)GamePool_Ped_GetAt(m_dwGTAId);
-	*/
 }
 
 //-----------------------------------------------------------
@@ -321,8 +301,6 @@ void CPlayerPed::GiveWeapon(int iWeaponID, int iAmmo)
 		while(!pGame->IsModelLoaded(iModelID)) Sleep(1);
 	}
 
-	//ScriptCommand(&give_actor_weapon,this->m_dwGTAId,iWeaponID,iAmmo);
-
 	*pbyteCurrentPlayer = m_bytePlayerNumber;
 
 	GameStoreLocalPlayerWeaponSkills();
@@ -342,8 +320,6 @@ void CPlayerPed::GiveWeapon(int iWeaponID, int iAmmo)
 	SetArmedWeapon(iWeaponID, false);
 
 	*pbyteCurrentPlayer = 0;
-
-	//pGame->RemoveModel(iModelID);
 }
 
 //-----------------------------------------------------------
