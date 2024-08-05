@@ -279,6 +279,17 @@ float CPlayerPed::GetTargetRotation()
 	return fZAngle;
 }
 
+//-----------------------------------------------------------
+
+void CPlayerPed::SetTargetRotation(float fRotation)
+{
+	if(!m_pPed) return;
+	if(!GamePool_Ped_GetAt(m_dwGTAId)) return;
+
+	m_pPed->fRotation2 = DegToRad(fRotation);
+	m_pPed->fRotation1 = DegToRad(fRotation);
+}
+
 //-----------------------------------------------------------	
 
 void CPlayerPed::GiveWeapon(int iWeaponID, int iAmmo)
