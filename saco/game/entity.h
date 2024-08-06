@@ -32,6 +32,7 @@ public:
 	BOOL  FUNC_1009FDE0();
 
 	virtual void  Add();
+	virtual void  Remove();
 	BOOL  IsAdded();
 
 	VECTOR		field_4[5];

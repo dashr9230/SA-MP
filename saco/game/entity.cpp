@@ -1,7 +1,15 @@
 
+#include <windows.h>
+#include <math.h>
+#include <stdio.h>
+
 #include "../main.h"
+#include "util.h"
 #include "entity.h"
 
+extern CGame *pGame;
+extern CNetGame	*pNetGame;
+extern CChatWindow *pChatWindow;
 
 //-----------------------------------------------------------
 
@@ -295,6 +303,31 @@ BOOL CEntity::IsAdded()
 			return TRUE;
 	}
 	return FALSE;
+}
+
+//-----------------------------------------------------------
+
+void CEntity::Remove()
+{
+	// Check for CPlaceable messup
+	if(!m_pEntity || m_pEntity->vtable == 0x863C40)
+	{
+#ifdef _DEBUG
+		OutputDebugString("CEntity::Remove - m_pEntity == NULL or CPlaceable");
+#endif
+		return;
+	}
+
+	if(m_pEntity->dwUnkModelRel) {
+		WorldRemoveEntity((PDWORD)m_pEntity);
+
+#ifdef _DEBUG
+		if (IsAdded())
+		{
+			OutputDebugString("CEntity::Remove failed...");
+		}
+#endif
+	}
 }
 
 //-----------------------------------------------------------
