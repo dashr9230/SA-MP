@@ -19,10 +19,10 @@ public:
 	void  FUNC_1009ED40(float fX, float fY, float fZ); // unused
 	void  GetTurnSpeedVector(PVECTOR Vector);
 	void  SetTurnSpeedVector(VECTOR Vector);
-	void  FUNC_1009EE90(); // unused
 	float FUNC_1009EEB0(); // unused
 	void  FUNC_1009EEF0(PVECTOR Vector);
 	void  FUNC_1009EF20(int a2); // unused
+	void  ApplyTurnSpeed(); // unused
 	UINT  GetModelIndex();
 	void  TeleportTo(float x, float y, float z);
 

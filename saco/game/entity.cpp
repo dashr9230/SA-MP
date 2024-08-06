@@ -134,9 +134,10 @@ void CEntity::SetTurnSpeedVector(VECTOR Vector)
 	m_pEntity->vecTurnSpeed.Y = Vector.Y;
 	m_pEntity->vecTurnSpeed.Z = Vector.Z;
 }
+
 //-----------------------------------------------------------
 
-void CEntity::FUNC_1009EE90()
+void CEntity::ApplyTurnSpeed()
 {
 	DWORD dwEnt = (DWORD)m_pEntity;
 	if(!dwEnt) return;
