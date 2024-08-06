@@ -149,7 +149,7 @@ void CEntity::ApplyTurnSpeed()
 
 //-----------------------------------------------------------
 
-float CEntity::FUNC_1009EEB0()
+float CEntity::GetDistanceFromCentreOfMassToBaseOfModel()
 {
 	DWORD dwEnt = (DWORD)m_pEntity;
 	float fResult = 0.0f;
