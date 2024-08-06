@@ -248,6 +248,42 @@ float CEntity::GetDistanceFromPoint(float X, float Y, float Z)
 
 //-----------------------------------------------------------
 
+void CEntity::Add()
+{
+	// Check for CPlaceable messup
+	if(!m_pEntity || m_pEntity->vtable == 0x863C40)
+	{
+#ifdef _DEBUG
+		OutputDebugString("CEntity::Add - m_pEntity == NULL or CPlaceable");
+#endif
+		return;
+	}
+
+	if(!m_pEntity->dwUnkModelRel) {
+		// Make sure the move/turn speed is reset
+
+		VECTOR vec = {0.0f,0.0f,0.0f};
+
+		SetMoveSpeedVector(vec);
+		SetTurnSpeedVector(vec);
+
+		WorldAddEntity((PDWORD)m_pEntity);
+
+		MATRIX4X4 mat;
+		GetMatrix(&mat);
+		TeleportTo(mat.pos.X,mat.pos.Y,mat.pos.Z);
+
+#ifdef _DEBUG
+		if (!IsAdded())
+		{
+			OutputDebugString("CEntity::Add failed...");
+		}
+#endif
+	}
+}
+
+//-----------------------------------------------------------
+
 BOOL CEntity::IsAdded()
 {
 	// Check for CPlaceable messup
