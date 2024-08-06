@@ -179,12 +179,12 @@ void CEntity::GetBoundCentre(PVECTOR Vector)
 
 //-----------------------------------------------------------
 
-void CEntity::FUNC_1009EF20(int a2)
+void CEntity::GetBoundRect(PFRECT Rect)
 {
 	DWORD dwEnt = (DWORD)m_pEntity;
 	if(!dwEnt) return;
 
-	_asm push a2
+	_asm push Rect
 	_asm mov ecx, dwEnt
 	_asm mov edx, 0x534120
 	_asm call edx

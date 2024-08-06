@@ -29,6 +29,10 @@ typedef struct _VECTOR2D {
 	float X,Y;
 } VECTOR2D, *PVECTOR2D;
 
+typedef struct _FRECT {
+	float l,t,r,b;
+} FRECT, *PFRECT;
+
 typedef struct _MATRIX4X4 {
 	VECTOR right;
 	DWORD  flags;
