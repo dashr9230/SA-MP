@@ -248,3 +248,18 @@ float CEntity::GetDistanceFromPoint(float X, float Y, float Z)
 
 //-----------------------------------------------------------
 
+BOOL CEntity::IsAdded()
+{
+	// Check for CPlaceable messup
+	if(m_pEntity) {
+		if (m_pEntity->vtable == 0x863C40) 
+			return FALSE;
+
+		if(m_pEntity->dwUnkModelRel)
+			return TRUE;
+	}
+	return FALSE;
+}
+
+//-----------------------------------------------------------
+

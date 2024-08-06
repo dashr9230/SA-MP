@@ -31,6 +31,8 @@ public:
 
 	BOOL  FUNC_1009FDE0();
 
+	BOOL  IsAdded();
+
 	VECTOR		field_4[5];
 	ENTITY_TYPE *m_pEntity;
 	DWORD		m_dwGTAId;
