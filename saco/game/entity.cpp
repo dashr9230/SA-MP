@@ -166,7 +166,7 @@ float CEntity::GetDistanceFromCentreOfMassToBaseOfModel()
 
 //-----------------------------------------------------------
 
-void CEntity::FUNC_1009EEF0(PVECTOR Vector)
+void CEntity::GetBoundCentre(PVECTOR Vector)
 {
 	DWORD dwEnt = (DWORD)m_pEntity;
 	if(!dwEnt) return;
