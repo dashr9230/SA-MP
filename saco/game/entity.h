@@ -26,6 +26,9 @@ public:
 	UINT  GetModelIndex();
 	void  TeleportTo(float x, float y, float z);
 
+	float GetDistanceFromPoint(float X, float Y, float Z);
+
+
 	BOOL  FUNC_1009FDE0();
 
 	VECTOR		field_4[5];

@@ -232,3 +232,19 @@ void CEntity::TeleportTo(float x, float y, float z)
 }
 
 //-----------------------------------------------------------
+
+float CEntity::GetDistanceFromPoint(float X, float Y, float Z)
+{
+	MATRIX4X4	matThis;
+	float		fSX,fSY,fSZ;
+
+	GetMatrix(&matThis);
+	fSX = (matThis.pos.X - X) * (matThis.pos.X - X);
+	fSY = (matThis.pos.Y - Y) * (matThis.pos.Y - Y);
+	fSZ = (matThis.pos.Z - Z) * (matThis.pos.Z - Z);
+
+	return (float)sqrt(fSX + fSY + fSZ);
+}
+
+//-----------------------------------------------------------
+
