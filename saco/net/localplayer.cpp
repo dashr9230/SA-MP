@@ -10,7 +10,7 @@ CLocalPlayer::CLocalPlayer()
 	field_147 = GetTickCount();
 	field_137 = GetTickCount();
 	field_13B = GetTickCount();
-	field_1D0 = 0;
+	m_bInRCMode = FALSE;
 	field_2E2 = 0;
 	field_2D6 = GetTickCount();
 	field_2F6 = 0;
@@ -24,7 +24,7 @@ CLocalPlayer::CLocalPlayer()
 	field_13F = GetTickCount();
 	field_117 = field_10F;
 	field_11B = field_10F;
-	field_108 = 0;
+	m_bIsSpectating = FALSE;
 	field_30F = 0;
 	field_310 = -1;
 	field_306 = 0;
@@ -51,7 +51,7 @@ void CLocalPlayer::ResetAllSyncAttributes()
 	field_2FE = 0;
 	field_1CF = 0;
 	field_FA = -1;
-	field_1D0 = 0;
+	m_bInRCMode = FALSE;
 	field_318 = -1;
 	field_11F = -1;
 	field_121 = -1;

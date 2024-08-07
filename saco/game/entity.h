@@ -25,6 +25,7 @@ public:
 	void  GetBoundRect(PFRECT Rect); // unused
 	UINT  GetModelIndex();
 	void  TeleportTo(float x, float y, float z);
+	float GetDistanceFromLocalPlayerPed();
 
 	float GetDistanceFromPoint(float X, float Y, float Z);
 	BOOL  IsStationary();

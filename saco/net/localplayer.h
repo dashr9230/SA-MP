@@ -23,7 +23,7 @@ public:
 	int field_FC;
 	int field_100;
 	CPlayerPed				*m_pPlayerPed;
-	int field_108;
+	BOOL					m_bIsSpectating;
 	char field_10C;
 	short field_10D;
 	DWORD field_10F;
@@ -59,7 +59,7 @@ public:
 	char _gap1CB[4];
 
 	char field_1CF;
-	int field_1D0;
+	BOOL					m_bInRCMode;
 
 	char _gap1D4[258];
 
@@ -94,6 +94,9 @@ public:
 
 	void Say(PCHAR szText);
 
+	BOOL IsSpectating() { return m_bIsSpectating; };
+
+	BOOL IsInRCMode() { return m_bInRCMode; };
 };
 
 //----------------------------------------------------------
