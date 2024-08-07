@@ -321,6 +321,68 @@ void CEntity::Remove()
 
 //-----------------------------------------------------------
 
+BOOL CEntity::EnforceWorldBoundries(float fPX, float fZX, float fPY, float fNY)
+{
+	MATRIX4X4 matWorld;
+	VECTOR vecMoveSpeed;
+
+	if(!m_pEntity) return FALSE;
+
+	GetMatrix(&matWorld);
+	GetMoveSpeedVector(&vecMoveSpeed);
+
+	if(matWorld.pos.X > fPX)
+	{
+		if(vecMoveSpeed.X != 0.0f) {
+			vecMoveSpeed.X = -0.2f;
+			vecMoveSpeed.Z = 0.1f;
+		}
+		SetMoveSpeedVector(vecMoveSpeed);
+		matWorld.pos.Z += 0.04f;
+		SetMatrix(matWorld);
+		return TRUE;
+	}
+	else if(matWorld.pos.X < fZX)
+	{
+		if(vecMoveSpeed.X != 0.0f) {
+			vecMoveSpeed.X = 0.2f;
+			vecMoveSpeed.Z = 0.1f;
+		}
+		SetMoveSpeedVector(vecMoveSpeed);
+		matWorld.pos.Z += 0.04f;
+		SetMatrix(matWorld);
+		return TRUE;
+	}
+	else if(matWorld.pos.Y > fPY)
+	{
+		if(vecMoveSpeed.Y != 0.0f) {
+			vecMoveSpeed.Y = -0.2f;
+			vecMoveSpeed.Z = 0.1f;
+		}
+
+		SetMoveSpeedVector(vecMoveSpeed);
+		matWorld.pos.Z += 0.04f;
+		SetMatrix(matWorld);
+		return TRUE;
+	}
+	else if(matWorld.pos.Y < fNY)
+	{
+		if(vecMoveSpeed.Y != 0.0f) {
+			vecMoveSpeed.Y = 0.2f;
+			vecMoveSpeed.Z = 0.1f;
+		}
+
+		SetMoveSpeedVector(vecMoveSpeed);
+		matWorld.pos.Z += 0.04f;
+		SetMatrix(matWorld);
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+//-----------------------------------------------------------
+
 
 
 
