@@ -554,6 +554,16 @@ void CEntity::DisableStreaming()
 
 //-----------------------------------------------------------
 
+void CEntity::EnableTunnelTransition()
+{
+	if(!m_pEntity) return;
+	if(m_pEntity->vtable == 0x863C40) return;
+
+	m_pEntity->dwProcessingFlags |= 0x80000000;
+}
+
+//-----------------------------------------------------------
+
 BOOL CEntity::IsStationary()
 {
 	if (!IsAdded()) return FALSE; // movespeed vectors are invalid if its not added

@@ -40,6 +40,7 @@ public:
 	void  SetGravityProcessing(int iState);
 	void  SetWaitingForCollision(int iState);
 	void  DisableStreaming();
+	void  EnableTunnelTransition();
 	virtual void  Add();
 	virtual void  Remove();
 	BOOL  IsAdded();
