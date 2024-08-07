@@ -38,6 +38,7 @@ public:
 	void  SetCollisionChecking(int iCheck);
 	BOOL  IsCollisionCheckingEnabled();
 	void  SetGravityProcessing(int iState);
+	void  SetWaitingForCollision(int iState);
 	virtual void  Add();
 	virtual void  Remove();
 	BOOL  IsAdded();
