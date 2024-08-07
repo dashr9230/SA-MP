@@ -515,6 +515,20 @@ BOOL CEntity::IsCollisionCheckingEnabled()
 
 //-----------------------------------------------------------
 
+void CEntity::SetGravityProcessing(int iState)
+{
+	if(!m_pEntity) return;
+	if(m_pEntity->vtable == 0x863C40) return;
+
+	if(iState) {
+		m_pEntity->dwProcessingFlags &= 0x7FFFFFFD;
+	} else {		
+		m_pEntity->dwProcessingFlags |= 0x80000002;
+	}
+}
+
+//-----------------------------------------------------------
+
 BOOL CEntity::IsStationary()
 {
 	if (!IsAdded()) return FALSE; // movespeed vectors are invalid if its not added
