@@ -280,6 +280,38 @@ float CEntity::GetDistanceFromCamera()
 
 //-----------------------------------------------------------
 
+float CEntity::Get2DDistanceFromLocalPlayerPed()
+{
+	MATRIX4X4	matFromPlayer;
+	MATRIX4X4	matThis;
+	float		fSX,fSY,fSZ;
+
+	CPlayerPed *pLocalPlayerPed = pGame->FindPlayerPed();
+	CLocalPlayer *pLocalPlayer=NULL;
+
+	if(!pLocalPlayerPed) return 10000.0f;
+
+	GetMatrix(&matThis);
+
+	if(pNetGame) {
+		pLocalPlayer = pNetGame->GetPlayerPool()->GetLocalPlayer();
+		if(pLocalPlayer && (pLocalPlayer->IsSpectating() || pLocalPlayer->IsInRCMode())) {
+			pGame->GetCamera()->GetMatrix(&matFromPlayer);
+		} else {
+			pLocalPlayerPed->GetMatrix(&matFromPlayer);
+		}
+	} else {
+		pLocalPlayerPed->GetMatrix(&matFromPlayer);
+	}
+
+	fSX = (matThis.pos.X - matFromPlayer.pos.X) * (matThis.pos.X - matFromPlayer.pos.X);
+	fSY = (matThis.pos.Y - matFromPlayer.pos.Y) * (matThis.pos.Y - matFromPlayer.pos.Y);
+
+	return (float)sqrt(fSX + fSY);
+}
+
+//-----------------------------------------------------------
+
 float CEntity::GetDistanceFromPoint(float X, float Y, float Z)
 {
 	MATRIX4X4	matThis;

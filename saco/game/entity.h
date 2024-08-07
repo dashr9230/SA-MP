@@ -27,6 +27,7 @@ public:
 	void  TeleportTo(float x, float y, float z);
 	float GetDistanceFromLocalPlayerPed();
 	float GetDistanceFromCamera();
+	float Get2DDistanceFromLocalPlayerPed(); // unused
 
 	float GetDistanceFromPoint(float X, float Y, float Z);
 	BOOL  IsStationary();
