@@ -490,7 +490,19 @@ BOOL CEntity::HasExceededWorldBoundries(float fPX, float fZX, float fPY, float f
 
 //-----------------------------------------------------------
 
+void CEntity::SetCollisionChecking(int iCheck)
+{
+	if(!m_pEntity) return;
+	if(m_pEntity->vtable == 0x863C40) return;
+	
+	if(iCheck) {
+		m_pEntity->dwProcessingFlags |= 1;
+	} else {
+		m_pEntity->dwProcessingFlags &= 0xFFFFFFFE;
+	}
+}
 
+//-----------------------------------------------------------
 
 
 //-----------------------------------------------------------
