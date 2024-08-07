@@ -230,17 +230,6 @@ void CEntity::TeleportTo(float x, float y, float z)
 
 //-----------------------------------------------------------
 
-{
-	return m_pEntity
-		&& m_pEntity->vtable != 0x863C40
-		&& m_pEntity->dwUnkModelRel
-		&& m_pEntity->vecMoveSpeed.X == 0.0f
-		&& m_pEntity->vecMoveSpeed.Y == 0.0f
-		&& m_pEntity->vecMoveSpeed.Z == 0.0f;
-}
-
-//-----------------------------------------------------------
-
 float CEntity::GetDistanceFromPoint(float X, float Y, float Z)
 {
 	MATRIX4X4	matThis;
@@ -328,6 +317,29 @@ void CEntity::Remove()
 		}
 #endif
 	}
+}
+
+//-----------------------------------------------------------
+
+
+
+
+
+
+
+//-----------------------------------------------------------
+
+BOOL CEntity::IsStationary()
+{
+	if (!IsAdded()) return FALSE; // movespeed vectors are invalid if its not added
+
+    if( m_pEntity->vecMoveSpeed.X == 0.0f &&
+		m_pEntity->vecMoveSpeed.Y == 0.0f &&
+		m_pEntity->vecMoveSpeed.Z == 0.0f )
+	{
+		return TRUE;
+	}
+    return FALSE;
 }
 
 //-----------------------------------------------------------

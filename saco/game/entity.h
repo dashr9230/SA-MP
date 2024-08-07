@@ -27,9 +27,7 @@ public:
 	void  TeleportTo(float x, float y, float z);
 
 	float GetDistanceFromPoint(float X, float Y, float Z);
-
-
-	BOOL  FUNC_1009FDE0();
+	BOOL  IsStationary();
 
 	virtual void  Add();
 	virtual void  Remove();
