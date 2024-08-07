@@ -504,6 +504,14 @@ void CEntity::SetCollisionChecking(int iCheck)
 
 //-----------------------------------------------------------
 
+BOOL CEntity::IsCollisionCheckingEnabled()
+{
+	if(m_pEntity && m_pEntity->vtable != 0x863C40)
+	{
+		return (BYTE)(m_pEntity->dwProcessingFlags & 1);
+	}
+	return TRUE;
+}
 
 //-----------------------------------------------------------
 

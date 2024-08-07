@@ -36,6 +36,7 @@ public:
 	BOOL  HasExceededWorldBoundries(float fPX, float fZX, float fPY, float fNY);
 
 	void  SetCollisionChecking(int iCheck);
+	BOOL  IsCollisionCheckingEnabled();
 	virtual void  Add();
 	virtual void  Remove();
 	BOOL  IsAdded();
