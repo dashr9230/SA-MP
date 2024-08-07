@@ -383,8 +383,30 @@ BOOL CEntity::EnforceWorldBoundries(float fPX, float fZX, float fPY, float fNY)
 
 //-----------------------------------------------------------
 
+BOOL CEntity::HasExceededWorldBoundries(float fPX, float fZX, float fPY, float fNY)
+{
+	MATRIX4X4 matWorld;
 
+	if(!m_pEntity) return FALSE;
 
+	GetMatrix(&matWorld);
+
+	if(matWorld.pos.X > fPX) {
+		return TRUE;
+	}
+	else if(matWorld.pos.X < fZX) {
+		return TRUE;
+	}
+	else if(matWorld.pos.Y > fPY) {
+		return TRUE;
+	}
+	else if(matWorld.pos.Y < fNY) {
+		return TRUE;
+	}
+	return FALSE;
+}
+
+//-----------------------------------------------------------
 
 
 

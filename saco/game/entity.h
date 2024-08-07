@@ -30,6 +30,7 @@ public:
 	BOOL  IsStationary();
 
 	BOOL  EnforceWorldBoundries(float fPX, float fZX, float fPY, float fNY);
+	BOOL  HasExceededWorldBoundries(float fPX, float fZX, float fPY, float fNY);
 
 	virtual void  Add();
 	virtual void  Remove();
