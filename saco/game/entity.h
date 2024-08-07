@@ -39,6 +39,7 @@ public:
 	BOOL  IsCollisionCheckingEnabled();
 	void  SetGravityProcessing(int iState);
 	void  SetWaitingForCollision(int iState);
+	void  DisableStreaming();
 	virtual void  Add();
 	virtual void  Remove();
 	BOOL  IsAdded();
