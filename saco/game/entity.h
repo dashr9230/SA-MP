@@ -26,6 +26,7 @@ public:
 	UINT  GetModelIndex();
 	void  TeleportTo(float x, float y, float z);
 	float GetDistanceFromLocalPlayerPed();
+	float GetDistanceFromCamera();
 
 	float GetDistanceFromPoint(float X, float Y, float Z);
 	BOOL  IsStationary();

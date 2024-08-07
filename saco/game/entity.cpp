@@ -263,6 +263,23 @@ float CEntity::GetDistanceFromLocalPlayerPed()
 
 //-----------------------------------------------------------
 
+float CEntity::GetDistanceFromCamera()
+{
+	if(!m_pEntity || m_pEntity->vtable == 0x863C40) return 100000.0f;
+
+	MATRIX4X4	matThis;
+	float		fSX,fSY,fSZ;
+
+	GetMatrix(&matThis);
+	fSX = (matThis.pos.X - *(float*)0xB6F9CC) * (matThis.pos.X - *(float*)0xB6F9CC);
+	fSY = (matThis.pos.Y - *(float*)0xB6F9D0) * (matThis.pos.Y - *(float*)0xB6F9D0);
+	fSZ = (matThis.pos.Z - *(float*)0xB6F9D4) * (matThis.pos.Z - *(float*)0xB6F9D4);
+
+	return (float)sqrt(fSX + fSY + fSZ);
+}
+
+//-----------------------------------------------------------
+
 float CEntity::GetDistanceFromPoint(float X, float Y, float Z)
 {
 	MATRIX4X4	matThis;
