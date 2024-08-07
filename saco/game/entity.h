@@ -41,6 +41,8 @@ public:
 	void  SetWaitingForCollision(int iState);
 	void  DisableStreaming();
 	void  EnableTunnelTransition();
+	void  SetApplySpeed(int iState);
+
 	virtual void  Add();
 	virtual void  Remove();
 	BOOL  IsAdded();

@@ -564,6 +564,35 @@ void CEntity::EnableTunnelTransition()
 
 //-----------------------------------------------------------
 
+void CEntity::SetApplySpeed(int iState)
+{
+	if(!m_pEntity) return;
+	if(m_pEntity->vtable == 0x863C40) return;
+
+	DWORD dwEnt = (DWORD)m_pEntity;
+
+	if(!iState) {
+		_asm mov edx, dwEnt
+		_asm mov eax, [edx+0x40]
+		_asm or ah, 0x20
+		_asm mov [edx+0x40], eax
+	} else {
+		_asm mov edx, dwEnt
+		_asm mov eax, [edx+0x40]
+		_asm and ah, 0xDF
+		_asm mov [edx+0x40], eax
+	}
+}
+
+//-----------------------------------------------------------
+
+
+
+
+
+
+//-----------------------------------------------------------
+
 BOOL CEntity::IsStationary()
 {
 	if (!IsAdded()) return FALSE; // movespeed vectors are invalid if its not added
