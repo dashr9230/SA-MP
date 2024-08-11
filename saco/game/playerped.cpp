@@ -432,6 +432,23 @@ void CPlayerPed::SetMoney(int iAmount)
 
 //-----------------------------------------------------------
 
+void CPlayerPed::StartJetpack()
+{
+	if(!m_pPed) return;
+
+	*pbyteCurrentPlayer = m_bytePlayerNumber;
+
+	// reset CTasks so the CJetPack task priority can be enforced
+	TeleportTo(m_pPed->entity.mat->pos.X, m_pPed->entity.mat->pos.Y, m_pPed->entity.mat->pos.Z);
+
+	_asm mov eax, 0x439600
+	_asm call eax
+
+	*pbyteCurrentPlayer = 0;
+}
+
+//-----------------------------------------------------------
+
 void CPlayerPed::StopJetpack()
 {
 	if(!m_pPed || IN_VEHICLE(m_pPed)) return;
