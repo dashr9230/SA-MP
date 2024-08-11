@@ -444,7 +444,7 @@ void unnamed_100A7010()
 	InstallCallHook(0x7424EC,(DWORD)HOOK_62);
 	InstallCallHook(0x742548,(DWORD)HOOK_62);
 
-	InstallCallHook(0x742548,(DWORD)HOOK_63);
+	InstallCallHook(0x740721,(DWORD)HOOK_63);
 	InstallCallHook(0x740B69,(DWORD)HOOK_63);
 	InstallCallHook(0x736247,(DWORD)HOOK_63);
 
