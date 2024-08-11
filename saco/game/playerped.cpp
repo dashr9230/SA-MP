@@ -432,6 +432,20 @@ void CPlayerPed::SetMoney(int iAmount)
 
 //-----------------------------------------------------------
 
+BOOL CPlayerPed::IsInJetpackMode()
+{
+	if(!m_pPed || IN_VEHICLE(m_pPed)) return FALSE;
+	if(m_pPed->Tasks->pdwJumpJetPack == NULL) return FALSE;
+
+	DWORD dwJmpVtbl = m_pPed->Tasks->pdwJumpJetPack[0];
+
+	if(dwJmpVtbl == 0x8705C4) return TRUE;
+
+	return FALSE;
+}
+
+//-----------------------------------------------------------
+
 void CPlayerPed::StartGoggles()
 {
 	if (HasGoggles()) return;

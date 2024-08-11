@@ -53,6 +53,8 @@ public:
 
 	void SetImmunities(BOOL bBullet, BOOL bFire, BOOL bExplosion, BOOL bDamage, BOOL bUnknown);
 
+	BOOL IsInJetpackMode();
+
 	void StartGoggles();
 	void StopGoggles();
 	BOOL HasGoggles();
