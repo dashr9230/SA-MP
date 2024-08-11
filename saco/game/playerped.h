@@ -53,6 +53,8 @@ public:
 
 	void SetImmunities(BOOL bBullet, BOOL bFire, BOOL bExplosion, BOOL bDamage, BOOL bUnknown);
 
+	BOOL IsAPassenger();
+
 	void StartJetpack();
 	void StopJetpack();
 	BOOL IsInJetpackMode();

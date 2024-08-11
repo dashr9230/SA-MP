@@ -283,6 +283,27 @@ void CPlayerPed::ForceTargetRotation(float fRotation)
 	ScriptCommand(&set_actor_z_angle,m_dwGTAId,fRotation);   
 }
 
+//-----------------------------------------------------------
+
+BOOL CPlayerPed::IsAPassenger()
+{
+	if( m_pPed->pVehicle && IN_VEHICLE(m_pPed) )
+	{
+		VEHICLE_TYPE * pVehicle = (VEHICLE_TYPE *)m_pPed->pVehicle;
+
+		if( pVehicle->pDriver != m_pPed || 
+			pVehicle->entity.nModelIndex == TRAIN_PASSENGER ||
+			pVehicle->entity.nModelIndex == TRAIN_FREIGHT ) {
+			return TRUE;
+		}
+		else {
+			return FALSE;
+		}
+	}
+
+	return FALSE;
+}
+
 //-----------------------------------------------------------	
 
 void CPlayerPed::GiveWeapon(int iWeaponID, int iAmmo)
