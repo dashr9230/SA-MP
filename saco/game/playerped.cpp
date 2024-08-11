@@ -432,6 +432,26 @@ void CPlayerPed::SetMoney(int iAmount)
 
 //-----------------------------------------------------------
 
+void CPlayerPed::StopJetpack()
+{
+	if(!m_pPed || IN_VEHICLE(m_pPed)) return;
+
+	if(m_pPed->Tasks->pdwJumpJetPack == NULL) return;
+
+	DWORD dwJmpVtbl = m_pPed->Tasks->pdwJumpJetPack[0];
+
+	if(dwJmpVtbl == 0x8705C4) {
+		DWORD dwJetPackTask = (DWORD)m_pPed->Tasks->pdwJumpJetPack;
+		_asm mov ecx, dwJetPackTask
+		_asm mov edx, 0x6801D0
+		_asm push 1
+		_asm call edx
+		m_pPed->Tasks->pdwJumpJetPack = 0;
+	}
+}
+
+//-----------------------------------------------------------
+
 BOOL CPlayerPed::IsInJetpackMode()
 {
 	if(!m_pPed || IN_VEHICLE(m_pPed)) return FALSE;
