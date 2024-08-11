@@ -304,6 +304,13 @@ BOOL CPlayerPed::IsAPassenger()
 	return FALSE;
 }
 
+//-----------------------------------------------------------
+
+VEHICLE_TYPE * CPlayerPed::GetGtaVehicle()
+{
+	return (VEHICLE_TYPE *)m_pPed->pVehicle;
+}
+
 //-----------------------------------------------------------	
 
 void CPlayerPed::GiveWeapon(int iWeaponID, int iAmmo)

@@ -55,6 +55,8 @@ public:
 
 	BOOL IsAPassenger();
 
+	VEHICLE_TYPE * GetGtaVehicle();
+
 	void StartJetpack();
 	void StopJetpack();
 	BOOL IsInJetpackMode();
