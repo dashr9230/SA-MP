@@ -438,6 +438,23 @@ BOOL CPlayerPed::HasAmmoForCurrentWeapon()
 	}
 	return TRUE;
 }
+//-----------------------------------------------------------
+
+float CPlayerPed::GetDistanceFromVehicle(CVehicle *pVehicle)
+{
+	MATRIX4X4	matFromPlayer;
+	MATRIX4X4	matThis;
+	float		fSX,fSY,fSZ;
+
+	GetMatrix(&matThis);
+	pVehicle->GetMatrix(&matFromPlayer);
+
+	fSX = (matThis.pos.X - matFromPlayer.pos.X) * (matThis.pos.X - matFromPlayer.pos.X);
+	fSY = (matThis.pos.Y - matFromPlayer.pos.Y) * (matThis.pos.Y - matFromPlayer.pos.Y);
+	fSZ = (matThis.pos.Z - matFromPlayer.pos.Z) * (matThis.pos.Z - matFromPlayer.pos.Z);
+
+	return (float)sqrt(fSX + fSY + fSZ);
+}
 
 //-----------------------------------------------------------
 

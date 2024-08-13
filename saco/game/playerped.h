@@ -59,6 +59,8 @@ public:
 
 	VEHICLE_TYPE * GetGtaVehicle();
 
+	float GetDistanceFromVehicle(CVehicle *pVehicle);
+
 	void StartJetpack();
 	void StopJetpack();
 	BOOL IsInJetpackMode();
