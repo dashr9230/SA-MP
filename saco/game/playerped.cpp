@@ -399,6 +399,20 @@ void CPlayerPed::SetArmedWeapon(int iWeaponType, bool bUnk)
 
 //-----------------------------------------------------------
 
+void CPlayerPed::RemoveWeaponWhenEnteringVehicle()
+{
+	DWORD dwPedPtr = (DWORD)m_pPed;
+
+	if(dwPedPtr) {
+		_asm mov ecx, dwPedPtr
+		_asm push 0
+		_asm mov edx, 0x5E6370
+		_asm call edx
+	}
+}
+
+//-----------------------------------------------------------
+
 WEAPON_SLOT_TYPE * CPlayerPed::GetCurrentWeaponSlot()
 {
 	if(m_pPed) {
