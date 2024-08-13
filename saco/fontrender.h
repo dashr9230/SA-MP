@@ -27,5 +27,5 @@ public:
 	SIZE MeasureText(char * szString, DWORD dwFormat = DT_LEFT);
 	SIZE MeasureText2(char * szString, DWORD dwFormat = DT_LEFT);
 
-	void RenderText(ID3DXSprite * pSprite, char * sz, RECT rect, DWORD dwColor, BOOL bShadowed = TRUE);
+	void RenderText(ID3DXSprite *pSprite, char * sz, RECT rect, DWORD dwColor, BOOL bShadowed=TRUE);
 };
