@@ -169,3 +169,40 @@ void CFontRender::RenderText(ID3DXSprite *pSprite, char * sz, RECT rect, DWORD d
 	if(bLocalSprite)
 		pSprite->End();
 }
+
+void CFontRender::RenderText(ID3DXSprite *pSprite, char * sz, RECT rect, DWORD dwFormat, DWORD dwColor, BOOL bShadowed)
+{
+	if(sz == NULL || sz[0] == '\0') return;
+
+	BOOL bLocalSprite = FALSE;
+
+	if(!pSprite) {
+		pSprite = field_14;
+		bLocalSprite = TRUE;
+		pSprite->Begin( D3DXSPRITE_ALPHABLEND );
+	}
+
+	if(bShadowed) {
+		if(strlen(sz) > 100000) return;
+		
+		strcpy(field_1C, sz);
+		RemoveColorEmbedsFromString(field_1C);
+		DWORD dwStrLen = (DWORD)strlen(field_1C);
+
+		rect.top -= 1;
+		field_C->DrawText(pSprite,field_1C,dwStrLen,&rect,dwFormat,0xFF000000);
+		rect.top += 2;
+		field_C->DrawText(pSprite,field_1C,dwStrLen,&rect,dwFormat,0xFF000000);
+		rect.top -= 1;
+		rect.left -= 1;
+		field_C->DrawText(pSprite,field_1C,dwStrLen,&rect,dwFormat,0xFF000000);
+		rect.left += 2;
+		field_C->DrawText(pSprite,field_1C,dwStrLen,&rect,dwFormat,0xFF000000);
+		rect.left -= 1;
+	}
+	field_4->DrawText(pSprite,sz,-1,&rect,dwFormat,dwColor);
+
+	if(bLocalSprite)
+		pSprite->End();
+}
+
