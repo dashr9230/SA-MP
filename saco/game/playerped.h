@@ -47,6 +47,7 @@ public:
 
 	void GiveWeapon(int iWeaponID, int iAmmo);
 	void SetArmedWeapon(int iWeaponType, bool bUnk);
+	void ClearAllWeapons();
 	WEAPON_SLOT_TYPE * GetCurrentWeaponSlot();
 	WEAPON_SLOT_TYPE * FindWeaponSlot(DWORD dwWeapon);
 	BOOL HasAmmoForCurrentWeapon();

@@ -352,6 +352,23 @@ void CPlayerPed::GiveWeapon(int iWeaponID, int iAmmo)
 
 //-----------------------------------------------------------
 
+void CPlayerPed::ClearAllWeapons()
+{
+	DWORD dwPedPtr = (DWORD)m_pPed;
+
+	*pbyteCurrentPlayer = m_bytePlayerNumber;
+
+	if(dwPedPtr) {
+		_asm mov ecx, dwPedPtr
+		_asm mov eax, 0x5E6320
+		_asm call eax
+	}
+
+	*pbyteCurrentPlayer = 0;
+}
+
+//-----------------------------------------------------------
+
 void CPlayerPed::SetArmedWeapon(int iWeaponType, bool bUnk)
 {
 	if(!m_pPed) return;
