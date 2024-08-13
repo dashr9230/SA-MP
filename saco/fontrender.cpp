@@ -206,3 +206,34 @@ void CFontRender::RenderText(ID3DXSprite *pSprite, char * sz, RECT rect, DWORD d
 		pSprite->End();
 }
 
+void CFontRender::RenderText(char *sz, RECT rect, DWORD dwColor)
+{
+	if(sz == NULL || sz[0] == '\0') return;
+
+	ID3DXSprite *pSprite = field_14;
+
+	pSprite->Begin( D3DXSPRITE_ALPHABLEND );
+
+	if(strlen(sz) > 100000) return;
+
+	strcpy(field_1C, sz);
+	RemoveColorEmbedsFromString(field_1C);
+	DWORD dwStrLen = (DWORD)strlen(field_1C);
+
+	rect.top -= 2;
+	field_10->DrawText(pSprite,field_1C,dwStrLen,&rect,DT_NOCLIP|DT_CENTER|DT_VCENTER,D3DCOLOR_ARGB(180, 240, 238, 228));
+	rect.top += 2;
+	rect.left += 2;
+	field_10->DrawText(pSprite,field_1C,dwStrLen,&rect,DT_NOCLIP|DT_CENTER|DT_VCENTER,D3DCOLOR_ARGB(180, 240, 238, 228));
+	rect.left -= 2;
+	rect.top += 2;
+	field_10->DrawText(pSprite,field_1C,dwStrLen,&rect,DT_NOCLIP|DT_CENTER|DT_VCENTER,D3DCOLOR_ARGB(180, 240, 238, 228));
+	rect.top -= 2;
+	rect.left -= 2;
+	field_10->DrawText(pSprite,field_1C,dwStrLen,&rect,DT_NOCLIP|DT_CENTER|DT_VCENTER,D3DCOLOR_ARGB(180, 240, 238, 228));
+	rect.left += 2;
+
+	field_10->DrawText(pSprite,sz,-1,&rect,DT_NOCLIP|DT_CENTER|DT_VCENTER,dwColor);
+
+	pSprite->End();
+}

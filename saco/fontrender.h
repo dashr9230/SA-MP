@@ -29,4 +29,5 @@ public:
 
 	void RenderText(ID3DXSprite *pSprite, char * sz, RECT rect, DWORD dwColor, BOOL bShadowed=TRUE);
 	void RenderText(ID3DXSprite *pSprite, char * sz, RECT rect, DWORD dwFormat, DWORD dwColor, BOOL bShadowed=TRUE);
+	void RenderText(char *sz, RECT rect, DWORD dwColor);
 };
