@@ -82,6 +82,8 @@ const SCRIPT_COMMAND set_actor_money					= { 0x03fe, "ii" };
 
 const SCRIPT_COMMAND text_clear_all						= { 0x00be, "" };
 
+const SCRIPT_COMMAND create_pickup_with_ammo			= { 0x032b, "iiifffv" };
+
 const SCRIPT_COMMAND create_radar_marker_icon			= { 0x0570, "fffiv" };
 
 const SCRIPT_COMMAND remove_panel						= { 0x08DA, "i" };

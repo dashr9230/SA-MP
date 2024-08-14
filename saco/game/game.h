@@ -101,6 +101,8 @@ public:
 
 	const PCHAR GetWeaponName(int iWeaponID);
 
+	DWORD CreateWeaponPickup(int iModel, DWORD dwAmmo, float fX, float fY, float fZ);
+
 	int GetScreenWidth() { return *(int*)0xC17044; };
 	int GetScreenHeight() { return *(int*)0xC17048; };
 
