@@ -1124,3 +1124,18 @@ BOOL CGame::IsUsingController()
 
 //-----------------------------------------------------------
 
+void CGame::DisableWeaponLockOnTarget()
+{
+	// CPlayerPed_FindWeaponLockOnTarget
+	UnFuck(0x60DC50,1);
+	*(BYTE*)0x60DC50 = 0xC3; // ret
+
+	// CPlayerPed_FindNextWeaponLockOnTarget
+	UnFuck(0x60E530,3);
+	*(BYTE*)0x60E530 = 0xC2; // retn 8
+	*(BYTE*)0x60E531 = 0x08;
+	*(BYTE*)0x60E532 = 0x00;
+}
+
+//-----------------------------------------------------------
+
