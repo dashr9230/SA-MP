@@ -131,6 +131,7 @@ public:
 	int GetLoadedVehicleModelCount();
 	void SetTimeInMilliseconds(DWORD dwTimeInMs);
 	DWORD GetTimeInMilliseconds();
+	int GetRwObjectsCount();
 };
 
 //-----------------------------------------------------------
