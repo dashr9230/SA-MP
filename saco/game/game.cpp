@@ -705,7 +705,7 @@ void CGame::UpdateFarClippingPlane()
 
 	if(pPlayerPed) {
 		if(GetActiveInterior() == 0) {
-			fFarClip = 1250.0f - (pPlayerPed->entity.mat->pos.Z + pPlayerPed->entity.mat->pos.Z);
+			fFarClip = 1250.0f - (pPlayerPed->entity.mat->pos.Z * 2.0f);
 			if(fFarClip < 700.0f) {
 				fFarClip = 700.0f;
 			}
