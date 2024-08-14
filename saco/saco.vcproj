@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="7.10"
 	Name="saco"
-	ProjectGUID="{AA2CD0BC-EFFE-4B6E-AB76-1628668FFEB2}"
+	ProjectGUID="{15E976E8-3DD1-456C-B294-01FA05E2A116}"
 	Keyword="Win32Proj">
 	<Platforms>
 		<Platform
@@ -97,8 +97,8 @@
 				AdditionalLibraryDirectories="d3d9"
 				GenerateDebugInformation="TRUE"
 				SubSystem="2"
-				OptimizeReferences="1"
-				EnableCOMDATFolding="2"
+				OptimizeReferences="0"
+				EnableCOMDATFolding="0"
 				ImportLibrary="$(OutDir)/saco.lib"
 				TargetMachine="1"/>
 			<Tool
