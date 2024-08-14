@@ -1006,3 +1006,24 @@ int CGame::GetMemoryAvailableForStreaming()
 
 //-----------------------------------------------------------
 
+int CGame::GetLoadedVehicleModelCount()
+{
+	int iCount = 0;
+
+	struct DUMMY {
+		PADDING(_pad0,16); // 0-16
+		BOOL bLoaded; // 16-20
+	};
+
+	DUMMY *pStreamingModelInfo = (DUMMY*)0x8E4CC0;
+	int x = 400;
+	while(x != 611) {
+		if(pStreamingModelInfo[x].bLoaded)
+			iCount++;
+		x++;
+	}
+	return iCount;
+}
+
+//-----------------------------------------------------------
+

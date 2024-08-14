@@ -128,6 +128,7 @@ public:
 	void LoadScene(char* szScene);
 	int GetMemoryUsedForStreaming();
 	int GetMemoryAvailableForStreaming();
+	int GetLoadedVehicleModelCount();
 };
 
 //-----------------------------------------------------------
