@@ -1037,3 +1037,10 @@ void CGame::SetTimeInMilliseconds(DWORD dwTimeInMs)
 
 //-----------------------------------------------------------
 
+DWORD CGame::GetTimeInMilliseconds()
+{
+	return *(DWORD*)0xB7CB84;
+}
+
+//-----------------------------------------------------------
+
