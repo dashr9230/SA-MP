@@ -999,3 +999,10 @@ int CGame::GetMemoryUsedForStreaming()
 
 //-----------------------------------------------------------
 
+int CGame::GetMemoryAvailableForStreaming()
+{
+	return *(int*)0x8A5A80;
+}
+
+//-----------------------------------------------------------
+
