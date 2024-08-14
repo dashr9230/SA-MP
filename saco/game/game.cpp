@@ -21,13 +21,13 @@ HWND hWindowHandle;
 int unnamed_10150340[210];
 
 IDirectInputDevice8 *pDirectInputMouse;
-
 BYTE unnamed_10150688;
 int unnamed_1015068C;
 
 float unnamed_10116718 = 2.0f;
 
 BOOL ApplyPreGamePatches();
+bool GLOBAL_101506A4;
 
 typedef void (*DrawZone_t)(float *fPos, DWORD *dwColor, BYTE byteMenu);
 
@@ -1023,6 +1023,16 @@ int CGame::GetLoadedVehicleModelCount()
 		x++;
 	}
 	return iCount;
+}
+
+//-----------------------------------------------------------
+
+void CGame::SetTimeInMilliseconds(DWORD dwTimeInMs)
+{
+	if(!field_69) {
+		*(DWORD*)0xB7CB84 = dwTimeInMs & 0x3FFFFFFF;
+		GLOBAL_101506A4 = true;
+	}
 }
 
 //-----------------------------------------------------------

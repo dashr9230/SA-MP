@@ -129,6 +129,7 @@ public:
 	int GetMemoryUsedForStreaming();
 	int GetMemoryAvailableForStreaming();
 	int GetLoadedVehicleModelCount();
+	void SetTimeInMilliseconds(DWORD dwTimeInMs);
 };
 
 //-----------------------------------------------------------
