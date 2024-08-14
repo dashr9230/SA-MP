@@ -132,6 +132,7 @@ public:
 	void SetTimeInMilliseconds(DWORD dwTimeInMs);
 	DWORD GetTimeInMilliseconds();
 	int GetRwObjectsCount();
+	void RequestAnimationsAndModels();
 };
 
 //-----------------------------------------------------------

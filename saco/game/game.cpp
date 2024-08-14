@@ -1051,3 +1051,46 @@ int CGame::GetRwObjectsCount()
 
 //-----------------------------------------------------------
 
+void CGame::RequestAnimationsAndModels()
+{
+	if(!IsAnimationLoaded("PARACHUTE"))
+		RequestAnimation( "PARACHUTE");
+	if(!IsAnimationLoaded("BAR"))
+		RequestAnimation( "BAR");
+	if(!IsAnimationLoaded("GANGS"))
+		RequestAnimation( "GANGS");
+	if(!IsAnimationLoaded("PAULNMAC"))
+		RequestAnimation( "PAULNMAC");
+	if(!IsAnimationLoaded("VENDING"))
+		RequestAnimation( "VENDING");
+	if(!IsAnimationLoaded("FIGHT_B"))
+		RequestAnimation( "FIGHT_B");
+	if(!IsAnimationLoaded("FIGHT_C"))
+		RequestAnimation( "FIGHT_C");
+	if(!IsAnimationLoaded("FIGHT_D"))
+		RequestAnimation( "FIGHT_D");
+	if(!IsAnimationLoaded("FIGHT_E"))
+		RequestAnimation( "FIGHT_E");
+
+	if (!IsModelLoaded(OBJECT_PARACHUTE))
+		RequestModel(OBJECT_PARACHUTE);
+	if (!IsModelLoaded(1485)) // cigar
+		RequestModel(1485);
+	if (!IsModelLoaded(1486)) // beer bottle
+		RequestModel(1486);
+	if (!IsModelLoaded(1543)) // beer bottle
+		RequestModel(1543);
+	if (!IsModelLoaded(1546)) // sprunk cup
+		RequestModel(1546);
+	if (!IsModelLoaded(WEAPON_MODEL_TEARGAS))
+		RequestModel(WEAPON_MODEL_TEARGAS);
+	if (!IsModelLoaded(WEAPON_MODEL_GRENADE))
+		RequestModel(WEAPON_MODEL_GRENADE);
+	if (!IsModelLoaded(WEAPON_MODEL_MOLTOV))
+		RequestModel(WEAPON_MODEL_MOLTOV);
+	if (!IsModelLoaded(330)) // cellphone
+		RequestModel(330);
+}
+
+//-----------------------------------------------------------
+
