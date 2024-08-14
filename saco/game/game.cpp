@@ -653,27 +653,26 @@ void CGame::DisableRaceCheckpoint()
 DWORD CGame::CreateRadarMarkerIcon(int iMarkerType, float fX, float fY, float fZ, DWORD dwColor, int iStyle)
 {
 	DWORD dwMarkerID=0;
-	switch(iStyle) {
-	case MAPICON_LOCAL:
+
+	if(iStyle == MAPICON_LOCAL) {
 		ScriptCommand(&create_radar_marker_without_sphere, fX, fY, fZ, iMarkerType, &dwMarkerID);
-		break;
-	case MAPICON_GLOBAL:
+	} else if(iStyle == MAPICON_GLOBAL) {
 		ScriptCommand(&create_marker_at, fX, fY, fZ, iMarkerType, &dwMarkerID);
-		break;
-	case MAPICON_LOCAL_CHECKPOINT:
+	} else if(iStyle == MAPICON_LOCAL_CHECKPOINT) {
 		ScriptCommand(&create_radar_marker_icon, fX, fY, fZ, iMarkerType, &dwMarkerID);
-		break;
-	case MAPICON_GLOBAL_CHECKPOINT:
+	} else if(iStyle == MAPICON_GLOBAL_CHECKPOINT) {
 		ScriptCommand(&create_icon_marker_sphere, fX, fY, fZ, iMarkerType, &dwMarkerID);
-		break;
+	} else {
+		ScriptCommand(&create_radar_marker_without_sphere, fX, fY, fZ, iMarkerType, &dwMarkerID);
 	}
+
 	if(iMarkerType == 0) {
-		if(dwColor >= 1004) {
-			ScriptCommand(&set_marker_color, dwMarkerID, dwColor);
-			ScriptCommand(&show_on_radar, dwMarkerID, 3);
-		} else {
+		if(dwColor < 1004) {
 			ScriptCommand(&set_marker_color, dwMarkerID, dwColor);
 			ScriptCommand(&show_on_radar, dwMarkerID, 2);
+		} else {
+			ScriptCommand(&set_marker_color, dwMarkerID, dwColor);
+			ScriptCommand(&show_on_radar, dwMarkerID, 3);
 		}
 	}
 	return dwMarkerID;
