@@ -1094,3 +1094,15 @@ void CGame::RequestAnimationsAndModels()
 
 //-----------------------------------------------------------
 
+void CGame::LoadCollisionFile(char *szFileName)
+{
+	_asm push 0
+	_asm push szFileName
+	_asm mov edx, 0x5B4E60
+	_asm call edx
+	_asm pop edx
+	_asm pop edx
+}
+
+//-----------------------------------------------------------
+

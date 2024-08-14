@@ -133,6 +133,7 @@ public:
 	DWORD GetTimeInMilliseconds();
 	int GetRwObjectsCount();
 	void RequestAnimationsAndModels();
+	void LoadCollisionFile(char *szFileName);
 };
 
 //-----------------------------------------------------------
