@@ -135,6 +135,7 @@ public:
 	void RequestAnimationsAndModels();
 	void LoadCollisionFile(char *szFileName);
 	void LoadCullZone(char *szLine);
+	BOOL IsUsingController();
 };
 
 //-----------------------------------------------------------

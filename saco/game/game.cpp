@@ -1116,3 +1116,11 @@ void CGame::LoadCullZone(char *szLine)
 
 //-----------------------------------------------------------
 
+BOOL CGame::IsUsingController()
+{
+	if(*(BYTE*)0xBA6818) return TRUE;
+	return FALSE;
+}
+
+//-----------------------------------------------------------
+
