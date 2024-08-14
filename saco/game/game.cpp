@@ -992,3 +992,10 @@ void CGame::LoadScene(char* szScene)
 
 //-----------------------------------------------------------
 
+int CGame::GetMemoryUsedForStreaming()
+{
+	return *(int*)0x8E4CB4;
+}
+
+//-----------------------------------------------------------
+

@@ -126,6 +126,7 @@ public:
 	void sub_100A1C10();
 
 	void LoadScene(char* szScene);
+	int GetMemoryUsedForStreaming();
 };
 
 //-----------------------------------------------------------
