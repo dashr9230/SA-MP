@@ -1106,3 +1106,13 @@ void CGame::LoadCollisionFile(char *szFileName)
 
 //-----------------------------------------------------------
 
+void CGame::LoadCullZone(char *szLine)
+{
+	_asm push szLine
+	_asm mov edx, 0x5B4B40
+	_asm call edx
+	_asm pop edx
+}
+
+//-----------------------------------------------------------
+

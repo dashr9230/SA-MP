@@ -134,6 +134,7 @@ public:
 	int GetRwObjectsCount();
 	void RequestAnimationsAndModels();
 	void LoadCollisionFile(char *szFileName);
+	void LoadCullZone(char *szLine);
 };
 
 //-----------------------------------------------------------
