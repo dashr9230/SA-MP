@@ -950,3 +950,12 @@ void CGame::EnableZoneNames(BYTE byteEnable)
 }
 
 //-----------------------------------------------------------
+
+void CGame::EnableStuntBonus(bool bEnable)
+{
+	UnFuck(0xA4A474,4);
+	*(DWORD*)0xA4A474 = (int)bEnable;
+}
+
+//-----------------------------------------------------------
+

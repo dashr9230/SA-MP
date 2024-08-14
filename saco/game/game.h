@@ -69,6 +69,7 @@ public:
 	void	SetWantedLevel(BYTE byteLevel);
 	void	SetGameTextCount(WORD wCount);
 	void	DrawGangZone(float* fPos, DWORD dwColor);
+	void    EnableStuntBonus(bool bEnable);
 
 	void	DisableRaceCheckpoint();
 
