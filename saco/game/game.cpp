@@ -959,3 +959,26 @@ void CGame::EnableStuntBonus(bool bEnable)
 
 //-----------------------------------------------------------
 
+void CGame::DisableEnterExits()
+{
+	DWORD pEnExPool = *(DWORD *)0x96A7D8;
+	DWORD pEnExEntries = *(DWORD *)pEnExPool;
+
+	int iNumEnEx=0;
+	int x=0;
+
+	_asm mov ecx, pEnExPool
+	_asm mov eax, [ecx+8]
+	_asm mov iNumEnEx, eax
+
+	BYTE *pEnExPoolSlot;
+	while(x!=iNumEnEx) {
+		pEnExPoolSlot = (((BYTE *)pEnExEntries) + (60*x));
+		_asm mov eax, pEnExPoolSlot
+		_asm and word ptr [eax+48], 0
+		x++;
+	}   
+}
+
+//-----------------------------------------------------------
+

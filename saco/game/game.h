@@ -108,6 +108,7 @@ public:
 	int GetScreenHeight() { return *(int*)0xC17048; };
 
 	DWORD GetWeaponInfo(int iWeapon, int iUnk);
+	void DisableEnterExits();
 
 	CGame();
 
