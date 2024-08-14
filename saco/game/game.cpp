@@ -982,3 +982,13 @@ void CGame::DisableEnterExits()
 
 //-----------------------------------------------------------
 
+void CGame::LoadScene(char* szScene)
+{
+	_asm push szScene
+	_asm mov ebx, 0x5B8700
+	_asm call ebx
+	_asm pop ebx
+}
+
+//-----------------------------------------------------------
+

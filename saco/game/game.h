@@ -124,6 +124,8 @@ public:
 	void sub_100A0330();
 
 	void sub_100A1C10();
+
+	void LoadScene(char* szScene);
 };
 
 //-----------------------------------------------------------
