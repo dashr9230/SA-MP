@@ -493,6 +493,14 @@ BOOL CGame::IsModelLoaded(int iModelID)
 
 //-----------------------------------------------------------
 // MATCH
+void CGame::GetWorldTime(BYTE* byteHour, BYTE* byteMinute)
+{
+	*byteMinute = *(PBYTE)0xB70152;
+	*byteHour = *(PBYTE)0xB70153;
+}
+
+//-----------------------------------------------------------
+
 void CGame::ToggleThePassingOfTime(BYTE byteOnOff)
 {
 	UnFuck(0x52CF10,1);

@@ -48,6 +48,7 @@ public:
 	void	LoadRequestedModels();
 	BOOL	IsModelLoaded(int iModelID);
 
+	void	GetWorldTime(BYTE* byteHour, BYTE* byteMinute);
 	void	ToggleThePassingOfTime(BYTE byteOnOff);
 	void	SetWorldWeather(int iWeatherID);
 	int		GetWorldWeather();
