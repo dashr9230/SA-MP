@@ -33,6 +33,9 @@ const SCRIPT_COMMAND request_model						= { 0x0247, "i" };		// (CAR_*|BIKE_*|BOA
 const SCRIPT_COMMAND load_requested_models				= { 0x038B, "" };		// -/-
 
 const SCRIPT_COMMAND fade								= { 0x016A, "ii" };		// (time in ms), FADE_*
+
+const SCRIPT_COMMAND set_current_time					= { 0x00C0, "ii" };		// Hours, Minutes
+
 const SCRIPT_COMMAND is_model_available					= { 0x0248, "i" };		// #MODEL
 
 const SCRIPT_COMMAND set_camera_behind_player			= { 0x0373, "" };		// -/-

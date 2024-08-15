@@ -493,6 +493,16 @@ BOOL CGame::IsModelLoaded(int iModelID)
 
 //-----------------------------------------------------------
 // MATCH
+void CGame::SetWorldTime(int iHour, int iMinute)
+{
+	*(PBYTE)0xB70152 = (BYTE)iMinute;
+	*(PBYTE)0xB70153 = (BYTE)iHour;
+
+	ScriptCommand(&set_current_time, iHour, iMinute);
+}
+
+//-----------------------------------------------------------
+
 void CGame::GetWorldTime(BYTE* byteHour, BYTE* byteMinute)
 {
 	*byteMinute = *(PBYTE)0xB70152;
