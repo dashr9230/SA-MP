@@ -30,7 +30,7 @@ private:
 	DWORD field_5D;
 	int field_61;
 	int field_65;
-	int field_69;
+	BOOL field_69;
 	char field_6D;
 	char field_6E[212];
 
@@ -48,6 +48,7 @@ public:
 	void	LoadRequestedModels();
 	BOOL	IsModelLoaded(int iModelID);
 
+	void	ToggleThePassingOfTime(BYTE byteOnOff);
 	void	SetWorldWeather(int iWeatherID);
 	int		GetWorldWeather();
 	void	DisplayHud(BOOL bDisp);

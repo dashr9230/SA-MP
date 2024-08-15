@@ -43,7 +43,7 @@ CGame::CGame()
 	m_dwRaceCheckpointHandle = NULL;
 	field_61 = 0;
 	field_65 = 0;
-	field_69 = 0;
+	field_69 = FALSE;
 	field_6D = 0;
 	memset(unnamed_10150340, 0, sizeof(unnamed_10150340));
 	memset(field_6E, 0, sizeof(field_6E));
@@ -493,6 +493,22 @@ BOOL CGame::IsModelLoaded(int iModelID)
 
 //-----------------------------------------------------------
 // MATCH
+void CGame::ToggleThePassingOfTime(BYTE byteOnOff)
+{
+	UnFuck(0x52CF10,1);
+
+	if(byteOnOff) {
+		*(PBYTE)0x52CF10 = 0x56; // push esi
+		field_69 = TRUE;
+	}
+	else {
+		*(PBYTE)0x52CF10 = 0xC3; // ret
+		field_69 = FALSE;
+	}
+}
+
+//-----------------------------------------------------------
+
 void CGame::SetWorldWeather(int iWeatherID)
 {
 	if(field_69) {
@@ -562,6 +578,7 @@ void CGame::SetMaxStats()
 	_asm mov eax, 0x439940
 	_asm call eax
 
+	// Disable CStats::SetStatValue
 	UnFuck(0x55A070,1);
 	*(BYTE*)0x55A070 = 0xC3;
 }
@@ -868,7 +885,6 @@ DWORD CGame::GetD3DDevice()
 }
 
 //-----------------------------------------------------------
-
 // DOESN'T CURRENTLY WORK
 
 void CGame::RestartEverything()
@@ -893,7 +909,6 @@ void CGame::RestartEverything()
 	_asm call edx
 
 	*(PBYTE)ADDR_GAME_STARTED = 1;
-
 }
 
 //-----------------------------------------------------------
@@ -921,7 +936,7 @@ void CGame::SetGravity(float fGravity)
 	*(float*)0x863984 = fGravity;
 }
 
-// ---------------------------------------------------
+//---------------------------------------------------
 
 void CGame::SetWantedLevel(BYTE byteLevel)
 {
