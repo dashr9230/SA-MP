@@ -47,6 +47,7 @@ public:
 	void	RequestModel(int iModelID, int iLoadingStream = 2);
 	void	LoadRequestedModels();
 	BOOL	IsModelLoaded(int iModelID);
+	BOOL	SetModelDeletable(int iModelID);
 
 	void	SetWorldTime(int iHour, int iMinute);
 	void	GetWorldTime(BYTE* byteHour, BYTE* byteMinute);

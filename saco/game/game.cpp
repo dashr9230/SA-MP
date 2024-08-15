@@ -492,7 +492,47 @@ BOOL CGame::IsModelLoaded(int iModelID)
 }
 
 //-----------------------------------------------------------
-// MATCH
+
+BOOL CGame::SetModelDeletable(int iModelID)
+{
+	BYTE * pStreamingModelInfo = (BYTE*)(iModelID * 20);
+
+	if(IsModelLoaded(iModelID))
+		return TRUE;
+
+	_asm push 2
+	_asm push iModelID
+	_asm mov edx, 0x4087E0 ; CStreaming__RequestModel
+	_asm call edx
+	_asm pop edx
+	_asm pop edx
+
+	_asm push 0
+	_asm mov edx, 0x40EA10 ; CStreaming__LoadAllRequestedModels
+	_asm call edx
+	_asm pop edx
+
+	if(*(pStreamingModelInfo + 0x8E4CD0) == 1)
+	{
+		if(*(pStreamingModelInfo + 0x8E4CC6) & 2)
+		{
+			_asm push iModelID
+			_asm mov edx, 0x409C10 ; CStreaming__SetModelIsDeletable
+			_asm call edx
+			_asm pop edx
+
+			_asm push iModelID
+			_asm mov edx, 0x409C70 ; CStreaming__SetModelTxdIsDeletable
+			_asm call edx
+			_asm pop edx
+		}
+		return TRUE;
+	}
+	return FALSE;
+}
+
+//-----------------------------------------------------------
+
 void CGame::SetWorldTime(int iHour, int iMinute)
 {
 	*(PBYTE)0xB70152 = (BYTE)iMinute;
