@@ -1,122 +1,353 @@
-// TODO: Implement RakClient.cpp
+/// \file
+///
+/// This file is part of RakNet Copyright 2003 Kevin Jenkins.
+///
+/// Usage of RakNet is subject to the appropriate license agreement.
+/// Creative Commons Licensees are subject to the
+/// license found at
+/// http://creativecommons.org/licenses/by-nc/2.5/
+/// Single application licensees are subject to the license found at
+/// http://www.rakkarsoft.com/SingleApplicationLicense.html
+/// Custom license users are subject to the terms therein.
+/// GPL license users are subject to the GNU General Public
+/// License as published by the Free
+/// Software Foundation; either version 2 of the License, or (at your
+/// option) any later version.
 
 #include "RakClient.h"
+#include "PacketEnumerations.h"
+#include "GetTime.h"
+
+#ifdef _MSC_VER
+#pragma warning( push )
+#endif
 
 // Constructor
 RakClient::RakClient()
 {
-	// TODO: RakClient::RakClient saco .text:10034BA0 server L .text:08067B60 bot W .text:004033E0 L .text:0806B130
+	unsigned i;
+	
+	for ( i = 0; i < 32; i++ )
+		otherClients[ i ].isActive = false;
+		
+	nextSeedUpdate = 0;
 }
 
-void RakClient::vftable_0()
-{
-	// TODO: RakClient::vftable_0() (saco 10034A30) (server L: 80691F0) (bot W: 403270 L: 806CBF2)
-}
+// Destructor
+RakClient::~RakClient()
+{}
 
-void RakClient::vftable_4()
+#ifdef _MSC_VER
+#pragma warning( disable : 4100 ) // warning C4100: 'depreciated' : unreferenced formal parameter
+#endif
+bool RakClient::Connect( const char* host, unsigned short serverPort, unsigned short clientPort, unsigned int depreciated, int threadSleepTimer )
 {
-	// TODO: RakClient::vftable_4() (saco 10034130) (server L: 8069200) (bot W: 402970 L: 806CC00)
+	RakPeer::Disconnect( 100 );
+	
+	RakPeer::Initialize( 1, clientPort, threadSleepTimer );
+	
+	if ( host[ 0 ] < '0' || host[ 0 ] > '2' )
+	{
+#if !defined(_COMPATIBILITY_1)
+		host = ( char* ) SocketLayer::Instance()->DomainNameToIP( host );
+#else
+		return false;
+#endif
+	}
+	
+	unsigned i;
+	
+	for ( i = 0; i < 32; i++ )
+	{
+		otherClients[ i ].isActive = false;
+		otherClients[ i ].playerId = UNASSIGNED_PLAYER_ID;
+		otherClients[ i ].staticData.Reset();
+	}
+	
+	// ignore depreciated. A pointless variable
+	return RakPeer::Connect( host, serverPort, ( char* ) password.GetData(), password.GetNumberOfBytesUsed() );
 }
 
 void RakClient::Disconnect( unsigned int blockDuration, unsigned char orderingChannel )
 {
-	// TODO: RakClient::vftable_8() (saco 10034A40) (server L: 8069210) (bot W: 403280 L: 806CC0E)
+	RakPeer::Disconnect( blockDuration, orderingChannel );
 }
 
-void RakClient::vftable_C()
+void RakClient::InitializeSecurity( const char *privKeyP, const char *privKeyQ )
 {
-	// TODO: RakClient::vftable_C() (saco 10034200) (server L: 8069220) (bot W: 402A40 L: 806CC36)
+	RakPeer::InitializeSecurity( privKeyP, privKeyQ, 0, 0 );
 }
 
-void RakClient::vftable_10()
+void RakClient::SetPassword( const char *_password )
 {
-	// TODO: RakClient::vftable_10() (saco 10034220) (server L: 8069230) (bot W: 402A60 L: 806CC44)
+	if ( _password == 0 || _password[ 0 ] == 0 )
+		password.Reset();
+	else
+	{
+		password.Reset();
+		password.Write( _password, ( int ) strlen( _password ) + 1 );
+	}
 }
 
-void RakClient::vftable_14()
+bool RakClient::HasPassword( void ) const
 {
-	// TODO: RakClient::vftable_14() (saco 10034270) (server L: 8069240) (bot W: 402AB0 L: 806CC52)
+	return password.GetNumberOfBytesUsed() > 0;
 }
 
-void RakClient::vftable_18()
+bool RakClient::Send( const char *data, const int length, PacketPriority priority, PacketReliability reliability, char orderingChannel )
 {
-	// TODO: RakClient::vftable_18() (saco 100342E0) (server L: 8069250) (bot W: 402B20 L: 806CC60)
+	if ( remoteSystemList == 0 )
+		return false;
+		
+	return RakPeer::Send( data, length, priority, reliability, orderingChannel, remoteSystemList[ 0 ].playerId, false );
 }
 
-void RakClient::vftable_1C()
+bool RakClient::Send( RakNet::BitStream * bitStream, PacketPriority priority, PacketReliability reliability, char orderingChannel )
 {
-	// TODO: RakClient::vftable_1C() (saco 10034290) (server L: 8069260) (bot W: 402AD0 L: 806CC6E)
+	if ( remoteSystemList == 0 )
+		return false;
+		
+	return RakPeer::Send( bitStream, priority, reliability, orderingChannel, remoteSystemList[ 0 ].playerId, false );
 }
 
-void RakClient::vftable_20()
+Packet* RakClient::Receive( void )
 {
-	// TODO: RakClient::vftable_20() (saco 10035200) (server L: 8069270) (bot W: 403A40 L: 806CC7C)
+	Packet * packet = RakPeer::Receive();
+	
+	// Intercept specific client / server feature packets
+	
+	if ( packet )
+	{
+		RakNet::BitStream bitStream( packet->data, packet->length, false );
+		int i;
+		
+		if ( packet->data[ 0 ] == ID_CONNECTION_REQUEST_ACCEPTED )
+		{
+//			ConnectionAcceptStruct cas;
+//			cas.Deserialize(bitStream);
+		//	unsigned short remotePort;
+		//	PlayerID externalID;
+			PlayerIndex playerIndex;
+
+			RakNet::BitStream inBitStream(packet->data, packet->length, false);
+			inBitStream.IgnoreBits(8); // ID_CONNECTION_REQUEST_ACCEPTED
+			inBitStream.IgnoreBits(8 * sizeof(unsigned short)); //inBitStream.Read(remotePort);
+			inBitStream.IgnoreBits(8 * sizeof(unsigned int)); //inBitStream.Read(externalID.binaryAddress);
+			inBitStream.IgnoreBits(8 * sizeof(unsigned short)); //inBitStream.Read(externalID.port);			
+			inBitStream.Read(playerIndex);
+
+			localPlayerIndex = playerIndex;
+			packet->playerIndex = playerIndex;
+		}
+		else if (
+				packet->data[ 0 ] == ID_REMOTE_NEW_INCOMING_CONNECTION ||
+				packet->data[ 0 ] == ID_REMOTE_EXISTING_CONNECTION ||
+				packet->data[ 0 ] == ID_REMOTE_DISCONNECTION_NOTIFICATION ||
+				packet->data[ 0 ] == ID_REMOTE_CONNECTION_LOST )
+		{
+			bitStream.IgnoreBits( 8 ); // Ignore identifier
+			bitStream.Read( packet->playerId.binaryAddress );
+			bitStream.Read( packet->playerId.port );
+			
+			if ( bitStream.Read( ( unsigned short& ) packet->playerIndex ) == false )
+			{
+				DeallocatePacket( packet );
+				return 0;
+			}
+			
+			
+			if ( packet->data[ 0 ] == ID_REMOTE_DISCONNECTION_NOTIFICATION ||
+				packet->data[ 0 ] == ID_REMOTE_CONNECTION_LOST )
+			{
+				i = GetOtherClientIndexByPlayerID( packet->playerId );
+				
+				if ( i >= 0 )
+					otherClients[ i ].isActive = false;
+			}
+		}			
+		else if ( packet->data[ 0 ] == ID_REMOTE_STATIC_DATA )
+		{
+			bitStream.IgnoreBits( 8 ); // Ignore identifier
+			bitStream.Read( packet->playerId.binaryAddress );
+			bitStream.Read( packet->playerId.port );
+			bitStream.Read( packet->playerIndex ); // ADDED BY KURI 
+			
+			i = GetOtherClientIndexByPlayerID( packet->playerId );
+			
+			if ( i < 0 )
+				i = GetFreeOtherClientIndex();
+				
+			if ( i >= 0 )
+			{
+				otherClients[ i ].playerId = packet->playerId;
+				otherClients[ i ].isActive = true;
+				otherClients[ i ].staticData.Reset();
+				// The static data is what is left over in the stream
+				otherClients[ i ].staticData.Write( ( char* ) bitStream.GetData() + BITS_TO_BYTES( bitStream.GetReadOffset() ), bitStream.GetNumberOfBytesUsed() - BITS_TO_BYTES( bitStream.GetReadOffset() ) );
+			}
+		}
+		else if ( packet->data[ 0 ] == ID_BROADCAST_PINGS )
+		{
+			PlayerID playerId;
+			int index;
+
+			bitStream.IgnoreBits( 8 ); // Ignore identifier
+			
+			for ( i = 0; i < 32; i++ )
+			{
+				if ( bitStream.Read( playerId.binaryAddress ) == false )
+					break; // No remaining data!
+					
+				bitStream.Read( playerId.port );
+				
+				index = GetOtherClientIndexByPlayerID( playerId );
+				
+				if ( index >= 0 )
+					bitStream.Read( otherClients[ index ].ping );
+				else
+				{
+					index = GetFreeOtherClientIndex();
+					
+					if ( index >= 0 )
+					{
+						otherClients[ index ].isActive = true;
+						bitStream.Read( otherClients[ index ].ping );
+						otherClients[ index ].playerId = playerId;
+						otherClients[ index ].staticData.Reset();
+					}
+					
+					else
+						bitStream.IgnoreBits( sizeof( short ) * 8 );
+				}
+			}
+			
+			DeallocatePacket( packet );
+			return 0;
+		}
+        else
+		if ( packet->data[ 0 ] == ID_TIMESTAMP &&
+			packet->length == sizeof(unsigned char)+sizeof(unsigned int)+sizeof(unsigned char)+sizeof(unsigned int)+sizeof(unsigned int) )
+		{
+			
+
+			RakNet::BitStream inBitStream(packet->data, packet->length, false);
+		
+			RakNetTime timeStamp;
+			unsigned char typeId;
+			unsigned int in_seed;
+			unsigned int in_nextSeed;
+			inBitStream.IgnoreBits(8); // ID_TIMESTAMP
+			inBitStream.Read(timeStamp);
+			inBitStream.Read(typeId); // ID_SET_RANDOM_NUMBER_SEED ?
+
+			// Check to see if this is a user TIMESTAMP message which
+			// accidentally has length SetRandomNumberSeedStruct_Size
+			if ( typeId != ID_SET_RANDOM_NUMBER_SEED )
+				return packet;
+
+			inBitStream.Read(in_seed);
+			inBitStream.Read(in_nextSeed);
+			
+			seed = in_seed;
+			nextSeed = in_nextSeed;
+			nextSeedUpdate = timeStamp + 9000; // Seeds are updated every 9 seconds
+			
+			DeallocatePacket( packet );
+			return 0;
+		}
+	}
+	
+	return packet;
 }
 
-void RakClient::vftable_24()
+void RakClient::DeallocatePacket( Packet *packet )
 {
-	// TODO: RakClient::vftable_24() (saco 10034A50) (server L: 8069280) (bot W: 403290 L: 806CC8A)
+	RakPeer::DeallocatePacket( packet );
 }
 
-void RakClient::vftable_28()
+void RakClient::PingServer( void )
 {
-	// TODO: RakClient::vftable_28() (saco 10034370) (server L: 8069290) (bot W: 402BB0 L: 806CCA4)
+	if ( remoteSystemList == 0 )
+		return ;
+		
+	RakPeer::Ping( remoteSystemList[ 0 ].playerId );
 }
 
-void RakClient::vftable_2C()
+void RakClient::PingServer( const char* host, unsigned short serverPort, unsigned short clientPort, bool onlyReplyOnAcceptingConnections )
 {
-	// TODO: RakClient::vftable_2C() (saco 10034340) (server L: 80692A0) (bot W: 402B80 L: 806CCB2)
+	RakPeer::Initialize( 1, clientPort, 0 );
+	RakPeer::Ping( host, serverPort, onlyReplyOnAcceptingConnections );
 }
 
-void RakClient::vftable_30()
+int RakClient::GetAveragePing( void )
 {
-	// TODO: RakClient::vftable_30() (saco 100343B0) (server L: 80692B0) (bot W: 402BF0 L: 806CCC0)
+	if ( remoteSystemList == 0 )
+		return -1;
+		
+	return RakPeer::GetAveragePing( remoteSystemList[ 0 ].playerId );
 }
 
-void RakClient::vftable_34()
+int RakClient::GetLastPing( void ) const
 {
-	// TODO: RakClient::vftable_34() (saco 100343E0) (server L: 80692C0) (bot W: 402C20 L: 806CCCE)
+	if ( remoteSystemList == 0 )
+		return -1;
+		
+	return RakPeer::GetLastPing( remoteSystemList[ 0 ].playerId );
 }
 
-void RakClient::vftable_38()
+int RakClient::GetLowestPing( void ) const
 {
-	// TODO: RakClient::vftable_38() (saco 10034410) (server L: 80692D0) (bot W: 402C50 L: 806CCDC)
+	if ( remoteSystemList == 0 )
+		return -1;
+		
+	return RakPeer::GetLowestPing( remoteSystemList[ 0 ].playerId );
 }
 
-void RakClient::vftable_3C()
+int RakClient::GetPlayerPing( const PlayerID playerId )
 {
-	// TODO: RakClient::vftable_3C() (saco 10034440) (server L: 80692E0) (bot W: 402C80 L: 806CCEA)
+	int i;
+	
+	for ( i = 0; i < 32; i++ )
+		if ( otherClients[ i ].playerId == playerId )
+			return otherClients[ i ].ping;
+			
+	return -1;
 }
 
-void RakClient::vftable_40()
+void RakClient::StartOccasionalPing( void )
 {
-	// TODO: RakClient::vftable_40() (saco 10034490) (server L: 80692F0) (bot W: 402CD0 L: 806CCF8)
+	RakPeer::SetOccasionalPing( true );
 }
 
-void RakClient::vftable_44()
+void RakClient::StopOccasionalPing( void )
 {
-	// TODO: RakClient::vftable_44() (saco 100344A0) (server L: 8069300) (bot W: 402CE0 L: 806CD06)
+	RakPeer::SetOccasionalPing( false );
 }
 
 bool RakClient::IsConnected( void ) const
 {
-	// TODO: RakClient::vftable_48() (saco 100344B0) (server L: 8069310) (bot W: 402CF0 L: 806CD14)
-	return false;
+	unsigned short numberOfSystems;
+	
+	RakPeer::GetConnectionList( 0, &numberOfSystems );
+	return numberOfSystems == 1;
 }
 
-void RakClient::vftable_4C()
+unsigned int RakClient::GetSynchronizedRandomInteger( void ) const
 {
-	// TODO: RakClient::vftable_4C() (saco 100344D0) (server L: 8069320) (bot W: 402D10 L: 806CD22)
+	if ( RakNet::GetTime() > nextSeedUpdate )
+		return nextSeed;
+	else
+		return seed;
 }
 
-void RakClient::vftable_50()
+bool RakClient::GenerateCompressionLayer( unsigned int inputFrequencyTable[ 256 ], bool inputLayer )
 {
-	// TODO: RakClient::vftable_50() (saco 10034A60) (server L: 8069330) (bot W: 4032A0 L: 806CD30)
+	return RakPeer::GenerateCompressionLayer( inputFrequencyTable, inputLayer );
 }
 
-void RakClient::vftable_54()
+bool RakClient::DeleteCompressionLayer( bool inputLayer )
 {
-	// TODO: RakClient::vftable_54() (saco 10034A70) (server L: 8069340) (bot W: 4032B0 L: 806CD3E)
+	return RakPeer::DeleteCompressionLayer( inputLayer );
 }
 
 void RakClient::RegisterAsRemoteProcedureCall( char* uniqueID, void ( *functionPointer ) ( RPCParameters *rpcParms ) )
@@ -134,158 +365,243 @@ void RakClient::UnregisterAsRemoteProcedureCall( char* uniqueID )
 	RakPeer::UnregisterAsRemoteProcedureCall( uniqueID );
 }
 
-void RakClient::vftable_64()
+bool RakClient::RPC( char* uniqueID, const char *data, unsigned int bitLength, PacketPriority priority, PacketReliability reliability, char orderingChannel, bool shiftTimestamp, NetworkID networkID, RakNet::BitStream *replyFromTarget )
 {
-	// TODO: RakClient::vftable_64() (saco 10034620) (server L: 8069380) (bot W: 402E60 L: 806CD76)
+	if ( remoteSystemList == 0 )
+		return false;
+		
+	return RakPeer::RPC( uniqueID, data, bitLength, priority, reliability, orderingChannel, remoteSystemList[ 0 ].playerId, false, shiftTimestamp, networkID, replyFromTarget );
 }
 
-void RakClient::vftable_68()
+bool RakClient::RPC( char* uniqueID, RakNet::BitStream *parameters, PacketPriority priority, PacketReliability reliability, char orderingChannel, bool shiftTimestamp, NetworkID networkID, RakNet::BitStream *replyFromTarget )
 {
-	// TODO: RakClient::vftable_68() (saco 100345B0) (server L: 8069390) (bot W: 402DF0 L: 806CD84)
+	if ( remoteSystemList == 0 )
+		return false;
+		
+	return RakPeer::RPC( uniqueID, parameters, priority, reliability, orderingChannel, remoteSystemList[ 0 ].playerId, false, shiftTimestamp, networkID, replyFromTarget );
 }
 
-void RakClient::vftable_6C()
+void RakClient::SetTrackFrequencyTable( bool b )
 {
-	// TODO: RakClient::vftable_6C() (saco 10034540) (server L: 80693A0) (bot W: 402D80 L: 806CD92)
+	RakPeer::SetCompileFrequencyTable( b );
 }
 
-void RakClient::vftable_70()
+bool RakClient::GetSendFrequencyTable( unsigned int outputFrequencyTable[ 256 ] )
 {
-	// TODO: RakClient::vftable_70() (saco 10034690) (server L: 80693B0) (bot W: 402ED0 L: 806CDA0)
+	return RakPeer::GetOutgoingFrequencyTable( outputFrequencyTable );
 }
 
-void RakClient::vftable_74()
+float RakClient::GetCompressionRatio( void ) const
 {
-	// TODO: RakClient::vftable_74() (saco 100346A0) (server L: 80693C0) (bot W: 402EE0 L: 806CDAE)
+	return RakPeer::GetCompressionRatio();
 }
 
-void RakClient::vftable_78()
+float RakClient::GetDecompressionRatio( void ) const
 {
-	// TODO: RakClient::vftable_78() (saco 10034AB0) (server L: 80693D0) (bot W: 4032F0 L: 806CDBC)
+	return RakPeer::GetDecompressionRatio();
 }
 
-void RakClient::vftable_7C()
+void RakClient::AttachPlugin( PluginInterface *messageHandler )
 {
-	// TODO: RakClient::vftable_7C() (saco 10034AC0) (server L: 80693E0) (bot W: 403300 L: 806CDCA)
+	RakPeer::AttachPlugin(messageHandler);
 }
 
-void RakClient::vftable_80()
+void RakClient::DetachPlugin( PluginInterface *messageHandler )
 {
-	// TODO: RakClient::vftable_80() (saco 10034AD0) (server L: 80693F0) (bot W: 403310 L: 806CDD8)
+	RakPeer::DetachPlugin(messageHandler);
 }
 
-void RakClient::vftable_84()
+RakNet::BitStream * RakClient::GetStaticServerData( void )
 {
-	// TODO: RakClient::vftable_84() (saco 10034AE0) (server L: 8069400) (bot W: 403320 L: 806CDE6)
+	if ( remoteSystemList == 0 )
+		return 0;
+		
+	return RakPeer::GetRemoteStaticData( remoteSystemList[ 0 ].playerId );
 }
 
-void RakClient::vftable_88()
+void RakClient::SetStaticServerData( const char *data, const int length )
 {
-	// TODO: RakClient::vftable_88() (saco 100346F0) (server L: 8069410) (bot W: 402F30 L: 806CDF4)
+	if ( remoteSystemList == 0 )
+		return ;
+		
+	RakPeer::SetRemoteStaticData( remoteSystemList[ 0 ].playerId, data, length );
 }
 
-void RakClient::vftable_8C()
+RakNet::BitStream * RakClient::GetStaticClientData( const PlayerID playerId )
 {
-	// TODO: RakClient::vftable_8C() (saco 10034720) (server L: 8069420) (bot W: 402F60 L: 806CE02)
+	int i;
+	
+	if ( playerId == UNASSIGNED_PLAYER_ID )
+	{
+		return & localStaticData;
+	}
+	
+	else
+	{
+		i = GetOtherClientIndexByPlayerID( playerId );
+		
+		if ( i >= 0 )
+		{
+			return & ( otherClients[ i ].staticData );
+		}
+
+	}
+	
+	return 0;
 }
 
-void RakClient::vftable_90()
+void RakClient::SetStaticClientData( const PlayerID playerId, const char *data, const int length )
 {
-	// TODO: RakClient::vftable_90() (saco 100350E0) (server L: 8069430) (bot W: 403920 L: 806CE10)
+	int i;
+	
+	if ( playerId == UNASSIGNED_PLAYER_ID )
+	{
+		localStaticData.Reset();
+		localStaticData.Write( data, length );
+	}
+	
+	else
+	{
+		i = GetOtherClientIndexByPlayerID( playerId );
+		
+		if ( i >= 0 )
+		{
+			otherClients[ i ].staticData.Reset();
+			otherClients[ i ].staticData.Write( data, length );
+		}
+		
+		else
+			RakPeer::SetRemoteStaticData( playerId, data, length );
+	}
+	
 }
 
-void RakClient::vftable_94()
+void RakClient::SendStaticClientDataToServer( void )
 {
-	// TODO: RakClient::vftable_94() (saco 10035140) (server L: 8069440) (bot W: 403980 L: 806CE1E)
+	if ( remoteSystemList == 0 )
+		return ;
+		
+	RakPeer::SendStaticData( remoteSystemList[ 0 ].playerId );
 }
 
-void RakClient::vftable_98()
+PlayerID RakClient::GetServerID( void ) const
 {
-	// TODO: RakClient::vftable_98() (saco 10034760) (server L: 8069450) (bot W: 402FA0 L: 806CE2C)
+	if ( remoteSystemList == 0 )
+		return UNASSIGNED_PLAYER_ID;
+		
+	return remoteSystemList[ 0 ].playerId;
 }
 
-void RakClient::vftable_9C()
+PlayerID RakClient::GetPlayerID( void ) const
 {
-	// TODO: RakClient::vftable_9C() (saco 10034790) (server L: 8069460) (bot W: 402FD0 L: 806CE3A)
+	if ( remoteSystemList == 0 )
+		return UNASSIGNED_PLAYER_ID;
+		
+	// GetExternalID is more accurate because it reflects our external IP and port to the server.
+	// GetInternalID only matches the parameters we passed
+	PlayerID myID = RakPeer::GetExternalID( remoteSystemList[ 0 ].playerId );
+	
+	if ( myID == UNASSIGNED_PLAYER_ID )
+		return RakPeer::GetInternalID();
+	else
+		return myID;
 }
 
-void RakClient::vftable_A0()
+PlayerID RakClient::GetInternalID( void ) const
 {
-	// TODO: RakClient::vftable_A0() (saco 100347D0) (server L: 8069470) (bot W: 403010 L: 806CE48)
+	return RakPeer::GetInternalID();
 }
 
-void RakClient::vftable_A4()
+const char* RakClient::PlayerIDToDottedIP( const PlayerID playerId ) const
 {
-	// TODO: RakClient::vftable_A4() (saco 10034AF0) (server L: 8069480) (bot W: 403330 L: 806CE56)
+	return RakPeer::PlayerIDToDottedIP( playerId );
 }
 
-void RakClient::vftable_A8()
+void RakClient::PushBackPacket( Packet *packet, bool pushAtHead )
 {
-	// TODO: RakClient::vftable_A8() (saco 10034B00) (server L: 8069490) (bot W: 403340 L: 806CE64)
+	RakPeer::PushBackPacket(packet, pushAtHead);
 }
 
-void RakClient::vftable_AC()
+void RakClient::SetRouterInterface( RouterInterface *routerInterface )
 {
-	// TODO: RakClient::vftable_AC() (saco 10034B10) (server L: 80694A0) (bot W: 403350 L: 806CE72)
+	RakPeer::SetRouterInterface(routerInterface);
+}
+void RakClient::RemoveRouterInterface( RouterInterface *routerInterface )
+{
+	RakPeer::RemoveRouterInterface(routerInterface);
 }
 
-void RakClient::vftable_B0()
+void RakClient::SetTimeoutTime( RakNetTime timeMS )
 {
-	// TODO: RakClient::vftable_B0() (saco 10034B20) (server L: 80694B0) (bot W: 403360 L: 806CE80)
+	RakPeer::SetTimeoutTime( timeMS, GetServerID() );
 }
 
-void RakClient::vftable_B4()
+bool RakClient::SetMTUSize( int size )
 {
-	// TODO: RakClient::vftable_B4() (saco 10034B30) (server L: 80694C0) (bot W: 403370 L: 806CE8E)
+	return RakPeer::SetMTUSize( size );
 }
 
-void RakClient::vftable_B8()
+int RakClient::GetMTUSize( void ) const
 {
-	// TODO: RakClient::vftable_B8() (saco 100348E0) (server L: 80694D0) (bot W: 403120 L: 806CE9C)
+	return RakPeer::GetMTUSize();
 }
 
-void RakClient::vftable_BC()
+void RakClient::AllowConnectionResponseIPMigration( bool allow )
 {
-	// TODO: RakClient::vftable_BC() (saco 10034B40) (server L: 80694E0) (bot W: 403380 L: 806CEAA)
+	RakPeer::AllowConnectionResponseIPMigration( allow );
 }
 
-void RakClient::vftable_C0()
+void RakClient::AdvertiseSystem( const char *host, unsigned short remotePort, const char *data, int dataLength )
 {
-	// TODO: RakClient::vftable_C0() (saco 10034B50) (server L: 80694F0) (bot W: 403390 L: 806CEB8)
+	RakPeer::AdvertiseSystem( host, remotePort, data, dataLength );
 }
 
-void RakClient::vftable_C4()
+RakNetStatisticsStruct* const RakClient::GetStatistics( void )
 {
-	// TODO: RakClient::vftable_C4() (saco 10034B60) (server L: 8069500) (bot W: 4033A0 L: 806CEC6)
+	return RakPeer::GetStatistics( remoteSystemList[ 0 ].playerId );
 }
 
-void RakClient::vftable_C8()
+void RakClient::ApplyNetworkSimulator( double maxSendBPS, unsigned short minExtraPing, unsigned short extraPingVariance)
 {
-	// TODO: RakClient::vftable_C8() (saco 10034B70) (server L: 8069510) (bot W: 4033B0 L: 806CED4)
+	RakPeer::ApplyNetworkSimulator( maxSendBPS, minExtraPing, extraPingVariance );
 }
 
-void RakClient::vftable_CC()
+bool RakClient::IsNetworkSimulatorActive( void )
 {
-	// TODO: RakClient::vftable_CC() (saco 10034960) (server L: 8069520) (bot W: 4031A0 L: 806CEE2)
+	return RakPeer::IsNetworkSimulatorActive();
 }
 
-void RakClient::vftable_D0()
+int RakClient::GetOtherClientIndexByPlayerID( const PlayerID playerId )
 {
-	// TODO: RakClient::vftable_D0() (saco 10034B80) (server L: 8069530) (bot W: 4033C0 L: 806CEF0)
+	unsigned i;
+	
+	for ( i = 0; i < 32; i++ )
+	{
+		if ( otherClients[ i ].playerId == playerId )
+			return i;
+	}
+	
+	return -1;
 }
 
-void RakClient::vftable_D4()
+int RakClient::GetFreeOtherClientIndex( void )
 {
-	// TODO: RakClient::vftable_D4() (saco 10034B90) (server L: 8069540) (bot W: 4033D0 L: 806CEFE)
+	unsigned i;
+	
+	for ( i = 0; i < 32; i++ )
+	{
+		if ( otherClients[ i ].isActive == false )
+			return i;
+	}
+	
+	return -1;
 }
 
-void RakClient::vftable_D8()
+PlayerIndex RakClient::GetPlayerIndex( void )
 {
-	// TODO: RakClient::vftable_D8() (saco 10034A20) (server L: 8069550) (bot W: 403260 L: 806CF0C)
+	return localPlayerIndex;
 }
 
-void RakClient::vftable_DC()
-{
-	// TODO: RakClient::vftable_DC() (bot L: 0806CF1A)
-}
-
+#ifdef _MSC_VER
+#pragma warning( pop )
+#endif

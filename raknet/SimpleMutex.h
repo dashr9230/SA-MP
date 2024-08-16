@@ -37,13 +37,13 @@ public:
 
 	/// Constructor
 	SimpleMutex();
-
+	
 	// Destructor
 	~SimpleMutex();
-
+	
 	// Locks the mutex.  Slow!
 	void Lock(void);
-
+	
 	// Unlocks the mutex.
 	void Unlock(void);
 private:
@@ -55,3 +55,4 @@ private:
 };
 
 #endif
+

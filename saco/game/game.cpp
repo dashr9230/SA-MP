@@ -587,6 +587,19 @@ int CGame::GetWorldWeather()
 
 //-----------------------------------------------------------
 
+void CGame::DisplayHud(BOOL bDisp)
+{
+	if(bDisp) {
+		*(BYTE*)ADDR_ENABLE_HUD = 1;
+		ToggleRadar(1);
+	} else {
+		*(BYTE*)ADDR_ENABLE_HUD = 0;
+		ToggleRadar(0);
+	}
+}
+
+//-----------------------------------------------------------
+
 BYTE CGame::IsHudEnabled()
 {
 	return *(BYTE*)ADDR_ENABLE_HUD;

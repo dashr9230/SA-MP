@@ -1,0 +1,6 @@
+#ifndef __SYSTEM_DATABASE_SERVER_H
+#define __SYSTEM_DATABASE_SERVER_H
+
+// TODO
+
+#endif

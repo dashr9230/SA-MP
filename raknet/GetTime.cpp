@@ -48,22 +48,22 @@ RakNetTime RakNet::GetTime( void )
 #else
 		gettimeofday( &initialTime, 0 );
 #endif
-
+		
 		initialized = true;
 	}
-
+	
 #ifdef _WIN32
 	LARGE_INTEGER PerfVal;
-
+	
 	QueryPerformanceCounter( &PerfVal );
-
+	
 	return (RakNetTime)(PerfVal.QuadPart*1000 / yo.QuadPart);
 #else
 	gettimeofday( &tp, 0 );
-
+	
 	// Seconds to ms and microseconds to ms
 	return ( tp.tv_sec - initialTime.tv_sec ) * 1000 + ( tp.tv_usec - initialTime.tv_usec ) / 1000;
-
+	
 #endif
 }
 

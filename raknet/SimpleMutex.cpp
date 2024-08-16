@@ -95,3 +95,4 @@ void SimpleMutex::Unlock(void)
 	assert(error==0);
 #endif
 }
+

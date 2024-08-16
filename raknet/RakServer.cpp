@@ -1,82 +1,291 @@
-// TODO: Implement RakServer.cpp
+/// \file
+///
+/// This file is part of RakNet Copyright 2003 Kevin Jenkins.
+///
+/// Usage of RakNet is subject to the appropriate license agreement.
+/// Creative Commons Licensees are subject to the
+/// license found at
+/// http://creativecommons.org/licenses/by-nc/2.5/
+/// Single application licensees are subject to the license found at
+/// http://www.rakkarsoft.com/SingleApplicationLicense.html
+/// Custom license users are subject to the terms therein.
+/// GPL license users are subject to the GNU General Public
+/// License as published by the Free
+/// Software Foundation; either version 2 of the License, or (at your
+/// option) any later version.
 
 #include "RakServer.h"
+#include "PacketEnumerations.h"
+#include "GetTime.h"
+#include "Rand.h"
+
+#ifdef _MSC_VER
+#pragma warning( push )
+#endif
 
 RakServer::RakServer()
 {
-	// TODO: RakServer ctor saco .text:100436F0 server W .text:0045AC20 L .text:0807B820 bot L .text:08081062
+	nextSeedUpdate = 0;
+	synchronizedRandomInteger = false;
+	relayStaticClientData = false;
+	broadcastPingsTime = 0;
 }
 
-void RakServer::vftable_0()
+RakServer::~RakServer()
+{}
+
+void RakServer::InitializeSecurity( const char *pubKeyE, const char *pubKeyN )
 {
-	// TODO: RakServer::vftable_0() (server W: 45AC90 L: 807B8C0)
+	RakPeer::InitializeSecurity( 0, 0, pubKeyE, pubKeyN );
 }
 
+void RakServer::DisableSecurity( void )
+{
+	RakPeer::DisableSecurity();
+}
+
+#ifdef _MSC_VER
+#pragma warning( disable : 4100 ) // warning C4100: 'depreciated' : unreferenced formal parameter
+#endif
 bool RakServer::Start( unsigned short AllowedPlayers, unsigned int depreciated, int threadSleepTimer, unsigned short port, const char *forceHostAddress )
 {
 	bool init;
 
+	RakPeer::Disconnect( 30 );
 
-	init=false;
-	
-	// TODO: RakServer::vftable_4() (server W: 45A130 L: 807B900)
-	
+	init = RakPeer::Initialize( AllowedPlayers, port, threadSleepTimer, forceHostAddress );
+	RakPeer::SetMaximumIncomingConnections( AllowedPlayers );
+
+	// Random number seed
+	RakNetTime time = RakNet::GetTime();
+	seedMT( (unsigned int) time );
+	seed = randomMT();
+
+	if ( seed % 2 == 0 )   // Even
+		seed--; // make odd
+
+	nextSeed = randomMT();
+
+	if ( nextSeed % 2 == 0 )   // Even
+		nextSeed--; // make odd
+
 	return init;
-}
-
-void RakServer::vftable_8()
-{
-	// TODO: RakServer::vftable_8() (server W: 45A100 L: 807B990)
-}
-
-void RakServer::vftable_C()
-{
-	// TODO: RakServer::vftable_C() (server W: 45A120 L: 807B950)
 }
 
 void RakServer::SetPassword( const char *_password )
 {
-	// TODO: RakServer::vftable_10() (server W: 45A1B0 L: 807B980)
+	if ( _password )
+	{
+		RakPeer::SetIncomingPassword( _password, ( int ) strlen( _password ) + 1 );
+	}
+
+	else
+	{
+		RakPeer::SetIncomingPassword( 0, 0 );
+	}
 }
 
-void RakServer::vftable_14()
+bool RakServer::HasPassword( void )
 {
-	// TODO: RakServer::vftable_14() (server W: 45A1F0 L: 807BA40)
+	int passwordLength;
+	GetIncomingPassword(0, &passwordLength);
+	return passwordLength > 0;
 }
 
 void RakServer::Disconnect( unsigned int blockDuration, unsigned char orderingChannel )
 {
-	// TODO: RakServer::vftable_18() (server W: 45A210 L: 807BAB0)
+	RakPeer::Disconnect( blockDuration, orderingChannel );
 }
 
-void RakServer::vftable_1C()
+bool RakServer::Send( const char *data, const int length, PacketPriority priority, PacketReliability reliability, char orderingChannel, PlayerID playerId, bool broadcast )
 {
-	// TODO: RakServer::vftable_1C() (server W: 45A260 L: 807BAE0)
+	return RakPeer::Send( data, length, priority, reliability, orderingChannel, playerId, broadcast );
 }
 
-void RakServer::vftable_20()
+bool RakServer::Send( RakNet::BitStream *bitStream, PacketPriority priority, PacketReliability reliability, char orderingChannel, PlayerID playerId, bool broadcast )
 {
-	// TODO: RakServer::vftable_20() (server W: 45A220 L: 807BB00)
+	return RakPeer::Send( bitStream, priority, reliability, orderingChannel, playerId, broadcast );
 }
 
-void RakServer::vftable_24()
+Packet* RakServer::Receive( void )
 {
-	// TODO: RakServer::vftable_24() (server W: 45ACB0 L: 807BB60)
+	Packet * packet = RakPeer::Receive();
+
+	// This is just a regular time based update.  Nowhere else good to put it
+
+	if ( RakPeer::IsActive() && occasionalPing )
+	{
+		RakNetTime time = RakNet::GetTime();
+
+		if ( time > broadcastPingsTime || ( packet && packet->data[ 0 ] == ID_RECEIVED_STATIC_DATA ) )
+		{
+			if ( time > broadcastPingsTime )
+				broadcastPingsTime = time + 30000; // Broadcast pings every 30 seconds
+
+			unsigned i, count;
+
+			RemoteSystemStruct *remoteSystem;
+			RakNet::BitStream bitStream( ( PlayerID_Size + sizeof( short ) ) * 32 + sizeof(unsigned char) );
+			unsigned char typeId = ID_BROADCAST_PINGS;
+
+			bitStream.Write( typeId );
+
+			//for ( i = 0, count = 0; count < 32 && i < remoteSystemListSize; i++ )
+			for ( i = 0, count = 0; count < 32 && i < maximumNumberOfPeers; i++ )
+			{
+				remoteSystem = remoteSystemList + i;
+
+				if ( remoteSystem->playerId != UNASSIGNED_PLAYER_ID && remoteSystem->isActive)
+				{
+					bitStream.Write( remoteSystem->playerId.binaryAddress );
+					bitStream.Write( remoteSystem->playerId.port );
+					bitStream.Write( remoteSystem->pingAndClockDifferential[ remoteSystem->pingAndClockDifferentialWriteIndex ].pingTime );
+					count++;
+				}
+			}
+
+			if ( count > 0 )   // If we wrote anything
+			{
+
+				if ( packet && packet->data[ 0 ] == ID_NEW_INCOMING_CONNECTION )   // If this was a new connection
+					Send( &bitStream, SYSTEM_PRIORITY, RELIABLE, 0, packet->playerId, false ); // Send to the new connection
+				else
+					Send( &bitStream, SYSTEM_PRIORITY, RELIABLE, 0, UNASSIGNED_PLAYER_ID, true ); // Send to everyone
+			}
+		}
+	}
+
+	// This is just a regular time based update.  Nowhere else good to put it
+	if ( RakPeer::IsActive() && synchronizedRandomInteger )
+	{
+		RakNetTime time = RakNet::GetTime();
+
+		if ( time > nextSeedUpdate || ( packet && packet->data[ 0 ] == ID_NEW_INCOMING_CONNECTION ) )
+		{
+			if ( time > nextSeedUpdate )
+				nextSeedUpdate = time + 9000; // Seeds are updated every 9 seconds
+
+			seed = nextSeed;
+
+			nextSeed = randomMT();
+
+			if ( nextSeed % 2 == 0 )   // Even
+				nextSeed--; // make odd
+
+			/*		SetRandomNumberSeedStruct s;
+
+			s.ts = ID_TIMESTAMP;
+			s.timeStamp = RakNet::GetTime();
+			s.typeId = ID_SET_RANDOM_NUMBER_SEED;
+			s.seed = seed;
+			s.nextSeed = nextSeed;
+			RakNet::BitStream s_BitS( SetRandomNumberSeedStruct_Size );
+			s.Serialize( s_BitS );
+			*/
+
+			RakNet::BitStream outBitStream(sizeof(unsigned char)+sizeof(unsigned int)+sizeof(unsigned char)+sizeof(unsigned int)+sizeof(unsigned int));
+			outBitStream.Write((unsigned char) ID_TIMESTAMP);
+			outBitStream.Write((unsigned int) RakNet::GetTime());
+			outBitStream.Write((unsigned char) ID_SET_RANDOM_NUMBER_SEED);
+			outBitStream.Write(seed);
+			outBitStream.Write(nextSeed);
+
+			if ( packet && packet->data[ 0 ] == ID_NEW_INCOMING_CONNECTION )
+				Send( &outBitStream, SYSTEM_PRIORITY, RELIABLE, 0, packet->playerId, false );
+			else
+				Send( &outBitStream, SYSTEM_PRIORITY, RELIABLE, 0, UNASSIGNED_PLAYER_ID, true );
+		}
+	}
+
+	if ( packet )
+	{
+		// Intercept specific client / server feature packets. This will do an extra send and still pass on the data to the user
+
+		if ( packet->data[ 0 ] == ID_RECEIVED_STATIC_DATA )
+		{
+			if ( relayStaticClientData )
+			{
+				// Relay static data to the other systems but the sender
+				RakNet::BitStream bitStream( packet->length + PlayerID_Size );
+				unsigned char typeId = ID_REMOTE_STATIC_DATA;
+				bitStream.Write( typeId );
+				bitStream.Write( packet->playerId.binaryAddress );
+				bitStream.Write( packet->playerId.port );
+				bitStream.Write( packet->playerIndex );
+				bitStream.Write( ( char* ) packet->data + sizeof(unsigned char), packet->length - sizeof(unsigned char) );
+				Send( &bitStream, SYSTEM_PRIORITY, RELIABLE, 0, packet->playerId, true );
+			}
+		}
+
+		else
+			if ( packet->data[ 0 ] == ID_DISCONNECTION_NOTIFICATION || packet->data[ 0 ] == ID_CONNECTION_LOST || packet->data[ 0 ] == ID_NEW_INCOMING_CONNECTION )
+			{
+				// Relay the disconnection
+				RakNet::BitStream bitStream( packet->length + PlayerID_Size );
+				unsigned char typeId;
+
+				if ( packet->data[ 0 ] == ID_DISCONNECTION_NOTIFICATION )
+					typeId = ID_REMOTE_DISCONNECTION_NOTIFICATION;
+				else
+					if ( packet->data[ 0 ] == ID_CONNECTION_LOST )
+						typeId = ID_REMOTE_CONNECTION_LOST;
+					else
+						typeId = ID_REMOTE_NEW_INCOMING_CONNECTION;
+
+				bitStream.Write( typeId );
+				bitStream.Write( packet->playerId.binaryAddress );
+				bitStream.Write( packet->playerId.port );
+				bitStream.Write( ( unsigned short& ) packet->playerIndex );
+
+				Send( &bitStream, SYSTEM_PRIORITY, RELIABLE, 0, packet->playerId, true );
+
+				if ( packet->data[ 0 ] == ID_NEW_INCOMING_CONNECTION )
+				{
+					unsigned i;
+
+					//for ( i = 0; i < remoteSystemListSize; i++ )
+					for ( i = 0; i < maximumNumberOfPeers; i++ )
+					{
+						if ( remoteSystemList[ i ].isActive && remoteSystemList[ i ].playerId != UNASSIGNED_PLAYER_ID && packet->playerId != remoteSystemList[ i ].playerId )
+						{
+							bitStream.Reset();
+							typeId = ID_REMOTE_EXISTING_CONNECTION;
+							bitStream.Write( typeId );
+							bitStream.Write( remoteSystemList[ i ].playerId.binaryAddress );
+							bitStream.Write( remoteSystemList[ i ].playerId.port );
+							bitStream.Write( ( unsigned short ) i );
+							// One send to tell them of the connection
+							Send( &bitStream, SYSTEM_PRIORITY, RELIABLE, 0, packet->playerId, false );
+
+							if ( relayStaticClientData )
+							{
+								bitStream.Reset();
+								typeId = ID_REMOTE_STATIC_DATA;
+								bitStream.Write( typeId );
+								bitStream.Write( remoteSystemList[ i ].playerId.binaryAddress );
+								bitStream.Write( remoteSystemList[ i ].playerId.port );
+								bitStream.Write( (unsigned short) i );
+								bitStream.Write( ( char* ) remoteSystemList[ i ].staticData.GetData(), remoteSystemList[ i ].staticData.GetNumberOfBytesUsed() );
+								// Another send to tell them of the static data
+								Send( &bitStream, SYSTEM_PRIORITY, RELIABLE, 0, packet->playerId, false );
+							}
+						}
+					}
+				}
+			}
+	}
+
+	return packet;
 }
 
-void RakServer::vftable_28()
+void RakServer::Kick( const PlayerID playerId )
 {
-	// TODO: RakServer::vftable_28() (server W: 45AD00 L: 807BBB0)
+	RakPeer::CloseConnection(playerId, true, 0);
 }
 
-void RakServer::vftable_2C()
+void RakServer::DeallocatePacket( Packet *packet )
 {
-	// TODO: RakServer::vftable_2C() (server W: 45A2A0 L: 807BC30)
-}
-
-void RakServer::vftable_30()
-{
-	// TODO: RakServer::vftable_30() (server W: 45A2D0 L: 807BE80)
+	RakPeer::DeallocatePacket( packet );
 }
 
 void RakServer::SetAllowedPlayers( unsigned short AllowedPlayers )
@@ -89,74 +298,78 @@ unsigned short RakServer::GetAllowedPlayers( void ) const
 	return RakPeer::GetMaximumIncomingConnections();
 }
 
-void RakServer::vftable_3C()
+unsigned short RakServer::GetConnectedPlayers( void )
 {
-	// TODO: RakServer::vftable_3C() (server W: 45A300 L: 807BF00)
+	unsigned short numberOfSystems;
+
+	RakPeer::GetConnectionList( 0, &numberOfSystems );
+	return numberOfSystems;
 }
 
-void RakServer::vftable_40()
+void RakServer::GetPlayerIPFromID( const PlayerID playerId, char returnValue[ 22 ], unsigned short *port )
 {
-	// TODO: RakServer::vftable_40() (server W: 45A320 L: 807BF20)
+	*port = playerId.port;
+	strcpy( returnValue, RakPeer::PlayerIDToDottedIP( playerId ) );
 }
 
-void RakServer::vftable_44()
+void RakServer::PingPlayer( const PlayerID playerId )
 {
-	// TODO: RakServer::vftable_44() (server W: 45A360 L: 807BF50)
+	RakPeer::Ping( playerId );
 }
 
-void RakServer::vftable_48()
+int RakServer::GetAveragePing( const PlayerID playerId )
 {
-	// TODO: RakServer::vftable_48() (server W: 45A380 L: 807BF90)
+	return RakPeer::GetAveragePing( playerId );
 }
 
-void RakServer::vftable_4C()
+int RakServer::GetLastPing( const PlayerID playerId )
 {
-	// TODO: RakServer::vftable_4C() (server W: 45A3A0 L: 807BFA0)
+	return RakPeer::GetLastPing( playerId );
 }
 
-void RakServer::vftable_50()
+int RakServer::GetLowestPing( const PlayerID playerId )
 {
-	// TODO: RakServer::vftable_50() (server W: 45A3C0 L: 807BFB0)
+	return RakPeer::GetLowestPing( playerId );
 }
 
-void RakServer::vftable_54()
+void RakServer::StartOccasionalPing( void )
 {
-	// TODO: RakServer::vftable_54() (server W: 45A3E0 L: 807BFC0)
+	RakPeer::SetOccasionalPing( true );
 }
 
-void RakServer::vftable_58()
+void RakServer::StopOccasionalPing( void )
 {
-	// TODO: RakServer::vftable_58() (server W: 45A3F0 L: 807BFD0)
+	RakPeer::SetOccasionalPing( false );
 }
 
-void RakServer::vftable_5C()
+bool RakServer::IsActive( void ) const
 {
-	// TODO: RakServer::vftable_5C() (server W: 45A400 L: 807BFF0)
+	return RakPeer::IsActive();
 }
 
-void RakServer::vftable_60()
+unsigned int RakServer::GetSynchronizedRandomInteger( void ) const
 {
-	// TODO: RakServer::vftable_60() (server W: 45A410 L: 807C010)
+	return seed;
 }
 
-void RakServer::vftable_64()
+void RakServer::StartSynchronizedRandomInteger( void )
 {
-	// TODO: RakServer::vftable_64() (server W: 45A420 L: 807C030)
+	synchronizedRandomInteger = true;
 }
 
-void RakServer::vftable_68()
+void RakServer::StopSynchronizedRandomInteger( void )
 {
-	// TODO: RakServer::vftable_68() (server W: 45A430 L: 807C040)
+	synchronizedRandomInteger = false;
 }
 
-void RakServer::vftable_6C()
+bool RakServer::GenerateCompressionLayer( unsigned int inputFrequencyTable[ 256 ], bool inputLayer )
 {
-	// TODO: RakServer::vftable_6C() (server W: 45A440 L: 807C050)
+	return RakPeer::GenerateCompressionLayer( inputFrequencyTable, inputLayer );
 }
 
-void RakServer::vftable_70()
+bool RakServer::DeleteCompressionLayer( bool inputLayer )
 {
-	// TODO: RakServer::vftable_70() (server W: 45A450 L: 807C060)
+	return RakPeer::DeleteCompressionLayer( inputLayer );
 }
 
 void RakServer::RegisterAsRemoteProcedureCall( char* uniqueID, void ( *functionPointer ) ( RPCParameters *rpcParms ) )
@@ -174,212 +387,203 @@ void RakServer::UnregisterAsRemoteProcedureCall( char* uniqueID )
 	RakPeer::UnregisterAsRemoteProcedureCall( uniqueID );
 }
 
-void RakServer::vftable_80()
+bool RakServer::RPC( char* uniqueID, const char *data, unsigned int bitLength, PacketPriority priority, PacketReliability reliability, char orderingChannel, PlayerID playerId, bool broadcast, bool shiftTimestamp, NetworkID networkID, RakNet::BitStream *replyFromTarget )
 {
-	// TODO: RakServer::vftable_80() (server W: 45A5B0 L: 807C100)
+	return RakPeer::RPC( uniqueID, data, bitLength, priority, reliability, orderingChannel, playerId, broadcast, shiftTimestamp, networkID, replyFromTarget );
 }
 
-void RakServer::vftable_84()
+bool RakServer::RPC( char* uniqueID, RakNet::BitStream *parameters, PacketPriority priority, PacketReliability reliability, char orderingChannel, PlayerID playerId, bool broadcast, bool shiftTimestamp, NetworkID networkID, RakNet::BitStream *replyFromTarget )
 {
-	// TODO: RakServer::vftable_84() (server W: 45A4F0 L: 807C120)
+	return RakPeer::RPC( uniqueID, parameters, priority, reliability, orderingChannel, playerId, broadcast, shiftTimestamp, networkID, replyFromTarget );
 }
 
-void RakServer::vftable_88()
+void RakServer::SetTrackFrequencyTable( bool b )
 {
-	// TODO: RakServer::vftable_88() (server W: 45A490 L: 807C1A0)
+	RakPeer::SetCompileFrequencyTable( b );
 }
 
-void RakServer::vftable_8C()
+bool RakServer::GetSendFrequencyTable( unsigned int outputFrequencyTable[ 256 ] )
 {
-	// TODO: RakServer::vftable_8C() (server W: 45A550 L: 807C2A0)
+	return RakPeer::GetOutgoingFrequencyTable( outputFrequencyTable );
 }
 
-void RakServer::vftable_90()
+float RakServer::GetCompressionRatio( void ) const
 {
-	// TODO: RakServer::vftable_90() (server W: 45A610 L: 807C220)
+	return RakPeer::GetCompressionRatio();
 }
 
-void RakServer::vftable_94()
+float RakServer::GetDecompressionRatio( void ) const
 {
-	// TODO: RakServer::vftable_94() (server W: 45A640 L: 807C320)
+	return RakPeer::GetDecompressionRatio();
 }
 
-void RakServer::vftable_98()
+void RakServer::AttachPlugin( PluginInterface *messageHandler )
 {
-	// TODO: RakServer::vftable_98() (server W: 45A650 L: 807C360)
+	RakPeer::AttachPlugin(messageHandler);
 }
 
-void RakServer::vftable_9C()
+void RakServer::DetachPlugin( PluginInterface *messageHandler )
 {
-	// TODO: RakServer::vftable_9C() (server W: 45A660 L: 807C380)
+	RakPeer::DetachPlugin(messageHandler);
 }
 
-void RakServer::vftable_A0()
+RakNet::BitStream * RakServer::GetStaticServerData( void )
 {
-	// TODO: RakServer::vftable_A0() (server W: 45A670 L: 807C3A0)
+	return RakPeer::GetRemoteStaticData( myPlayerId );
 }
 
-void RakServer::vftable_A4()
+void RakServer::SetStaticServerData( const char *data, const int length )
 {
-	// TODO: RakServer::vftable_A4() (server W: 45A680 L: 807C3B0)
+	RakPeer::SetRemoteStaticData( myPlayerId, data, length );
 }
 
-void RakServer::vftable_A8()
+void RakServer::SetRelayStaticClientData( bool b )
 {
-	// TODO: RakServer::vftable_A8() (server W: 45A690 L: 807C3C0)
+	relayStaticClientData = b;
 }
 
-void RakServer::vftable_AC()
+void RakServer::SendStaticServerDataToClient( const PlayerID playerId )
 {
-	// TODO: RakServer::vftable_AC() (server W: 45A6A0 L: 807C3E0)
+	RakPeer::SendStaticData( playerId );
 }
 
-void RakServer::vftable_B0()
+void RakServer::SetOfflinePingResponse( const char *data, const unsigned int length )
 {
-	// TODO: RakServer::vftable_B0() (server W: 45A6D0 L: 807C400)
+	RakPeer::SetOfflinePingResponse( data, length );
 }
 
-void RakServer::vftable_B4()
+RakNet::BitStream * RakServer::GetStaticClientData( const PlayerID playerId )
 {
-	// TODO: RakServer::vftable_B4() (server W: 45A700 L: 807C430)
+	return RakPeer::GetRemoteStaticData( playerId );
 }
 
-void RakServer::vftable_B8()
+void RakServer::SetStaticClientData( const PlayerID playerId, const char *data, const int length )
 {
-	// TODO: RakServer::vftable_B8() (server W: 45A710 L: 807C470)
+	RakPeer::SetRemoteStaticData( playerId, data, length );
 }
 
-void RakServer::vftable_BC()
+// This will read the data from playerChangedId and send it to playerToSendToId
+void RakServer::ChangeStaticClientData( const PlayerID playerChangedId, PlayerID playerToSendToId )
 {
-	// TODO: RakServer::vftable_BC() (server W: 45A730 L: 807C490)
+	RemoteSystemStruct * remoteSystem = GetRemoteSystemFromPlayerID( playerChangedId, false, true );
+
+	if ( remoteSystem == 0 )
+		return ; // No such playerChangedId
+
+	// Relay static data to the other systems but the sender
+	RakNet::BitStream bitStream;
+
+	unsigned char typeId = ID_REMOTE_STATIC_DATA;
+
+	bitStream.Write( typeId );
+
+	bitStream.Write( playerChangedId.binaryAddress );
+
+	bitStream.Write( playerChangedId.port );
+
+	bitStream.Write( ( char* ) remoteSystem->staticData.GetData(), remoteSystem->staticData.GetNumberOfBytesUsed() );
+
+	Send( &bitStream, SYSTEM_PRIORITY, RELIABLE, 0, playerToSendToId, true );
 }
 
-void RakServer::vftable_C0()
+unsigned int RakServer::GetNumberOfAddresses( void )
 {
-	// TODO: RakServer::vftable_C0() (server W: 45A740 L: 807C4A0)
+	return RakPeer::GetNumberOfAddresses();
 }
 
-void RakServer::vftable_C4()
+PlayerID RakServer::GetInternalID( void ) const
 {
-	// TODO: RakServer::vftable_C4() (server W: 45A760 L: 807C4C0)
+	return RakPeer::GetInternalID();
 }
 
-void RakServer::vftable_C8()
+void RakServer::PushBackPacket( Packet *packet, bool pushAtHead )
 {
-	// TODO: RakServer::vftable_C8() (server W: 45AEC0 L: 807C4D0)
+	RakPeer::PushBackPacket(packet, pushAtHead);
+}
+void RakServer::SetRouterInterface( RouterInterface *routerInterface )
+{
+	RakPeer::SetRouterInterface(routerInterface);
+}
+void RakServer::RemoveRouterInterface( RouterInterface *routerInterface )
+{
+	RakPeer::RemoveRouterInterface(routerInterface);
 }
 
-void RakServer::vftable_CC()
+const char* RakServer::GetLocalIP( unsigned int index )
 {
-	// TODO: RakServer::vftable_CC() (server W: 45A790 L: 807C4F0)
+	return RakPeer::GetLocalIP( index );
 }
 
-void RakServer::vftable_D0()
+int RakServer::GetIndexFromPlayerID( const PlayerID playerId )
 {
-	// TODO: RakServer::vftable_D0() (server W: 45A7F0 L: 807C620)
+	return RakPeer::GetIndexFromPlayerID( playerId );
 }
 
-void RakServer::vftable_D4()
+PlayerID RakServer::GetPlayerIDFromIndex( int index )
 {
-	// TODO: RakServer::vftable_D4() (server W: 45A7A0 L: 807C6C0)
+	return RakPeer::GetPlayerIDFromIndex( index );
 }
 
-void RakServer::vftable_D8()
+void RakServer::AddToBanList( const char *IP )
 {
-	// TODO: RakServer::vftable_D8() (server W: 45A7C0 L: 807C630)
+	RakPeer::AddToBanList( IP );
 }
 
-void RakServer::vftable_DC()
+void RakServer::RemoveFromBanList( const char *IP )
 {
-	// TODO: RakServer::vftable_DC() (server W: 45A7D0 L: 807C660)
+	RakPeer::RemoveFromBanList( IP );
 }
 
-void RakServer::vftable_E0()
+void RakServer::ClearBanList( void )
 {
-	// TODO: RakServer::vftable_E0() (server W: 45A7E0 L: 807C680)
+	RakPeer::ClearBanList();
 }
 
-void RakServer::vftable_E4()
+bool RakServer::IsBanned( const char *IP )
 {
-	// TODO: RakServer::vftable_E4() (server W: 45A800 L: 807C6A0)
+	return RakPeer::IsBanned( IP );
 }
 
-void RakServer::vftable_E8()
+bool RakServer::IsActivePlayerID( const PlayerID playerId )
 {
-	// TODO: RakServer::vftable_E8() (server W: 45A820 L: 807C6E0)
+	return RakPeer::GetRemoteSystemFromPlayerID( playerId, false, true ) != 0;
 }
 
-void RakServer::vftable_EC()
+void RakServer::SetTimeoutTime( RakNetTime timeMS, const PlayerID target )
 {
-	// TODO: RakServer::vftable_EC() (server W: 45A840 L: 807C6F0)
+	RakPeer::SetTimeoutTime(timeMS, target);
 }
 
-void RakServer::vftable_F0()
+bool RakServer::SetMTUSize( int size )
 {
-	// TODO: RakServer::vftable_F0() (server W: 45A860 L: 807C720)
+	return RakPeer::SetMTUSize( size );
 }
 
-void RakServer::vftable_F4()
+int RakServer::GetMTUSize( void ) const
 {
-	// TODO: RakServer::vftable_F4() (server W: 45A870 L: 807C750)
+	return RakPeer::GetMTUSize();
 }
 
-void RakServer::vftable_F8()
+void RakServer::AdvertiseSystem( const char *host, unsigned short remotePort, const char *data, int dataLength )
 {
-	// TODO: RakServer::vftable_F8() (server W: 45A880 L: 807C770)
+	RakPeer::AdvertiseSystem( host, remotePort, data, dataLength );
 }
 
-void RakServer::vftable_FC()
+RakNetStatisticsStruct * const RakServer::GetStatistics( const PlayerID playerId )
 {
-	// TODO: RakServer::vftable_FC() (server W: 45A890 L: 807C790)
+	return RakPeer::GetStatistics( playerId );
 }
 
-void RakServer::vftable_100()
+void RakServer::ApplyNetworkSimulator( double maxSendBPS, unsigned short minExtraPing, unsigned short extraPingVariance)
 {
-	// TODO: RakServer::vftable_100() (server W: 45A8A0 L: 807C7A0)
+	RakPeer::ApplyNetworkSimulator( maxSendBPS, minExtraPing, extraPingVariance );
 }
 
-void RakServer::vftable_104()
+bool RakServer::IsNetworkSimulatorActive( void )
 {
-	// TODO: RakServer::vftable_104() (server W: 45A8D0 L: 807C7C0)
+	return RakPeer::IsNetworkSimulatorActive();
 }
 
-void RakServer::vftable_108()
-{
-	// TODO: RakServer::vftable_108() (server W: 45A900 L: 807C800)
-}
-
-void RakServer::vftable_10C()
-{
-	// TODO: RakServer::vftable_10C() (server W: 45A910 L: 807C820)
-}
-
-void RakServer::vftable_110()
-{
-	// TODO: RakServer::vftable_110() (server W: 45A920 L: 807C840)
-}
-
-void RakServer::vftable_114()
-{
-	// TODO: RakServer::vftable_114() (server W: 45A930 L: 807C850)
-}
-
-void RakServer::vftable_118()
-{
-	// TODO: RakServer::vftable_118() (server W: 45A950 L: 807C870)
-}
-
-void RakServer::vftable_11C()
-{
-	// TODO: RakServer::vftable_11C() (server W: 45A980 L: 807C880)
-}
-
-void RakServer::vftable_120()
-{
-	// TODO: RakServer::vftable_120() (server W: 45A9A0 L: 807C8A0)
-}
-
-void RakServer::vftable_124()
-{
-	// TODO: RakServer::vftable_124() (server L: 0807C8C0)
-}
+#ifdef _MSC_VER
+#pragma warning( pop )
+#endif
