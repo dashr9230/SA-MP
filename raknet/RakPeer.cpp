@@ -1466,6 +1466,18 @@ PlayerID RakPeer::GetPlayerIDFromIndex( int index )
 	return UNASSIGNED_PLAYER_ID;
 }
 
+
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PlayerID RakPeer::GetAnyPlayerIDFromIndex( int index )
+{
+	// remoteSystemList in user thread
+	if ( index >= 0 && index < maximumNumberOfPeers )
+		return remoteSystemList[ index ].playerId;
+
+	return UNASSIGNED_PLAYER_ID;
+}
+
+
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Description:
 // Bans an IP from connecting. Banned IPs persist between connections.
