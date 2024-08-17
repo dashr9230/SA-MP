@@ -2071,7 +2071,7 @@ void ReliabilityLayer::SplitPacket( InternalPacket *internalPacket, int MTUSize 
 	maxDataSize = MTUSize - UDP_HEADER_SIZE;
 
 	if ( encryptor.IsKeySet() )
-		maxDataSize -= 16; // Extra data for the encryptor
+		maxDataSize -= 8; // Extra data for the encryptor
 
 #ifdef _DEBUG
 	// Make sure we need to split the packet to begin with
