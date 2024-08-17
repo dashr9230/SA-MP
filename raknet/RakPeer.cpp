@@ -143,9 +143,18 @@ Packet *AllocPacket(unsigned dataSize)
 Packet *AllocPacket(unsigned dataSize, unsigned char *data)
 {
 	Packet *p = (Packet *)malloc(sizeof(Packet));
-	p->data=data;
-	p->length=dataSize;
-	p->deleteData=true;
+	p->data=NULL;
+	p->length=0;
+	p->deleteData=false;
+	if(dataSize != 0)
+	{
+		if(data != NULL)
+		{
+			p->data=data;
+			p->length=dataSize;
+			p->deleteData=true;
+		}
+	}
 	return p;
 }
 
