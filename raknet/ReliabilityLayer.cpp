@@ -1195,7 +1195,7 @@ void ReliabilityLayer::SendBitStream( SOCKET s, PlayerID playerId, RakNet::BitSt
 		oldLength = length;
 
 		encryptor.Encrypt( ( unsigned char* ) bitStream->GetData(), length, ( unsigned char* ) bitStream->GetData(), &length );
-		statistics.encryptionBitsSent = ( length - oldLength ) * 8;
+		statistics.encryptionBitsSent += ( length - oldLength ) * 8;
 
 		assert( ( length % 16 ) == 0 );
 	}
