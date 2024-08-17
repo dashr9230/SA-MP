@@ -890,7 +890,7 @@ bool ReliabilityLayer::Send( char *data, int numberOfBitsToSend, PacketPriority 
 	int maxDataSize = MTUSize - UDP_HEADER_SIZE - headerLength;
 
 	if ( encryptor.IsKeySet() )
-		maxDataSize -= 16; // Extra data for the encryptor
+		maxDataSize -= 8; // Extra data for the encryptor
 
 	bool splitPacket = numberOfBytesToSend > maxDataSize;
 
