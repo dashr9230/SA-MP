@@ -313,6 +313,43 @@ BOOL ApplyPreGamePatches()
 
 //----------------------------------------------------------
 
+BOOL GLOBAL_1026B3E0;
+BOOL GLOBAL_1026B3E4;
+
+void FUNC_100AABE0()
+{
+	if(!GLOBAL_1026B3E0) {
+		UnFuck(0x6E1BE3,37);
+		memset((PVOID)0x6E1BE3,0x90,37);
+
+		UnFuck(0x6E1C38,8);
+		memset((PVOID)0x6E1C38,0x90,8);
+
+		UnFuck(0x6E1D98,15);
+		memset((PVOID)0x6E1D98,0x90,15);
+
+		UnFuck(0x6E1DBC,8);
+		memset((PVOID)0x6E1DBC,0x90,8);
+
+		UnFuck(0x6E1BA0,6);
+		memset((PVOID)0x6E1BA0,0x90,6);
+
+		UnFuck(0x6E1BB1,6);
+		memset((PVOID)0x6E1BB1,0x90,6);
+
+		UnFuck(0x6E1BD2,7);
+		memset((PVOID)0x6E1BD2,0x90,7);
+
+		BYTE byteReplacement[] = { 0x8A,0x86,0x28,0x04,0x00,0x00,0xA8,0x40,0x74,0x28 };
+		memcpy((PVOID)0x6E1BE5,byteReplacement,sizeof(byteReplacement));
+
+		GLOBAL_1026B3E0 = TRUE;
+		GLOBAL_1026B3E4 = TRUE;
+	}
+}
+
+//----------------------------------------------------------
+
 extern DWORD dwFarClipHookAddr;
 extern DWORD dwFarClipReturnAddr;
 
