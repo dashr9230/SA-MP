@@ -2841,6 +2841,10 @@ RakPeer::RemoteSystemStruct * RakPeer::AssignPlayerIDToRemoteSystemList( const P
 			remoteSystem->setAESKey=false;
 			remoteSystem->lastReliableSend=time;
 
+			remoteSystem->field_C66 = 0;
+			remoteSystem->field_C67 = 0;
+			remoteSystem->field_C68 = 0;
+
 			// Reserve this reliability layer for ourselves.
 			remoteSystem->reliabilityLayer.Reset(true);
 

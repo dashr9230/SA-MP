@@ -503,6 +503,9 @@ public:
 		bool setAESKey; /// true if security is enabled.
 		RPCMap rpcMap; /// Mapping of RPC calls to single byte integers to save transmission bandwidth.
 		enum ConnectMode {NO_ACTION, DISCONNECT_ASAP, DISCONNECT_ASAP_SILENTLY, DISCONNECT_ON_NO_ACK, REQUESTED_CONNECTION, HANDLING_CONNECTION_REQUEST, UNVERIFIED_SENDER, SET_ENCRYPTION_ON_MULTIPLE_16_BYTE_PACKET, CONNECTED} connectMode;
+		char field_C66;
+		char field_C67;
+		char field_C68;
 	};
 
 protected:
