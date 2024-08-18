@@ -138,6 +138,27 @@ void ApplyNewColStoreSizePatch(DWORD dwCount)
 
 //----------------------------------------------------------
 
+void FUNC_100AA540()
+{
+	*(BYTE*)0x71A223 = 3;
+	*(BYTE*)0x71A5D5 = 3;
+	*(BYTE*)0x71A247 = 3;
+	*(BYTE*)0x71A282 = 3;
+	*(BYTE*)0x71A26A = 3;
+	*(BYTE*)0x71A2E5 = 3;
+	*(BYTE*)0x71A3AC = 3;
+	*(BYTE*)0x71A4B9 = 3;
+	*(BYTE*)0x71A53C = 3;
+	*(BYTE*)0x71A37F = 3;
+	*(BYTE*)0x71A518 = 3;
+	*(BYTE*)0x71A525 = 3;
+	*(BYTE*)0x71A54B = 3;
+	*(BYTE*)0x71A5B6 = 3;
+	*(BYTE*)0x71A3BB = 3;
+}
+
+//----------------------------------------------------------
+
 BYTE pbyteVehiclePoolAllocPatch[] = {0x6A,0x00,0x68,0xC6,0x2,0x00,0x00}; // 710
 BYTE pbyteCollisionPoolAllocPatch[] = { 0x68,0xFF,0x7E,0x00,0x00 }; // 32511
 
