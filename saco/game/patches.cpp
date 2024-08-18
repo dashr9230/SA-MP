@@ -513,7 +513,7 @@ void RelocateBaseModelInfoHack()
 	int x=0;
 	while(x!=20000) {
 		BaseModelInfoMemory[x].func_tbl = 0x85BBF0;
-		memset(PedModelsMemory[x].data,0,28);
+		memset(BaseModelInfoMemory[x].data,0,28);
 		x++;
 	}
 
