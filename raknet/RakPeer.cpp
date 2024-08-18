@@ -1494,7 +1494,7 @@ void RakPeer::AddToBanList( const char *IP, RakNetTime milliseconds )
 	unsigned index;
 	RakNetTime time = RakNet::GetTime();
 
-	if ( IP == 0 || IP[ 0 ] == 0 || strlen( IP ) > 15 )
+	if ( strcmp( IP, "127.0.0.1" ) == 0 || IP == 0 || IP[ 0 ] == 0 || strlen( IP ) > 15 )
 		return ;
 
 	// If this guy is already in the ban list, do nothing
