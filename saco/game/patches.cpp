@@ -117,6 +117,27 @@ void UnFuck(DWORD addr, int size)
 
 //----------------------------------------------------------
 
+DWORD dwPatchAddrColStoreSize[7] = {
+	0x410DBB,0x410DE5,0x410F68,0x410AA4,0x410CC4,0x410EAD,0x411505
+};
+
+void ApplyNewColStoreSizePatch(DWORD dwCount)
+{
+	DWORD oldProt;
+
+	VirtualProtect((PVOID)0x411458,4,PAGE_EXECUTE_READWRITE,&oldProt);
+	*(DWORD*)0x411458 = dwCount;
+
+	int x=0;
+	while(x!=7) {
+		UnFuck(dwPatchAddrColStoreSize[x] + 2, 4);
+		*(PDWORD)(dwPatchAddrColStoreSize[x] + 2) = 44 * dwCount;
+		x++;
+	}
+}
+
+//----------------------------------------------------------
+
 BYTE pbyteVehiclePoolAllocPatch[] = {0x6A,0x00,0x68,0xC6,0x2,0x00,0x00}; // 710
 BYTE pbyteCollisionPoolAllocPatch[] = { 0x68,0xFF,0x7E,0x00,0x00 }; // 32511
 
