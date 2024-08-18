@@ -1030,7 +1030,9 @@ void RakPeer::DeallocatePacket( Packet *packet )
 		return;
 
 	if (packet->deleteData)
-		delete packet->data;
+		if (packet->data)
+			delete packet->data;
+
 	free(packet);
 }
 
