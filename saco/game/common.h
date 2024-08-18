@@ -21,6 +21,11 @@ typedef unsigned short PLAYERID;
 
 #define PI 3.1415926f
 
+#pragma pack(1)
+typedef struct _RGBA {
+	unsigned char r,g,b,a;
+} RGBA, *PRGBA;
+
 typedef struct _VECTOR {
 	float X,Y,Z;
 } VECTOR, *PVECTOR;
