@@ -1106,7 +1106,7 @@ void RakPeer::RegisterClassMemberRPC( char* uniqueID, void *functionPointer )
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void RakPeer::UnregisterAsRemoteProcedureCall( char* uniqueID )
 {
-	if ( uniqueID == 0 || uniqueID[ 0 ] == 0 )
+	/*if ( uniqueID == 0 || uniqueID[ 0 ] == 0 )
 		return;
 
 // Don't call this while running because if you remove RPCs and add them they will not match the indices on the other systems anymore
@@ -1117,7 +1117,7 @@ void RakPeer::UnregisterAsRemoteProcedureCall( char* uniqueID )
 
 	rpcMap.RemoveNode(uniqueID);
 
-	/*
+	
 	char uppercaseUniqueID[ 256 ];
 
 	strcpy( uppercaseUniqueID, uniqueID );
