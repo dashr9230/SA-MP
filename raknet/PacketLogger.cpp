@@ -302,7 +302,31 @@ char* PacketLogger::BaseIDTOString(unsigned char Id)
 #endif
 char* PacketLogger::UserIDTOString(unsigned char Id)
 {
-	// Users should override this
+	switch ( Id )
+	{
+	case ID_PLAYER_SYNC:
+		return "ID_PLAYER_SYNC";
+	case ID_VEHICLE_SYNC:
+		return "ID_VEHICLE_SYNC";
+	case ID_PASSENGER_SYNC:
+		return "ID_PASSENGER_SYNC";
+	case ID_AIM_SYNC:
+		return "ID_AIM_SYNC";
+	case ID_RCON_COMMAND:
+		return "ID_RCON_COMMAND";
+	case ID_RCON_RESPONCE:
+		return "ID_RCON_RESPONCE";
+	case ID_STATS_UPDATE:
+		return "ID_STATS_UPDATE";
+	case ID_WEAPONS_UPDATE:
+		return "ID_WEAPONS_UPDATE";
+	case ID_SPECTATOR_SYNC:
+		return "ID_SPECTATOR_SYNC";
+	case ID_TRAILER_SYNC:
+		return "ID_TRAILER_SYNC";
+	case ID_UNOCCUPIED_SYNC:
+		return "ID_UNOCCUPIED_SYNC";
+	}
 	return "Unknown";
 }
 char* PacketLogger::IDTOString(unsigned char Id)
