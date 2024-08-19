@@ -863,6 +863,12 @@
 				RelativePath="..\raknet\TCPInterface.h">
 			</File>
 			<File
+				RelativePath="..\raknet\TEABlockEncryptor.cpp">
+			</File>
+			<File
+				RelativePath="..\raknet\TEABlockEncryptor.h">
+			</File>
+			<File
 				RelativePath="..\raknet\TelnetTransport.cpp">
 			</File>
 			<File
