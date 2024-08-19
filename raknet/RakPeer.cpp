@@ -4451,7 +4451,6 @@ bool RakPeer::RunUpdateCycle( void )
 						inBitStream.IgnoreBits(8);
 						stringCompressor->DecodeString(output, 255, &inBitStream);
 						inBitStream.ReadCompressed(index);
-                        remoteSystem->rpcMap.AddIdentifierAtIndex((char*)output,index);
 						delete [] data;
 					}
 					else if ( (unsigned char) data[ 0 ] == ID_REQUEST_STATIC_DATA )
