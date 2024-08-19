@@ -39,7 +39,7 @@ public:
 	RPCIndex GetIndexFromFunctionName(char *uniqueIdentifier);
 	void AddIdentifierWithFunction(char *uniqueIdentifier, void *functionPointer, bool isPointerToMember);
 	void AddIdentifierAtIndex(char *uniqueIdentifier, RPCIndex insertionIndex);
-	void RemoveNode(char *uniqueIdentifier);
+
 protected:
 	DataStructures::List<RPCNode *> rpcSet;
 };

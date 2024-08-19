@@ -151,17 +151,3 @@ void RPCMap::AddIdentifierAtIndex(char *uniqueIdentifier, RPCIndex insertionInde
 	}
 }
 
-void RPCMap::RemoveNode(char *uniqueIdentifier)
-{
-	unsigned index;
-	index=GetIndexFromFunctionName(uniqueIdentifier);
-    #ifdef _DEBUG
-	assert(index!=UNDEFINED_RPC_INDEX); // If this hits then the user was removing an RPC call that wasn't currently registered
-	#endif
-	RPCNode *node;
-	node = rpcSet[index];
-	delete [] node->uniqueIdentifier;
-	delete node;
-	rpcSet[index]=0;
-}
-
