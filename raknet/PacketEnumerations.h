@@ -49,8 +49,10 @@ enum
 	/// 16: Connecting to a secured server/peer
 	ID_SECURED_CONNECTION_CONFIRMATION,
 
+	/// 18: Server / Client only - The server is broadcasting the pings of all players in the game (internal use only)
+	ID_BROADCAST_PINGS = 18,
 	/// 19: Server / Client only - The server is broadcasting a random number seed (internal use only)
-	ID_SET_RANDOM_NUMBER_SEED = 19,
+	ID_SET_RANDOM_NUMBER_SEED,
 	/// 20: Remote procedure call (internal use only)
 	ID_RPC,
 	/// 21: Remote procedure call reply, for RPCs that return data (internal use only)
@@ -106,8 +108,17 @@ enum
 	/// [CLIENT] 43: In a client/server environment, a client other than ourselves has been forcefully dropped. Packet::playerID is modified to reflect the playerID of this client.
 	ID_REMOTE_CONNECTION_LOST,
 
+	/// [CLIENT] 44: In a client/server environment, a client other than ourselves has connected.  Packet::playerID is modified to reflect the playerID of this client.
+	ID_REMOTE_NEW_INCOMING_CONNECTION,
+
+	/// [CLIENT] 45: On our initial connection to the server, we are told of every other client in the game.  Packet::playerID is modified to reflect the playerID of this client.
+	ID_REMOTE_EXISTING_CONNECTION,
+
+	/// [CLIENT] - 46: Got the data for another client
+	ID_REMOTE_STATIC_DATA,
+
 	/// [FILELIST] 47:
-	ID_FILE_LIST_TRANSFER_HEADER = 47,
+	ID_FILE_LIST_TRANSFER_HEADER,
 
 	/// [FILELIST] 48:
 	ID_FILE_LIST_TRANSFER_FILE,
@@ -203,12 +214,8 @@ enum
 	ID_SPECTATOR_SYNC,
 
 	// TODO: Find out the packet IDs for these.
-	ID_REMOTE_STATIC_DATA,
 	ID_OPEN_CONNECTION_REPLY,
 	ID_CONNECTION_REQUEST,
-	ID_BROADCAST_PINGS,
-	ID_REMOTE_NEW_INCOMING_CONNECTION,
-	ID_REMOTE_EXISTING_CONNECTION,
 	ID_OPEN_CONNECTION_REQUEST,
 	ID_DETECT_LOST_CONNECTIONS,
 	ID_RPC_MAPPING,
