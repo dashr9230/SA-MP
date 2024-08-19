@@ -2340,7 +2340,7 @@ RakNetStatisticsStruct * const RakPeer::GetStatistics( const PlayerID playerId )
 {
 	if (playerId==UNASSIGNED_PLAYER_ID)
 	{
-		bool firstWrite=false;
+		bool firstWrite=true;
 		static RakNetStatisticsStruct sum;
 		RakNetStatisticsStruct *systemStats;
 		// Return a crude sum
@@ -2350,8 +2350,11 @@ RakNetStatisticsStruct * const RakPeer::GetStatistics( const PlayerID playerId )
 			{
 				systemStats=remoteSystemList[ i ].reliabilityLayer.GetStatistics();
 				
-				if (firstWrite==false)
+				if (firstWrite==true)
+				{
 					memcpy(&sum, systemStats, sizeof(RakNetStatisticsStruct));
+					firstWrite=false;
+				}
 				else
 					sum+=*systemStats;
 			}
