@@ -2624,17 +2624,22 @@ void RakPeer::OnConnectionRequest( RakPeer::RemoteSystemStruct *remoteSystem, un
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void RakPeer::NotifyAndFlagForDisconnect( const PlayerID playerId, bool performImmediate, unsigned char orderingChannel )
 {
+	if (playerId == UNASSIGNED_PLAYER_ID) return;
+
 	RakNet::BitStream temp( sizeof(unsigned char) );
 	temp.Write( (unsigned char) ID_DISCONNECTION_NOTIFICATION );
 	if (performImmediate)
 	{
-		SendImmediate((char*)temp.GetData(), temp.GetNumberOfBitsUsed(), LOW_PRIORITY, RELIABLE_ORDERED, orderingChannel, playerId, false, false, RakNet::GetTime());
-		RemoteSystemStruct *rss=GetRemoteSystemFromPlayerID(playerId, true, true);
-		rss->connectMode=RemoteSystemStruct::DISCONNECT_ASAP;
+		RemoteSystemStruct *rss=GetRemoteSystemFromPlayerID(playerId, false, true);
+		if (rss)
+		{
+			SendImmediate((char*)temp.GetData(), temp.GetNumberOfBitsUsed(), HIGH_PRIORITY, UNRELIABLE, orderingChannel, playerId, false, false, RakNet::GetTime());
+			rss->connectMode=RemoteSystemStruct::DISCONNECT_ASAP;
+		}
 	}
 	else
 	{
-		SendBuffered((const char*)temp.GetData(), temp.GetNumberOfBitsUsed(), LOW_PRIORITY, RELIABLE_ORDERED, orderingChannel, playerId, false, RemoteSystemStruct::DISCONNECT_ASAP);
+		SendBuffered((const char*)temp.GetData(), temp.GetNumberOfBitsUsed(), HIGH_PRIORITY, UNRELIABLE, orderingChannel, playerId, false, RemoteSystemStruct::DISCONNECT_ASAP);
 	}
 }
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
