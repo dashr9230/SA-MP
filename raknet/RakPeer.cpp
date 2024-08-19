@@ -1060,7 +1060,7 @@ void RakPeer::RegisterAsRemoteProcedureCall( char* uniqueID, void ( *functionPoi
 	if ( uniqueID == 0 || uniqueID[ 0 ] == 0 || functionPointer == 0 )
 		return;
 
-	rpcMap.AddIdentifierWithFunction(uniqueID, (void*)functionPointer, false);
+	rpcMap.AddIdentifierWithFunction(uniqueID[0], (void*)functionPointer, false);
 
 	/*
 	char uppercaseUniqueID[ 256 ];
@@ -1092,7 +1092,7 @@ void RakPeer::RegisterClassMemberRPC( char* uniqueID, void *functionPointer )
 	if ( uniqueID == 0 || uniqueID[ 0 ] == 0 || functionPointer == 0 )
 		return;
 
-	rpcMap.AddIdentifierWithFunction(uniqueID, functionPointer, true);
+	rpcMap.AddIdentifierWithFunction(uniqueID[0], functionPointer, true);
 }
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1171,33 +1171,10 @@ bool RakPeer::RPC( char* uniqueID, const char *data, unsigned int bitLength, Pac
 	if ( uniqueID == 0 )
 		return false;
 
-	if ( strlen( uniqueID ) > 256 )
-	{
-#ifdef _DEBUG
-		assert( 0 );
-#endif
-		return false; // Unique ID is too long
-	}
-	if (replyFromTarget && blockOnRPCReply==true)
-	{
-		// TODO - this should be fixed eventually
-		// Prevent a bug where function A calls B (blocking) which calls C back on the sender, which calls D, and C is blocking.
-		// blockOnRPCReply is a shared variable so making it unset would unset both blocks, rather than the lowest on the callstack
-		// Fix by tracking which function the reply is for.
-		return false;
-	}
-
 	unsigned *sendList;
-//	bool callerAllocationDataUsed;
 	unsigned sendListSize;
 
-	// All this code modifies bcs->data and bcs->numberOfBitsToSend in order to transform an RPC request into an actual packet for SendImmediate
-	RPCIndex rpcIndex; // Index into the list of RPC calls so we know what number to encode in the packet
-//	char *userData; // RPC ID (the name of it) and a pointer to the data sent by the user
-//	int extraBuffer; // How many data bytes were allocated to hold the RPC header
-	unsigned remoteSystemIndex, sendListIndex; // Iterates into the list of remote systems
-//	int dataBlockAllocationLength; // Total number of bytes to allocate for the packet
-//	char *writeTarget; // Used to hold either a block of allocated data or the externally allocated data
+	unsigned remoteSystemIndex, sendListIndex;
 
 	sendListSize=0;
 	bool routeSend;
@@ -1260,37 +1237,10 @@ bool RakPeer::RPC( char* uniqueID, const char *data, unsigned int bitLength, Pac
 			outgoingBitStream.Write(RakNet::GetTime());
 		}
 		outgoingBitStream.Write((unsigned char) ID_RPC);
-		if (routeSend)
-			rpcIndex=UNDEFINED_RPC_INDEX;
-		else
-			rpcIndex=remoteSystemList[sendList[sendListIndex]].rpcMap.GetIndexFromFunctionName(uniqueID); // Lots of trouble but we can only use remoteSystem->[whatever] in this thread so that is why this command was buffered
-		if (rpcIndex!=UNDEFINED_RPC_INDEX)
-		{
-			// We have an RPC name to an index mapping, so write the index
-			outgoingBitStream.Write(false);
-			outgoingBitStream.WriteCompressed(rpcIndex);
-		}
-		else
-		{
-			// No mapping, so write the encoded RPC name
-			outgoingBitStream.Write(true);
-			stringCompressor->EncodeString(uniqueID, 256, &outgoingBitStream);
-		}
-		outgoingBitStream.Write((bool) ((replyFromTarget!=0)==true));
+
+		outgoingBitStream.Write(uniqueID, 1);
+
 		outgoingBitStream.WriteCompressed( bitLength );
-		if (networkID==UNASSIGNED_NETWORK_ID)
-		{
-			// No object ID
-			outgoingBitStream.Write(false);
-		}
-		else
-		{
-			// Encode an object ID.  This will use pointer to class member RPC
-			outgoingBitStream.Write(true);
-			outgoingBitStream.Write(networkID);
-		}
-
-
 		if ( bitLength > 0 )
 			outgoingBitStream.WriteBits( (const unsigned char *) data, bitLength, false ); // Last param is false to write the raw data originally from another bitstream, rather than shifting from user data
 		else
@@ -1300,107 +1250,6 @@ bool RakPeer::RPC( char* uniqueID, const char *data, unsigned int bitLength, Pac
 			router->Send((const char*)outgoingBitStream.GetData(), outgoingBitStream.GetNumberOfBitsUsed(), priority,reliability,orderingChannel,playerId);
 		else
 			Send(&outgoingBitStream, priority, reliability, orderingChannel, remoteSystemList[sendList[sendListIndex]].playerId, false);
-	}
-
-#if defined(_COMPATIBILITY_1)
-	delete [] sendList;
-#endif
-
-	if (replyFromTarget)
-	{
-		blockOnRPCReply=true;
-		// 04/20/06 Just do this transparently.
-		// We have to be able to read blocking packets out of order.  Otherwise, if two systems were to send blocking RPC calls to each other at the same time,
-		// and they also had ordered packets waiting before the block, it would be impossible to unblock.
-		// assert(reliability==RELIABLE || reliability==UNRELIABLE);
-		replyFromTargetBS=replyFromTarget;
-		replyFromTargetPlayer=playerId;
-		replyFromTargetBroadcast=broadcast;
-	}
-
-	// Do not enter this loop on blockOnRPCReply because it is a global which could be set to true by an RPC higher on the callstack, where one RPC was called while waiting for another RPC
-	if (replyFromTarget)
-//	if (blockOnRPCReply)
-	{
-//		Packet *p;
-		RakNetTime stopWaitingTime;
-//		RPCIndex arrivedRPCIndex;
-//		char uniqueIdentifier[256];
-		if (reliability==UNRELIABLE)
-			if (playerId==UNASSIGNED_PLAYER_ID)
-				stopWaitingTime=RakNet::GetTime()+1500; // Lets guess the ave. ping is 500.  Not important to be very accurate
-			else
-				stopWaitingTime=RakNet::GetTime()+GetAveragePing(playerId)*3;
-
-		// For reliable messages, block until we get a reply or the connection is lost
-		// For unreliable messages, block until we get a reply, the connection is lost, or 3X the ping passes
-		while (blockOnRPCReply &&
-			((reliability==RELIABLE || reliability==RELIABLE_ORDERED || reliability==RELIABLE_SEQUENCED) ||
-			RakNet::GetTime() < stopWaitingTime))
-		{
-
-			RakSleep(30);
-
-			if (routeSend==false && ValidSendTarget(playerId, broadcast)==false)
-				return false;
-
-			// I might not support processing other RPCs while blocking on one due to complexities I can't control
-			// Problem is FuncA calls FuncB which calls back to the sender FuncC. Sometimes it is desirable to call FuncC before returning a return value
-			// from FuncB - sometimes not.  There is also a problem with recursion where FuncA calls FuncB which calls FuncA - sometimes valid if
-			// a different control path is taken in FuncA. (This can take many different forms)
-			/*
-			// Same as Receive, but doesn't automatically do RPCs
-			p = ReceiveIgnoreRPC();
-			if (p)
-			{
-				// Process all RPC calls except for those calling the function we are currently blocking in (to prevent recursion).
-				if ( p->data[ 0 ] == ID_RPC )
-				{
-					RakNet::BitStream temp((unsigned char *) p->data, p->length, false);
-					RPCNode *rpcNode;
-					temp.IgnoreBits(8);
-					bool nameIsEncoded;
-					temp.Read(nameIsEncoded);
-					if (nameIsEncoded)
-					{
-						stringCompressor->DecodeString((char*)uniqueIdentifier, 256, &temp);
-					}
-					else
-					{
-						temp.ReadCompressed( arrivedRPCIndex );
-						rpcNode=rpcMap.GetNodeFromIndex( arrivedRPCIndex );
-						if (rpcNode==0)
-						{
-							// Invalid RPC format
-#ifdef _DEBUG
-							assert(0);
-#endif
-							DeallocatePacket(p);
-							continue;
-						}
-						else
-							strcpy(uniqueIdentifier, rpcNode->uniqueIdentifier);
-					}
-
-					if (strcmp(uniqueIdentifier, uniqueID)!=0)
-					{
-						HandleRPCPacket( ( char* ) p->data, p->length, p->playerId );
-						DeallocatePacket(p);
-					}
-					else
-					{
-						PushBackPacket(p, false);
-					}
-				}
-				else
-				{
-					PushBackPacket(p, false);
-				}
-			}
-			*/
-		}
-
-		blockOnRPCReply=false;
 	}
 
 	return true;	

@@ -19,6 +19,9 @@
 
 RPCMap::RPCMap()
 {
+	unsigned i;
+	for (i=0; i < RPC_SET_SIZE; i++)
+		rpcSet[i] = 0;
 }
 RPCMap::~RPCMap()
 {
@@ -27,81 +30,36 @@ RPCMap::~RPCMap()
 void RPCMap::Clear(void)
 {
 	unsigned i;
-	RPCNode *node;
-	for (i=0; i < rpcSet.Size(); i++)
+	for (i=0; i < RPC_SET_SIZE; i++)
 	{
-		node=rpcSet[i];
-		if (node)
-		{
-			delete [] node->uniqueIdentifier;
-			delete node;
-		}
+		if(rpcSet[i])
+			delete rpcSet[i];
+		rpcSet[i] = 0;
 	}
-	rpcSet.Clear();
 }
 RPCNode *RPCMap::GetNodeFromIndex(RPCIndex index)
 {
-	if ((unsigned)index < rpcSet.Size())
-		return rpcSet[(unsigned)index];
-	return 0;
+	return rpcSet[(unsigned)index];;
 }
-RPCNode *RPCMap::GetNodeFromFunctionName(char *uniqueIdentifier)
+RPCNode *RPCMap::GetNodeFromFunctionName(unsigned char uniqueIdentifier)
 {
-	unsigned index;
-	index=(unsigned)GetIndexFromFunctionName(uniqueIdentifier);
-	if ((RPCIndex)index!=UNDEFINED_RPC_INDEX)
-		return rpcSet[index];
-	return 0;
+	return rpcSet[uniqueIdentifier];
 }
-RPCIndex RPCMap::GetIndexFromFunctionName(char *uniqueIdentifier)
+RPCIndex RPCMap::GetIndexFromFunctionName(unsigned char uniqueIdentifier)
 {
-	unsigned index;
-	for (index=0; index < rpcSet.Size(); index++)
-		if (rpcSet[index] && strcmp(rpcSet[index]->uniqueIdentifier, uniqueIdentifier)==0)
-			return (RPCIndex) index;
-	return UNDEFINED_RPC_INDEX;
+	return (RPCIndex)uniqueIdentifier;
 }
 
 // Called from the user thread for the local system
-void RPCMap::AddIdentifierWithFunction(char *uniqueIdentifier, void *functionPointer, bool isPointerToMember)
+void RPCMap::AddIdentifierWithFunction(unsigned char uniqueIdentifier, void *functionPointer, bool isPointerToMember)
 {
-#ifdef _DEBUG
-	assert(rpcSet.Size()+1 < MAX_RPC_MAP_SIZE); // If this hits change the typedef of RPCIndex to use an unsigned short
-	assert(uniqueIdentifier && uniqueIdentifier[0]);
-	assert(functionPointer);
-#endif
-
-	unsigned index, existingNodeIndex;
 	RPCNode *node;
 
-	existingNodeIndex=GetIndexFromFunctionName(uniqueIdentifier);
-	if ((RPCIndex)existingNodeIndex!=UNDEFINED_RPC_INDEX) // Insert at any free spot.
-	{
-		// Trying to insert an identifier at any free slot and that identifier already exists
-		// The user should not insert nodes that already exist in the list
-#ifdef _DEBUG
-//		assert(0);
-#endif
-		return;
-	}
-
 	node = new RPCNode;
-	node->uniqueIdentifier = new char [strlen(uniqueIdentifier)+1];
-	strcpy(node->uniqueIdentifier, uniqueIdentifier);
+	node->uniqueIdentifier=uniqueIdentifier;
 	node->functionPointer=functionPointer;
 	node->isPointerToMember=isPointerToMember;
 
-	// Insert into an empty spot if possible
-	for (index=0; index < rpcSet.Size(); index++)
-	{
-		if (rpcSet[index]==0)
-		{
-			rpcSet.Replace(node, 0, index);
-			return;
-		}
-	}
-
-	rpcSet.Insert(node); // No empty spots available so just add to the end of the list
-
+	rpcSet[uniqueIdentifier] = node;
 }
 

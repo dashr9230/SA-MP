@@ -25,6 +25,8 @@
 #include "NetworkTypes.h"
 #include "Export.h"
 
+#define RPC_SET_SIZE 256
+
 /// \ingroup RAKNET_RPC 
 /// \internal
 /// \brief A container class for a list of RPCNodes
@@ -35,11 +37,12 @@ public:
 	~RPCMap();
 	void Clear(void);
     RPCNode *GetNodeFromIndex(RPCIndex index);
-	RPCNode *GetNodeFromFunctionName(char *uniqueIdentifier);
-	RPCIndex GetIndexFromFunctionName(char *uniqueIdentifier);
-	void AddIdentifierWithFunction(char *uniqueIdentifier, void *functionPointer, bool isPointerToMember);
+	RPCNode *GetNodeFromFunctionName(unsigned char uniqueIdentifier);
+	RPCIndex GetIndexFromFunctionName(unsigned char uniqueIdentifier);
+	void AddIdentifierWithFunction(unsigned char uniqueIdentifier, void *functionPointer, bool isPointerToMember);
 protected:
 	DataStructures::List<RPCNode *> rpcSet;
+	RPCNode *rpcSet[RPC_SET_SIZE];
 };
 
 #endif
