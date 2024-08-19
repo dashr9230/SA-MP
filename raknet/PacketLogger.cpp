@@ -196,7 +196,7 @@ void PacketLogger::OnInternalPacket(InternalPacket *internalPacket, unsigned fra
 }
 void PacketLogger::WriteLog(const char *str)
 {
-	printf("%s", str);
+	//printf("%s", str);
 }
 void PacketLogger::SetPrintID(bool print)
 {
