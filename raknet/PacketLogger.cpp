@@ -91,29 +91,12 @@ void PacketLogger::OnInternalPacket(InternalPacket *internalPacket, unsigned fra
 	PlayerID localPlayerId;
 	localPlayerId = rakPeer->GetInternalID();
 
-	if (isSend)
-		strcpy(sendType, "Snd");
+	if(isSend)
+		//strcpy(sendType, "Snd");
+		return;
 	else
 		strcpy(sendType, "Rcv");
 
-	// TODO - put this back in a different form
-	/*
-	if (internalPacket->isAcknowledgement)
-	{
-		if (printAcks)
-		{
-			if (printId==false)
-				sprintf(str, "%s,Ack,%5i,%5i,  NIL,    1,%i,%u:%i,%u:%i\n",sendType, internalPacket->messageNumber,frameNumber,time,
-				localPlayerId.binaryAddress, localPlayerId.port, remoteSystemID.binaryAddress, remoteSystemID.port);
-			else
-				sprintf(str, "%s,Ack,%i,%i,NIL,1,%i,%u:%i,%u:%i\n",sendType, internalPacket->messageNumber,frameNumber,time,
-				localPlayerId.binaryAddress, localPlayerId.port, remoteSystemID.binaryAddress, remoteSystemID.port);
-		}
-		else
-			str[0]=0;
-	}
-	else
-	*/
 	{
 		if (internalPacket->data[0]==ID_TIMESTAMP && internalPacket->data[sizeof(unsigned char)+sizeof(RakNetTime)]!=ID_RPC)
 		{
@@ -133,7 +116,7 @@ void PacketLogger::OnInternalPacket(InternalPacket *internalPacket, unsigned fra
 		}
 		else if (internalPacket->data[0]==ID_RPC || (internalPacket->dataBitLength>(sizeof(unsigned char)+sizeof(RakNetTime))*8 && internalPacket->data[0]==ID_TIMESTAMP && internalPacket->data[sizeof(unsigned char)+sizeof(RakNetTime)]==ID_RPC))
 		{
-			bool hasTimestamp;
+			/*bool hasTimestamp;
 			unsigned int bitsOfData;
 			bool nameIsEncoded;
 			unsigned char uniqueIdentifier[256];
@@ -174,6 +157,7 @@ void PacketLogger::OnInternalPacket(InternalPacket *internalPacket, unsigned fra
 				sprintf(str, "%s,Rpc,%5i,%5i,%s,%5i,%i,%u:%i,%u:%i\n",sendType, internalPacket->messageNumber,frameNumber,
 				uniqueIdentifier, internalPacket->dataBitLength,time,
 				localPlayerId.binaryAddress, localPlayerId.port, remoteSystemID.binaryAddress, remoteSystemID.port);
+			*/
 		}
 		else
 		{
