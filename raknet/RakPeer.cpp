@@ -2779,24 +2779,16 @@ bool RakPeer::HandleRPCPacket( const char *data, int length, PlayerID playerId )
 {
 	// RPC BitStream format is
 	// ID_RPC - unsigned char
-	// Unique identifier string length - unsigned char
-	// The unique ID  - string with each letter in upper case, subtracted by 'A' and written in 5 bits.
+	// The unique ID  - unsigned char
 	// Number of bits of the data (int)
 	// The data
 
 	RakNet::BitStream incomingBitStream( (unsigned char *) data, length, false );
-	char uniqueIdentifier[ 256 ];
-//	unsigned int bitLength;
+	unsigned char uniqueIdentifier;
 	unsigned char *userData;
-	//bool hasTimestamp;
-	bool nameIsEncoded, networkIDIsEncoded;
 	RPCIndex rpcIndex;
 	RPCNode *node;
 	RPCParameters rpcParms;
-	NetworkID networkID;
-	bool blockingCommand;
-	RakNet::BitStream replyToSender;
-	rpcParms.replyToSender=&replyToSender;
 
 	rpcParms.recipient=this;
 	rpcParms.sender=playerId;
@@ -2805,53 +2797,10 @@ bool RakPeer::HandleRPCPacket( const char *data, int length, PlayerID playerId )
 	incomingBitStream.IgnoreBits(8);
 	if (data[0]==ID_TIMESTAMP)
 		incomingBitStream.IgnoreBits(8*(sizeof(RakNetTime)+sizeof(unsigned char)));
-	if ( incomingBitStream.Read( nameIsEncoded ) == false )
-	{
-#ifdef _DEBUG
-		assert( 0 ); // bitstream was not long enough.  Some kind of internal error
-#endif
-		return false;
-	}
 
-	if (nameIsEncoded)
-	{
-		if ( stringCompressor->DecodeString(uniqueIdentifier, 256, &incomingBitStream) == false )
-		{
-#ifdef _DEBUG
-			assert( 0 ); // bitstream was not long enough.  Some kind of internal error
-#endif
-			return false;
-		}
+	incomingBitStream.Read(uniqueIdentifier);
 
-		rpcIndex = rpcMap.GetIndexFromFunctionName(uniqueIdentifier);
-	}
-	else
-	{
-		if ( incomingBitStream.ReadCompressed( rpcIndex ) == false )
-		{
-#ifdef _DEBUG
-			assert( 0 ); // bitstream was not long enough.  Some kind of internal error
-#endif
-			return false;
-		}
-	}
-	if ( incomingBitStream.Read( blockingCommand ) == false )
-	{
-#ifdef _DEBUG
-		assert( 0 ); // bitstream was not long enough.  Some kind of internal error
-#endif
-		return false;
-	}
-
-	/*
-	if ( incomingBitStream.Read( rpcParms.hasTimestamp ) == false )
-	{
-#ifdef _DEBUG
-		assert( 0 ); // bitstream was not long enough.  Some kind of internal error
-#endif
-		return false;
-	}
-	*/
+	rpcIndex = rpcMap.GetIndexFromFunctionName(uniqueIdentifier);
 
 	if ( incomingBitStream.ReadCompressed( rpcParms.numberOfBitsOfData ) == false )
 	{
@@ -2861,29 +2810,10 @@ bool RakPeer::HandleRPCPacket( const char *data, int length, PlayerID playerId )
 		return false;
 	}
 
-	if ( incomingBitStream.Read( networkIDIsEncoded ) == false )
-	{
-#ifdef _DEBUG
-		assert( 0 ); // bitstream was not long enough.  Some kind of internal error
-#endif
-		return false;
-	}
-
-	if (networkIDIsEncoded)
-	{
-		if ( incomingBitStream.Read( networkID ) == false )
-		{
-#ifdef _DEBUG
-			assert( 0 ); // bitstream was not long enough.  Some kind of internal error
-#endif
-			return false;
-		}
-	}
-
 	if (rpcIndex==UNDEFINED_RPC_INDEX)
 	{
 		// Unregistered function
-		RakAssert(0);
+		//RakAssert(0);
 		return false;
 	}
 
@@ -2896,49 +2826,11 @@ bool RakPeer::HandleRPCPacket( const char *data, int length, PlayerID playerId )
 		return false;
 	}
 
-	// Make sure the call type matches - if this is a pointer to a class member then networkID must be defined.  Otherwise it must not be defined
-	if (node->isPointerToMember==true && networkIDIsEncoded==false)
-	{
-		// If this hits then this pointer was registered as a class member function but the packet does not have an NetworkID.
-		// Most likely this means this system registered a function with REGISTER_CLASS_MEMBER_RPC and the remote system called it
-		// using the unique ID for a function registered with REGISTER_STATIC_RPC.
-		assert(0);
-		return false;
-	}
-
-	if (node->isPointerToMember==false && networkIDIsEncoded==true)
-	{
-		// If this hits then this pointer was not registered as a class member function but the packet does have an NetworkID.
-		// Most likely this means this system registered a function with REGISTER_STATIC_RPC and the remote system called it
-		// using the unique ID for a function registered with REGISTER_CLASS_MEMBER_RPC.
-		assert(0);
-		return false;
-	}
-
-	if (nameIsEncoded && GetRemoteSystemFromPlayerID(playerId, false, true))
-	{
-		// Send ID_RPC_MAPPING to the sender so they know what index to use next time
-		RakNet::BitStream rpcMapBitStream;
-		rpcMapBitStream.Write((unsigned char)ID_RPC_MAPPING);
-		stringCompressor->EncodeString(node->uniqueIdentifier, 256, &rpcMapBitStream);
-        rpcMapBitStream.WriteCompressed(rpcIndex);
-		SendBuffered( (const char*)rpcMapBitStream.GetData(), rpcMapBitStream.GetNumberOfBitsUsed(), HIGH_PRIORITY, UNRELIABLE, 0, playerId, false, RemoteSystemStruct::NO_ACTION );
-	}
-
 	// Call the function
 	if ( rpcParms.numberOfBitsOfData == 0 )
 	{
 		rpcParms.input=0;
-		if (networkIDIsEncoded)
-		{
-			void *object = NetworkIDGenerator::GET_OBJECT_FROM_ID(networkID);
-			if (object)
-				(node->memberFunctionPointer(object, &rpcParms));
-		}
-		else
-		{
-			node->staticFunctionPointer( &rpcParms );
-		}
+		node->staticFunctionPointer( &rpcParms );
 	}
 	else
 	{
@@ -2978,33 +2870,13 @@ bool RakPeer::HandleRPCPacket( const char *data, int length, PlayerID playerId )
 			return false; // Not enough data to read
 		}
 
-//		if ( rpcParms.hasTimestamp )
-//			ShiftIncomingTimestamp( userData, playerId );
-
 		// Call the function callback
 		rpcParms.input=userData;
-		if (networkIDIsEncoded)
-		{
-			void *object = NetworkIDGenerator::GET_OBJECT_FROM_ID(networkID);
-			if (object)
-				(node->memberFunctionPointer(object, &rpcParms));
-		}
-		else
-		{
-			node->staticFunctionPointer( &rpcParms );
-		}
-
+		node->staticFunctionPointer( &rpcParms );
 
 		if (usedAlloca==false)
-			delete [] userData;
-	}
-
-	if (blockingCommand)
-	{
-		RakNet::BitStream reply;
-		reply.Write((unsigned char) ID_RPC_REPLY);
-		reply.Write((char*)replyToSender.GetData(), replyToSender.GetNumberOfBytesUsed());
-		Send(&reply, HIGH_PRIORITY, RELIABLE, 0, playerId, false);
+			if (userData!=NULL)
+				delete [] userData;
 	}
 
 	return true;
