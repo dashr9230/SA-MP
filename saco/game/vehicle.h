@@ -45,6 +45,7 @@ public:
 	BOOL  HasADriver();
 
 	void    SetSirenOn(BYTE byteState);
+	BOOL    IsSirenOn();
 
 	void    SetEngineState(BOOL bState);
 
