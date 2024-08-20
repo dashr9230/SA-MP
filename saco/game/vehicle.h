@@ -44,6 +44,8 @@ public:
 	BOOL  HasTurret();
 	BOOL  HasADriver();
 
+	void    SetSirenOn(BYTE byteState);
+
 	void    SetEngineState(BOOL bState);
 
 	void	LinkToInterior(int iInterior);
