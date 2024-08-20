@@ -232,5 +232,13 @@ void CVehicle::SetHydraThrusters(DWORD dwDirection)
 
 //-----------------------------------------------------------
 
+DWORD CVehicle::GetHydraThrusters()
+{
+	if(m_pVehicle) return m_pVehicle->dwHydraThrusters;
+	return 0UL;
+}
+
+//-----------------------------------------------------------
+
 //-----------------------------------------------------------
 

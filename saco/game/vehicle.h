@@ -45,6 +45,8 @@ public:
 	BOOL  HasADriver();
 
 	void  SetHydraThrusters(DWORD dwDirection);
+	DWORD GetHydraThrusters();
+
 
 	UINT  GetPassengersMax();
 
