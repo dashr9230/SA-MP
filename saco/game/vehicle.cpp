@@ -225,5 +225,12 @@ UINT CVehicle::GetPassengersMax()
 
 //-----------------------------------------------------------
 
+void CVehicle::SetHydraThrusters(DWORD dwDirection)
+{
+	if(m_pVehicle) m_pVehicle->dwHydraThrusters = dwDirection; // 0x00 - 0x80 // byte
+}
+
+//-----------------------------------------------------------
+
 //-----------------------------------------------------------
 

@@ -44,6 +44,8 @@ public:
 	BOOL  HasTurret();
 	BOOL  HasADriver();
 
+	void  SetHydraThrusters(DWORD dwDirection);
+
 	UINT  GetPassengersMax();
 
 	void    SetSirenOn(BYTE byteState);
