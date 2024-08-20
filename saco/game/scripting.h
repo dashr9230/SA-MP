@@ -68,6 +68,7 @@ const SCRIPT_COMMAND play_sound							= { 0x018c, "fffi" };
 
 const SCRIPT_COMMAND enable_train_traffic				= { 0x06d7, "i" };
 
+const SCRIPT_COMMAND lock_car							= { 0x0519, "ii" };
 const SCRIPT_COMMAND put_train_at						= { 0x07c7, "ifff" };
 
 const SCRIPT_COMMAND get_active_interior				= { 0x077e, "v" };

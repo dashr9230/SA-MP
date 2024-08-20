@@ -66,3 +66,16 @@ BOOL CVehicle::IsOccupied()
 
 //-----------------------------------------------------------
 
+void CVehicle::SetLockedState(int iLocked)
+{
+	if(!m_pVehicle) return;
+
+	if(iLocked) {
+		ScriptCommand(&lock_car,m_dwGTAId,1);
+	} else {
+		ScriptCommand(&lock_car,m_dwGTAId,0);
+	}
+}
+
+//-----------------------------------------------------------
+

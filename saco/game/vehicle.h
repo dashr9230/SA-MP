@@ -20,6 +20,8 @@ public:
 
 	void  ResetPointers();
 
+	void  SetLockedState(int iLocked);
+
 	BOOL  HasADriver();
 
 
