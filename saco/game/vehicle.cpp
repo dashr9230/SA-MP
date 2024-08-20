@@ -122,6 +122,23 @@ void CVehicle::SetColor(BYTE byteColor1, BYTE byteColor2)
 
 //-----------------------------------------------------------
 
+void CVehicle::UpdateColor()
+{
+	if(!m_pVehicle) return;
+	if(!GamePool_Vehicle_GetAt(m_dwGTAId)) return;
+
+	if(m_bHasNewColor) {
+		if(!field_71) {
+			if(m_byteColor1 != m_pVehicle->byteColor1 || m_byteColor2 != m_pVehicle->byteColor2) {
+				m_pVehicle->byteColor1 = m_byteColor1;
+				m_pVehicle->byteColor2 = m_byteColor2;
+			}
+		}
+	}
+}
+
+//-----------------------------------------------------------
+
 BOOL CVehicle::HasSunk()
 {
 	if(!m_pVehicle) return FALSE;

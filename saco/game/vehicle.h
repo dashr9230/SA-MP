@@ -14,7 +14,11 @@ public:
 
 	VEHICLE_TYPE	*m_pVehicle;
 
-	char _gap50[41];
+	char _gap50[33];
+	
+	int			field_71;
+
+	char _gap75[4];
 
 	BYTE		m_byteColor1;
 	BYTE		m_byteColor2;
@@ -31,6 +35,7 @@ public:
 	float GetHealth();
 	void  SetHealth(float fHealth);
 	void  SetColor(BYTE byteColor1, BYTE byteColor2);
+	void  UpdateColor();
 
 	BOOL  HasSunk();
 	BOOL  IsWrecked();
