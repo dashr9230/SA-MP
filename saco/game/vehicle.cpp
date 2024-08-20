@@ -22,3 +22,16 @@ void CVehicle::LinkToInterior(int iInterior)
 }
 
 //-----------------------------------------------------------
+// If the game has internally destroyed the vehicle
+// during this frame, the vehicle pointer should become 0
+
+void CVehicle::ResetPointers()
+{
+	if(!m_pVehicle) return;
+
+	m_pVehicle = GamePool_Vehicle_GetAt(m_dwGTAId);
+	m_pEntity = (ENTITY_TYPE *)m_pVehicle;
+}
+
+//-----------------------------------------------------------
+
