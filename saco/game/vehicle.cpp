@@ -127,3 +127,15 @@ BOOL CVehicle::IsWrecked()
 
 //-----------------------------------------------------------
 
+BOOL CVehicle::IsDriverLocalPlayer()
+{
+	if(m_pVehicle) {
+		if((PED_TYPE *)m_pVehicle->pDriver == GamePool_FindPlayerPed()) {
+			return TRUE;
+		}
+	}
+	return FALSE;
+}
+
+//-----------------------------------------------------------
+

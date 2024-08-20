@@ -27,6 +27,7 @@ public:
 
 	BOOL  HasSunk();
 	BOOL  IsWrecked();
+	BOOL  IsDriverLocalPlayer();
 	BOOL  HasADriver();
 
 	void    SetEngineState(BOOL bState);
