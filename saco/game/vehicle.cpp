@@ -274,6 +274,23 @@ void CVehicle::SetLandingGearState(eLandingGearState state)
 
 //-----------------------------------------------------------
 
+eLandingGearState CVehicle::GetLandingGearState()
+{
+	if(GetVehicleSubtype() != VEHICLE_SUBTYPE_PLANE) return LGS_UP;
+
+	DWORD dwVehiclePtr = (DWORD)m_pVehicle;
+	float fPlaneLandingGear = 0.0f;
+
+	_asm mov eax, dwVehiclePtr
+	_asm mov edx, [eax+0x9CC]
+	_asm mov fPlaneLandingGear, edx
+
+	if(fPlaneLandingGear == 0.0f) return LGS_UP;
+	return LGS_DOWN;
+}
+
+//-----------------------------------------------------------
+
 UINT CVehicle::GetPassengersMax()
 {
 	return 0;

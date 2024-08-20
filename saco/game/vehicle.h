@@ -61,6 +61,7 @@ public:
 	BOOL    IsSirenOn();
 	void	SetAlarmState(WORD wState);
 	void    SetLandingGearState(eLandingGearState state);
+	eLandingGearState	GetLandingGearState();
 
 	void    SetEngineState(BOOL bState);
 
