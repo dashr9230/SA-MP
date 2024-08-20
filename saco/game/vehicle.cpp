@@ -109,3 +109,12 @@ void CVehicle::SetHealth(float fHealth)
 
 //-----------------------------------------------------------
 
+BOOL CVehicle::HasSunk()
+{
+	if(!m_pVehicle) return FALSE;
+
+	return ScriptCommand(&has_car_sunk,m_dwGTAId);
+}
+
+//-----------------------------------------------------------
+

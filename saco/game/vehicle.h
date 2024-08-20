@@ -25,6 +25,7 @@ public:
 	float GetHealth();
 	void  SetHealth(float fHealth);
 
+	BOOL  HasSunk();
 	BOOL  HasADriver();
 
 	void    SetEngineState(BOOL bState);
