@@ -20,6 +20,8 @@ public:
 
 	void  ResetPointers();
 
+	BOOL  HasADriver();
+
 
 	void	LinkToInterior(int iInterior);
 

@@ -35,3 +35,17 @@ void CVehicle::ResetPointers()
 
 //-----------------------------------------------------------
 
+BOOL CVehicle::HasADriver()
+{
+	if(!m_pVehicle) return FALSE;
+	if(!GamePool_Vehicle_GetAt(m_dwGTAId)) return FALSE;
+
+	if(m_pVehicle) {
+		if(m_pVehicle->pDriver && IN_VEHICLE(m_pVehicle->pDriver) && m_pVehicle->pDriver->dwPedType == 0)
+			return TRUE;
+	}
+	return FALSE;
+}
+
+//-----------------------------------------------------------
+
