@@ -24,6 +24,7 @@ public:
 
 	BOOL  HasADriver();
 
+	void    SetEngineState(BOOL bState);
 
 	void	LinkToInterior(int iInterior);
 

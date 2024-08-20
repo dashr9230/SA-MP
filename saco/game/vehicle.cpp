@@ -79,3 +79,16 @@ void CVehicle::SetLockedState(int iLocked)
 
 //-----------------------------------------------------------
 
+void CVehicle::SetEngineState(BOOL bState)
+{
+	if(!m_pVehicle) return;
+
+	if(!bState) {
+		m_pVehicle->byteFlags &= 0xDF;
+	} else {
+		m_pVehicle->byteFlags |= 0x20;
+	}
+}
+
+//-----------------------------------------------------------
+
