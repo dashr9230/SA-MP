@@ -54,6 +54,7 @@ const SCRIPT_COMMAND create_icon_marker_sphere			= { 0x02A7, "fffiv" };
 const SCRIPT_COMMAND add_to_player_money				= { 0x0109, "ii" };		// PLAYER_CHAR, money
 
 const SCRIPT_COMMAND has_car_sunk						= { 0x02bf, "i" };	// CarID
+const SCRIPT_COMMAND is_car_wrecked						= { 0x0119, "i" }; // CarID
 const SCRIPT_COMMAND get_ground_z						= { 0x02ce, "fffv" };	// x, y, z, var_ground_z
 
 const SCRIPT_COMMAND destroy_racing_checkpoint			= { 0x06d6,	"i" };

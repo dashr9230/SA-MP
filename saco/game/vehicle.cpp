@@ -118,3 +118,12 @@ BOOL CVehicle::HasSunk()
 
 //-----------------------------------------------------------
 
+BOOL CVehicle::IsWrecked()
+{
+	if(!m_pVehicle) return FALSE;
+
+	return ScriptCommand(&is_car_wrecked,m_dwGTAId);
+}
+
+//-----------------------------------------------------------
+
