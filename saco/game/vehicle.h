@@ -59,6 +59,8 @@ public:
 
 	void	LinkToInterior(int iInterior);
 
+	void	SetHornState(BYTE byteState);
+
 	BOOL	IsOccupied();
 
 

@@ -206,6 +206,25 @@ BOOL CVehicle::HasTurret()
 }
 
 //-----------------------------------------------------------
+// This can currently only be used for setting the alternate
+// siren. The way it's coded internally doesn't seem to allow
+// us to modify the horn alone.
+
+void CVehicle::SetHornState(BYTE byteState)
+{
+	if(!m_pVehicle) return;
+	if(!GamePool_Vehicle_GetAt(m_dwGTAId)) return;
+
+	if( (GetVehicleSubtype() != VEHICLE_SUBTYPE_BOAT ) &&
+		(GetVehicleSubtype() != VEHICLE_SUBTYPE_PLANE) &&
+		(GetVehicleSubtype() != VEHICLE_SUBTYPE_HELI ) )
+	{
+		m_pVehicle->byteHorn = byteState;
+		m_pVehicle->byteHorn2 = byteState;
+	}
+}
+
+//-----------------------------------------------------------
 
 void CVehicle::SetSirenOn(BYTE byteState)
 {
