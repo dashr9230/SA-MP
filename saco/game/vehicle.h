@@ -44,6 +44,8 @@ public:
 	BOOL  HasTurret();
 	BOOL  HasADriver();
 
+	UINT  GetPassengersMax();
+
 	void    SetSirenOn(BYTE byteState);
 	BOOL    IsSirenOn();
 	void	SetAlarmState(WORD wState);
