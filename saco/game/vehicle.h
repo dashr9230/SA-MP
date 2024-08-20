@@ -14,7 +14,13 @@ public:
 
 	VEHICLE_TYPE	*m_pVehicle;
 
-	char _gap50[104];
+	char _gap50[41];
+
+	BYTE		m_byteColor1;
+	BYTE		m_byteColor2;
+	BOOL		m_bHasNewColor;
+
+	char _gap7F[57];
 
 	CVehicle( int iType, float fPosX, float fPosY, float fPosZ, float fRotation = 0.0f, BOOL bKeepModelLoaded = FALSE, int a8 = 0);
 
@@ -24,6 +30,7 @@ public:
 
 	float GetHealth();
 	void  SetHealth(float fHealth);
+	void  SetColor(BYTE byteColor1, BYTE byteColor2);
 
 	BOOL  HasSunk();
 	BOOL  IsWrecked();

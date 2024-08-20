@@ -109,6 +109,19 @@ void CVehicle::SetHealth(float fHealth)
 
 //-----------------------------------------------------------
 
+void CVehicle::SetColor(BYTE byteColor1, BYTE byteColor2)
+{
+	if(m_pVehicle && GamePool_Vehicle_GetAt(m_dwGTAId))  {
+		m_pVehicle->byteColor1 = byteColor1;
+		m_pVehicle->byteColor2 = byteColor2;
+	}
+	m_byteColor2 = byteColor2;
+	m_byteColor1 = byteColor1;
+	m_bHasNewColor = TRUE;
+}
+
+//-----------------------------------------------------------
+
 BOOL CVehicle::HasSunk()
 {
 	if(!m_pVehicle) return FALSE;
