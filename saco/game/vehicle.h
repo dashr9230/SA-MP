@@ -25,6 +25,9 @@ public:
 
 	void	LinkToInterior(int iInterior);
 
+	BOOL	IsOccupied();
+
+
 };
 
 //-----------------------------------------------------------

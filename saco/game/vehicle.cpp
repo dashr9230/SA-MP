@@ -49,3 +49,20 @@ BOOL CVehicle::HasADriver()
 
 //-----------------------------------------------------------
 
+BOOL CVehicle::IsOccupied()
+{
+	if(m_pVehicle) {
+		if(m_pVehicle->pDriver) return TRUE;
+		if(m_pVehicle->pPassengers[0]) return TRUE;
+		if(m_pVehicle->pPassengers[1]) return TRUE;
+		if(m_pVehicle->pPassengers[2]) return TRUE;
+		if(m_pVehicle->pPassengers[3]) return TRUE;
+		if(m_pVehicle->pPassengers[4]) return TRUE;
+		if(m_pVehicle->pPassengers[5]) return TRUE;
+		if(m_pVehicle->pPassengers[6]) return TRUE;
+	}
+	return FALSE;
+}
+
+//-----------------------------------------------------------
+
