@@ -92,3 +92,11 @@ void CVehicle::SetEngineState(BOOL bState)
 
 //-----------------------------------------------------------
 
+float CVehicle::GetHealth()
+{
+	if(m_pVehicle) return m_pVehicle->fHealth;
+	else return 0.0f;
+}
+
+//-----------------------------------------------------------
+

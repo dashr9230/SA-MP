@@ -22,6 +22,8 @@ public:
 
 	void  SetLockedState(int iLocked);
 
+	float GetHealth();
+
 	BOOL  HasADriver();
 
 	void    SetEngineState(BOOL bState);
