@@ -185,3 +185,15 @@ BOOL CVehicle::IsATrainPart()
 
 //-----------------------------------------------------------
 
+BOOL CVehicle::HasTurret()
+{
+	int nModel = GetModelIndex();
+	return (nModel == 432 ||	// Tank
+			nModel == 564 ||	// RC Tank
+			nModel == 407 ||	// Firetruck
+			nModel == 601		// Swatvan
+			);
+}
+
+//-----------------------------------------------------------
+
