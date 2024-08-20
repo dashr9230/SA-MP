@@ -40,6 +40,7 @@ public:
 	BOOL  HasSunk();
 	BOOL  IsWrecked();
 	BOOL  IsDriverLocalPlayer();
+	BOOL  IsATrainPart();
 	BOOL  HasADriver();
 
 	void    SetEngineState(BOOL bState);

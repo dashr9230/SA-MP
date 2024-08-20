@@ -169,3 +169,19 @@ BOOL CVehicle::IsDriverLocalPlayer()
 
 //-----------------------------------------------------------
 
+BOOL CVehicle::IsATrainPart()
+{
+	int nModel;
+	if(m_pVehicle) {
+		nModel = m_pVehicle->entity.nModelIndex;
+		if(nModel == TRAIN_PASSENGER_LOCO) return TRUE;
+		if(nModel == TRAIN_PASSENGER) return TRUE;
+		if(nModel == TRAIN_FREIGHT_LOCO) return TRUE;
+		if(nModel == TRAIN_FREIGHT) return TRUE;
+		if(nModel == TRAIN_TRAM) return TRUE;
+	}
+	return FALSE;
+}
+
+//-----------------------------------------------------------
+
