@@ -100,3 +100,12 @@ float CVehicle::GetHealth()
 
 //-----------------------------------------------------------
 
+void CVehicle::SetHealth(float fHealth)
+{
+	if(m_pVehicle) {
+		m_pVehicle->fHealth = fHealth;
+	}
+}
+
+//-----------------------------------------------------------
+

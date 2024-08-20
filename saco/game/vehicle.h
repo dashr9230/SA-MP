@@ -23,6 +23,7 @@ public:
 	void  SetLockedState(int iLocked);
 
 	float GetHealth();
+	void  SetHealth(float fHealth);
 
 	BOOL  HasADriver();
 
