@@ -31,6 +31,7 @@ public:
 	void  ResetPointers();
 
 	void  SetLockedState(int iLocked);
+	UINT  GetVehicleSubtype();
 
 	float GetHealth();
 	void  SetHealth(float fHealth);

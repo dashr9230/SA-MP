@@ -1936,5 +1936,32 @@ DWORD unnamed_100B6100(char *szString, int nMaxLen)
 	return 0;
 }
 
+UINT GetVehicleSubtypeFromVehiclePtr(VEHICLE_TYPE *pVehicle)
+{
+	if(!pVehicle) return 0;
+	if(pVehicle->entity.vtable == 0x871120) {
+		return VEHICLE_SUBTYPE_CAR;
+	}
+	else if(pVehicle->entity.vtable == 0x8721A0) {
+		return VEHICLE_SUBTYPE_BOAT;
+	}
+	else if(pVehicle->entity.vtable == 0x871360) {
+		return VEHICLE_SUBTYPE_BIKE;
+	}
+	else if(pVehicle->entity.vtable == 0x871948) {
+		return VEHICLE_SUBTYPE_PLANE;
+	}
+	else if(pVehicle->entity.vtable == 0x871680) {
+		return VEHICLE_SUBTYPE_HELI;
+	}
+	else if(pVehicle->entity.vtable == 0x871528) {
+		return VEHICLE_SUBTYPE_PUSHBIKE;
+	}
+	else if(pVehicle->entity.vtable == 0x872370) {
+		return VEHICLE_SUBTYPE_TRAIN;
+	}
+	return 0;
+}
+
 
 

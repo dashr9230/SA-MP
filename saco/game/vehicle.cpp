@@ -139,6 +139,16 @@ void CVehicle::UpdateColor()
 
 //-----------------------------------------------------------
 
+UINT CVehicle::GetVehicleSubtype()
+{
+	if(m_pVehicle) {
+		return GetVehicleSubtypeFromVehiclePtr(m_pVehicle);
+	}
+	return 0;
+}
+
+//-----------------------------------------------------------
+
 BOOL CVehicle::HasSunk()
 {
 	if(!m_pVehicle) return FALSE;
