@@ -247,6 +247,33 @@ void CVehicle::SetAlarmState(WORD wState)
 
 //-----------------------------------------------------------
 
+void CVehicle::SetLandingGearState(eLandingGearState state)
+{
+	if(GetVehicleSubtype() != VEHICLE_SUBTYPE_PLANE) return;
+
+	DWORD dwVehiclePtr = (DWORD)m_pVehicle;
+	float fPlaneLandingGear = 0.0f;
+
+	_asm mov eax, dwVehiclePtr
+	_asm mov edx, [eax+0x9CC]
+	_asm mov fPlaneLandingGear, edx
+
+	if (state == LGS_DOWN && fPlaneLandingGear == 0.0f)
+	{
+		_asm mov ecx, dwVehiclePtr
+		_asm mov edx, 0x6CAC20
+		_asm call edx
+	}
+	else if(state == LGS_UP && fPlaneLandingGear == 1.0f)
+	{
+		_asm mov ecx, dwVehiclePtr
+		_asm mov edx, 0x6CAC70
+		_asm call edx		
+	}
+}
+
+//-----------------------------------------------------------
+
 UINT CVehicle::GetPassengersMax()
 {
 	return 0;

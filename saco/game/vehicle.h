@@ -4,6 +4,12 @@
 #include "game.h"
 #include "entity.h"
 
+enum eLandingGearState 
+{
+	LGS_UP,
+	LGS_DOWN,
+};
+
 //-----------------------------------------------------------
 
 class CVehicle : public CEntity
@@ -54,6 +60,7 @@ public:
 	void    SetSirenOn(BYTE byteState);
 	BOOL    IsSirenOn();
 	void	SetAlarmState(WORD wState);
+	void    SetLandingGearState(eLandingGearState state);
 
 	void    SetEngineState(BOOL bState);
 
