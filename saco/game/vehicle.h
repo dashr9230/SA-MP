@@ -46,6 +46,7 @@ public:
 
 	void    SetSirenOn(BYTE byteState);
 	BOOL    IsSirenOn();
+	void	SetAlarmState(WORD wState);
 
 	void    SetEngineState(BOOL bState);
 
