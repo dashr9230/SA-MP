@@ -61,7 +61,7 @@ BOOL SubclassGameWindow();
 void SetupCommands();
 void TheGraphicsLoop();
 LONG WINAPI exc_handler(_EXCEPTION_POINTERS* exc_inf);
-void sub_1009DD50();
+void FUNC_1009DD50();
 
 DWORD dwOrgRwSetState=0;
 DWORD dwSetStateCaller=0;
