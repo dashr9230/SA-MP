@@ -11,7 +11,7 @@ CPickupPool::CPickupPool()
 	 {
 		field_4[i] = 0;
 		field_8004[i] = 0;
-		field_4004[i] = 0;
+		field_4004[i] = -1;
 	 }
 }
 
