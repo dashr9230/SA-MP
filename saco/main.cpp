@@ -512,6 +512,40 @@ void SetStringFromQuotedCommandLine(char *szCmdLine, char *szString)
 }
 
 //----------------------------------------------------
+
+float GetElapsedTime()
+{
+	static BOOL bTimerInit = false;
+	static BOOL bUsingOPF  = false;
+	static LONGLONG nTicksPerSec = 0;
+
+	if (!bTimerInit)
+	{
+		bTimerInit = true;
+		LARGE_INTEGER qwTicksPerSec;
+		bUsingOPF = QueryPerformanceFrequency(&qwTicksPerSec);
+		if (bUsingOPF) nTicksPerSec = qwTicksPerSec.QuadPart;
+	}
+
+	if (bUsingOPF)
+	{
+		LARGE_INTEGER qwTime;
+		QueryPerformanceCounter(&qwTime);
+		static LONGLONG llLastTime = qwTime.QuadPart;
+		double fElapsedTime = (double)(qwTime.QuadPart - llLastTime) / (double) nTicksPerSec;
+		llLastTime = qwTime.QuadPart;
+		return (float)fElapsedTime;
+	} else {
+		double fTime = timeGetTime() * 0.001;
+		static double fLastTime = fTime;
+		double fElapsedTime = (double)(fTime - fLastTime);
+		fLastTime = fTime;
+		return (float)fElapsedTime;
+	}
+}
+
+//----------------------------------------------------
+
 int GetFontSize()
 {
 	int size;
