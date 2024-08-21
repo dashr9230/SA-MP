@@ -546,6 +546,32 @@ float GetElapsedTime()
 
 //----------------------------------------------------
 
+void DisableMouseProcess();
+void DIResetMouse();
+void UpdatePads();
+
+DWORD GLOBAL_1026EBD0;
+
+DWORD __stdcall FUNC_100C4530(int a1, int a2, int a3, int a4, int a5, int a6, int a7)
+{
+	if(pNetGame && pGame) {
+		UnFuck(0x541DF5,5);
+		memset((PVOID)0x541DF5,0x90,5);
+
+		DisableMouseProcess();
+		DIResetMouse();
+		UpdatePads();
+
+		UnFuck(0x6194A0,1);
+		*(BYTE*)0x6194A0 = 0xC3;
+
+		GLOBAL_1026EBD0++;
+	}
+	return 69;
+}
+
+//----------------------------------------------------
+
 int GetFontSize()
 {
 	int size;
