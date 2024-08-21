@@ -10,7 +10,7 @@ class CPickupPool
 private:
 
 	int field_0;
-	int field_4[MAX_PICKUPS];
+	DWORD	m_dwHnd[MAX_PICKUPS];
 	int field_4004[MAX_PICKUPS];
 	int field_8004[MAX_PICKUPS];
 
@@ -21,6 +21,7 @@ private:
 public:
 
 	CPickupPool();
+	~CPickupPool();
 
 };
 
