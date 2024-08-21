@@ -572,6 +572,39 @@ DWORD __stdcall FUNC_100C4530(int a1, int a2, int a3, int a4, int a5, int a6, in
 
 //----------------------------------------------------
 
+DWORD GLOBAL_10117478 = 69;
+DWORD GLOBAL_1026EBE8;
+DWORD GLOBAL_1026EBEC;
+DWORD GLOBAL_1026EBF0;
+DWORD GLOBAL_1014FD98;
+
+int FUNC_100C46B0(bool a1)
+{
+	if(GLOBAL_10117478 == 69)
+	{
+		GLOBAL_1026EBEC = GLOBAL_1014FD98;
+		GLOBAL_1026EBE8 = GLOBAL_1014FD98;
+		GLOBAL_10117478 = 70;
+	}
+	else
+	{
+		if(a1)
+		{
+			if(GLOBAL_1014FD98 <= GLOBAL_1026EBEC && FUNC_100C4530(59, 1, 6, 12, 17, 2, 50) != 69)
+				exit(0);
+			if(GLOBAL_1026EBE8 >= GLOBAL_1014FD98 && FUNC_100C4530(60, 1, 6, 12, 17, 2, 50) != 69)
+				exit(0);
+			GLOBAL_1026EBE8 = GLOBAL_1014FD98;
+		}
+		if(GLOBAL_1026EBD0 > 5 && FUNC_100C4530(65, 1, 6, 12, 17, 2, 50) != 69)
+			exit(0);
+	}
+	GLOBAL_1026EBF0++;
+	return GLOBAL_1026EBF0;
+}
+
+//----------------------------------------------------
+
 int GetFontSize()
 {
 	int size;
