@@ -194,13 +194,15 @@ PCHAR GetArtworkProxy()
 	HKEY hKey;
 	DWORD dwType;
 
-	if(RegOpenKeyEx(HKEY_CURRENT_USER, "Software\\SAMP", 0, KEY_READ, &hKey) != ERROR_SUCCESS)
+	if(RegOpenKeyEx(HKEY_CURRENT_USER, "Software\\SAMP", 0, KEY_READ, &hKey) == ERROR_SUCCESS) {
+		if(RegQueryValueEx(hKey, "artwork_proxy", NULL, &dwType, (LPBYTE) szArtworkProxy, &cbData) == ERROR_SUCCESS) {
+			return szArtworkProxy;
+		} else {
+			return NULL;
+		}
+	} else {
 		return NULL;
-
-	if(RegQueryValueEx(hKey, "artwork_proxy", NULL, &dwType, (LPBYTE) szArtworkProxy, &cbData) != ERROR_SUCCESS)
-		return NULL;
-
-	return szArtworkProxy;
+	}
 }
 
 //----------------------------------------------------
