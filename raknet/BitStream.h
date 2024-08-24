@@ -67,7 +67,11 @@ namespace RakNet
 		/// \param[in] lengthInBytes Size of the \a _data.
 		/// \param[in] _copyData true or false to make a copy of \a _data or not.
 		BitStream( unsigned char* _data, unsigned int lengthInBytes, bool _copyData );
-		
+
+// SAMPSRV (adding this just as a tag for next RakNet upgrade)
+		BitStream( char* _dataC, unsigned int lengthInBytes, bool _copyData );
+// SAMPSRV end
+
 		/// Destructor 
 		~BitStream();
 		

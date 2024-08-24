@@ -123,6 +123,43 @@ BitStream::BitStream( unsigned char* _data, unsigned int lengthInBytes, bool _co
 		data = ( unsigned char* ) _data;
 }
 
+// SAMPSRV (adding this just as a tag for next RakNet upgrade)
+BitStream::BitStream( char* _dataC, unsigned int lengthInBytes, bool _copyData )
+{
+	unsigned char* _data = reinterpret_cast<unsigned char*>(_dataC);
+
+	numberOfBitsUsed = lengthInBytes << 3;
+	readOffset = 0;
+	copyData = _copyData;
+	numberOfBitsAllocated = lengthInBytes << 3;
+	
+	if ( copyData )
+	{
+		if ( lengthInBytes > 0 )
+		{
+			if (lengthInBytes < BITSTREAM_STACK_ALLOCATION_SIZE)
+			{
+				data = ( unsigned char* ) stackData;
+				numberOfBitsAllocated = BITSTREAM_STACK_ALLOCATION_SIZE << 3;
+			}
+			else
+			{
+				data = ( unsigned char* ) malloc( lengthInBytes );
+			}
+#ifdef _DEBUG
+			assert( data );
+#endif
+			memcpy( data, _data, lengthInBytes );
+		}
+		else
+			data = 0;
+	}
+	else
+		data = ( unsigned char* ) _data;
+
+}
+// SAMPSRV end
+
 // Use this if you pass a pointer copy to the constructor (_copyData==false) and want to overallocate to prevent reallocation
 void BitStream::SetNumberOfBitsAllocated( const unsigned int lengthInBits )
 {
