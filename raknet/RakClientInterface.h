@@ -226,6 +226,10 @@ public:
 	/// \return True on a successful packet send (this does not indicate the recipient performed the call), false on failure
 	virtual bool RPC( char* uniqueID, RakNet::BitStream *bitStream, PacketPriority priority, PacketReliability reliability, char orderingChannel, bool shiftTimestamp, NetworkID networkID, RakNet::BitStream *replyFromTarget )=0;
 
+	// SAMPSRV (adding this just as a tag for next RakNet upgrade)
+	virtual bool RPC( char* uniqueID, RakNet::BitStream *bitStream, PacketPriority priority, PacketReliability reliability, char orderingChannel, bool shiftTimestamp )=0;
+	// SAMPSRV end
+
 	/// Enables or disables frequency table tracking.  This is required to get a frequency table, which is used in GenerateCompressionLayer()
 	/// This value persists between connect calls and defaults to false (no frequency tracking)
 	/// \pre You can call this at any time - however you SHOULD only call it when disconnected.  Otherwise you will only trackpart of the values sent over the network.

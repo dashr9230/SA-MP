@@ -381,6 +381,16 @@ bool RakClient::RPC( char* uniqueID, RakNet::BitStream *parameters, PacketPriori
 	return RakPeer::RPC( uniqueID, parameters, priority, reliability, orderingChannel, remoteSystemList[ 0 ].playerId, false, shiftTimestamp, networkID, replyFromTarget );
 }
 
+// SAMPSRV (adding this just as a tag for next RakNet upgrade)
+bool RakClient::RPC( char* uniqueID, RakNet::BitStream *parameters, PacketPriority priority, PacketReliability reliability, char orderingChannel, bool shiftTimestamp )
+{
+	if ( remoteSystemList == 0 )
+		return false;
+		
+	return RakPeer::RPC( uniqueID, parameters, priority, reliability, orderingChannel, remoteSystemList[ 0 ].playerId, false, shiftTimestamp, UNASSIGNED_NETWORK_ID, 0 );
+}
+// SAMPSRV end
+
 void RakClient::SetTrackFrequencyTable( bool b )
 {
 	RakPeer::SetCompileFrequencyTable( b );
