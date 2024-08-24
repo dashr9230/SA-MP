@@ -164,7 +164,7 @@ void BitStream::Reset( void )
 // Write an array or casted stream
 void BitStream::Write( const char* input, const int numberOfBytes )
 {
-	if (numberOfBytes==0)
+	if (numberOfBytes==0 || input==0)
 		return;
 
 	// Optimization:
