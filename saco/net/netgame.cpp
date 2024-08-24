@@ -22,7 +22,7 @@ BYTE __stdcall GetPacketID(Packet *p)
 
 //----------------------------------------------------
 
-bool HasTimestamps(Packet *p)
+bool __stdcall HasTimestamps(Packet *p)
 {
 	if (p==0) return 0;
 
