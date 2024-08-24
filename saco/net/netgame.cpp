@@ -7,7 +7,7 @@ extern CChatWindow   *pChatWindow;
 
 //----------------------------------------------------
 
-BYTE GetPacketID(Packet *p)
+BYTE __stdcall GetPacketID(Packet *p)
 {
 	if (p==0) return 255;
 
