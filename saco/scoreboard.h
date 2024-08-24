@@ -17,8 +17,8 @@ private:
 	float field_28;
 	float field_2C;
 	IDirect3DDevice9 *m_pD3DDevice;
-	int field_34;
-	int field_38;
+	CDXUTDialog *m_pDialog;
+	CDXUTListBox *m_pListBox;
 	int field_3C;
 	int field_40;
 
@@ -26,4 +26,5 @@ public:
 	CScoreBoard(IDirect3DDevice9 *pD3DDevice);
 
 	void FUNC_1006E930();
+	void ResetDialogControls(CDXUTDialog *pDialog);
 };

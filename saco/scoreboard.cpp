@@ -6,8 +6,8 @@ extern CGame* pGame;
 CScoreBoard::CScoreBoard(IDirect3DDevice9 *pD3DDevice)
 {
 	m_pD3DDevice = pD3DDevice;
-	field_34 = 0;
-	field_38 = 0;
+	m_pDialog = NULL;
+	m_pListBox = NULL;
 	field_3C = 0;
 	field_40 = 0;
 	field_4 = 0;
@@ -33,7 +33,6 @@ CScoreBoard::CScoreBoard(IDirect3DDevice9 *pD3DDevice)
 	field_0 = 0;
 }
 
-// MATCH
 void CScoreBoard::FUNC_1006E930()
 {
 	RECT rect;
@@ -43,4 +42,28 @@ void CScoreBoard::FUNC_1006E930()
 	field_10 = 1.0f;
 	field_8 = rect.right * 0.5f - field_14 * 0.5f;
 	field_C = rect.bottom * 0.5f - field_18 * 0.5f;
+}
+
+void CScoreBoard::ResetDialogControls(CDXUTDialog *pDialog)
+{
+	m_pDialog = pDialog;
+
+	if(pDialog) {
+		pDialog->SetSize(field_14, field_18);
+
+		m_pListBox = new CDXUTListBox(m_pDialog);
+		m_pDialog->AddControl(m_pListBox);
+		m_pListBox->SetLocation(0, field_1C);
+		m_pListBox->SetSize(field_14, field_18 - field_1C);
+		m_pListBox->OnInit();
+		m_pListBox->GetElement(0)->TextureColor.Init(D3DCOLOR_ARGB( 200, 255, 255, 255 ));
+		m_pListBox->field_4D = 3;
+		m_pListBox->field_51 = field_24 * field_14;
+		m_pListBox->field_59 = field_28 * field_14;
+		m_pListBox->field_55 = field_2C * field_14;
+		m_pListBox->SetEnabled(false);
+		m_pListBox->SetVisible(false);
+
+		FUNC_1006E930();
+	}
 }
