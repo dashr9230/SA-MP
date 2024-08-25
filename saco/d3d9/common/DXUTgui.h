@@ -769,7 +769,7 @@ protected:
     D3DXCOLOR field_77;
 
 public:
-    void SetColor(D3DXCOLOR c);
+    void SetColor(D3DXCOLOR c) { field_76 = true; field_77 = c; };
 
 };
 

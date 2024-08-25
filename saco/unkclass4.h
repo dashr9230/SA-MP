@@ -11,10 +11,11 @@ private:
 	int field_14;
 	int field_18;
 	int field_1C;
-	int field_20;
+	CDXUTDialog *m_pDialog;
 	int field_24;
 
 public:
 	CUnkClass4(IDirect3DDevice9 *pD3DDevice);
 
+	void ResetDialogControls(CDXUTDialog *pDialog);
 };
