@@ -765,9 +765,12 @@ protected:
     bool m_bPressed;
     RECT m_rcButton;
 
+    bool field_76;
+    D3DXCOLOR field_77;
+
 public:
-	bool field_76;
-	D3DXCOLOR field_77;
+    void SetColor(D3DXCOLOR c);
+
 };
 
 
