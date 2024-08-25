@@ -13,8 +13,8 @@ private:
 	int field_1C;
 	int field_20;
 	char _gap24[4];
-	int field_28;
-	char _gap2C[4];
+	CDXUTDialog *m_pDialog;
+	CDXUTListBox *m_pListBox;
 	int field_30;
 	int field_34;
 	char field_38[129];
@@ -32,5 +32,7 @@ private:
 
 public:
 	CUnkClass5(IDirect3DDevice9 *pD3DDevice);
+
+	void ResetDialogControls(CDXUTDialog *pDialog);
 
 };
