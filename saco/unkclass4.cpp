@@ -21,13 +21,13 @@ void CUnkClass4::ResetDialogControls(CDXUTDialog *pDialog)
 
 	if(pDialog) {
 		pDialog->AddSlider(30,50,10,field_14,field_18,-100,100,0);
-		m_pDialog->GetSlider(30)->SetColor(D3DXCOLOR(0.6f,0.6f,0.8f,1.0f));
+		m_pDialog->GetSlider(30)->SetColor(D3DXCOLOR(0.6f,0.6f,0.80000007f,1.0f));
 
 		int y = field_1C + 10;
 		m_pDialog->AddSlider(32,50,y,field_14,field_18,-100,100,0);
-		m_pDialog->GetSlider(32)->SetColor(D3DXCOLOR(0.8f,0.6f,0.6f,1.0f));
+		m_pDialog->GetSlider(32)->SetColor(D3DXCOLOR(0.80000007f,0.6f,0.6f,1.0f));
 
 		m_pDialog->AddSlider(34,50,y+field_1C,field_14,field_18,-100,100,0);
-		m_pDialog->GetSlider(34)->SetColor(D3DXCOLOR(0.6f,0.8f,0.6f,1.0f));
+		m_pDialog->GetSlider(34)->SetColor(D3DXCOLOR(0.6f,0.80000007f,0.6f,1.0f));
 	}
 }
