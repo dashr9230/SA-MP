@@ -11,5 +11,6 @@ private:
 public:
 	CUnkClass14(IDirect3DDevice9 *pD3DDevice);
 
+	void DeleteDeviceObjects();
 	void RestoreDeviceObjects();
 };
