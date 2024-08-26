@@ -12,6 +12,14 @@ CUnkClass13::CUnkClass13(IDirect3DDevice9 *pD3DDevice)
 	RestoreDeviceObjects();
 }
 
+void CUnkClass13::DeleteDeviceObjects()
+{
+	SAFE_RELEASE(m_pD3DSurface);
+	SAFE_RELEASE(m_pD3DTexture);
+	SAFE_RELEASE(m_pD3DRenderToSurface);
+	SAFE_RELEASE(field_20);
+}
+
 void CUnkClass13::RestoreDeviceObjects()
 {
 	m_pD3DDevice->GetDisplayMode(0, &m_DisplayMode);
