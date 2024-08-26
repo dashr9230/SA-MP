@@ -10,8 +10,9 @@ private:
 	int field_10;
 	int field_14;
 	int field_18;
-	int field_1C;
-	char _gap20[8];
+	CDXUTDialog *m_pDialog;
+	CDXUTListBox *m_pListBox;
+	CDXUTIMEEditBox *m_pEditControl;
 	int field_28;
 	int field_2C;
 	int field_30;
@@ -23,4 +24,5 @@ private:
 public:
 	CUnkClass3(IDirect3DDevice9 *pD3DDevice);
 
+	void ResetDialogControls(CDXUTDialog *pDialog);
 };
