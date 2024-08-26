@@ -12,6 +12,11 @@ CUnkClass13::CUnkClass13(IDirect3DDevice9 *pD3DDevice)
 	RestoreDeviceObjects();
 }
 
+CUnkClass13::~CUnkClass13()
+{
+	DeleteDeviceObjects();
+}
+
 void CUnkClass13::DeleteDeviceObjects()
 {
 	SAFE_RELEASE(m_pD3DSurface);
