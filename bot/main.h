@@ -18,6 +18,8 @@
 #define MAX_VEHICLES		2000
 #define MAX_SETTINGS_STRING 256
 
+#define PI 3.14159265f
+
 #define ARRAY_SIZE(a)	( sizeof((a)) / sizeof(*(a)) )
 #define SAFE_DELETE(p)	{ if (p) { delete (p); (p) = NULL; } }
 #define SAFE_RELEASE(p)	{ if (p) { (p)->Release(); (p) = NULL; } }
