@@ -48,6 +48,8 @@ typedef unsigned short VEHICLEID;
 
 #include "../server/amx/amx.h"
 
+#include "../server/system.h"
+
 #include "scrtimers.h"
 #include "gamemodes.h"
 
