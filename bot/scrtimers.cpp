@@ -78,6 +78,20 @@ DWORD CScriptTimers::New(char* szScriptFunc, int iInterval, BOOL bRepeating, AMX
 
 //----------------------------------------------------------------------------------
 
+void CScriptTimers::Delete(DWORD dwTimerId)
+{
+	DwordTimerMap::iterator itor;
+	itor = m_Timers.find(dwTimerId);
+	if (itor != m_Timers.end())
+	{
+		FreeMem(itor->second);
+		SAFE_DELETE(itor->second);
+		m_Timers.erase(itor);
+	}
+}
+
+//----------------------------------------------------------------------------------
+
 void CScriptTimers::Kill(DWORD dwTimerId)
 {
 	DwordTimerMap::iterator itor;
