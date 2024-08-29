@@ -28,6 +28,7 @@ public:
 	~CScriptTimers();
 
 	DWORD New(char* szScriptFunc, int iInterval, BOOL bRepeating, AMX* pAMX);
+	void Kill(DWORD dwTimerId);
 	void FreeMem(ScriptTimer_s* Timer);
 };
 

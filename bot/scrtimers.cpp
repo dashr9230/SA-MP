@@ -55,3 +55,17 @@ DWORD CScriptTimers::New(char* szScriptFunc, int iInterval, BOOL bRepeating, AMX
 
 //----------------------------------------------------------------------------------
 
+void CScriptTimers::Kill(DWORD dwTimerId)
+{
+	DwordTimerMap::iterator itor;
+	itor = m_Timers.find(dwTimerId);
+	if (itor != m_Timers.end())
+	{
+		itor->second->iRemainingTime = 0;
+		itor->second->bKilled = true;
+		itor->second->bRepeating = false;
+	}
+}
+
+//-----------------------------------------------------------
+
