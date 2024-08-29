@@ -31,6 +31,7 @@ public:
 	DWORD New(char* szScriptFunc, int iInterval, BOOL bRepeating, AMX* pAMX);
 	void Delete(DWORD dwTimerId);
 	void Kill(DWORD dwTimerId);
+	void Process(int iElapsedTime);
 	void FreeMem(ScriptTimer_s* Timer);
 };
 
