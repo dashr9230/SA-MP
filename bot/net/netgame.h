@@ -90,6 +90,7 @@ public:
 	CPlayerPool * GetPlayerPool() { return m_pPlayerPool; };
 	CVehiclePool * GetVehiclePool() { return m_pVehiclePool; };
 	RakClientInterface * GetRakClient() { return m_pRakClient; };
+	CScriptTimers * GetTimers() { return m_pScriptTimers; };
 	CGameMode * GetBotMode() { return m_pGameMode; };
 
 	void Init(PCHAR szHostOrIp,int iPort,PCHAR szPlayerName,PCHAR szPass,PCHAR szNpcMode);

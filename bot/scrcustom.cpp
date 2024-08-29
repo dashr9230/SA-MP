@@ -3,6 +3,8 @@
 
 #define CHECK_PARAMS(n) { if (params[0] != (n * sizeof(cell))) { logprintf("SCRIPT: Bad parameter count (Count is %d, Should be %d): ", params[0] / sizeof(cell), n); return 0; } }
 
+extern CNetGame* pNetGame;
+
 //----------------------------------------------------------------------------------
 
 // native print(const string[])
@@ -33,8 +35,11 @@ static cell AMX_NATIVE_CALL n_format(AMX *amx, cell *params)
 // native SetTimer(funcname[], interval, repeating)
 static cell AMX_NATIVE_CALL n_SetTimer(AMX *amx, cell *params)
 {
-	// TODO: n_SetTimer
-	return 0;
+	CHECK_PARAMS(3);
+
+	char* szFuncName;
+	amx_StrParam(amx, params[1], szFuncName);
+	return pNetGame->GetTimers()->New(szFuncName, params[2], params[3], amx);
 }
 
 // native KillTimer(timerid)
