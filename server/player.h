@@ -5,7 +5,13 @@
 #pragma pack(1)
 typedef struct _PLAYER_SPAWN_INFO
 {
-	char _pad0[46];
+	BYTE byteTeam;
+	int iSkin;
+	BYTE field_5;
+	VECTOR vecPos;
+	float fRotation;
+	int iSpawnWeapons[3];
+	int iSpawnWeaponsAmmo[3];
 } PLAYER_SPAWN_INFO;
 
 //----------------------------------------------------
@@ -16,7 +22,11 @@ class CPlayer
 public:
 
 	// Size: 11486
-	char _pad0[11261];
+	char _pad0[10509];
+
+	BOOL field_290D;
+
+	char _pad2911[748];
 
 	PLAYER_SPAWN_INFO		m_SpawnInfo;
 	BOOL					m_bHasSpawnInfo;

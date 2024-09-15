@@ -826,8 +826,35 @@ static cell AMX_NATIVE_CALL n_NetStats_GetIpPort(AMX *amx, cell *params)
 
 static cell AMX_NATIVE_CALL n_SetSpawnInfo(AMX *amx, cell *params)
 {
-	// TODO: SetSpawnInfo
-	return 0;
+	CPlayerPool *pPlayerPool = pNetGame->GetPlayerPool();
+	if(!pPlayerPool) return 0;
+
+	CPlayer *pPlayer = pPlayerPool->GetAt((PLAYERID)params[1]);
+	if (pPlayer)
+	{
+		PLAYER_SPAWN_INFO SpawnInfo;
+		SpawnInfo.byteTeam = (BYTE)params[2];
+		SpawnInfo.iSkin = (int)params[3];
+		SpawnInfo.vecPos.X = amx_ctof(params[4]);
+		SpawnInfo.vecPos.Y = amx_ctof(params[5]);
+		SpawnInfo.vecPos.Z = amx_ctof(params[6]);
+		SpawnInfo.fRotation = amx_ctof(params[7]);
+		SpawnInfo.iSpawnWeapons[0] = (int)params[8];
+		SpawnInfo.iSpawnWeaponsAmmo[0] = (int)params[9];
+		SpawnInfo.iSpawnWeapons[1] = (int)params[10];
+		SpawnInfo.iSpawnWeaponsAmmo[1] = (int)params[11];
+		SpawnInfo.iSpawnWeapons[2] = (int)params[12];
+		SpawnInfo.iSpawnWeaponsAmmo[2] = (int)params[13];
+
+		pPlayer->SetSpawnInfo(&SpawnInfo);
+		pPlayer->field_290D = TRUE;
+		RakNet::BitStream bsData;
+		bsData.Write((PCHAR)&SpawnInfo, sizeof(PLAYER_SPAWN_INFO));
+		pNetGame->SendToPlayer(RPC_ScrSetSpawnInfo, &bsData, (PLAYERID)params[1], 2);
+		return 1;
+	} else {
+		return 0;
+	}
 }
 
 static cell AMX_NATIVE_CALL n_SpawnPlayer(AMX *amx, cell *params)
