@@ -25,6 +25,16 @@ void CPlayer::SetSpawnInfo(PLAYER_SPAWN_INFO *pSpawn)
 
 
 
+//----------------------------------------------------
+
+void CPlayer::SetCheckpoint(float fX, float fY, float fZ, float fSize)
+{
+	m_vecCheckpoint.X = fX;
+	m_vecCheckpoint.Y = fY;
+	m_vecCheckpoint.Z = fZ;
+	m_fCheckpointSize = fSize;
+	ToggleCheckpoint(TRUE);
+}
 
 //----------------------------------------------------
 

@@ -199,6 +199,7 @@ public:
 
 	void SetSpawnInfo(PLAYER_SPAWN_INFO *pSpawn);
 
+	void SetCheckpoint(float fX, float fY, float fZ, float fSize);
 	void ToggleCheckpoint(BOOL bEnabled);
 };
 
