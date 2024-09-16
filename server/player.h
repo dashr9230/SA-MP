@@ -205,6 +205,7 @@ public:
 
 	void SetCheckpoint(float fX, float fY, float fZ, float fSize);
 	void ToggleCheckpoint(BOOL bEnabled);
+	void SetRaceCheckpoint(int iType, float fX, float fY, float fZ, float fNX, float fNY, float fNZ, float fSize);
 	void ToggleRaceCheckpoint(BOOL bEnabled);
 };
 

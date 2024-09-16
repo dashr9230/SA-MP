@@ -59,6 +59,26 @@ void CPlayer::ToggleCheckpoint(BOOL bEnabled)
 
 //----------------------------------------------------
 
+// TODO: sub_486D30
+// TODO: sub_486DE0
+
+//----------------------------------------------------
+
+void CPlayer::SetRaceCheckpoint(int iType, float fX, float fY, float fZ, float fNX, float fNY, float fNZ, float fSize)
+{
+	m_vecRaceCheckpoint.X = fX;
+	m_vecRaceCheckpoint.Y = fY;
+	m_vecRaceCheckpoint.Z = fZ;
+	m_vecRaceNextCheckpoint.X = fNX;
+	m_vecRaceNextCheckpoint.Y = fNY;
+	m_vecRaceNextCheckpoint.Z = fNZ;
+	m_fRaceCheckpointSize = fSize;
+	m_byteRaceCheckpointType = iType;
+	ToggleRaceCheckpoint(TRUE);
+}
+
+//----------------------------------------------------
+
 void CPlayer::ToggleRaceCheckpoint(BOOL bEnabled)
 {
 	m_bRaceCheckpointEnabled = bEnabled;
