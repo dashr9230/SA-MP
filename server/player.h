@@ -138,7 +138,7 @@ public:
 	short field_295D;
 	int field_295F;
 	int field_2963;
-	short field_2967;
+	PLAYERID				m_PlayerID;
 	int field_2969;
 	struc_92 field_296D[10];
 	BOOL field_2B75[10];
@@ -149,7 +149,11 @@ public:
 
 	char field_2BA9;
 
-	char _pad2BAA[53];
+	VECTOR					m_vecCheckpoint;
+	float					m_fCheckpointSize;
+	BOOL					m_bInCheckpoint;
+
+	char _pad2BBE[33];
 
 	int field_2BDF;
 	short field_2BE3[11];
@@ -161,7 +165,7 @@ public:
 	char field_2C31;
 	short field_2C32;
 	int field_2C34;
-	int field_2C38;
+	BOOL					m_bCheckpointEnabled;
 	int field_2C3C;
 	int field_2C40;
 
@@ -194,6 +198,8 @@ public:
 	void Say(unsigned char * szText, BYTE byteTextLength);
 
 	void SetSpawnInfo(PLAYER_SPAWN_INFO *pSpawn);
+
+	void ToggleCheckpoint(BOOL bEnabled);
 };
 
 //----------------------------------------------------
