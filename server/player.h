@@ -153,7 +153,11 @@ public:
 	float					m_fCheckpointSize;
 	BOOL					m_bInCheckpoint;
 
-	char _pad2BBE[33];
+	VECTOR					m_vecRaceCheckpoint;
+	VECTOR					m_vecRaceNextCheckpoint;
+	BYTE					m_byteRaceCheckpointType;
+	float					m_fRaceCheckpointSize;
+	BOOL					m_bInRaceCheckpoint;
 
 	int field_2BDF;
 	short field_2BE3[11];
@@ -166,7 +170,7 @@ public:
 	short field_2C32;
 	int field_2C34;
 	BOOL					m_bCheckpointEnabled;
-	int field_2C3C;
+	BOOL					m_bRaceCheckpointEnabled;
 	int field_2C40;
 
 	// Weapon data
@@ -201,6 +205,7 @@ public:
 
 	void SetCheckpoint(float fX, float fY, float fZ, float fSize);
 	void ToggleCheckpoint(BOOL bEnabled);
+	void ToggleRaceCheckpoint(BOOL bEnabled);
 };
 
 //----------------------------------------------------

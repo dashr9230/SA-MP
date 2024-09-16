@@ -59,3 +59,27 @@ void CPlayer::ToggleCheckpoint(BOOL bEnabled)
 
 //----------------------------------------------------
 
+void CPlayer::ToggleRaceCheckpoint(BOOL bEnabled)
+{
+	m_bRaceCheckpointEnabled = bEnabled;
+	m_bInRaceCheckpoint = FALSE;
+
+	RakNet::BitStream bsParams;
+
+	if (bEnabled)
+	{
+		bsParams.Write(m_byteRaceCheckpointType);
+		bsParams.Write(m_vecRaceCheckpoint.X);
+		bsParams.Write(m_vecRaceCheckpoint.Y);
+		bsParams.Write(m_vecRaceCheckpoint.Z);
+		bsParams.Write(m_vecRaceNextCheckpoint.X);
+		bsParams.Write(m_vecRaceNextCheckpoint.Y);
+		bsParams.Write(m_vecRaceNextCheckpoint.Z);
+		bsParams.Write(m_fRaceCheckpointSize);
+		pNetGame->SendToPlayer(RPC_SetRaceCheckpoint, &bsParams, m_PlayerID, 2);
+	} else {
+		pNetGame->SendToPlayer(RPC_DisableRaceCheckpoint, &bsParams, m_PlayerID, 2);
+	}
+}
+
+//----------------------------------------------------
