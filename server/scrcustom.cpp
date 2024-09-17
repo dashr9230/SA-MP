@@ -997,7 +997,14 @@ static cell AMX_NATIVE_CALL n_GetPlayerName(AMX *amx, cell *params)
 
 static cell AMX_NATIVE_CALL n_SetPlayerCheckpoint(AMX *amx, cell *params)
 {
-	// TODO: SetPlayerCheckpoint
+	CPlayer *pPlayer = pNetGame->GetPlayerPool()->GetAt((PLAYERID)params[1]);
+	if (pPlayer)
+	{
+		pPlayer->SetCheckpoint(amx_ctof(params[2]), amx_ctof(params[3]),
+			amx_ctof(params[4]), amx_ctof(params[5]));
+
+		return 1;
+	}
 	return 0;
 }
 
