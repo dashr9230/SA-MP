@@ -1042,7 +1042,11 @@ static cell AMX_NATIVE_CALL n_DisablePlayerRaceCheckpoint(AMX *amx, cell *params
 
 static cell AMX_NATIVE_CALL n_IsPlayerInRaceCheckpoint(AMX *amx, cell *params)
 {
-	// TODO: IsPlayerInRaceCheckpoint
+	CPlayer *pPlayer = pNetGame->GetPlayerPool()->GetAt((PLAYERID)params[1]);
+	if (pPlayer)
+	{
+		return pPlayer->IsInRaceCheckpoint();
+	}
 	return 0;
 }
 

@@ -207,6 +207,9 @@ public:
 	void ToggleCheckpoint(BOOL bEnabled);
 	void SetRaceCheckpoint(int iType, float fX, float fY, float fZ, float fNX, float fNY, float fNZ, float fSize);
 	void ToggleRaceCheckpoint(BOOL bEnabled);
+
+	BOOL IsInRaceCheckpoint() { return m_bInRaceCheckpoint; };
+
 };
 
 //----------------------------------------------------
