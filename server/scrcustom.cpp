@@ -1010,7 +1010,13 @@ static cell AMX_NATIVE_CALL n_SetPlayerCheckpoint(AMX *amx, cell *params)
 
 static cell AMX_NATIVE_CALL n_DisablePlayerCheckpoint(AMX *amx, cell *params)
 {
-	// TODO: DisablePlayerCheckpoint
+	CPlayer *pPlayer = pNetGame->GetPlayerPool()->GetAt((PLAYERID)params[1]);
+	if (pPlayer)
+	{
+		pPlayer->ToggleCheckpoint(FALSE);
+
+		return 1;
+	}
 	return 0;
 }
 
