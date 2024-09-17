@@ -1036,15 +1036,9 @@ static cell AMX_NATIVE_CALL n_SetPlayerRaceCheckpoint(AMX *amx, cell *params)
 	CPlayer *pPlayer = pNetGame->GetPlayerPool()->GetAt((PLAYERID)params[1]);
 	if (pPlayer)
 	{
-		pPlayer->SetRaceCheckpoint(
-params[2],
-params[3],
-params[4],
-params[5],
-params[6],
-params[7],
-params[8],
-params[9]);
+		pPlayer->SetRaceCheckpoint(params[2], amx_ctof(params[3]),
+			amx_ctof(params[4]), amx_ctof(params[5]), amx_ctof(params[6]),
+			amx_ctof(params[7]), amx_ctof(params[8]), amx_ctof(params[9]));
 
 		return 1;
 	}
