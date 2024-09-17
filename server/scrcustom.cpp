@@ -1052,9 +1052,14 @@ static cell AMX_NATIVE_CALL n_SetPlayerInterior(AMX *amx, cell *params)
 	return 0;
 }
 
+// native GetPlayerInterior(playerid,interiorid)
 static cell AMX_NATIVE_CALL n_GetPlayerInterior(AMX *amx, cell *params)
 {
-	// TODO: GetPlayerInterior
+	CPlayer *pPlayer = pNetGame->GetPlayerPool()->GetAt((PLAYERID)params[1]);
+	if (pPlayer)
+	{
+		return pPlayer->m_iInteriorId;
+	}
 	return 0;
 }
 

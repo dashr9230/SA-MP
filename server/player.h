@@ -171,7 +171,7 @@ public:
 	int field_2C34;
 	BOOL					m_bCheckpointEnabled;
 	BOOL					m_bRaceCheckpointEnabled;
-	int field_2C40;
+	int						m_iInteriorId;
 
 	// Weapon data
 	DWORD					m_dwSlotAmmo[13];
