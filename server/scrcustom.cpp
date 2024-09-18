@@ -994,9 +994,18 @@ static cell AMX_NATIVE_CALL n_IsPlayerInVehicle(AMX *amx, cell *params)
 	return 0;
 }
 
+// native IsPlayerInAnyVehicle(playerid)
 static cell AMX_NATIVE_CALL n_IsPlayerInAnyVehicle(AMX *amx, cell *params)
 {
-	// TODO: IsPlayerInAnyVehicle
+	CPlayer* pPlayer = pNetGame->GetPlayerPool()->GetAt((PLAYERID)params[1]);
+	if (!pPlayer) return 0;
+	BYTE byteState = pPlayer->GetState();
+
+	if ((byteState == PLAYER_STATE_DRIVER) || (byteState == PLAYER_STATE_PASSENGER))
+	{
+		return 1;
+	}
+
 	return 0;
 }
 
