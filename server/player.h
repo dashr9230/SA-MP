@@ -2,6 +2,17 @@
 #ifndef SAMPSRV_PLAYER_H
 #define SAMPSRV_PLAYER_H
 
+#define PLAYER_STATE_NONE						0
+#define PLAYER_STATE_ONFOOT						1
+#define PLAYER_STATE_DRIVER						2
+#define PLAYER_STATE_PASSENGER					3
+#define PLAYER_STATE_EXIT_VEHICLE				4
+#define PLAYER_STATE_ENTER_VEHICLE_DRIVER		5
+#define PLAYER_STATE_ENTER_VEHICLE_PASSENGER	6
+#define PLAYER_STATE_WASTED						7
+#define PLAYER_STATE_SPAWNED					8
+#define PLAYER_STATE_SPECTATING					9
+
 #pragma pack(1)
 typedef struct _PLAYER_SPAWN_INFO
 {
@@ -147,7 +158,7 @@ public:
 
 	char _pad2BA5[4];
 
-	char field_2BA9;
+	BYTE					m_byteState;
 
 	VECTOR					m_vecCheckpoint;
 	float					m_fCheckpointSize;
@@ -167,7 +178,7 @@ public:
 	char field_2C2F;
 	char field_2C30;
 	char field_2C31;
-	short field_2C32;
+	VEHICLEID				m_VehicleID;
 	int field_2C34;
 	BOOL					m_bCheckpointEnabled;
 	BOOL					m_bRaceCheckpointEnabled;
@@ -198,6 +209,9 @@ public:
 	char _pad2CD2[8];
 
 	int field_2CDA;
+
+
+	BYTE GetState() { return m_byteState; };
 
 	void Say(unsigned char * szText, BYTE byteTextLength);
 
