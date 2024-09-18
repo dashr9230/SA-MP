@@ -48,6 +48,11 @@ public:
 		return m_bPlayerSlotState[playerId];
 	};
 
+	PCHAR GetPlayerName(PLAYERID playerId) {
+		if(playerId >= MAX_PLAYERS) { return NULL; }
+		return m_szPlayerName[playerId];
+	};
+
 	PCHAR GetPlayerClientID(PLAYERID playerId) {
 		if(playerId >= MAX_PLAYERS) { return NULL; }
 		return m_szPlayerClientID[playerId];
