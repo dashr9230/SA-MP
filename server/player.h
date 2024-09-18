@@ -28,7 +28,12 @@ typedef struct _PLAYER_SPAWN_INFO
 #pragma pack(1)
 typedef struct _ONFOOT_SYNC_DATA
 {
-	char _pad0[68];
+	char _pad0[62];
+
+	WORD wSurfInfo;
+
+	char _pad40[4];
+
 	// TODO: _ONFOOT_SYNC_DATA
 } ONFOOT_SYNC_DATA;
 
@@ -210,6 +215,7 @@ public:
 
 	int field_2CDA;
 
+	ONFOOT_SYNC_DATA* GetOnFootSyncData() { return &m_ofSync; }
 
 	BYTE GetState() { return m_byteState; };
 

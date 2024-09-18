@@ -955,8 +955,17 @@ static cell AMX_NATIVE_CALL n_GetPlayerVehicleSeat(AMX *amx, cell *params)
 
 static cell AMX_NATIVE_CALL n_GetPlayerSurfingVehicleID(AMX *amx, cell *params)
 {
-	// TODO: GetPlayerSurfingVehicleID
-	return 0;
+	CPlayerPool *pPlayerPool = pNetGame->GetPlayerPool();
+	if(!pPlayerPool) return 0xFFFF;
+
+	CPlayer *pPlayer = pPlayerPool->GetAt((PLAYERID)params[1]);
+	if(pPlayer && pPlayer->GetState() == PLAYER_STATE_ONFOOT) {
+		WORD wSurfInfo = pPlayer->GetOnFootSyncData()->wSurfInfo;
+		if(wSurfInfo != 0 && wSurfInfo < 2000) {
+			return wSurfInfo;
+		}
+	}
+	return 0xFFFF;
 }
 
 static cell AMX_NATIVE_CALL n_GetPlayerSurfingObjectID(AMX *amx, cell *params)
