@@ -1,8 +1,6 @@
 
 #include "main.h"
 
-#define CHECK_PARAMS(n)
-
 int set_amxstring(AMX *amx,cell amx_addr,const char *source,int max);
 
 extern BOOL bGameModeFinished;
@@ -93,8 +91,6 @@ static cell AMX_NATIVE_CALL n_KillTimer(AMX *amx, cell *params)
 // native GetTickCount()
 static cell AMX_NATIVE_CALL n_GetTickCount(AMX *amx, cell *params)
 {
-	CHECK_PARAMS(0);
-
 	return (cell)pNetGame->GetTime();
 }
 
@@ -102,8 +98,6 @@ static cell AMX_NATIVE_CALL n_GetTickCount(AMX *amx, cell *params)
 // native GetMaxPlayers()
 static cell AMX_NATIVE_CALL n_GetMaxPlayers(AMX *amx, cell *params)
 {
-	CHECK_PARAMS(0);
-
 	extern CConsole *pConsole;
 	return pConsole->GetIntVariable("maxplayers");
 }
@@ -194,28 +188,24 @@ static cell AMX_NATIVE_CALL n_VectorSize(AMX *amx, cell *params)
 
 static cell AMX_NATIVE_CALL n_asin(AMX *amx, cell *params)
 {
-	CHECK_PARAMS(1);
 	float fResult = (float)(asin(amx_ctof(params[1])) * (180.0f / PI));
 	return amx_ftoc(fResult);
 }
 
 static cell AMX_NATIVE_CALL n_acos(AMX *amx, cell *params)
 {
-	CHECK_PARAMS(1);
 	float fResult = (float)(acos(amx_ctof(params[1])) * (180.0f / PI));
 	return amx_ftoc(fResult);
 }
 
 static cell AMX_NATIVE_CALL n_atan(AMX *amx, cell *params)
 {
-	CHECK_PARAMS(1);
 	float fResult = (float)(atan(amx_ctof(params[1])) * (180.0f / PI));
 	return amx_ftoc(fResult);
 }
 
 static cell AMX_NATIVE_CALL n_atan2(AMX *amx, cell *params)
 {
-	CHECK_PARAMS(2);
 	float fResult = (float)(atan2(amx_ctof(params[1]), amx_ctof(params[2])) * (180.0f / PI));
 	return amx_ftoc(fResult);
 }
@@ -304,8 +294,6 @@ static cell AMX_NATIVE_CALL n_GameModeExit(AMX *amx, cell *params)
 // native SetGameModeText(const string[])
 static cell AMX_NATIVE_CALL n_SetGameModeText(AMX *amx, cell *params)
 {
-	CHECK_PARAMS(1);
-
 	char* szGameModeText;
 	amx_StrParam(amx, params[1], szGameModeText);
 	pConsole->SetStringVariable("gamemodetext", szGameModeText);
@@ -372,7 +360,6 @@ static cell AMX_NATIVE_CALL n_SetPlayerWorldBounds(AMX *amx, cell *params)
 // native ShowNameTags(show)
 static cell AMX_NATIVE_CALL n_ShowNameTags(AMX *amx, cell *params)
 {
-	CHECK_PARAMS(1);
 	pNetGame->m_bShowNameTags = (bool)params[1];
 	return 1;
 }
@@ -382,7 +369,6 @@ static cell AMX_NATIVE_CALL n_ShowNameTags(AMX *amx, cell *params)
 // native ShowPlayerMarkers(mode)
 static cell AMX_NATIVE_CALL n_ShowPlayerMarkers(AMX *amx, cell *params)
 {
-	CHECK_PARAMS(1);
 	pNetGame->m_iShowPlayerMarkers = params[1];
 	return 1;
 }
@@ -398,7 +384,6 @@ static cell AMX_NATIVE_CALL n_SetWorldTime(AMX *amx, cell *params)
 // native GetWeaponName(weaponid, const weapon[], len)
 static cell AMX_NATIVE_CALL n_GetWeaponName(AMX *amx, cell *params)
 {
-	CHECK_PARAMS(3);
 	if(params[1] > WEAPON_COLLISION) return 0;
 
 	return set_amxstring(amx,params[2],pNetGame->GetWeaponName(params[1]),params[3]);
@@ -426,7 +411,6 @@ static cell AMX_NATIVE_CALL n_EnableVehicleFriendlyFire(AMX *amx, cell *params)
 // native AllowInteriorWeapons(allow)
 static cell AMX_NATIVE_CALL n_AllowInteriorWeapons(AMX *amx, cell *params)
 {
-	CHECK_PARAMS(1);
 	pNetGame->m_bAllowWeapons = (bool)params[1];
 	return 1;
 }
@@ -459,7 +443,6 @@ static cell AMX_NATIVE_CALL n_AllowAdminTeleport(AMX *amx, cell *params)
 // native SetDeathDropAmount(amount)
 static cell AMX_NATIVE_CALL n_SetDeathDropAmount(AMX *amx, cell *params)
 {
-	CHECK_PARAMS(1);
 	pNetGame->m_iDeathDropMoney = params[1];
 	return 1;
 }
@@ -664,7 +647,6 @@ static cell AMX_NATIVE_CALL n_GangZoneStopFlashForAll(AMX *amx, cell *params)
 // native IsPlayerAdmin(playerid)
 static cell AMX_NATIVE_CALL n_IsPlayerAdmin(AMX *amx, cell *params)
 {
-	CHECK_PARAMS(1);
 	CPlayerPool* pPlayerPool = pNetGame->GetPlayerPool();
 
 	if (pPlayerPool->GetSlotState((PLAYERID)params[1]))
