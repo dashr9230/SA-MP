@@ -132,7 +132,7 @@
 #define RPC_ScrUnk0E "\x0E"
 #define RPC_ScrPutPlayerInVehicle "\x46"
 #define RPC_ScrRemovePlayerFromVehicle "\x47"
-#define RPC_ScrUnk48 "\x48"
+#define RPC_ScrSetPlayerColor "\x48"
 #define RPC_ScrDisplayGameText "\x49"
 #define RPC_ScrUnk9C "\x9C"
 #define RPC_ScrSetCameraPos "\x9D"

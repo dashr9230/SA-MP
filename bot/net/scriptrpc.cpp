@@ -104,7 +104,7 @@ void ScrRemovePlayerFromVehicle(RPCParameters *rpcParams)
 
 //----------------------------------------------------
 
-void ScrUnk48(RPCParameters *rpcParams)
+void ScrSetPlayerColor(RPCParameters *rpcParams)
 {
 }
 
@@ -497,7 +497,7 @@ void RegisterScriptRPCs(RakClientInterface* pRakClient)
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk0E);
 	REGISTER_STATIC_RPC(pRakClient, ScrPutPlayerInVehicle);
 	REGISTER_STATIC_RPC(pRakClient, ScrRemovePlayerFromVehicle);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk48);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerColor);
 	REGISTER_STATIC_RPC(pRakClient, ScrDisplayGameText);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk9C);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk9D);
@@ -571,7 +571,7 @@ void UnRegisterScriptRPCs(RakClientInterface* pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk0E);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrPutPlayerInVehicle);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrRemovePlayerFromVehicle);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk48);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetPlayerColor);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrDisplayGameText);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk9C);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk9D);

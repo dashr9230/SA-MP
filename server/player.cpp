@@ -23,7 +23,19 @@ void CPlayer::SetSpawnInfo(PLAYER_SPAWN_INFO *pSpawn)
 
 
 
+//----------------------------------------------------
 
+void CPlayer::SetPlayerColor(DWORD dwColor)
+{
+	RakNet::BitStream bsColor;
+
+	m_dwColor = dwColor;
+
+	bsColor.Write(m_PlayerID);
+	bsColor.Write(dwColor);
+
+	pNetGame->BroadcastData(RPC_ScrSetPlayerColor, &bsColor, INVALID_PLAYER_ID, 2);
+}
 
 //----------------------------------------------------
 

@@ -184,7 +184,7 @@ public:
 	char field_2C30;
 	char field_2C31;
 	VEHICLEID				m_VehicleID;
-	int field_2C34;
+	DWORD					m_dwColor;
 	BOOL					m_bCheckpointEnabled;
 	BOOL					m_bRaceCheckpointEnabled;
 	int						m_iInteriorId;
@@ -222,6 +222,8 @@ public:
 	void Say(unsigned char * szText, BYTE byteTextLength);
 
 	void SetSpawnInfo(PLAYER_SPAWN_INFO *pSpawn);
+
+	void SetPlayerColor(DWORD dwColor);
 
 	void SetCheckpoint(float fX, float fY, float fZ, float fSize);
 	void ToggleCheckpoint(BOOL bEnabled);
