@@ -934,9 +934,15 @@ static cell AMX_NATIVE_CALL n_GetPlayerColor(AMX *amx, cell *params)
 	return 0;
 }
 
+// native GetPlayerVehicleID(playerid)
 static cell AMX_NATIVE_CALL n_GetPlayerVehicleID(AMX *amx, cell *params)
 {
-	// TODO: GetPlayerVehicleID
+	CPlayerPool *pPlayerPool = pNetGame->GetPlayerPool();
+	if(!pPlayerPool) return 0;
+	CPlayer *pPlayer = pNetGame->GetPlayerPool()->GetAt((PLAYERID)params[1]);
+	if(pPlayer) {
+		return pPlayer->m_VehicleID;
+	}
 	return 0;
 }
 
