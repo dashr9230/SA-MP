@@ -996,10 +996,16 @@ static cell AMX_NATIVE_CALL n_PutPlayerInVehicle(AMX *amx, cell *params)
 	return 0;
 }
 
+// native RemovePlayerFromVehicle(playerid)
 static cell AMX_NATIVE_CALL n_RemovePlayerFromVehicle(AMX *amx, cell *params)
 {
-	// TODO: RemovePlayerFromVehicle
-	return 0;
+	RakNet::BitStream bsParams;
+	CPlayerPool *pPlayerPool = pNetGame->GetPlayerPool();
+	if(!pPlayerPool || !pPlayerPool->GetSlotState((PLAYERID)params[1])) return 0;
+
+	pNetGame->SendToPlayer(RPC_ScrRemovePlayerFromVehicle, &bsParams, (PLAYERID)params[1], 2);
+
+	return 1;
 }
 
 // native IsPlayerInVehicle(playerid, vehicleid)
