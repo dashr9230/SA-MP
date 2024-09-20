@@ -946,10 +946,18 @@ static cell AMX_NATIVE_CALL n_GetPlayerVehicleID(AMX *amx, cell *params)
 	return 0;
 }
 
+// native GetPlayerVehicleSeat(playerid)
 static cell AMX_NATIVE_CALL n_GetPlayerVehicleSeat(AMX *amx, cell *params)
 {
-	// TODO: GetPlayerVehicleSeat
-	return 0;
+	CPlayer *pPlayer = pNetGame->GetPlayerPool()->GetAt((PLAYERID)params[1]);
+	if (!pPlayer) return -1;
+
+	if (pPlayer->GetState() == PLAYER_STATE_DRIVER ||
+		pPlayer->GetState() == PLAYER_STATE_PASSENGER)
+		return pPlayer->m_byteSeatID;
+
+	// Vehicle not found or the player isn't in it;
+	return -1;
 }
 
 static cell AMX_NATIVE_CALL n_GetPlayerSurfingVehicleID(AMX *amx, cell *params)

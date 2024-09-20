@@ -182,7 +182,7 @@ public:
 	BOOL					m_bHasSpawnInfo;
 	char field_2C2F;
 	char field_2C30;
-	char field_2C31;
+	BYTE					m_byteSeatID;
 	VEHICLEID				m_VehicleID;
 	DWORD					m_dwColor;
 	BOOL					m_bCheckpointEnabled;
