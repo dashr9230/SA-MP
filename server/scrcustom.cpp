@@ -929,9 +929,15 @@ static cell AMX_NATIVE_CALL n_SetPlayerHealth(AMX *amx, cell *params)
 	return 0;
 }
 
+// native SetPlayerColor(playerid, color)
 static cell AMX_NATIVE_CALL n_SetPlayerColor(AMX *amx, cell *params)
 {
-	// TODO: SetPlayerColor
+	CPlayer* pPlayer = pNetGame->GetPlayerPool()->GetAt((PLAYERID)params[1]);
+	if(pPlayer) {
+		pPlayer->SetPlayerColor(params[2]);
+		return 1;
+	}
+
 	return 0;
 }
 
