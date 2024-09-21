@@ -64,3 +64,10 @@ void CGangZonePool::ShowForAll(WORD wZone, DWORD dwColor)
 	pNetGame->BroadcastData(RPC_ScrAddGangZone, &bsParams, INVALID_PLAYER_ID, 2);
 }
 
+void CGangZonePool::HideForPlayer(PLAYERID playerId, WORD wZone)
+{
+	RakNet::BitStream bsParams;
+	bsParams.Write(wZone);
+	pNetGame->SendToPlayer(RPC_ScrRemoveGangZone, &bsParams, playerId, 2);
+}
+
