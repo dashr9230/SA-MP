@@ -25,3 +25,12 @@ WORD CGangZonePool::New(float fMinX, float fMinY, float fMaxX, float fMaxY)
 	m_bSlotState[wZone] = TRUE;
 	return wZone;
 }
+
+void CGangZonePool::Delete(WORD wZone)
+{
+	m_bSlotState[wZone] = FALSE;
+	RakNet::BitStream bsParams;
+	bsParams.Write(wZone);
+	pNetGame->BroadcastData(RPC_ScrRemoveGangZone, &bsParams, INVALID_PLAYER_ID, 2);
+}
+

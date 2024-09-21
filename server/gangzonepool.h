@@ -13,6 +13,7 @@ public:
 	CGangZonePool();
 	~CGangZonePool() {};
 	WORD New(float fMinX, float fMinY, float fMaxX, float fMaxY);
+	void Delete(WORD wZone);
 };
 
 //----------------------------------------------------
