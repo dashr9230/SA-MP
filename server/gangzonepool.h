@@ -19,6 +19,7 @@ public:
 	void HideForPlayer(PLAYERID playerId, WORD wZone);
 	void HideForAll(WORD wZone);
 	void FlashForPlayer(PLAYERID playerId, WORD wZone, DWORD dwColor);
+	void FlashForAll(WORD wZone, DWORD dwColor);
 };
 
 //----------------------------------------------------
