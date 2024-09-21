@@ -2,14 +2,19 @@
 #ifndef SAMPSRV_GANGZONEPOOL_H
 #define SAMPSRV_GANGZONEPOOL_H
 
-class CGangZonePool // size: WL 20480
+//----------------------------------------------------
+
+class CGangZonePool
 {
 private:
-	char gap0[16384];
-	int field_4000[1024];
+	float			m_fGangZone[MAX_GANG_ZONES][4];
+	BOOL			m_bSlotState[MAX_GANG_ZONES];
 public:
 	CGangZonePool();
 	~CGangZonePool() {};
+	WORD New(float fMinX, float fMinY, float fMaxX, float fMaxY);
 };
+
+//----------------------------------------------------
 
 #endif
