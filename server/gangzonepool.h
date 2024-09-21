@@ -17,6 +17,7 @@ public:
 	void ShowForPlayer(PLAYERID playerId, WORD wZone, DWORD dwColor);
 	void ShowForAll(WORD wZone, DWORD dwColor);
 	void HideForPlayer(PLAYERID playerId, WORD wZone);
+	void HideForAll(WORD wZone);
 };
 
 //----------------------------------------------------
