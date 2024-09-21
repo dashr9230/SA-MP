@@ -21,6 +21,7 @@ public:
 	void FlashForPlayer(PLAYERID playerId, WORD wZone, DWORD dwColor);
 	void FlashForAll(WORD wZone, DWORD dwColor);
 	void StopFlashForPlayer(PLAYERID playerId, WORD wZone);
+	void StopFlashForAll(WORD wZone);
 };
 
 //----------------------------------------------------

@@ -103,3 +103,9 @@ void CGangZonePool::StopFlashForPlayer(PLAYERID playerId, WORD wZone)
 	pNetGame->SendToPlayer(RPC_ScrStopFlashGangZone, &bsParams, playerId, 2);
 }
 
+void CGangZonePool::StopFlashForAll(WORD wZone)
+{
+	RakNet::BitStream bsParams;
+	bsParams.Write(wZone);
+	pNetGame->BroadcastData(RPC_ScrStopFlashGangZone, &bsParams, INVALID_PLAYER_ID, 2);
+}
