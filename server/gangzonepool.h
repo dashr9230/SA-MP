@@ -15,6 +15,7 @@ public:
 	WORD New(float fMinX, float fMinY, float fMaxX, float fMaxY);
 	void Delete(WORD wZone);
 	void ShowForPlayer(PLAYERID playerId, WORD wZone, DWORD dwColor);
+	void ShowForAll(WORD wZone, DWORD dwColor);
 };
 
 //----------------------------------------------------

@@ -51,3 +51,16 @@ void CGangZonePool::ShowForPlayer(PLAYERID playerId, WORD wZone, DWORD dwColor)
 	pNetGame->SendToPlayer(RPC_ScrAddGangZone, &bsParams, playerId, 2);
 }
 
+void CGangZonePool::ShowForAll(WORD wZone, DWORD dwColor)
+{
+	RakNet::BitStream bsParams;
+	bsParams.Write(wZone);
+	bsParams.Write(m_fGangZone[wZone][0]);
+	bsParams.Write(m_fGangZone[wZone][1]);
+	bsParams.Write(m_fGangZone[wZone][2]);
+	bsParams.Write(m_fGangZone[wZone][3]);
+	dwColor = RGBA_ABGR(dwColor);
+	bsParams.Write(dwColor);
+	pNetGame->BroadcastData(RPC_ScrAddGangZone, &bsParams, INVALID_PLAYER_ID, 2);
+}
+
