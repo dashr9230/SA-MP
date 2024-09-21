@@ -590,10 +590,13 @@ static cell AMX_NATIVE_CALL n_GangZoneCreate(AMX *amx, cell *params)
 	return 0;
 }
 
+// native GangZoneDestroy(zone)
 static cell AMX_NATIVE_CALL n_GangZoneDestroy(AMX *amx, cell *params)
 {
-	// TODO: GangZoneDestroy
-	return 0;
+	CGangZonePool *pGangZonePool = pNetGame->GetGangZonePool();
+	if (!pGangZonePool || !pGangZonePool->GetSlotState(params[1])) return 0;
+	pGangZonePool->Delete(params[1]);
+	return 1;
 }
 
 static cell AMX_NATIVE_CALL n_GangZoneShowForPlayer(AMX *amx, cell *params)

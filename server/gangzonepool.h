@@ -22,6 +22,11 @@ public:
 	void FlashForAll(WORD wZone, DWORD dwColor);
 	void StopFlashForPlayer(PLAYERID playerId, WORD wZone);
 	void StopFlashForAll(WORD wZone);
+	BOOL GetSlotState(WORD wZone)
+	{
+		if (wZone >= MAX_GANG_ZONES) return FALSE;
+		return m_bSlotState[wZone];
+	};
 };
 
 //----------------------------------------------------

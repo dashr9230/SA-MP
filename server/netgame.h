@@ -85,6 +85,7 @@ public:
 	RakServerInterface * GetRakServer() { return m_pRak; };
 	CGameMode * GetGameMode() { return m_pGameMode; };
 	CFilterScripts * GetFilterScripts() { return m_pFilterScripts; };
+	CGangZonePool * GetGangZonePool() { return m_pGangZonePool; };
 	CActorPool * GetActorPool() { return m_pActorPool; };
 
 	void MasterServerAnnounce(float fElapsedTime);
