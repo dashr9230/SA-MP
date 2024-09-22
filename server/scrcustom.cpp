@@ -653,10 +653,13 @@ static cell AMX_NATIVE_CALL n_GangZoneFlashForPlayer(AMX *amx, cell *params)
 	return 1;
 }
 
+// native GangZoneFlashForAll(zone, flashcolor)
 static cell AMX_NATIVE_CALL n_GangZoneFlashForAll(AMX *amx, cell *params)
 {
-	// TODO: GangZoneFlashForAll
-	return 0;
+	CGangZonePool *pGangZonePool = pNetGame->GetGangZonePool();
+	if (!pGangZonePool || !pGangZonePool->GetSlotState(params[1])) return 0;
+	pGangZonePool->FlashForAll(params[1], params[2]);
+	return 1;
 }
 
 static cell AMX_NATIVE_CALL n_GangZoneStopFlashForPlayer(AMX *amx, cell *params)
