@@ -672,11 +672,16 @@ static cell AMX_NATIVE_CALL n_GangZoneStopFlashForPlayer(AMX *amx, cell *params)
 	return 1;
 }
 
+// native GangZoneStopFlashForAll(zone)
 static cell AMX_NATIVE_CALL n_GangZoneStopFlashForAll(AMX *amx, cell *params)
 {
-	// TODO: GangZoneStopFlashForAll
-	return 0;
+	CGangZonePool *pGangZonePool = pNetGame->GetGangZonePool();
+	if (!pGangZonePool || !pGangZonePool->GetSlotState(params[1])) return 0;
+	pGangZonePool->StopFlashForAll(params[1]);
+	return 1;
 }
+
+//----------------------------------------------------------------------------------
 
 // native IsPlayerAdmin(playerid)
 static cell AMX_NATIVE_CALL n_IsPlayerAdmin(AMX *amx, cell *params)
