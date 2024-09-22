@@ -584,10 +584,16 @@ static cell AMX_NATIVE_CALL n_EnableZoneNames(AMX *amx, cell *params)
 	return 1;
 }
 
+//----------------------------------------------------------------------------------
+
+// native GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy)
 static cell AMX_NATIVE_CALL n_GangZoneCreate(AMX *amx, cell *params)
 {
-	// TODO: GangZoneCreate
-	return 0;
+	CGangZonePool *pGangZonePool = pNetGame->GetGangZonePool();
+	if (!pGangZonePool) return -1;
+	WORD ret = pGangZonePool->New(amx_ctof(params[1]), amx_ctof(params[2]), amx_ctof(params[3]), amx_ctof(params[4]));
+	if (ret == 0xFFFF) return -1;
+	return ret;
 }
 
 // native GangZoneDestroy(zone)
