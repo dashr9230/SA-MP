@@ -615,10 +615,13 @@ static cell AMX_NATIVE_CALL n_GangZoneShowForPlayer(AMX *amx, cell *params)
 	return 1;
 }
 
+// native GangZoneShowForAll(zone, color)
 static cell AMX_NATIVE_CALL n_GangZoneShowForAll(AMX *amx, cell *params)
 {
-	// TODO: GangZoneShowForAll
-	return 0;
+	CGangZonePool *pGangZonePool = pNetGame->GetGangZonePool();
+	if (!pGangZonePool || !pGangZonePool->GetSlotState(params[1])) return 0;
+	pGangZonePool->ShowForAll(params[1], params[2]);
+	return 1;
 }
 
 static cell AMX_NATIVE_CALL n_GangZoneHideForPlayer(AMX *amx, cell *params)
