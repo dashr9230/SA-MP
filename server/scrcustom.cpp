@@ -1160,10 +1160,16 @@ static cell AMX_NATIVE_CALL n_IsPlayerInRaceCheckpoint(AMX *amx, cell *params)
 	return 0;
 }
 
+// native SetPlayerInterior(playerid,interiorid)
 static cell AMX_NATIVE_CALL n_SetPlayerInterior(AMX *amx, cell *params)
 {
-	// TODO: SetPlayerInterior
-	return 0;
+	if (!pNetGame->GetPlayerPool()->GetSlotState((PLAYERID)params[1])) return 0;
+	RakNet::BitStream bsParams;
+	BYTE byteInteriorID = (BYTE)params[2];
+	bsParams.Write(byteInteriorID);
+
+	pNetGame->SendToPlayer(RPC_ScrSetInterior, &bsParams, (PLAYERID)params[1], 2);
+	return 1;
 }
 
 // native GetPlayerInterior(playerid,interiorid)
