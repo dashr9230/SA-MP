@@ -226,7 +226,10 @@ int UpgradeRecordFile(char *a1, int a2, int a3)
 		if(FUNC_1(fp, a2))
 		{
 			fclose(fp);
-			return FUNC_3(a1) != 0;
+			if(FUNC_3(a1))
+				return 1;
+			else
+				return 0;
 		}
 		else
 		{
@@ -236,15 +239,18 @@ int UpgradeRecordFile(char *a1, int a2, int a3)
 	}
 	else if (a3 == 2)
 	{
-		if(FUNC_2(fp, a2))
+		if(!FUNC_2(fp, a2))
 		{
 			fclose(fp);
-			return FUNC_4(a1) != 0;
+			return 0;
 		}
 		else
 		{
 			fclose(fp);
-			return 0;
+			if(FUNC_4(a1))
+				return 1;
+			else
+				return 0;
 		}
 	}
 	else
