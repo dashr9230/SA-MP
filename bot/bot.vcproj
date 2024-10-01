@@ -650,6 +650,17 @@
 			</File>
 			<File
 				RelativePath=".\scrtimers.cpp">
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="4"
+						GlobalOptimizations="TRUE"
+						InlineFunctionExpansion="1"
+						OmitFramePointers="TRUE"
+						EnableFiberSafeOptimizations="TRUE"
+						OptimizeForWindowsApplication="TRUE"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\scrtimers.h">
