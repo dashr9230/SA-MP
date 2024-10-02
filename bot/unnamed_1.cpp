@@ -196,24 +196,19 @@ int FUNC_3(char *a1)
 int FUNC_4(char *a1)
 {
 	FILE *fp = fopen(a1, "wb");
-	if(fp)
+	if(!fp) return 0;
+
+	DWORD v3 = 1000;
+	DWORD v4 = 2;
+	fwrite(&v3, 1, sizeof(DWORD), fp);
+	fwrite(&v4, 1, sizeof(DWORD), fp);
+	for(int i = 0; i != GLOBAL_1; i++)
 	{
-		DWORD v3 = 1000;
-		DWORD v4 = 2;
-		fwrite(&v3, 1, sizeof(DWORD), fp);
-		fwrite(&v4, 1, sizeof(DWORD), fp);
-		for(int i = 0; i != GLOBAL_1; i++)
-		{
-			fwrite(&GLOBAL_3[i], 1, 4, fp);
-			fwrite(&GLOBAL_4[i], 1, 68, fp);
-		}
-		fclose(fp);
-		return 1;
+		fwrite(&GLOBAL_3[i], 1, 4, fp);
+		fwrite(&GLOBAL_4[i], 1, 68, fp);
 	}
-	else
-	{
-		return 0;
-	}
+	fclose(fp);
+	return 1;
 }
 
 int UpgradeRecordFile(char *a1, int a2, int a3)
