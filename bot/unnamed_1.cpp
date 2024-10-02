@@ -84,31 +84,29 @@ int FUNC_1(FILE *a1, DWORD a2)
 	return 1;
 }
 
-int FUNC_2(FILE *a1, int a2)
+int FUNC_2(FILE *a1, DWORD a2)
 {
 	int x = 0;
 
-	if(0x38 * (a2 / 0x38) == a2)
-	{
-		GLOBAL_1 = a2 / 0x38;
-		if(GLOBAL_4)
-			free(GLOBAL_4);
-		if(GLOBAL_3)
-			free(GLOBAL_3);
-		GLOBAL_4 = (struc_73 *)calloc(1, sizeof(struc_73) * GLOBAL_1);
-		GLOBAL_3 = (DWORD *)calloc(1, sizeof(DWORD) * GLOBAL_1);
-		while(!feof(a1))
-		{
-			fread(&GLOBAL_3[x], 1, sizeof(DWORD), a1);
-			fread(&GLOBAL_4[x], 1, sizeof(struc_73), a1);
-			x++;
-		}
-		return 1;
-	}
-	else
+	if(0x38 * (a2 / 0x38) != a2)
 	{
 		return 0;
 	}
+
+	GLOBAL_1 = a2 / 0x38;
+	if(GLOBAL_4)
+		free(GLOBAL_4);
+	if(GLOBAL_3)
+		free(GLOBAL_3);
+	GLOBAL_4 = (struc_73 *)calloc(1, sizeof(struc_73) * GLOBAL_1);
+	GLOBAL_3 = (DWORD *)calloc(1, sizeof(DWORD) * GLOBAL_1);
+	while(!feof(a1))
+	{
+		fread(&GLOBAL_3[x], 1, sizeof(DWORD), a1);
+		fread(&GLOBAL_4[x], 1, sizeof(struc_73), a1);
+		x++;
+	}
+	return 1;
 }
 
 int FUNC_3(char *a1)
