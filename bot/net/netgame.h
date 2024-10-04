@@ -63,7 +63,7 @@ public:
 	int field_1DA;
 	int field_1DE;
 	FILE *field_1E2;
-	char _gap1E6[4];
+	int field_1E6;
 	int field_1EA;
 	char _gap1EE[4];
 	int field_1F2;
@@ -124,6 +124,7 @@ public:
 	void FUNC_5(FILE *a1, DWORD a2);
 	void FUNC_6(FILE *a1, DWORD a2);
 
+	void StartRecordingPlayback(int iPlaybackType, char *szRecordName);
 	void StopRecordingPlayback();
 	void PauseRecordingPlayback();
 	void ResumeRecordingPlayback();

@@ -925,6 +925,75 @@ void CNetGame::FUNC_6(FILE *a1, DWORD a2)
 	}
 }
 
+void CNetGame::StartRecordingPlayback(int iPlaybackType, char *szRecordName)
+{
+	DWORD v5 = 0;
+
+	if(field_1E2)
+	{
+		fclose(field_1E2);
+		field_1E2 = NULL;
+	}
+
+	char s[MAX_PATH];
+	sprintf(s, "./npcmodes/recordings/%s.rec", szRecordName);
+
+	field_1E2 = fopen(s, "rb");
+	if(!field_1E2)
+	{
+		//logprintf("NPC: Total failure. Can't open recording playback file %s.", s);
+		exit(1);
+	}
+
+	fseek(field_1E2, 0, SEEK_END);
+	v5 = ftell(field_1E2);
+	rewind(field_1E2);
+
+	if(v5 == 0)
+	{
+		//logprintf("NPC: Total failure. %s is a 0 length file.", s);
+		exit(1);
+	}
+
+	DWORD v4 = 0;
+	DWORD v3 = 0;
+	fread(&v4, 1, sizeof(DWORD), field_1E2);
+	fread(&v3, 1, sizeof(DWORD), field_1E2);
+
+	if(v4 != 1000)
+	{
+		//logprintf("NPC: %s is not the correct recording version for this bot.", s);
+		//logprintf("NPC: Trying to upgrade %s...", s);
+		fclose(field_1E2);
+		if(!UpgradeRecordFile(s, v5, iPlaybackType))
+		{
+			//logprintf("NPC: Fatal Error. Could not upgrade file. I'm out of options so I'm quiting.");
+			exit(1);
+		}
+		//logprintf("NPC: File %s was upgraded. Please restart the bot.", s);
+		exit(1);
+	}
+	if(iPlaybackType == PLAYER_RECORDING_TYPE_DRIVER)
+	{
+		FUNC_5(field_1E2, v5 - 8);
+	}
+	else if(iPlaybackType == PLAYER_RECORDING_TYPE_ONFOOT)
+	{
+		FUNC_6(field_1E2, v5 - 8);
+	}
+	else
+	{
+		//logprintf("NPC: Total failure. Unknown recording type specified.");
+		exit(1);
+	}
+	fclose(field_1E2);
+	field_1E2 = 0;
+	field_1DA = iPlaybackType;
+	field_1DE = 1;
+	field_1EA = GetTickCount();
+	field_1E6 = 0;
+}
+
 void CNetGame::StopRecordingPlayback()
 {
 	field_1DE = 0;
