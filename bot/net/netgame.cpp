@@ -873,6 +873,7 @@ void CNetGame::SendCommand(char *szCommand)
 }
 
 DWORD *GLOBAL_7;
+ONFOOT_SYNC_DATA *GLOBAL_8;
 INCAR_SYNC_DATA *GLOBAL_6;
 DWORD GLOBAL_5;
 
@@ -896,6 +897,30 @@ void CNetGame::FUNC_5(FILE *a1, DWORD a2)
 	{
 		fread(&GLOBAL_7[i], 1, sizeof(DWORD), a1);
 		fread(&GLOBAL_6[i], 1, sizeof(INCAR_SYNC_DATA), a1);
+		i++;
+	}
+}
+
+void CNetGame::FUNC_6(FILE *a1, DWORD a2)
+{
+	DWORD i=0;
+
+	if(0x48 * (a2 / 0x48) != a2)
+	{
+		//logprintf("NPC: Total failure. File doesn't have correct data alignment for onfoot recording.");
+		exit(1);
+	}
+	GLOBAL_5 = a2 / 0x48;
+	if(GLOBAL_8)
+		free(GLOBAL_8);
+	if(GLOBAL_7)
+		free(GLOBAL_7);
+	GLOBAL_8 = (ONFOOT_SYNC_DATA *)calloc(1, sizeof(ONFOOT_SYNC_DATA) * GLOBAL_5);
+	GLOBAL_7 = (DWORD *)calloc(1, sizeof(DWORD) * GLOBAL_5);
+	while(!feof(a1))
+	{
+		fread(&GLOBAL_7[i], 1, sizeof(DWORD), a1);
+		fread(&GLOBAL_8[i], 1, sizeof(ONFOOT_SYNC_DATA), a1);
 		i++;
 	}
 }
