@@ -4,23 +4,20 @@
 
 struct struc_72 {
 	//char _gap0[71];
-	WORD field_0;
-	WORD field_2;
-	WORD field_4;
-	WORD field_6;
-	VECTOR field_8;
-	VECTOR field_14;
-	DWORD field_20;
-	DWORD field_24;
-	DWORD field_28;
-	DWORD field_2C;
-	DWORD field_30;
-	DWORD field_34;
-	DWORD field_38;
-	BYTE field_3C;
-	BYTE field_3D;
-	BYTE field_3E;
-	BYTE field_3F;
+	VEHICLEID VehicleID;
+	WORD lrAnalog;
+	WORD udAnalog;
+	WORD wKeys;
+	VECTOR field_8; // vecRoll?
+	VECTOR field_14; // vecDirection?
+	VECTOR vecPos;
+	VECTOR vecMoveSpeed;
+	float fCarHealth;
+	BYTE bytePlayerHealth;
+	BYTE bytePlayerArmour;
+	BYTE byteCurrentWeapon : 6;
+	BYTE byteSpecialKey : 2;
+	BYTE byteSirenOn;
 
 	char _gap40[3];
 
@@ -29,29 +26,6 @@ struct struc_72 {
 
 struct struc_73 {
 	char _gap0[52];
-};
-
-struct struc_74 {
-	//char _gap0[63];
-	WORD field_0;
-	WORD field_2;
-	WORD field_4;
-	WORD field_6;
-	QUATERNION field_8;
-	DWORD field_18;
-	DWORD field_1C;
-	DWORD field_20;
-	DWORD field_24;
-	DWORD field_28;
-	DWORD field_2C;
-	DWORD field_30;
-	BYTE field_34;
-	BYTE field_35;
-	BYTE field_36;
-	BYTE field_37;
-	BYTE field_38;
-	WORD field_39;
-	DWORD field_3B;
 };
 
 DWORD *GLOBAL_3 = NULL;
@@ -112,81 +86,59 @@ int FUNC_2(FILE *a1, DWORD a2)
 int FUNC_3(char *a1)
 {
 	FILE *fp = fopen(a1, "wb");
-	if ( fp )
+	if(!fp) return 0;
+
+	DWORD v1 = 1000;
+	DWORD v2 = 1;
+	fwrite(&v1, 1, sizeof(DWORD), fp);
+	fwrite(&v2, 1, sizeof(DWORD), fp);
+
+	INCAR_SYNC_DATA icSync;
+	VECTOR v, vec1, vec2;
+	MATRIX4X4 m;
+	QUATERNION q;
+
+	memset(&icSync, 0, sizeof(INCAR_SYNC_DATA));
+
+	for(int i = 0; i != GLOBAL_1; i++)
 	{
-		DWORD v1 = 1000;
-		DWORD v2 = 1;
-		fwrite(&v1, 1, sizeof(DWORD), fp);
-		fwrite(&v2, 1, sizeof(DWORD), fp);
+		icSync.VehicleID = GLOBAL_2[i].VehicleID;
+        icSync.lrAnalog = GLOBAL_2[i].lrAnalog;
+        icSync.udAnalog = GLOBAL_2[i].udAnalog;
+        icSync.wKeys = GLOBAL_2[i].wKeys;
+        icSync.byteCurrentWeapon = GLOBAL_2[i].byteCurrentWeapon;
+        icSync.byteLandingGearState = 0;
+        icSync.bytePlayerHealth = GLOBAL_2[i].bytePlayerHealth;
+        icSync.bytePlayerArmour = GLOBAL_2[i].bytePlayerArmour;
+        icSync.byteSirenOn = GLOBAL_2[i].byteSirenOn;
+        icSync.fCarHealth = GLOBAL_2[i].fCarHealth;
+        icSync.dwHydraThrustAngle = GLOBAL_2[i].field_43;
+		icSync.vecPos = GLOBAL_2[i].vecPos;
+		icSync.vecMoveSpeed = GLOBAL_2[i].vecMoveSpeed;
+        icSync.TrailerID = 0;
 
-		struc_74 s;
-		VECTOR v, vec1, vec2;
-		MATRIX4X4 m;
-		QUATERNION q;
+		vec2 = GLOBAL_2[i].field_8;
+		vec1 = GLOBAL_2[i].field_14;
 
-		memset(&s, 0, sizeof(struc_74));
+		CrossProduct(&v, &vec1, &vec2);
 
-		for(int i = 0; i != GLOBAL_1; i++)
-		{
-			s.field_0 = GLOBAL_2[i].field_0;
-			s.field_2 = GLOBAL_2[i].field_2;
-			s.field_4 = GLOBAL_2[i].field_4;
-			s.field_6 = GLOBAL_2[i].field_6;
-			s.field_36 = GLOBAL_2[i].field_3E & 0x3F | s.field_36 & 0xC0;
-			s.field_38 = 0;
-			s.field_34 = GLOBAL_2[i].field_3C;
-			s.field_35 = GLOBAL_2[i].field_3D;
-			s.field_37 = GLOBAL_2[i].field_3F;
-			s.field_30 = GLOBAL_2[i].field_38;
-			s.field_3B = GLOBAL_2[i].field_43;
-			s.field_18 = GLOBAL_2[i].field_20;
-			s.field_1C = GLOBAL_2[i].field_24;
-			s.field_20 = GLOBAL_2[i].field_28;
-			s.field_24 = GLOBAL_2[i].field_2C;
-			s.field_28 = GLOBAL_2[i].field_30;
-			s.field_2C = GLOBAL_2[i].field_34;
-			s.field_39 = 0;
+		v.X *= -1.0f;
+		v.Y *= -1.0f;
+		v.Z *= -1.0f;
 
-			vec2.X = GLOBAL_2[i].field_8.X;
-			vec2.Y = GLOBAL_2[i].field_8.Y;
-			vec2.Z = GLOBAL_2[i].field_8.Z;
-			vec1.X = GLOBAL_2[i].field_14.X;
-			vec1.Y = GLOBAL_2[i].field_14.Y;
-			vec1.Z = GLOBAL_2[i].field_14.Z;
-			CrossProduct(&v, &vec1, &vec2);
+		m.right = vec2;
+		m.up = vec1;
+		m.at = v;
 
-			v.X *= -1.0f;
-			v.Y *= -1.0f;
-			v.Z *= -1.0f;
+		MatrixToQuaternion(&m, &q);
 
-			m.right.X = vec2.X;
-			m.right.Y = vec2.Y;
-			m.right.Z = vec2.Z;
-			m.up.X = vec1.X;
-			m.up.Y = vec1.Y;
-			m.up.Z = vec1.Z;
-			m.at.X = v.X;
-			m.at.Y = v.Y;
-			m.at.Z = v.Z;
+		icSync.quatRotation = q;
 
-			MatrixToQuaternion(&m, &q);
-
-			s.field_8.X = q.X;
-			s.field_8.Y = q.Y;
-			s.field_8.Z = q.Z;
-			s.field_8.W = q.W;
-
-			fwrite(&GLOBAL_3[i], 1, sizeof(DWORD), fp);
-			fwrite(&s, 1, sizeof(struc_74), fp);
-		}
-
-		fclose(fp);
-		return 1;
+		fwrite(&GLOBAL_3[i], 1, sizeof(DWORD), fp);
+		fwrite(&icSync, 1, sizeof(INCAR_SYNC_DATA), fp);
 	}
-	else
-	{
-		return 0;
-	}
+	fclose(fp);
+	return 1;
 }
 
 int FUNC_4(char *a1)

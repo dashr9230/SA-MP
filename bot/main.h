@@ -108,16 +108,20 @@ typedef struct _INCAR_SYNC_DATA
 	WORD wKeys;
 	QUATERNION quatRotation;
 	VECTOR vecPos;
-
-	char _gap24[16];
-
+	VECTOR vecMoveSpeed;
+	float fCarHealth;
 	BYTE bytePlayerHealth;
 	BYTE bytePlayerArmour;
 	BYTE byteCurrentWeapon : 6;
 	BYTE byteSpecialKey : 2;
-
-	char _gap37[8];
-
+	BYTE byteSirenOn;
+	BYTE byteLandingGearState;
+	VEHICLEID TrailerID;
+	union {
+		FLOAT fTrainSpeed;
+		FLOAT fBikeBankingAngle;
+		DWORD dwHydraThrustAngle;
+	};
 } INCAR_SYNC_DATA;
 
 #pragma pack(1)
