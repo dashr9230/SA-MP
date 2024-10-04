@@ -121,6 +121,8 @@ public:
 	float GetMyZAngle();
 	void SetMyZAngle(float fAngle);	
 
+	void FUNC_5(FILE *a1, DWORD a2);
+
 	void StopRecordingPlayback();
 	void PauseRecordingPlayback();
 	void ResumeRecordingPlayback();

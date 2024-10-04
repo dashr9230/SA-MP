@@ -872,6 +872,34 @@ void CNetGame::SendCommand(char *szCommand)
 	GetRakClient()->RPC(RPC_ServerCommand,&bsParams,HIGH_PRIORITY,RELIABLE,0,false);
 }
 
+DWORD *GLOBAL_7;
+INCAR_SYNC_DATA *GLOBAL_6;
+DWORD GLOBAL_5;
+
+void CNetGame::FUNC_5(FILE *a1, DWORD a2)
+{
+	DWORD i=0;
+
+	if(0x43 * (a2 / 0x43) != a2)
+	{
+		//logprintf("NPC: Total failure. File doesn't have correct data alignment for driver recording.");
+		exit(1);
+	}
+	GLOBAL_5 = a2 / 0x43;
+	if(GLOBAL_6)
+		free(GLOBAL_6);
+	if(GLOBAL_7)
+		free(GLOBAL_7);
+	GLOBAL_6 = (INCAR_SYNC_DATA *)calloc(1, sizeof(INCAR_SYNC_DATA) * GLOBAL_5);
+	GLOBAL_7 = (DWORD *)calloc(1, sizeof(DWORD) * GLOBAL_5);
+	while(!feof(a1))
+	{
+		fread(&GLOBAL_7[i], 1, sizeof(DWORD), a1);
+		fread(&GLOBAL_6[i], 1, sizeof(INCAR_SYNC_DATA), a1);
+		i++;
+	}
+}
+
 void CNetGame::StopRecordingPlayback()
 {
 	field_1DE = 0;
