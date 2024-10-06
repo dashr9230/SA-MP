@@ -1333,7 +1333,8 @@ namespace RakNet
 		//unsigned short sx,sy,sz;
 		if (!Read(magnitude))
 			return false;
-		if (magnitude!=0.0)
+		//if (magnitude!=0.0f)
+		if (magnitude>0.00001f)
 		{
 			//	Read(sx);
 			//	Read(sy);
