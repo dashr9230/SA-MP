@@ -1384,7 +1384,7 @@ namespace RakNet
 		if (cxNeg) x=-x;
 		if (cyNeg) y=-y;
 		if (czNeg) z=-z;
-		float difference = 1.0 - x*x - y*y - z*z;
+		float difference = 1.0f - x*x - y*y - z*z;
 		if (difference < 0.0f)
 			difference=0.0f;
 		w = (templateType)(sqrt(difference));
