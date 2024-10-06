@@ -2,6 +2,7 @@
 #include "../main.h"
 #include "../../raknet/SocketDataEncryptor.h"
 #include "../mathutils.h"
+#include "../unnamed_1.h"
 
 #define NETGAME_VERSION 4057
 

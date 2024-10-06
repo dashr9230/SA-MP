@@ -8,6 +8,10 @@
 
 #define GAMESTATE_RESTARTING	5
 
+#define PLAYER_RECORDING_TYPE_NONE		0
+#define PLAYER_RECORDING_TYPE_DRIVER	1
+#define PLAYER_RECORDING_TYPE_ONFOOT	2
+
 //----------------------------------------------------
 
 class CNetGame // size: 910 bytes
