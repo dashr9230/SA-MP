@@ -69,6 +69,17 @@ char* strlwr(char* str);
 
 #define SPECIAL_ACTION_NONE				0
 
+#define PLAYER_STATE_NONE						0
+#define PLAYER_STATE_ONFOOT						1
+#define PLAYER_STATE_DRIVER						2
+#define PLAYER_STATE_PASSENGER					3
+#define PLAYER_STATE_EXIT_VEHICLE				4
+#define PLAYER_STATE_ENTER_VEHICLE_DRIVER		5
+#define PLAYER_STATE_ENTER_VEHICLE_PASSENGER	6
+#define PLAYER_STATE_WASTED						7
+#define PLAYER_STATE_SPAWNED					8
+#define PLAYER_STATE_SPECTATING					9
+
 #pragma pack(1)
 typedef struct _PLAYER_SPAWN_INFO
 {
@@ -94,9 +105,10 @@ typedef struct _ONFOOT_SYNC_DATA
 	BYTE byteCurrentWeapon : 6;
 	BYTE byteSpecialKey : 2;
 	BYTE byteSpecialAction;
-
-	char _gap26[30];
-
+	VECTOR vecMoveSpeed;
+	VECTOR vecSurfOffsets;
+	WORD wSurfInfo;
+	DWORD field_40;
 } ONFOOT_SYNC_DATA;
 
 #pragma pack(1)

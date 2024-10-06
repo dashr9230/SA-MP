@@ -646,6 +646,9 @@ void CNetGame::UpdateNetwork()
 		case ID_CONNECTION_REQUEST_ACCEPTED:
 			Packet_ConnectionSucceeded(pkt);
 			break;
+		case ID_PLAYER_SYNC:
+			Packet_PlayerSync(pkt);
+			break;
 		case ID_PASSENGER_SYNC:
 			Packet_PassengerSync(pkt);
 			break;
@@ -663,6 +666,89 @@ void CNetGame::UpdateNetwork()
 
 //----------------------------------------------------
 // PACKET HANDLERS INTERNAL
+//----------------------------------------------------
+
+void CNetGame::Packet_PlayerSync(Packet *p)
+{
+	RakNet::BitStream bsPlayerSync((PCHAR)p->data, p->length, false);
+	ONFOOT_SYNC_DATA ofSync;
+	BYTE bytePacketID=0;
+	PLAYERID playerId=0;
+
+	bool bHasLR,bHasUD;
+	bool bHasSurfingInfo;
+	bool bUnk;
+
+	if(GetGameState() != GAMESTATE_CONNECTED) return;
+
+	memset(&ofSync,0,sizeof(ONFOOT_SYNC_DATA));
+
+	bsPlayerSync.Read(bytePacketID);
+	bsPlayerSync.Read(playerId);
+
+	// LEFT/RIGHT KEYS
+	bsPlayerSync.Read(bHasLR);
+	if(bHasLR) bsPlayerSync.Read(ofSync.lrAnalog);
+
+	// UP/DOWN KEYS
+	bsPlayerSync.Read(bHasUD);
+	if(bHasUD) bsPlayerSync.Read(ofSync.udAnalog);
+
+	// GENERAL KEYS
+	bsPlayerSync.Read(ofSync.wKeys);
+
+	// VECTOR POS
+	bsPlayerSync.Read((char*)&ofSync.vecPos,sizeof(VECTOR));
+
+	// ROTATION
+	bsPlayerSync.ReadNormQuat(ofSync.quatRotation.W,ofSync.quatRotation.X,ofSync.quatRotation.Y,ofSync.quatRotation.Z);
+
+	// HEALTH/ARMOUR (COMPRESSED INTO 1 BYTE)
+	BYTE byteHealthArmour;
+	BYTE byteArmTemp=0,byteHlTemp=0;
+
+	bsPlayerSync.Read(byteHealthArmour);
+	byteArmTemp = (byteHealthArmour & 0x0F);
+	byteHlTemp = (byteHealthArmour >> 4);
+
+	if(byteArmTemp == 0xF) ofSync.byteArmour = 100;
+	else if(byteArmTemp == 0) ofSync.byteArmour = 0;
+	else ofSync.byteArmour = byteArmTemp * 7;
+
+	if(byteHlTemp == 0xF) ofSync.byteHealth = 100;
+	else if(byteHlTemp == 0) ofSync.byteHealth = 0;
+	else ofSync.byteHealth = byteHlTemp * 7;
+
+	// CURRENT WEAPON
+	BYTE byteCurrentWeapon=0;
+	bsPlayerSync.Read(byteCurrentWeapon);
+	ofSync.byteCurrentWeapon = byteCurrentWeapon;
+
+	// Special Action
+	bsPlayerSync.Read(ofSync.byteSpecialAction);
+
+	// READ MOVESPEED VECTORS
+	bsPlayerSync.ReadVector(ofSync.vecMoveSpeed.X,ofSync.vecMoveSpeed.Y,ofSync.vecMoveSpeed.Z);
+
+	bsPlayerSync.Read(bHasSurfingInfo);
+	if(bHasSurfingInfo) {
+		bsPlayerSync.Read(ofSync.wSurfInfo);
+		bsPlayerSync.Read((char*)&ofSync.vecSurfOffsets,sizeof(VECTOR));
+	} else {
+		ofSync.wSurfInfo = 0xFFFF;
+	}
+
+	bsPlayerSync.Read(bUnk);
+	if(bUnk) bsPlayerSync.Read(ofSync.field_40);
+	else ofSync.field_40 = 0;
+	
+	if(playerId < MAX_PLAYERS)
+	{
+		memcpy(&unnamed_3[playerId],&ofSync,sizeof(ONFOOT_SYNC_DATA));
+		bytePlayerState[playerId] = PLAYER_STATE_ONFOOT;
+	}
+}
+
 //----------------------------------------------------
 
 void CNetGame::Packet_AimSync(Packet *p)
