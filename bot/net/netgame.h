@@ -24,6 +24,7 @@ private:
 	// Packet handlers
 	void Packet_AimSync(Packet *p);
 	void Packet_PlayerSync(Packet *p);
+	void Packet_VehicleSync(Packet *p);
 	void Packet_PassengerSync(Packet *p);
 	void Packet_ConnectionSucceeded(Packet *p);
 	void Packet_RSAPublicKeyMismatch(Packet* packet);

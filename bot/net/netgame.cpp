@@ -767,6 +767,85 @@ void CNetGame::Packet_AimSync(Packet *p)
 
 //----------------------------------------------------
 
+void CNetGame::Packet_VehicleSync(Packet *p)
+{
+	RakNet::BitStream bsSync((PCHAR)p->data, p->length, false);
+	BYTE		bytePacketID=0;
+	PLAYERID	playerId=0;
+	INCAR_SYNC_DATA icSync;
+
+	bool bSiren,bLandingGear;
+	bool bHydra,bTrailer;
+
+	if(GetGameState() != GAMESTATE_CONNECTED) return;
+
+	memset(&icSync,0,sizeof(INCAR_SYNC_DATA));
+
+	bsSync.Read(bytePacketID);
+	bsSync.Read(playerId);
+	bsSync.Read(icSync.VehicleID);
+
+	// KEYS
+	bsSync.Read(icSync.lrAnalog);
+	bsSync.Read(icSync.udAnalog);
+	bsSync.Read(icSync.wKeys);
+
+	// ROLL / DIRECTION / POSITION / MOVE SPEED
+	bsSync.ReadNormQuat(icSync.quatRotation.W,icSync.quatRotation.X,icSync.quatRotation.Y,icSync.quatRotation.Z);
+	bsSync.Read((char*)&icSync.vecPos,sizeof(VECTOR));
+	bsSync.ReadVector(icSync.vecMoveSpeed.X,icSync.vecMoveSpeed.Y,icSync.vecMoveSpeed.Z);
+
+	// VEHICLE HEALTH
+	WORD wTempVehicleHealth;
+	bsSync.Read(wTempVehicleHealth);
+	icSync.fCarHealth = (float)wTempVehicleHealth;
+
+	// HEALTH/ARMOUR (COMPRESSED INTO 1 BYTE)
+	BYTE byteHealthArmour;
+	BYTE byteArmTemp=0,byteHlTemp=0;
+
+	bsSync.Read(byteHealthArmour);
+	byteArmTemp = (byteHealthArmour & 0x0F);
+	byteHlTemp = (byteHealthArmour >> 4);
+
+	if(byteArmTemp == 0xF) icSync.bytePlayerArmour = 100;
+	else if(byteArmTemp == 0) icSync.bytePlayerArmour = 0;
+	else icSync.bytePlayerArmour = byteArmTemp * 7;
+
+	if(byteHlTemp == 0xF) icSync.bytePlayerHealth = 100;
+	else if(byteHlTemp == 0) icSync.bytePlayerHealth = 0;
+	else icSync.bytePlayerHealth = byteHlTemp * 7;
+
+	// CURRENT WEAPON
+	BYTE byteCurrentWeapon=0;
+	bsSync.Read(byteCurrentWeapon);
+	icSync.byteCurrentWeapon = byteCurrentWeapon;
+
+	// SIREN
+	bsSync.Read(bSiren);
+	if(bSiren) icSync.byteSirenOn = 1;
+
+	// LANDING GEAR
+	bsSync.Read(bLandingGear);
+	if(bLandingGear) icSync.byteLandingGearState = 1;
+
+	// HYDRA SPECIAL
+	bsSync.Read(bHydra);
+	if(bHydra) bsSync.Read(icSync.dwHydraThrustAngle);
+
+	// TRAILER ID
+	bsSync.Read(bTrailer);
+	if(bTrailer) bsSync.Read(icSync.TrailerID);
+
+	if(playerId < MAX_PLAYERS)
+    {
+      memcpy(&unnamed_4[playerId],&icSync,sizeof(INCAR_SYNC_DATA));
+      bytePlayerState[playerId] = PLAYER_STATE_DRIVER;
+    }
+}
+
+//----------------------------------------------------
+
 void CNetGame::Packet_PassengerSync(Packet *p)
 {
 	RakNet::BitStream bsPassengerSync((PCHAR)p->data, p->length, false);
