@@ -649,6 +649,9 @@ void CNetGame::UpdateNetwork()
 		case ID_PLAYER_SYNC:
 			Packet_PlayerSync(pkt);
 			break;
+		case ID_VEHICLE_SYNC:
+			Packet_VehicleSync(pkt);
+			break;
 		case ID_PASSENGER_SYNC:
 			Packet_PassengerSync(pkt);
 			break;
