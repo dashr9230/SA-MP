@@ -221,6 +221,47 @@ BOOL CNetGame::GetPlayerKeys(PLAYERID playerId, WORD *udAnalog, WORD *lrAnalog, 
 	}
 }
 
+float CNetGame::GetPlayerFacingAngle(PLAYERID playerId)
+{
+	if(playerId >= MAX_PLAYERS) return 0.0f;
+	if(bPlayerSlotState[playerId] == FALSE) return 0.0f;
+
+	MATRIX4X4 mat;
+
+	if(bytePlayerState[playerId] == PLAYER_STATE_ONFOOT)
+	{
+		QuaternionToMatrix(&unnamed_3[playerId].quatRotation, &mat);
+
+		float fZAngle = atan2(-mat.up.X, mat.up.Y) * 180.0f/PI;
+
+		// Bound it to [0, 360)
+		if ( fZAngle < 0.0f )
+			fZAngle += 360.0f;
+		else if ( fZAngle >= 360.0f )
+			fZAngle -= 360.0f;
+
+		return fZAngle;
+	}
+	else if(bytePlayerState[playerId] == PLAYER_STATE_DRIVER)
+	{
+		QuaternionToMatrix(&unnamed_4[playerId].quatRotation, &mat);
+
+		float fZAngle = atan2(-mat.up.X, mat.up.Y) * 180.0f/PI;
+
+		// Bound it to [0, 360)
+		if ( fZAngle < 0.0f )
+			fZAngle += 360.0f;
+		else if ( fZAngle >= 360.0f )
+			fZAngle -= 360.0f;
+
+		return fZAngle;
+	}
+	else
+	{
+		return 0.0f;
+	}
+}
+
 BYTE CNetGame::GetPlayerSpecialAction(PLAYERID playerId)
 {
 	if(playerId >= MAX_PLAYERS) return SPECIAL_ACTION_NONE;
