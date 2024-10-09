@@ -260,6 +260,18 @@ static cell AMX_NATIVE_CALL n_GetPlayerKeys(AMX *amx, cell *params)
 	return 0;
 }
 
+// native GetPlayerFacingAngle(playerid,&Float:ang);
+static cell AMX_NATIVE_CALL n_GetPlayerFacingAngle(AMX *amx, cell *params)
+{
+	if(!pNetGame->GetPlayerPool()->GetSlotState((PLAYERID)params[1])) return 0;
+
+	cell* cptr;
+	amx_GetAddr(amx, params[2], &cptr);
+	float fZAngle = pNetGame->GetPlayerFacingAngle((PLAYERID)params[1]);
+	*cptr = amx_ftoc(fZAngle);
+
+	return 1;
+}
 
 // native GetMyPos(&Float:x, &Float:y, &Float:z)
 static cell AMX_NATIVE_CALL n_GetMyPos(AMX *amx, cell *params)
