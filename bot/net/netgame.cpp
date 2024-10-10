@@ -661,6 +661,9 @@ void CNetGame::UpdateNetwork()
 
 		switch(packetIdentifier)
 		{
+		case ID_UNK_12:
+			Packet_Unk12(pkt);
+			break;
 		case ID_RSA_PUBLIC_KEY_MISMATCH:
 			Packet_RSAPublicKeyMismatch(pkt);
 			break;
@@ -1038,6 +1041,24 @@ void CNetGame::Packet_ConnectionSucceeded(Packet *p)
 
 	m_pRakClient->RPC(RPC_NPCJoin,&bsSend,HIGH_PRIORITY,RELIABLE,0,FALSE);
 }
+
+//----------------------------------------------------
+
+void CNetGame::Packet_Unk12(Packet *p)
+{
+	RakNet::BitStream bsRecv((PCHAR)p->data, p->length, false);
+
+	char szIdent[4];
+	strcpy(szIdent, "NPC");
+	BYTE byteIdentLen = strlen(szIdent)+1;
+
+	RakNet::BitStream bsSend;
+	bsSend.Write((BYTE)ID_UNK_12);
+	bsSend.Write(byteIdentLen);
+	bsSend.Write(szIdent, byteIdentLen);
+	m_pRakClient->Send(&bsSend,SYSTEM_PRIORITY,RELIABLE,0);
+}
+
 
 //----------------------------------------------------
 

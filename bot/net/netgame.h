@@ -41,6 +41,7 @@ private:
 	void Packet_ModifiedPacket(Packet* packet);
 	void Packet_ConnectAttemptFailed(Packet* packet);
 	void Packet_TrailerSync(Packet *p);
+	void Packet_Unk12(Packet *p);
 
 public:
 
