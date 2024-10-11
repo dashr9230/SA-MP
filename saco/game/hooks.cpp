@@ -16,7 +16,7 @@ DWORD unnamed_101516D4;
 
 WORD wLastRendObj=0;
 
-BYTE Unk1_JmpCode[] = {0xFF,25,0xD1,0xBE,53,0x00};
+BYTE Unk1_JmpCode[] = {0xFF,0x19,0xD1,0xBE,0x35,0x00};
 BYTE TaskEnterVehicleDriver_HookJmpCode[] = {0xFF,0x25,0xBB,0x19,0x69,0x00,0x90};
 BYTE TaskExitVehicle_HookJmpCode[] = {0xFF,0x25,0xBA,0xB8,0x63,0x00,0x90};
 BYTE RadarTranslateColor_HookJmpCode[] = {0xFF,0x25,0x79,0x4A,0x58,0x00,0x90};
@@ -34,37 +34,37 @@ BYTE CWeapon__Satchel__Activate_HookJmpCode[] = {0xFF,0x25,0x5B,0x88,0x73,0x00};
 BYTE Unk7_JmpCode[] = {0xFF,0x25,0x36,0xA0,0x63,0x00,0x90};
 BYTE Unk8_JmpCode[] = {0xFF,0x25,0x77,0xAB,0x5E,0x00,0x90};
 BYTE Unk9_JmpCode[] = {0xFF,0x25,0x39,0x88,0x4C,0x00,0x90,0x90};
-BYTE HOOK_7_JmpCode[] = {0xFF,0x25,0x34,0x39,0x4D,0x00,0x90,0x90,0x90,0x90};
-BYTE HOOK_8_JmpCode[] = {0xFF,0x25,0x09,0x46,0x4D,0x00,0x90};
+BYTE CAnimManager__AddAnimation_Hook_HookJmpCode[] = {0xFF,0x25,0x34,0x39,0x4D,0x00,0x90,0x90,0x90,0x90};
+BYTE CAnimManager__BlendAnimation_HookJmpCode[] = {0xFF,0x25,0x09,0x46,0x4D,0x00,0x90};
 BYTE Unk10_JmpCode[] = {0xFF,0x25,0xE5,0x42,0x4D,0x00,0x90};
 BYTE Unk11_JmpCode[] = {0xFF,0x25,0x29,0x3B,0x4D,0x00};
-BYTE HOOK_36_JmpCode[] = {0xFF,0x25,0x21,0xC7,0x59,0x00};
-BYTE HOOK_40_JmpCode[] = {0xFF,0x25,0x84,0x80,0x53,0x00,0x90};
-BYTE HOOK_48_JmpCode[] = {0xFF,0x25,0xA6,0x34,0x55,0x00,0x90,0x90,0x90};
-BYTE HOOK_50_JmpCode[] = {0xFF,0x25,0x33,0x34,0x4B,0x00};
+BYTE RwRasterDestroy_HookJmpCode[] = {0xFF,0x25,0x21,0xC7,0x59,0x00};
+BYTE CFileLoader__LoadObjectInstance_HookJmpCode[] = {0xFF,0x25,0x84,0x80,0x53,0x00,0x90};
+BYTE CRenderer__AddEntityToRenderList_HookJmpCode[] = {0xFF,0x25,0xA6,0x34,0x55,0x00,0x90,0x90,0x90};
+BYTE CEventDamage__AffectsPed_HookJmpCode[] = {0xFF,0x25,0x33,0x34,0x4B,0x00};
 BYTE Unk12_JmpCode[] = {0xFF,0x25,0xC6,0x84,0x6D,0x00,0x90,0x90};
-BYTE HOOK_61_JmpCode[] = {0xFF,0x25,0xD7,0x87,0x40,0x00};
-BYTE HOOK_60_JmpCode[] = {0xFF,0x25,0xDB,0x74,0x56,0x00};
+BYTE CStreaming__RequestModel_HookJmpCode[] = {0xFF,0x25,0xD7,0x87,0x40,0x00};
+BYTE CWorld__ProcessVerticalLine_HookJmpCode[] = {0xFF,0x25,0xDB,0x74,0x56,0x00};
 
 //-----------------------------------------------------------
 
 
-// TODO: HOOK_*() functions
-NUDE HOOK_1() {}
-NUDE HOOK_2() {}
-NUDE HOOK_3() {}
-NUDE HOOK_4() {}
+// TODO: implement functions
+NUDE CHud__DrawRadar_Hook() {}
+NUDE CHud__DrawCrossHairs_Hook() {}
+NUDE CCamera__Process_Hook() {}
+NUDE CGame__Process_Hook() {}
 NUDE CPed_Render_Hook() {}
-NUDE HOOK_7() {}
-NUDE HOOK_8() {}
+NUDE CAnimManager__AddAnimation_Hook() {}
+NUDE CAnimManager__BlendAnimation_Hook() {}
 NUDE CPlayerPed_ProcessControl_Hook() {}
-NUDE HOOK_10() {}
+NUDE CCivillianPed__ProcessControl_Hook() {}
 NUDE TaskUseGun_Hook() {}
-NUDE HOOK_12() {}
-NUDE HOOK_14() {}
-NUDE HOOK_15() {}
+NUDE WeaponRender__GetWeaponSkill_Hook() {}
+NUDE CWorld__ProcessAttachedEntities_Hook() {}
+NUDE CWorld__ProcessPedsAfterPreRender_Hook() {}
 NUDE AllVehicles_ProcessControl_Hook() {}
-NUDE HOOK_17() {}
+NUDE VehicleHorn_Hook() {}
 NUDE ZoneOverlay_Hook() {}
 NUDE PlayerWalk_Hook() {}
 NUDE PickUpPickup_Hook() {}
@@ -78,46 +78,46 @@ NUDE RadarTranslateColor() {}
 NUDE CGameShutdownHook() {}
 NUDE PedDamage_Hook() {}
 NUDE AnimCrashFixHook() {}
-NUDE HOOK_31() {}
+NUDE PoliceScannerAudio_FindPlayerPed_Hook() {}
 NUDE CProjectile_Update_Hook() {}
 NUDE CWeapon__Satchel__Activate_Hook() {}
 NUDE GetText_Hook() {}
-NUDE HOOK_35() {}
-NUDE HOOK_36() {}
-NUDE HOOK_37() {}
-NUDE HOOK_38() {}
-NUDE HOOK_39() {}
-NUDE HOOK_40() {}
-NUDE HOOK_41() {}
-NUDE HOOK_42() {}
-NUDE HOOK_43() {}
-NUDE HOOK_44() {}
-NUDE HOOK_45() {}
-NUDE HOOK_46() {}
-NUDE HOOK_47() {}
-NUDE HOOK_48() {}
-NUDE HOOK_49() {}
-NUDE HOOK_50() {}
-NUDE HOOK_51() {}
-NUDE HOOK_52() {}
-NUDE HOOK_53() {}
-NUDE HOOK_54() {}
-NUDE HOOK_55() {}
-NUDE HOOK_56() {}
-NUDE HOOK_57() {}
-NUDE HOOK_58() {}
-NUDE HOOK_59() {}
-NUDE HOOK_60() {}
-NUDE HOOK_61() {}
-NUDE HOOK_62() {}
-NUDE HOOK_63() {}
-NUDE HOOK_64() {}
-NUDE HOOK_65() {}
-NUDE HOOK_66() {}
+NUDE CCustomCarPlateMgr__CreatePlateTexture__RwRasterCreate_Hook() {}
+NUDE RwRasterDestroy_Hook() {}
+NUDE CVehicle__Render_Hook() {}
+NUDE CObject__Render_Hook() {}
+NUDE CRadar__DrawMap__FindPlayerSpeed_Hook() {}
+NUDE CFileLoader__LoadObjectInstance_Hook() {}
+NUDE CEscalator__Update_Hook() {}
+NUDE CObject__CreateRwObject_Hook() {}
+NUDE CEntity__DeleteRwObject_Hook() {}
+NUDE CAutomobile__BreakTowLink_Hook() {}
+NUDE CWorld__ProcessAttachedEntities__PositionAttachedEntity_Hook() {}
+NUDE CRenderer__RenderEverythingBarRoads_Hook() {}
+NUDE CRenderer__RenderFadingInEntities_Hook() {}
+NUDE CRenderer__AddEntityToRenderList_Hook() {}
+NUDE CEntity__RenderEffects__RenderRoadsignAtomic_Hook() {}
+NUDE CEventDamage__AffectsPed_Hook() {}
+NUDE CCollision__BuildCacheOfCameraCollision_Hook() {}
+NUDE CCollision__CheckCameraCollisionVehicles_Hook() {}
+NUDE CWorld__CameraToIgnoreThisObject_Hook() {}
+NUDE CAutomobile__ProcessEntityCollision_Hook() {}
+NUDE CBike__ProcessEntityCollision_Hook() {}
+NUDE CMonsterTruck__ProcessEntityCollision_Hook() {}
+NUDE CPhysical__ProcessEntityCollision_Hook() {}
+NUDE CVehicle__UsesSiren_Hook() {}
+NUDE CAEWeatherAudioEntity__UpdateParameters_Hook() {}
+NUDE CWorld__ProcessVerticalLine_Hook() {}
+NUDE CStreaming__RequestModel_Hook() {}
+NUDE CWeapon__FireInstantHit_Hook() {}
+NUDE CWorld__ProcessLineOfSight_Hook() {}
+NUDE CWeapon__FireSniper_Hook() {}
+NUDE CBulletInfo__AddBullet_Hook() {}
+NUDE CVehicle__InflictDamage_Hook() {}
 
 
 
-NUDE HOOK_6()
+NUDE CTimer__GetCurrentTimeInCycles_Hook()
 {
 	Sleep(1);
 
@@ -253,13 +253,13 @@ void InstallGameAndGraphicsLoopHooks()
 	UnFuck(0x53EB13,4);
 	*(int *)0x53EB13 = dwGraphicsLoop - 0x53EB12 - 5; // relative addr
 
-	InstallCallHook(0x58FC53,(DWORD)HOOK_1);
+	InstallCallHook(0x58FC53,(DWORD)CHud__DrawRadar_Hook);
 
-	InstallCallHook(0x58FBBF,(DWORD)HOOK_2);
+	InstallCallHook(0x58FBBF,(DWORD)CHud__DrawCrossHairs_Hook);
 
-	InstallCallHook(0x53C104,(DWORD)HOOK_3);
+	InstallCallHook(0x53C104,(DWORD)CCamera__Process_Hook);
 
-	InstallCallHook(0x53E981,(DWORD)HOOK_4);
+	InstallCallHook(0x53E981,(DWORD)CGame__Process_Hook);
 
 	// For fixing fogging issues (needed for both debug and net)
 	InstallMethodHook(0x86D1B0,(DWORD)CPed_Render_Hook); // This is PlayerPed
@@ -268,7 +268,7 @@ void InstallGameAndGraphicsLoopHooks()
 	InstallMethodHook(0x86C248,(DWORD)CPed_Render_Hook);
 	InstallMethodHook(0x86C3A0,(DWORD)CPed_Render_Hook);
 
-	InstallCallHook(0x53E930,(DWORD)HOOK_6);
+	InstallCallHook(0x53E930,(DWORD)CTimer__GetCurrentTimeInCycles_Hook);
 }
 
 //-----------------------------------------------------------
@@ -277,23 +277,23 @@ void GameInstallHooks()
 {
 	InstallGameAndGraphicsLoopHooks();
 
-	InstallHook(0x4D3AA0,(DWORD)HOOK_7,0x4D3934,HOOK_7_JmpCode,sizeof(HOOK_7_JmpCode));
+	InstallHook(0x4D3AA0,(DWORD)CAnimManager__AddAnimation_Hook,0x4D3934,CAnimManager__AddAnimation_Hook_HookJmpCode,sizeof(CAnimManager__AddAnimation_Hook_HookJmpCode));
 
-	InstallHook(0x4D4610,(DWORD)HOOK_8,0x4D4609,HOOK_8_JmpCode,sizeof(HOOK_8_JmpCode));
+	InstallHook(0x4D4610,(DWORD)CAnimManager__BlendAnimation_Hook,0x4D4609,CAnimManager__BlendAnimation_HookJmpCode,sizeof(CAnimManager__BlendAnimation_HookJmpCode));
 
 	InstallMethodHook(0x86D190,(DWORD)CPlayerPed_ProcessControl_Hook);
 
-	InstallMethodHook(0x86C0D0,(DWORD)HOOK_10);
+	InstallMethodHook(0x86C0D0,(DWORD)CCivillianPed__ProcessControl_Hook);
 
 	InstallMethodHook(0x86D744,(DWORD)TaskUseGun_Hook);
 
-	InstallCallHook(0x7330A2,(DWORD)HOOK_12);
+	InstallCallHook(0x7330A2,(DWORD)WeaponRender__GetWeaponSkill_Hook);
 
 	InstallMethodHook(0x86D194,(DWORD)CPlayerPed_ProcessCollision_Hook);
 
-	InstallCallHook(0x5689FD,(DWORD)HOOK_14);
+	InstallCallHook(0x5689FD,(DWORD)CWorld__ProcessAttachedEntities_Hook);
 
-	InstallCallHook(0x53EA03,(DWORD)HOOK_15);
+	InstallCallHook(0x53EA03,(DWORD)CWorld__ProcessPedsAfterPreRender_Hook);
 
 	InstallMethodHook(0x871148,(DWORD)AllVehicles_ProcessControl_Hook); // Automobile
 	InstallMethodHook(0x8721C8,(DWORD)AllVehicles_ProcessControl_Hook); // boat
@@ -306,11 +306,11 @@ void GameInstallHooks()
 	InstallMethodHook(0x872398,(DWORD)AllVehicles_ProcessControl_Hook); // train
 	InstallMethodHook(0x871C50,(DWORD)AllVehicles_ProcessControl_Hook);
 
-	InstallCallHook(0x501B1D,(DWORD)HOOK_17);
-	InstallCallHook(0x501B42,(DWORD)HOOK_17);
-	InstallCallHook(0x501FC2,(DWORD)HOOK_17);
-	InstallCallHook(0x502067,(DWORD)HOOK_17);
-	InstallCallHook(0x5021AE,(DWORD)HOOK_17);
+	InstallCallHook(0x501B1D,(DWORD)VehicleHorn_Hook);
+	InstallCallHook(0x501B42,(DWORD)VehicleHorn_Hook);
+	InstallCallHook(0x501FC2,(DWORD)VehicleHorn_Hook);
+	InstallCallHook(0x502067,(DWORD)VehicleHorn_Hook);
+	InstallCallHook(0x5021AE,(DWORD)VehicleHorn_Hook);
 
 	// Radar and map hooks for gang zones
 	InstallCallHook(0x5869BF,(DWORD)ZoneOverlay_Hook);
@@ -347,7 +347,7 @@ void GameInstallHooks()
 	// Fix for 0x004D41C5 crash
 	InstallCallHook(0x4D41C0, (DWORD)AnimCrashFixHook, 0xE9);
 
-	InstallCallHook(0x4E7427,(DWORD)HOOK_31);
+	InstallCallHook(0x4E7427,(DWORD)PoliceScannerAudio_FindPlayerPed_Hook);
 
 	// Fix for crash when the player who threw the satchel died
 	InstallHook(0x738F3A, (DWORD)CProjectile_Update_Hook, 0x738B1B, CProjectileInfo_Update_HookJmpCode, sizeof(CProjectileInfo_Update_HookJmpCode));
@@ -356,108 +356,108 @@ void GameInstallHooks()
 	
 	InstallHook(0x6A0050, (DWORD)GetText_Hook, 0x6A0043, GetText_HookJmpCode, sizeof (GetText_HookJmpCode));
 
-	InstallCallHook(0x6FDED6,(DWORD)HOOK_35);
+	InstallCallHook(0x6FDED6,(DWORD)CCustomCarPlateMgr__CreatePlateTexture__RwRasterCreate_Hook);
 
 	if(iGtaVersion == GTASA_VERSION_USA10)
 	{
-		InstallHook(0x7FB020,(DWORD)HOOK_36,0x59C721,HOOK_36_JmpCode,sizeof(HOOK_36_JmpCode));
+		InstallHook(0x7FB020,(DWORD)RwRasterDestroy_Hook,0x59C721,RwRasterDestroy_HookJmpCode,sizeof(RwRasterDestroy_HookJmpCode));
 		unnamed_101516D4 = 0x7FB026;
 	}
 	else
 	{
-		InstallHook(0x7FB060,(DWORD)HOOK_36,0x59C721,HOOK_36_JmpCode,sizeof(HOOK_36_JmpCode));
+		InstallHook(0x7FB060,(DWORD)RwRasterDestroy_Hook,0x59C721,RwRasterDestroy_HookJmpCode,sizeof(RwRasterDestroy_HookJmpCode));
 		unnamed_101516D4 = 0x7FB066;
 	}
 
-	InstallCallHook(0x6D0E7E,(DWORD)HOOK_37);
+	InstallCallHook(0x6D0E7E,(DWORD)CVehicle__Render_Hook);
 
-	InstallMethodHook(0x866FA8,(DWORD)HOOK_38);
+	InstallMethodHook(0x866FA8,(DWORD)CObject__Render_Hook);
 
-	InstallCallHook(0x586C0A,(DWORD)HOOK_39);
+	InstallCallHook(0x586C0A,(DWORD)CRadar__DrawMap__FindPlayerSpeed_Hook);
 
-	InstallHook(0x538090,(DWORD)HOOK_40,0x538084,HOOK_40_JmpCode,sizeof(HOOK_40_JmpCode));
+	InstallHook(0x538090,(DWORD)CFileLoader__LoadObjectInstance_Hook,0x538084,CFileLoader__LoadObjectInstance_HookJmpCode,sizeof(CFileLoader__LoadObjectInstance_HookJmpCode));
 
-	InstallCallHook(0x718599,(DWORD)HOOK_41);
+	InstallCallHook(0x718599,(DWORD)CEscalator__Update_Hook);
 
-	InstallMethodHook(0x866F7C,(DWORD)HOOK_42);
+	InstallMethodHook(0x866F7C,(DWORD)CObject__CreateRwObject_Hook);
 
-	InstallMethodHook(0x866F80,(DWORD)HOOK_43);
-	InstallMethodHook(0x8585E8,(DWORD)HOOK_43);
+	InstallMethodHook(0x866F80,(DWORD)CEntity__DeleteRwObject_Hook);
+	InstallMethodHook(0x8585E8,(DWORD)CEntity__DeleteRwObject_Hook);
 
-	InstallMethodHook(0x871218,(DWORD)HOOK_44);
-	InstallMethodHook(0x871778,(DWORD)HOOK_44);
-	InstallMethodHook(0x8718D0,(DWORD)HOOK_44);
-	InstallMethodHook(0x871A40,(DWORD)HOOK_44);
-	InstallMethodHook(0x871BE0,(DWORD)HOOK_44);
+	InstallMethodHook(0x871218,(DWORD)CAutomobile__BreakTowLink_Hook);
+	InstallMethodHook(0x871778,(DWORD)CAutomobile__BreakTowLink_Hook);
+	InstallMethodHook(0x8718D0,(DWORD)CAutomobile__BreakTowLink_Hook);
+	InstallMethodHook(0x871A40,(DWORD)CAutomobile__BreakTowLink_Hook);
+	InstallMethodHook(0x871BE0,(DWORD)CAutomobile__BreakTowLink_Hook);
 
-	InstallCallHook(0x5648D3,(DWORD)HOOK_45);
+	InstallCallHook(0x5648D3,(DWORD)CWorld__ProcessAttachedEntities__PositionAttachedEntity_Hook);
 
-	InstallCallHook(0x53DFDD,(DWORD)HOOK_46);
+	InstallCallHook(0x53DFDD,(DWORD)CRenderer__RenderEverythingBarRoads_Hook);
 
-	InstallCallHook(0x53E019,(DWORD)HOOK_47);
+	InstallCallHook(0x53E019,(DWORD)CRenderer__RenderFadingInEntities_Hook);
 
-	InstallHook(0x5534B0,(DWORD)HOOK_48,0x5534A6,HOOK_48_JmpCode,sizeof(HOOK_48_JmpCode));
+	InstallHook(0x5534B0,(DWORD)CRenderer__AddEntityToRenderList_Hook,0x5534A6,CRenderer__AddEntityToRenderList_HookJmpCode,sizeof(CRenderer__AddEntityToRenderList_HookJmpCode));
 
-	InstallCallHook(0x5342F9,(DWORD)HOOK_49);
+	InstallCallHook(0x5342F9,(DWORD)CEntity__RenderEffects__RenderRoadsignAtomic_Hook);
 
-	InstallHook(0x4B35A0,(DWORD)HOOK_50,0x4B3433,HOOK_50_JmpCode,sizeof(HOOK_50_JmpCode));
+	InstallHook(0x4B35A0,(DWORD)CEventDamage__AffectsPed_Hook,0x4B3433,CEventDamage__AffectsPed_HookJmpCode,sizeof(CEventDamage__AffectsPed_HookJmpCode));
 
-	InstallCallHook(0x41B02E,(DWORD)HOOK_51);
+	InstallCallHook(0x41B02E,(DWORD)CCollision__BuildCacheOfCameraCollision_Hook);
 
-	InstallCallHook(0x41AF80,(DWORD)HOOK_52);
+	InstallCallHook(0x41AF80,(DWORD)CCollision__CheckCameraCollisionVehicles_Hook);
 
-	InstallCallHook(0x41AB78,(DWORD)HOOK_53);
+	InstallCallHook(0x41AB78,(DWORD)CWorld__CameraToIgnoreThisObject_Hook);
 
-	InstallMethodHook(0x871178,(DWORD)HOOK_54);
-	InstallMethodHook(0x8716D8,(DWORD)HOOK_54);
-	InstallMethodHook(0x8719A0,(DWORD)HOOK_54);
-	InstallMethodHook(0x871B40,(DWORD)HOOK_54);
+	InstallMethodHook(0x871178,(DWORD)CAutomobile__ProcessEntityCollision_Hook);
+	InstallMethodHook(0x8716D8,(DWORD)CAutomobile__ProcessEntityCollision_Hook);
+	InstallMethodHook(0x8719A0,(DWORD)CAutomobile__ProcessEntityCollision_Hook);
+	InstallMethodHook(0x871B40,(DWORD)CAutomobile__ProcessEntityCollision_Hook);
 
-	InstallMethodHook(0x8713B8,(DWORD)HOOK_55);
-	InstallMethodHook(0x871580,(DWORD)HOOK_55);
+	InstallMethodHook(0x8713B8,(DWORD)CBike__ProcessEntityCollision_Hook);
+	InstallMethodHook(0x871580,(DWORD)CBike__ProcessEntityCollision_Hook);
 
-	InstallMethodHook(0x871830,(DWORD)HOOK_56);
+	InstallMethodHook(0x871830,(DWORD)CMonsterTruck__ProcessEntityCollision_Hook);
 
-	InstallMethodHook(0x8721F8,(DWORD)HOOK_57);
+	InstallMethodHook(0x8721F8,(DWORD)CPhysical__ProcessEntityCollision_Hook);
 
-	InstallCallHook(0x6E0954,(DWORD)HOOK_58);
-	InstallCallHook(0x6B2BCB,(DWORD)HOOK_58);
-	InstallCallHook(0x4F77DA,(DWORD)HOOK_58);
+	InstallCallHook(0x6E0954,(DWORD)CVehicle__UsesSiren_Hook);
+	InstallCallHook(0x6B2BCB,(DWORD)CVehicle__UsesSiren_Hook);
+	InstallCallHook(0x4F77DA,(DWORD)CVehicle__UsesSiren_Hook);
 
-	InstallMethodHook(0x872A74,(DWORD)HOOK_59);
+	InstallMethodHook(0x872A74,(DWORD)CAEWeatherAudioEntity__UpdateParameters_Hook);
 
-	InstallHook(0x5674E0,(DWORD)HOOK_60,0x5674DB,HOOK_60_JmpCode,sizeof(HOOK_60_JmpCode));
+	InstallHook(0x5674E0,(DWORD)CWorld__ProcessVerticalLine_Hook,0x5674DB,CWorld__ProcessVerticalLine_HookJmpCode,sizeof(CWorld__ProcessVerticalLine_HookJmpCode));
 }
 
 //-----------------------------------------------------------
 
-void unnamed_100A6FF0()
+void InstallModelInfoHackHooks()
 {
-	InstallHook(0x4087EA,(DWORD)HOOK_61,0x4087D7,HOOK_61_JmpCode,sizeof(HOOK_61_JmpCode));
+	InstallHook(0x4087EA,(DWORD)CStreaming__RequestModel_Hook,0x4087D7,CStreaming__RequestModel_HookJmpCode,sizeof(CStreaming__RequestModel_HookJmpCode));
 }
 
 //-----------------------------------------------------------
 
-void unnamed_100A7010()
+void InstallShotSyncHooks()
 {
-	InstallCallHook(0x742495,(DWORD)HOOK_62);
-	InstallCallHook(0x7424EC,(DWORD)HOOK_62);
-	InstallCallHook(0x742548,(DWORD)HOOK_62);
+	InstallCallHook(0x742495,(DWORD)CWeapon__FireInstantHit_Hook);
+	InstallCallHook(0x7424EC,(DWORD)CWeapon__FireInstantHit_Hook);
+	InstallCallHook(0x742548,(DWORD)CWeapon__FireInstantHit_Hook);
 
-	InstallCallHook(0x740721,(DWORD)HOOK_63);
-	InstallCallHook(0x740B69,(DWORD)HOOK_63);
-	InstallCallHook(0x736247,(DWORD)HOOK_63);
+	InstallCallHook(0x740721,(DWORD)CWorld__ProcessLineOfSight_Hook);
+	InstallCallHook(0x740B69,(DWORD)CWorld__ProcessLineOfSight_Hook);
+	InstallCallHook(0x736247,(DWORD)CWorld__ProcessLineOfSight_Hook);
 
-	InstallCallHook(0x7424CB,(DWORD)HOOK_64);
+	InstallCallHook(0x7424CB,(DWORD)CWeapon__FireSniper_Hook);
 
-	InstallCallHook(0x73AC4B,(DWORD)HOOK_65);
+	InstallCallHook(0x73AC4B,(DWORD)CBulletInfo__AddBullet_Hook);
 }
 
 //-----------------------------------------------------------
 
-void unnamed_100A71C0()
+void InstallVehicleFriendyFireHooks()
 {
-	InstallCallHook(0x6D7C90,(DWORD)HOOK_66,0xE9);
+	InstallCallHook(0x6D7C90,(DWORD)CVehicle__InflictDamage_Hook,0xE9);
 }
 
 //-----------------------------------------------------------
