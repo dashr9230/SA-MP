@@ -1,5 +1,9 @@
 
 #include "../main.h"
+#include "game.h"
+#include "util.h"
+#include "keystuff.h"
+#include "aimstuff.h"
 
 extern int iGtaVersion;
 
@@ -7,8 +11,11 @@ extern DWORD dwGraphicsLoop; // Used for the external dll game loop.
 
 #define NUDE void _declspec(naked) 
 
+BYTE	byteSavedCameraMode;
 BYTE	*pbyteCameraMode = (BYTE *)0xB6F1A8;
 BYTE	*pbyteCurrentPlayer = (BYTE *)0xB7CD74;
+
+int		iRadarColor1=0;
 
 float fFarClip=1400.0f;
 
@@ -50,8 +57,127 @@ BYTE CWorld__ProcessVerticalLine_HookJmpCode[] = {0xFF,0x25,0xDB,0x74,0x56,0x00}
 
 
 // TODO: implement functions
-NUDE CHud__DrawRadar_Hook() {}
-NUDE CHud__DrawCrossHairs_Hook() {}
+
+// radar scale/shape fix
+
+DWORD dwHudScaleX = 0;
+DWORD dwHudScaleY = 0;
+bool bSomeHudScaleFixFlag = false;
+float* CRadar__radarHeight = (float*)0x866B74;
+float* CRadar__radarWidth = (float*)0x866B78;
+
+void ProcessHudScaleFix()
+{
+	if ( bHudScaleFix )
+	{
+		dwHudScaleX = *(DWORD*)0x859520;
+		dwHudScaleY = *(DWORD*)0x859524;
+
+		float fMaximumWidth = *(float*)0xC17044;
+		float fMaximumHeight = *(float*)0xC17048;
+
+		if ( fMaximumWidth > 0 && fMaximumHeight > 0 )
+		{
+			if ( fMaximumWidth / fMaximumHeight < 1.6 )
+			{
+				*CRadar__radarHeight = 76.0; 
+				*CRadar__radarWidth = 94.0; 
+			}
+			else
+			{
+				*CRadar__radarHeight = 82.0;
+				*CRadar__radarWidth = 96.0;
+				*(float*)0x859524 = 0.00242;
+				*(float*)0x859520 = 0.00222 / (fMaximumWidth / fMaximumHeight);
+				bSomeHudScaleFixFlag = 1;
+			}
+		}
+	}
+}
+
+NUDE CHud__DrawRadar_Hook() 
+{
+	__asm pushad 
+	ProcessHudScaleFix();
+
+	__asm 
+	{
+	    popad
+
+		// call original CHud::DrawRadar
+		mov edx, 0x58A330
+		call edx
+
+		pushad
+	}
+
+	if(bHudScaleFix)
+	{
+		*(DWORD*)0x859520 = dwHudScaleX;
+		*(DWORD*)0x859524 = dwHudScaleY;
+		*CRadar__radarHeight = 76.0;
+		*CRadar__radarWidth = 94.0;
+		bHudScaleFix = false;
+	}
+
+	__asm 
+	{
+		popad
+		retn
+	}
+}
+
+bool bSomeFlag = false;
+BYTE bytePlayerNumber = 0;
+NUDE CHud__DrawCrossHairs_Hook() 
+{
+	__asm pushad
+
+	bSomeFlag = false;
+	if ( pGame && pGame->FindPlayerPed() )
+	{
+		bytePlayerNumber = pGame->FindPlayerPed()->m_bytePlayerNumber;
+		byteSavedCameraMode = bytePlayerNumber ? GameGetPlayerCameraMode(bytePlayerNumber) : GameGetLocalPlayerCameraMode();
+		if ( byteSavedCameraMode == 53 )
+		{
+			ProcessHudScaleFix();
+			bSomeFlag = true;
+		}
+	}
+
+	__asm
+	{
+		popad
+
+		// call original CHud::DrawCrossHairs
+		mov edx, 0x58E020
+		call edx
+
+		pushad
+	}
+
+	if (bSomeFlag)
+	{
+		if (bHudScaleFix)
+		{
+			*(DWORD*)0x859520 = dwHudScaleX;
+			*(DWORD*)0x859524 = dwHudScaleY;
+			*CRadar__radarHeight = 76.0;
+			*CRadar__radarWidth = 94.0;
+			bHudScaleFix = 0;
+			bHudScaleFix = false;
+		}
+		bSomeFlag = false;
+	}
+
+	__asm
+	{
+		popad
+		retn
+	}
+}
+
+
 NUDE CCamera__Process_Hook() {}
 NUDE CGame__Process_Hook() {}
 NUDE CPed_Render_Hook() {}
@@ -64,18 +190,147 @@ NUDE WeaponRender__GetWeaponSkill_Hook() {}
 NUDE CWorld__ProcessAttachedEntities_Hook() {}
 NUDE CWorld__ProcessPedsAfterPreRender_Hook() {}
 NUDE AllVehicles_ProcessControl_Hook() {}
-NUDE VehicleHorn_Hook() {}
+
+//-----------------------------------------------------------
+
+// fix horn processing
+VEHICLE_TYPE *_pHornVehicle;
+int _iHasSetHornHookFix = 0;
+BYTE _byteSavedControlFlags = 0;
+DWORD _dwVehicleParams = 0;
+DWORD _dwAudioClass = 0;
+
+NUDE VehicleHorn_Hook()
+{
+	_asm mov _dwAudioClass, ecx
+
+	_asm mov edx, [esp+4]
+	_asm mov _dwVehicleParams, edx
+
+	_asm mov eax, [edx+16]	
+	_asm mov _pHornVehicle, eax
+
+	if( _pHornVehicle && _pHornVehicle->pDriver && 
+		IN_VEHICLE(_pHornVehicle->pDriver) &&
+		_pHornVehicle->pDriver->dwPedType == 4 ) 
+	{
+		_byteSavedControlFlags = _pHornVehicle->entity.nControlFlags;
+		_pHornVehicle->entity.nControlFlags = 0x02;
+		_iHasSetHornHookFix = 1;
+	} else {
+		_iHasSetHornHookFix = 0;
+	}
+
+	_asm push _dwVehicleParams
+	_asm mov ecx, _dwAudioClass
+	_asm mov edx, 0x5002C0
+	_asm call edx
+	
+	if(_iHasSetHornHookFix) {
+		_pHornVehicle->entity.nControlFlags = _byteSavedControlFlags;
+	}
+    
+	_asm retn 4
+}
+
+//-----------------------------------------------------------
+
 NUDE ZoneOverlay_Hook() {}
-NUDE PlayerWalk_Hook() {}
+
+//-----------------------------------------------------------
+
+NUDE PlayerWalk_Hook()
+{
+	_asm pushad
+
+	if (pNetGame && pNetGame->GetWalkStyle())
+	{
+		_asm popad
+		_asm mov [esi + 0x4D4], eax
+	}
+	else
+	{
+		_asm popad
+	}
+	_asm ret
+}
+
+//-----------------------------------------------------------
+
 NUDE PickUpPickup_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE CWeapon_FireCamera_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE CCameraCamShake_Sniper_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE CTrain_ProcessControl_Derailment() {}
+
+//-----------------------------------------------------------
+
 NUDE TaskEnterVehicleDriver_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE TaskExitVehicle() {}
-NUDE CheatProcessorHook() {}
-NUDE RadarTranslateColor() {}
-NUDE CGameShutdownHook() {}
+
+//-----------------------------------------------------------
+
+// disable cheat code processing
+NUDE CheatProcessorHook()
+{
+	__asm
+	{
+		pushad
+
+		// CCheat::m_bHasPlayerCheated = true
+		mov edx, 0x96918C  
+		mov byte ptr [edx], 1
+
+		popad
+
+		// dont process cheat
+		mov edx, 0x438581
+		cmp eax, 0
+		jmp edx
+	}
+}
+
+//-----------------------------------------------------------
+
+NUDE RadarTranslateColor() 
+{
+	_asm mov eax, [esp+4]
+	_asm mov iRadarColor1, eax
+	TranslateColorCodeToRGBA(iRadarColor1); // return will still be in eax.
+	_asm ret
+}
+
+//-----------------------------------------------------------
+// We use this to trap and exit the game
+
+DWORD dwShutDownTick;
+void QuitGame(); // todo: implement `QuitGame`
+
+NUDE CGameShutdownHook()
+{
+	dwShutDownTick = GetTickCount() + 2000;
+	QuitGame();
+
+	while(GetTickCount() < dwShutDownTick) {
+		Sleep(100);
+	}
+
+	ExitProcess(0);
+}
+
+//-----------------------------------------------------------
+
 NUDE PedDamage_Hook() {}
 NUDE AnimCrashFixHook() {}
 NUDE PoliceScannerAudio_FindPlayerPed_Hook() {}
@@ -114,7 +369,6 @@ NUDE CWorld__ProcessLineOfSight_Hook() {}
 NUDE CWeapon__FireSniper_Hook() {}
 NUDE CBulletInfo__AddBullet_Hook() {}
 NUDE CVehicle__InflictDamage_Hook() {}
-
 
 
 NUDE CTimer__GetCurrentTimeInCycles_Hook()
