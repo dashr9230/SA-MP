@@ -92,9 +92,11 @@ typedef struct _ENTITY_TYPE
 	char _gap1C[6];
 
 	WORD nModelIndex; // 34-36
-
-	char _gap24[32];
-
+	char _gap24[18];
+	BYTE nControlFlags; // 54-55
+	char _gap37[11];
+	BYTE byteImmunities; // 66-67
+	BYTE byteUnkEntFlags; // 67-68
 	VECTOR vecMoveSpeed; // 68-80
 	VECTOR vecTurnSpeed; // 80-92
 

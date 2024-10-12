@@ -8,6 +8,7 @@ extern CNetGame		 *pNetGame;
 extern GAME_SETTINGS tSettings;
 
 extern bool bShowDebugLabels;
+extern bool bHudScaleFix;
 
 void cmdDefaultCmdProc(PCHAR szCmd)
 {
@@ -69,7 +70,17 @@ void cmdLogUrls(PCHAR szCmd)
 
 void cmdHudScaleFix(PCHAR szCmd)
 {
-	// TODO: cmdHudScaleFix .text:10068870
+	if(bHudScaleFix)
+	{
+		bHudScaleFix = false;
+		// uncomment after finishing CConfig class
+		//CConfig::SetIntVariable(pConfig, "nohudscalefix", 1, 0);
+	}
+	else
+	{
+		bHudScaleFix = 1;
+		//CConfig::SetIntVariable(pConfig, "nohudscalefix", 0, 0);
+	}
 }
 
 void cmdMem(PCHAR szCmd)
