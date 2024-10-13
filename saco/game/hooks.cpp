@@ -137,7 +137,6 @@ NUDE CHud__DrawRadar_Hook()
 }
 
 bool bSomeFlag = false;
-BYTE bytePlayerNumber = 0;
 NUDE CHud__DrawCrossHairs_Hook() 
 {
 	__asm pushad
@@ -145,9 +144,7 @@ NUDE CHud__DrawCrossHairs_Hook()
 	bSomeFlag = false;
 	if ( pGame && pGame->FindPlayerPed() )
 	{
-		bytePlayerNumber = pGame->FindPlayerPed()->m_bytePlayerNumber;
-		byteSavedCameraMode = bytePlayerNumber ? GameGetPlayerCameraMode(bytePlayerNumber) : GameGetLocalPlayerCameraMode();
-		if ( byteSavedCameraMode == 53 )
+		if ( pGame->FindPlayerPed()->GetCameraMode() == 53 )
 		{
 			ProcessHudScaleFix();
 			bSomeFlag = true;
@@ -167,15 +164,7 @@ NUDE CHud__DrawCrossHairs_Hook()
 
 	if (bSomeFlag)
 	{
-		if (bHudScaleFix)
-		{
-			*(DWORD*)0x859520 = dwHudScaleX;
-			*(DWORD*)0x859524 = dwHudScaleY;
-			*CRadar__radarHeight = 76.0;
-			*CRadar__radarWidth = 94.0;
-			bHudScaleFix = 0;
-			bHudScaleFix = false;
-		}
+		FUNC_100A24C0();
 		bSomeFlag = false;
 	}
 

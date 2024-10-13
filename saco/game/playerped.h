@@ -24,6 +24,13 @@ public:
 	CAMERA_AIM * GetCurrentAim();
 	void SetCurrentAim(CAMERA_AIM *pAim);
 
+	BYTE GetCameraMode() {
+		if(!m_bytePlayerNumber)
+			return GameGetLocalPlayerCameraMode();
+		else
+			return GameGetPlayerCameraMode(m_bytePlayerNumber);
+	};
+
 	void  HideMarker();
 	BYTE  GetCurrentWeapon();
 	int   GetCurrentVehicleID();
