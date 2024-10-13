@@ -49,6 +49,7 @@ CHelpDialog				*pHelpDialog=NULL;
 CUnkClass8 *pUnkClass8=NULL;
 
 bool					bShowDebugLabels = false;
+bool 					bHudScaleFix = false;
 
 CGame					*pGame=0;
 DWORD					dwGraphicsLoop=0;

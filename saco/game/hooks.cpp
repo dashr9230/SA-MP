@@ -11,9 +11,14 @@ extern DWORD dwGraphicsLoop; // Used for the external dll game loop.
 
 #define NUDE void _declspec(naked) 
 
+PED_TYPE	*_pPlayer;
+
 BYTE	byteSavedCameraMode;
+DWORD	dwCurPlayerActor=0;
 BYTE	*pbyteCameraMode = (BYTE *)0xB6F1A8;
 BYTE	*pbyteCurrentPlayer = (BYTE *)0xB7CD74;
+
+PED_TYPE pedCrimeReportTemp{}; // pay attention! used in 0x100A1790 ; void __thiscall CGame::PlayCrimeReport as pedCrimeReportTemp 0x10150D00
 
 int		iRadarColor1=0;
 
@@ -175,23 +180,57 @@ NUDE CHud__DrawCrossHairs_Hook()
 	}
 }
 
+//-----------------------------------------------------------
 
 NUDE CCamera__Process_Hook() {}
-NUDE CGame__Process_Hook() {}
-NUDE CPed_Render_Hook() {}
-NUDE CAnimManager__AddAnimation_Hook() {}
-NUDE CAnimManager__BlendAnimation_Hook() {}
-NUDE CPlayerPed_ProcessControl_Hook() {}
-NUDE CCivillianPed__ProcessControl_Hook() {}
-NUDE TaskUseGun_Hook() {}
-NUDE WeaponRender__GetWeaponSkill_Hook() {}
-NUDE CWorld__ProcessAttachedEntities_Hook() {}
-NUDE CWorld__ProcessPedsAfterPreRender_Hook() {}
-NUDE AllVehicles_ProcessControl_Hook() {}
 
 //-----------------------------------------------------------
 
+NUDE CGame__Process_Hook() {}
+
+//-----------------------------------------------------------
+
+NUDE CPed_Render_Hook() {}
+
+//-----------------------------------------------------------
+
+NUDE CAnimManager__AddAnimation_Hook() {}
+
+//-----------------------------------------------------------
+
+NUDE CAnimManager__BlendAnimation_Hook() {}
+
+//-----------------------------------------------------------
+
+NUDE CPlayerPed_ProcessControl_Hook() {}
+
+//-----------------------------------------------------------
+
+NUDE CCivillianPed__ProcessControl_Hook() {}
+
+//-----------------------------------------------------------
+
+NUDE TaskUseGun_Hook() {}
+
+//-----------------------------------------------------------
+
+NUDE WeaponRender__GetWeaponSkill_Hook() {}
+
+//-----------------------------------------------------------
+
+NUDE CWorld__ProcessAttachedEntities_Hook() {}
+
+//-----------------------------------------------------------
+
+NUDE CWorld__ProcessPedsAfterPreRender_Hook() {}
+
+//-----------------------------------------------------------
+
+NUDE AllVehicles_ProcessControl_Hook() {}
+
+//-----------------------------------------------------------
 // fix horn processing
+
 VEHICLE_TYPE *_pHornVehicle;
 int _iHasSetHornHookFix = 0;
 BYTE _byteSavedControlFlags = 0;
@@ -233,7 +272,13 @@ NUDE VehicleHorn_Hook()
 
 //-----------------------------------------------------------
 
-NUDE ZoneOverlay_Hook() {}
+NUDE ZoneOverlay_Hook() 
+{
+	_asm pushad
+	if (pNetGame && pNetGame->GetGangZonePool()) pNetGame->GetGangZonePool()->Draw();
+	_asm popad
+	_asm ret
+}
 
 //-----------------------------------------------------------
 
@@ -330,45 +375,289 @@ NUDE CGameShutdownHook()
 //-----------------------------------------------------------
 
 NUDE PedDamage_Hook() {}
-NUDE AnimCrashFixHook() {}
-NUDE PoliceScannerAudio_FindPlayerPed_Hook() {}
-NUDE CProjectile_Update_Hook() {}
+
+//-----------------------------------------------------------
+
+NUDE AnimCrashFixHook()
+{
+	__asm
+	{
+		push edi
+		mov edi, [esp+8]	;// arg0
+		test edi, edi
+		jz exitFn
+		mov eax, 0x4D41C5	;// CAnimManager::UncompressAnimation
+		jmp eax
+exitFn:
+		pop edi
+		ret
+	}
+}
+
+//-----------------------------------------------------------
+// used for correct report message using 100A1790 ; void __thiscall CGame::PlayCrimeReport
+
+NUDE PoliceScannerAudio_FindPlayerPed_Hook() 
+{
+	__asm
+	{
+		mov eax, offset pedCrimeReportTemp
+		retn
+	}
+}
+
+//-----------------------------------------------------------
+// delete satchel projectile if the owner is dead (not sure if this code will work properly)
+
+DWORD dwProjectileObject = 0;
+DWORD dwProjectileInfo = 0;
+NUDE CProjectile_Update_Hook() 
+{
+	__asm
+	{
+		mov dwProjectileObject, esi
+		mov dwProjectileInfo, ebx
+
+		pushad
+
+		mov eax, dwProjectileInfo
+		mov ecx, [eax+4]   ;// dwProjectileInfo->pOwner
+		test ecx, ecx 		// 
+		jnz dont_delete 	// if the owner == nullptr, delete the projectile
+
+		pushad
+
+		// delete projectile CProjectileInfo::RemoveIfThisIsAProjectile
+		push dwProjectileObject
+		mov eax, 0x739A40
+		call eax
+
+		// correct stack
+		add esp, 4
+
+		popad
+
+		mov dl, 0x0FF
+		jmp end_hook
+
+	dont_delete:
+		popad 
+
+		// original code
+		mov ecx, [ebx+4]
+		mov dl, [ecx+36h]
+
+	end_hook:
+		push 0x738F40
+		retn
+	}
+}
+
+//-----------------------------------------------------------
 NUDE CWeapon__Satchel__Activate_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE GetText_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE CCustomCarPlateMgr__CreatePlateTexture__RwRasterCreate_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE RwRasterDestroy_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE CVehicle__Render_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE CObject__Render_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE CRadar__DrawMap__FindPlayerSpeed_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE CFileLoader__LoadObjectInstance_Hook() {}
-NUDE CEscalator__Update_Hook() {}
+
+//-----------------------------------------------------------
+// 0x858BA4 -  `float g_blendDist_ = 20.0f`
+//
+// here two variables 0x858BA4 0x858F84 were changed, the second was needlessly overwritten
+// and both were stored before the change and restored after the change
+// since their value didn't change anywhere in the code, I simplified the code
+
+NUDE CEscalator__Update_Hook() 
+{
+	__asm pushad
+
+	UnFuck(0x858BA4, 4);
+	*(float*)0x858BA4 = 40.0f;
+
+	__asm
+	{
+		mov eax, 0x717D30 // CEscalator::Update
+		call eax
+	}
+
+	*(float*)0x858BA4 = 20.0f; // restore original (GTASA) value
+
+	__asm popad
+}
+
+//-----------------------------------------------------------
+
 NUDE CObject__CreateRwObject_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE CEntity__DeleteRwObject_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE CAutomobile__BreakTowLink_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE CWorld__ProcessAttachedEntities__PositionAttachedEntity_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE CRenderer__RenderEverythingBarRoads_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE CRenderer__RenderFadingInEntities_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE CRenderer__AddEntityToRenderList_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE CEntity__RenderEffects__RenderRoadsignAtomic_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE CEventDamage__AffectsPed_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE CCollision__BuildCacheOfCameraCollision_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE CCollision__CheckCameraCollisionVehicles_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE CWorld__CameraToIgnoreThisObject_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE CAutomobile__ProcessEntityCollision_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE CBike__ProcessEntityCollision_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE CMonsterTruck__ProcessEntityCollision_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE CPhysical__ProcessEntityCollision_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE CVehicle__UsesSiren_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE CAEWeatherAudioEntity__UpdateParameters_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE CWorld__ProcessVerticalLine_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE CStreaming__RequestModel_Hook() {}
-NUDE CWeapon__FireInstantHit_Hook() {}
+
+//-----------------------------------------------------------
+
+// todo: implement fully
+ENTITY_TYPE* 	pFiringEntity = 0;
+VECTOR* 		pPosn = 0;
+VECTOR* 		pEffectPosn = 0;
+ENTITY_TYPE* 	pTargetEntity = 0;
+VECTOR* 		pTarget = 0;
+VECTOR* 		pPosnForDriveBy = 0;
+BYTE 			byteUnknown8 = 0;
+BYTE 			byteAdditionalEffects = 0;
+
+NUDE CWeapon__FireInstantHit_Hook() 
+{
+	__asm
+	{
+		mov eax, [esp+0x4]
+		mov pFiringEntity, eax
+		mov eax, [esp+0x8]
+		mov pPosn, eax
+		mov eax, [esp+0xC]
+		mov pEffectPosn, eax
+		mov eax, [esp+0x10]
+		mov pTargetEntity, eax
+		mov eax, [esp+0x14]
+		mov pTarget, eax
+		mov eax, [esp+0x18]
+		mov pPosnForDriveBy, eax
+		mov eax, [esp+0x1C]
+		mov byteUnknown8, eax
+		mov eax, [esp+0x20]
+		mov byteAdditionalEffects, eax
+
+		pushad
+	}
+
+	if(pFiringEntity != (ENTITY_TYPE*)GamePool_FindPlayerPed())
+	{
+		__asm
+		{
+			popad
+			retn 0x20
+		}
+	}
+
+	// todo: implement sub_10013C90
+	/*if ( pNetGame && pNetGame->m_pPools->pPlayerPool )
+    	sub_10013C90();*/
+
+}
+
+//-----------------------------------------------------------
+
 NUDE CWorld__ProcessLineOfSight_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE CWeapon__FireSniper_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE CBulletInfo__AddBullet_Hook() {}
+
+//-----------------------------------------------------------
+
 NUDE CVehicle__InflictDamage_Hook() {}
 
-
+//-----------------------------------------------------------
+// fps-related hook
 NUDE CTimer__GetCurrentTimeInCycles_Hook()
 {
 	Sleep(1);
