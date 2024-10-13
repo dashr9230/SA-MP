@@ -6,6 +6,7 @@ extern CCmdWindow	 *pCmdWindow;
 extern CDeathWindow	 *pDeathWindow;
 extern CNetGame		 *pNetGame;
 extern GAME_SETTINGS tSettings;
+extern CConfig		 *pConfig;
 
 extern bool bShowDebugLabels;
 extern bool bHudScaleFix;
@@ -73,15 +74,16 @@ void cmdHudScaleFix(PCHAR szCmd)
 	if(bHudScaleFix)
 	{
 		bHudScaleFix = false;
-		// uncomment after finishing CConfig class
-		//CConfig::SetIntVariable(pConfig, "nohudscalefix", 1, 0);
+		pConfig->SetIntVariable("nohudscalefix", 1);
 	}
 	else
 	{
-		bHudScaleFix = 1;
-		//CConfig::SetIntVariable(pConfig, "nohudscalefix", 0, 0);
+		bHudScaleFix = true;
+		pConfig->SetIntVariable("nohudscalefix", 0);
 	}
 }
+
+//----------------------------------------------------
 
 void cmdMem(PCHAR szCmd)
 {
