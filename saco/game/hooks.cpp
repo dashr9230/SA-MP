@@ -99,6 +99,18 @@ void ProcessHudScaleFix()
 	}
 }
 
+void FUNC_100A24C0()
+{
+	if(bSomeHudScaleFixFlag == true)
+	{
+		*(DWORD*)0x859520 = dwHudScaleX;
+		*(DWORD*)0x859524 = dwHudScaleY;
+		*CRadar__radarHeight = 76.0f;
+		*CRadar__radarWidth = 94.0f;
+		bSomeHudScaleFixFlag = false;
+	}
+}
+
 NUDE CHud__DrawRadar_Hook() 
 {
 	__asm pushad 
@@ -115,14 +127,7 @@ NUDE CHud__DrawRadar_Hook()
 		pushad
 	}
 
-	if(bHudScaleFix)
-	{
-		*(DWORD*)0x859520 = dwHudScaleX;
-		*(DWORD*)0x859524 = dwHudScaleY;
-		*CRadar__radarHeight = 76.0;
-		*CRadar__radarWidth = 94.0;
-		bHudScaleFix = false;
-	}
+	FUNC_100A24C0();
 
 	__asm 
 	{
