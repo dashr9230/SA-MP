@@ -60,8 +60,12 @@ BYTE CWorld__ProcessVerticalLine_HookJmpCode[] = {0xFF,0x25,0xDB,0x74,0x56,0x00}
 
 // radar scale/shape fix
 
+
+bool bHudScaleFix = true;
 DWORD dwHudScaleX = 0;
 DWORD dwHudScaleY = 0;
+float fMaximumWidth;
+float fMaximumHeight;
 bool bSomeHudScaleFixFlag = false;
 float* CRadar__radarHeight = (float*)0x866B74;
 float* CRadar__radarWidth = (float*)0x866B78;
@@ -73,23 +77,23 @@ void ProcessHudScaleFix()
 		dwHudScaleX = *(DWORD*)0x859520;
 		dwHudScaleY = *(DWORD*)0x859524;
 
-		float fMaximumWidth = *(float*)0xC17044;
-		float fMaximumHeight = *(float*)0xC17048;
+		fMaximumWidth = (float)pGame->GetScreenWidth();
+		fMaximumHeight = (float)pGame->GetScreenHeight();
 
-		if ( fMaximumWidth > 0 && fMaximumHeight > 0 )
+		if ( pGame->GetScreenWidth() > 0 && pGame->GetScreenHeight() > 0 )
 		{
-			if ( fMaximumWidth / fMaximumHeight < 1.6 )
+			if ( fMaximumWidth / fMaximumHeight >= 1.6f )
 			{
-				*CRadar__radarHeight = 76.0; 
-				*CRadar__radarWidth = 94.0; 
+				*CRadar__radarHeight = 82.0f;
+				*CRadar__radarWidth = 96.0f;
+				*(float*)0x859524 = 0.00242f;
+				*(float*)0x859520 = 0.00222f / (fMaximumWidth / fMaximumHeight);
+				bSomeHudScaleFixFlag = true;
 			}
 			else
 			{
-				*CRadar__radarHeight = 82.0;
-				*CRadar__radarWidth = 96.0;
-				*(float*)0x859524 = 0.00242;
-				*(float*)0x859520 = 0.00222 / (fMaximumWidth / fMaximumHeight);
-				bSomeHudScaleFixFlag = 1;
+				*CRadar__radarHeight = 76.0f; 
+				*CRadar__radarWidth = 94.0f; 
 			}
 		}
 	}
