@@ -649,6 +649,26 @@ skip:
 
 //-----------------------------------------------------------
 
+NUDE PathProcessingCrashFixHook()
+{
+	__asm
+	{
+		push esi
+		test ecx, ecx;
+		jz exitFn
+		mov esi,dword ptr ss:[esp+8]
+		mov eax,dword ptr ds:[esi]
+		mov edx, 0x63A047;
+		jmp edx;
+
+exitFn:
+		mov esi, 0x63a04d;
+		jmp esi;
+	}
+}
+
+//-----------------------------------------------------------
+
 NUDE SetCarColorCrashFix()
 {
 	__asm
