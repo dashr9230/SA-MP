@@ -8,6 +8,7 @@
 extern int iGtaVersion;
 extern CNetGame* pNetGame;
 extern CGame* pGame;
+extern CChatWindow *pChatWindow;
 
 extern DWORD dwGraphicsLoop; // Used for the external dll game loop.
 
@@ -322,6 +323,45 @@ NUDE VehicleHorn_Hook()
 	_pHornVehicle->entity.nControlFlags = _byteSavedControlFlags;
     
 	_asm retn 4
+}
+
+//-----------------------------------------------------------
+
+DWORD dwSayParam1;
+DWORD dwSayParam2;
+float fSayParam3;
+DWORD dwSayParam4;
+DWORD dwSayParam5;
+DWORD dwSayParam6;
+
+NUDE CPed_Say_Hook()
+{
+    _asm mov eax, [esp+4]
+	_asm mov dwSayParam1, eax
+	_asm mov eax, [esp+8]
+	_asm mov dwSayParam2, eax
+	_asm mov eax, [esp+12]
+	_asm mov fSayParam3, eax
+	_asm mov eax, [esp+16]
+	_asm mov dwSayParam4, eax
+	_asm mov eax, [esp+20]
+	_asm mov dwSayParam5, eax
+	_asm mov eax, [esp+24]
+	_asm mov dwSayParam6, eax
+
+	_asm pushad
+
+	if(dwSayParam1 != 45) {
+		if(pChatWindow) pChatWindow->AddDebugMessage("CPed::Say(%u,%u,%f,%u,%u,%u)",
+			dwSayParam1,dwSayParam2,fSayParam3,dwSayParam4,dwSayParam5,dwSayParam6);
+	}
+
+	_asm popad
+
+    _asm mov eax, [esp+4]
+    _asm test ax, ax
+	_asm mov edx, 0x5EFFE7
+	_asm jmp edx
 }
 
 //-----------------------------------------------------------
