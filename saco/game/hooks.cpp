@@ -649,6 +649,24 @@ skip:
 
 //-----------------------------------------------------------
 
+NUDE SetCarColorCrashFix()
+{
+	__asm
+	{
+		test eax, eax;
+		jz exitFn;						// CPool_CVehicle_GetAt(scmParam1) == NULL
+		mov ecx, 0x47eab8;
+		mov cl,byte ptr ds:[0xA43C7C];	// get color1 (was replaced by jmpcode)
+		jmp ecx;						// continue function
+
+exitFn:
+		mov esi, 0x47eaca;
+		jmp esi;
+	}
+}
+
+//-----------------------------------------------------------
+
 NUDE GetText_Hook()
 {
 	// TODO: GetText_Hook
