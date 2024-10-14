@@ -916,6 +916,16 @@ NUDE VehicleModel_SetEnvironmentMapHook()
 
 //-----------------------------------------------------------
 
+NUDE FUNC_100A5FF0()
+{
+	_asm mov edx, 0x550F10
+	_asm call edx
+
+	_asm ret
+}
+
+//-----------------------------------------------------------
+
 void InstallMethodHook(	DWORD dwInstallAddress,
 						DWORD dwHookFunction )
 {
