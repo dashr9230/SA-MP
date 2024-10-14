@@ -428,7 +428,13 @@ NUDE CCameraCamShake_Sniper_Hook()
 
 NUDE CTrain_ProcessControl_Derailment()
 {
-	// TODO: CTrain_ProcessControl_Derailment
+	_asm {
+		mov eax, [esi+1444];	// get the speed
+		and eax, 0x80000000;	// get the upper bit
+		or eax, 0x3F800000;		// or it with 1.0f (it'll be -ve if bit is set)
+		mov [esi+1444], eax;	// set the new speed
+		ret;
+	}
 }
 
 //-----------------------------------------------------------
