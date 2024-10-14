@@ -630,7 +630,21 @@ NUDE CProjectile_Update_Hook()
 
 NUDE CWeapon__Satchel__Activate_Hook()
 {
-	// TODO: CWeapon__Satchel__Activate_Hook
+	__asm
+	{
+		CMP DWORD PTR DS:[ESI-0x20], 0x27
+		MOV EDI, DWORD PTR SS:[EBP]
+		JNZ skip
+		MOV EAX, [ESP]
+		CMP DWORD PTR DS:[ESI-0x1C], EAX
+		JNZ skip
+		MOV EAX, 0x738880
+		JMP EAX
+
+skip:
+		MOV EAX, 0x7388DB
+		JMP EAX
+	}
 }
 
 //-----------------------------------------------------------
