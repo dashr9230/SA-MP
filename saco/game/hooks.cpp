@@ -193,51 +193,87 @@ NUDE CHud__DrawCrossHairs_Hook()
 
 //-----------------------------------------------------------
 
-NUDE CCamera__Process_Hook() {}
+NUDE CCamera__Process_Hook()
+{
+	// TODO: CCamera__Process_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CGame__Process_Hook() {}
+NUDE CGame__Process_Hook()
+{
+	// TODO: CGame__Process_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CPed_Render_Hook() {}
+NUDE CPed_Render_Hook()
+{
+	// TODO: CPed_Render_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CAnimManager__AddAnimation_Hook() {}
+NUDE CAnimManager__AddAnimation_Hook()
+{
+	// TODO: CAnimManager__AddAnimation_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CAnimManager__BlendAnimation_Hook() {}
+NUDE CAnimManager__BlendAnimation_Hook()
+{
+	// TODO: CAnimManager__BlendAnimation_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CPlayerPed_ProcessControl_Hook() {}
+NUDE CPlayerPed_ProcessControl_Hook()
+{
+	// TODO: CPlayerPed_ProcessControl_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CCivillianPed__ProcessControl_Hook() {}
+NUDE CCivillianPed__ProcessControl_Hook()
+{
+	// TODO: CCivillianPed__ProcessControl_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE TaskUseGun_Hook() {}
+NUDE TaskUseGun_Hook()
+{
+	// TODO: TaskUseGun_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE WeaponRender__GetWeaponSkill_Hook() {}
+NUDE WeaponRender__GetWeaponSkill_Hook()
+{
+	// TODO: WeaponRender__GetWeaponSkill_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CWorld__ProcessAttachedEntities_Hook() {}
+NUDE CWorld__ProcessAttachedEntities_Hook()
+{
+	// TODO: CWorld__ProcessAttachedEntities_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CWorld__ProcessPedsAfterPreRender_Hook() {}
+NUDE CWorld__ProcessPedsAfterPreRender_Hook()
+{
+	// TODO: CWorld__ProcessPedsAfterPreRender_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE AllVehicles_ProcessControl_Hook() {}
+NUDE AllVehicles_ProcessControl_Hook()
+{
+	// TODO: AllVehicles_ProcessControl_Hook
+}
 
 //-----------------------------------------------------------
 // fix horn processing
@@ -310,27 +346,45 @@ NUDE PlayerWalk_Hook()
 
 //-----------------------------------------------------------
 
-NUDE PickUpPickup_Hook() {}
+NUDE PickUpPickup_Hook()
+{
+	// TODO: PickUpPickup_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CWeapon_FireCamera_Hook() {}
+NUDE CWeapon_FireCamera_Hook()
+{
+	// TODO: CWeapon_FireCamera_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CCameraCamShake_Sniper_Hook() {}
+NUDE CCameraCamShake_Sniper_Hook()
+{
+	// TODO: CCameraCamShake_Sniper_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CTrain_ProcessControl_Derailment() {}
+NUDE CTrain_ProcessControl_Derailment()
+{
+	// TODO: CTrain_ProcessControl_Derailment
+}
 
 //-----------------------------------------------------------
 
-NUDE TaskEnterVehicleDriver_Hook() {}
+NUDE TaskEnterVehicleDriver_Hook()
+{
+	// TODO: TaskEnterVehicleDriver_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE TaskExitVehicle() {}
+NUDE TaskExitVehicle()
+{
+	// TODO: TaskExitVehicle
+}
 
 //-----------------------------------------------------------
 
@@ -463,35 +517,60 @@ NUDE CProjectile_Update_Hook()
 }
 
 //-----------------------------------------------------------
-NUDE CWeapon__Satchel__Activate_Hook() {}
+
+NUDE CWeapon__Satchel__Activate_Hook()
+{
+	// TODO: CWeapon__Satchel__Activate_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE GetText_Hook() {}
+NUDE GetText_Hook()
+{
+	// TODO: GetText_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CCustomCarPlateMgr__CreatePlateTexture__RwRasterCreate_Hook() {}
+NUDE CCustomCarPlateMgr__CreatePlateTexture__RwRasterCreate_Hook()
+{
+	// TODO: CCustomCarPlateMgr__CreatePlateTexture__RwRasterCreate_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE RwRasterDestroy_Hook() {}
+NUDE RwRasterDestroy_Hook()
+{
+	// TODO: RwRasterDestroy_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CVehicle__Render_Hook() {}
+NUDE CVehicle__Render_Hook()
+{
+	// TODO: CVehicle__Render_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CObject__Render_Hook() {}
+NUDE CObject__Render_Hook()
+{
+	// TODO: CObject__Render_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CRadar__DrawMap__FindPlayerSpeed_Hook() {}
+NUDE CRadar__DrawMap__FindPlayerSpeed_Hook()
+{
+	// TODO: CRadar__DrawMap__FindPlayerSpeed_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CFileLoader__LoadObjectInstance_Hook() {}
+NUDE CFileLoader__LoadObjectInstance_Hook()
+{
+	// TODO: CFileLoader__LoadObjectInstance_Hook
+}
 
 //-----------------------------------------------------------
 
@@ -530,83 +609,143 @@ NUDE CEscalator__Update_Hook()
 
 //-----------------------------------------------------------
 
-NUDE CObject__CreateRwObject_Hook() {}
+NUDE CObject__CreateRwObject_Hook()
+{
+	// TODO: CObject__CreateRwObject_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CEntity__DeleteRwObject_Hook() {}
+NUDE CEntity__DeleteRwObject_Hook()
+{
+	// TODO: CEntity__DeleteRwObject_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CAutomobile__BreakTowLink_Hook() {}
+NUDE CAutomobile__BreakTowLink_Hook()
+{
+	// TODO: CAutomobile__BreakTowLink_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CWorld__ProcessAttachedEntities__PositionAttachedEntity_Hook() {}
+NUDE CWorld__ProcessAttachedEntities__PositionAttachedEntity_Hook()
+{
+	// TODO: CWorld__ProcessAttachedEntities__PositionAttachedEntity_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CRenderer__RenderEverythingBarRoads_Hook() {}
+NUDE CRenderer__RenderEverythingBarRoads_Hook()
+{
+	// TODO: CRenderer__RenderEverythingBarRoads_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CRenderer__RenderFadingInEntities_Hook() {}
+NUDE CRenderer__RenderFadingInEntities_Hook()
+{
+	// TODO: CRenderer__RenderFadingInEntities_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CRenderer__AddEntityToRenderList_Hook() {}
+NUDE CRenderer__AddEntityToRenderList_Hook()
+{
+	// TODO: CRenderer__AddEntityToRenderList_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CEntity__RenderEffects__RenderRoadsignAtomic_Hook() {}
+NUDE CEntity__RenderEffects__RenderRoadsignAtomic_Hook()
+{
+	// TODO: CEntity__RenderEffects__RenderRoadsignAtomic_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CEventDamage__AffectsPed_Hook() {}
+NUDE CEventDamage__AffectsPed_Hook()
+{
+	// TODO: CEventDamage__AffectsPed_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CCollision__BuildCacheOfCameraCollision_Hook() {}
+NUDE CCollision__BuildCacheOfCameraCollision_Hook()
+{
+	// TODO: CCollision__BuildCacheOfCameraCollision_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CCollision__CheckCameraCollisionVehicles_Hook() {}
+NUDE CCollision__CheckCameraCollisionVehicles_Hook()
+{
+	// TODO: CCollision__CheckCameraCollisionVehicles_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CWorld__CameraToIgnoreThisObject_Hook() {}
+NUDE CWorld__CameraToIgnoreThisObject_Hook()
+{
+	// TODO: CWorld__CameraToIgnoreThisObject_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CAutomobile__ProcessEntityCollision_Hook() {}
+NUDE CAutomobile__ProcessEntityCollision_Hook()
+{
+	// TODO: CAutomobile__ProcessEntityCollision_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CBike__ProcessEntityCollision_Hook() {}
+NUDE CBike__ProcessEntityCollision_Hook()
+{
+	// TODO: CBike__ProcessEntityCollision_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CMonsterTruck__ProcessEntityCollision_Hook() {}
+NUDE CMonsterTruck__ProcessEntityCollision_Hook()
+{
+	// TODO: CMonsterTruck__ProcessEntityCollision_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CPhysical__ProcessEntityCollision_Hook() {}
+NUDE CPhysical__ProcessEntityCollision_Hook()
+{
+	// TODO: CPhysical__ProcessEntityCollision_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CVehicle__UsesSiren_Hook() {}
+NUDE CVehicle__UsesSiren_Hook()
+{
+	// TODO: CVehicle__UsesSiren_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CAEWeatherAudioEntity__UpdateParameters_Hook() {}
+NUDE CAEWeatherAudioEntity__UpdateParameters_Hook()
+{
+	// TODO: CAEWeatherAudioEntity__UpdateParameters_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CWorld__ProcessVerticalLine_Hook() {}
+NUDE CWorld__ProcessVerticalLine_Hook()
+{
+	// TODO: CWorld__ProcessVerticalLine_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CStreaming__RequestModel_Hook() {}
+NUDE CStreaming__RequestModel_Hook()
+{
+	// TODO: CStreaming__RequestModel_Hook
+}
 
 //-----------------------------------------------------------
 
@@ -663,19 +802,31 @@ NUDE CWeapon__FireInstantHit_Hook()
 
 //-----------------------------------------------------------
 
-NUDE CWorld__ProcessLineOfSight_Hook() {}
+NUDE CWorld__ProcessLineOfSight_Hook()
+{
+	// TODO: CWorld__ProcessLineOfSight_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CWeapon__FireSniper_Hook() {}
+NUDE CWeapon__FireSniper_Hook()
+{
+	// TODO: CWeapon__FireSniper_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CBulletInfo__AddBullet_Hook() {}
+NUDE CBulletInfo__AddBullet_Hook()
+{
+	// TODO: CBulletInfo__AddBullet_Hook
+}
 
 //-----------------------------------------------------------
 
-NUDE CVehicle__InflictDamage_Hook() {}
+NUDE CVehicle__InflictDamage_Hook()
+{
+	// TODO: CVehicle__InflictDamage_Hook
+}
 
 //-----------------------------------------------------------
 // fps-related hook
