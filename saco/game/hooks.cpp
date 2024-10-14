@@ -6,11 +6,21 @@
 #include "aimstuff.h"
 
 extern int iGtaVersion;
+extern CNetGame* pNetGame;
+extern CGame* pGame;
 
 extern DWORD dwGraphicsLoop; // Used for the external dll game loop.
 
 #define NUDE void _declspec(naked) 
 
+//-----------------------------------------------------------
+// Globals which are used to avoid stack frame alteration
+// inside the following hook procedures.
+
+DWORD	dwFarClipHookAddr=0;
+DWORD	dwFarClipReturnAddr=0;
+
+// used generically
 PED_TYPE	*_pPlayer;
 
 BYTE	byteSavedCameraMode;
@@ -18,7 +28,7 @@ DWORD	dwCurPlayerActor=0;
 BYTE	*pbyteCameraMode = (BYTE *)0xB6F1A8;
 BYTE	*pbyteCurrentPlayer = (BYTE *)0xB7CD74;
 
-PED_TYPE pedCrimeReportTemp{}; // pay attention! used in 0x100A1790 ; void __thiscall CGame::PlayCrimeReport as pedCrimeReportTemp 0x10150D00
+PED_TYPE pedCrimeReportTemp; // pay attention! used in 0x100A1790 ; void __thiscall CGame::PlayCrimeReport as pedCrimeReportTemp 0x10150D00
 
 int		iRadarColor1=0;
 DWORD	dwSavedCheatFn=0;
@@ -608,8 +618,8 @@ VECTOR* 		pEffectPosn = 0;
 ENTITY_TYPE* 	pTargetEntity = 0;
 VECTOR* 		pTarget = 0;
 VECTOR* 		pPosnForDriveBy = 0;
-BYTE 			byteUnknown8 = 0;
-BYTE 			byteAdditionalEffects = 0;
+DWORD 			dwUnknown8 = 0;
+DWORD 			dwAdditionalEffects = 0;
 
 NUDE CWeapon__FireInstantHit_Hook() 
 {
@@ -628,9 +638,9 @@ NUDE CWeapon__FireInstantHit_Hook()
 		mov eax, [esp+0x18]
 		mov pPosnForDriveBy, eax
 		mov eax, [esp+0x1C]
-		mov byteUnknown8, eax
+		mov dwUnknown8, eax
 		mov eax, [esp+0x20]
-		mov byteAdditionalEffects, eax
+		mov dwAdditionalEffects, eax
 
 		pushad
 	}
@@ -648,6 +658,8 @@ NUDE CWeapon__FireInstantHit_Hook()
 	/*if ( pNetGame && pNetGame->m_pPools->pPlayerPool )
     	sub_10013C90();*/
 
+	_asm popad
+	_asm ret 0x20
 }
 
 //-----------------------------------------------------------
