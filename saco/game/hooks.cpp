@@ -36,6 +36,10 @@ DWORD	dwSavedCheatFn=0;
 
 float fFarClip=1400.0f;
 
+DWORD dwParam1;
+DWORD dwParam2;
+DWORD dwParamThis;
+
 DWORD unnamed_101516D4;
 
 WORD wLastRendObj=0;
@@ -539,6 +543,30 @@ exitFn:
 		xor eax, eax;
 		ret;
 	}
+}
+
+//-----------------------------------------------------------
+
+NUDE GenTaskAlloc_Hook()
+{
+	_asm mov edi, [esp+4]
+	_asm mov dwParam1, edi
+	//_asm mov edx, [esp+8]
+	//_asm mov dwParam2, edx
+	_asm mov dwParamThis, ecx
+
+	_asm pushad
+	_asm mov edx, [edi]
+	_asm mov ecx, edi
+	_asm call dword ptr [edx+4]
+	_asm mov dwParam2, eax
+
+	//pChatWindow->AddDebugMessage("TaskAlloc: 0x%X, 0x%X, 0x%X",dwParamThis,dwParam1,dwParam2);
+	_asm popad
+
+	_asm mov eax, fs:0
+	_asm mov edx, 0x4C3876
+	_asm jmp edx
 }
 
 //-----------------------------------------------------------
