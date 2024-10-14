@@ -525,6 +525,23 @@ exitFn:
 }
 
 //-----------------------------------------------------------
+
+NUDE SetForegroundWindowCrashFixHook()
+{
+	__asm
+	{
+		mov eax, ds:0xC17054;
+		test eax, eax;
+		jz exitFn;
+		push 0x746929;	// return address;
+		ret;
+exitFn:
+		xor eax, eax;
+		ret;
+	}
+}
+
+//-----------------------------------------------------------
 // used for correct report message using 100A1790 ; void __thiscall CGame::PlayCrimeReport
 
 NUDE PoliceScannerAudio_FindPlayerPed_Hook() 
