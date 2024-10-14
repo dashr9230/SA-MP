@@ -21,6 +21,7 @@ BYTE	*pbyteCurrentPlayer = (BYTE *)0xB7CD74;
 PED_TYPE pedCrimeReportTemp{}; // pay attention! used in 0x100A1790 ; void __thiscall CGame::PlayCrimeReport as pedCrimeReportTemp 0x10150D00
 
 int		iRadarColor1=0;
+DWORD	dwSavedCheatFn=0;
 
 float fFarClip=1400.0f;
 
@@ -329,6 +330,7 @@ NUDE CheatProcessorHook()
 {
 	__asm
 	{
+		mov dwSavedCheatFn, eax
 		pushad
 
 		// CCheat::m_bHasPlayerCheated = true
@@ -424,8 +426,6 @@ NUDE CProjectile_Update_Hook()
 		mov ecx, [eax+4]   ;// dwProjectileInfo->pOwner
 		test ecx, ecx 		// 
 		jnz dont_delete 	// if the owner == nullptr, delete the projectile
-
-		pushad
 
 		// delete projectile CProjectileInfo::RemoveIfThisIsAProjectile
 		push dwProjectileObject
