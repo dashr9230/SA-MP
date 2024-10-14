@@ -195,7 +195,15 @@ NUDE CHud__DrawCrossHairs_Hook()
 
 NUDE CCamera__Process_Hook()
 {
-	// TODO: CCamera__Process_Hook
+	_asm pushad
+
+	if(pGame) {
+		pGame->GetCamera()->FUNC_1009D6B0();
+	}
+
+	_asm popad
+	_asm mov eax, 0x52B730
+	_asm jmp eax
 }
 
 //-----------------------------------------------------------
