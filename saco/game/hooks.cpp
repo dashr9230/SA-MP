@@ -403,7 +403,18 @@ NUDE PickUpPickup_Hook()
 
 NUDE CWeapon_FireCamera_Hook()
 {
-	// TODO: CWeapon_FireCamera_Hook
+	_asm mov ebx, [esp+8]
+	_asm mov dwCurPlayerActor, ebx
+	_asm pushad
+
+	if (dwCurPlayerActor == (DWORD)GamePool_FindPlayerPed()) {
+		*(BYTE*)0xC8A7C0 = 1;
+		*(BYTE*)0xC8A7C1 = 1;
+	}
+
+	_asm popad
+	_asm mov ebx, 0x73C260
+	_asm jmp ebx
 }
 
 //-----------------------------------------------------------
