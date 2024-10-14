@@ -421,7 +421,7 @@ NUDE CWeapon_FireCamera_Hook()
 
 NUDE CCameraCamShake_Sniper_Hook()
 {
-	// TODO: CCameraCamShake_Sniper_Hook
+	_asm ret
 }
 
 //-----------------------------------------------------------
