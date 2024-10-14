@@ -485,28 +485,38 @@ NUDE CRadar__DrawMap__FindPlayerSpeed_Hook() {}
 NUDE CFileLoader__LoadObjectInstance_Hook() {}
 
 //-----------------------------------------------------------
-// 0x858BA4 -  `float g_blendDist_ = 20.0f`
-//
-// here two variables 0x858BA4 0x858F84 were changed, the second was needlessly overwritten
-// and both were stored before the change and restored after the change
-// since their value didn't change anywhere in the code, I simplified the code
+
+float fEscalatorCheck1;
+float fEscalatorCheck2;
 
 NUDE CEscalator__Update_Hook() 
 {
 	__asm pushad
 
 	UnFuck(0x858BA4, 4);
+	UnFuck(0x858F84, 4);
+
+	fEscalatorCheck1 = *(float*)0x858BA4;
+	fEscalatorCheck2 = *(float*)0x858F84;
+
 	*(float*)0x858BA4 = 40.0f;
+	*(float*)0x858F84 = 50.0f;
 
 	__asm
 	{
+		popad
+
 		mov eax, 0x717D30 // CEscalator::Update
 		call eax
+
+		pushad
 	}
 
-	*(float*)0x858BA4 = 20.0f; // restore original (GTASA) value
-
+	*(float*)0x858BA4 = fEscalatorCheck1;
+	*(float*)0x858F84 = fEscalatorCheck2;
+	
 	__asm popad
+	__asm ret
 }
 
 //-----------------------------------------------------------
