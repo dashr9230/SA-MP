@@ -921,3 +921,10 @@ ENTITY_TYPE* CPlayerPed::GetGtaContactEntity()
 
 //-----------------------------------------------------------
 
+VEHICLE_TYPE* CPlayerPed::GetGtaContactVehicle()
+{
+	return (VEHICLE_TYPE*)m_pPed->pContactVehicle;
+}
+
+//-----------------------------------------------------------
+
