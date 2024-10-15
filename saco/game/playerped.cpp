@@ -900,3 +900,16 @@ float CPlayerPed::GetAimZ()
 
 //-----------------------------------------------------------
 
+void CPlayerPed::SetAimZ(float fAimZ)
+{
+	if(_isnan(fAimZ) || (fAimZ > 100.0f || fAimZ < -100.0f)) return;
+
+	if(m_pPed) {
+		DWORD dwPlayerInfo = m_pPed->dwPlayerInfoOffset;
+		_asm mov eax, dwPlayerInfo
+		_asm mov ebx, fAimZ
+		_asm mov [eax+84], ebx
+	}
+}
+
+//-----------------------------------------------------------
