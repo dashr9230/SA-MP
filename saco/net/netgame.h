@@ -5,7 +5,7 @@
 
 struct struc_41
 {
-	char field_0;
+	bool bUseCJWalk;
 	int field_1;
 	char _gap5[17];
 	float field_16;
@@ -70,6 +70,7 @@ public:
 	void InitPools();
 
 	DWORD GetTime();
+	BOOL GetWalkStyle() { return field_3D5->bUseCJWalk; };
 
 	CPlayerPool * GetPlayerPool() { return m_pPools->pPlayerPool; };
 
