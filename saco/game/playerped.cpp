@@ -800,6 +800,16 @@ void CPlayerPed::TogglePlayerControllable(int iControllable)
 
 //-----------------------------------------------------------
 
+void CPlayerPed::HandsUp()
+{
+	if(!m_pPed || IN_VEHICLE(m_pPed)) return;
+	if(!IsAdded()) return;
+	if(!GamePool_Ped_GetAt(m_dwGTAId)) return;
+	ScriptCommand(&actor_task_handsup,m_dwGTAId,-2);
+}
+
+//-----------------------------------------------------------
+
 WORD CPlayerPed::GetAmmo()
 {
 	if(m_pPed) {

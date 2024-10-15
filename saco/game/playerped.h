@@ -91,12 +91,14 @@ public:
 
 	CPlayerPed();
 
-	//char _gap0[813];
-	//char _gap0[741];
-	int field_48;
+	void		HandsUp();
+
 	float		GetAimZ();
 	void		SetAimZ(float fAimZ);
 
+	//char _gap0[813];
+	//char _gap0[741];
+	int field_48;
 	int field_4C[10];
 	struc_97 field_74[10];
 	int field_27C[10];
