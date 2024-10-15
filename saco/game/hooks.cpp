@@ -508,6 +508,17 @@ NUDE RadarTranslateColor()
 }
 
 //-----------------------------------------------------------
+
+NUDE SetFarClipHook()
+{
+	_asm fld fFarClip
+	_asm push esi
+	_asm mov esi, [esp+8]
+	_asm mov edx, dwFarClipReturnAddr
+	_asm jmp edx
+}
+
+//-----------------------------------------------------------
 // We use this to trap and exit the game
 
 DWORD dwShutDownTick;
