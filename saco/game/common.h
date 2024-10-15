@@ -140,7 +140,15 @@ typedef struct _PED_TYPE
 	float fRotation1;	// 1368-1372
 	float fRotation2;	// 1372-1376
 
-	char _gap560[44];
+	char _gap560[8];
+
+	DWORD pContactVehicle; // 1384 - 1388
+
+	char _gap56C[24];
+
+	DWORD pContactEntity; // 1412 - 1416
+
+	char _gap588[4];
 
 	DWORD pVehicle;	// 1420-1424
 

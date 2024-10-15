@@ -68,6 +68,7 @@ public:
 	BOOL IsAPassenger();
 
 	VEHICLE_TYPE * GetGtaVehicle();
+	ENTITY_TYPE * GetGtaContactEntity();
 
 	float GetDistanceFromVehicle(CVehicle *pVehicle);
 

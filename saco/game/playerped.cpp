@@ -913,3 +913,11 @@ void CPlayerPed::SetAimZ(float fAimZ)
 }
 
 //-----------------------------------------------------------
+
+ENTITY_TYPE* CPlayerPed::GetGtaContactEntity()
+{
+	return (ENTITY_TYPE*)m_pPed->pContactEntity;
+}
+
+//-----------------------------------------------------------
+
