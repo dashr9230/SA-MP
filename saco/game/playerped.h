@@ -19,6 +19,7 @@ public:
 	void ResetPointers();
 	void SetInitialState();
 
+	void  SetKeys(WORD wKeys, WORD lrAnalog, WORD udAnalog);
 	WORD  GetKeys(WORD * lrAnalog, WORD * udAnalog);
 
 	BYTE GetSpecialKey();
