@@ -34,6 +34,8 @@ PED_TYPE pedCrimeReportTemp; // pay attention! used in 0x100A1790 ; void __thisc
 int		iRadarColor1=0;
 DWORD	dwSavedCheatFn=0;
 
+BOOL	bAllowVehicleCreation=FALSE;
+
 float fFarClip=1400.0f;
 
 DWORD dwParam1;
@@ -453,6 +455,23 @@ NUDE TaskEnterVehicleDriver_Hook()
 NUDE TaskExitVehicle()
 {
 	// TODO: TaskExitVehicle
+}
+
+//-----------------------------------------------------------
+
+NUDE AddVehicleHook()
+{
+	_asm pushad
+
+	if(!bAllowVehicleCreation) {
+		_asm popad
+		_asm xor eax, eax
+		_asm ret
+	}
+
+	_asm popad
+	_asm mov eax, 0x421446
+	_asm jmp eax
 }
 
 //-----------------------------------------------------------
