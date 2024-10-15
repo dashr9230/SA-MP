@@ -19,6 +19,8 @@ public:
 	void ResetPointers();
 	void SetInitialState();
 
+	WORD  GetKeys(WORD * lrAnalog, WORD * udAnalog);
+
 	BYTE GetSpecialKey();
 
 	CAMERA_AIM * GetCurrentAim();
