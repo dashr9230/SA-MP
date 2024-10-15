@@ -767,6 +767,17 @@ int CPlayerPed::GetVehicleSeatID()
 }
 
 //-----------------------------------------------------------
+// Forceful removal
+
+void CPlayerPed::RemoveFromVehicleAndPutAt(float fX, float fY, float fZ)
+{
+	if(!GamePool_Ped_GetAt(m_dwGTAId)) return;
+	if(m_pPed && IN_VEHICLE(m_pPed)) {
+		ScriptCommand(&remove_actor_from_car_and_put_at,m_dwGTAId,fX,fY,fZ);
+	}
+}
+
+//-----------------------------------------------------------
 
 WORD CPlayerPed::GetAmmo()
 {

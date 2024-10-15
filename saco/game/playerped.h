@@ -65,6 +65,8 @@ public:
 
 	void SetImmunities(BOOL bBullet, BOOL bFire, BOOL bExplosion, BOOL bDamage, BOOL bUnknown);
 
+	void RemoveFromVehicleAndPutAt(float fX, float fY, float fZ);
+
 	BOOL IsAPassenger();
 
 	VEHICLE_TYPE * GetGtaVehicle();
