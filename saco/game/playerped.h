@@ -74,6 +74,8 @@ public:
 	ENTITY_TYPE * GetGtaContactEntity();
 
 	int GetVehicleSeatID();
+	void TogglePlayerControllable(int iControllable);
+
 	float GetDistanceFromVehicle(CVehicle *pVehicle);
 
 	void StartJetpack();

@@ -59,6 +59,8 @@ const SCRIPT_COMMAND get_ground_z						= { 0x02ce, "fffv" };	// x, y, z, var_gro
 
 const SCRIPT_COMMAND destroy_racing_checkpoint			= { 0x06d6,	"i" };
 
+const SCRIPT_COMMAND toggle_player_controllable 		= { 0x01B4, "ii" };
+
 const SCRIPT_COMMAND set_actor_armed_weapon				= { 0x01b9, "ii" };
 const SCRIPT_COMMAND get_actor_armed_weapon				= { 0x0470, "iv" };
 
@@ -77,6 +79,7 @@ const SCRIPT_COMMAND put_train_at						= { 0x07c7, "ifff" };
 const SCRIPT_COMMAND get_active_interior				= { 0x077e, "v" };
 const SCRIPT_COMMAND set_actor_z_angle					= { 0x0173, "if" };
 
+const SCRIPT_COMMAND lock_actor							= { 0x04d7, "ii" };
 const SCRIPT_COMMAND refresh_streaming_at				= { 0x04E4, "ff" };
 
 const SCRIPT_COMMAND set_actor_animation_set  		 	= { 0x0245, "is" };

@@ -779,6 +779,27 @@ void CPlayerPed::RemoveFromVehicleAndPutAt(float fX, float fY, float fZ)
 
 //-----------------------------------------------------------
 
+void CPlayerPed::TogglePlayerControllable(int iControllable)
+{
+	MATRIX4X4 mat;
+
+	if(!GamePool_Ped_GetAt(m_dwGTAId)) return;
+
+	if(!iControllable) {
+		ScriptCommand(&toggle_player_controllable,m_bytePlayerNumber,0);
+		ScriptCommand(&lock_actor,m_dwGTAId,1);
+	} else {
+		ScriptCommand(&toggle_player_controllable,m_bytePlayerNumber,1);
+		ScriptCommand(&lock_actor,m_dwGTAId,0);
+		if(!IsInVehicle()) {
+			GetMatrix(&mat);
+			TeleportTo(mat.pos.X,mat.pos.Y,mat.pos.Z);
+		}
+	}
+}
+
+//-----------------------------------------------------------
+
 WORD CPlayerPed::GetAmmo()
 {
 	if(m_pPed) {
