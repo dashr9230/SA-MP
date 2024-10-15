@@ -748,6 +748,26 @@ float CPlayerPed::GetDistanceFromVehicle(CVehicle *pVehicle)
 
 //-----------------------------------------------------------
 
+int CPlayerPed::GetVehicleSeatID()
+{
+	VEHICLE_TYPE *pVehicle;
+
+	if( GetActionTrigger() == ACTION_INCAR && (pVehicle = (VEHICLE_TYPE *)m_pPed->pVehicle) != 0 ) {
+		if(pVehicle->pDriver == m_pPed) return 0;
+		if(pVehicle->pPassengers[0] == m_pPed) return 1;
+		if(pVehicle->pPassengers[1] == m_pPed) return 2;
+		if(pVehicle->pPassengers[2] == m_pPed) return 3;
+		if(pVehicle->pPassengers[3] == m_pPed) return 4;
+		if(pVehicle->pPassengers[4] == m_pPed) return 5;
+		if(pVehicle->pPassengers[5] == m_pPed) return 6;
+		if(pVehicle->pPassengers[6] == m_pPed) return 7;
+	}
+
+	return (-1);
+}
+
+//-----------------------------------------------------------
+
 WORD CPlayerPed::GetAmmo()
 {
 	if(m_pPed) {

@@ -71,6 +71,7 @@ public:
 	VEHICLE_TYPE * GetGtaContactVehicle();
 	ENTITY_TYPE * GetGtaContactEntity();
 
+	int GetVehicleSeatID();
 	float GetDistanceFromVehicle(CVehicle *pVehicle);
 
 	void StartJetpack();
