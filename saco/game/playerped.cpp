@@ -882,3 +882,21 @@ BOOL CPlayerPed::HasGoggles()
 }
 
 //-----------------------------------------------------------
+
+float CPlayerPed::GetAimZ()
+{
+	if(m_pPed) {
+		DWORD dwPlayerInfo = m_pPed->dwPlayerInfoOffset;
+
+		float fAimZ;
+		_asm mov eax, dwPlayerInfo
+		_asm mov ebx, [eax+84]
+		_asm mov fAimZ, ebx
+
+		return fAimZ;
+	}
+	return 0.0f;
+}
+
+//-----------------------------------------------------------
+

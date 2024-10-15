@@ -87,6 +87,8 @@ public:
 	//char _gap0[813];
 	//char _gap0[741];
 	int field_48;
+	float		GetAimZ();
+
 	int field_4C[10];
 	struc_97 field_74[10];
 	int field_27C[10];
