@@ -68,7 +68,6 @@ void ScrPutPlayerInVehicle(RPCParameters *rpcParams) {}
 void ScrRemovePlayerFromVehicle(RPCParameters *rpcParams) {}
 void ScrSetPlayerColor(RPCParameters *rpcParams) {}
 void ScrDisplayGameText(RPCParameters *rpcParams) {}
-void ScrUnk9D(RPCParameters *rpcParams) {}
 void ScrSetInterior(RPCParameters *rpcParams) {}
 void ScrUnk9F(RPCParameters *rpcParams) {}
 void ScrUnkA0(RPCParameters *rpcParams) {}
@@ -106,6 +105,22 @@ void ScrUnk30(RPCParameters *rpcParams) {}
 void ScrInitMenu(RPCParameters *rpcParams) {}
 void ScrShowMenu(RPCParameters *rpcParams) {}
 void ScrHideMenu(RPCParameters *rpcParams) {}
+
+//----------------------------------------------------
+
+void ScrSetCameraPos(RPCParameters *rpcParams)
+{
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	PlayerID sender = rpcParams->sender;
+
+	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
+	VECTOR vecPos;
+	bsData.Read(vecPos.X);
+	bsData.Read(vecPos.Y);
+	bsData.Read(vecPos.Z);
+	pGame->GetCamera()->SetPosition(vecPos.X,vecPos.Y,vecPos.Z,0.0f,0.0f,0.0f);
+}
 
 //----------------------------------------------------
 
@@ -198,8 +213,8 @@ void RegisterScriptRPCs(RakClientInterface* pRakClient)
 	REGISTER_STATIC_RPC(pRakClient, ScrRemovePlayerFromVehicle);
 	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerColor);
 	REGISTER_STATIC_RPC(pRakClient, ScrDisplayGameText);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk9D);
 	REGISTER_STATIC_RPC(pRakClient, ScrSetInterior);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetCameraPos);
 	REGISTER_STATIC_RPC(pRakClient, ScrSetCameraLookAt);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk9F);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnkA0);
@@ -306,8 +321,8 @@ void UnRegisterScriptRPCs(RakClientInterface* pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient, ScrRemovePlayerFromVehicle);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrSetPlayerColor);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrDisplayGameText);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk9D);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrSetInterior);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetCameraPos);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrSetCameraLookAt);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk9F);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnkA0);
