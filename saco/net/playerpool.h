@@ -17,10 +17,19 @@ private:
 
 	char _gapFDA[4016];
 
-	int field_1F8A[MAX_PLAYERS];
+	CNetPlayer		*m_pPlayers[MAX_PLAYERS];
 	int field_2F3A;
 
 public:
+
+	void SetLocalPlayerName(PCHAR szName) { field_6 = szName; };
+	PCHAR GetLocalPlayerName() { return (PCHAR)field_6.c_str(); };
+	void SetPlayerName(PLAYERID playerId, PCHAR szName) {
+		if(playerId > MAX_PLAYERS) return;
+		CNetPlayer* pPlayer = m_pPlayers[playerId];
+		if(!pPlayer) return;
+		pPlayer->m_PlayerName = szName;
+	}
 
 	CLocalPlayer * GetLocalPlayer() { return m_pLocalPlayer; };
 

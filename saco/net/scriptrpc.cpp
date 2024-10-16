@@ -60,7 +60,6 @@ void ScrUnk70(RPCParameters *rpcParams) {}
 void ScrSetSpawnInfo(RPCParameters *rpcParams) {}
 void ScrUnk45(RPCParameters *rpcParams) {}
 void ScrUnk99(RPCParameters *rpcParams) {}
-void ScrUnk0B(RPCParameters *rpcParams) {}
 void ScrSetPlayerPos(RPCParameters *rpcParams) {}
 void ScrUnk0D(RPCParameters *rpcParams) {}
 void ScrUnk0E(RPCParameters *rpcParams) {}
@@ -105,6 +104,40 @@ void ScrUnk30(RPCParameters *rpcParams) {}
 void ScrInitMenu(RPCParameters *rpcParams) {}
 void ScrShowMenu(RPCParameters *rpcParams) {}
 void ScrHideMenu(RPCParameters *rpcParams) {}
+
+//----------------------------------------------------
+
+void ScrSetPlayerName(RPCParameters *rpcParams)
+{
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	PlayerID sender = rpcParams->sender;
+
+	PLAYERID playerId;
+	BYTE byteNickLen;
+	char szNewName[MAX_PLAYER_NAME+1];
+	BYTE byteSuccess;
+
+	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
+
+	CPlayerPool *pPlayerPool = pNetGame->GetPlayerPool();
+
+	bsData.Read(playerId);
+	bsData.Read(byteNickLen);
+
+	if(byteNickLen > MAX_PLAYER_NAME) return;
+
+	bsData.Read(szNewName, byteNickLen);
+	bsData.Read(byteSuccess);
+
+	szNewName[byteNickLen] = '\0';
+
+	if (byteSuccess == 1) pPlayerPool->SetPlayerName(playerId, szNewName);
+
+	// Extra addition which we need to do if this is the local player;
+	if( pPlayerPool->GetLocalPlayerID() == playerId )
+		pPlayerPool->SetLocalPlayerName( szNewName );
+}
 
 //----------------------------------------------------
 
@@ -205,7 +238,7 @@ void RegisterScriptRPCs(RakClientInterface* pRakClient)
 	REGISTER_STATIC_RPC(pRakClient, ScrSetSpawnInfo);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk45);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk99);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk0B);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerName);
 	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerPos);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk0D);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk0E);
@@ -312,7 +345,7 @@ void UnRegisterScriptRPCs(RakClientInterface* pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk2B);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrSetSpawnInfo);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk45);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk0B);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetPlayerName);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk99);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrSetPlayerPos);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk0D);

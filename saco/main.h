@@ -33,12 +33,14 @@ typedef struct _GAME_SETTINGS {
 
 #include "../raknet/RakClientInterface.h"
 #include "../raknet/RakNetworkFactory.h"
+#include "../raknet/BitStream.h"
 #include "../raknet/PacketEnumerations.h"
 #include "../raknet/SAMPRPC.h"
 #include "../raknet/GetTime.h"
 
 #include "net/localplayer.h"
 #include "net/remoteplayer.h"
+#include "net/netplayer.h"
 #include "net/netrpc.h"
 #include "net/actorpool.h"
 #include "net/playerpool.h"

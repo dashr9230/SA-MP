@@ -7,7 +7,7 @@ CPlayerPool::CPlayerPool()
 {
 	// loop through and initialize all net players to null and slot states to false
 	for(PLAYERID playerId = 0; playerId < MAX_PLAYERS; playerId++) {
-		field_1F8A[playerId] = 0;
+		m_pPlayers[playerId] = NULL;
 		field_2A[playerId] = 0;
 	}
 	m_pLocalPlayer = new CLocalPlayer();

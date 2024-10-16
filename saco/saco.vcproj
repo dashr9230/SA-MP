@@ -318,6 +318,12 @@
 				RelativePath=".\net\netgame.h">
 			</File>
 			<File
+				RelativePath=".\net\netplayer.cpp">
+			</File>
+			<File
+				RelativePath=".\net\netplayer.h">
+			</File>
+			<File
 				RelativePath=".\net\netrpc.cpp">
 			</File>
 			<File
