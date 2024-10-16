@@ -46,7 +46,7 @@ CLocalPlayer::CLocalPlayer()
 void CLocalPlayer::ResetAllSyncAttributes()
 {
 	field_17D = 0;
-	field_2FA = 0;
+	m_bWantsAnotherClass = FALSE;
 	field_302 = 0;
 	field_2FE = 0;
 	field_1CF = 0;

@@ -101,7 +101,7 @@
 #define RPC_ScrUnk7E "\x7E"
 #define RPC_ScrUnk7F "\x7F"
 #define RPC_ScrUnk39 "\x39"
-#define RPC_ScrUnk4A "\x4A"
+#define RPC_ScrForceSpawnSelection "\x4A"
 #define RPC_ScrUnk4B "\x4B"
 #define RPC_ScrUnk85 "\x85"
 #define RPC_ScrUnk86 "\x86"

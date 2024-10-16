@@ -35,7 +35,6 @@ void ScrUnk7D(RPCParameters *rpcParams)
 void ScrUnk7E(RPCParameters *rpcParams) {}
 void ScrUnk7F(RPCParameters *rpcParams) {}
 void ScrUnk39(RPCParameters *rpcParams) {}
-void ScrUnk4A(RPCParameters *rpcParams) {}
 void ScrUnk4B(RPCParameters *rpcParams) {}
 void ScrUnk85(RPCParameters *rpcParams) {}
 void ScrUnk86(RPCParameters *rpcParams) {}
@@ -189,6 +188,13 @@ void ScrSetCameraBehindPlayer(RPCParameters *rpcParams)
 
 //----------------------------------------------------
 
+void ScrForceSpawnSelection(RPCParameters *rpcParams)
+{
+	pNetGame->GetPlayerPool()->GetLocalPlayer()->ReturnToClassSelection();
+}
+
+//----------------------------------------------------
+
 void RegisterScriptRPCs(RakClientInterface* pRakClient)
 {
 	REGISTER_STATIC_RPC(pRakClient, ScrUnkA7);
@@ -213,7 +219,7 @@ void RegisterScriptRPCs(RakClientInterface* pRakClient)
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk7E);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk7F);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk39);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk4A);
+	REGISTER_STATIC_RPC(pRakClient, ScrForceSpawnSelection);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk4B);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk85);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk86);
@@ -293,7 +299,7 @@ void RegisterScriptRPCs(RakClientInterface* pRakClient)
 void UnRegisterScriptRPCs(RakClientInterface* pRakClient)
 {
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnkA7);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk4A);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrForceSpawnSelection);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk4B);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk85);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk86);

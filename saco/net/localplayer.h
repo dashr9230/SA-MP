@@ -71,7 +71,7 @@ public:
 	char _gap2E6[16];
 
 	int field_2F6;
-	int field_2FA;
+	BOOL					m_bWantsAnotherClass;
 	int field_2FE;
 	int field_302;
 	int field_306;
@@ -95,6 +95,8 @@ public:
 	void Say(PCHAR szText);
 
 	BOOL IsSpectating() { return m_bIsSpectating; };
+
+	void ReturnToClassSelection() { m_bWantsAnotherClass = TRUE; };
 
 	BOOL IsInRCMode() { return m_bInRCMode; };
 };
