@@ -104,6 +104,17 @@ void ScrHideMenu(RPCParameters *rpcParams) {}
 
 //----------------------------------------------------
 
+void ScrSetCameraBehindPlayer(RPCParameters *rpcParams)
+{
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	PlayerID sender = rpcParams->sender;
+
+	pGame->GetCamera()->SetBehindPlayer();
+}
+
+//----------------------------------------------------
+
 void RegisterScriptRPCs(RakClientInterface* pRakClient)
 {
 	REGISTER_STATIC_RPC(pRakClient, ScrUnkA7);
@@ -167,7 +178,7 @@ void RegisterScriptRPCs(RakClientInterface* pRakClient)
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk9F);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnkA0);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnkA1);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnkA2);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetCameraBehindPlayer);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk0F);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk10);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk11);
@@ -275,7 +286,7 @@ void UnRegisterScriptRPCs(RakClientInterface* pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk9F);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnkA0);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnkA1);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnkA2);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetCameraBehindPlayer);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk0F);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk10);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk11);
