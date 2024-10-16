@@ -92,6 +92,8 @@ public:
 
 	void ResetAllSyncAttributes();
 
+	CPlayerPed * GetPlayerPed() { return m_pPlayerPed; };
+
 	void Say(PCHAR szText);
 
 	BOOL IsSpectating() { return m_bIsSpectating; };

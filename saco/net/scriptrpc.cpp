@@ -75,7 +75,6 @@ void ScrUnk10(RPCParameters *rpcParams) {}
 void ScrUnk11(RPCParameters *rpcParams) {}
 void ScrUnk12(RPCParameters *rpcParams) {}
 void ScrSetPlayerFacingAngle(RPCParameters *rpcParams) {}
-void ScrUnk15(RPCParameters *rpcParams) {}
 void ScrUnk16(RPCParameters *rpcParams) {}
 void ScrUnk40(RPCParameters *rpcParams) {}
 void ScrUnk41(RPCParameters *rpcParams) {}
@@ -198,6 +197,18 @@ void ScrResetMoney(RPCParameters *rpcParams)
 
 //----------------------------------------------------
 
+void ScrResetPlayerWeapons(RPCParameters *rpcParams)
+{
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	PlayerID sender = rpcParams->sender;
+
+	CPlayerPed *pPlayerPed = pNetGame->GetPlayerPool()->GetLocalPlayer()->GetPlayerPed();
+	pPlayerPed->ClearAllWeapons();
+}
+
+//----------------------------------------------------
+
 void ScrForceSpawnSelection(RPCParameters *rpcParams)
 {
 	pNetGame->GetPlayerPool()->GetLocalPlayer()->ReturnToClassSelection();
@@ -274,8 +285,8 @@ void RegisterScriptRPCs(RakClientInterface* pRakClient)
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk11);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk12);
 	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerFacingAngle);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk15);
 	REGISTER_STATIC_RPC(pRakClient, ScrResetMoney);
+	REGISTER_STATIC_RPC(pRakClient, ScrResetPlayerWeapons);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk16);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk40);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk41);
@@ -382,8 +393,8 @@ void UnRegisterScriptRPCs(RakClientInterface* pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk11);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk12);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrSetPlayerFacingAngle);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk15);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrResetMoney);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrResetPlayerWeapons);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk16);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk40);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk41);
