@@ -13,7 +13,7 @@ CPlayerPool::CPlayerPool()
 	m_pLocalPlayer = new CLocalPlayer();
 	field_0 = 0;
 	field_22 = 0;
-	field_4 = 0;
+	m_LocalPlayerID = 0;
 	field_2F3A = 0;
 }
 

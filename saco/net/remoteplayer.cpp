@@ -1,5 +1,6 @@
 
 #include "../main.h"
+#include "../game/util.h"
 
 extern CGame		 *pGame;
 
@@ -61,3 +62,11 @@ void CRemotePlayer::ResetAllSyncAttributes()
 }
 
 //----------------------------------------------------
+
+void CRemotePlayer::SetPlayerColor(DWORD dwColor)
+{
+	SetRadarColor(m_PlayerID,dwColor);
+}
+
+//----------------------------------------------------
+

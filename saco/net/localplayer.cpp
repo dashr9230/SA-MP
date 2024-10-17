@@ -1,5 +1,6 @@
 
 #include "../main.h"
+#include "../game/util.h"
 
 extern CGame		 *pGame;
 
@@ -83,4 +84,11 @@ void CLocalPlayer::Say(PCHAR szText)
 }
 
 //----------------------------------------------------------
+
+void CLocalPlayer::SetPlayerColor(DWORD dwColor)
+{
+	SetRadarColor(pNetGame->GetPlayerPool()->GetLocalPlayerID(),dwColor);
+}
+
+//----------------------------------------------------
 

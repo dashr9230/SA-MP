@@ -60,7 +60,6 @@ void ScrSetPlayerPos(RPCParameters *rpcParams) {}
 void ScrUnk0D(RPCParameters *rpcParams) {}
 void ScrPutPlayerInVehicle(RPCParameters *rpcParams) {}
 void ScrRemovePlayerFromVehicle(RPCParameters *rpcParams) {}
-void ScrSetPlayerColor(RPCParameters *rpcParams) {}
 void ScrDisplayGameText(RPCParameters *rpcParams) {}
 void ScrSetInterior(RPCParameters *rpcParams) {}
 void ScrUnk9F(RPCParameters *rpcParams) {}
@@ -148,6 +147,31 @@ void ScrSetPlayerHealth(RPCParameters *rpcParams)
 
 	pLocalPlayer->GetPlayerPed()->SetHealth(fHealth);
 }
+
+//----------------------------------------------------
+
+void ScrSetPlayerColor(RPCParameters *rpcParams)
+{
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	PlayerID sender = rpcParams->sender;
+
+	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
+	CPlayerPool *pPlayerPool = pNetGame->GetPlayerPool();
+	PLAYERID playerId;
+	DWORD dwColor;
+
+	bsData.Read(playerId);
+	bsData.Read(dwColor);
+
+	if(playerId == pPlayerPool->GetLocalPlayerID()) {
+		pPlayerPool->GetLocalPlayer()->SetPlayerColor(dwColor);
+	} else {
+		CRemotePlayer *pPlayer = pPlayerPool->GetAt(playerId);
+		if(pPlayer)	pPlayer->SetPlayerColor(dwColor);
+	}
+}
+
 
 //----------------------------------------------------
 

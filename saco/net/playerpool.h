@@ -8,8 +8,9 @@
 class CPlayerPool
 {
 private:
+
 	int field_0;
-	short field_4;
+	PLAYERID		m_LocalPlayerID;
 	std::string	field_6;
 	int field_22;
 	CLocalPlayer	*m_pLocalPlayer;
@@ -32,6 +33,15 @@ public:
 	}
 
 	CLocalPlayer * GetLocalPlayer() { return m_pLocalPlayer; };
+
+	CRemotePlayer* GetAt(PLAYERID playerId) {
+		if(playerId > MAX_PLAYERS) { return NULL; }
+		CNetPlayer *pNetPlayer = m_pPlayers[playerId];
+		if(pNetPlayer) return pNetPlayer->m_pRemotePlayer;
+		return NULL;
+	};
+
+	PLAYERID GetLocalPlayerID() { return m_LocalPlayerID; };
 
 	CPlayerPool();
 };
