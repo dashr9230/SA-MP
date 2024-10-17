@@ -58,7 +58,6 @@ void ScrUnk45(RPCParameters *rpcParams) {}
 void ScrUnk99(RPCParameters *rpcParams) {}
 void ScrSetPlayerPos(RPCParameters *rpcParams) {}
 void ScrUnk0D(RPCParameters *rpcParams) {}
-void ScrUnk0E(RPCParameters *rpcParams) {}
 void ScrPutPlayerInVehicle(RPCParameters *rpcParams) {}
 void ScrRemovePlayerFromVehicle(RPCParameters *rpcParams) {}
 void ScrSetPlayerColor(RPCParameters *rpcParams) {}
@@ -131,6 +130,23 @@ void ScrSetPlayerName(RPCParameters *rpcParams)
 	// Extra addition which we need to do if this is the local player;
 	if( pPlayerPool->GetLocalPlayerID() == playerId )
 		pPlayerPool->SetLocalPlayerName( szNewName );
+}
+
+//----------------------------------------------------
+
+void ScrSetPlayerHealth(RPCParameters *rpcParams)
+{
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	PlayerID sender = rpcParams->sender;
+
+	CLocalPlayer *pLocalPlayer = pNetGame->GetPlayerPool()->GetLocalPlayer();
+	float fHealth;
+
+	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
+	bsData.Read(fHealth);
+
+	pLocalPlayer->GetPlayerPed()->SetHealth(fHealth);
 }
 
 //----------------------------------------------------
@@ -312,7 +328,7 @@ void RegisterScriptRPCs(RakClientInterface* pRakClient)
 	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerName);
 	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerPos);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk0D);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk0E);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerHealth);
 	REGISTER_STATIC_RPC(pRakClient, ScrPutPlayerInVehicle);
 	REGISTER_STATIC_RPC(pRakClient, ScrRemovePlayerFromVehicle);
 	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerColor);
@@ -420,7 +436,7 @@ void UnRegisterScriptRPCs(RakClientInterface* pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk99);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrSetPlayerPos);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk0D);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk0E);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetPlayerHealth);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrPutPlayerInVehicle);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrRemovePlayerFromVehicle);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrSetPlayerColor);

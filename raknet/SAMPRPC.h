@@ -129,7 +129,7 @@
 #define RPC_ScrSetPlayerName "\x0B"
 #define RPC_ScrSetPlayerPos "\x0C"
 #define RPC_ScrUnk0D "\x0D"
-#define RPC_ScrUnk0E "\x0E"
+#define RPC_ScrSetPlayerHealth "\x0E"
 #define RPC_ScrPutPlayerInVehicle "\x46"
 #define RPC_ScrRemovePlayerFromVehicle "\x47"
 #define RPC_ScrSetPlayerColor "\x48"
