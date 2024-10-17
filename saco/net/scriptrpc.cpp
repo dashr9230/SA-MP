@@ -47,7 +47,6 @@ void ScrStopFlashGangZone(RPCParameters *rpcParams) {}
 void ScrUnk56(RPCParameters *rpcParams) {}
 void ScrUnk57(RPCParameters *rpcParams) {}
 void ScrUnk58(RPCParameters *rpcParams) {}
-void ScrUnk68(RPCParameters *rpcParams) {}
 void ScrUnk59(RPCParameters *rpcParams) {}
 void ScrUnk5A(RPCParameters *rpcParams) {}
 void ScrUnk5B(RPCParameters *rpcParams) {}
@@ -216,6 +215,19 @@ void ScrForceSpawnSelection(RPCParameters *rpcParams)
 
 //----------------------------------------------------
 
+void ScrEnableStuntBonus(RPCParameters *rpcParams)
+{
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
+
+	bool bStuntBonusEnabled;
+	bsData.Read(bStuntBonusEnabled);
+	pGame->EnableStuntBonus(bStuntBonusEnabled);
+}
+
+//----------------------------------------------------
+
 void RegisterScriptRPCs(RakClientInterface* pRakClient)
 {
 	REGISTER_STATIC_RPC(pRakClient, ScrUnkA7);
@@ -253,7 +265,7 @@ void RegisterScriptRPCs(RakClientInterface* pRakClient)
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk56);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk57);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk58);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk68);
+	REGISTER_STATIC_RPC(pRakClient, ScrEnableStuntBonus);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk59);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk5A);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk5B);
@@ -333,7 +345,7 @@ void UnRegisterScriptRPCs(RakClientInterface* pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk56);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk57);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk58);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk68);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrEnableStuntBonus);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk59);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk5A);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk5B);

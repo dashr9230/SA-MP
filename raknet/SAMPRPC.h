@@ -114,7 +114,7 @@
 #define RPC_ScrUnk56 "\x56"
 #define RPC_ScrUnk57 "\x57"
 #define RPC_ScrUnk58 "\x58"
-#define RPC_ScrUnk68 "\x68"
+#define RPC_ScrEnableStuntBonus "\x68"
 #define RPC_ScrUnk59 "\x59"
 #define RPC_ScrUnk5A "\x5A"
 #define RPC_ScrUnk5B "\x5B"
