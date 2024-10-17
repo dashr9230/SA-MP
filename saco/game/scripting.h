@@ -110,6 +110,7 @@ const SCRIPT_COMMAND set_panel_row_enable				= { 0x08D9, "iii" };
 const SCRIPT_COMMAND get_panel_active_row				= { 0x08D7, "iv" };
 
 const SCRIPT_COMMAND set_player_drunk_visuals			= { 0x052c, "ii" }; // player, severity (0-255)
+const SCRIPT_COMMAND handling_responsiveness			= { 0x03fd, "ii" }; // player, severity (0-255)
 
 // ---
 

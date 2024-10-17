@@ -52,7 +52,6 @@ void ScrUnk5A(RPCParameters *rpcParams) {}
 void ScrUnk5B(RPCParameters *rpcParams) {}
 void ScrUnk6F(RPCParameters *rpcParams) {}
 void ScrUnk62(RPCParameters *rpcParams) {}
-void ScrUnk96(RPCParameters *rpcParams) {}
 void ScrUnk70(RPCParameters *rpcParams) {}
 void ScrSetSpawnInfo(RPCParameters *rpcParams) {}
 void ScrUnk45(RPCParameters *rpcParams) {}
@@ -244,6 +243,23 @@ void ScrSetPlayerDrunkVisuals(RPCParameters* rpcParams)
 
 //----------------------------------------------------
 
+void ScrSetPlayerDrunkHandling(RPCParameters* rpcParams)
+{
+	PCHAR Data = reinterpret_cast<PCHAR>(rpcParams->input);
+	int iBitLength = rpcParams->numberOfBitsOfData;
+	RakNet::BitStream bsData(Data,(iBitLength/8)+1,false);
+
+	int iVisuals;
+	bsData.Read(iVisuals);
+
+	CPlayerPed* pPlayer = pGame->FindPlayerPed();
+	if (pPlayer) {
+		ScriptCommand(&handling_responsiveness, 0, iVisuals);
+	}
+}
+
+//----------------------------------------------------
+
 void RegisterScriptRPCs(RakClientInterface* pRakClient)
 {
 	REGISTER_STATIC_RPC(pRakClient, ScrUnkA7);
@@ -287,8 +303,8 @@ void RegisterScriptRPCs(RakClientInterface* pRakClient)
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk5B);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk6F);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk62);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk96);
 	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerDrunkVisuals);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerDrunkHandling);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk70);
 	REGISTER_STATIC_RPC(pRakClient, ScrSetSpawnInfo);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk45);
@@ -367,8 +383,8 @@ void UnRegisterScriptRPCs(RakClientInterface* pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk5B);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk6F);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk62);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk96);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrSetPlayerDrunkVisuals);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetPlayerDrunkHandling);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk70);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk38);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk90);
