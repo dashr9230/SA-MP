@@ -97,6 +97,7 @@ public:
 	void Say(PCHAR szText);
 
 	void SetPlayerColor(DWORD dwColor);
+	DWORD GetPlayerColorAsRGBA();
 	BOOL IsSpectating() { return m_bIsSpectating; };
 
 	void ReturnToClassSelection() { m_bWantsAnotherClass = TRUE; };

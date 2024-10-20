@@ -92,3 +92,10 @@ void CLocalPlayer::SetPlayerColor(DWORD dwColor)
 
 //----------------------------------------------------
 
+DWORD CLocalPlayer::GetPlayerColorAsRGBA()
+{
+	return TranslateColorCodeToRGBA(pNetGame->GetPlayerPool()->GetLocalPlayerID());
+}
+
+//----------------------------------------------------
+
