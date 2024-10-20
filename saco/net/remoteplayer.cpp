@@ -70,3 +70,10 @@ void CRemotePlayer::SetPlayerColor(DWORD dwColor)
 
 //----------------------------------------------------
 
+DWORD CRemotePlayer::GetPlayerColorAsRGBA()
+{
+	return TranslateColorCodeToRGBA(m_PlayerID);
+}
+
+//----------------------------------------------------
+

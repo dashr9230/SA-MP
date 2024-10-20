@@ -58,6 +58,7 @@ public:
 	void ResetAllSyncAttributes();
 
 	void SetPlayerColor(DWORD dwColor);
+	DWORD GetPlayerColorAsRGBA();
 };
 
 //----------------------------------------------------
