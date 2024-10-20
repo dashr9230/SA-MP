@@ -17,6 +17,7 @@ public:
 	std::string		m_PlayerName;
 
 	CNetPlayer(PCHAR szPlayerName, BOOL bIsNPC);
+	~CNetPlayer();
 };
 
 //----------------------------------------------------

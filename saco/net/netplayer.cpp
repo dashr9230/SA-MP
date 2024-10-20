@@ -14,3 +14,9 @@ CNetPlayer::CNetPlayer(PCHAR szPlayerName, BOOL bIsNPC)
 
 //----------------------------------------------------
 
+CNetPlayer::~CNetPlayer()
+{
+	SAFE_DELETE(m_pRemotePlayer);
+}
+
+//----------------------------------------------------
