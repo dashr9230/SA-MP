@@ -98,6 +98,7 @@ public:
 
 	void SetPlayerColor(DWORD dwColor);
 	DWORD GetPlayerColorAsRGBA();
+	DWORD GetPlayerColorAsARGB();
 	BOOL IsSpectating() { return m_bIsSpectating; };
 
 	void ReturnToClassSelection() { m_bWantsAnotherClass = TRUE; };
