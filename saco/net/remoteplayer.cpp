@@ -77,3 +77,9 @@ DWORD CRemotePlayer::GetPlayerColorAsRGBA()
 
 //----------------------------------------------------
 
+DWORD CRemotePlayer::GetPlayerColorAsARGB()
+{
+	return (TranslateColorCodeToRGBA(m_PlayerID) >> 8) | 0xFF000000;
+}
+
+//----------------------------------------------------

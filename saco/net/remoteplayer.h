@@ -59,6 +59,7 @@ public:
 
 	void SetPlayerColor(DWORD dwColor);
 	DWORD GetPlayerColorAsRGBA();
+	DWORD GetPlayerColorAsARGB();
 };
 
 //----------------------------------------------------
