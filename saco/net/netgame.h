@@ -1,6 +1,8 @@
 
 #pragma once
 
+#define GAMESTATE_CONNECTED		5
+
 #define GAMESTATE_WAIT_CONNECT	1
 
 struct struc_41
@@ -70,6 +72,7 @@ public:
 	void InitPools();
 
 	DWORD GetTime();
+	int GetGameState() { return m_iGameState; };
 	BOOL GetWalkStyle() { return field_3D5->bUseCJWalk; };
 
 	CPlayerPool * GetPlayerPool() { return m_pPools->pPlayerPool; };

@@ -28,6 +28,9 @@ CUnkClass15				*pUnkClass15=0;
 
 BOOL					bGameInited=FALSE;
 
+BOOL					bQuitGame=FALSE;
+DWORD					dwStartQuitTick=0;
+
 WORD					wVehicleComponentDebug=0;
 
 IDirect3D9				*pD3D;
@@ -424,6 +427,17 @@ void TheGraphicsLoop()
 	DoProcessStuff();
 
 	_asm popad
+}
+
+//----------------------------------------------------
+
+void QuitGame()
+{
+	if(pNetGame && pNetGame->GetGameState() == GAMESTATE_CONNECTED) {
+		pNetGame->GetRakClient()->Disconnect(500);
+	}
+	bQuitGame = TRUE;
+	dwStartQuitTick = GetTickCount();
 }
 
 //----------------------------------------------------
