@@ -3,9 +3,22 @@
 
 CLabelPool::CLabelPool()
 {
-	for(WORD wLabel = 0; wLabel < MAX_LABELS; wLabel++)
+	for(WORD wLabelID = 0; wLabelID < MAX_LABELS; wLabelID++)
 	{
-		memset(&field_0[wLabel], 0, sizeof(struc_92));
-		field_E800[wLabel] = 0;
+		memset(&m_Labels[wLabelID], 0, sizeof(LABEL));
+		m_bLabelSlotState[wLabelID] = FALSE;
 	}
+}
+
+BOOL CLabelPool::Delete(WORD wLabelID)
+{
+	if(wLabelID >= MAX_LABELS) return FALSE;
+	if(!m_bLabelSlotState[wLabelID]) return FALSE;
+
+	if(m_Labels[wLabelID].szText)
+		free(m_Labels[wLabelID].szText);
+	memset(&m_Labels[wLabelID], 0, sizeof(LABEL));
+	m_bLabelSlotState[wLabelID] = FALSE;
+
+	return TRUE;
 }

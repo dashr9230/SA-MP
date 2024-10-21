@@ -1,17 +1,20 @@
 
 #pragma once
 
-struct struc_92
+typedef struct _LABEL
 {
-	char _gap[29];
-};
+	char *szText;
+	char _gap4[25];
+} LABEL;
 
 class CLabelPool
 {
 private:
-	struc_92 field_0[MAX_LABELS];
-	int field_E800[MAX_LABELS];
+	LABEL m_Labels[MAX_LABELS];
+	BOOL m_bLabelSlotState[MAX_LABELS];
 public:
 	CLabelPool();
+
+	BOOL Delete(WORD wLabelID);
 
 };
