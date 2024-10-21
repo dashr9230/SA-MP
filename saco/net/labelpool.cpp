@@ -10,6 +10,17 @@ CLabelPool::CLabelPool()
 	}
 }
 
+CLabelPool::~CLabelPool()
+{
+	for(WORD wLabelID = 0; wLabelID < MAX_LABELS; wLabelID++)
+	{
+		if(m_bLabelSlotState[wLabelID])
+		{
+			Delete(wLabelID);
+		}
+	}
+}
+
 BOOL CLabelPool::Delete(WORD wLabelID)
 {
 	if(wLabelID >= MAX_LABELS) return FALSE;

@@ -14,6 +14,7 @@ private:
 	BOOL m_bLabelSlotState[MAX_LABELS];
 public:
 	CLabelPool();
+	~CLabelPool();
 
 	BOOL Delete(WORD wLabelID);
 
