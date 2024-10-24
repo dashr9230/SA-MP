@@ -9,6 +9,7 @@ public:
 
 	// Constructor/Destructor.
 	CActorPed(int iSkin, float fPosX, float fPosY, float fPosZ, float fRotation = 0.0f);
+	virtual ~CActorPed();
 
 	void  Destroy();
 

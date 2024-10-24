@@ -34,6 +34,13 @@ CActorPed::CActorPed(int iSkin, float fX, float fY,float fZ,float fRotation)
 
 //-----------------------------------------------------------
 
+CActorPed::~CActorPed()
+{
+	Destroy();
+}
+
+//-----------------------------------------------------------
+
 void CActorPed::Destroy()
 {
 	DWORD dwPedPtr = (DWORD)m_pPed;
