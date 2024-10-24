@@ -14,6 +14,7 @@ public:
 	void  Destroy();
 
 	float GetHealth();
+	float GetArmour();
 
 	PED_TYPE    *m_pPed;
 	DWORD		m_dwMarkerID;

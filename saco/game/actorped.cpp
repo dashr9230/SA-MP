@@ -86,3 +86,11 @@ void CActorPed::SetHealth(float fHealth)
 
 //-----------------------------------------------------------
 
+float CActorPed::GetArmour()
+{
+	if(!m_pPed) return 0.0f;
+	return m_pPed->fArmour;
+}
+
+//-----------------------------------------------------------
+
