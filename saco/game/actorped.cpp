@@ -74,3 +74,15 @@ float CActorPed::GetHealth()
 
 //-----------------------------------------------------------
 
+void CActorPed::SetHealth(float fHealth)
+{
+	if(!m_pPed) return;
+	m_pPed->fHealth = fHealth;
+
+	if(m_pPed->fHealth <= 0.0f) {
+		ScriptCommand(&kill_actor,m_dwGTAId);
+	}
+}
+
+//-----------------------------------------------------------
+

@@ -83,6 +83,7 @@ const SCRIPT_COMMAND set_actor_z_angle					= { 0x0173, "if" };
 
 const SCRIPT_COMMAND lock_actor							= { 0x04d7, "ii" };
 const SCRIPT_COMMAND refresh_streaming_at				= { 0x04E4, "ff" };
+const SCRIPT_COMMAND kill_actor							= { 0x0321, "i" };
 
 const SCRIPT_COMMAND set_actor_animation_set  		 	= { 0x0245, "is" };
 const SCRIPT_COMMAND request_animation					= { 0x04ED, "s" };
