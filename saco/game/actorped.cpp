@@ -94,3 +94,11 @@ float CActorPed::GetArmour()
 
 //-----------------------------------------------------------
 
+void CActorPed::SetArmour(float fArmour)
+{
+	if(!m_pPed) return;
+	m_pPed->fArmour = fArmour;
+}
+
+//-----------------------------------------------------------
+

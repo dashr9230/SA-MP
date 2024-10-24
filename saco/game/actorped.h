@@ -15,6 +15,7 @@ public:
 
 	float GetHealth();
 	float GetArmour();
+	void  SetArmour(float fArmour);
 
 	PED_TYPE    *m_pPed;
 	DWORD		m_dwMarkerID;
