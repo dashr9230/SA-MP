@@ -34,3 +34,28 @@ CActorPed::CActorPed(int iSkin, float fX, float fY,float fZ,float fRotation)
 
 //-----------------------------------------------------------
 
+void CActorPed::Destroy()
+{
+	DWORD dwPedPtr = (DWORD)m_pPed;
+
+	// If it points to the CPlaceable vtable it's not valid
+	if(!m_pPed || !GamePool_Ped_GetAt(m_dwGTAId) || m_pPed->entity.vtable == 0x863C40)
+	{
+		m_pPed = NULL;
+		m_pEntity = NULL;
+		m_dwGTAId = 0;
+		return;
+	}
+
+	// DESTROY METHOD
+	_asm mov ecx, dwPedPtr
+	_asm mov ebx, [ecx] ; vtable
+	_asm push 1
+	_asm call [ebx] ; destroy
+
+	m_pPed = NULL;
+	m_pEntity = NULL;
+}
+
+//-----------------------------------------------------------
+
