@@ -32,6 +32,8 @@ int ScriptCommand(const SCRIPT_COMMAND* pScriptCommand, ...);	// The main script
 const SCRIPT_COMMAND request_model						= { 0x0247, "i" };		// (CAR_*|BIKE_*|BOAT_*|WEAPON_*|OBJECT_*)
 const SCRIPT_COMMAND load_requested_models				= { 0x038B, "" };		// -/-
 
+const SCRIPT_COMMAND create_actor						= { 0x009A, "iifffv" };	// PEDTYPE_*, #MODEL, x, y, z, var_actor
+
 const SCRIPT_COMMAND fade								= { 0x016A, "ii" };		// (time in ms), FADE_*
 
 const SCRIPT_COMMAND set_current_time					= { 0x00C0, "ii" };		// Hours, Minutes
@@ -108,6 +110,8 @@ const SCRIPT_COMMAND set_panel_column_width				= { 0x09DB, "iii" };
 const SCRIPT_COMMAND set_panel_row_enable				= { 0x08D9, "iii" };
 
 const SCRIPT_COMMAND get_panel_active_row				= { 0x08D7, "iv" };
+
+const SCRIPT_COMMAND set_actor_dicision					= { 0x60B, "ii" };
 
 const SCRIPT_COMMAND set_player_drunk_visuals			= { 0x052c, "ii" }; // player, severity (0-255)
 const SCRIPT_COMMAND handling_responsiveness			= { 0x03fd, "ii" }; // player, severity (0-255)

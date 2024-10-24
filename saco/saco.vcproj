@@ -130,6 +130,12 @@
 			Name="game"
 			Filter="">
 			<File
+				RelativePath=".\game\actorped.cpp">
+			</File>
+			<File
+				RelativePath=".\game\actorped.h">
+			</File>
+			<File
 				RelativePath=".\game\address.h">
 			</File>
 			<File
