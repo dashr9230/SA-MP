@@ -13,6 +13,7 @@ public:
 
 	void  Destroy();
 
+	float GetHealth();
 
 	PED_TYPE    *m_pPed;
 	DWORD		m_dwMarkerID;

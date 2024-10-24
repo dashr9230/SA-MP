@@ -66,3 +66,11 @@ void CActorPed::Destroy()
 
 //-----------------------------------------------------------
 
+float CActorPed::GetHealth()
+{
+	if(!m_pPed) return 0.0f;
+	return m_pPed->fHealth;
+}
+
+//-----------------------------------------------------------
+
