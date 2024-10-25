@@ -79,6 +79,16 @@ BOOL __declspec(naked) FlushPedIntelligence()
 	_asm ret
 }
 
+void CActorPed::ClearAnimations()
+{
+	dwActorPed = (DWORD)m_pPed;
+	if(dwActorPed) {
+		FlushPedIntelligence();
+	}
+}
+
+//-----------------------------------------------------------
+
 //-----------------------------------------------------------
 
 float CActorPed::GetHealth()

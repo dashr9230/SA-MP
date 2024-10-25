@@ -17,6 +17,9 @@ public:
 	float GetArmour();
 	void  SetArmour(float fArmour);
 
+	void ClearAnimations();
+
+
 	PED_TYPE    *m_pPed;
 	DWORD		m_dwMarkerID;
 	DWORD 		m_dwArrow;
