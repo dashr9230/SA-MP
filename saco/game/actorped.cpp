@@ -66,6 +66,21 @@ void CActorPed::Destroy()
 
 //-----------------------------------------------------------
 
+DWORD dwActorPed=0;
+
+BOOL __declspec(naked) FlushPedIntelligence()
+{
+	_asm mov edx, dwActorPed
+	_asm mov ecx, [edx+0x47C]
+	_asm push 1
+	_asm mov eax, 0x601640
+	_asm call eax
+	_asm mov eax, 1
+	_asm ret
+}
+
+//-----------------------------------------------------------
+
 float CActorPed::GetHealth()
 {
 	if(!m_pPed) return 0.0f;
