@@ -13,6 +13,7 @@ public:
 
 	void  Destroy();
 
+	void  SetTargetRotation(float fRotation);
 	float GetHealth();
 	float GetArmour();
 	void  SetArmour(float fArmour);
