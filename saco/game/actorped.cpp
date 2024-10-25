@@ -66,6 +66,32 @@ void CActorPed::Destroy()
 
 //-----------------------------------------------------------
 
+void CActorPed::ApplyAnimation( char *szAnimName, char *szAnimFile, float fT,
+								int opt1, int opt2, int opt3, int opt4, int iUnk )
+{
+	int iWaitAnimLoad=0;
+
+	if(!m_pPed) return;
+	if(!GamePool_Ped_GetAt(m_dwGTAId)) return;
+
+	// Can't allow 'naughty' anims!
+	if( !stricmp(szAnimFile,"SEX") )
+		return;
+
+	if (!pGame->IsAnimationLoaded(szAnimFile)) {
+		pGame->RequestAnimation(szAnimFile);
+		while(!pGame->IsAnimationLoaded(szAnimFile)) {
+			Sleep(1);
+			iWaitAnimLoad++;
+			if(iWaitAnimLoad == 15) return; // we can't wait forever
+		}
+	}
+
+	ScriptCommand(&apply_animation,m_dwGTAId,szAnimName,szAnimFile,fT,opt1,opt2,opt3,opt4,iUnk);
+}
+
+//-----------------------------------------------------------
+
 DWORD dwActorPed=0;
 
 BOOL __declspec(naked) FlushPedIntelligence()
