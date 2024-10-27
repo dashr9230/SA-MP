@@ -645,6 +645,22 @@ void CNetGame::Process()
 */
 }
 
+void CNetGame::BroadcastData(char *szUniqueID,
+							 RakNet::BitStream *bitStream,
+							 PLAYERID excludedPlayer,
+							 char orderingStream)
+{
+	// TODO: CNetGame::BroadcastData W: .text:0048E190 L: .text:080ABAD0
+}
+
+void CNetGame::SendToPlayer(char *szUniqueID,
+							RakNet::BitStream *bitStream,
+							PLAYERID playerId,
+							char orderingChannel)
+{
+	// TODO: CNetGame::SendToPlayer W: .text:0048E440 L: .text:080AC1D0
+}
+
 void CNetGame::LoadBanList()
 {
 	// TODO: CNetGame::LoadBanList W: 48EAE0 L: 80AF1A0

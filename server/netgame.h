@@ -4,7 +4,9 @@
 
 #define MAX_SPAWNS 319
 
+#define GAMESTATE_STOPPED	 0
 #define GAMESTATE_RUNNING	 1
+#define GAMESTATE_RESTARTING 2
 
 #define INVALID_ID			0xFFFF
 
@@ -93,6 +95,16 @@ public:
 	void LoadAllFilterscripts();
 
 	void Process();
+
+	void BroadcastData( char *szUniqueID,
+						RakNet::BitStream *bitStream,
+						PLAYERID excludedPlayer,
+						char orderingStream );
+
+	void SendToPlayer( char *szUniqueID,
+					   RakNet::BitStream *bitStream,
+					   PLAYERID playerId,
+					   char orderingChannel );
 
 	void LoadBanList();
 

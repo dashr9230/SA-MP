@@ -41,6 +41,7 @@
 
 	#include <windows.h>
 	#include <mmsystem.h>
+	#include <shellapi.h>
 	#include <time.h>
 #else
 	#define SLEEP(x) { usleep(x * 1000); }

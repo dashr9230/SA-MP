@@ -2,6 +2,8 @@
 #ifndef SAMPSRV_PLAYERPOOL_H
 #define SAMPSRV_PLAYERPOOL_H
 
+#define INVALID_PLAYER_ID 0xFFFF
+
 class CPlayerPool // size: WL 199024
 {
 private:

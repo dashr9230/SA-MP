@@ -1,7 +1,7 @@
 
-bool unnamed_1(PVECTOR vec); // unused
-bool unnamed_2(PVECTOR vec);
-bool unnamed_3(PVECTOR vec);
+bool FUNC_1(PVECTOR vec); // unused
+bool FUNC_2(PVECTOR vec);
+bool FUNC_3(PVECTOR vec);
 float GetLength(PVECTOR vec);
 void CrossProduct(PVECTOR out, PVECTOR vec1, PVECTOR vec2); // unused
 void Transform(PVECTOR out, PMATRIX4X4 mat, PVECTOR vec); // unused

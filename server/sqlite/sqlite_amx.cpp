@@ -10,6 +10,7 @@
 static cell AMX_NATIVE_CALL n_open(AMX* amx, cell* params)
 {
 	// TODO: n_open
+	return 0;
 }
 
 // native db_close(DB:db);

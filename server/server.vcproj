@@ -741,6 +741,12 @@
 			RelativePath=".\exceptions.cpp">
 		</File>
 		<File
+			RelativePath=".\format.cpp">
+		</File>
+		<File
+			RelativePath=".\format.h">
+		</File>
+		<File
 			RelativePath=".\gangzonepool.cpp">
 		</File>
 		<File
@@ -814,6 +820,12 @@
 		</File>
 		<File
 			RelativePath=".\resource.h">
+		</File>
+		<File
+			RelativePath=".\runutil.cpp">
+		</File>
+		<File
+			RelativePath=".\runutil.h">
 		</File>
 		<File
 			RelativePath=".\server.rc">

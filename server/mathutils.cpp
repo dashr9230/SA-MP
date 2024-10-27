@@ -8,7 +8,7 @@
 
 //----------------------------------------------------
 
-bool unnamed_1(PVECTOR vec)
+bool FUNC_1(PVECTOR vec)
 {
 	if( vec->X <= 1.0f && vec->X >= -1.0f &&
 		vec->Y <= 1.0f && vec->Y >= -1.0f &&
@@ -21,7 +21,7 @@ bool unnamed_1(PVECTOR vec)
 
 //----------------------------------------------------
 
-bool unnamed_2(PVECTOR vec)
+bool FUNC_2(PVECTOR vec)
 {
 	if( vec->X < 20000.0f && vec->X > -20000.0f &&
 		vec->Y < 20000.0f && vec->Y > -20000.0f &&
@@ -34,7 +34,7 @@ bool unnamed_2(PVECTOR vec)
 
 //----------------------------------------------------
 
-bool unnamed_3(PVECTOR vec)
+bool FUNC_3(PVECTOR vec)
 {
 	if( vec->X < 100.0f && vec->X > -100.0f &&
 		vec->Y < 100.0f && vec->Y > -100.0f &&
