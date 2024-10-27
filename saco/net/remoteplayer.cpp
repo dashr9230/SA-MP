@@ -13,7 +13,7 @@ CRemotePlayer::CRemotePlayer()
 {
 	field_1E7 = 0;
 	field_10A = 0;
-	field_1E5 = -1;
+	m_PlayerID = INVALID_PLAYER_ID;
 	field_1DD = 0;
 	field_1B8 = 0;
 	field_109 = -1;

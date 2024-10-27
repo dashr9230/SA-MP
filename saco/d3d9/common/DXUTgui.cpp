@@ -7675,6 +7675,7 @@ bool CUniBuffer::SetText( LPCTSTR wszText )
 	WCHAR szBuffer[2048];
 	ConvertAnsiToWide(wszText, szBuffer, 2048);
     SetText(szBuffer);
+	return true;
 }
 
 

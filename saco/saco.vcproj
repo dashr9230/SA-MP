@@ -193,6 +193,12 @@
 				RelativePath=".\game\keystuff.h">
 			</File>
 			<File
+				RelativePath=".\game\menu.cpp">
+			</File>
+			<File
+				RelativePath=".\game\menu.h">
+			</File>
+			<File
 				RelativePath=".\game\patches.cpp">
 			</File>
 			<File
@@ -227,6 +233,12 @@
 			</File>
 			<File
 				RelativePath=".\game\util.h">
+			</File>
+			<File
+				RelativePath=".\game\vehicle.cpp">
+			</File>
+			<File
+				RelativePath=".\game\vehicle.h">
 			</File>
 		</Filter>
 		<Filter
@@ -352,6 +364,12 @@
 			</File>
 			<File
 				RelativePath=".\net\playerpool.h">
+			</File>
+			<File
+				RelativePath=".\net\remoteplayer.cpp">
+			</File>
+			<File
+				RelativePath=".\net\remoteplayer.h">
 			</File>
 			<File
 				RelativePath=".\net\scriptrpc.cpp">
@@ -899,6 +917,12 @@
 		<Filter
 			Name="d3dhook"
 			Filter="">
+			<File
+				RelativePath=".\d3dhook\ID3DXFontHook.cpp">
+			</File>
+			<File
+				RelativePath=".\d3dhook\ID3DXFontHook.h">
+			</File>
 			<File
 				RelativePath=".\d3dhook\IDirect3DDevice9Hook.cpp">
 			</File>

@@ -816,6 +816,20 @@ void CGame::AddToLocalMoney(int iAmount)
 
 //-----------------------------------------------------------
 
+void CGame::ResetLocalMoney()
+{
+	int iMoney = GetLocalMoney();
+	if(!iMoney) return;
+
+	if(iMoney < 0) {
+		AddToLocalMoney(abs(iMoney));
+	} else {
+		AddToLocalMoney(-(iMoney));
+	}
+}
+
+//-----------------------------------------------------------
+
 int CGame::GetLocalMoney()
 {
 	return *(int *)0xB7CE50;

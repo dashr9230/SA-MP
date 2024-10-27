@@ -88,8 +88,8 @@ typedef struct _ENTITY_TYPE
 
 	MATRIX4X4 *mat; // 20-24
 	DWORD *pdwRenderWare; // 24-28
-
-	char _gap1C[6];
+	DWORD dwProcessingFlags; // 28-32
+	char _gap20[2];
 
 	WORD nModelIndex; // 34-36
 	char _gap24[18];

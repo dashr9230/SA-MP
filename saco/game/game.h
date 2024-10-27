@@ -3,7 +3,9 @@
 
 #include "address.h"
 #include "common.h"
+#include "vehicle.h"
 #include "playerped.h"
+#include "actorped.h"
 #include "audio.h"
 #include "camera.h"
 #include "scripting.h"
@@ -81,6 +83,7 @@ public:
 	void	DisableMarker(DWORD dwMarkerID);
 
 	void   AddToLocalMoney(int iAmount);
+	void   ResetLocalMoney();
 	int	   GetLocalMoney();
 
 	BYTE   GetActiveInterior();
@@ -96,6 +99,8 @@ public:
 	void	ProcessInputDisabling();
 
 	//-----------------------------------------------------------
+
+	CCamera		*GetCamera() { return m_pGameCamera; };
 
 	void FUNC_10062570() { field_55++; };
 

@@ -3,6 +3,8 @@
 
 #include <string>
 
+#define INVALID_PLAYER_ID 0xFFFF
+
 //----------------------------------------------------
 
 class CPlayerPool

@@ -17,13 +17,13 @@ void GameModeRestart(RPCParameters *rpcParams) {}
 void ConnectionRejected(RPCParameters *rpcParams) {}
 void ClientMessage(RPCParameters *rpcParams) {}
 void WorldTime(RPCParameters *rpcParams) {}
-void Unk5F(RPCParameters *rpcParams) {}
-void Unk3F(RPCParameters *rpcParams) {}
-void Unk97(RPCParameters *rpcParams) {}
+void Pickup(RPCParameters *rpcParams) {}
+void DestroyPickup(RPCParameters *rpcParams) {}
+void DestroyWeaponPickup(RPCParameters *rpcParams) {}
 void ScmEvent(RPCParameters *rpcParams) {}
 void Weather(RPCParameters *rpcParams) {}
-void Unk1D(RPCParameters *rpcParams) {}
-void Unk1E(RPCParameters *rpcParams) {}
+void SetTimeEx(RPCParameters *rpcParams) {}
+void ToggleClock(RPCParameters *rpcParams) {}
 void Unk3C(RPCParameters *rpcParams) {}
 void WorldPlayerAdd(RPCParameters *rpcParams) {}
 void WorldPlayerDeath(RPCParameters *rpcParams) {}
@@ -68,13 +68,13 @@ void RegisterRPCs(RakClientInterface * pRakClient)
 	REGISTER_STATIC_RPC(pRakClient,ConnectionRejected);
 	REGISTER_STATIC_RPC(pRakClient,ClientMessage);
 	REGISTER_STATIC_RPC(pRakClient,WorldTime);
-	REGISTER_STATIC_RPC(pRakClient,Unk5F);
-	REGISTER_STATIC_RPC(pRakClient,Unk3F);
-	REGISTER_STATIC_RPC(pRakClient,Unk97);
+	REGISTER_STATIC_RPC(pRakClient,Pickup);
+	REGISTER_STATIC_RPC(pRakClient,DestroyPickup);
+	REGISTER_STATIC_RPC(pRakClient,DestroyWeaponPickup);
 	REGISTER_STATIC_RPC(pRakClient,ScmEvent);
 	REGISTER_STATIC_RPC(pRakClient,Weather);
-	REGISTER_STATIC_RPC(pRakClient,Unk1D);
-	REGISTER_STATIC_RPC(pRakClient,Unk1E);
+	REGISTER_STATIC_RPC(pRakClient,SetTimeEx);
+	REGISTER_STATIC_RPC(pRakClient,ToggleClock);
 	REGISTER_STATIC_RPC(pRakClient,Unk3C);
 	REGISTER_STATIC_RPC(pRakClient,WorldPlayerAdd);
 	REGISTER_STATIC_RPC(pRakClient,WorldPlayerDeath);
@@ -136,13 +136,13 @@ void UnRegisterRPCs(RakClientInterface * pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient,ConnectionRejected);
 	UNREGISTER_STATIC_RPC(pRakClient,ClientMessage);
 	UNREGISTER_STATIC_RPC(pRakClient,WorldTime);
-	UNREGISTER_STATIC_RPC(pRakClient,Unk5F);
-	UNREGISTER_STATIC_RPC(pRakClient,Unk3F);
-	UNREGISTER_STATIC_RPC(pRakClient,Unk97);
+	UNREGISTER_STATIC_RPC(pRakClient,Pickup);
+	UNREGISTER_STATIC_RPC(pRakClient,DestroyPickup);
+	UNREGISTER_STATIC_RPC(pRakClient,DestroyWeaponPickup);
 	UNREGISTER_STATIC_RPC(pRakClient,ScmEvent);
 	UNREGISTER_STATIC_RPC(pRakClient,Weather);
-	UNREGISTER_STATIC_RPC(pRakClient,Unk1D);
-	UNREGISTER_STATIC_RPC(pRakClient,Unk1E);
+	UNREGISTER_STATIC_RPC(pRakClient,SetTimeEx);
+	UNREGISTER_STATIC_RPC(pRakClient,ToggleClock);
 	UNREGISTER_STATIC_RPC(pRakClient,EditAttachedObject);
 	UNREGISTER_STATIC_RPC(pRakClient,EditObject);
 	UNREGISTER_STATIC_RPC(pRakClient,SelectObject);

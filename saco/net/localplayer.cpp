@@ -3,6 +3,7 @@
 #include "../game/util.h"
 
 extern CGame		 *pGame;
+extern CNetGame		 *pNetGame;
 
 //----------------------------------------------------------
 

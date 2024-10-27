@@ -76,6 +76,8 @@ public:
 	BOOL GetWalkStyle() { return field_3D5->bUseCJWalk; };
 
 	CPlayerPool * GetPlayerPool() { return m_pPools->pPlayerPool; };
+	CGangZonePool * GetGangZonePool() { return m_pPools->pGangZonePool; };
+	RakClientInterface * GetRakClient() { return m_pRakClient; };
 
 	void  ResetMapIcons();
 	void  SetMapIcon(BYTE byteIndex, float fX, float fY, float fZ, BYTE byteIcon, DWORD dwColor, int iStyle);

@@ -7,6 +7,9 @@
 
 #define SAFE_DELETE(p)	{ if (p) { delete (p); (p) = NULL; } }
 
+#define IDC_CMDEDIT		1
+
+#define MAX_PLAYER_NAME			24
 #define MAX_SETTINGS_STRING		256
 
 #define GTASA_VERSION_UNKNOWN	0
@@ -29,6 +32,7 @@ typedef struct _GAME_SETTINGS {
 
 #include "d3d9/include/d3d9.h"
 #include "d3d9/include/d3dx9core.h"
+#include "d3d9/common/dxstdafx.h"
 #include "game/game.h"
 
 #include "../raknet/RakClientInterface.h"

@@ -43,7 +43,7 @@ private:
 	DWORD field_1D9;
 	int field_1DD;
 	int field_1E1;
-	short field_1E5;
+	PLAYERID			m_PlayerID;
 	short field_1E7;
 	int field_1E9;
 	int field_1ED;
