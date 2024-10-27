@@ -7,6 +7,23 @@ typedef struct _VECTOR {
 	float X,Y,Z;
 } VECTOR, *PVECTOR;
 
+#pragma pack(1)
+typedef struct _MATRIX4X4 {
+	VECTOR right;
+	DWORD  flags;
+	VECTOR up;
+	float  pad_u;
+	VECTOR at;
+	float  pad_a;
+	VECTOR pos;
+	float  pad_p;
+} MATRIX4X4, *PMATRIX4X4;
+
+#pragma pack(1)
+typedef struct _QUATERNION {
+	float W,X,Y,Z;
+} QUATERNION, *PQUATERNION;
+
 typedef struct _struc_64
 {
 	int iModelID;

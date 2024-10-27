@@ -19,7 +19,8 @@ public:
 	BOOL Process();
 
 	void SetLocalPlayerName(PCHAR szName) { strcpy(m_szLocalPlayerName,szName); };
-	PCHAR GetPlayerName(BYTE bytePlayerID) { return m_szPlayerNames[bytePlayerID]; };
+	PCHAR GetLocalPlayerName() { return m_szLocalPlayerName; };
+	PCHAR GetPlayerName(PLAYERID playerId) { return m_szPlayerNames[playerId]; };
 
 	CPlayerPool();
 	~CPlayerPool();

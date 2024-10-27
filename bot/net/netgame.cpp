@@ -28,7 +28,7 @@ typedef struct _TRAILER_SYNC_DATA // size: 54
 	char _gap0[54];
 } TRAILER_SYNC_DATA;
 
-char unnamed_2[63];
+INCAR_SYNC_DATA icSync;
 PASSENGER_SYNC_DATA unnamed_5[MAX_PLAYERS];
 BOOL bPlayerSlotState[MAX_PLAYERS];
 BYTE byteState;
@@ -470,13 +470,13 @@ void CNetGame::ShutdownForGameModeRestart()
 
 	StopRecordingPlayback();
 
-	memset(unnamed_2,0,sizeof(unnamed_2));
+	memset(&ofSync,0,sizeof(ONFOOT_SYNC_DATA));
+	memset(&icSync,0,sizeof(INCAR_SYNC_DATA));
 	memset(unnamed_3,0,sizeof(unnamed_3));
 	memset(unnamed_4,0,sizeof(unnamed_4));
 	memset(unnamed_5,0,sizeof(unnamed_5));
-	memset(&bVehicleSlotState[0],0,sizeof(BOOL)*MAX_VEHICLES);
-	memset(&ofSync,0,sizeof(ONFOOT_SYNC_DATA));
 	memset(&bPlayerSlotState[0],0,sizeof(BOOL)*MAX_PLAYERS);
+	memset(&bVehicleSlotState[0],0,sizeof(BOOL)*MAX_VEHICLES);
 	memset(&bytePlayerState[0],0,sizeof(BYTE)*MAX_PLAYERS);
 
 	m_bZoneNames = FALSE;
@@ -538,14 +538,15 @@ void CNetGame::Init(PCHAR szHostOrIp, int iPort,
 	m_bZoneNames = FALSE;
 	m_bInstagib = FALSE;
 
-	memset(unnamed_2,0,sizeof(unnamed_2));
 	memset(&ofSync,0,sizeof(ONFOOT_SYNC_DATA));
+	memset(&icSync,0,sizeof(INCAR_SYNC_DATA));
 	memset(unnamed_3,0,sizeof(unnamed_3));
 	memset(unnamed_4,0,sizeof(unnamed_4));
 	memset(unnamed_5,0,sizeof(unnamed_5));
-	memset(&bVehicleSlotState[0],0,sizeof(BOOL)*MAX_VEHICLES);
 	memset(&bPlayerSlotState[0],0,sizeof(BOOL)*MAX_PLAYERS);
+	memset(&bVehicleSlotState[0],0,sizeof(BOOL)*MAX_VEHICLES);
 	memset(&bytePlayerState[0],0,sizeof(BYTE)*MAX_PLAYERS);
+
 	field_1DE = 0;
 	field_1E2 = 0;
 	field_1F2 = GetTickCount();

@@ -3,6 +3,9 @@
 
 #define CHECK_PARAMS(n) { if (params[0] != (n * sizeof(cell))) { logprintf("SCRIPT: Bad parameter count (Count is %d, Should be %d): ", params[0] / sizeof(cell), n); return 0; } }
 
+char* format_amxstring(AMX *amx, cell *params, int parm, int &len);
+int set_amxstring(AMX *amx,cell amx_addr,const char *source,int max);
+
 extern CNetGame* pNetGame;
 
 //----------------------------------------------------------------------------------

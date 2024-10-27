@@ -27,7 +27,7 @@ void ScrUnk45(RPCParameters *rpcParams)
 
 //----------------------------------------------------
 
-void ScrUnk0B(RPCParameters *rpcParams)
+void ScrSetPlayerName(RPCParameters *rpcParams)
 {
 }
 
@@ -59,7 +59,7 @@ void ScrUnk0D(RPCParameters *rpcParams)
 
 //----------------------------------------------------
 
-void ScrUnk0E(RPCParameters *rpcParams)
+void ScrSetPlayerHealth(RPCParameters *rpcParams)
 {
 }
 
@@ -142,13 +142,13 @@ void ScrSetInterior(RPCParameters *rpcParams)
 
 //----------------------------------------------------
 
-void ScrUnk9D(RPCParameters *rpcParams)
+void ScrSetCameraPos(RPCParameters *rpcParams)
 {
 }
 
 //----------------------------------------------------
 
-void ScrUnk9E(RPCParameters *rpcParams)
+void ScrSetCameraLookAt(RPCParameters *rpcParams)
 {
 }
 
@@ -178,7 +178,7 @@ void ScrUnk41(RPCParameters *rpcParams)
 
 //----------------------------------------------------
 
-void ScrUnkA2(RPCParameters *rpcParams)
+void ScrSetCameraBehindPlayer(RPCParameters *rpcParams)
 {
 }
 
@@ -222,13 +222,13 @@ void ScrSetPlayerFacingAngle(RPCParameters *rpcParams)
 
 //----------------------------------------------------
 
-void ScrUnk14(RPCParameters *rpcParams)
+void ScrResetMoney(RPCParameters *rpcParams)
 {
 }
 
 //----------------------------------------------------
 
-void ScrUnk15(RPCParameters *rpcParams)
+void ScrResetPlayerWeapons(RPCParameters *rpcParams)
 {
 }
 
@@ -396,7 +396,7 @@ void ScrUnk39(RPCParameters *rpcParams)
 
 //----------------------------------------------------
 
-void ScrUnk4A(RPCParameters *rpcParams)
+void ScrForceSpawnSelection(RPCParameters *rpcParams)
 {
 }
 
@@ -491,28 +491,28 @@ void RegisterScriptRPCs(RakClientInterface* pRakClient)
 	REGISTER_STATIC_RPC(pRakClient, ScrSetSpawnInfo);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk45);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk99);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk0B);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerName);
 	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerPos);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk0D);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk0E);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerHealth);
 	REGISTER_STATIC_RPC(pRakClient, ScrPutPlayerInVehicle);
 	REGISTER_STATIC_RPC(pRakClient, ScrRemovePlayerFromVehicle);
 	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerColor);
 	REGISTER_STATIC_RPC(pRakClient, ScrDisplayGameText);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk9D);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk9E);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetCameraPos);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetCameraLookAt);
 	REGISTER_STATIC_RPC(pRakClient, ScrSetInterior);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk9F);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnkA0);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnkA1);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnkA2);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetCameraBehindPlayer);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk0F);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk10);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk11);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk12);
 	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerFacingAngle);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk14);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk15);
+	REGISTER_STATIC_RPC(pRakClient, ScrResetMoney);
+	REGISTER_STATIC_RPC(pRakClient, ScrResetPlayerWeapons);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk16);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk40);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk41);
@@ -541,7 +541,7 @@ void RegisterScriptRPCs(RakClientInterface* pRakClient)
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk7E);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk7F);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk39);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk4A);
+	REGISTER_STATIC_RPC(pRakClient, ScrForceSpawnSelection);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk4B);
 	REGISTER_STATIC_RPC(pRakClient, ScrInitMenu);
 	REGISTER_STATIC_RPC(pRakClient, ScrShowMenu);
@@ -564,29 +564,29 @@ void UnRegisterScriptRPCs(RakClientInterface* pRakClient)
 {
 	UNREGISTER_STATIC_RPC(pRakClient, ScrSetSpawnInfo);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk45);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk0B);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetPlayerName);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk99);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrSetPlayerPos);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk0D);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk0E);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetPlayerHealth);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrPutPlayerInVehicle);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrRemovePlayerFromVehicle);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrSetPlayerColor);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrDisplayGameText);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk9D);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk9E);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetCameraPos);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetCameraLookAt);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrSetInterior);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk9F);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnkA0);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnkA1);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnkA2);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetCameraBehindPlayer);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk0F);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk10);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk11);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk12);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrSetPlayerFacingAngle);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk14);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk15);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrResetMoney);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrResetPlayerWeapons);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk16);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk40);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk41);
@@ -614,7 +614,7 @@ void UnRegisterScriptRPCs(RakClientInterface* pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk7E);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk7F);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk39);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk4A);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrForceSpawnSelection);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk4B);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrInitMenu);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrShowMenu);
