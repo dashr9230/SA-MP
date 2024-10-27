@@ -41,7 +41,6 @@ public:
 	RPCIndex GetIndexFromFunctionName(unsigned char uniqueIdentifier);
 	void AddIdentifierWithFunction(unsigned char uniqueIdentifier, void *functionPointer, bool isPointerToMember);
 protected:
-	DataStructures::List<RPCNode *> rpcSet;
 	RPCNode *rpcSet[RPC_SET_SIZE];
 };
 
