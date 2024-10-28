@@ -99,6 +99,9 @@ public:
 
 	PCHAR		GetLoadedShopName();
 	void		LoadShoppingDataSubsection(PCHAR szSectionName);
+	PCHAR		GetShopName();
+
+
 	//char _gap0[813];
 	//char _gap0[741];
 	int field_48;

@@ -1028,3 +1028,20 @@ void CPlayerPed::LoadShoppingDataSubsection(PCHAR szSectionName)
 
 //-----------------------------------------------------------
 
+PCHAR CPlayerPed::GetShopName()
+{
+	if(!m_pPed) return NULL;
+	if(!GamePool_Ped_GetAt(m_dwGTAId)) return NULL;
+
+	DWORD dwPedPtr = (DWORD)m_pPed;
+	PCHAR szResult = NULL;
+
+	_asm mov eax, dwPedPtr
+	_asm mov ebx, [eax+1932]
+	_asm mov szResult, ebx
+
+	return szResult;
+}
+
+//-----------------------------------------------------------
+
