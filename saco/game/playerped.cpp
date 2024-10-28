@@ -1045,3 +1045,33 @@ PCHAR CPlayerPed::GetShopName()
 
 //-----------------------------------------------------------
 
+CHAR szShopName[32];
+
+void CPlayerPed::SetShopName(char *szNewShopName)
+{
+	if(!m_pPed) return;
+	if(!GamePool_Ped_GetAt(m_dwGTAId)) return;
+
+	DWORD dwPedPtr = (DWORD)m_pPed;
+
+	if(szNewShopName && strlen(szNewShopName))
+	{
+		if(strlen(szNewShopName) <= 31)
+		{
+			memset(szShopName, 0, sizeof(szShopName));
+			strncpy(szShopName, szNewShopName, sizeof(szShopName));
+
+			_asm mov eax, dwPedPtr
+			_asm mov ebx, offset szShopName
+			_asm mov [eax+1932], ebx
+		}
+	}
+	else
+	{
+		_asm mov eax, dwPedPtr
+		_asm mov byte ptr [eax+1932], 0
+	}
+}
+
+//-----------------------------------------------------------
+

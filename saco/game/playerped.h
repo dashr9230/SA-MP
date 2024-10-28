@@ -100,6 +100,7 @@ public:
 	PCHAR		GetLoadedShopName();
 	void		LoadShoppingDataSubsection(PCHAR szSectionName);
 	PCHAR		GetShopName();
+	void		SetShopName(char *szNewShopName);
 
 
 	//char _gap0[813];
