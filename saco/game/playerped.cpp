@@ -1016,3 +1016,15 @@ PCHAR CPlayerPed::GetLoadedShopName()
 
 //-----------------------------------------------------------
 
+void CPlayerPed::LoadShoppingDataSubsection(PCHAR szSectionName)
+{
+	if(strlen(szSectionName) > 8) return;
+
+	_asm push szSectionName
+	_asm mov edx, 0x49BBE0
+	_asm call edx
+	_asm pop edx
+}
+
+//-----------------------------------------------------------
+
