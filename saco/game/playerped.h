@@ -34,6 +34,7 @@ public:
 			return GameGetPlayerCameraMode(m_bytePlayerNumber);
 	};
 
+	void  ShowMarker(int iMarkerColorID);
 	void  HideMarker();
 	BYTE  GetCurrentWeapon();
 	int   GetCurrentVehicleID();

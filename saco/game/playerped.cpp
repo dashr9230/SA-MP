@@ -1,5 +1,11 @@
 
+
+#include <windows.h>
+#include <assert.h>
+#define _ASSERT assert
+
 #include "../main.h"
+#include "game.h"
 #include "util.h"
 #include "keystuff.h"
 #include "task.h"
@@ -382,7 +388,6 @@ BYTE CPlayerPed::GetSpecialKey()
 	return 0;
 }
 
-
 //-----------------------------------------------------------
 
 CAMERA_AIM * CPlayerPed::GetCurrentAim()
@@ -417,6 +422,17 @@ int CPlayerPed::GetCurrentVehicleID()
 
 	VEHICLE_TYPE *pVehicle = (VEHICLE_TYPE *)m_pPed->pVehicle;
 	return GamePool_Vehicle_GetIndex(pVehicle);
+}
+
+//-----------------------------------------------------------
+// Shows the normal marker
+
+void CPlayerPed::ShowMarker(int iMarkerColorID)
+{
+	if (m_dwArrow) HideMarker();
+	ScriptCommand(&create_arrow_above_actor, m_dwGTAId, &m_dwArrow);
+	ScriptCommand(&set_marker_color, m_dwArrow, iMarkerColorID);
+	ScriptCommand(&show_on_radar2, m_dwArrow, 2);
 }
 
 //-----------------------------------------------------------
