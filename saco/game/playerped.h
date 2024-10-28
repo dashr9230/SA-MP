@@ -104,6 +104,7 @@ public:
 
 	void		SetWeaponSkillLevel(int iSkill, float fLevel);
 
+	VECTOR*		GetBonePosition(int iBone, VECTOR *vecPos);
 
 	//char _gap0[813];
 	//char _gap0[741];

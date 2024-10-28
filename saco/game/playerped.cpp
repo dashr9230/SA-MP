@@ -1085,3 +1085,24 @@ void CPlayerPed::SetWeaponSkillLevel(int iSkill, float fLevel)
 
 //-----------------------------------------------------------
 
+VECTOR* CPlayerPed::GetBonePosition(int iBone, VECTOR *vecPos)
+{
+	if(!m_pPed) return NULL;
+	if(m_pPed->entity.vtable == 0x863C40) return NULL;
+
+	DWORD dwPedPtr = (DWORD)m_pPed;
+	VECTOR* vecResult;
+
+	_asm push 0
+	_asm push iBone
+	_asm push vecPos
+	_asm mov ecx, dwPedPtr
+	_asm mov edx, 0x5E4280 ; CPed__GetBonePosition
+	_asm call edx
+	_asm mov vecResult, eax
+
+	return vecResult;
+}
+
+//-----------------------------------------------------------
+
