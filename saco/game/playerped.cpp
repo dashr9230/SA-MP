@@ -1075,3 +1075,13 @@ void CPlayerPed::SetShopName(char *szNewShopName)
 
 //-----------------------------------------------------------
 
+void CPlayerPed::SetWeaponSkillLevel(int iSkill, float fLevel)
+{
+	if(m_bytePlayerNumber == 0)
+		GameSetLocalPlayerWeaponSkillLevel(iSkill, fLevel);
+	else
+		GameSetPlayerWeaponSkillLevel(m_bytePlayerNumber, iSkill, fLevel);
+}
+
+//-----------------------------------------------------------
+

@@ -102,6 +102,8 @@ public:
 	PCHAR		GetShopName();
 	void		SetShopName(char *szNewShopName);
 
+	void		SetWeaponSkillLevel(int iSkill, float fLevel);
+
 
 	//char _gap0[813];
 	//char _gap0[741];
