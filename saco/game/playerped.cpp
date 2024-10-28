@@ -1006,3 +1006,13 @@ VEHICLE_TYPE* CPlayerPed::GetGtaContactVehicle()
 
 //-----------------------------------------------------------
 
+PCHAR CPlayerPed::GetLoadedShopName()
+{
+	if(!m_pPed) return NULL;
+	if(!GamePool_Ped_GetAt(m_dwGTAId)) return NULL;
+
+	return (PCHAR)0xA9A7D8;
+}
+
+//-----------------------------------------------------------
+
