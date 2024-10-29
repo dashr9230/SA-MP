@@ -92,6 +92,8 @@ public:
 
 	CPlayerPed();
 
+	void		ProcessVehicleHorn();
+
 	void		HandsUp();
 
 	float		GetAimZ();

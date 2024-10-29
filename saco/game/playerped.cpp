@@ -1006,6 +1006,34 @@ VEHICLE_TYPE* CPlayerPed::GetGtaContactVehicle()
 
 //-----------------------------------------------------------
 
+void CPlayerPed::ProcessVehicleHorn()
+{
+	if(!m_pPed) return;
+	if(!GamePool_Ped_GetAt(m_dwGTAId)) return;
+
+	GTA_CONTROLSET *pPlayerControls;
+
+	if(!m_bytePlayerNumber) {
+		pPlayerControls = GameGetInternalKeys();
+	} else {
+		pPlayerControls = GameGetPlayerKeys(m_bytePlayerNumber);
+	}
+
+	VEHICLE_TYPE *pGtaVehicle = (VEHICLE_TYPE *)m_pPed->pVehicle;
+
+	if(pGtaVehicle) {
+		if(IN_VEHICLE(m_pPed) && (pGtaVehicle->pDriver == m_pPed)) {
+			if(pPlayerControls->wKeys1[18]) {
+				pGtaVehicle->byteHorn2 = 1;
+			} else {
+				pGtaVehicle->byteHorn2 = 0;
+			}
+		}
+	}
+}
+
+//-----------------------------------------------------------
+
 PCHAR CPlayerPed::GetLoadedShopName()
 {
 	if(!m_pPed) return NULL;
