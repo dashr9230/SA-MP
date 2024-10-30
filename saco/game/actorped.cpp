@@ -169,3 +169,11 @@ DWORD CActorPed::GetStateFlags()
 
 //-----------------------------------------------------------
 
+void CActorPed::SetStateFlags(DWORD dwState)
+{
+	if(!m_pPed) return;
+	m_pPed->dwStateFlags = dwState;
+}
+
+//-----------------------------------------------------------
+
