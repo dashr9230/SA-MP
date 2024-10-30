@@ -193,3 +193,12 @@ BYTE CActorPed::GetActionTrigger()
 
 //-----------------------------------------------------------
 
+void CActorPed::SetActionTrigger(BYTE byteTrigger)
+{
+	if(!m_pPed) return;
+
+	m_pPed->dwAction = byteTrigger;
+}
+
+//-----------------------------------------------------------
+
