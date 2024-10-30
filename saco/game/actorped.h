@@ -29,6 +29,7 @@ public:
 						int opt1, int opt2, int opt3, int opt4, int iUnk);
 	void ClearAnimations();
 
+	void  ToggleImmunity(BYTE byteEnable);
 
 	PED_TYPE    *m_pPed;
 	DWORD		m_dwMarkerID;
