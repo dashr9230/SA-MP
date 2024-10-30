@@ -177,3 +177,12 @@ void CActorPed::SetStateFlags(DWORD dwState)
 
 //-----------------------------------------------------------
 
+BOOL CActorPed::IsDead()
+{
+	if(!m_pPed) return TRUE;
+	if(m_pPed->fHealth > 0.0f) return FALSE;
+	return TRUE;
+}
+
+//-----------------------------------------------------------
+
