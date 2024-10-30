@@ -161,3 +161,11 @@ void CActorPed::SetArmour(float fArmour)
 
 //-----------------------------------------------------------
 
+DWORD CActorPed::GetStateFlags()
+{
+	if(!m_pPed) return 0;
+	return m_pPed->dwStateFlags;
+}
+
+//-----------------------------------------------------------
+

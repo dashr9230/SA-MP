@@ -18,6 +18,7 @@ public:
 	void  SetHealth(float fHealth);
 	float GetArmour();
 	void  SetArmour(float fArmour);
+	DWORD GetStateFlags();
 
 	void ApplyAnimation(char *szAnimName, char *szAnimFile, float fT,
 						int opt1, int opt2, int opt3, int opt4, int iUnk);
