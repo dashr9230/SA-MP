@@ -186,3 +186,10 @@ BOOL CActorPed::IsDead()
 
 //-----------------------------------------------------------
 
+BYTE CActorPed::GetActionTrigger()
+{
+	return (BYTE)m_pPed->dwAction;
+}
+
+//-----------------------------------------------------------
+
