@@ -101,6 +101,7 @@ public:
 
 	void		ProcessVehicleHorn();
 
+	void		StartDancing(int iStyle);
 	void		HandsUp();
 	BOOL		HasHandsUp();
 	void		HoldItem(int iObject);
@@ -135,9 +136,10 @@ public:
 	int field_2C5;
 	int field_2C9;
 	DWORD 		m_dwArrow;
-	char _gap2D1[1];
-	int field_2D2;
-	char _gap2D6[8];
+	char _gap2D1;
+	int			m_iDanceState;
+	int			m_iDanceStyle;
+	char _gap2DA[4];
 	int field_2DE;
 	int field_2E2;
 	BOOL		m_bGoggleState;

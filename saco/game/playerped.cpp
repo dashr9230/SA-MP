@@ -35,8 +35,8 @@ CPlayerPed::CPlayerPed()
 	field_2AC = 1;
 	m_dwArrow = 0;
 	field_2B9 = 0;
-	field_2F2 = 0;
-	field_2D2 = 0;
+	m_iPissingState = 0;
+	m_iDanceState = 0;
 	field_2DE = 0;
 	field_2E2 = 0;
 	field_48 = 0;
@@ -1169,6 +1169,23 @@ ENTITY_TYPE* CPlayerPed::GetGtaContactEntity()
 VEHICLE_TYPE* CPlayerPed::GetGtaContactVehicle()
 {
 	return (VEHICLE_TYPE*)m_pPed->pContactVehicle;
+}
+
+//-----------------------------------------------------------
+
+char DanceStyleLibs[4][16] = {"WOP","GFUNK","RUNNINGMAN","STRIP"};
+char DanceIdleLoops[4][16] = {"DANCE_LOOP","DANCE_LOOP","DANCE_LOOP","STR_Loop_B"};
+
+void CPlayerPed::StartDancing(int iStyle)
+{
+	if(iStyle < 0 || iStyle > 3) return;
+
+	m_iDanceState = 1;
+	m_iDanceStyle = iStyle;
+
+	if(m_bytePlayerNumber == 0) {
+		ApplyAnimation(DanceIdleLoops[m_iDanceStyle],DanceStyleLibs[m_iDanceStyle],16.0,1,0,0,0,-1);
+	}
 }
 
 //-----------------------------------------------------------
