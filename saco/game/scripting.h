@@ -41,6 +41,9 @@ const SCRIPT_COMMAND set_current_time					= { 0x00C0, "ii" };		// Hours, Minutes
 const SCRIPT_COMMAND is_model_available					= { 0x0248, "i" };		// #MODEL
 
 const SCRIPT_COMMAND set_camera_behind_player			= { 0x0373, "" };		// -/-
+
+const SCRIPT_COMMAND camera_on_vehicle					= { 0x0158, "iii" };	// var_car, ukn, ukn
+
 const SCRIPT_COMMAND point_camera						= { 0x0160, "fffi" };	// x, y, z, type
 const SCRIPT_COMMAND restore_camera_jumpcut				= { 0x02EB, "" };		// -/-
 const SCRIPT_COMMAND set_camera_position				= { 0x015F, "ffffff" }; // x, y, z, vx, vy, vz
@@ -66,6 +69,7 @@ const SCRIPT_COMMAND toggle_player_controllable 		= { 0x01B4, "ii" };
 const SCRIPT_COMMAND set_actor_armed_weapon				= { 0x01b9, "ii" };
 const SCRIPT_COMMAND get_actor_armed_weapon				= { 0x0470, "iv" };
 
+const SCRIPT_COMMAND put_actor_in_car					= { 0x036A, "ii" };
 const SCRIPT_COMMAND set_actor_immunities				= { 0x02ab, "iiiiii" };
 
 const SCRIPT_COMMAND set_actor_can_be_decapitated		= { 0x0446, "ii" };
@@ -83,6 +87,8 @@ const SCRIPT_COMMAND set_actor_z_angle					= { 0x0173, "if" };
 
 const SCRIPT_COMMAND lock_actor							= { 0x04d7, "ii" };
 const SCRIPT_COMMAND refresh_streaming_at				= { 0x04E4, "ff" };
+const SCRIPT_COMMAND put_actor_in_car2					= { 0x0430, "iii" };
+
 const SCRIPT_COMMAND kill_actor							= { 0x0321, "i" };
 
 const SCRIPT_COMMAND set_actor_animation_set  		 	= { 0x0245, "is" };

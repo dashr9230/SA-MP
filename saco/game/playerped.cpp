@@ -618,6 +618,7 @@ VEHICLE_TYPE * CPlayerPed::GetGtaVehicle()
 }
 
 //-----------------------------------------------------------	
+//-----------------------------------------------------------
 
 void CPlayerPed::GiveWeapon(int iWeaponID, int iAmmo)
 {
@@ -744,6 +745,7 @@ BOOL CPlayerPed::HasAmmoForCurrentWeapon()
 	}
 	return TRUE;
 }
+
 //-----------------------------------------------------------
 
 float CPlayerPed::GetDistanceFromVehicle(CVehicle *pVehicle)
@@ -781,6 +783,58 @@ int CPlayerPed::GetVehicleSeatID()
 
 	return (-1);
 }
+
+//-----------------------------------------------------------
+
+void CPlayerPed::PutDirectlyInVehicle(int iVehicleID, int iSeat)
+{
+	if(!m_pPed) return;
+	if(!GamePool_Vehicle_GetAt(iVehicleID)) return;
+	if(!GamePool_Ped_GetAt(m_dwGTAId)) return;
+
+	if(GetCurrentWeapon() == WEAPON_PARACHUTE) {
+		SetArmedWeapon(0);
+	}
+
+	VEHICLE_TYPE *pVehicle = GamePool_Vehicle_GetAt(iVehicleID);
+
+	if(pVehicle->fHealth == 0.0f) return;
+
+	// Check to make sure internal data structure of the vehicle hasn't been deleted
+	// by checking if the vtbl points to CPlaceable_vtbl
+	if (pVehicle->entity.vtable == 0x863C40) return;
+
+	if ((GetVehicleSubtypeFromVehiclePtr(pVehicle) == VEHICLE_SUBTYPE_CAR ||
+		GetVehicleSubtypeFromVehiclePtr(pVehicle) == VEHICLE_SUBTYPE_BIKE) &&
+		iSeat > pVehicle->byteMaxPassengers)
+	{
+		return;
+	}
+
+	if(iSeat==0) {
+		if(pVehicle->pDriver && IN_VEHICLE(pVehicle->pDriver)) return;
+		ScriptCommand(&put_actor_in_car,m_dwGTAId,iVehicleID);
+	} else {
+		iSeat--;
+		ScriptCommand(&put_actor_in_car2,m_dwGTAId,iVehicleID,iSeat);
+	}
+	if(m_pPed == GamePool_FindPlayerPed() && IN_VEHICLE(m_pPed)) {
+		pGame->GetCamera()->SetBehindPlayer();
+	}
+
+	if(pNetGame) {
+		CVehiclePool* pVehiclePool = pNetGame->GetVehiclePool();
+		VEHICLEID TrainVehicleId = pVehiclePool->FindIDFromGtaPtr(pVehicle);
+		if(TrainVehicleId == INVALID_VEHICLE_ID || TrainVehicleId > MAX_VEHICLES) return;
+
+		CVehicle* pTrain = pVehiclePool->GetAt(TrainVehicleId);
+		if ( pTrain && pTrain->IsATrainPart() && m_pPed == GamePool_FindPlayerPed() ) {
+			ScriptCommand(&camera_on_vehicle, pTrain->m_dwGTAId, 3, 2);
+		}
+	}
+}
+
+//-----------------------------------------------------------
 
 //-----------------------------------------------------------
 // Forceful removal

@@ -66,6 +66,7 @@ public:
 
 	void SetImmunities(BOOL bBullet, BOOL bFire, BOOL bExplosion, BOOL bDamage, BOOL bUnknown);
 
+	void PutDirectlyInVehicle(int iVehicleID, int iSeat);
 	void RemoveFromVehicleAndPutAt(float fX, float fY, float fZ);
 
 	BOOL IsAPassenger();
