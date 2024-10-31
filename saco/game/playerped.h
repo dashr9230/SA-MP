@@ -102,6 +102,7 @@ public:
 	void		ProcessVehicleHorn();
 
 	void		StartDancing(int iStyle);
+	void		StopDancing();
 	void		HandsUp();
 	BOOL		HasHandsUp();
 	void		HoldItem(int iObject);

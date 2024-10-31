@@ -1190,6 +1190,16 @@ void CPlayerPed::StartDancing(int iStyle)
 
 //-----------------------------------------------------------
 
+void CPlayerPed::StopDancing()
+{
+	m_iDanceState = 0;
+	MATRIX4X4 mat;
+	GetMatrix(&mat);
+	TeleportTo(mat.pos.X,mat.pos.Y,mat.pos.Z);
+}
+
+//-----------------------------------------------------------
+
 void CPlayerPed::ProcessVehicleHorn()
 {
 	if(!m_pPed) return;
