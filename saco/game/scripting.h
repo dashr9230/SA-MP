@@ -100,6 +100,7 @@ const SCRIPT_COMMAND request_animation					= { 0x04ED, "s" };
 const SCRIPT_COMMAND is_animation_loaded				= { 0x04EE, "s" };
 const SCRIPT_COMMAND release_animation					= { 0x04EF, "s" };
 const SCRIPT_COMMAND apply_animation					= { 0x0812, "issfiiiii" }; // actor,animation,library,floatunk,bool,bool,bool,bool,int
+const SCRIPT_COMMAND is_actor_performing_anim   		= { 0x0611, "is" };
 const SCRIPT_COMMAND set_actor_weapon_droppable 		= { 0x087e, "ii" };
 const SCRIPT_COMMAND set_actor_money					= { 0x03fe, "ii" };
 

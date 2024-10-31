@@ -1118,6 +1118,16 @@ void CPlayerPed::ApplyAnimation( char *szAnimName, char *szAnimFile, float fT,
 
 //-----------------------------------------------------------
 
+BOOL CPlayerPed::IsPerformingAnimation(char *szAnimName)
+{
+	if(m_pPed && ScriptCommand(&is_actor_performing_anim,m_dwGTAId,szAnimName)) {
+		return TRUE;
+	}
+	return FALSE;
+}
+
+//-----------------------------------------------------------
+
 float CPlayerPed::GetAimZ()
 {
 	if(m_pPed) {
