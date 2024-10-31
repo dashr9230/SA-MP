@@ -24,6 +24,9 @@ DWORD	dwFarClipReturnAddr=0;
 // used generically
 PED_TYPE	*_pPlayer;
 
+BOOL	bIgnoreNextEntry=FALSE;
+BOOL	bIgnoreNextExit=FALSE;
+
 BYTE	byteSavedCameraMode;
 DWORD	dwCurPlayerActor=0;
 BYTE	*pbyteCameraMode = (BYTE *)0xB6F1A8;

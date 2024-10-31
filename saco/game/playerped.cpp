@@ -11,6 +11,9 @@
 #include "task.h"
 
 extern CGame *pGame;
+extern CNetGame *pNetGame;
+extern BOOL	bIgnoreNextEntry;
+extern BOOL	bIgnoreNextExit;
 
 extern BYTE	*pbyteCurrentPlayer;
 
@@ -835,6 +838,30 @@ void CPlayerPed::PutDirectlyInVehicle(int iVehicleID, int iSeat)
 }
 
 //-----------------------------------------------------------
+
+void CPlayerPed::EnterVehicle(int iVehicleID, BOOL bPassenger)
+{
+	if(!m_pPed) return;
+	VEHICLE_TYPE *ThisVehicleType;
+	if((ThisVehicleType = GamePool_Vehicle_GetAt(iVehicleID)) == NULL) return;
+	if(!GamePool_Ped_GetAt(m_dwGTAId)) return;
+
+	bIgnoreNextEntry = TRUE;
+
+	if(GetCurrentWeapon() == WEAPON_PARACHUTE) {
+		SetArmedWeapon(0);
+	}
+
+	if(bPassenger) {
+		if(ThisVehicleType->entity.nModelIndex == TRAIN_PASSENGER && (m_pPed == GamePool_FindPlayerPed())) {
+			ScriptCommand(&put_actor_in_car2,m_dwGTAId,iVehicleID,-1);
+		} else {
+			ScriptCommand(&send_actor_to_car_passenger,m_dwGTAId,iVehicleID,3000,-1);
+		}
+	} else {
+		ScriptCommand(&send_actor_to_car_driverseat,m_dwGTAId,iVehicleID,3000);
+	}
+}
 
 //-----------------------------------------------------------
 // Forceful removal
