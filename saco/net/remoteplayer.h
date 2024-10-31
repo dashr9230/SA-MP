@@ -41,7 +41,7 @@ private:
 	char field_1C9[12];
 	DWORD field_1D5;
 	DWORD field_1D9;
-	int field_1DD;
+	CPlayerPed			*m_pPlayerPed;
 	int field_1E1;
 	PLAYERID			m_PlayerID;
 	short field_1E7;
@@ -60,6 +60,8 @@ public:
 	void SetPlayerColor(DWORD dwColor);
 	DWORD GetPlayerColorAsRGBA();
 	DWORD GetPlayerColorAsARGB();
+
+	void EnterVehicle(VEHICLEID VehicleID, BOOL bPassenger);
 };
 
 //----------------------------------------------------

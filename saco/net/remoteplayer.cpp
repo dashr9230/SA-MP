@@ -14,7 +14,7 @@ CRemotePlayer::CRemotePlayer()
 	field_1E7 = 0;
 	field_10A = 0;
 	m_PlayerID = INVALID_PLAYER_ID;
-	field_1DD = 0;
+	m_pPlayerPed = NULL;
 	field_1B8 = 0;
 	field_109 = -1;
 	field_4 = 1;
@@ -83,3 +83,20 @@ DWORD CRemotePlayer::GetPlayerColorAsARGB()
 }
 
 //----------------------------------------------------
+
+void CRemotePlayer::EnterVehicle(VEHICLEID VehicleID, BOOL bPassenger)
+{
+	CVehiclePool *pVehiclePool = pNetGame->GetVehiclePool();
+	CVehicle *pVehicle = pVehiclePool->GetAt(VehicleID);
+
+	if(m_pPlayerPed && pVehicle && !m_pPlayerPed->IsInVehicle()) {
+		int iGtaVehicleID = pVehiclePool->FindGtaIDFromID(VehicleID);
+		if(iGtaVehicleID && iGtaVehicleID != INVALID_VEHICLE_ID) {
+			m_pPlayerPed->SetKeys(0,0,0);
+			m_pPlayerPed->EnterVehicle(iGtaVehicleID,bPassenger);
+		}
+	}
+}
+
+//----------------------------------------------------
+
