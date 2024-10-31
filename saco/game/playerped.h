@@ -98,6 +98,7 @@ public:
 	void		ProcessVehicleHorn();
 
 	void		HandsUp();
+	BOOL		HasHandsUp();
 
 	float		GetAimZ();
 	void		SetAimZ(float fAimZ);

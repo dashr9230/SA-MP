@@ -927,6 +927,20 @@ void CPlayerPed::HandsUp()
 
 //-----------------------------------------------------------
 
+BOOL CPlayerPed::HasHandsUp()
+{
+	if(!m_pPed || IN_VEHICLE(m_pPed)) return FALSE;
+	if(!IsAdded()) return FALSE;
+	if(!GamePool_Ped_GetAt(m_dwGTAId)) return FALSE;
+	if(m_pPed->Tasks->pdwJumpJetPack == NULL) return FALSE;
+	DWORD dwJmpVtbl = m_pPed->Tasks->pdwJumpJetPack[0];
+	if(dwJmpVtbl == 0x85A29C) return TRUE;
+
+	return FALSE;
+}
+
+//-----------------------------------------------------------
+
 void CPlayerPed::StartJetpack()
 {
 	if(!m_pPed) return;
