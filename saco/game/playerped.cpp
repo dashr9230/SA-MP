@@ -620,7 +620,6 @@ VEHICLE_TYPE * CPlayerPed::GetGtaVehicle()
 	return (VEHICLE_TYPE *)m_pPed->pVehicle;
 }
 
-//-----------------------------------------------------------	
 //-----------------------------------------------------------
 
 void CPlayerPed::GiveWeapon(int iWeaponID, int iAmmo)
@@ -928,56 +927,6 @@ void CPlayerPed::HandsUp()
 
 //-----------------------------------------------------------
 
-WORD CPlayerPed::GetAmmo()
-{
-	if(m_pPed) {
-		WEAPON_SLOT_TYPE * WeaponSlot = GetCurrentWeaponSlot();
-
-		if(!WeaponSlot) return -1;
-		
-		// Melee types always have ammo.
-		if( WeaponSlot->dwType <= WEAPON_CANE ||
-			WeaponSlot->dwType == WEAPON_PARACHUTE ) return -1;
-
-		return (WORD)WeaponSlot->dwAmmo;
-	}
-	return 0;
-}
-
-//-----------------------------------------------------------
-
-WEAPON_SLOT_TYPE * CPlayerPed::FindWeaponSlot(DWORD dwWeapon)
-{
-	if (m_pPed)
-	{
-		BYTE i;
-		for (i = 0; i < 13; i++)
-		{
-			if (m_pPed->WeaponSlots[i].dwType == dwWeapon) return &m_pPed->WeaponSlots[i];
-		}
-	}
-	return NULL;
-}
-
-//-----------------------------------------------------------
-
-void CPlayerPed::SetAnimationSet(PCHAR szAnim)
-{
-	if(m_pPed) {
-		ScriptCommand(&set_actor_animation_set,m_dwGTAId,szAnim);
-	}
-}
-
-//-----------------------------------------------------------
-
-void CPlayerPed::SetMoney(int iAmount)
-{
-	ScriptCommand(&set_actor_money,m_dwGTAId,0);
-	ScriptCommand(&set_actor_money,m_dwGTAId,iAmount);
-}
-
-//-----------------------------------------------------------
-
 void CPlayerPed::StartJetpack()
 {
 	if(!m_pPed) return;
@@ -1059,6 +1008,56 @@ BOOL CPlayerPed::HasGoggles()
 {
 	if (!m_pPed) return FALSE;
 	return (BOOL)(m_pPed->dwActiveVision != 0 || m_bGoggleState);
+}
+
+//-----------------------------------------------------------
+
+WORD CPlayerPed::GetAmmo()
+{
+	if(m_pPed) {
+		WEAPON_SLOT_TYPE * WeaponSlot = GetCurrentWeaponSlot();
+
+		if(!WeaponSlot) return -1;
+
+		// Melee types always have ammo.
+		if( WeaponSlot->dwType <= WEAPON_CANE ||
+			WeaponSlot->dwType == WEAPON_PARACHUTE ) return -1;
+
+		return (WORD)WeaponSlot->dwAmmo;
+	}
+	return 0;
+}
+
+//-----------------------------------------------------------
+
+WEAPON_SLOT_TYPE * CPlayerPed::FindWeaponSlot(DWORD dwWeapon)
+{
+	if (m_pPed)
+	{
+		BYTE i;
+		for (i = 0; i < 13; i++)
+		{
+			if (m_pPed->WeaponSlots[i].dwType == dwWeapon) return &m_pPed->WeaponSlots[i];
+		}
+	}
+	return NULL;
+}
+
+//-----------------------------------------------------------
+
+void CPlayerPed::SetAnimationSet(PCHAR szAnim)
+{
+	if(m_pPed) {
+		ScriptCommand(&set_actor_animation_set,m_dwGTAId,szAnim);
+	}
+}
+
+//-----------------------------------------------------------
+
+void CPlayerPed::SetMoney(int iAmount)
+{
+	ScriptCommand(&set_actor_money,m_dwGTAId,0);
+	ScriptCommand(&set_actor_money,m_dwGTAId,iAmount);
 }
 
 //-----------------------------------------------------------
