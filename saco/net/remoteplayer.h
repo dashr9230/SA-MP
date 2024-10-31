@@ -62,6 +62,7 @@ public:
 	DWORD GetPlayerColorAsARGB();
 
 	void EnterVehicle(VEHICLEID VehicleID, BOOL bPassenger);
+	void ExitVehicle();
 };
 
 //----------------------------------------------------

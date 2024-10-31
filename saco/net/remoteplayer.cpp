@@ -100,3 +100,12 @@ void CRemotePlayer::EnterVehicle(VEHICLEID VehicleID, BOOL bPassenger)
 
 //----------------------------------------------------
 
+void CRemotePlayer::ExitVehicle()
+{
+	if(m_pPlayerPed && m_pPlayerPed->IsInVehicle()) {
+		m_pPlayerPed->SetKeys(0,0,0);
+		m_pPlayerPed->ExitCurrentVehicle();
+	}
+}
+
+//----------------------------------------------------
