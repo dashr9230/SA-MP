@@ -68,6 +68,7 @@ public:
 
 	void PutDirectlyInVehicle(int iVehicleID, int iSeat);
 	void EnterVehicle(int iVehicleID, BOOL bPassenger);
+	void ExitCurrentVehicle();
 	void RemoveFromVehicleAndPutAt(float fX, float fY, float fZ);
 
 	BOOL IsAPassenger();

@@ -864,6 +864,27 @@ void CPlayerPed::EnterVehicle(int iVehicleID, BOOL bPassenger)
 }
 
 //-----------------------------------------------------------
+// Graceful vehicle exit.
+
+void CPlayerPed::ExitCurrentVehicle()
+{
+	if(!m_pPed) return;
+	if(!GamePool_Ped_GetAt(m_dwGTAId)) return;
+	if(IN_VEHICLE(m_pPed)) {
+		if(GetCurrentVehicleID()) {
+			int iVehicleID;
+			VEHICLE_TYPE *pVehicle = GamePool_Vehicle_GetAt(GetCurrentVehicleID());
+			if(pVehicle) {
+				if( pVehicle->entity.nModelIndex != TRAIN_PASSENGER &&
+					pVehicle->entity.nModelIndex != TRAIN_PASSENGER_LOCO ) {
+					ScriptCommand(&make_actor_leave_car,m_dwGTAId,GetCurrentVehicleID());
+				}
+			}
+		}
+	}
+}
+
+//-----------------------------------------------------------
 // Forceful removal
 
 void CPlayerPed::RemoveFromVehicleAndPutAt(float fX, float fY, float fZ)

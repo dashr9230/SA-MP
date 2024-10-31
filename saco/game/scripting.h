@@ -79,6 +79,7 @@ const SCRIPT_COMMAND play_sound							= { 0x018c, "fffi" };
 const SCRIPT_COMMAND remove_actor_from_car_and_put_at	= { 0x0362, "ifff" };
 const SCRIPT_COMMAND send_actor_to_car_driverseat		= { 0x05CB, "iii" };
 const SCRIPT_COMMAND send_actor_to_car_passenger		= { 0x05CA, "iiii" };
+const SCRIPT_COMMAND make_actor_leave_car				= { 0x05CD, "ii" };
 
 const SCRIPT_COMMAND enable_train_traffic				= { 0x06d7, "i" };
 
