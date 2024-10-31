@@ -941,6 +941,22 @@ BOOL CPlayerPed::HasHandsUp()
 
 //-----------------------------------------------------------
 
+void CPlayerPed::HoldItem(int iObject)
+{
+	if(!m_pPed) return;
+	if(!IsAdded()) return;
+	if(!GamePool_Ped_GetAt(m_dwGTAId)) return;
+
+	DWORD dwPed = (DWORD)m_pPed;
+	_asm push 1
+	_asm push iObject
+	_asm mov ecx, dwPed
+	_asm mov ebx, 0x5E4390
+	_asm call ebx
+}
+
+//-----------------------------------------------------------
+
 void CPlayerPed::StartJetpack()
 {
 	if(!m_pPed) return;

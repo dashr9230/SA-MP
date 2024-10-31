@@ -99,6 +99,7 @@ public:
 
 	void		HandsUp();
 	BOOL		HasHandsUp();
+	void		HoldItem(int iObject);
 
 	float		GetAimZ();
 	void		SetAimZ(float fAimZ);
