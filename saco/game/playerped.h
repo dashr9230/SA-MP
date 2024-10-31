@@ -103,6 +103,7 @@ public:
 
 	void		StartDancing(int iStyle);
 	void		StopDancing();
+	BOOL		IsDancing();
 	void		HandsUp();
 	BOOL		HasHandsUp();
 	void		HoldItem(int iObject);

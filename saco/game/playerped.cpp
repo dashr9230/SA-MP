@@ -1200,6 +1200,14 @@ void CPlayerPed::StopDancing()
 
 //-----------------------------------------------------------
 
+BOOL CPlayerPed::IsDancing()
+{
+	if(m_iDanceState) return TRUE;
+	return FALSE;
+}
+
+//-----------------------------------------------------------
+
 void CPlayerPed::ProcessVehicleHorn()
 {
 	if(!m_pPed) return;
