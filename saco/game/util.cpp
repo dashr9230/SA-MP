@@ -1376,6 +1376,26 @@ DWORD * GetNextTaskFromTask(DWORD *task)
 
 //-----------------------------------------------------------
 
+int GetTaskTypeFromTask(DWORD *task)
+{
+	int i = 0;
+
+	if(!task || *task < 0x800000 || *task > 0x900000) return 0;
+
+	_asm pushad
+	_asm mov edx, task
+	_asm mov ebx, [edx]
+	_asm mov edx, [ebx+10h]
+	_asm mov ecx, task
+	_asm call edx
+	_asm mov i, eax
+	_asm popad
+
+	return i;
+}
+
+//-----------------------------------------------------------
+
 BOOL __stdcall GameIsEntityOnScreen(DWORD * pdwEnt)
 {
 	BOOL bResult = FALSE;
