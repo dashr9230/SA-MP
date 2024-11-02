@@ -114,6 +114,7 @@ public:
 								VECTOR *p4, int p5, float p6, int p7, int p8, int p9);
 
 	void		DestroyFollowPedTask();
+	void		ToggleCellphone(int iOn);
 
 	BOOL		IsJumping();
 	BOOL		IsFighting();
@@ -133,9 +134,7 @@ public:
 	VECTOR*		GetBonePosition(int iBone, VECTOR *vecPos);
 	VECTOR*		GetTransformedBonePosition(int iBone, VECTOR *vecOffset);
 
-	//char _gap0[813];
-	//char _gap0[741];
-	int field_48;
+	int			m_iCellPhoneEnabled;
 	int field_4C[10];
 	struc_97 field_74[10];
 	int field_27C[10];

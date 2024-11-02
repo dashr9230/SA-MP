@@ -110,6 +110,8 @@ const SCRIPT_COMMAND create_pickup_with_ammo			= { 0x032b, "iiifffv" };
 
 const SCRIPT_COMMAND destroy_pickup						= { 0x0215, "i" };
 
+const SCRIPT_COMMAND toggle_actor_cellphone				= { 0x0729, "ii" };
+
 const SCRIPT_COMMAND actor_task_handsup					= { 0x5c4, "ii" };
 
 const SCRIPT_COMMAND link_vehicle_to_interior			= { 0x0840, "ii" };

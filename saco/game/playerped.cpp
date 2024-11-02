@@ -39,7 +39,7 @@ CPlayerPed::CPlayerPed()
 	m_iDanceState = 0;
 	field_2DE = 0;
 	field_2E2 = 0;
-	field_48 = 0;
+	m_iCellPhoneEnabled = 0;
 	m_bGoggleState = FALSE;
 	field_2C1 = 0;
 	field_2C5 = 0;
@@ -1297,6 +1297,15 @@ void CPlayerPed::DestroyFollowPedTask()
 	_asm call edx
 
 	m_pPed->Tasks->pdwIK = 0;
+}
+
+//-----------------------------------------------------------
+
+void CPlayerPed::ToggleCellphone(int iOn)
+{
+	if(!m_pPed) return;
+	m_iCellPhoneEnabled = iOn;
+	ScriptCommand(&toggle_actor_cellphone,m_dwGTAId,iOn);
 }
 
 //-----------------------------------------------------------
