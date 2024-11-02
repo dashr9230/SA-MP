@@ -1259,6 +1259,30 @@ void CPlayerPed::ProcessMarkers(BOOL bMarkerStreamingEnabled, float fMarkerStrea
 
 //-----------------------------------------------------------
 
+void CPlayerPed::ApplyCommandTask(char *szTaskName, int p1, int p2, int p3,
+								  VECTOR *p4, int p5, float p6, int p7, int p8, int p9)
+{
+	DWORD dwPed = (DWORD)m_pPed;
+	if(!dwPed) return;
+
+    _asm push p9
+	_asm push p8
+	_asm push p7
+	_asm push p6
+	_asm push p5
+	_asm push p4
+	_asm push p3
+	_asm push p2
+	_asm push p1
+	_asm push dwPed
+	_asm push szTaskName
+	_asm mov ecx, 0xC15448
+	_asm mov edx, 0x618970
+	_asm call edx
+}
+
+//-----------------------------------------------------------
+
 void CPlayerPed::ProcessVehicleHorn()
 {
 	if(!m_pPed) return;
