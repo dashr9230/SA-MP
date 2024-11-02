@@ -52,6 +52,8 @@ public:
 
 	WORD  GetAmmo();
 
+	int   GetFightingStyle();
+
 	float GetTargetRotation();
 	void  SetTargetRotation(float fRotation);
 	void  ForceTargetRotation(float fRotation);

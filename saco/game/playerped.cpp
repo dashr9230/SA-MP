@@ -1317,6 +1317,14 @@ int CPlayerPed::IsCellphoneEnabled()
 
 //-----------------------------------------------------------
 
+int CPlayerPed::GetFightingStyle()
+{
+	if (!m_pPed) return 0;
+	return m_pPed->byteFightingStyle;
+}
+
+//-----------------------------------------------------------
+
 void CPlayerPed::ProcessVehicleHorn()
 {
 	if(!m_pPed) return;

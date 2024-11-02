@@ -181,6 +181,10 @@ typedef struct _PED_TYPE
 
 	BYTE byteCurWeaponSlot; // 1816-1817
 
+	char _gap719[20];
+
+	BYTE byteFightingStyle; // 1837-1838
+
 } PED_TYPE;
 
 //-----------------------------------------------------------
