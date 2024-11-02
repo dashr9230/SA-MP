@@ -1310,6 +1310,13 @@ void CPlayerPed::ToggleCellphone(int iOn)
 
 //-----------------------------------------------------------
 
+int CPlayerPed::IsCellphoneEnabled()
+{
+    return m_iCellPhoneEnabled;
+}
+
+//-----------------------------------------------------------
+
 void CPlayerPed::ProcessVehicleHorn()
 {
 	if(!m_pPed) return;

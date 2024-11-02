@@ -115,6 +115,7 @@ public:
 
 	void		DestroyFollowPedTask();
 	void		ToggleCellphone(int iOn);
+    int			IsCellphoneEnabled();
 
 	BOOL		IsJumping();
 	BOOL		IsFighting();
