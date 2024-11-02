@@ -108,6 +108,8 @@ public:
 	BOOL		HasHandsUp();
 	void		HoldItem(int iObject);
 
+	void		ProcessMarkers(BOOL bMarkerStreamingEnabled, float fMarkerStreamRadius, BOOL bVisible);
+
 	BOOL		IsJumping();
 	BOOL		IsFighting();
 	BOOL		IsFalling();

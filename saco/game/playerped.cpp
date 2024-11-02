@@ -1252,6 +1252,13 @@ BOOL CPlayerPed::IsDancing()
 
 //-----------------------------------------------------------
 
+void CPlayerPed::ProcessMarkers(BOOL bMarkerStreamingEnabled, float fMarkerStreamRadius, BOOL bVisible)
+{
+	if(!m_pPed) return;
+}
+
+//-----------------------------------------------------------
+
 void CPlayerPed::ProcessVehicleHorn()
 {
 	if(!m_pPed) return;
