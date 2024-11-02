@@ -108,6 +108,8 @@ public:
 	BOOL		HasHandsUp();
 	void		HoldItem(int iObject);
 
+	BOOL		IsJumping();
+
 	float		GetAimZ();
 	void		SetAimZ(float fAimZ);
 

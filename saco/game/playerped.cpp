@@ -957,6 +957,17 @@ void CPlayerPed::HoldItem(int iObject)
 
 //-----------------------------------------------------------
 
+BOOL CPlayerPed::IsJumping()
+{
+	if(m_pPed && !IN_VEHICLE(m_pPed) && m_pPed->Tasks->pdwJumpJetPack)
+	{
+		return GetTaskTypeFromTask(m_pPed->Tasks->pdwJumpJetPack) == 211;
+	}
+	return FALSE;
+}
+
+//-----------------------------------------------------------
+
 void CPlayerPed::StartJetpack()
 {
 	if(!m_pPed) return;
