@@ -113,6 +113,8 @@ public:
 	void		ApplyCommandTask(char *szTaskName, int p1, int p2, int p3, 
 								VECTOR *p4, int p5, float p6, int p7, int p8, int p9);
 
+	void		DestroyFollowPedTask();
+
 	BOOL		IsJumping();
 	BOOL		IsFighting();
 	BOOL		IsFalling();

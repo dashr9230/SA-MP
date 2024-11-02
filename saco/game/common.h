@@ -89,6 +89,9 @@ typedef struct _PED_TASKS_TYPE
 	// Extended Tasks
 	DWORD * pdwFighting;
 
+	char _gap1C[16];
+
+	DWORD * pdwIK;
 } PED_TASKS_TYPE;
 
 //-----------------------------------------------------------

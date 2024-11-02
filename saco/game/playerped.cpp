@@ -1265,7 +1265,7 @@ void CPlayerPed::ApplyCommandTask(char *szTaskName, int p1, int p2, int p3,
 	DWORD dwPed = (DWORD)m_pPed;
 	if(!dwPed) return;
 
-    _asm push p9
+	_asm push p9
 	_asm push p8
 	_asm push p7
 	_asm push p6
@@ -1279,6 +1279,24 @@ void CPlayerPed::ApplyCommandTask(char *szTaskName, int p1, int p2, int p3,
 	_asm mov ecx, 0xC15448
 	_asm mov edx, 0x618970
 	_asm call edx
+}
+
+//-----------------------------------------------------------
+
+DWORD dwExt4;
+
+void CPlayerPed::DestroyFollowPedTask()
+{
+	if(!m_pPed) return;
+	dwExt4 = (DWORD)m_pPed->Tasks->pdwIK;
+	if(!dwExt4) return;
+
+	_asm mov ecx, dwExt4
+	_asm mov edx, 0x639330
+	_asm push 1
+	_asm call edx
+
+	m_pPed->Tasks->pdwIK = 0;
 }
 
 //-----------------------------------------------------------
