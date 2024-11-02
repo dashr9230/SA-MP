@@ -114,6 +114,8 @@ const SCRIPT_COMMAND toggle_actor_cellphone				= { 0x0729, "ii" };
 
 const SCRIPT_COMMAND actor_task_handsup					= { 0x5c4, "ii" };
 
+const SCRIPT_COMMAND set_fighting_style					= { 0x07fe, "iii" };
+
 const SCRIPT_COMMAND link_vehicle_to_interior			= { 0x0840, "ii" };
 const SCRIPT_COMMAND create_radar_marker_icon			= { 0x0570, "fffiv" };
 

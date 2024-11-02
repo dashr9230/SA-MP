@@ -1325,6 +1325,15 @@ int CPlayerPed::GetFightingStyle()
 
 //-----------------------------------------------------------
 
+void CPlayerPed::SetFightingStyle(int iStyle)
+{
+	if (!m_pPed) return;
+
+	ScriptCommand( &set_fighting_style, m_dwGTAId, iStyle, 6 );
+}
+
+//-----------------------------------------------------------
+
 void CPlayerPed::ProcessVehicleHorn()
 {
 	if(!m_pPed) return;
