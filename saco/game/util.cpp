@@ -1396,6 +1396,13 @@ int GetTaskTypeFromTask(DWORD *task)
 
 //-----------------------------------------------------------
 
+const char* GetTaskNameFromTask(DWORD *task)
+{
+	return "None";
+}
+
+//-----------------------------------------------------------
+
 BOOL __stdcall GameIsEntityOnScreen(DWORD * pdwEnt)
 {
 	BOOL bResult = FALSE;
