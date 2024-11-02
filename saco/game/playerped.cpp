@@ -979,6 +979,17 @@ BOOL CPlayerPed::IsFighting()
 
 //-----------------------------------------------------------
 
+BOOL CPlayerPed::IsFalling()
+{
+	if(m_pPed && !IN_VEHICLE(m_pPed) && m_pPed->Tasks->pdwDamage)
+	{
+		return GetTaskTypeFromTask(m_pPed->Tasks->pdwDamage) == 208;
+	}
+	return FALSE;
+}
+
+//-----------------------------------------------------------
+
 void CPlayerPed::StartJetpack()
 {
 	if(!m_pPed) return;

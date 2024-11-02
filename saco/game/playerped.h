@@ -110,6 +110,7 @@ public:
 
 	BOOL		IsJumping();
 	BOOL		IsFighting();
+	BOOL		IsFalling();
 
 	float		GetAimZ();
 	void		SetAimZ(float fAimZ);

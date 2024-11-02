@@ -74,7 +74,12 @@ typedef struct _WEAPON_SLOT_TYPE
 #pragma pack(1)
 typedef struct _PED_TASKS_TYPE
 {
-	char _gap0[16];
+	char _gap0[4];
+	
+	// Basic Tasks
+	DWORD * pdwDamage;
+
+	char _gap8[8];
 
 	DWORD * pdwJumpJetPack;
 
