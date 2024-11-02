@@ -73,3 +73,5 @@ void RemoveColorEmbedsFromString(char *szString);
 
 UINT GetVehicleSubtypeFromVehiclePtr(VEHICLE_TYPE *pVehicle);
 
+DWORD * GetNextTaskFromTask(DWORD *task);
+
