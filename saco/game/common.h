@@ -79,8 +79,9 @@ typedef struct _PED_TASKS_TYPE
 	// Basic Tasks
 	DWORD * pdwDamage;
 
-	char _gap8[8];
+	char _gap8[4];
 
+	DWORD * pdwSwimWasted;
 	DWORD * pdwJumpJetPack;
 
 	char _gap14[4];

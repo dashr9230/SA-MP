@@ -990,6 +990,17 @@ BOOL CPlayerPed::IsFalling()
 
 //-----------------------------------------------------------
 
+BOOL CPlayerPed::IsSwimming()
+{
+	if(m_pPed && !IN_VEHICLE(m_pPed) && m_pPed->Tasks->pdwSwimWasted)
+	{
+		return GetTaskTypeFromTask(m_pPed->Tasks->pdwSwimWasted) == 268;
+	}
+	return FALSE;
+}
+
+//-----------------------------------------------------------
+
 void CPlayerPed::StartJetpack()
 {
 	if(!m_pPed) return;
