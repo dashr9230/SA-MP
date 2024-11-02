@@ -968,6 +968,17 @@ BOOL CPlayerPed::IsJumping()
 
 //-----------------------------------------------------------
 
+BOOL CPlayerPed::IsFighting()
+{
+	if(m_pPed && !IN_VEHICLE(m_pPed) && m_pPed->Tasks->pdwFighting)
+	{
+		return GetTaskTypeFromTask(m_pPed->Tasks->pdwFighting) == 1016;
+	}
+	return FALSE;
+}
+
+//-----------------------------------------------------------
+
 void CPlayerPed::StartJetpack()
 {
 	if(!m_pPed) return;

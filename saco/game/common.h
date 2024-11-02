@@ -70,11 +70,19 @@ typedef struct _WEAPON_SLOT_TYPE
 
 } WEAPON_SLOT_TYPE;  // MUST BE EXACTLY ALIGNED TO 28 bytes
 
+//-----------------------------------------------------------
+#pragma pack(1)
 typedef struct _PED_TASKS_TYPE
 {
 	char _gap0[16];
 
 	DWORD * pdwJumpJetPack;
+
+	char _gap14[4];
+
+	// Extended Tasks
+	DWORD * pdwFighting;
+
 } PED_TASKS_TYPE;
 
 //-----------------------------------------------------------

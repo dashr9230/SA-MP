@@ -109,6 +109,7 @@ public:
 	void		HoldItem(int iObject);
 
 	BOOL		IsJumping();
+	BOOL		IsFighting();
 
 	float		GetAimZ();
 	void		SetAimZ(float fAimZ);
