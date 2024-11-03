@@ -68,7 +68,7 @@ float __stdcall GameGetLocalPlayerCameraExtZoom()
 void __stdcall GameSetRemotePlayerCameraExtZoom(BYTE bytePlayerID)
 {
 	float fZoom = fCameraExtZoom[bytePlayerID];
-	float fValue = fZoom * 35.0f + 35.0f; // unnormalize for 35.0 to 70.0
+	float fValue = (fZoom * 35.0f) + 35.0f; // unnormalize for 35.0 to 70.0
 	*pfCameraExtZoom = fValue;
 
 	float fRatio = fAspectRatio[bytePlayerID];
