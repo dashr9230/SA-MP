@@ -158,10 +158,10 @@ CAMERA_AIM * __stdcall GameGetRemotePlayerAim(int iPlayer)
 
 //----------------------------------------------------------
 
-void __stdcall GameSetPlayerWeaponSkillLevel(int iPlayer, int iSkill, float fLevel)
+void __stdcall GameSetPlayerWeaponSkillLevel(int iPlayer, int iSkill, WORD wLevel)
 {
 	if(iSkill < 11 && iPlayer < PLAYER_PED_SLOTS) {
-		fWeaponSkill[iPlayer][iSkill] = fLevel;
+		fWeaponSkill[iPlayer][iSkill] = (float)wLevel;
 	}
 }
 
