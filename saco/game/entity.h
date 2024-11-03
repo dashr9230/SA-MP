@@ -47,6 +47,7 @@ public:
 	void  MakeNonCollidable();
 	void  SetClumpAlpha(int iAlpha);
 	DWORD GetWorldBoundRadius();
+	void  SetEulerAngles(float fX, float fY, float fZ);
 
 	virtual void  Add();
 	virtual void  Remove();

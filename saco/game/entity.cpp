@@ -623,6 +623,36 @@ DWORD CEntity::GetWorldBoundRadius()
 	return 0;
 }
 
+//-----------------------------------------------------------
+
+void CEntity::SetEulerAngles(float fX, float fY, float fZ)
+{
+	fX *= (PI/180.0f);
+	fY *= (PI/180.0f);
+	fZ *= (PI/180.0f);
+
+	float fCX = cos(fX);
+	float fSX = sin(fX);
+	float fCY = cos(fY);
+	float fSY = sin(fY);
+	float fCZ = cos(fZ);
+	float fSZ = sin(fZ);
+
+	float fSS = fSZ * fSX;
+	float fCS = fCZ * fSX;
+
+	m_pEntity->mat->right.X = fCZ * fCY - fSS * fSY;
+	m_pEntity->mat->right.Y = fCS * fSY + fSZ * fCY;
+	m_pEntity->mat->right.Z = -(fSY * fCX);
+	m_pEntity->mat->up.X = -(fSZ * fCX);
+	m_pEntity->mat->up.Y = fCZ * fCX;
+	m_pEntity->mat->up.Z = fSX;
+	m_pEntity->mat->at.X = fSS * fCY + fCZ * fSY;
+	m_pEntity->mat->at.Y = fSZ * fSY - fCS * fCY;
+	m_pEntity->mat->at.Z = fCY * fCX;
+}
+
+//-----------------------------------------------------------
 
 
 
