@@ -49,13 +49,6 @@ void __stdcall GameSetPlayerCameraExtZoom(BYTE bytePlayerID, float fZoom, float 
 
 //----------------------------------------------------------
 
-float __stdcall GameGetPlayerCameraExtZoom(BYTE bytePlayerID)
-{
-	return fCameraExtZoom[bytePlayerID];
-}
-
-//----------------------------------------------------------
-
 float __stdcall GameGetLocalPlayerAspectRatio()
 {
 	float value = (*pfAspectRatio) - 1.0f;
