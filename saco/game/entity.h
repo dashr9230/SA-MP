@@ -46,6 +46,7 @@ public:
 	void  SetApplySpeed(int iState);
 	void  MakeNonCollidable();
 	void  SetClumpAlpha(int iAlpha);
+	DWORD GetWorldBoundRadius();
 
 	virtual void  Add();
 	virtual void  Remove();

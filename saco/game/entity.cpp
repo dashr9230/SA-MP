@@ -614,6 +614,14 @@ void CEntity::SetClumpAlpha(int iAlpha)
 
 //-----------------------------------------------------------
 
+DWORD CEntity::GetWorldBoundRadius()
+{
+	if(m_pEntity && m_pEntity->pdwRenderWare && m_pEntity->vtable != 0x863C40)
+	{
+		return m_pEntity->pdwRenderWare[14];
+	}
+	return 0;
+}
 
 
 
