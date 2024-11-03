@@ -167,11 +167,11 @@ void __stdcall GameSetPlayerWeaponSkillLevel(int iPlayer, int iSkill, WORD wLeve
 
 //----------------------------------------------------------
 
-void __stdcall GameSetLocalPlayerWeaponSkillLevel(int iSkill, float fLevel)
+void __stdcall GameSetLocalPlayerWeaponSkillLevel(int iSkill, WORD wLevel)
 {
 	if(iSkill < 11) {
-		fLocalWeaponSkill[iSkill] = fLevel;
-		pfStats[iSkill + 69] = fLevel;
+		fLocalWeaponSkill[iSkill] = (float)wLevel;
+		pfStats[iSkill + 69] = (float)wLevel;
 	}
 }
 
@@ -224,7 +224,6 @@ void __stdcall GameResetLocalPlayerWeaponSkills()
 	pfStats[77] = 999.0f; // ak47
 	pfStats[78] = 999.0f; // m4
 	pfStats[79] = 999.0f; // sniper
-
 
 	GameStoreLocalPlayerWeaponSkills();
 }
