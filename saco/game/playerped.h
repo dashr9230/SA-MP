@@ -133,7 +133,7 @@ public:
 	PCHAR		GetShopName();
 	void		SetShopName(char *szNewShopName);
 
-	void		SetWeaponSkillLevel(int iSkill, float fLevel);
+	void		SetWeaponSkillLevel(int iSkill, WORD wLevel);
 
 	VECTOR*		GetBonePosition(int iBone, VECTOR *vecPos);
 	VECTOR*		GetTransformedBonePosition(int iBone, VECTOR *vecOffset);

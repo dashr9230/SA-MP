@@ -1431,12 +1431,12 @@ void CPlayerPed::SetShopName(char *szNewShopName)
 
 //-----------------------------------------------------------
 
-void CPlayerPed::SetWeaponSkillLevel(int iSkill, float fLevel)
+void CPlayerPed::SetWeaponSkillLevel(int iSkill, WORD wLevel)
 {
 	if(m_bytePlayerNumber == 0)
-		GameSetLocalPlayerWeaponSkillLevel(iSkill, fLevel);
+		GameSetLocalPlayerWeaponSkillLevel(iSkill, wLevel);
 	else
-		GameSetPlayerWeaponSkillLevel(m_bytePlayerNumber, iSkill, fLevel);
+		GameSetPlayerWeaponSkillLevel(m_bytePlayerNumber, iSkill, wLevel);
 }
 
 //-----------------------------------------------------------
