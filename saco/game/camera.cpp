@@ -138,7 +138,7 @@ void CCamera::FUNC_1009D660(CEntity *pEntity)
 	if(pEntity) {
 		MATRIX4X4 mat;
 		pEntity->GetMatrix(&mat);
-		if(unnamed_100B4B50(&mat.pos)) {
+		if(FUNC_100B4B50(&mat.pos)) {
 			InterpolatePosition(&mat.pos, &mat.pos, 100, 1);
 		}
 	}
@@ -152,7 +152,7 @@ void CCamera::FUNC_1009D6B0()
 
 	MATRIX4X4 mat;
 	field_0->GetMatrix(&mat);
-	if(unnamed_100B4B50(&mat.pos)) {
+	if(FUNC_100B4B50(&mat.pos)) {
 		InterpolatePosition(&mat.pos, &mat.pos, 100, 1);
 	}
 }

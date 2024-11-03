@@ -53,7 +53,7 @@ BOOL IsFileOrDirectoryExists(char * szPath);
 
 DWORD unnamed_100B6100(char *szString, int nMaxLen);
 
-bool unnamed_100B4B50(VECTOR *vecPos);
+bool FUNC_100B4B50(VECTOR *vecPos);
 
 BUILDING_TYPE * GamePool_GetBuilding();
 DUMMY_TYPE * GamePool_GetDummy();

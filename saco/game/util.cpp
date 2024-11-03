@@ -1501,12 +1501,15 @@ DWORD __stdcall CRC32FromUpcaseString(char *szString)
 
 
 
-bool unnamed_100B4B50(VECTOR *vecPos)
+bool FUNC_100B4B50(VECTOR *vecPos)
 {
-	return
-		vecPos->X < 20000.0f && vecPos->X > -20000.0f &&
+	if( vecPos->X < 20000.0f && vecPos->X > -20000.0f &&
 		vecPos->Y < 20000.0f && vecPos->Y > -20000.0f &&
-		vecPos->Z < 100000.0f && vecPos->Z > -10000.0f;
+		vecPos->Z < 100000.0f && vecPos->Z > -10000.0f )
+	{
+		return true;
+	}
+	return false;
 }
 
 
