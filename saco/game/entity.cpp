@@ -586,6 +586,15 @@ void CEntity::SetApplySpeed(int iState)
 
 //-----------------------------------------------------------
 
+void CEntity::MakeNonCollidable()
+{
+	if(m_pEntity) {
+		m_pEntity->dwPhysFlags &= 0xFFFFFFF7;
+	}
+}
+
+//-----------------------------------------------------------
+
 
 
 

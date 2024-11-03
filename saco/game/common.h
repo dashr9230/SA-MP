@@ -106,14 +106,18 @@ typedef struct _ENTITY_TYPE
 	MATRIX4X4 *mat; // 20-24
 	DWORD *pdwRenderWare; // 24-28
 	DWORD dwProcessingFlags; // 28-32
+
 	char _gap20[2];
 
 	WORD nModelIndex; // 34-36
+
 	char _gap24[18];
+
 	BYTE nControlFlags; // 54-55
-	char _gap37[11];
-	BYTE byteImmunities; // 66-67
-	BYTE byteUnkEntFlags; // 67-68
+
+	char _gap37[9];
+
+	DWORD dwPhysFlags; // 64-68
 	VECTOR vecMoveSpeed; // 68-80
 	VECTOR vecTurnSpeed; // 80-92
 
@@ -136,6 +140,7 @@ typedef struct _PED_TYPE
 
 	PED_TASKS_TYPE *Tasks; // 1148-1152
 	DWORD dwPlayerInfoOffset; // 1152-1156
+
 	char _gap484[124];
 
 	DWORD dwActiveVision; // 1280-1284

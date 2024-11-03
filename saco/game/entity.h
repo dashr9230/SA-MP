@@ -42,6 +42,7 @@ public:
 	void  DisableStreaming();
 	void  EnableTunnelTransition();
 	void  SetApplySpeed(int iState);
+	void  MakeNonCollidable();
 
 	virtual void  Add();
 	virtual void  Remove();
