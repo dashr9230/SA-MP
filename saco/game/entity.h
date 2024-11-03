@@ -1,6 +1,8 @@
 
 #pragma once
 
+#include "game.h"
+
 //----------------------------------------------------------
 
 class CEntity
@@ -43,6 +45,7 @@ public:
 	void  EnableTunnelTransition();
 	void  SetApplySpeed(int iState);
 	void  MakeNonCollidable();
+	void  SetClumpAlpha(int iAlpha);
 
 	virtual void  Add();
 	virtual void  Remove();

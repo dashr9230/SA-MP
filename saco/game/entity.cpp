@@ -595,6 +595,25 @@ void CEntity::MakeNonCollidable()
 
 //-----------------------------------------------------------
 
+void CEntity::SetClumpAlpha(int iAlpha)
+{
+	if(!m_pEntity || !m_pEntity->pdwRenderWare || m_pEntity->vtable == 0x863C40)
+		return;
+
+	DWORD dwEntity = (DWORD)m_pEntity;
+
+	_asm mov eax, dwEntity
+	_asm mov edx, [eax+24]
+	_asm push iAlpha
+	_asm push edx
+	_asm mov eax, 0x732B00
+	_asm call eax
+	_asm pop edx
+	_asm pop edx
+}
+
+//-----------------------------------------------------------
+
 
 
 
