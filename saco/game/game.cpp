@@ -1044,6 +1044,24 @@ void CGame::DrawGangZone(float fPos[], DWORD dwColor)
 
 //-----------------------------------------------------------
 
+void CGame::EnableClock(BYTE byteClock)
+{
+	BYTE byteClockData[] = {'%', '0', '2', 'd', ':', '%', '0', '2', 'd', 0};
+	UnFuck(0x859A6C,10);
+	if (byteClock)
+	{
+		ToggleThePassingOfTime(1);
+		memcpy((PVOID)0x859A6C, byteClockData, 10);
+	}
+	else
+	{
+		ToggleThePassingOfTime(0);
+		memset((PVOID)0x859A6C,0,10);
+	}
+}
+
+//-----------------------------------------------------------
+
 void CGame::EnableZoneNames(BYTE byteEnable)
 {
 	ScriptCommand(&enable_zone_names, byteEnable);
