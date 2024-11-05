@@ -3,7 +3,7 @@
 #include "util.h"
 #include <math.h>
 
-bool byte_1014FD8C;
+bool GLOBAL_1014FD8C;
 
 //-----------------------------------------------------------
 
@@ -94,9 +94,9 @@ void CCamera::SetMatrix(MATRIX4X4 Matrix)
 //-----------------------------------------------------------
 
 // unused, also probably not part of CCamera
-void FUNC_1009D560(bool unk)
+void __stdcall FUNC_1009D560(bool unk)
 {
-	byte_1014FD8C = unk;
+	GLOBAL_1014FD8C = unk;
 }
 
 //-----------------------------------------------------------
