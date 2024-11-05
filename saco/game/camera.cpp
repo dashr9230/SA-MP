@@ -161,16 +161,11 @@ void CCamera::FUNC_1009D6B0()
 
 float CCamera::GetDistanceFromPoint(VECTOR *vecPos)
 {
-	VECTOR		vecCameraPos;
-	float		fSX,fSY,fSZ;
+	float fSX,fSY,fSZ;
 
-	vecCameraPos.X = *(float*)0xB6F9CC;
-	vecCameraPos.Y = *(float*)0xB6F9D0;
-	vecCameraPos.Z = *(float*)0xB6F9D4;
-
-	fSX = (vecPos->X - vecCameraPos.X) * (vecPos->X - vecCameraPos.X);
-	fSY = (vecPos->Y - vecCameraPos.Y) * (vecPos->Y - vecCameraPos.Y);
-	fSZ = (vecPos->Z - vecCameraPos.Z) * (vecPos->Z - vecCameraPos.Z);
+	fSX = (vecPos->X - *(float*)0xB6F9CC) * (vecPos->X - *(float*)0xB6F9CC);
+	fSY = (vecPos->Y - *(float*)0xB6F9D0) * (vecPos->Y - *(float*)0xB6F9D0);
+	fSZ = (vecPos->Z - *(float*)0xB6F9D4) * (vecPos->Z - *(float*)0xB6F9D4);
 
 	return (float)sqrt(fSX + fSY + fSZ);
 }
