@@ -148,7 +148,7 @@ void CCamera::FUNC_1009D660(CEntity *pEntity)
 
 void CCamera::FUNC_1009D6B0()
 {
-	if(!field_0 || field_0->m_pEntity) return;
+	if(!field_0 || !field_0->m_pEntity) return;
 
 	MATRIX4X4 mat;
 	field_0->GetMatrix(&mat);
