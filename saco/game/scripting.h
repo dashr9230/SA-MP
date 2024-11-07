@@ -56,6 +56,8 @@ const SCRIPT_COMMAND show_on_radar						= { 0x0168, "ii" };		// var_marker, size
 
 const SCRIPT_COMMAND create_icon_marker_sphere			= { 0x02A7, "fffiv" };
 
+const SCRIPT_COMMAND is_actor_near_point_3d				= { 0x00FE, "iffffffi" };//	var_actor, x, y, z, rx, ry, rz, b
+
 const SCRIPT_COMMAND add_to_player_money				= { 0x0109, "ii" };		// PLAYER_CHAR, money
 
 const SCRIPT_COMMAND has_car_sunk						= { 0x02bf, "i" };	// CarID

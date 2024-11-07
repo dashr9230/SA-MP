@@ -1,5 +1,6 @@
 
 #include "../main.h"
+#include "game.h"
 #include "util.h"
 #include "keystuff.h"
 #include "aimstuff.h"
@@ -38,7 +39,7 @@ CGame::CGame()
 	m_pGameAudio = new CAudio();
 	m_pGameCamera = new CCamera();
 	m_pGamePlayer = NULL;
-	field_4D = 0;
+	m_bCheckpointsEnabled = FALSE;
 	m_bRaceCheckpointsEnabled = FALSE;
 	m_dwRaceCheckpointHandle = NULL;
 	field_61 = 0;
@@ -771,6 +772,56 @@ void CGame::DisableRaceCheckpoint()
 		m_dwRaceCheckpointHandle = NULL;
 	}
 	m_bRaceCheckpointsEnabled = false;
+}
+
+//-----------------------------------------------------------
+
+void CGame::UpdateCheckpoints()
+{
+	DWORD dwMarkerID;
+
+	if(m_bCheckpointsEnabled) {
+		CPlayerPed *pPlayerPed = this->FindPlayerPed();
+		if(pPlayerPed) {
+			ScriptCommand(&is_actor_near_point_3d,pPlayerPed->m_dwGTAId,
+				m_vecCheckpointPos.X,m_vecCheckpointPos.Y,m_vecCheckpointPos.Z,
+				m_vecCheckpointExtent.X,m_vecCheckpointExtent.Y,m_vecCheckpointExtent.Z,1);
+			if (!m_dwCheckpointMarker)
+			{
+				dwMarkerID = 0;
+				ScriptCommand(&create_radar_marker_without_sphere,
+					m_vecCheckpointPos.X, m_vecCheckpointPos.Y, m_vecCheckpointPos.Z, 0, &dwMarkerID);
+				ScriptCommand(&set_marker_color, dwMarkerID, 1005);
+				ScriptCommand(&show_on_radar, dwMarkerID, 3);
+				m_dwCheckpointMarker = dwMarkerID;
+			}
+		}
+	}
+	else if(m_dwCheckpointMarker) {
+		DisableMarker(m_dwCheckpointMarker);
+		m_dwCheckpointMarker = NULL;
+	}
+
+	if(m_bRaceCheckpointsEnabled) {
+		CPlayerPed *pPlayerPed = this->FindPlayerPed();
+		if(pPlayerPed)
+		{
+			if (!m_dwRaceCheckpointMarker)
+			{
+				dwMarkerID = 0;
+				ScriptCommand(&create_radar_marker_without_sphere,
+					m_vecRaceCheckpointPos.X,m_vecRaceCheckpointPos.Y,m_vecRaceCheckpointPos.Z,0,&dwMarkerID);
+				ScriptCommand(&set_marker_color, dwMarkerID, 1005);
+				ScriptCommand(&show_on_radar, dwMarkerID, 3);
+				m_dwRaceCheckpointMarker = dwMarkerID;
+			}
+		}
+	}
+	else if(m_dwRaceCheckpointMarker) {
+		DisableMarker(m_dwRaceCheckpointMarker);
+		DisableRaceCheckpoint();
+		m_dwRaceCheckpointMarker = NULL;
+	}
 }
 
 //-----------------------------------------------------------

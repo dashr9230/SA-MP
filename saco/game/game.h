@@ -30,7 +30,7 @@ private:
 	DWORD			m_dwRaceCheckpointHandle;
 	VECTOR			m_vecCheckpointPos;
 	VECTOR			m_vecCheckpointExtent;
-	int field_4D;
+	BOOL			m_bCheckpointsEnabled;
 	DWORD			m_dwCheckpointMarker;
 	int field_55;
 	int field_59;
@@ -83,6 +83,7 @@ public:
 	void	DrawGangZone(float* fPos, DWORD dwColor);
 	void    EnableStuntBonus(bool bEnable);
 
+	void   UpdateCheckpoints();
 	void   SetCheckpointInformation(VECTOR *pos, VECTOR *extent);
 
 	void	MakeRaceCheckpoint();
