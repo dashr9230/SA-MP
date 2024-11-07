@@ -146,7 +146,7 @@ float CGame::FindGroundZForCoord(float x, float y, float z)
 void DIReleaseMouse()
 {
 	pDirectInputMouse = *(IDirectInputDevice8**)0xC8CFA4;
-	//SAFE_RELEASE(pDirectInputMouse);
+
 	if(pDirectInputMouse) {
 		pDirectInputMouse->Release();
 		*(IDirectInputDevice8**)0xC8CFA4 = NULL;
@@ -182,9 +182,6 @@ void UpdatePads()
 
 void DisableMousePositionUpdate()
 {
-	//*(DWORD*)0xB7340C = 0;
-	//*(DWORD*)0xB73410 = 0;
-	//*(DWORD*)0xB73414 = 0;
 	memset((PVOID)0xB7340C,0,12);
 
 	UnFuck(0x53F47A,4);
@@ -458,14 +455,6 @@ BOOL CGame::IsGameLoaded()
 
 void CGame::RequestModel(int iModelID, int iLoadingStream)
 {
-	/*
-	_asm push iLoadingStream
-	_asm push iModelID
-	_asm mov edx, 0x4087E0
-	_asm call edx
-	_asm pop edx
-	_asm pop edx*/
-
 	ScriptCommand(&request_model,iModelID);
 }
 
@@ -473,12 +462,6 @@ void CGame::RequestModel(int iModelID, int iLoadingStream)
 
 void CGame::LoadRequestedModels()
 {
-	/*
-	_asm push 0
-	_asm mov edx, 0x40EA10
-	_asm call edx
-	_asm add esp, 4*/
-
 	ScriptCommand(&load_requested_models);
 }
 
@@ -698,7 +681,7 @@ void CGame::ToggleRadar(int iToggle)
 }
 
 //-----------------------------------------------------------
-// MATCH
+
 void CGame::DisplayGameText(char *szStr,int iTime,int iSize)
 {
 	if(iSize > 200) return;
