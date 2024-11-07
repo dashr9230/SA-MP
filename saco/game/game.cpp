@@ -709,6 +709,24 @@ void CGame::DisplayGameText(char *szStr,int iTime,int iSize)
 
 //-----------------------------------------------------------
 
+void CGame::SetCheckpointInformation(VECTOR *pos, VECTOR *extent)
+{
+	memcpy(&m_vecCheckpointPos,pos,sizeof(VECTOR));
+	memcpy(&m_vecCheckpointExtent,extent,sizeof(VECTOR));
+	if(m_dwCheckpointMarker) {
+		DisableMarker(m_dwCheckpointMarker);
+		m_dwCheckpointMarker = NULL;
+
+		DWORD dwMarkerID = 0;
+		ScriptCommand(&create_radar_marker_without_sphere, m_vecCheckpointPos.X, m_vecCheckpointPos.Y, m_vecCheckpointPos.Z, 0, &dwMarkerID);
+		ScriptCommand(&set_marker_color, dwMarkerID, 1005);
+		ScriptCommand(&show_on_radar, dwMarkerID, 3);
+		m_dwCheckpointMarker = dwMarkerID;
+	}
+}
+
+//-----------------------------------------------------------
+
 void CGame::DisableRaceCheckpoint()
 {
 	if (m_dwRaceCheckpointHandle)

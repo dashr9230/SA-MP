@@ -24,9 +24,10 @@ private:
 	BOOL			m_bRaceCheckpointsEnabled;
 	char gap2D[4];
 	DWORD			m_dwRaceCheckpointHandle;
-	char gap35[24];
+	VECTOR			m_vecCheckpointPos;
+	VECTOR			m_vecCheckpointExtent;
 	int field_4D;
-	char gap51[4];
+	DWORD			m_dwCheckpointMarker;
 	int field_55;
 	int field_59;
 	DWORD field_5D;
@@ -77,6 +78,8 @@ public:
 	void	SetGameTextCount(WORD wCount);
 	void	DrawGangZone(float* fPos, DWORD dwColor);
 	void    EnableStuntBonus(bool bEnable);
+
+	void   SetCheckpointInformation(VECTOR *pos, VECTOR *extent);
 
 	void	DisableRaceCheckpoint();
 
