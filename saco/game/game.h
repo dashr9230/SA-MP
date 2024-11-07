@@ -20,7 +20,11 @@ private:
 	CAudio			*m_pGameAudio;
 	CCamera			*m_pGameCamera;
 	CPlayerPed		*m_pGamePlayer;
-	char gapC[29];
+
+	VECTOR			m_vecRaceCheckpointPos;
+	VECTOR			m_vecRaceCheckpointNext;
+	float			m_fRaceCheckpointSize;
+	BYTE			m_byteRaceType;
 	BOOL			m_bRaceCheckpointsEnabled;
 	char gap2D[4];
 	DWORD			m_dwRaceCheckpointHandle;
@@ -81,6 +85,7 @@ public:
 
 	void   SetCheckpointInformation(VECTOR *pos, VECTOR *extent);
 
+	void	MakeRaceCheckpoint();
 	void	DisableRaceCheckpoint();
 
 	DWORD	CreateRadarMarkerIcon(int iMarkerType, float fX, float fY, float fZ, DWORD dwColor, int iStyle);

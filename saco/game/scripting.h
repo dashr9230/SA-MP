@@ -62,6 +62,10 @@ const SCRIPT_COMMAND has_car_sunk						= { 0x02bf, "i" };	// CarID
 const SCRIPT_COMMAND is_car_wrecked						= { 0x0119, "i" }; // CarID
 const SCRIPT_COMMAND get_ground_z						= { 0x02ce, "fffv" };	// x, y, z, var_ground_z
 
+const SCRIPT_COMMAND create_racing_checkpoint			= { 0x06d5,	"ifffffffv"};	// type, x, y, z, nx, ny. nz, size, $id (n=next checkpoint)
+/* 0       = Street Checkpoint with arrow to the next checkpoint
+   1 and 2 = Street Checkpoint
+   3 and 4 = Flight Checkpoint (circle) */
 const SCRIPT_COMMAND destroy_racing_checkpoint			= { 0x06d6,	"i" };
 
 const SCRIPT_COMMAND toggle_player_controllable 		= { 0x01B4, "ii" };
