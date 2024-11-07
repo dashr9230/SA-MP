@@ -26,7 +26,7 @@ private:
 	float			m_fRaceCheckpointSize;
 	BYTE			m_byteRaceType;
 	BOOL			m_bRaceCheckpointsEnabled;
-	char gap2D[4];
+	DWORD			m_dwRaceCheckpointMarker;
 	DWORD			m_dwRaceCheckpointHandle;
 	VECTOR			m_vecCheckpointPos;
 	VECTOR			m_vecCheckpointExtent;
@@ -87,6 +87,7 @@ public:
 
 	void	MakeRaceCheckpoint();
 	void	DisableRaceCheckpoint();
+	void   SetRaceCheckpointInformation(BYTE byteType, VECTOR *pos, VECTOR *next, float fSize);
 
 	DWORD	CreateRadarMarkerIcon(int iMarkerType, float fX, float fY, float fZ, DWORD dwColor, int iStyle);
 	void	DisableMarker(DWORD dwMarkerID);
