@@ -43,6 +43,8 @@ private:
 
 public:
 
+	BYTE FindFirstFreePlayerPedSlot();
+
 	int		GetWeaponModelIDFromWeapon(int iWeaponID);
 	BOOL	IsKeyPressed(int iKeyIdentifier);
 	float	FindGroundZForCoord(float x, float y, float z);

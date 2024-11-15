@@ -19,7 +19,7 @@ DWORD dwDummyActiveMouseState;
 unsigned char *szGameTextMessage;
 HWND hWindowHandle;
 
-int unnamed_10150340[210];
+BOOL bUsedPlayerSlots[PLAYER_PED_SLOTS];
 
 IDirectInputDevice8 *pDirectInputMouse;
 BYTE unnamed_10150688;
@@ -46,7 +46,7 @@ CGame::CGame()
 	field_65 = 0;
 	field_69 = FALSE;
 	field_6D = 0;
-	memset(unnamed_10150340, 0, sizeof(unnamed_10150340));
+	memset(bUsedPlayerSlots, 0, sizeof(bUsedPlayerSlots));
 	memset(field_6E, 0, sizeof(field_6E));
 	field_55 = 0;
 	field_59 = 1;
@@ -86,17 +86,19 @@ void CGame::sub_100A0090(int a1, int a2)
 		Sleep(1000 / a2 - a1 - 1);
 }
 
-BYTE CGame::sub_100A00C0()
+//-----------------------------------------------------------
+
+BYTE CGame::FindFirstFreePlayerPedSlot()
 {
-	BYTE result = 2;
-	while(result != 210)
-	{
-		if(!unnamed_10150340[result])
-			return result;
-		result++;
+	BYTE x=2;
+	while(x!=PLAYER_PED_SLOTS) {
+		if(bUsedPlayerSlots[x] != TRUE) return x;
+		x++;
 	}
 	return 0;
 }
+
+//-----------------------------------------------------------
 
 BYTE CGame::sub_100A00F0()
 {
@@ -104,7 +106,7 @@ BYTE CGame::sub_100A00F0()
 	BYTE v1 = 2;
 	while(v1 != 210)
 	{
-		if(unnamed_10150340[v1] == 1)
+		if(bUsedPlayerSlots[v1] == 1)
 		{
 			result++;
 		}
@@ -112,8 +114,6 @@ BYTE CGame::sub_100A00F0()
 	}
 	return result;
 }
-
-
 
 //-----------------------------------------------------------
 
