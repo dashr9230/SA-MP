@@ -100,19 +100,17 @@ BYTE CGame::FindFirstFreePlayerPedSlot()
 
 //-----------------------------------------------------------
 
-BYTE CGame::sub_100A00F0()
+BYTE CGame::FUNC_100A00F0()
 {
-	BYTE result = 0;
-	BYTE v1 = 2;
-	while(v1 != 210)
-	{
-		if(bUsedPlayerSlots[v1] == 1)
-		{
-			result++;
+	BYTE count = 0;
+	BYTE x = 2;
+	while(x!=PLAYER_PED_SLOTS) {
+		if(bUsedPlayerSlots[x] == TRUE) {
+			count++;
 		}
-		v1++;
+		x++;
 	}
-	return result;
+	return count;
 }
 
 //-----------------------------------------------------------

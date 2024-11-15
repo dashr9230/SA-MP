@@ -44,6 +44,7 @@ private:
 public:
 
 	BYTE FindFirstFreePlayerPedSlot();
+	BYTE FUNC_100A00F0();
 
 	int		GetWeaponModelIDFromWeapon(int iWeaponID);
 	BOOL	IsKeyPressed(int iKeyIdentifier);
@@ -137,7 +138,6 @@ public:
 	void sub_100A0010();
 	void sub_100A0090(int a1, int a2);
 	BYTE sub_100A00C0();
-	BYTE sub_100A00F0();
 	void sub_100A0110();
 	void sub_100A0210();
 	void sub_100A0250();
