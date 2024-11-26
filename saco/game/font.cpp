@@ -133,7 +133,7 @@ NUDE Font_SetShadow(int shadow)
 
 //-----------------------------------------------------------
 
-NUDE Font_UnkConv(char *sz, int param1, int param2, int param3, int param4, int param5, int param6, char * buf)
+NUDE Font_InsertNumber(char *sz, int param1, int param2, int param3, int param4, int param5, int param6, char * buf)
 {
 	_asm mov eax, 0x69DE90
 	_asm ret
@@ -141,7 +141,7 @@ NUDE Font_UnkConv(char *sz, int param1, int param2, int param3, int param4, int 
 
 //-----------------------------------------------------------
 
-NUDE Font_UnkConv2(char *sz)
+NUDE Font_InsertPlayerControlKeys(char *sz)
 {
 	_asm mov eax, 0x69E160
 	_asm jmp eax

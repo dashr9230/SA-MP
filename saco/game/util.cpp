@@ -1961,7 +1961,7 @@ void RemoveColorEmbedsFromString(char *szString)
 	*szString = 0;
 }
 
-DWORD unnamed_100B6100(char *szString, int nMaxLen)
+DWORD InsertPlayerControlKeysInString(char *szString, int nMaxLen)
 {
 	char tmp_buf[2049];
 	memset(tmp_buf, 0, sizeof(tmp_buf));

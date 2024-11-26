@@ -51,7 +51,7 @@ void SaveCameraRaster(char *filename);
 
 BOOL IsFileOrDirectoryExists(char * szPath);
 
-DWORD unnamed_100B6100(char *szString, int nMaxLen);
+DWORD InsertPlayerControlKeysInString(char *szString, int nMaxLen);
 
 bool FUNC_100B4B50(VECTOR *vecPos);
 

@@ -14,5 +14,5 @@ void Font_UseBoxColor(DWORD color);
 void Font_SetLineWidth(float width);
 void Font_SetLineHeight(float height);
 void Font_SetShadow(int shadow);
-void Font_UnkConv(char *sz, int param1, int param2, int param3, int param4, int param5, int param6, char * buf);
-void Font_UnkConv2(char *sz);
+void Font_InsertNumber(char *sz, int param1, int param2, int param3, int param4, int param5, int param6, char * buf);
+void Font_InsertPlayerControlKeys(char *sz);
