@@ -1059,10 +1059,10 @@
 				RelativePath=".\unkclass13.h">
 			</File>
 			<File
-				RelativePath=".\unkclass14.cpp">
+				RelativePath=".\objecttext.cpp">
 			</File>
 			<File
-				RelativePath=".\unkclass14.h">
+				RelativePath=".\objecttext.h">
 			</File>
 			<File
 				RelativePath=".\unkclass15.cpp">

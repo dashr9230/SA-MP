@@ -1,6 +1,13 @@
 
 #pragma once
 
+/*
+https://sampwiki.blast.hk/wiki/EditObject
+Suggested names:
+CObjectEditor
+CEditObject
+*/
+
 class CUnkClass10
 {
 private:
@@ -27,4 +34,13 @@ private:
 public:
 	CUnkClass10(IDirect3DDevice9 *pD3DDevice);
 
+	// TODO: review args and implement
+	void FUNC10072BC0(int a2);
+	void FUNC100724E0(int a2); 
+	int FUNC10071D20(int a2, float a3);
+	void FUNC10073460(int a2, float a3);
+	int WndProc(int a2, int a3, int a4); // 0x10073550
+	void FUNC10073780();
+	void FUNC10072AC0(int a2);
+	void FUNC100728B0(int a2);
 };

@@ -24,3 +24,43 @@ CUnkClass10::CUnkClass10(IDirect3DDevice9 *pD3DDevice)
 	D3DXCreateFont(m_pD3DDevice, 28, 0, FW_NORMAL, 1, FALSE,
 		SYMBOL_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH, "SAMPAUX3", &m_pD3DFont2);
 }
+
+void CUnkClass10::FUNC10072BC0(int a2)
+{
+
+}
+
+void CUnkClass10::FUNC100724E0(int a2)
+{
+
+}
+
+int CUnkClass10::FUNC10071D20(int a2, float a3)
+{
+
+}
+
+void CUnkClass10::FUNC10073460(int a2, float a3)
+{
+
+}
+
+int CUnkClass10::WndProc(int a2, int a3, int a4)
+{
+
+}
+
+void CUnkClass10::FUNC10073780()
+{
+
+}
+
+void CUnkClass10::FUNC10072AC0(int a2)
+{
+
+}
+
+void CUnkClass10::FUNC100728B0(int a2)
+{
+
+}

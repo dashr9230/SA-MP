@@ -1,7 +1,7 @@
 
 #pragma once
 
-class CUnkClass14
+class CObjectText
 {
 private:
 	IDirect3DDevice9 *m_pD3DDevice;
@@ -9,8 +9,8 @@ private:
 	ID3DXSprite *m_pD3DSprite2;
 
 public:
-	CUnkClass14(IDirect3DDevice9 *pD3DDevice);
-	~CUnkClass14();
+	CObjectText(IDirect3DDevice9 *pD3DDevice);
+	~CObjectText();
 
 	void DeleteDeviceObjects();
 	void RestoreDeviceObjects();

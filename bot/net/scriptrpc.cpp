@@ -21,7 +21,7 @@ void ScrSetSpawnInfo(RPCParameters *rpcParams)
 
 //----------------------------------------------------
 
-void ScrUnk45(RPCParameters *rpcParams)
+void ScrSetPlayerTeam(RPCParameters *rpcParams)
 {
 }
 
@@ -33,7 +33,7 @@ void ScrSetPlayerName(RPCParameters *rpcParams)
 
 //----------------------------------------------------
 
-void ScrUnk99(RPCParameters *rpcParams)
+void ScrSetPlayerSkin(RPCParameters *rpcParams)
 {
 }
 
@@ -53,7 +53,7 @@ void ScrSetPlayerPos(RPCParameters *rpcParams)
 
 //----------------------------------------------------
 
-void ScrUnk0D(RPCParameters *rpcParams)
+void ScrSetPlayerPosFindZ(RPCParameters *rpcParams)
 {
 }
 
@@ -154,25 +154,25 @@ void ScrSetCameraLookAt(RPCParameters *rpcParams)
 
 //----------------------------------------------------
 
-void ScrUnk9F(RPCParameters *rpcParams)
+void ScrSetVehiclePos(RPCParameters *rpcParams)
 {
 }
 
 //----------------------------------------------------
 
-void ScrUnkA0(RPCParameters *rpcParams)
+void ScrSetVehicleZAngle(RPCParameters *rpcParams)
 {
 }
 
 //----------------------------------------------------
 
-void ScrUnkA1(RPCParameters *rpcParams)
+void ScrSetVehicleParams(RPCParameters *rpcParams)
 {
 }
 
 //----------------------------------------------------
 
-void ScrUnk41(RPCParameters *rpcParams)
+void ScrLinkVehicleToInterior(RPCParameters *rpcParams)
 {
 }
 
@@ -184,25 +184,25 @@ void ScrSetCameraBehindPlayer(RPCParameters *rpcParams)
 
 //----------------------------------------------------
 
-void ScrUnk0F(RPCParameters *rpcParams)
+void ScrTogglePlayerControllable(RPCParameters *rpcParams)
 {
 }
 
 //----------------------------------------------------
 
-void ScrUnk10(RPCParameters *rpcParams)
+void ScrPlaySound(RPCParameters *rpcParams)
 {
 }
 
 //----------------------------------------------------
 
-void ScrUnk11(RPCParameters *rpcParams)
+void ScrSetWorldBounds(RPCParameters *rpcParams)
 {
 }
 
 //----------------------------------------------------
 
-void ScrUnk12(RPCParameters *rpcParams)
+void ScrGivePlayerMoney(RPCParameters *rpcParams)
 {
 }
 
@@ -234,7 +234,7 @@ void ScrResetPlayerWeapons(RPCParameters *rpcParams)
 
 //----------------------------------------------------
 
-void ScrUnk16(RPCParameters *rpcParams)
+void ScrGivePlayerWeapon(RPCParameters *rpcParams)
 {
 }
 
@@ -246,31 +246,31 @@ void ScrUnk40(RPCParameters *rpcParams)
 
 //----------------------------------------------------
 
-void ScrUnk37(RPCParameters *rpcParams)
+void ScrSendDeathMessage(RPCParameters *rpcParams)
 {
 }
 
 //----------------------------------------------------
 
-void ScrUnk38(RPCParameters *rpcParams)
+void ScrSetMapIcon(RPCParameters *rpcParams)
 {
 }
 
 //----------------------------------------------------
 
-void ScrUnk90(RPCParameters *rpcParams)
+void ScrRemoveMapIcon(RPCParameters *rpcParams)
 {
 }
 
 //----------------------------------------------------
 
-void ScrUnk42(RPCParameters *rpcParams)
+void ScrSetPlayerArmour(RPCParameters *rpcParams)
 {
 }
 
 //----------------------------------------------------
 
-void ScrUnk91(RPCParameters *rpcParams)
+void ScrSetWeaponAmmo(RPCParameters *rpcParams)
 {
 }
 
@@ -282,43 +282,43 @@ void ScrSetGravity(RPCParameters *rpcParams)
 
 //----------------------------------------------------
 
-void ScrUnk93(RPCParameters *rpcParams)
+void ScrSetVehicleHealth(RPCParameters *rpcParams)
 {
 }
 
 //----------------------------------------------------
 
-void ScrUnk94(RPCParameters *rpcParams)
+void ScrAttachTrailerToVehicle(RPCParameters *rpcParams)
 {
 }
 
 //----------------------------------------------------
 
-void ScrUnk95(RPCParameters *rpcParams)
+void ScrDetachTrailerFromVehicle(RPCParameters *rpcParams)
 {
 }
 
 //----------------------------------------------------
 
-void ScrUnk2C(RPCParameters *rpcParams)
+void ScrCreateObject(RPCParameters *rpcParams)
 {
 }
 
 //----------------------------------------------------
 
-void ScrUnk2D(RPCParameters *rpcParams)
+void ScrSetObjectPos(RPCParameters *rpcParams)
 {
 }
 
 //----------------------------------------------------
 
-void ScrUnk2E(RPCParameters *rpcParams)
+void ScrSetObjectRotation(RPCParameters *rpcParams)
 {
 }
 
 //----------------------------------------------------
 
-void ScrUnk2F(RPCParameters *rpcParams)
+void ScrDestroyObject(RPCParameters *rpcParams)
 {
 }
 
@@ -336,37 +336,37 @@ void ScrUnk31(RPCParameters *rpcParams)
 
 //----------------------------------------------------
 
-void ScrUnk4F(RPCParameters *rpcParams)
+void ScrCreateExplosion(RPCParameters *rpcParams)
 {
 }
 
 //----------------------------------------------------
 
-void ScrUnk50(RPCParameters *rpcParams)
+void ScrShowPlayerNameTag(RPCParameters *rpcParams)
 {
 }
 
 //----------------------------------------------------
 
-void ScrUnk63(RPCParameters *rpcParams)
+void ScrMoveObject(RPCParameters *rpcParams)
 {
 }
 
 //----------------------------------------------------
 
-void ScrUnk7A(RPCParameters *rpcParams)
+void ScrStopObject(RPCParameters *rpcParams)
 {
 }
 
 //----------------------------------------------------
 
-void ScrUnk7B(RPCParameters *rpcParams)
+void ScrSetVehicleNumberPlate(RPCParameters *rpcParams)
 {
 }
 
 //----------------------------------------------------
 
-void ScrUnk7C(RPCParameters *rpcParams)
+void ScrTogglePlayerSpectating(RPCParameters *rpcParams)
 {
 }
 
@@ -378,19 +378,19 @@ void ScrUnk7D(RPCParameters *rpcParams)
 
 //----------------------------------------------------
 
-void ScrUnk7E(RPCParameters *rpcParams)
+void ScrSpectatePlayer(RPCParameters *rpcParams)
 {
 }
 
 //----------------------------------------------------
 
-void ScrUnk7F(RPCParameters *rpcParams)
+void ScrSpectateVehicle(RPCParameters *rpcParams)
 {
 }
 
 //----------------------------------------------------
 
-void ScrUnk39(RPCParameters *rpcParams)
+void ScrRemoveVehicleComponent(RPCParameters *rpcParams)
 {
 }
 
@@ -402,7 +402,7 @@ void ScrForceSpawnSelection(RPCParameters *rpcParams)
 
 //----------------------------------------------------
 
-void ScrUnk4B(RPCParameters *rpcParams)
+void ScrAttachObjectToPlayer(RPCParameters *rpcParams)
 {
 }
 
@@ -426,19 +426,19 @@ void ScrHideMenu(RPCParameters *rpcParams)
 
 //----------------------------------------------------
 
-void ScrUnk85(RPCParameters *rpcParams)
+void ScrSetPlayerWantedLevel(RPCParameters *rpcParams)
 {
 }
 
 //----------------------------------------------------
 
-void ScrUnk86(RPCParameters *rpcParams)
+void ScrShowTextDraw(RPCParameters *rpcParams)
 {
 }
 
 //----------------------------------------------------
 
-void ScrUnk87(RPCParameters *rpcParams)
+void ScrHideTextDraw(RPCParameters *rpcParams)
 {
 }
 
@@ -468,19 +468,19 @@ void ScrStopFlashGangZone(RPCParameters *rpcParams)
 
 //----------------------------------------------------
 
-void ScrUnk56(RPCParameters *rpcParams)
+void ScrApplyPlayerAnimation(RPCParameters *rpcParams)
 {
 }
 
 //----------------------------------------------------
 
-void ScrUnk57(RPCParameters *rpcParams)
+void ScrClearPlayerAnimation(RPCParameters *rpcParams)
 {
 }
 
 //----------------------------------------------------
 
-void ScrUnk58(RPCParameters *rpcParams)
+void ScrSetPlayerSpecialAction(RPCParameters *rpcParams)
 {
 }
 
@@ -489,11 +489,11 @@ void ScrUnk58(RPCParameters *rpcParams)
 void RegisterScriptRPCs(RakClientInterface* pRakClient)
 {
 	REGISTER_STATIC_RPC(pRakClient, ScrSetSpawnInfo);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk45);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk99);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerTeam);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerSkin);
 	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerName);
 	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerPos);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk0D);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerPosFindZ);
 	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerHealth);
 	REGISTER_STATIC_RPC(pRakClient, ScrPutPlayerInVehicle);
 	REGISTER_STATIC_RPC(pRakClient, ScrRemovePlayerFromVehicle);
@@ -502,60 +502,60 @@ void RegisterScriptRPCs(RakClientInterface* pRakClient)
 	REGISTER_STATIC_RPC(pRakClient, ScrSetCameraPos);
 	REGISTER_STATIC_RPC(pRakClient, ScrSetCameraLookAt);
 	REGISTER_STATIC_RPC(pRakClient, ScrSetInterior);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk9F);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnkA0);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnkA1);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetVehiclePos);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetVehicleZAngle);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetVehicleParams);
 	REGISTER_STATIC_RPC(pRakClient, ScrSetCameraBehindPlayer);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk0F);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk10);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk11);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk12);
+	REGISTER_STATIC_RPC(pRakClient, ScrTogglePlayerControllable);
+	REGISTER_STATIC_RPC(pRakClient, ScrPlaySound);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetWorldBounds);
+	REGISTER_STATIC_RPC(pRakClient, ScrGivePlayerMoney);
 	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerFacingAngle);
 	REGISTER_STATIC_RPC(pRakClient, ScrResetMoney);
 	REGISTER_STATIC_RPC(pRakClient, ScrResetPlayerWeapons);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk16);
+	REGISTER_STATIC_RPC(pRakClient, ScrGivePlayerWeapon);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk40);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk41);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk42);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk37);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk38);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk90);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk91);
+	REGISTER_STATIC_RPC(pRakClient, ScrLinkVehicleToInterior);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerArmour);
+	REGISTER_STATIC_RPC(pRakClient, ScrSendDeathMessage);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetMapIcon);
+	REGISTER_STATIC_RPC(pRakClient, ScrRemoveMapIcon);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetWeaponAmmo);
 	REGISTER_STATIC_RPC(pRakClient, ScrSetGravity);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk93);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk94);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk95);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk2C);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk2D);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk2E);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk2F);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetVehicleHealth);
+	REGISTER_STATIC_RPC(pRakClient, ScrAttachTrailerToVehicle);
+	REGISTER_STATIC_RPC(pRakClient, ScrDetachTrailerFromVehicle);
+	REGISTER_STATIC_RPC(pRakClient, ScrCreateObject);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetObjectPos);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetObjectRotation);
+	REGISTER_STATIC_RPC(pRakClient, ScrDestroyObject);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk30);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk31);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk4F);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk50);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk63);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk7A);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk7B);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk7C);
+	REGISTER_STATIC_RPC(pRakClient, ScrCreateExplosion);
+	REGISTER_STATIC_RPC(pRakClient, ScrShowPlayerNameTag);
+	REGISTER_STATIC_RPC(pRakClient, ScrMoveObject);
+	REGISTER_STATIC_RPC(pRakClient, ScrStopObject);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetVehicleNumberPlate);
+	REGISTER_STATIC_RPC(pRakClient, ScrTogglePlayerSpectating);
 	REGISTER_STATIC_RPC(pRakClient, ScrUnk7D);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk7E);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk7F);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk39);
+	REGISTER_STATIC_RPC(pRakClient, ScrSpectatePlayer);
+	REGISTER_STATIC_RPC(pRakClient, ScrSpectateVehicle);
+	REGISTER_STATIC_RPC(pRakClient, ScrRemoveVehicleComponent);
 	REGISTER_STATIC_RPC(pRakClient, ScrForceSpawnSelection);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk4B);
+	REGISTER_STATIC_RPC(pRakClient, ScrAttachObjectToPlayer);
 	REGISTER_STATIC_RPC(pRakClient, ScrInitMenu);
 	REGISTER_STATIC_RPC(pRakClient, ScrShowMenu);
 	REGISTER_STATIC_RPC(pRakClient, ScrHideMenu);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk85);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk86);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk87);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerWantedLevel);
+	REGISTER_STATIC_RPC(pRakClient, ScrShowTextDraw);
+	REGISTER_STATIC_RPC(pRakClient, ScrHideTextDraw);
 	REGISTER_STATIC_RPC(pRakClient, ScrAddGangZone);
 	REGISTER_STATIC_RPC(pRakClient, ScrRemoveGangZone);
 	REGISTER_STATIC_RPC(pRakClient, ScrFlashGangZone);
 	REGISTER_STATIC_RPC(pRakClient, ScrStopFlashGangZone);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk56);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk57);
-	REGISTER_STATIC_RPC(pRakClient, ScrUnk58);
+	REGISTER_STATIC_RPC(pRakClient, ScrApplyPlayerAnimation);
+	REGISTER_STATIC_RPC(pRakClient, ScrClearPlayerAnimation);
+	REGISTER_STATIC_RPC(pRakClient, ScrSetPlayerSpecialAction);
 }
 
 //----------------------------------------------------
@@ -563,11 +563,11 @@ void RegisterScriptRPCs(RakClientInterface* pRakClient)
 void UnRegisterScriptRPCs(RakClientInterface* pRakClient)
 {
 	UNREGISTER_STATIC_RPC(pRakClient, ScrSetSpawnInfo);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk45);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetPlayerTeam);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrSetPlayerName);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk99);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetPlayerSkin);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrSetPlayerPos);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk0D);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetPlayerPosFindZ);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrSetPlayerHealth);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrPutPlayerInVehicle);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrRemovePlayerFromVehicle);
@@ -576,59 +576,59 @@ void UnRegisterScriptRPCs(RakClientInterface* pRakClient)
 	UNREGISTER_STATIC_RPC(pRakClient, ScrSetCameraPos);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrSetCameraLookAt);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrSetInterior);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk9F);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnkA0);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnkA1);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetVehiclePos);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetVehicleZAngle);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetVehicleParams);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrSetCameraBehindPlayer);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk0F);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk10);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk11);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk12);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrTogglePlayerControllable);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrPlaySound);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetWorldBounds);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrGivePlayerMoney);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrSetPlayerFacingAngle);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrResetMoney);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrResetPlayerWeapons);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk16);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrGivePlayerWeapon);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk40);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk41);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk37);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk38);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk90);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk91);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrLinkVehicleToInterior);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSendDeathMessage);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetMapIcon);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrRemoveMapIcon);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetWeaponAmmo);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrSetGravity);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk93);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk94);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk95);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk2C);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk2D);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk2E);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk2F);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetVehicleHealth);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrAttachTrailerToVehicle);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrDetachTrailerFromVehicle);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrCreateObject);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetObjectPos);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetObjectRotation);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrDestroyObject);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk30);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk31);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk4F);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk50);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk63);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk7A);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk7B);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk7C);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrCreateExplosion);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrShowPlayerNameTag);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrMoveObject);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrStopObject);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetVehicleNumberPlate);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrTogglePlayerSpectating);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk7D);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk7E);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk7F);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk39);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSpectatePlayer);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSpectateVehicle);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrRemoveVehicleComponent);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrForceSpawnSelection);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk4B);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrAttachObjectToPlayer);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrInitMenu);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrShowMenu);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrHideMenu);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk85);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk86);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk87);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetPlayerWantedLevel);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrShowTextDraw);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrHideTextDraw);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrAddGangZone);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrRemoveGangZone);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrFlashGangZone);
 	UNREGISTER_STATIC_RPC(pRakClient, ScrStopFlashGangZone);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk56);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk57);
-	UNREGISTER_STATIC_RPC(pRakClient, ScrUnk58);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrApplyPlayerAnimation);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrClearPlayerAnimation);
+	UNREGISTER_STATIC_RPC(pRakClient, ScrSetPlayerSpecialAction);
 }
 
 //----------------------------------------------------

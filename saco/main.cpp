@@ -23,7 +23,7 @@ CNetGame				*pNetGame=0;
 //DWORD					dword_1026EB98=0;
 CFontRender				*pDefaultFont=0;
 CUnkClass13				*pUnkClass13=0;
-CUnkClass14				*pUnkClass14=0;
+CObjectText				*pObjectText=0;
 CUnkClass15				*pUnkClass15=0;
 
 BOOL					bGameInited=FALSE;
@@ -373,7 +373,7 @@ void DoInitStuff()
 		pUnkClass11 = new CUnkClass11();
 		pUnkClass12 = new CUnkClass12();
 		pUnkClass13 = new CUnkClass13(pD3DDevice);
-		pUnkClass14 = new CUnkClass14(pD3DDevice);
+		pObjectText = new CObjectText(pD3DDevice);
 		pUnkClass15 = new CUnkClass15();
 
 		// Setting up the commands.

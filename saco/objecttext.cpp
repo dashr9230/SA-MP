@@ -1,7 +1,7 @@
 
 #include "main.h"
 
-CUnkClass14::CUnkClass14(IDirect3DDevice9 *pD3DDevice)
+CObjectText::CObjectText(IDirect3DDevice9 *pD3DDevice)
 {
 	m_pD3DDevice = pD3DDevice;
 	m_pD3DSprite1 = NULL;
@@ -10,18 +10,18 @@ CUnkClass14::CUnkClass14(IDirect3DDevice9 *pD3DDevice)
 	RestoreDeviceObjects();
 }
 
-CUnkClass14::~CUnkClass14()
+CObjectText::~CObjectText()
 {
 	DeleteDeviceObjects();
 }
 
-void CUnkClass14::DeleteDeviceObjects()
+void CObjectText::DeleteDeviceObjects()
 {
 	SAFE_RELEASE(m_pD3DSprite2);
 	SAFE_RELEASE(m_pD3DSprite1);
 }
 
-void CUnkClass14::RestoreDeviceObjects()
+void CObjectText::RestoreDeviceObjects()
 {
 	D3DXCreateSprite(m_pD3DDevice, &m_pD3DSprite1);
 	D3DXCreateSprite(m_pD3DDevice, &m_pD3DSprite2);
