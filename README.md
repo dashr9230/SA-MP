@@ -20,7 +20,7 @@ Decompiling and extracting the containing binaries from the following version pa
 | samp.exe | 0% (0 / 6614) | `74B837FA2245116229D076D6863E41BC` |
 | samp_debug.exe | 0% (0 / 835) | `2C00C60A5511C3A41A70296FD1879067` |
 | samp.dll | 0% (0 / 5901) | `5BA5F0BE7AF99DFD03FB39E88A970A2B` |
-| rcon.exe | 0% (0 / 120) | `3F4821CDA1DE6D7D10654E5537B4DF6E` |
+| rcon.exe | 94.520548% (138 / 146) | `3F4821CDA1DE6D7D10654E5537B4DF6E` |
 | samp-server.exe | 0% (0 / 3860) | `4CB042A55B8837EA42A5C44D1BEA5AC8` |
 | samp03svr | 0% (0 / 4181) | `8EF11F89BFF946F0BBCDEC32F98CECEB` |
 | announce.exe | 0% (0 / 129) | `B4FCC1C57C10B87427FA1AE3E02B70C6` |
