@@ -23,7 +23,7 @@ Decompiling and extracting the containing binaries from the following version pa
 | rcon.exe | 100.000000% (123 / 123) | `3F4821CDA1DE6D7D10654E5537B4DF6E` |
 | samp-server.exe | 0% (0 / 3860) | `4CB042A55B8837EA42A5C44D1BEA5AC8` |
 | samp03svr | 0% (0 / 4181) | `8EF11F89BFF946F0BBCDEC32F98CECEB` |
-| announce.exe | 37.209302% (48 / 129) | `B4FCC1C57C10B87427FA1AE3E02B70C6` |
+| announce.exe | 80.303030% (106 / 132) | `B4FCC1C57C10B87427FA1AE3E02B70C6` |
 | announce | 0% (0 / 74) | `F6E1475A7F69B648D7809A777271B73F` |
 | samp-npc.exe | 0% (0 / 1465) | `27F10BE9A4ED09E4B102952BC5652F3E` |
 | samp-npc | 0% (0 / 2618) | `DEDDC5AA62C0F6E144C5DF3B4FBAD50E` |
