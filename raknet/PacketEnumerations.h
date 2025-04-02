@@ -42,7 +42,7 @@ enum
 	ID_CONNECTED_PONG,
 
 	/// 12: ???
-	ID_UNK_12 = 12,
+	ID_AUTH_KEY = 12,
 
 	/// 15: Connecting to a secured server/peer
 	ID_SECURED_CONNECTION_RESPONSE = 15,
