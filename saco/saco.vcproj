@@ -1190,6 +1190,12 @@
 		</File>
 		<File
 			RelativePath=".\httpclient.cpp">
+			<FileConfiguration
+				Name="Release|Win32">
+				<Tool
+					Name="VCCLCompilerTool"
+					Optimization="2"/>
+			</FileConfiguration>
 		</File>
 		<File
 			RelativePath=".\httpclient.h">
