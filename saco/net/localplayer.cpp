@@ -72,9 +72,11 @@ void CLocalPlayer::ResetAllSyncAttributes()
 	field_187 = -1;
 	field_181 = GetTickCount();
 	field_189 = 0;
+
+	DWORD dwThisTick = GetTickCount();
 	field_2DA = 0;
 	field_2DE = 0;
-	field_127 = GetTickCount();
+	field_127 = dwThisTick;
 }
 
 //----------------------------------------------------------
