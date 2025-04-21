@@ -33,14 +33,14 @@ CLocalPlayer::CLocalPlayer()
 
 	ResetAllSyncAttributes();
 
-	int x=0;
-	while(x!=13) {
-		field_18A[x] = 0;
-		field_197[x] = 0;
-		x++;
+	BYTE i;
+	for (i = 0; i < 13; i++)
+	{
+		m_byteLastWeapon[i] = 0;
+		m_dwLastAmmo[i] = 0;
 	}
 
-	field_10C = -1;
+	m_byteTeam = NO_TEAM;
 }
 
 //----------------------------------------------------------

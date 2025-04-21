@@ -3,9 +3,10 @@
 
 //----------------------------------------------------------
 
+#pragma pack(1)
 class CLocalPlayer
 {
-public:
+private:
 
 	BYTE field_0[63];
 	//BYTE field_3C[3];
@@ -17,77 +18,78 @@ public:
 	DWORD field_F0;
 	DWORD field_F4;
 
-	char _gapF8[2];
+	BYTE _gapF8[2];
 
-	short field_FA;
-	int field_FC;
-	int field_100;
+	WORD field_FA;
+	DWORD field_FC;
+	DWORD field_100;
 	CPlayerPed				*m_pPlayerPed;
 	BOOL					m_bIsSpectating;
-	char field_10C;
-	short field_10D;
+	BYTE					m_byteTeam;
+	WORD field_10D;
 	DWORD field_10F;
 	DWORD field_113;
 	DWORD field_117;
 	DWORD field_11B;
-	short field_11F;
-	short field_121;
-	short field_123;
+	WORD field_11F;
+	WORD field_121;
+	WORD field_123;
 
-	char _gap125[2];
+	BYTE _pad125[2];
 
 	DWORD field_127;
-	char field_12B[12];
+	BYTE field_12B[12];
 	DWORD field_137;
 	DWORD field_13B;
 	DWORD field_13F;
 
-	char _gap143[4];
+	BYTE _pad143[4];
 
 	DWORD field_147;
 
-	char _gap14B[50];
+	BYTE _pad14B[50];
 
-	int field_17D;
+	DWORD field_17D;
 	DWORD field_181;
-	short field_185;
-	short field_187;
-	char field_189;
-	char field_18A[13];
-	int field_197[13];
+	WORD field_185;
+	WORD field_187;
+	BYTE field_189;
+	BYTE					m_byteLastWeapon[13];
+	DWORD					m_dwLastAmmo[13];
 
-	char _gap1CB[4];
+	BYTE _pad1CB[4];
 
-	char field_1CF;
+	BYTE field_1CF;
 	BOOL					m_bInRCMode;
 
-	char _gap1D4[258];
+	BYTE _pad1D4[258];
 
 	DWORD field_2D6;
-	int field_2DA;
-	int field_2DE;
-	int field_2E2;
+	DWORD field_2DA;
+	DWORD field_2DE;
+	DWORD field_2E2;
 
-	char _gap2E6[16];
+	BYTE _pad2E6[16];
 
-	int field_2F6;
+	DWORD field_2F6;
 	BOOL					m_bWantsAnotherClass;
-	int field_2FE;
-	int field_302;
-	int field_306;
-	int field_30A;
+	DWORD field_2FE;
+	DWORD field_302;
+	DWORD field_306;
+	DWORD field_30A;
 
-	char _gap30E;
+	BYTE _pad30E;
 
-	char field_30F;
-	int field_310;
+	BYTE field_30F;
+	DWORD field_310;
 
-	char _gap314[4];
+	BYTE _pad314[4];
 
-	short field_318;
+	WORD field_318;
 
-	char _gap31A[10];
+	BYTE _pad31A[10];
 
+public:
 	CLocalPlayer();
 
 	void ResetAllSyncAttributes();

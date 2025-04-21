@@ -4,6 +4,7 @@
 #include <string>
 
 #define INVALID_PLAYER_ID 0xFFFF
+#define NO_TEAM 255
 
 //----------------------------------------------------
 
