@@ -107,6 +107,12 @@ typedef struct _SAA_FILE_HEADER
 		this->headerV2.dwCompleteID ^= this->headerV2.dwXORKey;
 	}
 
+	void Read(FILE *f)
+	{
+		fread(&headerV1, 1, sizeof(DWORD)*2 + sizeof(WORD)*dwFakeDataSize, f);
+		fread(&headerV2, 1, sizeof(VER2_HEADER), f);
+	}
+
 	void Read(CAbstractStream *pStream)
 	{
 		pStream->Read(&headerV1, sizeof(DWORD)*2 + sizeof(WORD)*dwFakeDataSize);
