@@ -29,7 +29,6 @@ CCryptoContext::CCryptoContext(void)
 	}
 
 	ms_dwRefCount++;
-
 }
 
 //------------------------------------

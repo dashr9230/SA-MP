@@ -8,6 +8,10 @@
 #include "TinyEncrypt.h"
 #include "Obfuscator.h"
 
+#ifndef ARCTOOL
+#include "../outputdebugstring.h"
+#endif
+
 //------------------------------------
 
 DWORD CArchiveFS::ms_dwHashInit = OBFUSCATE_DATA(0x9E3779B9);
@@ -166,7 +170,7 @@ void CArchiveFS::LoadEntries()
 	tinyEnc.SetKey((BYTE*)TEA_KEY, TEA_XOR_KEY);
 	tinyEnc.DecryptData(sizeof(SAA_ENTRY)*m_dwNumEntries, reinterpret_cast<BYTE*>(m_pEntries));
 
-	// 5. Build a binary tree of the entries.. it makes searching for files faster (since we have a 
+	// 5. Build a binary tree of the entries.. it makes searching for files faster (since we have a
 	//    huge index with fake entries)
 	for(i=0; i<m_dwNumEntries; i++) {
 		m_EntryBTreeRoot.AddEntry(&m_pEntries[i]);
@@ -268,7 +272,7 @@ DWORD CArchiveFS::GetFileIndex(DWORD dwFileHash)
 
 //------------------------------------
 
-DWORD CArchiveFS::GetFileIndex(char* szFileName) 
+DWORD CArchiveFS::GetFileIndex(char* szFileName)
 {
 	// PRE: szFileName must be the filename only (no paths!)
 
@@ -361,9 +365,10 @@ BYTE* CArchiveFS::GetFileData(DWORD dwFileIndex)
 		}
 
 		return node->pbData;
-
 	}
 }
+
+//------------------------------------
 
 void CArchiveFS::UnloadData(DWORD dwFileIndex)
 {
@@ -375,3 +380,5 @@ void CArchiveFS::UnloadData(DWORD dwFileIndex)
 		node->pbData = NULL;
 	}
 }
+
+//------------------------------------

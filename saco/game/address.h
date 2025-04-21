@@ -1,6 +1,8 @@
 
 #pragma once
 
+//-----------------------------------------------------------
+
 #define ADDR_HWND								0xC97C1C
 #define ADDR_ID3D9DEVICE						0xC97C28
 
@@ -30,3 +32,5 @@
 #define ADDR_VEHICLE_TABLE						0xB74494  // Contains ptr to the vehicles table
 
 #define ADDR_CAMERA								0xB6F99C
+
+//-----------------------------------------------------------

@@ -1,4 +1,9 @@
 
+//
+// This is a modified XTEA algorithm with a streaming
+// mode of operation -- specifically CBC
+//
+
 #include "TinyEncrypt.h"
 #include "Obfuscator.h"
 #include <stdio.h>

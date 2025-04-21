@@ -61,7 +61,7 @@ CHttpClient::~CHttpClient()
 
 int CHttpClient::ProcessURL(int iType, char *szURL, char *szPostData, char *szReferer)
 {
-	printf("CHttpClient::ProcessURL %s\n", szURL); // Thanks Kalcor!
+	printf("CHttpClient::ProcessURL %s\n",szURL);
 
 	InitRequest(iType,szURL,szPostData,szReferer);
 
@@ -187,6 +187,7 @@ void CHttpClient::InitRequest(int iType, char *szURL, char *szPostData, char *sz
 
 	// Copy hostname from URL
 	slash_ptr = strchr(szUseURL,'/');
+
 	if(!slash_ptr) {
 		strcat(szUseURL,"/");
 		slash_ptr = strchr(szUseURL,'/');

@@ -10,19 +10,6 @@
 
 #ifndef ARCTOOL
 
-/*
-const CHAR* CRYPT_MODULE				= "advapi32";
-const CHAR* CRYPT_FN_AcquireContext		= "CryptAcquireContextA";
-const CHAR* CRYPT_FN_ReleaseContext		= "CryptReleaseContext";
-const CHAR* CRYPT_FN_GenRandom			= "CryptGenRandom";
-const CHAR* CRYPT_FN_CreateHash			= "CryptCreateHash";
-const CHAR* CRYPT_FN_DestroyHash		= "CryptDestroyHash";
-const CHAR* CRYPT_FN_HashData			= "CryptHashData";
-const CHAR* CRYPT_FN_DestroyKey			= "CryptDestroyKey";
-const CHAR* CRYPT_FN_ImportKey			= "CryptImportKey";
-const CHAR* CRYPT_FN_VerifySignature	= "CryptVerifySignatureA";
-*/
-
 const CHAR CRYPT_MODULE[]				= "41#4%<fgU";
 const CHAR CRYPT_FN_AcquireContext[]	= {0x16,0x27,0x2C,0x25,0x21,0x14,0x36,0x24,
 											0x20,0x3C,0x27,0x30,0x16,0x3A,0x3B,0x21,

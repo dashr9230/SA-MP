@@ -3,6 +3,8 @@
 
 #include <windows.h>
 
+//-----------------------------------------------------------
+
 #define MAX_PLAYERS			1004
 #define MAX_ACTORS			1000
 #define MAX_VEHICLES		2000
@@ -58,6 +60,7 @@ typedef struct _MATRIX4X4 {
 #define IN_VEHICLE(x) ((x->dwStateFlags & 256) >> 8)
 
 //-----------------------------------------------------------
+
 typedef struct _WEAPON_SLOT_TYPE
 {
 	DWORD dwType;
@@ -71,6 +74,7 @@ typedef struct _WEAPON_SLOT_TYPE
 } WEAPON_SLOT_TYPE;  // MUST BE EXACTLY ALIGNED TO 28 bytes
 
 //-----------------------------------------------------------
+
 #pragma pack(1)
 typedef struct _PED_TASKS_TYPE
 {
@@ -95,6 +99,7 @@ typedef struct _PED_TASKS_TYPE
 } PED_TASKS_TYPE;
 
 //-----------------------------------------------------------
+
 #pragma pack(1)
 typedef struct _ENTITY_TYPE
 {
@@ -127,10 +132,11 @@ typedef struct _ENTITY_TYPE
 } ENTITY_TYPE;
 
 //-----------------------------------------------------------
+
 #pragma pack(1)
 typedef struct _PED_TYPE
 {
-	ENTITY_TYPE entity;
+	ENTITY_TYPE entity; // 0-184
 
 	char _gapB8[948];
 
@@ -193,6 +199,8 @@ typedef struct _PED_TYPE
 } PED_TYPE;
 
 //-----------------------------------------------------------
+
+#pragma pack(1)
 typedef struct _VEHICLE_TYPE
 {
 	ENTITY_TYPE entity; // 0-184

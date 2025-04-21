@@ -1,7 +1,12 @@
 
 #pragma once
 
+// This file defines a basic interface for data streams
+// and provides implementations for a filebased stream
+// as well as as a memory based stream.
+
 #include <stdio.h>
+#include <stdlib.h>
 
 class CAbstractStream
 {
@@ -249,5 +254,4 @@ public:
 	{
 		return m_nOffset;
 	}
-
 };
