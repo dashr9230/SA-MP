@@ -61,10 +61,10 @@ void CLocalPlayer::ResetAllSyncAttributes()
 	memset(field_12B, 0, sizeof(field_12B));
 	memset(field_3F, 0, sizeof(field_3F));
 	memset(field_5E, 0, sizeof(field_5E));
-	field_92 = 0;
+	//field_92 = 0;
 	memset(field_94, 0, sizeof(field_94));
 	memset(field_0, 0, sizeof(field_0));
-	memset(field_3C, 0, sizeof(field_3C));
+	//memset(field_3C, 0, sizeof(field_3C));
 	memset(field_D8, 0, sizeof(field_D8));
 	field_FC = 0;
 	field_100 = 0;

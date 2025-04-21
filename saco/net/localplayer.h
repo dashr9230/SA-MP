@@ -7,15 +7,15 @@ class CLocalPlayer
 {
 public:
 
-	char field_0[60];
-	char field_3C[3];
-	char field_3F[31];
-	char field_5E[52];
-	short field_92;
-	char field_94[68];
-	char field_D8[24];
-	int field_F0;
-	int field_F4;
+	BYTE field_0[63];
+	//BYTE field_3C[3];
+	BYTE field_3F[31];
+	BYTE field_5E[54];
+	//WORD field_92;
+	BYTE field_94[68];
+	BYTE field_D8[24];
+	DWORD field_F0;
+	DWORD field_F4;
 
 	char _gapF8[2];
 
