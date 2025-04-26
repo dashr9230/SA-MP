@@ -39,7 +39,7 @@ void RPCMap::Clear(void)
 }
 RPCNode *RPCMap::GetNodeFromIndex(RPCIndex index)
 {
-	return rpcSet[(unsigned)index];;
+	return rpcSet[(unsigned)index];
 }
 RPCNode *RPCMap::GetNodeFromFunctionName(unsigned char uniqueIdentifier)
 {
@@ -62,4 +62,3 @@ void RPCMap::AddIdentifierWithFunction(unsigned char uniqueIdentifier, void *fun
 
 	rpcSet[uniqueIdentifier] = node;
 }
-

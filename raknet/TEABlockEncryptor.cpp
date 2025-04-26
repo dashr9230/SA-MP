@@ -1,3 +1,4 @@
+
 #include "TEABlockEncryptor.h"
 #include "CheckSum.h"
 #include "Rand.h"
@@ -46,7 +47,7 @@ TEABlockEncryptor::~TEABlockEncryptor()
 	// Note: This is not virtual
 	//       Make it cascaded virtual before adding any code here!
 }
-	
+
 bool TEABlockEncryptor::IsKeySet( void ) const
 {
 	return keySet;
@@ -90,12 +91,6 @@ void TEABlockEncryptor::Encrypt( unsigned char *input, int inputLength, unsigned
 	totalLength = inputLength + sizeof( checkSum ) + sizeof( encodedPad );
 	paddingBytes = 0;
 
-	/*if (totalLength < 16)
-	{
-		paddingBytes = 16 - totalLength;
-	}
-	else 
-	*/
 	if ((totalLength % 8) != 0)
 	{
 		paddingBytes = 8 - (totalLength % 8);
@@ -139,14 +134,11 @@ void TEABlockEncryptor::Encrypt( unsigned char *input, int inputLength, unsigned
 		unsigned int &V0 = *(reinterpret_cast<unsigned int*>(output+i));
 		unsigned int &V1 = *(reinterpret_cast<unsigned int*>(output+i+sizeof(unsigned int)));
 		EncryptBlock(V0, V1);
-		//*(reinterpret_cast<unsigned int*>(output+i)+0) = V0;
-		//*(reinterpret_cast<unsigned int*>(output+i)+1) = V1;
 	}
 
 #ifdef _DEBUG
 	DumpMemory("PostEncrypt", output, *outputLength);
 #endif
-
 }
 
 bool TEABlockEncryptor::Decrypt( unsigned char *input, int inputLength, unsigned char *output, int *outputLength )
@@ -175,8 +167,6 @@ bool TEABlockEncryptor::Decrypt( unsigned char *input, int inputLength, unsigned
 		unsigned int &V0 = *(reinterpret_cast<unsigned int*>(input+i));
 		unsigned int &V1 = *(reinterpret_cast<unsigned int*>(input+i+sizeof(unsigned int)));
 		DecryptBlock(V0, V1);
-		//*(reinterpret_cast<unsigned int*>(input+i)+0) = V0;
-		//*(reinterpret_cast<unsigned int*>(input+i)+1) = V1;
 	}
 
 #ifdef _DEBUG
@@ -197,7 +187,7 @@ bool TEABlockEncryptor::Decrypt( unsigned char *input, int inputLength, unsigned
 
 	// Calculate the checksum on the data.
 	checkSumCalculator.Add( input + sizeof( checkSum ), *outputLength + sizeof( encodedPad ) + paddingBytes );
-	
+
 	checkSumInt = checkSumCalculator.Get();
 	checkSumInt = ( (checkSumInt << 4) ^ (checkSumInt) ) & 0xFF;
 
@@ -211,14 +201,13 @@ bool TEABlockEncryptor::Decrypt( unsigned char *input, int inputLength, unsigned
 		memcpy( output, input + sizeof( checkSum ) + sizeof( encodedPad ) + paddingBytes, *outputLength );
 
 	return true;
-
 }
 
 void TEABlockEncryptor::EncryptBlock(unsigned int &V0, unsigned int &V1)
 {
 	unsigned int sum = 0;
 
-	for(unsigned int i=0; i<TEA_ROUNDS; i++) 
+	for(unsigned int i=0; i<TEA_ROUNDS; i++)
 	{
 		V0 += ((V1 << 4 ^ V1 >> 5) + V1) ^ (sum + key[sum & 3]);
 		sum += initDelta;
@@ -230,10 +219,10 @@ void TEABlockEncryptor::DecryptBlock(unsigned int &V0, unsigned int &V1)
 {
 	unsigned int sum = initSum;
 
-    for(unsigned int i=0; i<TEA_ROUNDS; i++) 
+	for(unsigned int i=0; i<TEA_ROUNDS; i++)
 	{
-        V1 -= ((V0 << 4 ^ V0 >> 5) + V0) ^ (sum + key[sum>>11 & 3]);
-        sum -= initDelta;
-        V0 -= ((V1 << 4 ^ V1 >> 5) + V1) ^ (sum + key[sum & 3]);
-    }
+		V1 -= ((V0 << 4 ^ V0 >> 5) + V0) ^ (sum + key[sum>>11 & 3]);
+		sum -= initDelta;
+		V0 -= ((V1 << 4 ^ V1 >> 5) + V1) ^ (sum + key[sum & 3]);
+	}
 }
