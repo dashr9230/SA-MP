@@ -110,6 +110,8 @@ struct RAK_DLL_EXPORT RakNetStatisticsStruct
 	///  connection start time
 	RakNetTime connectionStartTime;
 
+	char _padC4[100];
+
 	RakNetStatisticsStruct operator +=(const RakNetStatisticsStruct& other)
 	{
 		unsigned i;
