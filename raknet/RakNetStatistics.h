@@ -23,6 +23,8 @@
 #include "Export.h"
 #include "NetworkTypes.h"
 
+typedef unsigned long long uint64_t;
+
 /// \brief Network Statisics Usage 
 ///
 /// Store Statistics information related to network usage 
@@ -32,10 +34,13 @@ struct RAK_DLL_EXPORT RakNetStatisticsStruct
 	unsigned messageSendBuffer[ NUMBER_OF_PRIORITIES ];
 	///  Number of messages sent (high, medium, low priority)
 	unsigned messagesSent[ NUMBER_OF_PRIORITIES ];
+	
+	char _pad20[16];
+
 	///  Number of data bits used for user messages
-	unsigned messageDataBitsSent[ NUMBER_OF_PRIORITIES ];
+	uint64_t messageDataBitsSent[ NUMBER_OF_PRIORITIES ];
 	///  Number of total bits used for user messages, including headers
-	unsigned messageTotalBitsSent[ NUMBER_OF_PRIORITIES ];
+	uint64_t messageTotalBitsSent[ NUMBER_OF_PRIORITIES ];
 	
 	///  Number of packets sent containing only acknowledgements
 	unsigned packetsContainingOnlyAcknowlegements;
@@ -44,7 +49,7 @@ struct RAK_DLL_EXPORT RakNetStatisticsStruct
 	///  Number of acknowledgements waiting to be sent
 	unsigned acknowlegementsPending;
 	///  Number of acknowledgements bits sent
-	unsigned acknowlegementBitsSent;
+	uint64_t acknowlegementBitsSent;
 	
 	///  Number of packets containing only acknowledgements and resends
 	unsigned packetsContainingOnlyAcknowlegementsAndResends;
@@ -52,9 +57,9 @@ struct RAK_DLL_EXPORT RakNetStatisticsStruct
 	///  Number of messages resent
 	unsigned messageResends;
 	///  Number of bits resent of actual data
-	unsigned messageDataBitsResent;
+	uint64_t messageDataBitsResent;
 	///  Total number of bits resent, including headers
-	unsigned messagesTotalBitsResent;
+	uint64_t messagesTotalBitsResent;
 	///  Number of messages waiting for ack (// TODO - rename this)
 	unsigned messagesOnResendQueue;
 	
@@ -69,9 +74,9 @@ struct RAK_DLL_EXPORT RakNetStatisticsStruct
 	unsigned packetsSent;
 	
 	///  Number of bits added by encryption
-	unsigned encryptionBitsSent;
+	uint64_t encryptionBitsSent;
 	///  total bits sent
-	unsigned totalBitsSent;
+	uint64_t totalBitsSent;
 	
 	///  Number of sequenced messages arrived out of order
 	unsigned sequencedMessagesOutOfOrder;
@@ -88,9 +93,9 @@ struct RAK_DLL_EXPORT RakNetStatisticsStruct
 	///  Packets with a bad CRC received
 	unsigned packetsWithBadCRCReceived;
 	///  Bits with a good CRC received
-	unsigned bitsReceived;
+	uint64_t bitsReceived;
 	///  Bits with a bad CRC received
-	unsigned bitsWithBadCRCReceived;
+	uint64_t bitsWithBadCRCReceived;
 	///  Number of acknowledgement messages received for packets we are resending
 	unsigned acknowlegementsReceived;
 	///  Number of acknowledgement messages received for packets we are not resending
@@ -110,7 +115,12 @@ struct RAK_DLL_EXPORT RakNetStatisticsStruct
 	///  connection start time
 	RakNetTime connectionStartTime;
 
-	char _padC4[100];
+	RakNetTime field_110;
+	unsigned field_114;
+	unsigned field_118;
+	RakNetTime field_11C;
+	unsigned field_120;
+	unsigned field_124;
 
 	RakNetStatisticsStruct operator +=(const RakNetStatisticsStruct& other)
 	{
