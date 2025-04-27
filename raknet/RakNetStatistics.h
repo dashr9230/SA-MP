@@ -122,7 +122,7 @@ struct RAK_DLL_EXPORT RakNetStatisticsStruct
 	unsigned field_120;
 	unsigned field_124;
 
-	RakNetStatisticsStruct operator +=(const RakNetStatisticsStruct& other)
+	void operator +=(const RakNetStatisticsStruct& other)
 	{
 		unsigned i;
 		for (i=0; i < NUMBER_OF_PRIORITIES; i++)
@@ -163,8 +163,6 @@ struct RAK_DLL_EXPORT RakNetStatisticsStruct
 		duplicateMessagesReceived+=other.duplicateMessagesReceived;
 		messagesWaitingForReassembly+=other.messagesWaitingForReassembly;
 		internalOutputQueueSize+=other.internalOutputQueueSize;
-
-		return *this;
 	}
 };
 
