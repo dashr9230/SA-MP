@@ -1684,7 +1684,7 @@ int ReliabilityLayer::WriteToBitStreamFromInternalPacket( RakNet::BitStream *bit
 #endif
 
 	// Write the PacketReliability.  This is encoded in 3 bits
-	bitStream->WriteBits( (const unsigned char *)&c, 3, true );
+	bitStream->WriteBits( (const unsigned char *)&c, reliabilitySizeInBits, true );
 
 	// If the reliability requires an ordering channel and ordering index, we Write those.
 	if ( internalPacket->reliability == UNRELIABLE_SEQUENCED || internalPacket->reliability == RELIABLE_SEQUENCED || internalPacket->reliability == RELIABLE_ORDERED )
