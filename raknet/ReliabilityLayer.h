@@ -314,6 +314,8 @@ private:
 //	unsigned int *receivedPackets;
 	unsigned int blockWindowIncreaseUntilTime;
 	RakNetStatisticsStruct statistics;
+	
+	unsigned reliabilitySizeInBits;
 
 	/// Memory-efficient receivedPackets algorithm:
 	/// receivedPacketsBaseIndex is the packet number we are expecting

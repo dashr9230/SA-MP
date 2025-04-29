@@ -1610,7 +1610,7 @@ int ReliabilityLayer::GetBitStreamHeaderLength( const InternalPacket *const inte
 
 	// Write the PacketReliability.  This is encoded in 3 bits
 	//bitStream->WriteBits((unsigned char*)&(internalPacket->reliability), 3, true);
-	bitLength += 3;
+	bitLength += reliabilitySizeInBits;
 
 	// If the reliability requires an ordering channel and ordering index, we Write those.
 	if ( internalPacket->reliability == UNRELIABLE_SEQUENCED || internalPacket->reliability == RELIABLE_SEQUENCED || internalPacket->reliability == RELIABLE_ORDERED )
