@@ -35,7 +35,7 @@
 static const int DEFAULT_HAS_RECEIVED_PACKET_QUEUE_SIZE=512;
 static const float PACKETLOSS_TOLERANCE=.02f; // What percentile packetloss we are willing to accept as background noise.
 static const double MINIMUM_SEND_BPS=14400.0; // Won't go below this send rate
-static const double STARTING_SEND_BPS=28800.0; // What send rate to start at.
+static const double STARTING_SEND_BPS=512000.0; // What send rate to start at.
 static const float PING_MULTIPLIER_TO_RESEND=3.0; // So internet ping variation doesn't cause needless resends
 static const RakNetTime MIN_PING_TO_RESEND=30; // So system timer changes and CPU lag don't send needless resends
 static const RakNetTimeNS TIME_TO_NEW_SAMPLE=500000; // How many ns to wait before starting a new sample.  This way buffers have time to overflow or relax at the new send rate, if they are indeed going to overflow.
@@ -183,6 +183,13 @@ void ReliabilityLayer::InitializeVariables( void )
 	memset( waitingForSequencedPacketWriteIndex, 0, NUMBER_OF_ORDERED_STREAMS * sizeof(OrderingIndexType) );
 	memset( &statistics, 0, sizeof( statistics ) );
 	statistics.connectionStartTime = RakNet::GetTime();
+	statistics.field_110 = RakNet::GetTime();
+	statistics.field_114 = 0;
+	statistics.field_118 = 0;
+	statistics.field_11C = RakNet::GetTime();
+	statistics.field_120 = 0;
+	statistics.field_124 = 0;
+	reliabilitySizeInBits = 4;
 	splitPacketId = 0;
 	messageNumber = 0;
 	availableBandwidth=0;
