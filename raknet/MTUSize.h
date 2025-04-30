@@ -33,12 +33,12 @@
 #ifdef _COMPATIBILITY_1
 #define DEFAULT_MTU_SIZE 1264
 #else
-#define DEFAULT_MTU_SIZE 1500
+#define DEFAULT_MTU_SIZE 576
 #endif
 
 /// The largest value for an UDP datagram
 /// \sa RakPeer::SetMTUSize()
-#define MAXIMUM_MTU_SIZE 1500
+#define MAXIMUM_MTU_SIZE 1492
 
 #endif
 

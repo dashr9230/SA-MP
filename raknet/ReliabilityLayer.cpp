@@ -1783,7 +1783,7 @@ InternalPacket* ReliabilityLayer::CreateInternalPacketFromBitStream( RakNet::Bit
 	// Read the PacketReliability. This is encoded in 3 bits
 	unsigned char reliability;
 
-	bitStreamSucceeded = bitStream->ReadBits( ( unsigned char* ) ( &( reliability ) ), 3 );
+	bitStreamSucceeded = bitStream->ReadBits( ( unsigned char* ) ( &( reliability ) ), reliabilitySizeInBits );
 
 	internalPacket->reliability = ( const PacketReliability ) reliability;
 
@@ -1792,7 +1792,7 @@ InternalPacket* ReliabilityLayer::CreateInternalPacketFromBitStream( RakNet::Bit
 	// assert( bitStreamSucceeded );
 #endif
 
-	if ( bitStreamSucceeded == false )
+	if ( reliability < UNRELIABLE || bitStreamSucceeded == false )
 	{
 		internalPacketPool.ReleasePointer( internalPacket );
 		return 0;
@@ -1829,7 +1829,7 @@ InternalPacket* ReliabilityLayer::CreateInternalPacketFromBitStream( RakNet::Bit
 	}
 
 	// Read if this is a split packet (1 bit)
-	bool isSplitPacket;
+	bool isSplitPacket = false;
 
 	bitStreamSucceeded = bitStream->Read( isSplitPacket );
 
@@ -1882,9 +1882,11 @@ InternalPacket* ReliabilityLayer::CreateInternalPacketFromBitStream( RakNet::Bit
 			return 0;
 		}
 	}
-
 	else
-		internalPacket->splitPacketIndex = internalPacket->splitPacketCount = 0;
+	{
+		internalPacket->splitPacketIndex = 0;
+		internalPacket->splitPacketCount = 0;
+	}
 
 	// Optimization - do byte alignment here
 	//unsigned char zero;
