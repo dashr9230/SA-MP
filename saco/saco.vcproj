@@ -193,6 +193,12 @@
 				RelativePath=".\game\hooks.cpp">
 			</File>
 			<File
+				RelativePath=".\game\hudcolor.cpp">
+			</File>
+			<File
+				RelativePath=".\game\hudcolor.h">
+			</File>
+			<File
 				RelativePath=".\game\keystuff.cpp">
 				<FileConfiguration
 					Name="Release|Win32">

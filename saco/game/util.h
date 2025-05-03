@@ -12,8 +12,6 @@ float FloatDifference(float f1, float f2);
 float FloatOffset(float f1, float f2);
 float NormalizeAngle(float fAngle);
 
-void __stdcall SetRadarColor(int nIndex,DWORD dwColor);
-
 void __stdcall WorldRemoveEntity(DWORD *dwEnt);
 void __stdcall WorldAddEntity(DWORD *dwEnt);
 
@@ -27,7 +25,6 @@ DWORD __stdcall GamePool_Vehicle_GetIndex(VEHICLE_TYPE *pVehicle);
 ENTITY_TYPE * __stdcall GamePool_Object_GetAt(int iID);
 PED_TYPE * __stdcall GamePool_FindPlayerPed();
 
-DWORD __stdcall TranslateColorCodeToRGBA(int iCode);
 BOOL __stdcall GameIsEntityOnScreen(DWORD * pdwEnt);
 void __stdcall InitPlayerPedPtrRecords();
 void __stdcall SetPlayerPedPtrRecord(BYTE bytePlayer, DWORD dwPedPtr);
@@ -41,8 +38,6 @@ float __stdcall SquaredDistanceBetweenPoints(VECTOR *vec1, VECTOR *vec2);
 
 void __stdcall _VectorNormalise(VECTOR *vec);
 DWORD __stdcall CRC32FromUpcaseString(char *szString);
-
-void GameResetRadarColors();
 
 float DegToRad(float fDegrees);
 float InvDegToRad(float fDegrees);

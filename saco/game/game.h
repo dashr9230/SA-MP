@@ -11,6 +11,8 @@
 #include "scripting.h"
 #include "menu.h"
 
+#include "hudcolor.h"
+
 //-----------------------------------------------------------
 
 class CGame // size: 322
