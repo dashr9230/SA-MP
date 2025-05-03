@@ -6,11 +6,11 @@
 
 DWORD dwPlayerPedPtrs[PLAYER_PED_SLOTS];
 
-struct struc_96
+struct struc_13
 {
 	char _gap0[16];
 };
-struc_96 unnamed_1026C258[PLAYER_PED_SLOTS];
+struc_13 VAR_1026C258[PLAYER_PED_SLOTS];
 
 #define PI 3.14159265f
 
@@ -410,19 +410,18 @@ BOOL __stdcall GameIsEntityOnScreen(DWORD * pdwEnt)
 
 //-----------------------------------------------------------
 
-void __stdcall InitPlayerPedPtrRecords() 
+void __stdcall InitPlayerPedPtrRecords()
 {
 	memset(&dwPlayerPedPtrs[0],0,sizeof(DWORD) * PLAYER_PED_SLOTS);
-	memset(unnamed_1026C258, 0, sizeof(unnamed_1026C258));
+	memset(&VAR_1026C258[0],0,sizeof(struc_13) * PLAYER_PED_SLOTS);
 }
 
 //-----------------------------------------------------------
 
-void __stdcall SetPlayerPedPtrRecord(BYTE bytePlayer, DWORD dwPedPtr) 
+void __stdcall SetPlayerPedPtrRecord(BYTE bytePlayer, DWORD dwPedPtr)
 {
 	dwPlayerPedPtrs[bytePlayer] = dwPedPtr;
-
-	memset(&unnamed_1026C258[bytePlayer], 0, sizeof(struc_96));
+	memset(&VAR_1026C258[bytePlayer], 0, sizeof(struc_13));
 }
 
 //-----------------------------------------------------------
