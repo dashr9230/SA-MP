@@ -2256,10 +2256,13 @@ InternalPacket * ReliabilityLayer::BuildPacketFromSplitPacketList( SplitPacketId
 		// Reconstruct
 		internalPacket = CreateInternalPacketCopy( splitPacketChannelList[i]->splitPacketList[0], 0, 0, time );
 		internalPacket->dataBitLength=0;
-		for (j=0; j < splitPacketChannelList[i]->splitPacketList.Size(); j++)
+		byteProgress=0;
+		for (j=0; j < splitPacketChannelList[i]->splitPacketList.Size(); j++) {
 			internalPacket->dataBitLength+=splitPacketChannelList[i]->splitPacketList[j]->dataBitLength;
+			byteProgress+=BITS_TO_BYTES( splitPacketChannelList[i]->splitPacketList[j]->dataBitLength );
+		}
 
-		internalPacket->data = new unsigned char[ BITS_TO_BYTES( internalPacket->dataBitLength ) ];
+		internalPacket->data = new unsigned char[ byteProgress ];
 
 		byteProgress=0;
 		for (j=0; j < splitPacketChannelList[i]->splitPacketList.Size(); j++)
