@@ -456,6 +456,17 @@ void __stdcall FUNC_100B4390(BYTE bytePlayer, DWORD a2, DWORD a3, DWORD a4, DWOR
 
 //-----------------------------------------------------------
 
+struc_13 * __stdcall FUNC_100B43D0(BYTE bytePlayer)
+{
+	if(bytePlayer < PLAYER_PED_SLOTS)
+	{		
+		return &VAR_1026C258[bytePlayer];
+	}
+	return NULL;
+}
+
+//-----------------------------------------------------------
+
 
 
 
