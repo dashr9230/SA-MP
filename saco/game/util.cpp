@@ -2,14 +2,11 @@
 #include <windows.h>
 #include <stdio.h>
 #include "../main.h"
+#include "util.h"
 #include <sys/stat.h>
 
 DWORD dwPlayerPedPtrs[PLAYER_PED_SLOTS];
 
-struct struc_13
-{
-	char _gap0[16];
-};
 struc_13 VAR_1026C258[PLAYER_PED_SLOTS];
 
 #define PI 3.14159265f
@@ -442,6 +439,19 @@ BYTE __stdcall FindPlayerNumFromPedPtr(DWORD dwPedPtr)
 		x++;
 	}
 	return 0;
+}
+
+//-----------------------------------------------------------
+
+void __stdcall FUNC_100B4390(BYTE bytePlayer, DWORD a2, DWORD a3, DWORD a4, DWORD a5)
+{
+	if(bytePlayer < PLAYER_PED_SLOTS)
+	{
+		VAR_1026C258[bytePlayer].field_0 = a2;
+		VAR_1026C258[bytePlayer].field_4 = a3;
+		VAR_1026C258[bytePlayer].field_8 = a4;
+		VAR_1026C258[bytePlayer].field_C = a5;
+	}
 }
 
 //-----------------------------------------------------------

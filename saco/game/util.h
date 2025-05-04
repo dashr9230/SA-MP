@@ -1,6 +1,14 @@
 
 #pragma once
 
+struct struc_13
+{
+	DWORD field_0;
+	DWORD field_4;
+	DWORD field_8;
+	DWORD field_C;
+};
+
 void ProcessLineOfSight(VECTOR *vecOrigin, VECTOR *vecLine, VECTOR *colPoint,
 		DWORD *pHitEntity, int bCheckBuildings, int bCheckVehicles, int bCheckPeds,
 		int bCheckObjects, int bCheckDummies, int bSeeThroughStuff,
@@ -30,6 +38,7 @@ void __stdcall InitPlayerPedPtrRecords();
 void __stdcall SetPlayerPedPtrRecord(BYTE bytePlayer, DWORD dwPedPtr);
 DWORD __stdcall GetPlayerPedPtrRecord(BYTE bytePlayer);
 BYTE __stdcall FindPlayerNumFromPedPtr(DWORD dwPedPtr);
+void __stdcall FUNC_100B4390(BYTE bytePlayer, DWORD a2, DWORD a3, DWORD a4, DWORD a5);
 float __stdcall SquaredDistanceBetweenHorizontalPoints(float x1, float y1, float x2, float y2);
 float DistanceBetweenHorizontalPoints(float x1, float y1, float x2, float y2);
 float DistanceBetweenPoints(float x1, float y1, float z1, float x2, float y2, float z2);
