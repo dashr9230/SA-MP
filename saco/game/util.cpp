@@ -467,6 +467,26 @@ struc_13 * __stdcall FUNC_100B43D0(BYTE bytePlayer)
 
 //-----------------------------------------------------------
 
+BYTE __stdcall FUNC_100B43F0(DWORD *pdwRenderWare)
+{
+	BYTE x = 0;
+	while(x != PLAYER_PED_SLOTS)
+	{
+		ENTITY_TYPE *pEntity = (ENTITY_TYPE *)dwPlayerPedPtrs[x];
+		if(pEntity)
+		{
+			if(pEntity->pdwRenderWare)
+			{
+				if(pEntity->pdwRenderWare == pdwRenderWare)
+					return x;
+			}
+		}
+		x++;
+	}
+	return 0;
+}
+
+//-----------------------------------------------------------
 
 
 
