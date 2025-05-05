@@ -2476,7 +2476,7 @@ void ReliabilityLayer::UpdateNextActionTime(void)
 //-------------------------------------------------------------------------------------------------------
 // Statistics
 //-------------------------------------------------------------------------------------------------------
-RakNetStatisticsStruct * const ReliabilityLayer::GetStatistics( void )
+RakNetStatisticsStruct * const ReliabilityLayer::GetStatistics( bool includeResendListDataSize )
 {
 	unsigned i;
 
@@ -2494,7 +2494,11 @@ RakNetStatisticsStruct * const ReliabilityLayer::GetStatistics( void )
 	statistics.bitsPerSecond = currentBandwidth;
 	//statistics.lossySize = lossyWindowSize == MAXIMUM_WINDOW_SIZE + 1 ? 0 : lossyWindowSize;
 //	statistics.lossySize=0;
-	statistics.messagesOnResendQueue = GetResendListDataSize();
+	if (!includeResendListDataSize)
+		statistics.messagesOnResendQueue = GetResendListDataSize();
+	else
+		statistics.messagesOnResendQueue = 0;
+
 
 	return &statistics;
 }

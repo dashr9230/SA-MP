@@ -2348,7 +2348,7 @@ RakNetStatisticsStruct * const RakPeer::GetStatistics( const PlayerID playerId )
 		{
 			if (remoteSystemList[ i ].isActive)
 			{
-				systemStats=remoteSystemList[ i ].reliabilityLayer.GetStatistics();
+				systemStats=remoteSystemList[ i ].reliabilityLayer.GetStatistics( true );
 				
 				if (firstWrite==true)
 				{
@@ -2366,7 +2366,7 @@ RakNetStatisticsStruct * const RakPeer::GetStatistics( const PlayerID playerId )
 		RemoteSystemStruct * rss;
 	rss = GetRemoteSystemFromPlayerID( playerId, false, false );
 		if ( rss && endThreads==false )
-			return rss->reliabilityLayer.GetStatistics();
+			return rss->reliabilityLayer.GetStatistics( true );
 	}	
 
 	return 0;
@@ -4148,7 +4148,7 @@ bool RakPeer::RunUpdateCycle( void )
 			if (timeMS > remoteSystem->lastReliableSend && timeMS-remoteSystem->lastReliableSend > 5000 && remoteSystem->connectMode==RemoteSystemStruct::CONNECTED)
 			{
 				// If no reliable packets are waiting for an ack, do a one byte reliable send so that disconnections are noticed
-				rnss=remoteSystem->reliabilityLayer.GetStatistics();
+				rnss=remoteSystem->reliabilityLayer.GetStatistics( false );
 				if (rnss->messagesOnResendQueue==0)
 				{
 					unsigned char keepAlive=ID_DETECT_LOST_CONNECTIONS;

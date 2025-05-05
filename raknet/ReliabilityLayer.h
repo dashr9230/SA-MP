@@ -151,7 +151,7 @@ public:
 
 	/// Get Statistics
 	/// \return A pointer to a static struct, filled out with current statistical information.
-	RakNetStatisticsStruct * const GetStatistics( void );
+	RakNetStatisticsStruct * const GetStatistics( bool includeResendListDataSize );
 
 	///Are we waiting for any data to be sent out or be processed by the player?
 	bool IsDataWaiting(void);
