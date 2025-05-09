@@ -97,6 +97,24 @@ void PacketLogger::OnInternalPacket(InternalPacket *internalPacket, unsigned fra
 	else
 		strcpy(sendType, "Rcv");
 
+	// TODO - put this back in a different form
+	/*
+	if (internalPacket->isAcknowledgement)
+	{
+		if (printAcks)
+		{
+			if (printId==false)
+				sprintf(str, "%s,Ack,%5i,%5i,  NIL,    1,%i,%u:%i,%u:%i\n",sendType, internalPacket->messageNumber,frameNumber,time,
+				localPlayerId.binaryAddress, localPlayerId.port, remoteSystemID.binaryAddress, remoteSystemID.port);
+			else
+				sprintf(str, "%s,Ack,%i,%i,NIL,1,%i,%u:%i,%u:%i\n",sendType, internalPacket->messageNumber,frameNumber,time,
+				localPlayerId.binaryAddress, localPlayerId.port, remoteSystemID.binaryAddress, remoteSystemID.port);
+		}
+		else
+			str[0]=0;
+	}
+	else
+	*/
 	{
 		if (internalPacket->data[0]==ID_TIMESTAMP && internalPacket->data[sizeof(unsigned char)+sizeof(RakNetTime)]!=ID_RPC)
 		{
