@@ -32,7 +32,7 @@ static bool initialized=false;
 #ifdef _WIN32
 static LARGE_INTEGER yo;
 #else
-static timeval tp, initialTime;
+static initialTime;
 #endif
 
 RakNetTime RakNet::GetTime( void )
@@ -59,6 +59,7 @@ RakNetTime RakNet::GetTime( void )
 	
 	return (RakNetTime)(PerfVal.QuadPart*1000 / yo.QuadPart);
 #else
+	struct timeval tp;
 	gettimeofday( &tp, 0 );
 	
 	// Seconds to ms and microseconds to ms
@@ -97,6 +98,7 @@ RakNetTimeNS RakNet::GetTimeNS( void )
 	return quotient*1000 + (remainder*1000 / yo.QuadPart);
 
 #else
+	struct timeval tp;
 	gettimeofday( &tp, 0 );
 
 	return ( tp.tv_sec - initialTime.tv_sec ) * (RakNetTimeNS) 1000000 + ( tp.tv_usec - initialTime.tv_usec );
