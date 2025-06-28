@@ -125,7 +125,7 @@ SOURCE=.\launch3Dlg.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\resource.h
+SOURCE=.\Resource.h
 # End Source File
 # Begin Source File
 

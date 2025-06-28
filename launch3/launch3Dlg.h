@@ -1,8 +1,8 @@
 // launch3Dlg.h : header file
 //
 
-#if !defined(AFX_LAUNCH3DLG_H__5B800F15_86B7_4CC5_AB8C_DEAA46380504__INCLUDED_)
-#define AFX_LAUNCH3DLG_H__5B800F15_86B7_4CC5_AB8C_DEAA46380504__INCLUDED_
+#if !defined(AFX_LAUNCH3DLG_H__002BEC0B_9459_44D8_B74F_0D4EB1FF0525__INCLUDED_)
+#define AFX_LAUNCH3DLG_H__002BEC0B_9459_44D8_B74F_0D4EB1FF0525__INCLUDED_
 
 #if _MSC_VER > 1000
 #pragma once
@@ -49,4 +49,4 @@ protected:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_LAUNCH3DLG_H__5B800F15_86B7_4CC5_AB8C_DEAA46380504__INCLUDED_)
+#endif // !defined(AFX_LAUNCH3DLG_H__002BEC0B_9459_44D8_B74F_0D4EB1FF0525__INCLUDED_)

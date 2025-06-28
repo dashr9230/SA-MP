@@ -1,8 +1,8 @@
 // launch3.h : main header file for the LAUNCH3 application
 //
 
-#if !defined(AFX_LAUNCH3_H__90EF6E61_FDEB_40F9_B00C_D9024237237E__INCLUDED_)
-#define AFX_LAUNCH3_H__90EF6E61_FDEB_40F9_B00C_D9024237237E__INCLUDED_
+#if !defined(AFX_LAUNCH3_H__E487BB2C_CCC3_4F9C_BE82_80956F3F1580__INCLUDED_)
+#define AFX_LAUNCH3_H__E487BB2C_CCC3_4F9C_BE82_80956F3F1580__INCLUDED_
 
 #if _MSC_VER > 1000
 #pragma once
@@ -46,4 +46,4 @@ public:
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
-#endif // !defined(AFX_LAUNCH3_H__90EF6E61_FDEB_40F9_B00C_D9024237237E__INCLUDED_)
+#endif // !defined(AFX_LAUNCH3_H__E487BB2C_CCC3_4F9C_BE82_80956F3F1580__INCLUDED_)
