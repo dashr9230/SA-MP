@@ -819,6 +819,9 @@
 			RelativePath=".\plugins.h">
 		</File>
 		<File
+			RelativePath=".\query.cpp">
+		</File>
+		<File
 			RelativePath=".\resource.h">
 		</File>
 		<File
