@@ -29,7 +29,7 @@
 // VERSION INFO
 // ------------
 
-#define SAMP_VERSION "0.3.7-R2"
+#define SAMP_VERSION "0.3.7-R3"
 
 // ------------
 // OS SPECIFICS
