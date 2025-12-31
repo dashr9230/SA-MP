@@ -37,6 +37,7 @@ int iLagCompMode = 1;
 int iConnSeedTime = 300000;
 int iConnCookies = 1;
 int iCookieLogging = 1;
+int iQueryFlood = 1;
 
 #ifdef WIN32
 extern LONG WINAPI exc_handler(_EXCEPTION_POINTERS* exc_inf);
@@ -350,6 +351,7 @@ int main (int argc, char** argv)
 	pConsole->AddVariable("db_log_queries", CON_VARTYPE_INT, 0, &iDbLogQueries);
 	pConsole->AddVariable("conncookies", CON_VARTYPE_INT, 0, &iConnCookies);
 	pConsole->AddVariable("cookielogging", CON_VARTYPE_INT, 0, &iCookieLogging);
+	pConsole->AddVariable("queryflood", CON_VARTYPE_INT, 0, &iQueryFlood);
 
 	// Add 16 gamemode variables.
 	int x=0;
