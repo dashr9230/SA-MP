@@ -292,7 +292,7 @@ int main (int argc, char** argv)
 	logprintf("");
 	logprintf("SA-MP Dedicated Server");
 	logprintf("----------------------");
-	logprintf("v" SAMP_VERSION ", (C)2005-2015 SA-MP Team\n");
+	logprintf("v" SAMP_VERSION ", (C)2005-2019 SA-MP Team\n");
 
 	// Create a challenge number for the clients to be able to connect
 	srand(time(NULL));
