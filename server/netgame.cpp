@@ -668,6 +668,18 @@ void CNetGame::LoadBanList()
 
 //----------------------------------------------------
 
+int CNetGame::AddSpawn(PLAYER_SPAWN_INFO *pSpawnInfo)
+{
+	if (m_iSpawnsAvailable < MAX_SPAWNS)
+	{
+		memcpy(&m_AvailableSpawns[m_iSpawnsAvailable],pSpawnInfo,sizeof(PLAYER_SPAWN_INFO));
+		return m_iSpawnsAvailable++;
+	}
+	return MAX_SPAWNS;
+}
+
+//----------------------------------------------------
+
 DWORD CNetGame::GetTime()
 {
 	return (DWORD)RakNet::GetTime();

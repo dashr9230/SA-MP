@@ -111,6 +111,7 @@ public:
 	// CLASS SYSTEM
 	int					m_iSpawnsAvailable;
 	PLAYER_SPAWN_INFO	m_AvailableSpawns[MAX_SPAWNS];
+	int AddSpawn(PLAYER_SPAWN_INFO *pSpawnInfo);
 
 	const PCHAR GetWeaponName(int iWeaponID);
 
