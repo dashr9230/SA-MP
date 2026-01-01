@@ -329,10 +329,26 @@ static cell AMX_NATIVE_CALL n_AddPlayerClass(AMX *amx, cell *params)
 	return pNetGame->AddSpawn(&Spawn);
 }
 
+// native AddPlayerClassEx(teamid, modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:z_angle, weapon1, weapon1_ammo, weapon2, weapon2_ammo, weapon3, weapon3_ammo)
 static cell AMX_NATIVE_CALL n_AddPlayerClassEx(AMX *amx, cell *params)
 {
-	// TODO: AddPlayerClassEx
-	return 0;
+	PLAYER_SPAWN_INFO Spawn;
+
+	Spawn.byteTeam = (BYTE)params[1];
+	Spawn.iSkin = (int)params[2];
+	Spawn.vecPos.X = amx_ctof(params[3]);
+	Spawn.vecPos.Y = amx_ctof(params[4]);
+	Spawn.vecPos.Z = amx_ctof(params[5]);
+	Spawn.fRotation = amx_ctof(params[6]);
+
+	Spawn.iSpawnWeapons[0] = (int)params[7];
+	Spawn.iSpawnWeaponsAmmo[0] = (int)params[8];
+	Spawn.iSpawnWeapons[1] = (int)params[9];
+	Spawn.iSpawnWeaponsAmmo[1] = (int)params[10];
+	Spawn.iSpawnWeapons[2] = (int)params[11];
+	Spawn.iSpawnWeaponsAmmo[2] = (int)params[12];
+
+	return pNetGame->AddSpawn(&Spawn);
 }
 
 static cell AMX_NATIVE_CALL n_AddStaticVehicle(AMX *amx, cell *params)
