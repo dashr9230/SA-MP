@@ -280,7 +280,7 @@ Packet* RakServer::Receive( void )
 
 void RakServer::Kick( const PlayerID playerId )
 {
-	RakPeer::CloseConnection(playerId, true, 0);
+	RakPeer::NotifyAndFlagForDisconnect(playerId, true, 0);
 }
 
 void RakServer::DeallocatePacket( Packet *packet )
