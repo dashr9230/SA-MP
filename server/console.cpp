@@ -86,7 +86,16 @@ void con_kick() {} // TODO: con_kick W: 0048A530 L: 0809ECB0
 void con_ban() {} // TODO: con_ban W: 0048A5D0 L: 0809ED80
 void con_banip() {} // TODO: con_banip W: 0048A740 L: 0809EF40
 void con_unbanip() {} // TODO: con_unbanip W: 0048A790 L: 0809EFB0
-void con_gmx() {} // TODO: con_gmx W: 0048A7D0 L: 0809F000
+
+void con_gmx()
+{
+	char *szMode;
+	szMode = pNetGame->GetNextScriptFile();
+	if (szMode != NULL && pNetGame->SetNextScriptFile(szMode))
+	{
+		bGameModeFinished = TRUE;
+	}
+}
 
 void con_changemode()
 {
