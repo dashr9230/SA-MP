@@ -87,7 +87,17 @@ void con_ban() {} // TODO: con_ban W: 0048A5D0 L: 0809ED80
 void con_banip() {} // TODO: con_banip W: 0048A740 L: 0809EF40
 void con_unbanip() {} // TODO: con_unbanip W: 0048A790 L: 0809EFB0
 void con_gmx() {} // TODO: con_gmx W: 0048A7D0 L: 0809F000
-void con_changemode() {} // TODO: con_changemode W: 0048A800 L: 0809F050
+
+void con_changemode()
+{
+	char* arg = strtok(NULL, "");
+	if (arg)
+	{
+		if(pNetGame->SetNextScriptFile(arg)) {
+			bGameModeFinished = TRUE;
+		}
+	}
+}
 
 void con_cmdlist();
 

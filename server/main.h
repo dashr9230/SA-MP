@@ -110,6 +110,7 @@ extern CConsole* pConsole;
 extern CNetGame* pNetGame;
 extern CPlugins* pPlugins;
 
+extern BOOL bGameModeFinished;
 extern PLAYERID RconUser;
 
 // -------------------
