@@ -1,0 +1,38 @@
+name: Build arctool2
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Add MSBuild to PATH
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Build the solution
+      run: msbuild saco.sln /p:Configuration=Release /p:Platform=x64
+
+    - name: Rename and move output
+      run: |
+        $source = "x64\Release\arctool2.exe"
+        $destination = "arctool2-${{ github.run_id }}.exe"
+        if (Test-Path $source) {
+            Move-Item -Path $source -Destination $destination
+            Write-Host "File renamed to $destination"
+        } else {
+            Write-Host "::error::Output file not found at $source"
+            exit 1
+        }
+
+    - name: Upload arctool2.exe
+      uses: actions/upload-artifact@v4
+      with:
+        name: arctool2-executable
+        path: arctool2-*.exe
