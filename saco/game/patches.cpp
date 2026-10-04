@@ -49,17 +49,8 @@ void SetIPLs(int iIPLs, int iGtaVersion)
 			patch(0x156495A,bIPLs);
 			patch(0x156115C,bIPLs);
 		}
-
-		// the last two are _patch spelled out, not a call to it
-		DWORD dwProtect[2];
-
-		VirtualProtect((PVOID)0x40619B,sizeof(bIPLs),PAGE_EXECUTE_READWRITE,&dwProtect[0]);
-		memcpy((PVOID)0x40619B,bIPLs,sizeof(bIPLs));
-		VirtualProtect((PVOID)0x40619B,sizeof(bIPLs),dwProtect[0],&dwProtect[1]);
-
-		VirtualProtect((PVOID)0x405C3D,sizeof(bIPLs),PAGE_EXECUTE_READWRITE,&dwProtect[0]);
-		memcpy((PVOID)0x405C3D,bIPLs,sizeof(bIPLs));
-		VirtualProtect((PVOID)0x405C3D,sizeof(bIPLs),dwProtect[0],&dwProtect[1]);
+		patch(0x40619B,bIPLs);
+		patch(0x405C3D,bIPLs);
 	}
 }
 
