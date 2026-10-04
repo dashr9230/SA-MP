@@ -944,9 +944,7 @@ void CGame::UpdateFarClippingPlane()
 	PED_TYPE *pPlayerPed = GamePool_FindPlayerPed();
 
 	if(pPlayerPed) {
-		DWORD dwInterior;
-		ScriptCommand(&get_active_interior,&dwInterior);
-		if(!(BYTE)dwInterior) {
+		if(GetActiveInterior() == 0) {
 			fFarClip = 1250.0f - (pPlayerPed->entity.mat->pos.Z * 2.0f);
 			if(fFarClip < 700.0f) {
 				fFarClip = 700.0f;
