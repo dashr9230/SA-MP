@@ -1270,7 +1270,7 @@ BOOL IsHexChar(wchar_t c)
 DWORD GetColorFromEmbedCode(char *szString)
 {
 	if(szString[0] && szString[0] == '{'
-		&& szString[1] && (szString[1] >= '0' && szString[1] <= '9' || szString[1] >= 'A' && szString[1] <= 'F' || szString[1] >= 'a' && szString[1] <= 'f')
+		&& szString[1] && IsHexChar(szString[1])
 		&& szString[2] && IsHexChar(szString[2])
 		&& szString[3] && IsHexChar(szString[3])
 		&& szString[4] && IsHexChar(szString[4])
