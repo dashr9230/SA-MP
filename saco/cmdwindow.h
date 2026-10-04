@@ -35,6 +35,11 @@ public:
 
 	void GetDialogSize(RECT *pRect);
 
+	// 0x14E0 falls inside m_szCmdNames, so the accessor reaches it by a cast
+	int GetField14E0() { return *(int *)((char *)this + 0x14E0); }; // .text:10002E50, out of line copy
+
+	bool IsImeActive(); // .text:10069810
+
 	void Enable();
 	void Disable();
 

@@ -3,6 +3,7 @@
 
 extern CGame		*pGame;
 extern CConfig		*pConfig;
+extern CChatWindow	*pChatWindow;
 
 //----------------------------------------------------
 
@@ -70,10 +71,21 @@ void CCmdWindow::Enable()
 		RECT rect;
 		GetClientRect(pGame->GetMainWindowHwnd(), &rect);
 
+		int iWidth = (int)(rect.right * 0.6f);
+		if(iWidth > 800) iWidth = 800;
+
 		m_pEditControl->SetEnabled(true);
 		m_pEditControl->SetVisible(true);
 
-		// TODO: CCmdWindow::Enable()
+		m_pEditControl->SetLocation(40, pChatWindow->field_12E);
+		m_pEditControl->SetSize(iWidth, 14 - (int)(m_pGameUI->GetFont(0)->nHeight * -1.5f));
+		m_pGameUI->RequestFocus(m_pEditControl);
+		m_pEditControl->OnFocusIn();
+
+		int iField = pChatWindow->field_12E;
+		CDXUTDialog *pUI = m_pGameUI;
+		*(int *)((char *)pUI + 0x11E) = iWidth + 100;
+		*(int *)((char *)pUI + 0x122) = iField + 50;
 	}
 
 	m_bEnabled = TRUE;

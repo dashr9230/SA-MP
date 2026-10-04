@@ -1,11 +1,22 @@
 
 #pragma once
 
+class CIntArray
+{
+public:
+	CIntArray() { m_pData = NULL; m_nSize = 0; }
+	~CIntArray();
+
+	bool SetSize(unsigned int nSize);
+
+	int *m_pData;
+	unsigned int m_nSize;
+};
+
 class CUnkClass5
 {
 private:
-	int field_0;
-	int field_4;
+	CIntArray m_Array;
 	IDirect3DDevice9* m_pD3DDevice;
 	char _gapC[8];
 	int field_14;

@@ -1,10 +1,37 @@
 
 #include "main.h"
 
+CIntArray::~CIntArray()
+{
+	SetSize(0);
+}
+
+bool CIntArray::SetSize(unsigned int nSize)
+{
+	if(!nSize) {
+		if(m_pData) {
+			free(m_pData);
+			m_pData = NULL;
+		}
+		m_nSize = 0;
+		return true;
+	}
+
+	int *pNew = (int *)realloc(m_pData, nSize * sizeof(int));
+	if(!pNew) return false;
+
+	m_pData = pNew;
+	if(m_nSize < nSize) {
+		for(unsigned int i = m_nSize; i != nSize; i++)
+			m_pData[i] = 0;
+	}
+
+	m_nSize = nSize;
+	return true;
+}
+
 CUnkClass5::CUnkClass5(IDirect3DDevice9 *pD3DDevice)
 {
-	field_0 = 0;
-	field_4 = 0;
 	m_pD3DDevice = pD3DDevice;
 	m_pDialog = NULL;
 	field_30 = 0;
@@ -22,9 +49,9 @@ CUnkClass5::CUnkClass5(IDirect3DDevice9 *pD3DDevice)
 	field_240 = 220;
 	field_24C = 0;
 	field_250 = -1;
+	field_254 = RakNet::GetTime();
 	field_25C = 0;
 	field_258 = 0;
-	field_254 = RakNet::GetTime();
 }
 
 void CUnkClass5::ResetDialogControls(CDXUTDialog *pDialog)
@@ -41,7 +68,7 @@ void CUnkClass5::ResetDialogControls(CDXUTDialog *pDialog)
 		m_pListBox->SetEnabled(false);
 		m_pListBox->SetVisible(false);
 		m_pListBox->field_4D = 2;
-		m_pListBox->field_51 = field_23C;
-		m_pListBox->field_55 = field_240;
+		m_pListBox->field_51[0] = field_23C;
+		m_pListBox->field_51[1] = field_240;
 	}
 }

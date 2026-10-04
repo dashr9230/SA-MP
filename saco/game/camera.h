@@ -23,6 +23,7 @@ public:
 	void InterpolateLookAt(VECTOR *vecFrom, VECTOR *vecTo, int iTime, BYTE byteCut);
 	void FUNC_1009D660(CEntity *pEntity);
 	void FUNC_1009D6B0();
+	void FUNC_1009D740(); // .text:1009D740
 	float GetDistanceFromPoint(VECTOR *vecPos);
 
 	CCamera() {

@@ -49,14 +49,18 @@ CGame::CGame()
 	memset(bUsedPlayerSlots, 0, sizeof(bUsedPlayerSlots));
 	memset(field_6E, 0, sizeof(field_6E));
 	field_55 = 0;
-	field_59 = 1;
+	m_bHeadMove = 1;
 	field_5D = 90;
 }
 
 void CGame::sub_100A0010()
 {
 	int time = (int)RakNet::GetTime();
-	if(unnamed_1015068C)
+	if(!unnamed_1015068C)
+	{
+		unnamed_1015068C = time;
+	}
+	else
 	{
 		if((time - unnamed_1015068C) > 30)
 		{
@@ -67,13 +71,9 @@ void CGame::sub_100A0010()
 		}
 		*(BYTE*)0xB7356E = unnamed_10150688;
 	}
-	else
-	{
-		unnamed_1015068C = time;
-	}
 }
 
-void unnamed_100A0060(float a1)
+void __stdcall unnamed_100A0060(float a1)
 {
   *(float*)0xB7CB5C = a1;
   *(float*)0xB7CB58 = a1;
@@ -243,9 +243,18 @@ void CGame::ProcessInputDisabling()
 		*(BYTE*)0x53F421 = 0x0F;
 		*(BYTE*)0x53F422 = 0x8C;
 
-		DIResetMouse();
-		UpdatePads();
-		DIResetMouse();
+		*(DWORD*)0xB73424 = 0;
+		*(DWORD*)0xB73428 = 0;
+		_asm mov edx, 0x541BD0
+		_asm call edx
+
+		_asm mov edx, 0x541DD0
+		_asm call edx
+
+		*(DWORD*)0xB73424 = 0;
+		*(DWORD*)0xB73428 = 0;
+		_asm mov edx, 0x541BD0
+		_asm call edx
 
 		UnFuck(0x6194A0,1);
 		*(BYTE*)0x6194A0 = 0xE9;
@@ -253,9 +262,8 @@ void CGame::ProcessInputDisabling()
 		pD3DDevice->ShowCursor(FALSE);
 		field_65--;
 	} else {
-		if(field_65 <= 0)
-			return;
-		field_65 -= 1;
+		if(field_65 > 0)
+			field_65--;
 	}
 }
 
@@ -269,8 +277,13 @@ void CGame::ToggleKeyInputsDisabled(int a2, BOOL a3)
 		memset((PVOID)0x541DF5,0x90,5);	// disable call
 
 		DisableMouseProcess();
-		DIResetMouse();
-		UpdatePads();
+		*(DWORD*)0xB73424 = 0;
+		*(DWORD*)0xB73428 = 0;
+		_asm mov edx, 0x541BD0
+		_asm call edx
+
+		_asm mov edx, 0x541DD0
+		_asm call edx
 
 		UnFuck(0x6194A0u,1);
 		*(BYTE*)0x6194A0 = 0xC3;
@@ -293,8 +306,13 @@ void CGame::ToggleKeyInputsDisabled(int a2, BOOL a3)
 		if(field_61 != 3)
 		{
 			DisableMouseProcess();
-			DIResetMouse();
-			UpdatePads();
+			*(DWORD*)0xB73424 = 0;
+			*(DWORD*)0xB73428 = 0;
+			_asm mov edx, 0x541BD0
+			_asm call edx
+
+			_asm mov edx, 0x541DD0
+			_asm call edx
 
 			UnFuck(0x6194A0,1);
 			*(BYTE*)0x6194A0 = 0xC3;
@@ -308,8 +326,13 @@ void CGame::ToggleKeyInputsDisabled(int a2, BOOL a3)
 		if(field_61 != 4)
 		{
 			DisableMousePositionUpdate();
-			DIResetMouse();
-			UpdatePads();
+			*(DWORD*)0xB73424 = 0;
+			*(DWORD*)0xB73428 = 0;
+			_asm mov edx, 0x541BD0
+			_asm call edx
+
+			_asm mov edx, 0x541DD0
+			_asm call edx
 
 			UnFuck(0x6194A0,1);
 			*(BYTE*)0x6194A0 = 0xC3;
@@ -380,29 +403,55 @@ void CGame::StartGame()
 
 
 
-void CGame::sub_100A0110()
+CPlayerPed *CGame::sub_100A0110(int a1, float fX, float fY, float fZ, float fRotation, int a6, int a7)
 {
 	// TODO: CGame::sub_100A0110() .text:100A0110
+	return NULL;
 }
 
-void CGame::sub_100A0210()
+int CGame::DeletePlayerPed(int pPlayerPed)
 {
-	// TODO: CGame::sub_100A0210() .text:100A0210
+	if(pPlayerPed)
+	{
+		BYTE bytePlayerNumber = *(BYTE *)(pPlayerPed + 0x2B0);
+		((struc_vdelete *)pPlayerPed)->Delete(1);
+		bUsedPlayerSlots[bytePlayerNumber] = 0;
+		return 1;
+	}
+	return 0;
 }
 
-void CGame::sub_100A0250()
+CVehicle *CGame::sub_100A0250(int a2, float a3, float a4, float a5, float a6, int a7)
 {
-	// TODO: CGame::sub_100A0250() .text:100A0250
+	BOOL bKeepModelLoaded = 0;
+	if(*((char *)this + a2 - 290))
+		bKeepModelLoaded = 1;
+	CVehicle *pVehicle = new CVehicle(a2, a3, a4, a5, a6, bKeepModelLoaded, a7);
+	return pVehicle->m_pVehicle ? pVehicle : 0;
 }
 
-void CGame::sub_100A02E0()
+char szUnk_10113968[8];
+
+void sub_100A4170(const char *a1)
 {
-	// TODO: CGame::sub_100A02E0() .text:100A02E0 (unused)
+	memset(szUnk_10113968, 0, sizeof(szUnk_10113968));
+	strcpy(szUnk_10113968, a1);
 }
 
-void CGame::sub_100A0310()
+void __stdcall sub_100A02E0(const char *a1)
 {
-	// TODO: CGame::sub_100A0310() .text:100A0310 (unused)
+	if(a1 && *a1 && strlen(a1) <= 8)
+		sub_100A4170(a1);
+}
+
+int __stdcall sub_100A0310(void *a1)
+{
+	if(a1)
+	{
+		((struc_vdelete *)a1)->Delete(1);
+		return 1;
+	}
+	return 0;
 }
 
 void CGame::sub_100A0330()
@@ -436,6 +485,13 @@ void CGame::sub_100A0330()
 void CGame::sub_100A1C10()
 {
 	// TODO: CGame::sub_100A1C10() .text:100A1C10
+}
+
+//-----------------------------------------------------------
+
+BOOL CGame::sub_100A0920()
+{
+	return *(PDWORD)0xBA67A4 != 0;
 }
 
 
@@ -479,8 +535,8 @@ BOOL CGame::SetModelDeletable(int iModelID)
 {
 	BYTE * pStreamingModelInfo = (BYTE*)(iModelID * 20);
 
-	if(IsModelLoaded(iModelID))
-		return TRUE;
+	if(iModelID > 20000 || iModelID < 0) return TRUE;
+	if(ScriptCommand(&is_model_available,iModelID)) return TRUE;
 
 	_asm push 2
 	_asm push iModelID
@@ -573,10 +629,10 @@ void CGame::DisplayHud(BOOL bDisp)
 {
 	if(bDisp) {
 		*(BYTE*)ADDR_ENABLE_HUD = 1;
-		ToggleRadar(1);
+		*(PBYTE)0xBAA3FB = 0;
 	} else {
 		*(BYTE*)ADDR_ENABLE_HUD = 0;
-		ToggleRadar(0);
+		*(PBYTE)0xBAA3FB = 1;
 	}
 }
 
@@ -668,7 +724,7 @@ int CGame::IsAnimationLoaded(char *szAnimFile)
 
 void CGame::ReleaseAnimation(char *szAnimFile)
 {
-	if (IsAnimationLoaded(szAnimFile))
+	if (ScriptCommand(&is_animation_loaded,szAnimFile))
 		ScriptCommand(&release_animation,szAnimFile);
 }
 
@@ -713,7 +769,7 @@ void CGame::SetCheckpointInformation(VECTOR *pos, VECTOR *extent)
 	memcpy(&m_vecCheckpointPos,pos,sizeof(VECTOR));
 	memcpy(&m_vecCheckpointExtent,extent,sizeof(VECTOR));
 	if(m_dwCheckpointMarker) {
-		DisableMarker(m_dwCheckpointMarker);
+		ScriptCommand(&disable_marker, m_dwCheckpointMarker);
 		m_dwCheckpointMarker = NULL;
 
 		DWORD dwMarkerID = 0;
@@ -734,7 +790,7 @@ void CGame::SetRaceCheckpointInformation(BYTE byteType, VECTOR *pos, VECTOR *nex
 	m_byteRaceType = byteType;
 	if(m_dwRaceCheckpointMarker)
 	{
-		DisableMarker(m_dwRaceCheckpointMarker);
+		ScriptCommand(&disable_marker, m_dwRaceCheckpointMarker);
 		m_dwRaceCheckpointMarker = NULL;
 
 		DWORD dwMarkerID = 0;
@@ -750,7 +806,12 @@ void CGame::SetRaceCheckpointInformation(BYTE byteType, VECTOR *pos, VECTOR *nex
 
 void CGame::MakeRaceCheckpoint()
 {
-	DisableRaceCheckpoint();
+	if (m_dwRaceCheckpointHandle)
+	{
+		ScriptCommand(&destroy_racing_checkpoint, m_dwRaceCheckpointHandle);
+		m_dwRaceCheckpointHandle = NULL;
+	}
+	m_bRaceCheckpointsEnabled = false;
 
 	ScriptCommand(&create_racing_checkpoint, (int)m_byteRaceType,
 				m_vecRaceCheckpointPos.X, m_vecRaceCheckpointPos.Y, m_vecRaceCheckpointPos.Z,
@@ -796,7 +857,7 @@ void CGame::UpdateCheckpoints()
 		}
 	}
 	else if(m_dwCheckpointMarker) {
-		DisableMarker(m_dwCheckpointMarker);
+		ScriptCommand(&disable_marker, m_dwCheckpointMarker);
 		m_dwCheckpointMarker = NULL;
 	}
 
@@ -816,8 +877,13 @@ void CGame::UpdateCheckpoints()
 		}
 	}
 	else if(m_dwRaceCheckpointMarker) {
-		DisableMarker(m_dwRaceCheckpointMarker);
-		DisableRaceCheckpoint();
+		ScriptCommand(&disable_marker, m_dwRaceCheckpointMarker);
+		if (m_dwRaceCheckpointHandle)
+		{
+			ScriptCommand(&destroy_racing_checkpoint, m_dwRaceCheckpointHandle);
+			m_dwRaceCheckpointHandle = NULL;
+		}
+		m_bRaceCheckpointsEnabled = false;
 		m_dwRaceCheckpointMarker = NULL;
 	}
 }
@@ -878,7 +944,9 @@ void CGame::UpdateFarClippingPlane()
 	PED_TYPE *pPlayerPed = GamePool_FindPlayerPed();
 
 	if(pPlayerPed) {
-		if(GetActiveInterior() == 0) {
+		DWORD dwInterior;
+		ScriptCommand(&get_active_interior,&dwInterior);
+		if(!(BYTE)dwInterior) {
 			fFarClip = 1250.0f - (pPlayerPed->entity.mat->pos.Z * 2.0f);
 			if(fFarClip < 700.0f) {
 				fFarClip = 700.0f;
@@ -904,13 +972,13 @@ void CGame::AddToLocalMoney(int iAmount)
 
 void CGame::ResetLocalMoney()
 {
-	int iMoney = GetLocalMoney();
+	int iMoney = *(int *)0xB7CE50;
 	if(!iMoney) return;
 
 	if(iMoney < 0) {
-		AddToLocalMoney(abs(iMoney));
+		ScriptCommand(&add_to_player_money,0,abs(iMoney));
 	} else {
-		AddToLocalMoney(-(iMoney));
+		ScriptCommand(&add_to_player_money,0,-(iMoney));
 	}
 }
 
@@ -1025,10 +1093,13 @@ DWORD CGame::CreateWeaponPickup(int iModel, DWORD dwAmmo, float fX, float fY, fl
 {
 	DWORD hnd;
 
-	if(!IsModelLoaded(iModel)) {
-		RequestModel(iModel);
-		LoadRequestedModels();
-		while(!IsModelLoaded(iModel)) Sleep(5);
+	// the model wait is spelled out, none of the model helpers are inline here
+	if(iModel <= 20000 && iModel >= 0 && !ScriptCommand(&is_model_available, iModel))
+	{
+		ScriptCommand(&request_model, iModel);
+		ScriptCommand(&load_requested_models);
+
+		while(!ScriptCommand(&is_model_available, iModel)) Sleep(5);
 	}
 
 	ScriptCommand(&create_pickup_with_ammo, iModel, 4, dwAmmo, fX, fY, fZ, &hnd);
@@ -1136,12 +1207,16 @@ void CGame::EnableClock(BYTE byteClock)
 	UnFuck(0x859A6C,10);
 	if (byteClock)
 	{
-		ToggleThePassingOfTime(1);
+		UnFuck(0x52CF10,1);
+		*(PBYTE)0x52CF10 = 0x56; // push esi
+		field_69 = TRUE;
 		memcpy((PVOID)0x859A6C, byteClockData, 10);
 	}
 	else
 	{
-		ToggleThePassingOfTime(0);
+		UnFuck(0x52CF10,1);
+		*(PBYTE)0x52CF10 = 0xC3; // ret
+		field_69 = FALSE;
 		memset((PVOID)0x859A6C,0,10);
 	}
 }

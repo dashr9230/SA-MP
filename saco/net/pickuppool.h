@@ -3,6 +3,15 @@
 
 #define MAX_PICKUPS 4096
 
+#pragma pack(1)
+typedef struct _PICKUP {
+	int iModel;
+	int iType;
+	float fX;
+	float fY;
+	float fZ;
+} PICKUP, *PPICKUP;
+
 //----------------------------------------------------
 
 class CPickupPool
@@ -20,6 +29,7 @@ private:
 
 public:
 
+	// MATCH
 	CPickupPool() {
 		memset(field_F004, 0, sizeof(field_F004));
 		field_0 = 0;
@@ -32,6 +42,11 @@ public:
 	}
 
 	~CPickupPool();
+
+	void sub_10013440(int iPickup); // .text:10013440
+	void sub_10013320(int iPickup); // .text:10013320
+	void sub_10013270(PICKUP *pPickup, int iPickup); // .text:10013270
+	void sub_10013380(WORD wPickup); // .text:10013380
 
 };
 

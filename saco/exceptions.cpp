@@ -27,13 +27,38 @@ int dword_10125A58=0;
 void DumpNetworkStateInformation(PCHAR sz)
 {
 	CPlayerPool   *pPlayerPool = pNetGame->GetPlayerPool();
-	PLAYERID playerId=0;
+	PLAYERID playerId;
+	char szBuffer[16384];
 
 	sz[0] = '\0';
 
 	sprintf(sz,"\r\nState Information: Ped Context: %u\r\n",*pbyteCurrentPlayer);
 
-	// TODO: DumpNetworkStateInformation 10060160
+	playerId = 0;
+	do
+	{
+		if(playerId < MAX_PLAYERS && pPlayerPool->field_2A[playerId])
+		{
+			CNetPlayer *pNetPlayer = pPlayerPool->m_pPlayers[playerId];
+			CRemotePlayer *pRemotePlayer;
+
+			if(pNetPlayer)
+				pRemotePlayer = pNetPlayer->m_pRemotePlayer;
+			else
+				pRemotePlayer = NULL;
+
+			sprintf(szBuffer,"P%u (%u,%u) ",playerId,pRemotePlayer->field_10A,pRemotePlayer->field_1E7);
+			strcat(sz,szBuffer);
+
+			if(playerId > 0)
+			{
+				if(!((playerId + 1) % 4))
+					strcat(sz,"\r\n");
+			}
+		}
+		playerId++;
+	}
+	while(playerId != MAX_PLAYERS);
 }
 
 //----------------------------------------------------

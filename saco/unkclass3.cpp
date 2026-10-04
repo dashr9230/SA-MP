@@ -15,7 +15,8 @@ CUnkClass3::CUnkClass3(IDirect3DDevice9 *pD3DDevice)
 	field_10 = 300;
 	field_14 = 100;
 	field_18 = 30;
-	memset(field_89, 0, sizeof(field_89));
+	// retail zeroes this with a loop, not memset: the inline rep stosd sets edi up first
+	for(int i = 0; i < 516; i++) field_89[i] = 0;
 }
 
 void CUnkClass3::ResetDialogControls(CDXUTDialog *pDialog)

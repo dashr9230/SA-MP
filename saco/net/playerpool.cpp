@@ -43,3 +43,14 @@ CPlayerPool::CPlayerPool()
 }
 
 //----------------------------------------------------
+
+//----------------------------------------------------
+
+CPlayerPool::~CPlayerPool()
+{
+	delete m_pLocalPlayer;
+	m_pLocalPlayer = NULL;
+
+	for(PLAYERID playerId = 0; playerId < MAX_PLAYERS; playerId++)
+		sub_10014090(playerId,0);
+}

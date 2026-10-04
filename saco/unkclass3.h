@@ -25,4 +25,6 @@ public:
 	CUnkClass3(IDirect3DDevice9 *pD3DDevice);
 
 	void ResetDialogControls(CDXUTDialog *pDialog);
+
+	int GetField28() { return field_28; }; // .text:10002E60, out of line copy
 };

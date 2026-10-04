@@ -25,7 +25,12 @@ public:
 
 	void Begin();
 	void End();
+	void FUNC_1006CD80();
+	void FUNC_1006CD90();
 	void Draw(D3DXVECTOR3* pPlayerPos, float fHealth, float fArmor, float fDistanceFromLocalPlayer);
+	// the nametag label pass, 0x1006CDA0
+	void Draw(D3DXVECTOR3* pPlayerPos, PCHAR szName, DWORD dwColor, float fDistanceFromLocalPlayer,
+		BYTE bNameTagStatus, int nStatusStyle);
 
 	void DeleteDeviceObjects();
 	void RestoreDeviceObjects();

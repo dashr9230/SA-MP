@@ -31,6 +31,10 @@ public:
 
 	void  ToggleImmunity(BYTE byteEnable);
 
+	void  FUNC_1009C550(); // .text:1009C550
+	void  FUNC_1009C570(float a1); // .text:1009C570
+	void  FUNC_1009C5D0(int a1); // .text:1009C5D0
+
 	PED_TYPE    *m_pPed;
 	DWORD		m_dwMarkerID;
 	DWORD 		m_dwArrow;

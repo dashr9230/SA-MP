@@ -53,6 +53,8 @@ const SCRIPT_COMMAND set_marker_color					= { 0x0165, "ii" };		// var_marker, co
 const SCRIPT_COMMAND enable_zone_names					= { 0x09BA, "i" };
 const SCRIPT_COMMAND create_radar_marker_without_sphere	= { 0x04CE, "fffiv" };	// x, y, z, marker_type, var_marker
 const SCRIPT_COMMAND show_on_radar						= { 0x0168, "ii" };		// var_marker, size
+const SCRIPT_COMMAND create_arrow_above_actor			= { 0x0187, "iv" };		// var_actor, var_marker
+const SCRIPT_COMMAND show_on_radar2						= { 0x018B, "ii" };		// var_marker, size
 
 const SCRIPT_COMMAND create_icon_marker_sphere			= { 0x02A7, "fffiv" };
 
@@ -94,9 +96,20 @@ const SCRIPT_COMMAND put_train_at						= { 0x07c7, "ifff" };
 
 const SCRIPT_COMMAND get_active_interior				= { 0x077e, "v" };
 const SCRIPT_COMMAND set_actor_z_angle					= { 0x0173, "if" };
+const SCRIPT_COMMAND get_actor_z_angle					= { 0x0172, "iv" };
+const SCRIPT_COMMAND get_car_z_angle					= { 0x0174, "iv" };
 
 const SCRIPT_COMMAND lock_actor							= { 0x04d7, "ii" };
 const SCRIPT_COMMAND refresh_streaming_at				= { 0x04E4, "ff" };
+const SCRIPT_COMMAND select_interior					= { 0x04BB, "i" };		// interior
+const SCRIPT_COMMAND disassociate_object				= { 0x0682, "ifffi" };	// var_object, x, y, z, ukn
+const SCRIPT_COMMAND destroy_object_with_fade			= { 0x09A2, "i" };		// var_object
+// the two object commands samp.dll references that were missing here; the diff cannot
+// see a wrong command id, the operand is a masked relocation
+const SCRIPT_COMMAND destroy_object						= { 0x0108, "i" };		// var_object
+const SCRIPT_COMMAND script_0650						= { 0x0650, "i" };		// var_object, name not resolved
+const SCRIPT_COMMAND task_pick_up_object				= { 0x070A, "iifffiissi" };
+const SCRIPT_COMMAND link_actor_to_interior				= { 0x0860, "ii" };		// var_actor, interior
 const SCRIPT_COMMAND put_actor_in_car2					= { 0x0430, "iii" };
 
 const SCRIPT_COMMAND kill_actor							= { 0x0321, "i" };
@@ -154,6 +167,12 @@ const SCRIPT_COMMAND is_wav_loaded = { 0x3D0, "i" };
 const SCRIPT_COMMAND play_wav = { 0x3D1, "i" };
 const SCRIPT_COMMAND unload_wav = { 0x40D, "i" };
 const SCRIPT_COMMAND set_wav_at_location = { 0x3D7, "ifff" };
+const SCRIPT_COMMAND is_line_of_sight_clear = { 0x06BD, "ffffffiiiii" };
+
+const SCRIPT_COMMAND set_widescreen = { 0x02A3, "i" };
+// the fifth argument is declared "i" but samp passes a float
+const SCRIPT_COMMAND script_command_0948 = { 0x0948, "fffii" };
+const SCRIPT_COMMAND attach_object_to_player = { 0x069B, "iiffffff" }; // object, char, offset xyz, rot xyz
 
 
 

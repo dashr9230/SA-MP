@@ -5,7 +5,7 @@
 
 class CMenuPool
 {
-private:
+public:
 
 	CMenu *m_pMenus[MAX_MENUS];
 	BOOL m_bMenuSlotState[MAX_MENUS];
@@ -13,6 +13,8 @@ private:
 	BYTE m_byteExited;
 
 public:
+	int GetSlotState(BYTE byteMenuID) { if(byteMenuID > MAX_MENUS) return 0; return m_bMenuSlotState[byteMenuID]; }
+
 	CMenuPool();
 	~CMenuPool();
 

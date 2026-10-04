@@ -55,6 +55,7 @@ typedef struct _GAME_SETTINGS {
 #include "net/menupool.h"
 #include "net/textdrawpool.h"
 #include "net/labelpool.h"
+#include "net/downloader.h"
 #include "net/netgame.h"
 #include "net/scriptrpc.h"
 

@@ -14,3 +14,11 @@ CActorPool::CActorPool()
 }
 
 //----------------------------------------------------
+
+CActorPool::~CActorPool()
+{
+	for(ACTORID ActorID = 0; ActorID < MAX_ACTORS; ActorID++)
+		sub_100016F0(ActorID);
+}
+
+//----------------------------------------------------

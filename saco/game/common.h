@@ -65,7 +65,8 @@ typedef struct _WEAPON_SLOT_TYPE
 {
 	DWORD dwType;
 
-	char _gap4[8];
+	DWORD field_4;
+	DWORD field_8;
 
 	DWORD dwAmmo;
 

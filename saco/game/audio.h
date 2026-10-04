@@ -5,7 +5,7 @@
 
 class CAudio
 {
-private:
+public:
 	int field_0;
 	bool field_4;
 

@@ -5,6 +5,8 @@
 #include "util.h"
 #include <sys/stat.h>
 
+extern int iGtaVersion;
+
 DWORD dwPlayerPedPtrs[PLAYER_PED_SLOTS];
 
 struc_13 VAR_1026C258[PLAYER_PED_SLOTS];
@@ -13,7 +15,7 @@ struc_13 VAR_1026C258[PLAYER_PED_SLOTS];
 
 //-----------------------------------------------------------
 
-void __declspec(naked) ProcessLineOfSight(VECTOR *vecOrigin, VECTOR *vecLine, VECTOR *colPoint,
+BOOL __declspec(naked) ProcessLineOfSight(VECTOR *vecOrigin, VECTOR *vecLine, VECTOR *colPoint,
 		DWORD *pHitEntity, int bCheckBuildings, int bCheckVehicles, int bCheckPeds,
 		int bCheckObjects, int bCheckDummies, int bSeeThroughStuff,
 		int  bIgnoreSomeObjectsForCamera, int bUnk1)
@@ -179,6 +181,64 @@ OBJECT_TYPE * GamePool_GetObject()
 	return pObjectRet;
 }
 
+// the pool slot in CPools; the used-slot count walks the byte map that starts
+// four bytes into the pool itself
+struct GAME_POOL_HOLDER
+{
+	BYTE *pPool;
+
+	int CountUsedSlots()
+	{
+		int iCount = 0;
+		int iSize = *(int *)(pPool + 8);
+
+		for(int i = 0; i < iSize; i++)
+		{
+			if(pPool[i + 4] > 0)
+				iCount++;
+		}
+		return iCount;
+	}
+};
+
+//-----------------------------------------------------------
+
+int FUNC_100B3CD0()
+{
+	return ((GAME_POOL_HOLDER *)0xB7449C)->CountUsedSlots();
+}
+
+//-----------------------------------------------------------
+
+int FUNC_100B3D00()
+{
+	return ((GAME_POOL_HOLDER *)0xC8800C)->CountUsedSlots();
+}
+
+//-----------------------------------------------------------
+
+bool FUNC_100B3D30(int nModelIndex)
+{
+	OBJECT_TYPE *pPoolStart;
+
+	_asm mov eax, 0xB7449C
+	_asm mov edx, [eax]
+	_asm mov eax, [edx]
+	_asm mov pPoolStart, eax
+
+	OBJECT_TYPE *pObject = pPoolStart;
+
+	for(int i = 0; i != 3000; i++, pObject++)
+	{
+		if(pObject && pObject->vtable && pObject->vtable != 0x863C40 &&
+			pObject->nModelIndex == nModelIndex)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
 //-----------------------------------------------------------
 
 void ReplaceBuildingModel(ENTITY_TYPE *pEntity, int iModelID)
@@ -187,6 +247,146 @@ void ReplaceBuildingModel(ENTITY_TYPE *pEntity, int iModelID)
 	_asm mov ecx, pEntity
 	_asm mov edx, 0x403EC0
 	_asm call edx
+}
+
+//-----------------------------------------------------------
+
+// set by the base-model-info relocation hack; the setter is not implemented yet
+BOOL bBaseModelInfoRelocated;
+DWORD **ppRelocatedModelInfo;
+
+DWORD * __stdcall GetModelInfo(int iModel)
+{
+	if(bBaseModelInfoRelocated)
+		return (DWORD *)ppRelocatedModelInfo[iModel];
+
+	if(iModel < 0 || iModel > 20000) return NULL;
+
+	return ((DWORD **)0xA9B0C8)[iModel];
+}
+
+//-----------------------------------------------------------
+
+BOOL __stdcall IsValidModel(int iModel)
+{
+	return GetModelInfo(iModel) != NULL;
+}
+
+//-----------------------------------------------------------
+
+BOOL __stdcall IsValidPedModel(int iModel)
+{
+	DWORD *pModelInfo;
+
+	if(iModel >= 0 && iModel <= 30000 &&
+		(pModelInfo = GetModelInfo(iModel)) != NULL &&
+		*pModelInfo == 0x85BDC0)
+	{
+		return TRUE;
+	}
+	return FALSE;
+}
+
+//-----------------------------------------------------------
+
+int FUNC_100B41F0(void *pData)
+{
+	int iRet = 0;
+	DWORD dwFunc;
+	DWORD dwCamera = *(DWORD *)0xC1703C;
+
+	if(!dwCamera) return iRet;
+
+	dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7EE310 : 0x7EE2D0;
+
+	_asm push pData
+	_asm push dwCamera
+	_asm mov edx, dwFunc
+	_asm call edx
+	_asm pop edx
+	_asm pop edx
+	_asm mov iRet, eax
+
+	return iRet;
+}
+
+//-----------------------------------------------------------
+
+int __stdcall FUNC_100B4240(DWORD *pdwIn, DWORD dwParam)
+{
+	DWORD dwCamera;
+	DWORD dwFunc;
+	DWORD *pData;
+	DWORD data[4];
+	int iRet;
+
+	data[0] = pdwIn[0];
+	data[1] = pdwIn[1];
+	data[2] = pdwIn[2];
+	data[3] = dwParam;
+	pData = data;
+	iRet = 0;
+
+	dwCamera = *(DWORD *)0xC1703C;
+	if(!dwCamera) return iRet;
+
+	dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7EE310 : 0x7EE2D0;
+
+	_asm push pData
+	_asm push dwCamera
+	_asm mov edx, dwFunc
+	_asm call edx
+	_asm pop edx
+	_asm pop edx
+	_asm mov iRet, eax
+
+	return iRet;
+}
+
+//-----------------------------------------------------------
+
+void __stdcall FUNC_100B42B0(DWORD *pdwEntity)
+{
+	if(pdwEntity && pdwEntity[0x118])
+	{
+		DWORD dwState = ((DWORD *)pdwEntity[0x118])[0x166];
+		if(dwState != 0 && dwState != 1)
+		{
+			DWORD *pdwObject = (DWORD *)pdwEntity[0x118];
+
+			_asm mov ecx, pdwObject
+			_asm mov ebx, [ecx]
+			_asm push 1
+			_asm call dword ptr [ebx]
+
+			pdwEntity[0x118] = 0;
+		}
+	}
+}
+
+//-----------------------------------------------------------
+
+DWORD __stdcall FUNC_100B4430(int a1, int a2)
+{
+	DWORD *pFound = NULL;
+	DWORD dwResult = 0;
+
+	_asm push a2
+	_asm push a1
+	_asm mov edx, 0x4D3A60
+	_asm call edx
+	_asm mov pFound, eax
+	_asm pop edx
+	_asm pop edx
+
+	if(pFound)
+	{
+		_asm mov edx, [eax+0x10]
+		_asm mov eax, [edx]
+		_asm mov dwResult, eax
+	}
+
+	return dwResult;
 }
 
 //-----------------------------------------------------------
@@ -507,6 +707,19 @@ DWORD __stdcall CRC32FromUpcaseString(char *szString)
 
 
 
+bool FUNC_100B4A70(VECTOR *vec)
+{
+	if( vec->X <= 1.0f && vec->X >= -1.0f &&
+		vec->Y <= 1.0f && vec->Y >= -1.0f &&
+		vec->Z <= 1.0f && vec->Z >= -1.0f )
+	{
+		return true;
+	}
+	return false;
+}
+
+//-----------------------------------------------------------
+
 bool FUNC_100B4B50(VECTOR *vecPos)
 {
 	if( vecPos->X < 20000.0f && vecPos->X > -20000.0f &&
@@ -516,6 +729,45 @@ bool FUNC_100B4B50(VECTOR *vecPos)
 		return true;
 	}
 	return false;
+}
+
+//-----------------------------------------------------------
+
+int FUNC_100B4BC0(int a1, int a2, int a3)
+{
+	_asm push a3
+	_asm push a2
+	_asm push a1
+	_asm mov edx, 0x59C730
+	_asm call edx
+	_asm pop edx
+	_asm pop edx
+	_asm pop edx
+}
+
+//-----------------------------------------------------------
+
+int FUNC_100B4BE0(int a1, int a2, int a3)
+{
+	_asm push a3
+	_asm push a2
+	_asm push a1
+	_asm mov edx, 0x59C790
+	_asm call edx
+}
+
+//-----------------------------------------------------------
+
+int FUNC_100B4C00(int a1, int a2, int a3)
+{
+	_asm push a3
+	_asm push a2
+	_asm push a1
+	_asm mov edx, 0x59C810
+	_asm call edx
+	_asm pop edx
+	_asm pop edx
+	_asm pop edx
 }
 
 
@@ -658,9 +910,55 @@ void _VectorNormalise(VECTOR *vec)
 
 //----------------------------------------------------
 
+void VectorCrossProduct(VECTOR *vecOut, VECTOR *vec1, VECTOR *vec2)
+{
+	float f1, f2;
+
+	// each product needs its own statement; in one expression MSVC canonicalises
+	// the commutative operands and picks the other side to fld
+	f1 = vec2->Z * vec1->Y;
+	f2 = vec2->Y * vec1->Z;
+	vecOut->X = f1 - f2;
+	f1 = vec2->X * vec1->Z;
+	f2 = vec2->Z * vec1->X;
+	vecOut->Y = f1 - f2;
+	f1 = vec2->Y * vec1->X;
+	f2 = vec2->X * vec1->Y;
+	vecOut->Z = f1 - f2;
+}
+
+//----------------------------------------------------
+
+void VectorNormaliseTo(VECTOR *vecOut, VECTOR *vecIn)
+{
+	float fInv = 1.0f / (float)sqrt((double)(vecIn->X * vecIn->X + vecIn->Y * vecIn->Y +
+		vecIn->Z * vecIn->Z));
+
+	vecOut->X = fInv * vecIn->X;
+	vecOut->Y = fInv * vecIn->Y;
+	vecOut->Z = fInv * vecIn->Z;
+}
+
+//----------------------------------------------------
+
 float GetNormalisation(VECTOR *vec)
 {
 	return ((vec->X * vec->X) + (vec->Y * vec->Y) + (vec->Z * vec->Z));
+}
+
+//----------------------------------------------------
+// newton step on the 0x5F3759D5 inverse-sqrt seed, scaled back up by x
+
+float FastSqrt(float x)
+{
+	float fOrig = x;
+	float fHalf = x * 0.5f;
+	int i = *(int *)&x;
+
+	i = 0x5F3759D5 - (i >> 1);
+	x = *(float *)&i;
+
+	return fOrig * (x * (1.5f - fHalf * x * x));
 }
 
 //----------------------------------------------------
@@ -877,6 +1175,50 @@ void CreateCameraRaster()
 
 //----------------------------------------------------
 
+DWORD CamFrameBufferSave;
+DWORD CamZBufferSave;
+
+DWORD *pRwSceneCamera = (DWORD *)0xC1703C;
+
+void FUNC_100B5D20()
+{
+	DWORD dwCamera;
+
+	_asm pushad
+
+	CreateCameraRaster();
+
+	dwCamera = *pRwSceneCamera;
+	*(DWORD *)0xC9BCC0 = dwCamera;
+
+	_asm mov ebx, dwCamera
+	_asm mov edx, [ebx+0x60]
+	_asm mov CamFrameBufferSave, edx
+	_asm mov edx, [ebx+0x64]
+	_asm mov CamZBufferSave, edx
+	_asm mov edx, CamFrameBuffer2
+	_asm mov [ebx+0x60], edx
+	_asm mov edx, CamZBuffer2
+	_asm mov [ebx+0x64], edx
+
+	_asm mov edx, 0x734650
+	_asm call edx
+	_asm mov edx, 0x53DF40
+	_asm call edx
+	_asm mov edx, 0x732F30
+	_asm call edx
+
+	_asm mov ebx, dwCamera
+	_asm mov edx, CamFrameBufferSave
+	_asm mov [ebx+0x60], edx
+	_asm mov edx, CamZBufferSave
+	_asm mov [ebx+0x64], edx
+
+	_asm popad
+}
+
+//----------------------------------------------------
+
 void ResetLocalPad(int unk1, int unk2)
 {
 	// CPad__GetPadAt(int index)
@@ -905,6 +1247,16 @@ BOOL IsFileOrDirectoryExists(char * szPath)
 //----------------------------------------------------
 
 
+void ReplaceUnprintableChars(char *szString)
+{
+	while(*szString)
+	{
+		if((BYTE)*szString > 0x7F || (BYTE)*szString < ' ')
+			*szString = ' ';
+		szString++;
+	}
+}
+
 BOOL IsHexChar(char c)
 {
 	return c >= '0' && c <= '9' || c >= 'A' && c <= 'F' || c >= 'a' && c <= 'f';
@@ -918,7 +1270,7 @@ BOOL IsHexChar(wchar_t c)
 DWORD GetColorFromEmbedCode(char *szString)
 {
 	if(szString[0] && szString[0] == '{'
-		&& szString[1] && IsHexChar(szString[1])
+		&& szString[1] && (szString[1] >= '0' && szString[1] <= '9' || szString[1] >= 'A' && szString[1] <= 'F' || szString[1] >= 'a' && szString[1] <= 'f')
 		&& szString[2] && IsHexChar(szString[2])
 		&& szString[3] && IsHexChar(szString[3])
 		&& szString[4] && IsHexChar(szString[4])
@@ -992,6 +1344,43 @@ DWORD unnamed_100B6100(char *szString, int nMaxLen)
 	return 0;
 }
 
+int FUNC_100B61D0(int a1)
+{
+	_asm mov eax, 0x745C70
+	_asm push a1
+	_asm call eax
+	_asm pop edx
+}
+
+int __stdcall FUNC_100B64E0(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9)
+{
+	_asm push a9
+	_asm push a8
+	_asm push a7
+	_asm push a6
+	_asm push a5
+	_asm push a4
+	_asm push a3
+	_asm push a2
+	_asm mov ecx, a1
+	_asm mov edx, 0x73FB10
+	_asm call edx
+}
+
+//-----------------------------------------------------------
+
+int __stdcall FUNC_100B6510(int a1, int a2)
+{
+	_asm push 0
+	_asm push 0
+	_asm push a2
+	_asm mov ecx, a1
+	_asm mov edx, 0x73AAC0
+	_asm call edx
+}
+
+//-----------------------------------------------------------
+
 UINT GetVehicleSubtypeFromVehiclePtr(VEHICLE_TYPE *pVehicle)
 {
 	if(!pVehicle) return 0;
@@ -1021,3 +1410,650 @@ UINT GetVehicleSubtypeFromVehiclePtr(VEHICLE_TYPE *pVehicle)
 
 
 
+
+//-----------------------------------------------------------
+
+void FUNC_100B4D10(VECTOR *vecOut, MATRIX4X4 *pMatrix, VECTOR *vecOffset)
+{
+	vecOut->X = pMatrix->at.X * vecOffset->Z + pMatrix->up.X * vecOffset->Y +
+		pMatrix->right.X * vecOffset->X + pMatrix->pos.X;
+	vecOut->Y = ((pMatrix->at.Y * vecOffset->Z + pMatrix->up.Y * vecOffset->Y) +
+		pMatrix->right.Y * vecOffset->X) + pMatrix->pos.Y;
+	vecOut->Z = ((pMatrix->at.Z * vecOffset->Z + pMatrix->up.Z * vecOffset->Y) +
+		pMatrix->right.Z * vecOffset->X) + pMatrix->pos.Z;
+}
+
+//-----------------------------------------------------------
+
+DWORD unnamed_1026BBB0;
+
+BOOL __stdcall FUNC_100B4860(VEHICLE_TYPE *pVehicle)
+{
+	BOOL bTowed = FALSE;
+
+	if(pVehicle)
+	{
+		VEHICLE_TYPE *pTractor = (VEHICLE_TYPE *)pVehicle->dwTractor;
+		if(pTractor)
+		{
+			unnamed_1026BBB0 = pVehicle->dwTractor;
+
+			// towed by a vehicle somebody is sitting in
+			PED_TYPE *pDriver = pTractor->pDriver;
+			if(pDriver)
+			{
+				if(pDriver->dwStateFlags & 0x100) return TRUE;
+			}
+		}
+	}
+
+	return bTowed;
+}
+
+//-----------------------------------------------------------
+
+DWORD VAR_1026BBB8[PLAYER_PED_SLOTS];
+
+void __stdcall FUNC_100B44C0(BYTE bytePlayer, DWORD dwValue)
+{
+	VAR_1026BBB8[bytePlayer] = dwValue;
+}
+
+//-----------------------------------------------------------
+
+DWORD __stdcall FUNC_100B4520(DWORD *pdw)
+{
+	return *pdw;
+}
+
+//-----------------------------------------------------------
+
+void __stdcall FUNC_100B4530(DWORD *pdwVtable)
+{
+	if(pdwVtable && *pdwVtable == 0x85BBF0)
+		*pdwVtable = 0x85BD30;
+}
+
+//-----------------------------------------------------------
+
+void __stdcall FUNC_100B4550(DWORD *pdw, float fValue)
+{
+	*(float *)((BYTE *)pdw + 0x18) = fValue;
+}
+
+//-----------------------------------------------------------
+
+float __stdcall FUNC_100B4560(DWORD *pdw)
+{
+	return *(float *)((BYTE *)pdw + 0x18);
+}
+
+//-----------------------------------------------------------
+
+void __stdcall FUNC_100B4660(int iModel, int nTxdIndex)
+{
+	DWORD *pModelInfo = GetModelInfo(iModel);
+
+	_asm mov edx, pModelInfo
+	_asm mov eax, nTxdIndex
+	_asm mov [edx+0x0A], ax
+}
+
+//-----------------------------------------------------------
+
+void FUNC_100B46C0(DWORD dwValue)
+{
+	*(DWORD *)0x9689E0 = dwValue;
+}
+
+//-----------------------------------------------------------
+
+float FUNC_100B4FE0(float x, float y, float z)
+{
+	return (x * x) + (y * y) + (z * z);
+}
+
+//-----------------------------------------------------------
+
+int FUNC_100B56D0(int a1, int a2, int a3)
+{
+	_asm push a3
+	_asm push a2
+	_asm push a1
+	_asm mov edx, 0x7EDDC0
+	_asm call edx
+	_asm pop edx
+	_asm pop edx
+	_asm pop edx
+}
+
+//-----------------------------------------------------------
+
+DWORD VAR_1026DF80;
+DWORD VAR_1026DF84;
+DWORD VAR_1026DF88;
+
+void FUNC_100B5720()
+{
+	_asm pushad
+	_asm push VAR_1026DF80
+	_asm push VAR_1026DF84
+	_asm mov edx, VAR_1026DF88
+	_asm call edx
+	_asm pop edx
+	_asm pop edx
+	_asm popad
+}
+
+//-----------------------------------------------------------
+
+BOOL __stdcall FUNC_100B4570(int iModel)
+{
+	DWORD *pModelInfo = GetModelInfo(iModel);
+
+	// retail tests the sum, so a compare against -20 emits the wrong shape
+	if(pModelInfo && *pModelInfo + 20 != 0)
+	{
+		return TRUE;
+	}
+	return FALSE;
+}
+
+//-----------------------------------------------------------
+
+DWORD __stdcall FUNC_100B45A0(int iModel)
+{
+	DWORD *pModelInfo = GetModelInfo(iModel);
+	DWORD dwRet = 0;
+
+	_asm mov eax, pModelInfo
+	_asm mov edx, [eax+0x1C]
+	_asm mov dwRet, edx
+
+	return dwRet;
+}
+
+//-----------------------------------------------------------
+
+void __stdcall FUNC_100B45D0(int iModel, int a2)
+{
+	DWORD *pModelInfo = GetModelInfo(iModel);
+
+	_asm mov ecx, pModelInfo
+	_asm mov edx, a2
+	_asm mov [ecx+0x1C], edx
+	_asm push a2
+	_asm mov edx, [ecx]
+	_asm call dword ptr [edx+0x40]
+}
+
+//-----------------------------------------------------------
+
+void __stdcall FUNC_100B4600(int iModel, int a2)
+{
+	DWORD *pModelInfo = GetModelInfo(iModel);
+
+	_asm mov ecx, pModelInfo
+	_asm mov edx, a2
+	_asm mov [ecx+0x1C], edx
+	_asm push a2
+	_asm mov edx, [ecx]
+	_asm call dword ptr [edx+0x3C]
+}
+
+//-----------------------------------------------------------
+
+void __stdcall FUNC_100B4630(int iModel, int a2)
+{
+	DWORD *pModelInfo = GetModelInfo(iModel);
+
+	_asm mov ecx, pModelInfo
+	_asm push 0
+	_asm push a2
+	_asm mov edx, 0x4C4BC0
+	_asm call edx
+}
+
+//-----------------------------------------------------------
+
+DWORD * __stdcall FUNC_100B46D0(int iModel)
+{
+	DWORD *pModelInfo = GetModelInfo(iModel);
+	DWORD *pRet = 0;
+
+	_asm mov eax, pModelInfo
+	_asm mov edx, [eax+0x14]
+	_asm mov pRet, edx
+
+	return pRet;
+}
+
+//-----------------------------------------------------------
+
+WORD __stdcall FUNC_100B4700(int iModel)
+{
+	DWORD *pModelInfo = GetModelInfo(iModel);
+	WORD wRet = 0;
+
+	_asm mov edx, pModelInfo
+	_asm mov bx, [edx+8]
+	_asm mov wRet, bx
+
+	return wRet;
+}
+
+//-----------------------------------------------------------
+
+void __stdcall FUNC_100B4730(int iModel, WORD wValue)
+{
+	DWORD *pModelInfo = GetModelInfo(iModel);
+
+	if(pModelInfo)
+	{
+		_asm mov edx, pModelInfo
+		_asm mov bx, wValue
+		_asm mov [edx+8], bx
+	}
+}
+
+//-----------------------------------------------------------
+
+BOOL __stdcall FUNC_100B44E0(DWORD *pModelInfo)
+{
+	if(pModelInfo && (*pModelInfo == 0x85BBF0 || *pModelInfo == 0x85BC30 ||
+		*pModelInfo == 0x85BC70 || *pModelInfo == 0x85BCB0 || *pModelInfo == 0x85BCF0))
+	{
+		return TRUE;
+	}
+	return FALSE;
+}
+
+//-----------------------------------------------------------
+
+WORD FUNC_100B6470(int a1, int a2, int a3, int a4, int a5)
+{
+	if(!a1) return 0;
+
+	WORD wRet = 0;
+
+	_asm lea edx, a1
+	_asm xor eax, eax
+	_asm mov ax, [edx+0x12]
+	_asm mov wRet, ax
+
+	return wRet;
+}
+
+//-----------------------------------------------------------
+
+void VectorScale(VECTOR *vecOut, VECTOR *vecIn, float fScale)
+{
+	vecOut->X = fScale * vecIn->X;
+	vecOut->Y = fScale * vecIn->Y;
+	vecOut->Z = fScale * vecIn->Z;
+}
+
+//-----------------------------------------------------------
+
+void FUNC_100B51E0(int a1, int a2)
+{
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7EB600 : 0x7EB5C0;
+
+	_asm push a2
+	_asm push a1
+	_asm mov eax, dwFunc
+	_asm call eax
+	_asm pop edx
+	_asm pop edx
+}
+
+//-----------------------------------------------------------
+
+float FUNC_100B5180(float *pQuat)
+{
+	return pQuat[0] * pQuat[0] + (pQuat[1] * pQuat[1] + pQuat[2] * pQuat[2] +
+		pQuat[3] * pQuat[3]);
+}
+
+//-----------------------------------------------------------
+
+void FUNC_100B5910(int a1, int a2)
+{
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7F1960 : 0x7F1920;
+
+	_asm push a2
+	_asm push a1
+	_asm mov edx, dwFunc
+	_asm call edx
+	_asm pop edx
+	_asm pop edx
+}
+
+//-----------------------------------------------------------
+
+void FUNC_100B5940(int a1, int a2)
+{
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7F2300 : 0x7F22C0;
+
+	_asm push 1
+	_asm push a2
+	_asm push a1
+	_asm mov edx, dwFunc
+	_asm call edx
+	_asm pop edx
+	_asm pop edx
+	_asm pop edx
+}
+
+//-----------------------------------------------------------
+
+void FUNC_100B58D0(int a1, int a2, int a3)
+{
+	int nCopy = a2;
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7F2010 : 0x7F1FD0;
+
+	_asm push 1
+	_asm push a3
+	_asm push nCopy
+	_asm push a1
+	_asm mov edx, dwFunc
+	_asm call edx
+	_asm pop edx
+	_asm pop edx
+	_asm pop edx
+	_asm pop edx
+}
+
+//-----------------------------------------------------------
+
+// patched to the EU entry point on first use, so it has to be a real variable
+DWORD VAR_101173FC = 0x7EDD90;
+
+void FUNC_100B56F0(int a1, int a2, int a3)
+{
+	if(iGtaVersion == GTASA_VERSION_EU10)
+		VAR_101173FC = 0x7EDDD0;
+
+	_asm push a3
+	_asm push 1
+	_asm push a2
+	_asm push a1
+	_asm mov edx, VAR_101173FC
+	_asm call edx
+	_asm pop edx
+	_asm pop edx
+	_asm pop edx
+	_asm pop edx
+}
+
+//-----------------------------------------------------------
+
+void FUNC_100B62B0(BYTE *pObject)
+{
+	if(pObject)
+	{
+		if(*pObject == 1)
+		{
+			DWORD dwOther = *(DWORD *)(pObject + 4);
+
+			FUNC_100B1800(pObject);
+
+			if(dwOther) FUNC_100B17D0(dwOther);
+		}
+		else if(*pObject == 2)
+		{
+			FUNC_100B1C80(pObject);
+		}
+	}
+}
+
+//-----------------------------------------------------------
+
+BOOL __stdcall FUNC_100B62F0(BYTE *pObject)
+{
+	if(!pObject || *pObject != 1) return FALSE;
+
+	DWORD dwFunc = (DWORD)FUNC_100B1430(pObject);
+
+	_asm push pObject
+	_asm mov ebx, dwFunc
+	_asm call ebx
+	_asm pop ebx
+
+	return TRUE;
+}
+
+//-----------------------------------------------------------
+
+void __stdcall FUNC_100B6330(BYTE *pObject)
+{
+	if(pObject)
+	{
+		if(*pObject == 1)
+			FUNC_100B62F0(pObject);
+		else if(*pObject == 2)
+			FUNC_100B19D0(pObject);
+	}
+}
+
+//-----------------------------------------------------------
+
+void FUNC_100B5260(MATRIX4X4 *pMatrix, float *pQuatOut)
+{
+	FUNC_100B4D70(pMatrix->right.X, pMatrix->right.Y, pMatrix->right.Z,
+		pMatrix->up.X, pMatrix->up.Y, pMatrix->up.Z,
+		pMatrix->at.X, pMatrix->at.Y, pMatrix->at.Z,
+		&pQuatOut[0], &pQuatOut[1], &pQuatOut[2], &pQuatOut[3]);
+}
+
+//-----------------------------------------------------------
+
+void FUNC_100B5420(float *pQuat, MATRIX4X4 *pMatrix)
+{
+	FUNC_100B4F10(pQuat[0], pQuat[1], pQuat[2], pQuat[3],
+		&pMatrix->right.X, &pMatrix->right.Y, &pMatrix->right.Z,
+		&pMatrix->up.X, &pMatrix->up.Y, &pMatrix->up.Z,
+		&pMatrix->at.X, &pMatrix->at.Y, &pMatrix->at.Z);
+}
+
+//-----------------------------------------------------------
+
+VECTOR VAR_10117400[3];
+DWORD VAR_10117424;
+
+void FUNC_100B57E0(int a1, int nIndex, int a3, int a4)
+{
+	VECTOR *pEntry = &VAR_10117400[nIndex];
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7EB800 : 0x7EB7C0;
+
+	_asm push a4
+	_asm push a3
+	_asm push pEntry
+	_asm push a1
+	_asm mov edx, dwFunc
+	_asm call edx
+	_asm pop edx
+	_asm pop edx
+	_asm pop edx
+	_asm pop edx
+}
+
+//-----------------------------------------------------------
+
+void FUNC_100B5790(int a1, int nIndex, int a3)
+{
+	VECTOR *pEntry = &VAR_10117400[nIndex];
+
+	VAR_10117424 = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7F2010 : 0x7F1FD0;
+
+	_asm push 1
+	_asm push a3
+	_asm push pEntry
+	_asm push a1
+	_asm mov ebx, VAR_10117424
+	_asm call ebx
+	_asm pop ebx
+	_asm pop ebx
+	_asm pop ebx
+	_asm pop ebx
+}
+
+//-----------------------------------------------------------
+
+void FUNC_100B5740(int a1, int a2)
+{
+	VAR_1026DF88 = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7F20B0 : 0x7F2070;
+	VAR_1026DF80 = a2;
+	VAR_1026DF84 = a1;
+
+	_asm pushad
+	_asm push VAR_1026DF80
+	_asm push VAR_1026DF84
+	_asm mov edx, VAR_1026DF88
+	_asm call edx
+	_asm pop edx
+	_asm pop edx
+	_asm popad
+}
+
+//-----------------------------------------------------------
+// same body as FUNC_100B5260; retail keeps both copies
+
+void FUNC_100B52B0(MATRIX4X4 *pMatrix, float *pQuatOut)
+{
+	FUNC_100B4D70(pMatrix->right.X, pMatrix->right.Y, pMatrix->right.Z,
+		pMatrix->up.X, pMatrix->up.Y, pMatrix->up.Z,
+		pMatrix->at.X, pMatrix->at.Y, pMatrix->at.Z,
+		&pQuatOut[0], &pQuatOut[1], &pQuatOut[2], &pQuatOut[3]);
+}
+
+//-----------------------------------------------------------
+
+void FUNC_100B5210(int a1, void *a2)
+{
+	float quat[4];
+	float *pQuat;
+	DWORD dwFunc;
+
+	pQuat = quat;
+	dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7EB600 : 0x7EB5C0;
+
+	_asm push a1
+	_asm push pQuat
+	_asm mov eax, dwFunc
+	_asm call eax
+	_asm pop edx
+	_asm pop edx
+
+	((float *)a2)[0] = quat[3];
+	((float *)a2)[1] = quat[0];
+	((float *)a2)[2] = quat[1];
+	((float *)a2)[3] = quat[2];
+}
+
+//-----------------------------------------------------------
+
+void FUNC_100B5500(float *pQuat)
+{
+	D3DXQUATERNION qOut;
+	D3DXQUATERNION qIn;
+
+	qIn.w = pQuat[0];
+	qIn.x = pQuat[1];
+	qIn.y = pQuat[2];
+	qIn.z = pQuat[3];
+
+	D3DXQuaternionNormalize(&qOut, &qIn);
+
+	pQuat[0] = qOut.w;
+	pQuat[1] = qOut.x;
+	pQuat[2] = qOut.y;
+	pQuat[3] = qOut.z;
+}
+
+//-----------------------------------------------------------
+
+void FUNC_100B58A0(DWORD dwFrame, VECTOR *vecOut, int *a3)
+{
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7EBAC0 : 0x7EBA80;
+
+	_asm push a3
+	_asm push vecOut
+	_asm push dwFrame
+	_asm mov edx, dwFunc
+	_asm call edx
+	_asm pop edx
+	_asm pop edx
+	_asm pop edx
+}
+
+//-----------------------------------------------------------
+
+VECTOR VAR_1026DF90;
+VECTOR VAR_1026DF9C;
+float VAR_1026CF7C;
+
+void FUNC_100B5830(int a1, int nIndex, float *pfOut)
+{
+	VAR_1026DF9C = VAR_10117400[nIndex];
+
+	DWORD dwFunc = (iGtaVersion != GTASA_VERSION_USA10) ? 0x7F2760 : 0x7F2720;
+
+	_asm lea eax, VAR_1026DF90
+	_asm push eax
+	_asm lea eax, VAR_1026CF7C
+	_asm push eax
+	_asm lea eax, VAR_1026DF9C
+	_asm push eax
+	_asm push a1
+	_asm mov edx, dwFunc
+	_asm call edx
+	_asm pop edx
+	_asm pop edx
+	_asm pop edx
+	_asm pop edx
+
+	*pfOut = VAR_1026CF7C;
+}
+
+//-----------------------------------------------------------
+
+void FUNC_100B5480(float *pQuatOut, float *pQuatFrom, float *pQuatTo, float fT)
+{
+	D3DXQUATERNION qOut;
+	D3DXQUATERNION q1;
+	D3DXQUATERNION q2;
+
+	q1.w = pQuatFrom[0];
+	q1.x = pQuatFrom[1];
+	q1.y = pQuatFrom[2];
+	q1.z = pQuatFrom[3];
+
+	q2.w = pQuatTo[0];
+	q2.x = pQuatTo[1];
+	q2.y = pQuatTo[2];
+	q2.z = pQuatTo[3];
+
+	D3DXQuaternionSlerp(&qOut, &q1, &q2, fT);
+
+	pQuatOut[0] = qOut.w;
+	pQuatOut[1] = qOut.x;
+	pQuatOut[2] = qOut.y;
+	pQuatOut[3] = qOut.z;
+}
+
+//-----------------------------------------------------------
+
+void FUNC_100B5620(float *pQuat, float *pEuler)
+{
+	float f0 = pQuat[0] * pQuat[0];
+	float f1 = pQuat[1] * pQuat[1];
+	float f2 = pQuat[2] * pQuat[2];
+	float f3 = pQuat[3] * pQuat[3];
+
+	pEuler[0] = (float)atan2((pQuat[2] * pQuat[1] + pQuat[3] * pQuat[0]) * 2.0f,
+		f1 - f2 - f3 + f0);
+	pEuler[1] = (float)asin((pQuat[3] * pQuat[1] - pQuat[2] * pQuat[0]) * -2.0f);
+	pEuler[2] = (float)atan2((pQuat[3] * pQuat[2] + pQuat[1] * pQuat[0]) * 2.0f,
+		f3 - (f2 + f1) + f0);
+}

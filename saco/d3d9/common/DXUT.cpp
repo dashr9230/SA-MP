@@ -1946,7 +1946,9 @@ float DXUTRankDeviceCombo( CD3DEnumDeviceSettingsCombo* pDeviceSettingsCombo,
     }
     else
     {
-        int nBitDepthDelta = abs( (long) DXUTColorChannelBits(pDeviceSettingsCombo->AdapterFormat) -
+        // hoisted: retail evaluates the combo side first here (unlike the back buffer block below)
+        long nAdapterBits = (long) DXUTColorChannelBits(pDeviceSettingsCombo->AdapterFormat);
+        int nBitDepthDelta = abs( nAdapterBits -
                                   (long) DXUTColorChannelBits(pOptimalDeviceSettings->AdapterFormat) );
         float fScale = __max(0.9f - (float)nBitDepthDelta*0.2f, 0.0f);
         fCurRanking += fScale * fAdapterFormatWeight;
@@ -2713,11 +2715,11 @@ HRESULT DXUTChangeDevice( DXUTDeviceSettings* pNewDeviceSettings, IDirect3DDevic
 
         // If different device windows are used for windowed mode and fullscreen mode,
         // hide the fullscreen window so that it doesn't obscure the screen.
-        if( DXUTGetHWNDDeviceFullScreen() != DXUTGetHWNDDeviceWindowed() )
+        if( DXUTGetHWNDDeviceWindowed() != DXUTGetHWNDDeviceFullScreen() )
             ShowWindow( DXUTGetHWNDDeviceFullScreen(), SW_HIDE );
 
         // If using the same window for windowed and fullscreen mode, reattach menu if one exists
-        if( DXUTGetHWNDDeviceFullScreen() == DXUTGetHWNDDeviceWindowed() )
+        if( DXUTGetHWNDDeviceWindowed() == DXUTGetHWNDDeviceFullScreen() )
         {
             if( GetDXUTState().GetMenu() != NULL )
                 SetMenu( DXUTGetHWNDDeviceWindowed(), GetDXUTState().GetMenu() );
@@ -2752,7 +2754,7 @@ HRESULT DXUTChangeDevice( DXUTDeviceSettings* pNewDeviceSettings, IDirect3DDevic
         SetWindowLong( DXUTGetHWNDDeviceFullScreen(), GWL_STYLE, WS_POPUP|WS_SYSMENU );
 
         // If using the same window for windowed and fullscreen mode, save and remove menu 
-        if( DXUTGetHWNDDeviceFullScreen() == DXUTGetHWNDDeviceWindowed() )
+        if( DXUTGetHWNDDeviceWindowed() == DXUTGetHWNDDeviceFullScreen() )
         {
             HMENU hMenu = GetMenu( DXUTGetHWNDDeviceFullScreen() );
             GetDXUTState().SetMenu( hMenu );

@@ -1,6 +1,15 @@
 
 #pragma once
 
+struct SCOREBOARD_ROW
+{
+	D3DCOLOR Color;
+	char szName[29];
+	int iPlayerId;
+	int iScore;
+	int iPing;
+};
+
 class CScoreBoard
 {
 private:
@@ -27,4 +36,9 @@ public:
 
 	void FUNC_1006E930();
 	void ResetDialogControls(CDXUTDialog *pDialog);
+	void GetRect(RECT *pRect);
+	void FUNC_1006ED30();
+	void Show();
+	void ClickPlayer();
+	void Hide(bool bResetInput);
 };

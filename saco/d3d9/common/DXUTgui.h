@@ -17,6 +17,7 @@
 // Defines and macros 
 //--------------------------------------------------------------------------------------
 #define EVENT_BUTTON_CLICKED                0x0101
+#define EVENT_BUTTON_PRESSED                0x0102
 #define EVENT_COMBOBOX_SELECTION_CHANGED    0x0201
 #define EVENT_RADIOBUTTON_CHANGED           0x0301
 #define EVENT_CHECKBOX_CHANGED              0x0401
@@ -328,6 +329,7 @@ public:
     
     int AddFont( LPCTSTR strFaceName, LONG height, LONG weight );
     int AddTexture( LPCTSTR strFilename );
+    int SetFont( int iFont, LPCTSTR strFaceName, LONG height, LONG weight );
 
     DXUTFontNode*     GetFontNode( int iIndex )     { return m_FontCache.GetAt( iIndex ); };
     DXUTTextureNode*  GetTextureNode( int iIndex )  { return m_TextureCache.GetAt( iIndex ); };
@@ -593,11 +595,15 @@ protected:
 //-----------------------------------------------------------------------------
 struct DXUTListBoxItem
 {
-    TCHAR strText[256];
+    TCHAR strText[257];
+    TCHAR strColumnText[3][129];
     void*  pData;
 
     RECT  rcActive;
     bool  bSelected;
+
+    D3DCOLOR TextColor;
+    bool  field_29D;
 };
 
 class CDXUTListBox : public CDXUTControl
@@ -619,9 +625,10 @@ public:
     void SetStyle( DWORD dwStyle ) { m_dwStyle = dwStyle; }
     void SetScrollBarWidth( int nWidth ) { m_nSBWidth = nWidth; UpdateRects(); }
     void SetBorder( int nBorder, int nMargin ) { m_nBorder = nBorder; m_nMargin = nMargin; }
-    HRESULT AddItem( const TCHAR *wszText, void *pData );
-    HRESULT InsertItem( int nIndex, const TCHAR *wszText, void *pData );
+    HRESULT AddItem( const TCHAR *wszText, void *pData, D3DCOLOR TextColor );
+    HRESULT InsertItem( int nIndex, const TCHAR *wszText, void *pData, D3DCOLOR TextColor );
     void RemoveItem( int nIndex );
+    void SetItemColumnText( int nIndex, int nColumn, const TCHAR *wszText );
     void RemoveItemByText( TCHAR *wszText );
     void RemoveItemByData( void *pData );
     void RemoveAllItems();
@@ -630,18 +637,17 @@ public:
     int GetSelectedIndex( int nPreviousSelected = -1 );
     DXUTListBoxItem *GetSelectedItem( int nPreviousSelected = -1 ) { return GetItem( GetSelectedIndex( nPreviousSelected ) ); }
     void SelectItem( int nNewIndex );
+    CDXUTScrollBar *GetScrollBar() { return &m_ScrollBar; }
 
     enum STYLE { MULTISELECTION = 1 };
 
 	int field_4D;
-	int field_51;
-	int field_55;
-	int field_59;
+	int field_51[3];
 
 protected:
+    CDXUTScrollBar m_ScrollBar;
     RECT m_rcText;      // Text rendering bound
     RECT m_rcSelection; // Selection box bound
-    CDXUTScrollBar m_ScrollBar;
     int m_nSBWidth;
     int m_nBorder;
     int m_nMargin;
@@ -798,6 +804,7 @@ public:
 
     bool InsertChar( int nIndex, WCHAR tchr ); // Inserts the char at specified index. If nIndex == -1, insert to the end.
     bool InsertChar( int nIndex, CHAR tchr );
+    bool SetChar( int nIndex, CHAR tchr );
 	bool RemoveChar( int nIndex );  // Removes the char at specified index. If nIndex == -1, remove the last char.
     bool InsertString( int nIndex, const WCHAR *pStr, int nCount = -1 );  // Inserts the first nCount characters of the string pStr at specified index.  If nCount == -1, the entire string is inserted. If nIndex == -1, insert to the end.
     bool SetText( LPCWSTR wszText );
@@ -1005,6 +1012,7 @@ public:
     virtual void OnFocusOut();
 
     void PumpMessage();
+    static bool IsImeActive();
 
     virtual void RenderCandidateReadingWindow( IDirect3DDevice9* pd3dDevice, float fElapsedTime, bool bReading );
     virtual void RenderComposition( IDirect3DDevice9* pd3dDevice, float fElapsedTime );
@@ -1033,7 +1041,7 @@ protected:
 
     struct CCandList
     {
-        TCHAR awszCandidate[MAX_CANDLIST][256];
+        WCHAR awszCandidate[MAX_CANDLIST][256];
         CUniBuffer HoriCand; // Candidate list string (for horizontal candidate window)
         int   nFirstSelected; // First character position of the selected string in HoriCand
         int   nHoriSelectedLen; // Length of the selected string in HoriCand
@@ -1071,7 +1079,7 @@ protected:
     static CUniBuffer s_CompString;       // Buffer to hold the composition string (we fix its length)
     static BYTE    s_abCompStringAttr[MAX_COMPSTRING_SIZE];
     static DWORD   s_adwCompStringClause[MAX_COMPSTRING_SIZE];
-    static TCHAR   s_wszReadingString[32];// Used only with horizontal reading window (why?)
+    static WCHAR   s_wszReadingString[32];// Used only with horizontal reading window (why?)
     static CCandList s_CandList;          // Data relevant to the candidate list
     static bool    s_bShowReadingWindow;  // Indicates whether reading window is visible
     static bool    s_bHorizontalReading;  // Indicates whether the reading window is vertical or horizontal

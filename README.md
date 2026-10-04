@@ -33,4 +33,89 @@ Status values may not be 100% accurate and will fluctuate during the analyzation
 
 ## Building
 
-TODO
+### Toolchain
+
+The client library is built with **Microsoft Visual C++ 7.1 (`cl.exe` 13.10.3077)**, the compiler that ships
+with Visual Studio .NET 2003. This is not a preference. A matching decompilation only reproduces the original
+bytes if the original compiler produces them, and no later MSVC release generates the same code for this
+source. Building with a modern toolset may well succeed and will not match.
+
+Two flags worth knowing before you start: `/GS-` does not exist in VC7.1 (buffer security checks are off by
+default, and `BufferSecurityCheck="FALSE"` in the project reflects that), and `__thiscall` is not a usable
+keyword in this compiler version.
+
+### On Windows
+
+Open `saco.sln` in Visual Studio .NET 2003 and build the `Release` configuration of the `saco` project. The
+output is `saco/Release/samp.dll`. The `Debug` configuration exists but produces nothing comparable to the
+original binary.
+
+Other components have their own solutions: `announce/announce.sln`, `arctool2/arctool2.sln`, `bot/bot.sln`
+and `server/server.sln`.
+
+### On Linux
+
+VC7.1 runs well under Wine. Install Visual Studio .NET 2003 into a Wine prefix, then invoke `cl.exe`
+directly. Two things are easy to get wrong: the working directory has to be `saco/`, and `INCLUDE` has to be
+set explicitly, because the Wine environment does not inherit the compiler's own registry settings.
+
+```sh
+export WINEPREFIX="$HOME/.wine"
+VC='C:\Program Files\Microsoft Visual Studio .NET 2003\Vc7'
+export INCLUDE="$VC\\include;$VC\\PlatformSDK\\Include"
+
+cd saco
+wine "$VC\\bin\\cl.exe" /c /Ox /Og /Ob1 /Oi /Ot /Oy /MT /Zp1 /EHsc /GF \
+  /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D SACO_EXPORTS /D SAMPCLI \
+  /I "d3d9\\include" /I "." net\\netgame.cpp /Fo"Z:\\tmp\\netgame.obj"
+```
+
+### Release settings
+
+These are the settings the `Release` configuration in `saco/saco.vcproj` expands to. They matter because
+changing any of them changes the generated code, so a function that matched before may stop matching.
+
+| Flag | Project property |
+| --- | --- |
+| `/Ox` | `Optimization="3"` |
+| `/Og` | `GlobalOptimizations="TRUE"` |
+| `/Ob1` | `InlineFunctionExpansion="1"` |
+| `/Oi` | `EnableIntrinsicFunctions="TRUE"` |
+| `/Ot` | `FavorSizeOrSpeed="1"` |
+| `/Oy` | `OmitFramePointers="TRUE"` |
+| `/GF` | `StringPooling="TRUE"` |
+| `/EHsc` | `ExceptionHandling="TRUE"` |
+| `/MT` | `RuntimeLibrary="0"` |
+| `/Zp1` | `StructMemberAlignment="1"` |
+
+Preprocessor definitions are `WIN32`, `NDEBUG`, `_WINDOWS`, `_USRDLL`, `SACO_EXPORTS` and `SAMPCLI`, and the
+only additional include directory is `d3d9\include`.
+
+Five files carry per-file overrides, and compiling them with the defaults above will not match:
+
+| File | Override |
+| --- | --- |
+| `game/entity.cpp` | `/O2` |
+| `game/keystuff.cpp` | `/O2` |
+| `game/patches.cpp` | `/O2` |
+| `httpclient.cpp` | `/O2` |
+| `d3d9/dxutil.cpp` | `/Ob2` |
+
+The link is `/SUBSYSTEM:WINDOWS /MACHINE:X86` against `dxguid.lib`, `d3d9.lib`, `d3dx9.lib`, `comctl32.lib`,
+`wsock32.lib`, `winmm.lib` and `bass.lib`, with `d3d9` as an additional library directory. Both
+`/OPT:NOREF` and `/OPT:NOICF` are in effect (`OptimizeReferences="0"` and `EnableCOMDATFolding="0"`), so the
+linker neither strips unreferenced functions nor folds identical ones. Identical functions therefore appear
+separately in the original binary, which is why byte-identical siblings are expected rather than suspicious.
+
+### Current state of the build
+
+`samp.dll` does not link yet. `raknet/SocketDataEncryptor.cpp` is referenced by the project but is not
+present in the tree, and it is the only such file. Every other translation unit the project lists compiles
+cleanly.
+
+Because of that, progress is measured per function rather than per binary. A function counts as done when the
+bytes the compiler emits for it are identical to the bytes at the corresponding address in the original
+`samp.dll`, after masking the four-byte slots that COFF marks as relocations. Masking is what makes an
+unlinked object file comparable to a linked binary: call targets, global addresses and string addresses are
+resolved at link time and cannot agree, while every other byte must.
+

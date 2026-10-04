@@ -79,6 +79,7 @@
 				OmitFramePointers="TRUE"
 				AdditionalIncludeDirectories="d3d9\include\"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;SACO_EXPORTS;SAMPCLI"
+				StringPooling="TRUE"
 				ExceptionHandling="TRUE"
 				RuntimeLibrary="0"
 				StructMemberAlignment="1"
@@ -328,6 +329,12 @@
 			</File>
 			<File
 				RelativePath=".\net\actorpool.h">
+			</File>
+			<File
+				RelativePath=".\net\downloader.cpp">
+			</File>
+			<File
+				RelativePath=".\net\downloader.h">
 			</File>
 			<File
 				RelativePath=".\net\gangzonepool.cpp">
@@ -1003,6 +1010,12 @@
 				</File>
 				<File
 					RelativePath=".\d3d9\dxutil.cpp">
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							InlineFunctionExpansion="2"/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath=".\d3d9\include\dxutil.h">
@@ -1053,6 +1066,9 @@
 			</File>
 			<File
 				RelativePath=".\d3d9\common\DXUTSettingsDlg.h">
+			</File>
+			<File
+				RelativePath=".\d3d9\common\DXUTUniBuffer.cpp">
 			</File>
 		</Filter>
 		<Filter
