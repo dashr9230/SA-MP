@@ -795,7 +795,7 @@ int CPlayerPed::GetVehicleSeatID()
 {
 	VEHICLE_TYPE *pVehicle;
 
-	if( (BYTE)m_pPed->dwAction == ACTION_INCAR && (pVehicle = (VEHICLE_TYPE *)m_pPed->pVehicle) != 0 ) {
+	if( GetActionTrigger() == ACTION_INCAR && (pVehicle = (VEHICLE_TYPE *)m_pPed->pVehicle) != 0 ) {
 		if(pVehicle->pDriver == m_pPed) return 0;
 		if(pVehicle->pPassengers[0] == m_pPed) return 1;
 		if(pVehicle->pPassengers[1] == m_pPed) return 2;
