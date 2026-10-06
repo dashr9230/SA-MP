@@ -790,7 +790,7 @@ void CGame::SetRaceCheckpointInformation(BYTE byteType, VECTOR *pos, VECTOR *nex
 	m_byteRaceType = byteType;
 	if(m_dwRaceCheckpointMarker)
 	{
-		ScriptCommand(&disable_marker, m_dwRaceCheckpointMarker);
+		DisableMarker(m_dwRaceCheckpointMarker);
 		m_dwRaceCheckpointMarker = NULL;
 
 		DWORD dwMarkerID = 0;
