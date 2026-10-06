@@ -857,7 +857,7 @@ void CGame::UpdateCheckpoints()
 		}
 	}
 	else if(m_dwCheckpointMarker) {
-		ScriptCommand(&disable_marker, m_dwCheckpointMarker);
+		DisableMarker(m_dwCheckpointMarker);
 		m_dwCheckpointMarker = NULL;
 	}
 
@@ -877,13 +877,8 @@ void CGame::UpdateCheckpoints()
 		}
 	}
 	else if(m_dwRaceCheckpointMarker) {
-		ScriptCommand(&disable_marker, m_dwRaceCheckpointMarker);
-		if (m_dwRaceCheckpointHandle)
-		{
-			ScriptCommand(&destroy_racing_checkpoint, m_dwRaceCheckpointHandle);
-			m_dwRaceCheckpointHandle = NULL;
-		}
-		m_bRaceCheckpointsEnabled = false;
+		DisableMarker(m_dwRaceCheckpointMarker);
+		DisableRaceCheckpoint();
 		m_dwRaceCheckpointMarker = NULL;
 	}
 }
