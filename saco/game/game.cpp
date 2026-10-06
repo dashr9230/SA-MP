@@ -769,7 +769,7 @@ void CGame::SetCheckpointInformation(VECTOR *pos, VECTOR *extent)
 	memcpy(&m_vecCheckpointPos,pos,sizeof(VECTOR));
 	memcpy(&m_vecCheckpointExtent,extent,sizeof(VECTOR));
 	if(m_dwCheckpointMarker) {
-		ScriptCommand(&disable_marker, m_dwCheckpointMarker);
+		DisableMarker(m_dwCheckpointMarker);
 		m_dwCheckpointMarker = NULL;
 
 		DWORD dwMarkerID = 0;
