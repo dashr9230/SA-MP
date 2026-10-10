@@ -246,6 +246,12 @@
 			</File>
 			<File
 				RelativePath=".\game\task.cpp">
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="4"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\game\task.h">
