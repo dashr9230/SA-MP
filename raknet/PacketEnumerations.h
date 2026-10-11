@@ -41,8 +41,8 @@ enum
 	/// 9: Pong from a connected system.  Update timestamps (internal use only)
 	ID_CONNECTED_PONG,
 
-	/// 12: ???
-	ID_UNK_12 = 12,
+	/// 12: authorization keys, internal/external use
+	ID_AUTH_KEY = 12,
 
 	/// 15: Connecting to a secured server/peer
 	ID_SECURED_CONNECTION_RESPONSE = 15,
@@ -52,52 +52,52 @@ enum
 	/// 18: Server / Client only - The server is broadcasting the pings of all players in the game (internal use only)
 	ID_BROADCAST_PINGS = 18,
 	/// 19: Server / Client only - The server is broadcasting a random number seed (internal use only)
-	ID_SET_RANDOM_NUMBER_SEED,
+	ID_SET_RANDOM_NUMBER_SEED = 19,
 	/// 20: Remote procedure call (internal use only)
-	ID_RPC,
+	ID_RPC - 20,
 	/// 21: Remote procedure call reply, for RPCs that return data (internal use only)
-	ID_RPC_REPLY,
+	ID_RPC_REPLY = 21,
 
 	/// 22: ???
-	ID_NEW_INCOMING_CONNECTION_2,
+	ID_NEW_INCOMING_CONNECTION_22,
 
 	/// [PEER|SERVER|CLIENT] 29: Sent to the player when a connection request cannot be completed due to inability to connect.
 	/// Never transmitted.
 	ID_CONNECTION_ATTEMPT_FAILED = 29,
 
 	/// [PEER|SERVER] 30: A remote system has successfully connected.
-	ID_NEW_INCOMING_CONNECTION,
+	ID_NEW_INCOMING_CONNECTION = 30,
 
 	/// [PEER|CLIENT] 31: The system we attempted to connect to is not accepting new connections.
-	ID_NO_FREE_INCOMING_CONNECTIONS,
+	ID_NO_FREE_INCOMING_CONNECTIONS = 31,
 
 	/// [PEER|SERVER|CLIENT] 32: The system specified in Packet::playerID has disconnected from us.  For the client, this would mean the server has shutdown.
-	ID_DISCONNECTION_NOTIFICATION,
+	ID_DISCONNECTION_NOTIFICATION = 32,
 
 	/// [PEER|SERVER|CLIENT] 33: Reliable packets cannot be delivered to the system specifed in Packet::playerID.  The connection to that system has been closed.
-	ID_CONNECTION_LOST,
+	ID_CONNECTION_LOST = 33,
 
 	/// [PEER|CLIENT] 34: In a client/server environment, our connection request to the server has been accepted.
-	ID_CONNECTION_REQUEST_ACCEPTED,
+	ID_CONNECTION_REQUEST_ACCEPTED = 34,
 
 	/// [CLIENT|PEER] 35: We preset an RSA public key which does not match what the system we connected to is using.
-	ID_RSA_PUBLIC_KEY_MISMATCH,
+	ID_RSA_PUBLIC_KEY_MISMATCH = 35,
 
 	/// [PEER|CLIENT] 36: We are banned from the system we attempted to connect to.
-	ID_CONNECTION_BANNED,
+	ID_CONNECTION_BANNED = 36,
 
 	/// [PEER|CLIENT] 37: The remote system is using a password and has refused our connection because we did not set the correct password.
-	ID_INVALID_PASSWORD,
+	ID_INVALID_PASSWORD = 37,
 
 	/// [PEER|SERVER|CLIENT] 38: A packet has been tampered with in transit.  The sender is contained in Packet::playerID.
 	/// Never transmitted.
-	ID_MODIFIED_PACKET,
+	ID_MODIFIED_PACKET = 38,
 
 	/// [PEER] 39: Pong from an unconnected system.  First byte is ID_PONG, second sizeof(RakNetTime) bytes is the ping, following bytes is system specific enumeration data.
-	ID_PONG,
+	ID_PONG = 30,
 
 	/// [PEER|SERVER|CLIENT] 40: The four bytes following this byte represent an unsigned int which is automatically modified by the difference in system times between the sender and the recipient. Requires that you call StartOccasionalPing.
-	ID_TIMESTAMP,
+	ID_TIMESTAMP = 40,
 
 	/// [PEER|SERVER|CLIENT] 41: We got a bitstream containing static data.  You can now read this data. This packet is transmitted automatically on connections, and can also be manually sent.
 	ID_RECEIVED_STATIC_DATA,
@@ -214,12 +214,12 @@ enum
 	ID_SPECTATOR_SYNC,
 
 	// TODO: Find out the packet IDs for these.
-	ID_OPEN_CONNECTION_REPLY,
-	ID_CONNECTION_REQUEST,
-	ID_OPEN_CONNECTION_REQUEST,
+	ID_OPEN_CONNECTION_REPLY = 26,
+	ID_CONNECTION_REQUEST = 25,
+	ID_OPEN_CONNECTION_REQUEST = 24,
 	ID_DETECT_LOST_CONNECTIONS,
 	ID_RPC_MAPPING,
-	ID_REQUEST_STATIC_DATA,
+	ID_REQUEST_STATIC_DATA = 43,
 };
 
 #endif
